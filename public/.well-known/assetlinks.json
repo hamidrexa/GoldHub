@@ -1,0 +1,23 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.sahmeto.sahmeto",
+      "sha256_cert_fingerprints": [
+        "0A:6B:D0:D8:D2:76:78:DE:89:0B:54:17:6F:F3:E5:BC:63:DA:CD:D3:BF:3D:21:AD:FE:93:79:6C:8B:4F:8E:E1"
+      ]
+    }
+  },
+  {
+    "relation": [
+      "check_validation"
+    ],
+    "target": {
+      "namespace": "cafebazaar_twa",
+      "package_name": "com.sahmeto.sahmeto"
+    }
+  }
+]

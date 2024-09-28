@@ -1,0 +1,768 @@
+{
+  "sahmeto": "Sahmeto",
+  "title": "Sahmeto",
+  "location": "العنوان",
+  "address": "طهران، أمير آباد، شمال كاركر، مبنى الكلية التقنية، جامعة طهران مساحة العمل المشتركة Nextra، رقم 1450",
+  "tel": "برقية",
+  "linkedin": "ينكدين",
+  "instagram": "انستغرام",
+  "twitter": "تويتر",
+  "buy": "شراء",
+  "sell": "بيع",
+  "email": "بريد إلكتروني",
+  "socialNetworks": "الشبكات الاجتماعية",
+  "callNumber": "رقم التليفون",
+  "postalCode": "رمز بريدي",
+  "contactPageTitleSeo": "اتصل بنا | سهمتو",
+  "neutral": "محايد",
+  "sahmetoProducts": "منتجبات سهمتو ",
+  "selectedIcons": "أفضل الأسهم",
+  "feed": "قائمة المراقبة",
+  "dashboard": "قائمة المراقبة",
+  "bestTraders": "أفضل المتداولين",
+  "search": "بحث",
+  "sahmetoUser": "مستخدم سهمتو",
+  "edit": "تحرير",
+  "planFinished": "خطتك منتهية الصلاحية",
+  "loginToAccount": "تسجيل الدخول",
+  "buySubscription": "الاشتراك",
+  "organizationalSolution": "الحل التنظيمي",
+  "help": "مساعدة",
+  "rules": "الشروط و الأحكام",
+  "aboutUs": "نبذة عنا",
+  "contactUs": "اتصل بنا",
+  "buyFromBroker": "الشراء من البورصة",
+  "buyFromExchange": "الشراء من البورصة",
+  "industry": "الصناعة",
+  "lastWeekTraderSignals": "توجد إشارة {component} حول أسهم {assetSymbol} في رسائل المتداولين الأسبوع الماضي،",
+  "lastWeekTraderSignals2": "في رسائل المتداولين الأسبوع الماضي، هناك إشارة {component} حول {assetSymbol}،",
+  "whatIsAssetAnalysisDiagram": "ما هو مخطط تحليل الرمز {assetSymbol}؟",
+  "whatIsAssetAnalysisDiagramInfo": "ماذا يظهر تحليل مخطط الأسهم؟",
+  "whatIsAssetAnalysisDiagramDescription": "يقوم سهمتو بجمع كافة رسائل المحللين في شبكات التواصل الاجتماعي مثل قنوات Telegram و TradingView و Rahvard365 و Sahamyab وبناء على خوارزمية الذكاء الاصطناعي، يقوم بتحديد عدد إشارات البيع والشراء لكل سهم وأخيرًا، يظهر ملخص آراء محللي الشبكات الاجتماعية في شكل هذا الرسم البياني.",
+  "whatIsAssetAnalysisDiagramTitle2": "كيف يشير مؤشر هذا الرسم البياني إلى وقت شراء وبيع الأسهم؟",
+  "whatIsAssetAnalysisDiagramDescription2": "إذا كانت إبرة هذا الرسم البياني في اتجاه الشراء، فهذا يعني أنه وفقًا للمحللين، فقد حان الوقت لشراء هذا السهم، وإذا كان في اتجاه البيع، فهذا يعني أنه يجب عليك التفكير في بيع وحفظ ربح السهم، إذا كانت الإبرة في النطاق المحايد فإن السهم متقلب ولا يزال الوقت غير مناسب لشراء أو بيع الأسهم.",
+  "signalsTab": "إشارات {assetSymbol}",
+  "tradersTab": "تجار {assetSymbol}",
+  "traderAssetPriceAnalysis": "رأي المتداولين في سعر {assetSymbol}",
+  "traderAssetAnalysis": "رأي المتداولين في {assetSymbol}",
+  "faqTitle": "الدليل | سهمتو",
+  "faqQuestion1": "ماذا يظهر تحليل مخطط الأسهم؟",
+  "faqAnswer1": "يقوم سهمتو بجمع كافة رسائل المحللين في شبكات التواصل الاجتماعي مثل قناة Telegram و TradingView و Rahvard ومواقع Sahamyab، وبناءً على خوارزمية الذكاء الاصطناعي، يقوم بتحديد عدد إشارات البيع والشراء لكل سهم وأخيرًا، يعرض ملخص آراء محللي الشبكات الاجتماعية في شكل هذا الرسم البياني.",
+  "faqQuestion2": "كيف يشير السهم الموجود على هذا الرسم البياني إلى وقت شراء وبيع الأسهم؟",
+  "faqAnswer2": "إذا كان سهم هذا الرسم البياني في اتجاه الشراء، فهذا يعني من وجهة نظر المحللين أن الوقت قد حان لشراء هذا السهم، وإذا كان في اتجاه البيع، فهذا يعني أنه عليك أن تفكر في بيع السهم وحفظ ربحه، فإذا كان السهم في النطاق المحايد فإن السهم متقلب ولا يزال الوقت غير مناسب لشراء أو بيع الأسهم.",
+  "breadcrumbTitle": "مكتشف المسار | سهمتو",
+  "priceChartTitle": "مخطط سعر {assetSymbol} وإشارات الاتجاه {assetSymbol}",
+  "profitTarget": "أقرب هدف للربح",
+  "stopLoss": "أقرب وقف الخسارة",
+  "none": "لیس",
+  "buyRecommendation": "أوصى متداولو {component} بشراء {assetSymbol} من {component}.",
+  "price": "السعر",
+  "products": "المنتجات",
+  "more": "اكثر",
+  "loginRegister": "تسجيل الدخول/التسجيل",
+  "profile": "الملف الشخصي",
+  "navMenuItems": [
+    {
+      "title": "الحل التنظيمي",
+      "href": "/organization",
+      "description": ""
+    },
+    {
+      "title": "تنزيل ملحق کروم",
+      "href": "https://chrome.google.com/webstore/detail/%D8%A7%D9%81%D8%B2%D9%88%D9%86%D9%87-%D8%A8%D9%88%D8%B1%D8%B3-%D8%B3%D9%87%D9%85%D8%AA%D9%88-sahmeto/mnnkkdhkjbcnjljenmicbmlojmnpmaaf?hl=en",
+      "rel": "nofollow",
+      "description": ""
+    },
+    {
+      "title": "مساعدة سهمتو",
+      "href": "https://help.sahmeto.com",
+      "description": ""
+    },
+    {
+      "title": "الشروط و الأحكام",
+      "href": "/privacy",
+      "description": ""
+    },
+    {
+      "title": "نبذة عنا",
+      "href": "/about-us",
+      "description": ""
+    },
+    {
+      "title": "اتصل بنا",
+      "href": "/ar/contact",
+      "description": ""
+    }
+  ],
+  "searchPlaceholder": "البحث بين +10000 متداول ورموز الأسهم والعملات المشفرة",
+  "loginPrompt": "تحتاج إلى تسجيل الدخول/الاشتراك للوصول إلى هذا القسم",
+  "subscriptionPrompt": "تحتاج إلى اشتراك للوصول إلى هذا القسم",
+  "addedToDashboard": "تمت الإضافة إلى قائمة المراقبة",
+  "addToDashboard": "إضافة إلى قائمة المراقبة",
+  "sortBasedOn": "فرز الرسالة بناءً على",
+  "related": "ذات صلة",
+  "latest": "الأحدث",
+  "filter": "مرشح",
+  "signalType": "نوع الإشارة",
+  "all": "الكل",
+  "buySuggestion": "إشارات الشراء",
+  "sellSuggestion": "إشارات البيع",
+  "signalCount": "عدد الإشارات",
+  "commentSuccessfullySubmit": "تم إرسال تعليقك.",
+  "showUsersComments": "عرض فتح المستخدمين الآخرين",
+  "backToSubmitComment": "العودة إلى إرسال التعليق",
+  "rank": "الرتبة",
+  "powerOfAnalytics": "معدل الفوز",
+  "showFullText": "إظهار النص الكامل",
+  "showOriginalMessage": "إظهار الرسالة الأصلية",
+  "translatedFromEnglish": "مترجم من",
+  "typeOfAnalysis": "أنواع التحليل",
+  "source": "المصدر",
+  "bargainTypes": {
+    "B": {
+      "title": "شراء"
+    },
+    "N": {
+      "title": "محايد",
+      "variant": "light"
+    },
+    "S": {
+      "title": "بيع",
+      "variant": "destructive"
+    },
+    "E": {
+      "title": "غير معروف",
+      "variant": "light"
+    }
+  },
+  "analysisTypes": {
+    "F": {
+      "title": "الأساسي",
+      "variant": "light"
+    },
+    "T": {
+      "title": "التحليل الفني",
+      "variant": "light"
+    },
+    "B": {
+      "title": "دفتر الطلبات",
+      "variant": "light"
+    }
+  },
+  "messagesSourceType": {
+    "tradingview": {
+      "title": "TradingView",
+      "logo": "/img/messages-source/tradingview.svg"
+    },
+    "telegram": {
+      "title": "Telegram",
+      "logo": "/img/messages-source/telegram.svg"
+    },
+    "rahavard": {
+      "title": "Rahavard",
+      "logo": "/img/messages-source/rahavard.svg"
+    },
+    "sahamyab": {
+      "title": "Sahamyab",
+      "logo": "/img/messages-source/sahamyab.svg"
+    },
+    "arzdigital": {
+      "title": "Arzdigital",
+      "logo": "/img/messages-source/arzdigital.svg"
+    },
+    "institutional": {
+      "title": "المساهم",
+      "logo": "/img/messages-source/tse.svg"
+    },
+    "sahmeto": {
+      "title": "السهمتو",
+      "logo": "/img/messages-source/sahmeto.svg"
+    }
+  },
+  "timeframe": "الإطار الزمني",
+  "timeout": "فترة الصلاحية",
+  "day": "اليوم",
+  "entryPoint": "نقطة الدخول",
+  "profitPrice": "سعر حد الربح",
+  "stopLossPrice": "سعر إيقاف الخسارة",
+  "supportPrice": "الدعم الأول",
+  "resistancePrice": "المقاومة الأولى",
+  "share": "شارك",
+  "purchaseSignalLastWeek": "إشارات الشراء لهذا الأسبوع",
+  "neutralSignalLastWeek": "إشارات محايدة لهذا الأسبوع",
+  "sellSignalLastWeek": "إشارات البيع هذا الأسبوع",
+  "alertMessage": "أضف رمز #{assetSymbol} إلى الساعة ليتم إعلامك بعمليات بيع وشراء {component}. بإضافة إشارات {component} إلى الساعة، دع الآخرين يعرفون عن {assetSymbol} {component}.",
+  "sellRecommendation": "أوصى متداولو {component} ببيع {assetSymbol} من {component}.",
+  "topOneHundred": "أفضل 100 متداول",
+  "assetInfo": "سعر {component} {assetSymbol} من حيث {component}",
+  "profitLossTarget": "هدف الربح والخسارة",
+  "trader": "التاجر",
+  "commentsOfUsersAboutSymbol": "تعليقات{' '}{component}{' '}تعليقات حول {symbol}",
+  "usersCanCommentJustOnceInDay": "كل مستخدم لديه فرصة للتعليق في يوم واحد فقط.",
+  "once": "مرة واحدة",
+  "users": "المستخدمون",
+  "yourCommentAboutSymbol": "تعليقك حول {component}",
+  "whatSymbolBetterThanSymbol": "ما هو الرمز الأفضل للشراء من {symbol}؟",
+  "cryptoMarket": "سوق العملات المشفرة",
+  "investment": "استثمار",
+  "buySahmetoStock": "شراء أسهم سهمتو",
+  "soon": "قريبا",
+  "sahmetoWorld": "عالم سهمتو",
+  "reportProblem": "التقرير والملاحظات",
+  "joinUs": "انضم إلينا",
+  "developWithSahmeto": "سهمتو للمطورين (APIs)",
+  "investOnSahmeto": "استثمر في سهمتو",
+  "copyright": "جميع الحقوق محفوظة لشركة سهمتو 2024",
+  "fundraising": "جمع التبرعات",
+  "bests": "الأفضل",
+  "assetRecommendation": "استنادًا إلى خوارزمية سهمتو، فإن الرمز {assetSymbol} هو {component}.",
+  "goodChange": "فرصة جيدة ل",
+  "expertTraders": "المتداولون الخبراء {assetSymbol}",
+  "bestOrdersOnAsset": "لقد تلقى {component} {component} ملحوظًا من {assetSymbol} في الأشهر الثلاثة الماضية.",
+  "profit": "الربح",
+  "alert": "تنبيه",
+  "faster": "أسرع",
+  "bestTrader": "كبار المتداولين",
+  "company": "شركة",
+  "symbolAnalytics": "تحليل {assetSymbol}",
+  "traderRank": "رتبة تاجر",
+  "seeOriginalMessageInSource": "شاهد الرسالة الأصلية في {source}",
+  "showMore": "إظهار المزيد",
+  "showLess": "إظهار أقل",
+  "companySize": [
+    {
+      "value": {
+        "market_cap_from": 0,
+        "market_cap_to": 10000000000000
+      },
+      "title": "صغير جدًا"
+    },
+    {
+      "value": {
+        "market_cap_from": 10000000000000,
+        "market_cap_to": 50000000000000
+      },
+      "title": "صغير"
+    },
+    {
+      "value": {
+        "market_cap_from": 50000000000000,
+        "market_cap_to": 200000000000000
+      },
+      "title": "متوسط"
+    },
+    {
+      "value": {
+        "market_cap_from": 200000000000000,
+        "market_cap_to": 700000000000000
+      },
+      "title": "الكبير"
+    },
+    {
+      "value": {
+        "market_cap_from": 700000000000000,
+        "market_cap_to": 10000000000000000
+      },
+      "title": "كبير جدًا"
+    }
+  ],
+  "timeframes": {
+    "00:15:00": "15 دقيقة",
+    "00:30:00": "30 دقيقة",
+    "01:00:00": "1 ساعة ",
+    "04:00:00": "4 ساعات",
+    "1 00:00:00": "1 يوم",
+    "7 00:00:00": "1 أسبوع",
+    "30 00:00:00": "1 شهر",
+    "360 00:00:00": "1 سنة"
+  },
+  "hourAgo": "منذ ساعة",
+  "minuteAgo": "قبل دقيقة",
+  "fundamentalAnalysis": "التحليل الأساسي",
+  "capitalIncreaseCalendar": "تقويم زيادة رأس المال",
+  "assetPageTitle1": "{symbolName} | أحدث تحليل في توزيعاتك",
+  "assetPageTitle2": "{symbolName} | أحدث تحليلات المستثمرين في Sahmeto",
+  "assetPageDescription": "متى هو وقت الشراء لـ {symbolName}؟ أي محلل قال؟ نظرة عامة على جميع إشارات سهم {symbolName}، {name} | حصتك",
+  "assetPageDescription2": "إشارات الشراء والبيع والتوقعات {name} | جدول أسعار فوري {name} | تحليل قائم على الشبكات الاجتماعية والأخبار {name} | تحليل فني {name} تحليل أساسي {name} | السعر {name} | {symbolName}",
+  "lastUpdate": "تحديث جديد",
+  "todaySignalCount": "عدد إشارات اليوم {symbol}",
+  "message": "رسالة",
+  "signalPageSlogan": "العثور على أفضل {component} في السوق باستخدام مرشحات مخصصة.",
+  "signalPageSloganComponent1": "فرص",
+  "tse": "البورصة",
+  "crypto": "العملة الرقمية",
+  "marketOpportunities": "أفضل الفرص في {marketName}",
+  "show": "عرض",
+  "numberViewsUsers": "عدد مشاهدات المستخدمين",
+  "publishTime": "وقت النشر",
+  "traderInfo": "معلومات المتداول",
+  "amongNTopTraders": "بين أول {rank} من المتداولين",
+  "traderPowerOfAnalytics": "نسبة نجاح المتداول",
+  "investmentOpportunityProfile": "ملف فرص الاستثمار",
+  "messagePageSeoDescription": "تحليلات وأخبار أحدث متعلقة برمز {symbol} من قبل تاجر {publisherName} في Sahmeto، تصنيف تاجر Sahmeto: {publisherRank}، تحليل رموز الأسهم والعملات الرقمية من قبل أفضل تجار الأسواق في العالم للأسهم والعملات الرقمية.",
+  "messagePageSeoDescription2": "تحليل رمز {symbol} من قبل تاجر {publisherName} في Sahmeto، تصنيف تاجر Sahmeto: {publisherRank}، تحليل أفضل تجار الأسواق لرموز الأسهم والعملات الرقمية.",
+  "todayNews": "أخبار اليوم",
+  "emptyFeed": "لا يوجد متابعين",
+  "buySignals": "إشارات الشراء",
+  "sellSignals": "إشارات البيع",
+  "follow": "متابعة",
+  "addDashboard": "إضافة إلى لوحة التحكم",
+  "addedDashboard": "تمت الإضافة إلى لوحة التحكم",
+  "followed": "تمت المتابعة",
+  "analytics": "تحليلات",
+  "about": "حول",
+  "messagePageH1": "تحليل {analysisType} {publisherName} حول {symbol} في {market} في {date}",
+  "messagePageSecondH1": "{analysisType} {publisherName} تحليل حول {market} {symbol}: {bargainType} ({date}) مُقتَرَح",
+  "messagePageSeoTitle": "توصيات {bargainType} لـ {symbol} | تحليل {analysisType} {publisher}: {messageText}",
+  "messagePageSeoTitle2": "بدء الاتجاه {bargainType} {symbol} | تحليل {analysisType} {publisher}: {messageText}",
+  "stock": "سهم",
+  "symbol": "رمز",
+  "verifiedTraders": "التجار الموثوق بهم",
+  "market": "السوق",
+  "traderType": "نوع التاجر",
+  "telegram": "تيليغرام",
+  "tradingview": "تداول الرأي",
+  "rahavard": "رهوارد",
+  "sahamyab": "سهامياب",
+  "shareholders": "حاملو الأسهم",
+  "personalFormula": "صيغة شخصية",
+  "name": "الاسم",
+  "noTraderFound": "لا يمكن العثور على تاجر يحمل هذه الميزات",
+  "performances": {
+    "signal": [
+      {
+        "title": "الأداء الأسبوعي",
+        "value": "7d"
+      },
+      {
+        "title": "الأداء الشهري",
+        "value": "30d"
+      },
+      {
+        "title": "الأداء الربع سنوي",
+        "value": "90d"
+      },
+      {
+        "title": "الأداء النصف سنوي",
+        "value": "180d"
+      }
+    ],
+    "cryptocurrency": [
+      {
+        "title": "الأداء الأسبوعي",
+        "value": "7d"
+      },
+      {
+        "title": "الأداء الشهري",
+        "value": "30d"
+      },
+      {
+        "title": "الأداء الربع سنوي",
+        "value": "90d"
+      },
+      {
+        "title": "الأداء النصف سنوي",
+        "value": "180d"
+      }
+    ]
+  },
+  "noData": "لا توجد بيانات",
+  "leaderboardPageTitleSeo": "أفضل تجار العملات المشفرة والبورصة | sahmeto",
+  "leaderboardPageDescriptionSeo": "أفضل قنوات البورصة، أفضل قنوات",
+  "feedPageH1": "استلهم من أفضل المتداولين",
+  "groupPageH1": "ذهب",
+  "messages": "الرسائل",
+  "myTraders": "متداولوي",
+  "myAssets": "أصولي",
+  "feedPageTitleSeo": "شخصي | sahmeto",
+  "attractivenessBuySell": "جاذبية الشراء/البيع",
+  "risk": "مخاطرة",
+  "hour": "الساعة",
+  "copy": "نسخ",
+  "copied": "منسوخ",
+  "asc": "تصاعدي",
+  "des": "تنازلي",
+  "weekPerformance": "الأداء الأسبوعي",
+  "monthPerformance": "العائد الشهري",
+  "threeMonthPerformance": "أداء لمدة ثلاثة أشهر",
+  "sixMonthPerformance": "الأداء لمدة ستة أشهر",
+  "rowsPerPage": "صفوف لكل صفحة",
+  "topPublishers": "أفضل تریدرها",
+  "opinion": "رأي",
+  "moreInfo": "معلومات اكثر",
+  "opinionSummary": "ملخص لآراء جميع المتداولين",
+  "prediction": "توقع",
+  "oneMonth": "شهر واحد",
+  "threeMonth": "ثلاثة أشهر",
+  "sixMonth": "سته اشهر",
+  "oneYear": "سنة واحدة",
+  "allTraders": "جميع التجار",
+  "top100Traders": "أفضل 100 تاجر",
+  "observes": "المشاهدات",
+  "lastTransaction": "آخر معاملة",
+  "followers": "المتابعين",
+  "tradersProfitPrediction": "توقعات المتداول بأرباح {symbol} هي {component}",
+  "tradersLossPrediction": "توقع خسارة المتداولين من {symbol} هی {component}",
+  "mostProfitFrom": "أي تاجر حقق أكبر ربح من {symbol}؟",
+  "last3Month": "في الثلاثة أشهر الأخيرة",
+  "profitSymbol": "حققوا ربحًا من {symbol}.",
+  "traderSymbolLimit": "حد الربح والخسارة لـ {symbol} من وجهة نظر التجار",
+  "nearestProfitLimit": "أقرب حد للربح",
+  "nearestDamageLimit": "أقرب حد للضرر",
+  "summary": "ملخص",
+  "assetMostProfit": "من الذي حقق أكبر ربح من {symbol}؟",
+  "monthProfit": " ربح لشهر واحد:",
+  "tradesPriceComment": "تعليقات التجار على السعر",
+  "newestAnalysis": "{symbolName} | أحدث التحليلات على سهمك",
+  "newestTradersAnalysis": "{symbolName} | أحدث تحليلات التجار على سهمك",
+  "commonQuestion": "| متى يكون الوقت المناسب لشراء {symbolName}؟ ماذا قال المحلل؟ جميع الإشارات لأسهم {symbolName} في نظرة واحدة، {symbolName}",
+  "mainResults": "نتائج-عامة-لإشارات-الشراء-والبيع-لسهم-{symbolName}",
+  "timeSlice": " فترة",
+  "possibleDamage": "خسارة محتملة",
+  "possibleProfit": "الربح المحتمل",
+  "nowPrice": "السعر الحالي",
+  "profitLimit": "حد الربح",
+  "damageLimit": "حد الخسارة",
+  "oneWeek": "أسبوع",
+  "goToMassage": "اذهب إلى الرسالة",
+  "notAnnounce": "لم يعلن",
+  "pageOwner": " أنا صاحب هذه الصفحة",
+  "followersNumber": "عدد المتابعين",
+  "registerDate": "تاريخ التسجيل",
+  "traderSocialMedia": "شبكة التاجر الاجتماعية",
+  "rankAmong": "رتب بين {number} متداول",
+  "traderMonthPerformance": "أداء التاجر الشهر الماضي",
+  "top100traderMonthPerformance": "متوسط لعائد للشهر الأخير لأكبر 100 متداول",
+  "totalIndexMonthPerformance": "متوسط عائد الشهر الأخير من إجمالي المؤشر",
+  "totalBTCMonthPerformance": "متوسط عائد الشهر الأخير من إجمالي المؤشر",
+  "analysisPower": "قوة التحليل",
+  "successPercentageAll": "نسبة نجاح المتداول في جميع الإشارات",
+  "messageNum": "عدد الرسائل",
+  "traderMessage": "رسائل التاجر",
+  "basket": "سلة التاجر",
+  "performance": "عمل أكثر فعالية",
+  "buySuggest": "ما هو الشيء الذي ننصحك بشراءه من المواد الغذائية؟",
+  "buyHistory": "سابق في الشراء",
+  "monthToMonthPerformance": "تفضيل الزوار ما هو أفضل",
+  "traderSignalChart": "زيادة الإشارات أكثر",
+  "statusBarRightName": "معاملة مربحة",
+  "statusBarLeftName": "معاملة الخسارة",
+  "specialUserView": "عرض هذا القسم {component}",
+  "specialView": "خاص {component} الذین إنهم خاص",
+  "buyAccount": "شراء اشتراك",
+  "totalIndexCompare": "المقارنة مع المؤشر الإجمالي",
+  "top100TraderCompare": "مقارنة مع أفضل 100 متداول",
+  "year": "سنة",
+  "login": "تسجيل الدخول",
+  "Authentication": "عن طريق المصادقة كمالك",
+  "blueTick": "احصل على سهمتو علامة زرقاء",
+  "openPrice": "سعر الدخول",
+  "closePrice": "سعر الخروج",
+  "openTime": "وقت الوصول",
+  "closeTime": "وقت المغادرة",
+  "Continue": "استمرار",
+  "opportunities": "فرص",
+  "opportunity": "الفرصه",
+  "marketsCompare": "قارن الأسواق",
+  "functionHistory": "تاريخ الأداء",
+  "fundDivisionSuggest": "مقترح توزيع رأس المال في الأسواق",
+  "analyserRank": "رتبة محلل",
+  "analyserPower": "قوة المحلل",
+  "symbolScore": "درجة الرمز",
+  "inRange": "في النطاق",
+  "longTime": "طويل الأمد",
+  "shortTime": "المدى القصير",
+  "traderExitSymbol": "التاجر {component} {symbol}",
+  "exit": "خارج",
+  "highSell": "مبيعات عالية",
+  "highBuy": "شراء عالية",
+  "inStatus": "حالة",
+  "assetRecommendationTitle": "ملخص آراء المتداولين حول {symbol}:",
+  "previous": "سابق",
+  "next": "التالي",
+  "traderNumber": "عدد التجار",
+  "efficiency": "كفاءة",
+  "efficiency100Traders": "كفاءة 100 متداول",
+  "totalIndexReturn": "إجمالي عائد المؤشر",
+  "valueTypes": {
+    "B": "يشتري",
+    "S": "يبيع",
+    "B,S": "الجميع"
+  },
+  "signalsType": {
+    "N": "طبيعي",
+    "F": "أساسي",
+    "T": "اِصطِلاحِيّ"
+  },
+  "creditDuration": {
+    "1": "يوم واحد",
+    "7": "واحد اسبوع",
+    "30": "واحد شهر",
+    "90": "ثلاثة اشهر",
+    "180": "  ستة أشهر",
+    "360": "سنة واحدة"
+  },
+  "loginPageSeoTitle": "تسجيل الدخول | ساهمتو",
+  "loginStaticUser": "إحسان أكبرزاده",
+  "loginStaticUserComment": "لقد تمكنت من الحصول على ربح 20% من Shepaksa هذا الشهر بمساهمتك، شكرًا لك.",
+  "loginWithGoogle": "تسجيل الدخول باستخدام Google",
+  "orContinueWith": "أو الاستمرار مع",
+  "loginHelper": "الرجاء إدخال رقم هاتفك المحمول لتسجيل الدخول/التسجيل",
+  "pricingPageTitle": "شراء اشتراك | السهمتو",
+  "issueReport": "إبلاغ مشكلة",
+  "portfolioIsEmpty": "حاليا، محفظة المتداول فارغة.",
+  "buyHistoryIsEmpty": "ليس لدى التاجر سجل شراء",
+  "noSignalToShow": "لا توجد إشارة للعرض",
+  "noMessageFound": "لم يتم العثور على رسالة بهذه المواصفات",
+  "publishPrice": "السعر لحظة النشر",
+  "ownerRequestSuccess": "لقد تم إكمال طلب الملكية الخاص بك {component} ",
+  "withSuccess": "بنجاح",
+  "doFollowing": "لإكمال العملية، يرجى القيام بما يلي",
+  "setTelegramDescription": "في قسم الوصف في قناتك (Description) على التليجرام، ضع الكلمات التالية:",
+  "ownerShipWillCheck": "سوف يقوم سهمتو روبوت بقراءة معلومات قناتك خلال الـ 24 ساعة القادمة وسيتم نقل الملكية تلقائيًا.",
+  "presentProfit": "الفائدة الحالية",
+  "viewpointSubmitted": "لقد تم تسجيل ملاحظاتك",
+  "unboundedAccess": "وصول غير محدود إلى أفضل ما في سوق العملات الرقمية وسوق الأوراق المالية",
+  "unit": {
+    "Rial": "ريال",
+    "coin": "العملة الرقمية"
+  },
+  "discount": {
+    "sevenPer": "7% خصم إضافي",
+    "discount": "تخفيض"
+  },
+  "bestSell": "الأكثر مبيعًا",
+  "professionalUse": "مناسبة للاستخدام المهني",
+  "amountToPay": "المبلغ المستحق",
+  "monthly": "شهريا",
+  "pay": "الدفع",
+  "insertDiscountCode": "أدخل رمز خصم الاشتراك الخاص بك.",
+  "discountMessages": {
+    "insert": "ادخل رمزك",
+    "isEmpty": "لا يمكن أن يكون رمز الخصم فارغًا",
+    "isWrong": "رمز الخصم الذي تم إدخاله غير صحيح"
+  },
+  "codeConfirm": "تأكيد الرمز",
+  "confirm": "مؤكد",
+  "payTransfer": "التحويل إلى بوابة الدفع",
+  "privacyPageTitle": "الأحكام والشروط | سهمتو",
+  "accountChoose": "قم باختيار الخيار",
+  "gift": "هديه السهمتو",
+  "useAllFree": "يمكنك الاستفادة من كل إمكانيات السهمتو بكل سهولة.",
+  "weekFree": "۷ أيام رایغان",
+  "startNow": "ابدأ الآن",
+  "services": {
+    "first": "رؤية سجلات تجار المنتجات المالية والعملات المشفرة",
+    "second": "التعرف ومتابعة تجار وإنشاء تغذية مخصصة",
+    "third": "رؤية تقييمات الرموز للشراء/البيع",
+    "fourth": "رؤية نطاقات التقييم المقترحة لكل رمز من قبل التجار"
+  },
+  "accountServices": {
+    "first": "عرض الرموز المحددة من قبل كبار المتداولين",
+    "second": "عرض سلة المتداول المقترحة",
+    "third": "متابعة كبار المتداولين النشطين في الفضاء السيبراني",
+    "fourth": "إخطار سريع بأحدث التحليلات للمتداولين",
+    "fifth": "عرض جميع التحليلات المنشورة على كل رمز",
+    "sixth": "ملخص آراء أفضل 100 متداول على كل رمز"
+  },
+  "QA": {
+    "n1": {
+      "title": "ما هي سهمتو وماذا تفعل؟",
+      "text": "يقوم Sahemto بتحليل إشارات 34000 تداول في سوق الأسهم والعملات الرقمية كل يوم ويقدم لك أفضل المتداولين في الأسواق المالية حتى تتمكن من متابعتهم واستخدام تحليلات هؤلاء الأشخاص لعقد صفقات أكثر ربحية!"
+    },
+    "n2": {
+      "title": "كيف يمكنني العثور على أفضل المتداولين الحاصلين على أعلى تقييم؟",
+      "text": "يتم إدراج أفضل المتداولين في الصفحة ذات الصلة ويمكنك ذلك\n                             شاهد رتبة كل متداول بجانبه. وكذلك إذا كان الاسم\n                             يمكنك البحث عن المتداول الخاص بك في حصتك والدخول\n                             كن الصفحة المخصصة لذلك الشخص وسجل ذلك التاجر\n                             انظر كل التفاصيل."
+    },
+    "n3": {
+      "title": "كيف يتم إنتاج الرموز المختارة سهمتو؟",
+      "text": "تم إدراج كبار المتداولين في الصفحة ذات الصلة والرموز\n                             تم اختياره بناءً على مجموع الإشارات من كبار المتداولين\n                             فمن المستحسن. هذه هي الرموز التي تصنف الناس\n                             أعلى في الأيام الأخيرة إشارات الشراء الأكثر\n                             ونشروا قضيتهم."
+    },
+    "n4": {
+      "title": "هل تحتاج إلى دفع رسوم لاستخدام سهمتو؟",
+      "text": "بعض خدماتنا مجانية لجميع المستخدمين. لكن\n                             إذا كنت تريد استخدام قسم الرموز المحددة أو\n                             هل ترغب في أن تكون على علم بآخر قرارات كبار المتداولين في\n                             لكي تكون على علم بمساهمتك، يجب عليك الاشتراك\n                             يكون."
+    },
+    "n5": {
+      "title": "كيف يمكنني اختبار اشتراك المنتج الخاص بك قبل الشراء؟",
+      "text": "يقدم موقعنا خطة هدايا مجانية لجميع المستخدمين\n                             حتى تتمكن من اختبار المنتج أولاً قبل الشراء\n                             وإذا كان منتجنا ذا قيمة بالنسبة لك، قم بشرائه\n                             يفعل."
+    },
+    "n6": {
+      "title": "كيف يمكنني الحصول على خطة الهدايا؟",
+      "text": "لاستخدام اشتراك الهدية، لا يلزم العمل\n                             انها ليست اضافية. لاستخدام الهدية، يكفي\n                             سجل في الموقع وسنقدم لك هدية في نفس الوقت\n                             سنقوم بتفعيله لك."
+    },
+    "n7": {
+      "title": "هل هناك فرق بين الخطط البرونزية والفضية والذهبية؟",
+      "text": "جميع خططنا متشابهة من حيث المرافق\n                             والفرق الوحيد بينهما هو مدة الاستخدام.\n                             بالطبع، نحن لأولئك الذين لديهم خطط فضية وذهبية\n                             لقد فكرنا في خصومات خاصة للشراء!"
+    },
+    "n8": {
+      "title": "هل يمكنني إلغاء عضويتي في أي وقت؟",
+      "text": "لا يمكن إلغاء الاشتراك في منتصف الخطة.\n                             ولكن يمكنك وضع خطتك الخاصة لمشترياتك المستقبلية\n                             التغيير إلى أقل أو أعلى."
+    },
+    "n9": {
+      "title": "هل يمكنك استخدام رمز الخصم للانضمام إلى سهمتو؟",
+      "text": "لدينا أيضا رمز الخصم. إذا أعجبك كود الخصم\n                             استخدامه للاتصال بدعمنا\n                             إعطاء رمز الخصم. كل ما تحتاجه هو رمز الخصم منا أو من أي مكان\n                             أدخل الرقم الآخر الذي حصلت عليه في القسم ذي الصلة حتى تلك اللحظة\n                             يتم تطبيقها"
+    },
+    "n10": {
+      "title": "كيف تفهم متى يحين وقت بيع أو شراء سهم؟",
+      "text": "عادة ما يكون هناك وقت محدد لشراء وبيع الأسهم\n                             لا لكننا نحاول على صفحة الرموز المحددة\n                             الرموز التي تهم كبار المتداولين موجودة أمامك\n                             دعونا نقدم لهم حتى تتمكن من اختيارهم. نحن أيضا\n                             يرجى ملاحظة أن حالة الأسهم قد تغيرت من الشراء إلى البيع\n                             نحن نعلم كبار تجار الإشارة. كن حذرا إذا الربح\n                             لقد تلقيت سلعة (على سبيل المثال، أكثر من 20%) من أحد الأسهم\n                             ومن الأفضل انتقاد جزء منه."
+    },
+    "n11": {
+      "title": "هل يمكنني الوثوق بإشارات المشاركة الخاصة بك؟",
+      "text": "ساهمتو باستخدام الخوارزميات المعتمدة على الذكاء الجماعي\n                             إنها تنتج إشاراتها الخاصة ونحن أنفسنا أيضًا من هذا\n                             نحن نستخدم إشارات للشراء والبيع. ل\n                             يمكنك التأكد من اتباع إشارات مشاركتك لفترة من الوقت\n                             القيام وبعد التأكد من أداء عمليات البيع والشراء\n                             تصرف عليهم. ومن الضروري أن أذكر هذا\n                             الإشارات هي مجرد تحليل وعواقب البيع والشراء والقرارات\n                             الأمر يعود إليك."
+    },
+    "n12": {
+      "title": "هل تعطي حصتك تحذير شراء أو بيع؟",
+      "text": "هناك إمكانية تفعيل نظام التحذير على صفحة كل مشاركة\n                             لديه إذا قمت بتفعيل نظام الإنذار لكل سهم\n                             يمكنك الحصول على تنبيهات لشراء وبيع الأسهم\n                             يفعل."
+    }
+  },
+  "questionAsk": "سؤال وجواب",
+  "addBest": {
+    "asset": {
+      "title": "أضف أفضل ما في السوق إلى الساعة:",
+      "text": "سيتم إعلامك في أقرب وقت ممكن بتحذيرات رموز البيع والشراء."
+    },
+    "trader": {
+      "title": "اتبع أفضل المتداولين:",
+      "text": "من إشارات الشراء\n                         ومعرفة مبيعات التجار في الوقت الحقيقي."
+    }
+  },
+  "nextStep": "المرحلة التالية",
+  "goToFeed": "اذهب إلى برج المراقبة",
+  "analysisMessagesCount": "عدد الرسائل التي تم تحليلها اليوم",
+  "homeBest": {
+    "first": "الافضل في السوق",
+    "second": "العملة الرقمية والبورصة",
+    "third": "نظرة الواحد"
+  },
+  "seeTops": "عرض المفضلة",
+  "topTraderIn1000": "كبار المتداولين من بين +1000 متداول",
+  "seeAll": "عرض الكل",
+  "commonQuestions": "أسئلة مكررة",
+  "cryptoTop": "أفضل العملات الرقمية",
+  "tickerTop": "أفضل ما في سوق الأوراق المالية",
+  "CQA": {
+    "n1": {
+      "title": "ماذا يفعل السهمتو بالضبط؟",
+      "text": {
+        "name": "السهمتو",
+        "first": "1. أفضل الأسهم والعملات المشفرة التي تقدمها القناة بأكملها\n                                 يظهر برقية مكان ما ليقول شراء أو بيع\n                                 هذه طريقة لاتخاذ قرارات التجارة.",
+        "second": "2. قم بتقييم المتداولين (قنوات التليجرام) أيضًا\n                                 يفعل"
+      }
+    },
+    "n2": {
+      "title": "ما هي صفحة الإشارة؟",
+      "text": "رموز البورصة أو العملات الرقمية الأكثر جاذبية للشراء\n                             وهي تظهر اليوم (كل ساعتين) على صفحة الإشارة.\n                             تنصح هذه الرموز بالشراء أو البيع من حيث المتداولين\n                             هناك برقيات. في تسجيل الرموز والرتبة والأداء\n                             يتأثر التجار \uD83D\uDE42"
+    },
+    "n3": {
+      "title": "إذا قمت بالاشتراك، ما هي الميزات التي سيتم تفعيلها بالنسبة لي؟",
+      "text": {
+        "first": "1. وصول غير محدود إلى صفحة الإشارات",
+        "second": "2. قم بإنشاء ساعة لتعرف بشكل أسرع من\n                                     أحداث مهمة عن رموز شخصيتك",
+        "third": "3. إذا حان الوقت لشراء أو بيع سهم (حسب المبلغ\n                                     (النطاقات على جميع الإشارات) تُعلم مشاركتك بسرعة."
+      }
+    },
+    "n4": {
+      "title": "ما الذي لا يفعله السهمتو؟",
+      "text": "أنت مسؤول عن الإشارات التي يقدمها المتداولون\n                             لا، فهو يجمع آراء التجار ونفسه فقط\n                             لا يعطي تحليلا إضافيا."
+    }
+  },
+  "homePageSeoTitle": "السهمتو | أفضل ما في سوق العملات الرقمية وسوق الأوراق المالية في لمحة",
+  "homePageDescription": "تحليل إشارات بيع وشراء العملات الرقمية والأسهم باستخدام الذكاء الاصطناعي، وإدخال أفضل سوق الأوراق المالية والعملة الرقمية للاستثمار، والإخطار في الوقت الحقيقي بإشارات شراء البيتكوين والعملات الرقمية الأخرى",
+  "signalsPageTitle": "إشارات العملة الرقمية وسوق الأوراق المالية اليوم | السهمتو",
+  "signalsPageDescription": "العملة الرقمية والأسهم التي تهم المتداولين اليوم، إشارات توصي بالبيع والشراء، إشارة البيتكوين، شراء البيتكوين، تحليل البيتكوين، إشارة تيليجرام",
+  "publisherPageTitle": "تحليل التاجر في ساهمتو",
+  "confirmedType": {
+    "confirmed": "قبلت",
+    "pend": "بانتظار التأكيد",
+    "rejected": "غير مؤكد"
+  },
+  "bankType": {
+    "1": "ريال",
+    "2": "العملة الرقمية",
+    "3": "ريال",
+    "4": "ريال"
+  },
+  "planType": {
+    "1": "ذهبي",
+    "2": "فضة",
+    "3": "برونزية",
+    "4": "هدية",
+    "5": "هدية",
+    "6": "هدية"
+  },
+  "exitAccount": "تسجيل الخروج من حساب المستخدم",
+  "setEmail": "تحديد البريد الإلكتروني",
+  "changeEmail": "تغيير الايميل",
+  "confirmEmail": "تأكيد البريد الإلكتروني",
+  "remain": "متبقي",
+  "plans": {
+    "activated": "تصميم نشط",
+    "reserve": "خطة الحجز",
+    "noPlan": "لا يوجد تصميم"
+  },
+  "authorizeFailed": "المصادقة فشلت",
+  "notifNotActive": "لم يتم تفعيل تنبيه التطبيق بالنسبة لك",
+  "activeBrowserNotif": "يرجى تمكين الوصول إلى إشعارات المتصفح الخاص بك",
+  "transactionStatus": {
+    "cancel": "الإلغاء من قبل المستخدم",
+    "success": "ناجح",
+    "inProgress": "يعالج"
+  },
+  "profileComplete": {
+    "title": "أكمل الملف الشخصي",
+    "text": "للاستفادة الكاملة من ميزات السهمتو، مثل {component}، يرجى إكمال ملف التعريف الخاص بك",
+    "notif": "ميزة التنبيه"
+  },
+  "status": "حالة",
+  "date": "تاريخ",
+  "plan": "يخطط",
+  "port": "ميناء",
+  "trackingCode": "شفرة التتبع",
+  "setting": "إعدادات",
+  "activateNotif": "تفعيل تنبيه التطبيق",
+  "activate": "مفعل",
+  "notActivate": "لم يتم تفعيلها",
+  "notifButton": {
+    "enable": "التنشيط",
+    "disable": "لإلغاء التنشيط",
+    "pend": "في انتظار الوصول"
+  },
+  "notifMessage": "يتم إرسال هذا التنبيه من خلال المتصفح. لذلك بعد الضغط على زر التفعيل قم بالضغط على زر Allow الموجود في رسالة المتصفح. من خلال تنشيط تنبيه التطبيق، ستظهر تنبيهات المشاركة الخاصة بك على الفور على جهازك المحمول أو جهاز الكمبيوتر الخاص بك.",
+  "telegramDescription": "للحصول على {component}، ضع العبارة التالية في قسم الوصف في قناتك(Description) على التليجرام",
+  "ownerShip": "ملكية",
+  "transactionHistory": "تاريخ المعاملات",
+  "descriptions": "وصف",
+  "traderPage": "صفحة التاجر على السهمتو",
+  "retrySub": "تمديد الخطة",
+  "retryText": "ومن خلال تجديد الخطة، سيتم إضافتها إلى اشتراكك الحالي.",
+  "publish": "تحليل",
+  "new": "جديد",
+  "traderLoginModal": {
+    "title": "لتشاهد هذا التاجر، يلزمك التسجيل/التسجيل",
+    "description": "مع التسجيل في سهمتو، استمتع بـ 7 أيام مجانية من جميع الميزات.",
+    "button": "تفعيل 7 أيام مجانية",
+    "inputLabel": "تسجيل سريع"
+  },
+  "bestTickerPerformance": "العمل على أفضل أداء في بورس",
+  "bestCryptoPerformance": "العمل من أفضل التقنيات المستخدمة",
+  "profitSimulate": "إذا تم شراء الإشارات الأساسية في آخر 6 أشهر وتم تسجيل 10 أكثر من أفضل معاملات الصفقة من خلال رصد {component}. قائمة بأكثر 10 أفضل في 6 أشهر:",
+  "top10SixMonthPer": "المدة 6 أشهر الأخيرة(10 أشهر)",
+  "planNeed": {
+    "following": "تفاصيل {component} تحتاج إلى الاشتراك",
+    "noPlan": "ليس لديك خطة نشطة",
+    "seeMore": "عرض المزيد من تصاميم"
+  },
+  "priceModal": {
+    "otherAdvantage": "فوائد أخرى لشراء الاشتراك",
+    "portfolio": "عرض محافظ المتداولين",
+    "lastAnalysis": "إخطار بأحدث التحليلات للمتداولين",
+    "topAsset": "عرض الرموز المحددة"
+  },
+  "productNav": {
+    "bestTraders": "كبار التجار",
+    "signals": "الرموز المختارة",
+    "notifications": "تحذيرات",
+    "feeds": "يتبع"
+  },
+  "aboutUsTitle": "معلومات عنا | السهمتو"
+}

@@ -1,0 +1,91 @@
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { useGlobalContext } from '@/contexts/store';
+import { PricingModal } from '@/app/[lang]/(user)/leaderboard/components/pricing-modal';
+import Cookies from 'js-cookie';
+import { LoginModal } from '@/app/[lang]/(user)/leaderboard/components/login-modal';
+
+export function PayWall({ dict, lang }) {
+    const { user, isUserLoading } = useGlobalContext();
+    const path = usePathname();
+    const router = useRouter();
+    const [show, setShow] = useState(false);
+
+    useEffect(() => {
+        const history: any[] = Cookies.get('routeHistory')
+            ? JSON.parse(Cookies.get('routeHistory'))
+            : [];
+        if (
+            (!path.includes('/pricing') &&
+                !path.includes('/user/login') &&
+                !path.includes('/privacy') &&
+                !path.includes('/profile') &&
+                !path.includes('/notifications')) ||
+            !path.includes('/about-us') ||
+            !path.includes('/feed') ||
+            path !== '/'
+        )
+            Cookies.set(
+                'routeHistory',
+                JSON.stringify(Array.from(new Set([...history, path]))),
+                {
+                    expires: 1,
+                }
+            );
+
+        if (
+            history.length >= 2 &&
+            !isUserLoading &&
+            !user?.active_plan?.is_active
+        )
+            setShow(true);
+    }, [path, isUserLoading]);
+
+    if (
+        !show ||
+        path.includes('/pricing') ||
+        path.includes('/finochat') ||
+        path.includes('/user/login') ||
+        path.includes('/privacy') ||
+        path.includes('/profile') ||
+        path.includes('/notifications') ||
+        path.includes('/about-us') ||
+        path.includes('/feed') ||
+        path === '/'
+    )
+        return;
+
+    return !user ? (
+        <LoginModal
+            lang={lang}
+            dict={dict}
+            texts={{
+                title: 'شما به محدودیت روزانه ۳ صفحه از سایت برخورد کرده اید',
+                description:
+                    'با ثبت نام در سهمتو، 7 روز اشتراک رایگان هدیه بگیرید.',
+                button: dict.traderLoginModal.button,
+                buttonVariant: 'info',
+                inputLabel: dict.traderLoginModal.inputLabel,
+            }}
+            open={show}
+            setOpen={(open) => {
+                if (!open) router.replace('/feed');
+            }}
+            redirectUrl={path}
+        />
+    ) : (
+        <PricingModal
+            dict={dict}
+            lang={lang}
+            contents={{
+                title: 'شما به محدودیت روزانه ۳ صفحه از سایت برخورد کرده اید',
+            }}
+            open={show}
+            setOpen={(open) => {
+                if (!open) router.replace('/feed');
+            }}
+        />
+    );
+}
