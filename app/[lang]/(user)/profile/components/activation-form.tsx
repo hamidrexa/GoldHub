@@ -24,7 +24,7 @@ import { RotateCw } from 'lucide-react';
 import { Timer } from '@/components/timer';
 import { useGlobalContext } from '@/contexts/store';
 import { emailVerification } from '@/app/[lang]/(user)/profile/services/emailVerification';
-import { forgetPassword } from '@/app/[lang]/(auth)/user/login/services/forgetPassword';
+import { forgetPassword } from '@/app/[lang]/(auth)/login/services/forgetPassword';
 import { phoneActivation } from '@/app/[lang]/(user)/profile/services/phoneActivation';
 
 type formProp = {

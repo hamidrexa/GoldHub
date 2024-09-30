@@ -17,7 +17,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Locale } from '@/i18n-config';
 import { toast } from 'sonner';
 import { useState } from 'react';
-import { updateInfo } from '@/app/[lang]/(auth)/user/login/services/updateInfo';
+import { updateInfo } from '@/app/[lang]/(auth)/login/services/updateInfo';
 import { useGlobalContext } from '@/contexts/store';
 import { emailVerification } from '@/app/[lang]/(user)/profile/services/emailVerification';
 import Spinner from '@/components/spinner';

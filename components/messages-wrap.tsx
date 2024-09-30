@@ -27,8 +27,8 @@ import { Button } from '@/components/ui/button';
 import { ChevronsUp, LockIcon } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 import { Message } from '@/components/message';
-import { PricingModal } from '@/app/[lang]/(user)/leaderboard/components/pricing-modal';
-import { LoginModal } from '@/app/[lang]/(user)/leaderboard/components/login-modal';
+import { PricingModal } from '@/components/pricing-modal';
+import { LoginModal } from '@/components/login-modal';
 
 type MessagesWrapParams = {
     pureMessages?: any;

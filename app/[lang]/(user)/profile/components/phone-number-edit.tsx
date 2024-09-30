@@ -17,7 +17,7 @@ import React, { useState } from 'react';
 import { useGlobalContext } from '@/contexts/store';
 import { toast } from 'sonner';
 import { phoneVerification } from '@/app/[lang]/(user)/profile/services/phoneVerification';
-import { updateInfo } from '@/app/[lang]/(auth)/user/login/services/updateInfo';
+import { updateInfo } from '@/app/[lang]/(auth)/login/services/updateInfo';
 import Spinner from '@/components/spinner';
 
 export function PhoneVerifyForm({ lang, dict, setStep }) {

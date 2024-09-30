@@ -29,7 +29,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { usePathname } from 'next/navigation';
 import { googleLogout, useGoogleOneTapLogin } from '@react-oauth/google';
 import { toast } from 'sonner';
-import { loginWithGoogle } from '@/app/[lang]/(auth)/user/login/services/loginWithGoogle';
+import { loginWithGoogle } from '@/app/[lang]/(auth)/login/services/loginWithGoogle';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import PublishSignal from '@/components/publish-modal';

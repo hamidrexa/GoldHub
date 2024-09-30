@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { forgetPassword } from '@/app/[lang]/(auth)/user/login/services/forgetPassword';
+import { forgetPassword } from '@/app/[lang]/(auth)/login/services/forgetPassword';
 import {
     Form,
     FormControl,
@@ -13,7 +13,7 @@ import { Icons } from '@/components/ui/icons';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { token } from '@/app/[lang]/(auth)/user/login/services/token';
+import { token } from '@/app/[lang]/(auth)/login/services/token';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
 

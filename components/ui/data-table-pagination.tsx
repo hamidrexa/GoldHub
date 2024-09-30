@@ -5,9 +5,9 @@ import { getDirection } from '@/libs/utils';
 import { Locale } from '@/i18n-config';
 import React, { useState } from 'react';
 import { useGlobalContext } from '@/contexts/store';
-import { LoginModal } from '@/app/[lang]/(user)/leaderboard/components/login-modal';
+import { LoginModal } from '@/components/login-modal';
 import { usePathname } from 'next/navigation';
-import { PricingModal } from '@/app/[lang]/(user)/leaderboard/components/pricing-modal';
+import { PricingModal } from '@/components/pricing-modal';
 
 interface DataTablePaginationProps<TData> {
     table: Table<TData>;

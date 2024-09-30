@@ -5,8 +5,8 @@ import Cookies from 'js-cookie';
 import { useGlobalContext } from '@/contexts/store';
 import { Locale } from '@/i18n-config';
 import { usePathname } from 'next/navigation';
-import { PricingModal } from '@/app/[lang]/(user)/leaderboard/components/pricing-modal';
-import { LoginModal } from '@/app/[lang]/(user)/leaderboard/components/login-modal';
+import { PricingModal } from '@/components/pricing-modal';
+import { LoginModal } from '@/components/login-modal';
 
 export function FollowButton({
     dict,

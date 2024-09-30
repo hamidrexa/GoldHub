@@ -14,7 +14,7 @@ import { useExchangePrice } from '@/services/useExchangePrice';
 import { Badge } from '@/components/ui/badge';
 import Spinner from '@/components/spinner';
 import { useGlobalContext } from '@/contexts/store';
-import { LoginModal } from '@/app/[lang]/(user)/leaderboard/components/login-modal';
+import { LoginModal } from '@/components/login-modal';
 import { usePathname } from 'next/navigation';
 
 type Props = {

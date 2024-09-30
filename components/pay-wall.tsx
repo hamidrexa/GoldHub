@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useGlobalContext } from '@/contexts/store';
-import { PricingModal } from '@/app/[lang]/(user)/leaderboard/components/pricing-modal';
+import { PricingModal } from '@/components/pricing-modal';
 import Cookies from 'js-cookie';
-import { LoginModal } from '@/app/[lang]/(user)/leaderboard/components/login-modal';
+import { LoginModal } from '@/components/login-modal';
 
 export function PayWall({ dict, lang }) {
     const { user, isUserLoading } = useGlobalContext();

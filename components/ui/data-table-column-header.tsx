@@ -14,8 +14,8 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Locale } from '@/i18n-config';
-import { PricingModal } from '@/app/[lang]/(user)/leaderboard/components/pricing-modal';
-import { LoginModal } from '@/app/[lang]/(user)/leaderboard/components/login-modal';
+import { PricingModal } from '@/components/pricing-modal';
+import { LoginModal } from '@/components/login-modal';
 import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { useGlobalContext } from '@/contexts/store';
