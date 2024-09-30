@@ -719,8 +719,9 @@ export function Header({ dict, lang, googleLogin = true }) {
                 />
             </div>
             <div className="flex items-center justify-center gap-5">
-                <Link href={`${getLinksLang(lang)}/`}>
+                <Link className="flex text-neutral-800 font-black items-center gap-2.5 text-lg" href={`${getLinksLang(lang)}/`}>
                     <Icons.logo className="h-7 w-24 cursor-pointer md:h-9 md:w-32" />
+                    طلامی
                 </Link>
                 <hr className="hidden h-6 w-px bg-neutral-100 md:flex ltr:ml-3 rtl:mr-3" />
                 <div

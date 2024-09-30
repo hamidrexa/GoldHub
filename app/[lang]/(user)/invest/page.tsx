@@ -15,6 +15,7 @@ import { ChevronDown, RocketIcon } from 'lucide-react';
 import { Disclaimer } from '@/components/disclaimer';
 import Wallet from '@/components/wallet';
 import { QuestionMarkIcon } from '@radix-ui/react-icons';
+import Bargain from '@/app/[lang]/(user)/(asset)/components/bargain';
 
 export const metadata: Metadata = {
     title: 'خرید سریع و آسان ارزدیجیتال | سهمتو',
@@ -56,11 +57,11 @@ export default async function InvestPage({ params: { lang }, searchParams }) {
                                     dict={dict}
                                     lang={lang}
                                 />
-                                {/*<Bargain*/}
-                                {/*    asset={asset}*/}
-                                {/*    dict={dict}*/}
-                                {/*    lang={lang}*/}
-                                {/*/>*/}
+                                <Bargain
+                                    asset={asset}
+                                    dict={dict}
+                                    lang={lang}
+                                />
                             </>
                         </BoxContent>
                     </Box>

@@ -40,7 +40,7 @@ export default async function HomePage({ params: { lang } }) {
             <div className="my-32 flex w-full flex-col gap-2 px-4 md:px-48">
                 <h2 className="mb-4 flex items-center justify-center gap-1 text-center text-4xl font-black">
                     <QuestionMarkCircledIcon width={25} height={25} />
-                    سوالات متداول
+                    سوالات متداول خریداران طلای آب شده
                 </h2>
                 <Accordion
                     type="single"
@@ -49,47 +49,63 @@ export default async function HomePage({ params: { lang } }) {
                 >
                     <AccordionItem value="1" className="rounded-md border">
                         <AccordionTrigger className="px-4 text-lg font-semibold">
-                            {dict.QA.n1.title}
+                            طلامی چیست؟
                             <ChevronDown width={20} height={20} />
                         </AccordionTrigger>
                         <AccordionContent className="p-4 pt-0 text-lg">
-                            <p> {dict.QA.n1.text}</p>
+                            <p>«طلامی»، پلتفرم و سامانۀ خرید و فروش آنلاین طلا است. در طلامی، پول نقد خودت رو به راحتی به
+                                طلا تبدیل کن و هر زمان که اراده کردی، اون رو با قیمت روز به طلامی بفروش یا طلای فیزیکی
+                                معادل اون رو از ما تحویل بگیر.</p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="2" className="rounded-md border">
                         <AccordionTrigger className="px-4 text-lg font-semibold">
-                            {dict.QA.n2.title}
+                            کارمزد خرید طلای آب‌شده در طلامی چقدر است؟
                             <ChevronDown width={20} height={20} />
                         </AccordionTrigger>
                         <AccordionContent className="p-4 pt-0 text-lg">
-                            <p>{dict.QA.n2.text}</p>
+                            <p>کارمزد خرید و فروش طلای آب شده در طلامی نیم درصده (۰.۵٪). این کارمزد، در هنگام خرید طلا،
+                                به مبلغ خرید شما اضافه می‌شه و در هنگام فروش طلا، از میزان حساب طلای طلامی شما، برداشت
+                                میشه.</p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="3" className="rounded-md border">
                         <AccordionTrigger className="px-4 text-lg font-semibold">
-                            {dict.QA.n3.title}
+                            قیمت طلا در طلامی بر چه اساسی تعیین می‌شود؟
                             <ChevronDown width={20} height={20} />
                         </AccordionTrigger>
                         <AccordionContent className="p-4 pt-0 text-lg">
-                            <p>{dict.QA.n3.text}</p>
+                            <p>قیمت طلای آب شده در طلامی، بر اساس معاملات واقعی و در حجم بالای بازار بزرگ تهران به دست
+                                میاد.</p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="4" className="rounded-md border">
                         <AccordionTrigger className="px-4 text-lg font-semibold">
-                            {dict.QA.n5.title}
+                            طلای آب شده چه ویژگی‌هایی دارد؟
                             <ChevronDown width={20} height={20} />
                         </AccordionTrigger>
                         <AccordionContent className="p-4 pt-0 text-lg">
-                            <p>{dict.QA.n5.text}</p>
+                            <p>
+                                طلای آب‌شده از ذوب شدن شمش طلا یا طلای قیچی خورده و یا دست دوم بدست میاد. این طلا بر
+                                اساس
+                                میزان خلوصش، عیاردهی می‌شه و در نتیجه دارای ویژگی‌هایی هم‌چون براقیت، پایداری در مقابل
+                                تغییر رنگ و زنگار زدگیه. طلای آب شده، جدای سرمایه‌گذاری، به عنوان ماده اصلی ساخت جواهرات
+                                در طلاسازی هم استفاده می‌شه.
+                            </p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="5" className="rounded-md border">
                         <AccordionTrigger className="px-4 text-lg font-semibold">
-                            {dict.QA.n6.title}
+                            طلای ۱۸ عیار یعنی چه و چه تفاوتی با سایر عیارهای طلا دارد؟
                             <ChevronDown width={20} height={20} />
                         </AccordionTrigger>
                         <AccordionContent className="p-4 pt-0 text-lg">
-                            <p>{dict.QA.n6.text}</p>
+                            <p>
+                                طلای ۱۸ عیار که طلای معیار معاملاتی در کشور ایران محسوب میشه، دارای ۱۸ واحد طلای خالص و
+                                ۶
+                                واحد آلیاژ فلزات مختلفه که در واقع به اون عیار ۷۵۰ یا ۷۵% نیز می‌گن. در واقع در طلای ۱۸
+                                عیار 25% آلیاژ فلزات مختلفی به کار رفته تا سختی و استحکام مشخصی داشته باشه.
+                            </p>
                         </AccordionContent>
                     </AccordionItem>
                 </Accordion>
