@@ -13,11 +13,9 @@ ARG NEXT_PUBLIC_GROWTHBOOK_API_HOST
 ARG NEXT_PUBLIC_GROWTHBOOK_CLIENT_KEY
 ARG NEXT_PUBLIC_ISR
 
-RUN npm install -g yarn
-
 COPY package.json ./
-RUN yarn
+RUN npm install
 COPY . ./
-RUN yarn build
+RUN npm run build
 
-CMD yarn start
+CMD npm start
