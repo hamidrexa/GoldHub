@@ -7,7 +7,7 @@ stages:
 .build-job: &build-job
   image: hamravesh.hamdocker.ir/public/darkube-cli:v1.1
   script:
-    - export IMAGE="registry.hamdocker.ir/sahmeto/front-v2"
+    - export IMAGE="registry.hamdocker.ir/sahmeto/tala"
     - 'darkube build --push -t $IMAGE:$CI_COMMIT_SHORT_SHA -t $IMAGE:$CI_COMMIT_REF_SLUG --build-arg NEXT_PUBLIC_WEBSITE_URL=${NEXT_PUBLIC_WEBSITE_URL} --build-arg SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN} --build-arg NEXT_PUBLIC_ENVIRONMENT=${NEXT_PUBLIC_ENVIRONMENT} --build-arg NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL} --build-arg NEXT_PUBLIC_API_URL_=${NEXT_PUBLIC_API_URL_} --build-arg NEXT_PUBLIC_HASURA_API_URL=${NEXT_PUBLIC_HASURA_API_URL} --build-arg NEXT_PUBLIC_ISR=${NEXT_PUBLIC_ISR}'
 
 .deploy-job: &deploy-job
