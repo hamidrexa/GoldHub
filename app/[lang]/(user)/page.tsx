@@ -8,7 +8,6 @@ import {
     AccordionTrigger,
 } from '@/components/ui/accordion';
 import React from 'react';
-import { QuestionMarkCircledIcon } from '@radix-ui/react-icons';
 
 export const metadata: Metadata = {
     title: 'طلامی | خرید و فروش طلای آب شده آنلاین بدون اجرت',
@@ -25,10 +24,10 @@ export default async function HomePage({ params: { lang } }) {
     const dict = await getDictionary(lang);
 
     return (
-        <div className="flex w-full flex-col pt-6">
-            <section className="w-full bg-neutral-700/10 px-4 py-32 md:px-48">
+        <div className="flex w-full flex-col">
+            <section className="w-full bg-neutral-700/10 px-4 py-32">
                 <div className="mx-auto w-full max-w-7xl">
-                    <h2 className="mb-4 flex items-center justify-center gap-1 text-center text-4xl font-black">
+                    <h2 className="mb-6 flex items-center justify-center gap-1 text-center text-4xl font-black md:mb-12">
                         مزایای خرید طلای آب‌شده از طلامی
                     </h2>
                     <div className="flex flex-col gap-10 md:mt-0 md:flex-row md:flex-wrap lg:flex-nowrap">
@@ -227,9 +226,8 @@ export default async function HomePage({ params: { lang } }) {
                     </div>
                 </div>
             </section>
-            <div className="my-32 flex w-full flex-col gap-2 px-4 md:px-48">
-                <h2 className="mb-4 flex items-center justify-center gap-1 text-center text-4xl font-black">
-                    <QuestionMarkCircledIcon width={25} height={25} />
+            <section className="mx-auto my-32 w-full max-w-7xl px-4">
+                <h2 className="mb-6 flex items-center justify-center gap-1 text-center text-4xl font-black md:mb-12">
                     سوالات متداول خریداران طلای آب شده
                 </h2>
                 <Accordion
@@ -313,7 +311,7 @@ export default async function HomePage({ params: { lang } }) {
                         </AccordionContent>
                     </AccordionItem>
                 </Accordion>
-            </div>
+            </section>
         </div>
     );
 }
