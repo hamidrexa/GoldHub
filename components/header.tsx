@@ -3,11 +3,9 @@
 import { cn, getDirection, getLinksLang, isRtl } from '@/libs/utils';
 import {
     NavigationMenu,
-    NavigationMenuContent,
     NavigationMenuItem,
     NavigationMenuLink,
     NavigationMenuList,
-    NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 import React, { useEffect, useState } from 'react';
@@ -22,7 +20,6 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import Cookies from 'js-cookie';
 import { useGlobalContext } from '@/contexts/store';
-import { Suggestion } from '@/components/suggestion';
 import { getProfile } from '@/services/getProfile';
 import { refreshToken } from '@/services/refreshToken';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -719,159 +716,33 @@ export function Header({ dict, lang, googleLogin = true }) {
                 />
             </div>
             <div className="flex items-center justify-center gap-5">
-                <Link className="flex text-neutral-800 font-black items-center gap-2.5 text-lg" href={`${getLinksLang(lang)}/`}>
+                <Link
+                    className="flex items-center gap-2.5 text-lg font-black text-neutral-800"
+                    href={`${getLinksLang(lang)}/`}
+                >
                     <Icons.logo className="h-7 w-24 cursor-pointer md:h-9 md:w-32" />
                     طلامی
                 </Link>
                 <hr className="hidden h-6 w-px bg-neutral-100 md:flex ltr:ml-3 rtl:mr-3" />
-                <div
-                    className="hidden h-11 min-w-fit cursor-pointer items-center gap-1.5 rounded-full bg-gray-50 px-4 md:flex"
-                    onClick={() => setOpenSuggestion((open) => !open)}
-                >
-                    <SearchIcon strokeWidth={1.125} />
-                    <div className="flex h-full w-full min-w-[270px] max-w-[270px] items-center bg-transparent text-xs text-gray-700">
-                        {dict.searchPlaceholder}
-                    </div>
-                </div>
-                <Suggestion
-                    dict={dict}
-                    lang={lang}
-                    open={openSuggestion}
-                    setOpen={setOpenSuggestion}
-                />
                 <NavigationMenu
                     className="hidden md:block"
                     dir={getDirection(lang)}
                 >
                     <NavigationMenuList>
-                        <NavigationMenuItem className="hidden 2xl:block">
-                            <Link
-                                href={`${getLinksLang(lang)}/signals`}
-                                className={navigationMenuTriggerStyle()}
-                            >
-                                {dict.productNav.signals}
-                            </Link>
-                        </NavigationMenuItem>
-                        <NavigationMenuItem className="hidden 2xl:block">
-                            <Link
-                                href={`${getLinksLang(lang)}/leaderboard`}
-                                legacyBehavior
-                                passHref
+                        {dict.navMenuItems.map((navMenuItem) => (
+                            <NavigationMenuItem
+                                key={navMenuItem.title}
+                                title={navMenuItem.title}
                             >
                                 <NavigationMenuLink
                                     className={navigationMenuTriggerStyle()}
+                                    href={navMenuItem.href}
+                                    rel={navMenuItem.rel}
                                 >
-                                    {dict.productNav.bestTraders}
+                                    {navMenuItem.title}
                                 </NavigationMenuLink>
-                            </Link>
-                        </NavigationMenuItem>
-                        <NavigationMenuItem className="hidden 2xl:block">
-                            <Link
-                                href={`${getLinksLang(lang)}/feed`}
-                                legacyBehavior
-                                passHref
-                            >
-                                <NavigationMenuLink
-                                    className={navigationMenuTriggerStyle()}
-                                >
-                                    {dict.productNav.feeds}
-                                </NavigationMenuLink>
-                            </Link>
-                        </NavigationMenuItem>
-                        <NavigationMenuItem className="block 2xl:hidden">
-                            <NavigationMenuTrigger>
-                                {dict.products}
-                            </NavigationMenuTrigger>
-                            <NavigationMenuContent>
-                                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                                    <Link
-                                        href={`${getLinksLang(lang)}/signals`}
-                                        className={cn(
-                                            'hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors'
-                                        )}
-                                    >
-                                        <div className="text-sm font-medium leading-none">
-                                            {dict.selectedIcons}
-                                        </div>
-                                        <p className="text-muted-foreground line-clamp-2 text-sm leading-snug"></p>
-                                    </Link>
-                                    <ListItem title={dict.feed} href="/feed" />
-                                    <ListItem
-                                        title={dict.bestTraders}
-                                        href={`${getLinksLang(lang)}/leaderboard`}
-                                    />
-                                    {/*<ListItem*/}
-                                    {/*    href={`${getLinksLang(lang)}/invest`}*/}
-                                    {/*>*/}
-                                    {/*    <span className="text-sm font-medium ltr:mr-2 rtl:ml-2">*/}
-                                    {/*        سرمایه گذاری آسان*/}
-                                    {/*    </span>*/}
-                                    {/*    <Badge size="ssm" rounded="md">*/}
-                                    {/*        جدید*/}
-                                    {/*    </Badge>*/}
-                                    {/*</ListItem>*/}
-                                </ul>
-                            </NavigationMenuContent>
-                        </NavigationMenuItem>
-                        <NavigationMenuItem>
-                            <NavigationMenuTrigger
-                                onClick={(event) => {
-                                    event.preventDefault();
-                                }}
-                                className="font-medium"
-                            >
-                                {dict.more}
-                            </NavigationMenuTrigger>
-                            <NavigationMenuContent>
-                                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                                    {dict.navMenuItems.map((navMenuItem) => (
-                                        <ListItem
-                                            key={navMenuItem.title}
-                                            title={navMenuItem.title}
-                                            href={navMenuItem.href}
-                                            rel={navMenuItem.rel}
-                                        >
-                                            {navMenuItem.description}
-                                        </ListItem>
-                                    ))}
-                                </ul>
-                            </NavigationMenuContent>
-                        </NavigationMenuItem>
-                        <NavigationMenuItem className="hidden 2xl:block">
-                            <Link
-                                href={`${getLinksLang(lang)}/pricing`}
-                                legacyBehavior
-                                passHref
-                            >
-                                <NavigationMenuLink
-                                    className={cn(
-                                        navigationMenuTriggerStyle(),
-                                        'relative overflow-hidden'
-                                    )}
-                                >
-                                    <span>{dict.buySubscription}</span>
-                                    <div className="animationbgShimmer absolute top-0 flex h-full w-full" />
-                                </NavigationMenuLink>
-                            </Link>
-                            {/*<Link*/}
-                            {/*    href={`${getLinksLang(lang)}/invest`}*/}
-                            {/*    className="hidden 2xl:block"*/}
-                            {/*    legacyBehavior*/}
-                            {/*    passHref*/}
-                            {/*>*/}
-                            {/*    <NavigationMenuLink*/}
-                            {/*        className={cn(*/}
-                            {/*            navigationMenuTriggerStyle(),*/}
-                            {/*            'gap-1'*/}
-                            {/*        )}*/}
-                            {/*    >*/}
-                            {/*        <span>سرمایه گذاری آسان</span>*/}
-                            {/*        <Badge size="ssm" rounded="md">*/}
-                            {/*            جدید*/}
-                            {/*        </Badge>*/}
-                            {/*    </NavigationMenuLink>*/}
-                            {/*</Link>*/}
-                        </NavigationMenuItem>
+                            </NavigationMenuItem>
+                        ))}
                     </NavigationMenuList>
                 </NavigationMenu>
             </div>

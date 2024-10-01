@@ -68,14 +68,14 @@ export function Footer({ dict, lang }) {
                             href="/"
                             className="text-xs font-medium capitalize"
                         >
-                            سهمتو
+                            طلامی
                         </BreadcrumbLink>
                     </BreadcrumbItem>
                     {pathNames.length !== 0 && <BreadcrumbSeparator />}
                     {pathNames.slice(0, 2).map((item, index, array) => {
                         const breadcrumbTitles = {
                             leaderboard: 'برترین تریدر‌ها',
-                            finocaht: 'ربات سهمتو',
+                            finocaht: 'ربات طلامی',
                             'copy-trade': 'کپی ترید',
                             coins: 'ارزدیجیتال',
                             ticker: 'بورس',
@@ -140,119 +140,10 @@ export function Footer({ dict, lang }) {
                     <div className="mx-auto flex max-w-[1525px] flex-col gap-10 px-14">
                         <BreadcrumbComponent />
                         <div className="flex justify-between">
-                            <svg
-                                version="1.1"
-                                id="Layer_3"
-                                x="0px"
-                                y="0px"
-                                viewBox="0 0 643.2 189.33"
-                                xmlSpace="preserve"
-                                style={{ width: '145px', height: '45px' }}
-                            >
-                                <style
-                                    type="text/css"
-                                    dangerouslySetInnerHTML={{
-                                        __html: '\n\t.st0_invert{fill:#10EDC5;}\n\t.st1_invert{fill:#0C0E3C;}\n',
-                                    }}
-                                />
-                                <g>
-                                    <g>
-                                        <rect
-                                            x="324.03"
-                                            y="45.09"
-                                            className="st0_invert"
-                                            width="73.95"
-                                            height={18}
-                                        />
-                                    </g>
-                                    <rect
-                                        x="473.73"
-                                        y="155.38"
-                                        className="st0_invert"
-                                        width="86.4"
-                                        height="10.74"
-                                    />
-                                    <rect
-                                        y="0.05"
-                                        className="st0_invert"
-                                        width={189}
-                                        height={189}
-                                    />
-                                    <polygon
-                                        className="st1_invert"
-                                        points="137.59,57.72 94.67,100.64 28.88,100.64 28.88,132.17 107.73,132.17 159.88,80.01 	"
-                                    />
-                                    <g>
-                                        <rect
-                                            x="306.7"
-                                            y="10.82"
-                                            className="st1_invert"
-                                            width="46.89"
-                                            height={18}
-                                        />
-                                        <path
-                                            className="st1_invert"
-                                            d="M258,45.09h-0.9c-7.47,0-13.54-6.08-13.54-13.54c0-7.47,6.08-13.54,13.54-13.54h13.54v16.25h18V0H257.1
-			c-17.39,0-31.54,14.15-31.54,31.54s14.15,31.54,31.54,31.54h0.9h12.64v35.09h18V63.08h43.31v-18h-52.3L258,45.09L258,45.09z"
-                                        />
-                                        <path
-                                            className="st1_invert"
-                                            d="M630.48,20.48l-24.5,24.5h-81.66c-12.29,0-23.85,4.78-32.55,13.45l-14.16,14.11l-27.58-27.45h-13.49V26.14
-			c0-10.71-6.15-19.92-16.05-24.02c-9.9-4.1-20.75-1.94-28.33,5.63l-25.93,25.93v64.49h18V41.13l20.65-20.65
-			c3.51-3.51,7.56-2.21,8.71-1.73c1.16,0.48,4.94,2.43,4.94,7.39v18.95h-22.76v18h46.82l22.26,22.16l-12.87,12.83l12.71,12.75
-			l39.78-39.64c5.31-5.29,12.35-8.2,19.84-8.2h89.11l29.78-29.78L630.48,20.48z"
-                                        />
-                                    </g>
-                                    <g>
-                                        <path
-                                            className="st1_invert"
-                                            d="M251.91,155.54c-9.49-2.43-11.84-3.61-11.84-7.21v-0.16c0-2.67,2.43-4.78,7.06-4.78s9.41,2.04,14.27,5.41
-			l6.27-9.09c-5.57-4.47-12.39-6.98-20.38-6.98c-11.21,0-19.21,6.59-19.21,16.54v0.16c0,10.9,7.13,13.95,18.19,16.78
-			c9.17,2.35,11.05,3.92,11.05,6.98v0.16c0,3.21-2.98,5.17-7.92,5.17c-6.27,0-11.45-2.59-16.38-6.66l-7.13,8.55
-			c6.59,5.88,14.97,8.78,23.28,8.78c11.84,0,20.15-6.11,20.15-17.01v-0.16C269.31,162.44,263.04,158.44,251.91,155.54z"
-                                        />
-                                        <polygon
-                                            className="st1_invert"
-                                            points="297.46,133.12 273.94,188.39 286.25,188.39 302.87,147.62 310.16,165.42 302.14,165.42
-			297.83,176.08 314.47,176.08 319.49,188.39 332.11,188.39 308.59,133.12 		"
-                                        />
-                                        <polygon
-                                            className="st1_invert"
-                                            points="427.59,156.71 413.17,133.51 400.16,133.51 400.16,188.39 411.99,188.39 411.99,152.8 427.28,176
-			427.59,176 443.04,152.56 443.04,188.39 455.03,188.39 455.03,133.51 442.02,133.51 		"
-                                        />
-                                        <polygon
-                                            className="st1_invert"
-                                            points="534.94,144.64 551.64,144.64 551.64,188.39 563.71,188.39 563.71,144.64 580.41,144.64
-			580.41,133.51 534.94,133.51 		"
-                                        />
-                                        <path
-                                            className="st1_invert"
-                                            d="M614.12,132.57c-16.93,0-29.24,12.78-29.24,28.38v0.16c0,15.6,12.15,28.22,29.08,28.22
-			c16.93,0,29.24-12.78,29.24-28.38v-0.16C643.21,145.19,631.06,132.57,614.12,132.57z M630.58,161.11
-			c0,9.41-6.74,17.09-16.46,17.09c-9.72,0-16.62-7.84-16.62-17.25v-0.16c0-9.41,6.74-17.09,16.46-17.09s16.62,7.84,16.62,17.25
-			V161.11z"
-                                        />
-                                        <polygon
-                                            className="st1_invert"
-                                            points="480.2,144.25 509.6,144.25 509.6,133.51 468.2,133.51 468.2,188.39 509.99,188.39 509.99,177.65
-			480.2,177.65 		"
-                                        />
-                                        <rect
-                                            x="488.25"
-                                            y="155.38"
-                                            className="st1_invert"
-                                            width="17.81"
-                                            height="10.74"
-                                        />
-                                        <polygon
-                                            className="st1_invert"
-                                            points="374.91,155.23 352.65,155.23 352.65,133.51 340.58,133.51 340.58,188.39 352.65,188.39
-			352.65,166.36 374.91,166.36 374.91,188.39 386.99,188.39 386.99,133.51 374.91,133.51 		"
-                                        />
-                                    </g>
-                                </g>
-                            </svg>
+                            <Link className="flex text-neutral-800 font-black items-center gap-2.5 text-lg" href={`${getLinksLang(lang)}/`}>
+                                <Icons.logo />
+                                طلامی
+                            </Link>
                             <div className="invisible flex flex-col gap-6">
                                 <div>
                                     <strong>نسل جدید</strong> اپ ویندوز
@@ -297,39 +188,38 @@ export function Footer({ dict, lang }) {
                                 >
                                     <Phone
                                         strokeWidth={0.5}
-                                        fill="#10EDC5"
-                                        className="text-neutral-300 drop-shadow-[0px_0px_1px_rgba(0,_0,_0,_.6)]"
+                                        fill="#FFBE00"
+                                        className="text-[rgba(0,_0,_0,_.4)] drop-shadow-[0px_0px_1px_rgba(0,_0,_0,_.1)]"
                                     />
                                     <div className="text-base">
                                         ۰۲۱-۹۱۳۰۴۹۲۵
                                     </div>
                                 </a>
                                 <a
-                                    href="mailto:info@sahmeto.com"
+                                    href="mailto:info@talame.com"
                                     dir="ltr"
                                     className="flex items-center gap-2.5"
                                 >
                                     <Mail
                                         strokeWidth={0.5}
-                                        fill="#10EDC5"
+                                        fill="#FFBE00"
                                         className="text-[rgba(0,_0,_0,_.4)] drop-shadow-[0px_0px_1px_rgba(0,_0,_0,_.1)]"
                                     />
-                                    <div>info@sahmeto.com</div>
+                                    <div>info@talame.com</div>
                                 </a>
                             </div>
                         </div>
                         <div className="h-[1px] w-full bg-neutral-200" />
                         <div className="flex justify-between">
-                            <div className="flex w-full justify-between gap-20">
+                            <div className="flex w-full gap-20 text-neutral-700">
                                 <div>
-                                    <div className="mb-6 text-xl font-bold text-neutral-800">
+                                    <div className="mb-6 text-xl font-bold">
                                         {dict.products}
                                     </div>
                                     <ul className="flex flex-col flex-wrap items-start justify-between gap-5 text-base">
                                         <li>
                                             <Link
                                                 href={`${getLinksLang(lang)}/signals`}
-                                                className="text-neutral-800"
                                             >
                                                 {dict.productNav.signals}
                                             </Link>
@@ -337,7 +227,6 @@ export function Footer({ dict, lang }) {
                                         <li>
                                             <Link
                                                 href={`${getLinksLang(lang)}/feed`}
-                                                className="text-neutral-800"
                                             >
                                                 {dict.productNav.feeds}
                                             </Link>
@@ -345,7 +234,6 @@ export function Footer({ dict, lang }) {
                                         <li>
                                             <Link
                                                 href={`${getLinksLang(lang)}/leaderboard`}
-                                                className="text-neutral-800"
                                             >
                                                 {dict.productNav.bestTraders}
                                             </Link>
@@ -353,15 +241,14 @@ export function Footer({ dict, lang }) {
                                     </ul>
                                 </div>
                                 <div>
-                                    <div className="mb-6 text-xl font-bold text-neutral-800">
+                                    <div className="mb-6 text-xl font-bold">
                                         {dict.sahmetoWorld}
                                     </div>
-                                    <ul className="flex flex-col flex-wrap !items-start !justify-between gap-5 text-base">
+                                    <ul className="flex flex-col flex-wrap items-start justify-between gap-5 text-base">
                                         <li>
                                             <a
                                                 href="https://shmto.ir/9vg"
                                                 target="_blank"
-                                                className="!text-neutral-800"
                                             >
                                                 {dict.reportProblem}
                                             </a>
@@ -369,7 +256,6 @@ export function Footer({ dict, lang }) {
                                         <li>
                                             <a
                                                 href="https://dev.sahmeto.com"
-                                                className="!text-neutral-800"
                                             >
                                                 {dict.developWithSahmeto}
                                             </a>
@@ -377,7 +263,6 @@ export function Footer({ dict, lang }) {
                                         <li>
                                             <Link
                                                 href={`${getLinksLang(lang)}/organization`}
-                                                className="!text-neutral-800"
                                             >
                                                 {dict.organizationalSolution}
                                             </Link>
@@ -385,97 +270,12 @@ export function Footer({ dict, lang }) {
                                         <li>
                                             <Link
                                                 href={`${getLinksLang(lang)}/privacy`}
-                                                className="!text-neutral-800"
                                             >
                                                 {dict.rules}
                                             </Link>
                                         </li>
                                     </ul>
                                 </div>
-                                {!user ? (
-                                    <div className="grid w-[450px] gap-6">
-                                        <Form {...form}>
-                                            <form
-                                                onSubmit={form.handleSubmit(
-                                                    (data) => {
-                                                        router.push(
-                                                            `/user/login?phone=${data.ID}`
-                                                        );
-                                                    }
-                                                )}
-                                                className="space-y-3"
-                                            >
-                                                <FormField
-                                                    control={form.control}
-                                                    name="ID"
-                                                    render={({ field }) => (
-                                                        <FormItem>
-                                                            <Label className="mb-4 flex justify-between gap-1.5 px-2 text-base font-bold">
-                                                                <div className="text-xl font-black">
-                                                                    ثبت نام سریع
-                                                                </div>
-                                                                <div className="text-base">
-                                                                    بعد از ثبت
-                                                                    نام هدیه
-                                                                    <b>
-                                                                        {' '}
-                                                                        ۷ روز
-                                                                        رایگان{' '}
-                                                                    </b>
-                                                                    فعال میشود.
-                                                                </div>
-                                                            </Label>
-                                                            <FormControl>
-                                                                <div className="flex max-w-4xl gap-8 rounded-full border-[1px] border-neutral-200 bg-white px-2 py-3">
-                                                                    <Input
-                                                                        dir="rtl"
-                                                                        className="w-full border-none bg-transparent p-0 px-6 tracking-wider placeholder:text-right focus-visible:ring-0 focus-visible:ring-offset-0"
-                                                                        placeholder="شماره تلفن همراه"
-                                                                        type="tel"
-                                                                        autoComplete="username"
-                                                                        {...field}
-                                                                    />
-                                                                    <Button
-                                                                        className="h-10 w-64 rounded-full bg-neutral-800 text-base font-black text-neutral-300"
-                                                                        type="submit"
-                                                                        disabled={
-                                                                            isLoading
-                                                                        }
-                                                                    >
-                                                                        {isLoading && (
-                                                                            <Icons.spinner className="h-5 w-5 animate-spin" />
-                                                                        )}
-                                                                        ثبت نام
-                                                                    </Button>
-                                                                </div>
-                                                            </FormControl>
-                                                            <FormMessage />
-                                                        </FormItem>
-                                                    )}
-                                                />
-                                            </form>
-                                        </Form>
-                                    </div>
-                                ) : (
-                                    <div className="flex flex-col items-center justify-center gap-4">
-                                        <div>
-                                            برای استفاده از تمامی امکانات سهمتو
-                                            می‌توانید اشتراک تهیه نمایید.
-                                        </div>
-                                        <a
-                                            href="/pricing"
-                                            className={cn(
-                                                buttonVariants({
-                                                    variant: 'default',
-                                                    rounded: 'pill',
-                                                }),
-                                                'w-48 font-semibold text-neutral-300'
-                                            )}
-                                        >
-                                            تمدید اشتراک سهمتو
-                                        </a>
-                                    </div>
-                                )}
                             </div>
                         </div>
                     </div>
@@ -552,7 +352,7 @@ export function Footer({ dict, lang }) {
                         </div>
                     </div>
                 </div>
-                <div className="-mt-6 space-y-6 rounded-tl-lg rounded-tr-lg bg-neutral-800 pb-0 pt-8">
+                <div className="-mt-6 space-y-6 rounded-tl-lg rounded-tr-lg bg-neutral-700 pb-0 pt-8">
                     <div className="flex flex-col items-center gap-6">
                         <div className="flex items-center gap-10">
                             <a href="https://t.me/sahmetocom" target="_blank">
@@ -580,9 +380,9 @@ export function Footer({ dict, lang }) {
                         </div>
                         <a
                             href="https://www.instagram.com/sahmeto_com"
-                            className="bg-instagram flex gap-5 rounded-2xl px-7 py-5 text-base font-semibold text-white "
+                            className="bg-instagram flex gap-5 rounded-2xl px-7 py-5 text-base font-semibold text-white"
                         >
-                            <span>اینستاگرام سهمتو</span>
+                            <span>اینستاگرام طلامی</span>
                             <InstagramLogoIcon className="h-6 w-6 text-white" />
                         </a>
                     </div>
@@ -590,7 +390,7 @@ export function Footer({ dict, lang }) {
                         {lang === 'fa' && (
                             <p className="max-w-9/10 mx-auto text-justify">
                                 <Link href={`${getLinksLang(lang)}/`}>
-                                    سامانه هوشمند سهمتو
+                                    سامانه هوشمند طلامی
                                 </Link>{' '}
                                 پیام‌های تمام کانال‌های بورسی تلگرام را جمع‌آوری
                                 می‌کند و با استفاده از هوش مصنوعی سیگنال‌های
@@ -599,13 +399,13 @@ export function Footer({ dict, lang }) {
                                 اساس پارامترهایی مثل بازدهی ماهانه سبد پیشنهادی
                                 کانال، قدرت تحلیلگر و میزان ریسکی که تحلیلگر
                                 برای سیگنال‌های خود ارائه می‌کند، آن‌ها را
-                                رتبه‌بندی می‌کند. سهم‌های معرفی شده توسط سهمتو
+                                رتبه‌بندی می‌کند. سهم‌های معرفی شده توسط طلامی
                                 معمولا در کوتاه مدت سود مناسبی را به سرمایه‌گذار
-                                می‌رساند اما سهمتو هیچگونه مسئولیتی درمورد نماد
+                                می‌رساند اما طلامی هیچگونه مسئولیتی درمورد نماد
                                 های معرفی شده ندارد چرا که این سهم‌ها بر اساس
                                 اطلاعات برامده از شبکه اجتماعی معرفی می‌شود و
-                                سهمتو هیچ داده‌ای به محتوای شبکه اجتماعی اضافه
-                                یا کم نمی‌کند. سهمتو بر اساس مشخصات هر نماد از
+                                طلامی هیچ داده‌ای به محتوای شبکه اجتماعی اضافه
+                                یا کم نمی‌کند. طلامی بر اساس مشخصات هر نماد از
                                 قبیل جذابیت خرید و فروش، ریسک سرمایه گذاری و
                                 شاخص ترس و طمع و پارامترهای دیگر مانند: تازگی
                                 سیگنال‌ها و اعتبار کانال‌ها که همگی براساس
@@ -617,7 +417,7 @@ export function Footer({ dict, lang }) {
                                 معرفی می‌کند.
                             </p>
                         )}
-                        <p className="shadow-4xl mt-4 rounded-tl-lg rounded-tr-lg bg-neutral-300 px-8 py-4 text-center text-sm text-neutral-800">
+                        <p className="shadow-4xl mt-4 rounded-tl-lg rounded-tr-lg bg-neutral-800 px-8 py-4 text-center text-sm text-white">
                             {dict.copyright}
                         </p>
                     </div>
@@ -1164,7 +964,7 @@ export function Footer({ dict, lang }) {
                             href="https://www.instagram.com/sahmeto_com"
                             className="bg-instagram flex gap-5 rounded-2xl px-7 py-5 text-base font-semibold text-white "
                         >
-                            <span>اینستاگرام سهمتو</span>
+                            <span>اینستاگرام طلامی</span>
                             <InstagramLogoIcon className="h-6 w-6 text-white" />
                         </a>
                         <div className="flex items-center gap-10">
@@ -1201,7 +1001,7 @@ export function Footer({ dict, lang }) {
                             className="text-base text-white"
                             href="https://blog.sahmeto.com"
                         >
-                            بلاگ سهمتو
+                            بلاگ طلامی
                         </a>
                         <a className="text-base text-white" href="/privact">
                             قوانین
