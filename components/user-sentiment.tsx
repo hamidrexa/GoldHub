@@ -1,7 +1,7 @@
 'use client';
 
 import Cookies from 'js-cookie';
-import { toast } from "sonner"
+import { toast } from 'sonner';
 import { useGlobalContext } from '@/contexts/store';
 import React, { useEffect, useState } from 'react';
 import { componentFormat } from '@/libs/stringFormatter';
@@ -32,17 +32,15 @@ export function UserSentiment({
     }, [sentiment]);
 
     const getSentiment = async () => {
-        let url = market === 'tse'
-            ? `${process.env.NEXT_PUBLIC_API_URL}/v1/core/ticker/${id}/sentiments`
-            : `${process.env.NEXT_PUBLIC_API_URL}/v1/cryptocurrencies/${id}/sentiments`;
-        const res = await fetch(
-            url,
-            {
-                headers: {
-                    Authorization: `Bearer ${Cookies.get('token')}`,
-                },
-            }
-        );
+        let url =
+            market === 'tse'
+                ? `${process.env.NEXT_PUBLIC_API_URL}/v1/core/ticker/${id}/sentiments`
+                : `${process.env.NEXT_PUBLIC_API_URL}/v1/cryptocurrencies/${id}/sentiments`;
+        const res = await fetch(url, {
+            headers: {
+                Authorization: `Bearer ${Cookies.get('token')}`,
+            },
+        });
 
         if (!res.ok) throw new Error(`Failed to fetch data ${url}`);
 
@@ -50,28 +48,26 @@ export function UserSentiment({
     };
     const onSubmit = async (value) => {
         if (!user)
-            return toast.info(dict.loginPrompt,{
+            return toast.info(dict.loginPrompt, {
                 action: {
                     label: dict.login,
-                    onClick: () => router.push(`/user/login?url=${path}`),
+                    onClick: () => router.push(`/login?url=${path}`),
                 },
             });
-        let url = market === 'tse'
-            ? `${process.env.NEXT_PUBLIC_API_URL}/v1/core/ticker/${id}/sentiments`
-            : `${process.env.NEXT_PUBLIC_API_URL}/v1/cryptocurrencies/${id}/sentiments`;
-        const res = await fetch(
-            url,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${Cookies.get('token')}`,
-                },
-                body: JSON.stringify({
-                    value,
-                }),
-            }
-        );
+        let url =
+            market === 'tse'
+                ? `${process.env.NEXT_PUBLIC_API_URL}/v1/core/ticker/${id}/sentiments`
+                : `${process.env.NEXT_PUBLIC_API_URL}/v1/cryptocurrencies/${id}/sentiments`;
+        const res = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${Cookies.get('token')}`,
+            },
+            body: JSON.stringify({
+                value,
+            }),
+        });
 
         if (!res.ok) throw new Error(`Failed to fetch data ${url}`);
 
@@ -273,7 +269,7 @@ export function UserSentiment({
                                     </span>
                                 )}
                                 {sentiment && (
-                                  <span className="inline-block font-bold ltr:ml-1 rtl:mr-1">
+                                    <span className="inline-block font-bold ltr:ml-1 rtl:mr-1">
                                         {sentiment.count} {dict.opinion}
                                     </span>
                                 )}

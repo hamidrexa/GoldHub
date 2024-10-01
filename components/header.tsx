@@ -14,7 +14,6 @@ import {
     InstagramIcon,
     LinkedinIcon,
     MenuIcon,
-    SearchIcon,
     TwitterIcon,
 } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -76,7 +75,7 @@ export function Header({ dict, lang, googleLogin = true }) {
             isUserLoading ||
             !!user?.id ||
             path === '/profile' ||
-            path === '/user/login',
+            path === '/login',
         onSuccess: async (credentialResponse) => {
             try {
                 const { data, status } = await loginWithGoogle(
@@ -113,7 +112,7 @@ export function Header({ dict, lang, googleLogin = true }) {
     const logout = () => {
         Cookies.remove('token');
         Cookies.remove('token-refresh');
-        location.href = `/user/login`;
+        location.href = `/login`;
         googleLogout();
     };
     const getUser = async () => {
@@ -160,8 +159,9 @@ export function Header({ dict, lang, googleLogin = true }) {
                                 {user ? (
                                     <div className="flex flex-col gap-2">
                                         <div className="text-lg">
-                                            {`${user.first_name} ${user.last_name}` ??
-                                                dict.sahmetoUser}{' '}
+                                            {user.first_name
+                                                ? `${user.first_name} ${user.last_name}`
+                                                : dict.sahmetoUser}{' '}
                                             <Link
                                                 href={`${getLinksLang(lang)}/profile`}
                                                 className="text-neutral-300 underline underline-offset-2"
@@ -169,17 +169,12 @@ export function Header({ dict, lang, googleLogin = true }) {
                                                 ({dict.edit})
                                             </Link>
                                         </div>
-                                        <div className="text-xs">
-                                            {user.active_plan
-                                                ? user.active_plan.plan.name
-                                                : dict.planFinished}
-                                        </div>
                                     </div>
                                 ) : (
                                     <div className="flex flex-col gap-2">
                                         <div className="text-lg">
                                             <Link
-                                                href={`${getLinksLang(lang)}/user/login?url=${path}`}
+                                                href={`${getLinksLang(lang)}/login?url=${path}`}
                                             >
                                                 {dict.loginToAccount}
                                             </Link>
@@ -187,396 +182,6 @@ export function Header({ dict, lang, googleLogin = true }) {
                                     </div>
                                 )}
                                 <div className="mt-14 flex flex-col items-start gap-8 text-xl font-black">
-                                    <Link
-                                        href={`${getLinksLang(lang)}/pricing`}
-                                        legacyBehavior
-                                        passHref
-                                    >
-                                        <a className="flex items-center justify-center gap-3">
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="20"
-                                                height="21"
-                                                fill="none"
-                                                viewBox="0 0 20 21"
-                                            >
-                                                <g filter="url(#filter0_b_288_2301)">
-                                                    <path
-                                                        stroke="#200E32"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth="1.5"
-                                                        d="M5.422 17.724a.766.766 0 010 1.53.764.764 0 110-1.53z"
-                                                    ></path>
-                                                </g>
-                                                <g filter="url(#filter1_b_288_2301)">
-                                                    <path
-                                                        stroke="#200E32"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth="1.5"
-                                                        d="M16.675 17.724a.766.766 0 11-.002 1.532.766.766 0 01.002-1.532z"
-                                                    ></path>
-                                                </g>
-                                                <g filter="url(#filter2_b_288_2301)">
-                                                    <path
-                                                        stroke="#200E32"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth="1.5"
-                                                        d="M.75 1.154l2.08.36.963 11.473A1.802 1.802 0 005.59 14.64h10.912c.896 0 1.656-.658 1.785-1.546l.949-6.558a1.34 1.34 0 00-1.327-1.533H3.164"
-                                                    ></path>
-                                                </g>
-                                                <g filter="url(#filter3_b_288_2301)">
-                                                    <path
-                                                        stroke="#200E32"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth="1.5"
-                                                        d="M12.126 8.7h2.773"
-                                                    ></path>
-                                                </g>
-                                                <defs>
-                                                    <filter
-                                                        id="filter0_b_288_2301"
-                                                        width="24.082"
-                                                        height="24.082"
-                                                        x="-6.618"
-                                                        y="6.448"
-                                                        colorInterpolationFilters="sRGB"
-                                                        filterUnits="userSpaceOnUse"
-                                                    >
-                                                        <feFlood
-                                                            floodOpacity="0"
-                                                            result="BackgroundImageFix"
-                                                        ></feFlood>
-                                                        <feGaussianBlur
-                                                            in="BackgroundImageFix"
-                                                            stdDeviation="5.263"
-                                                        ></feGaussianBlur>
-                                                        <feComposite
-                                                            in2="SourceAlpha"
-                                                            operator="in"
-                                                            result="effect1_backgroundBlur_288_2301"
-                                                        ></feComposite>
-                                                        <feBlend
-                                                            in="SourceGraphic"
-                                                            in2="effect1_backgroundBlur_288_2301"
-                                                            result="shape"
-                                                        ></feBlend>
-                                                    </filter>
-                                                    <filter
-                                                        id="filter1_b_288_2301"
-                                                        width="24.083"
-                                                        height="24.082"
-                                                        x="4.633"
-                                                        y="6.448"
-                                                        colorInterpolationFilters="sRGB"
-                                                        filterUnits="userSpaceOnUse"
-                                                    >
-                                                        <feFlood
-                                                            floodOpacity="0"
-                                                            result="BackgroundImageFix"
-                                                        ></feFlood>
-                                                        <feGaussianBlur
-                                                            in="BackgroundImageFix"
-                                                            stdDeviation="5.263"
-                                                        ></feGaussianBlur>
-                                                        <feComposite
-                                                            in2="SourceAlpha"
-                                                            operator="in"
-                                                            result="effect1_backgroundBlur_288_2301"
-                                                        ></feComposite>
-                                                        <feBlend
-                                                            in="SourceGraphic"
-                                                            in2="effect1_backgroundBlur_288_2301"
-                                                            result="shape"
-                                                        ></feBlend>
-                                                    </filter>
-                                                    <filter
-                                                        id="filter2_b_288_2301"
-                                                        width="41.053"
-                                                        height="36.039"
-                                                        x="-10.526"
-                                                        y="-10.122"
-                                                        colorInterpolationFilters="sRGB"
-                                                        filterUnits="userSpaceOnUse"
-                                                    >
-                                                        <feFlood
-                                                            floodOpacity="0"
-                                                            result="BackgroundImageFix"
-                                                        ></feFlood>
-                                                        <feGaussianBlur
-                                                            in="BackgroundImageFix"
-                                                            stdDeviation="5.263"
-                                                        ></feGaussianBlur>
-                                                        <feComposite
-                                                            in2="SourceAlpha"
-                                                            operator="in"
-                                                            result="effect1_backgroundBlur_288_2301"
-                                                        ></feComposite>
-                                                        <feBlend
-                                                            in="SourceGraphic"
-                                                            in2="effect1_backgroundBlur_288_2301"
-                                                            result="shape"
-                                                        ></feBlend>
-                                                    </filter>
-                                                    <filter
-                                                        id="filter3_b_288_2301"
-                                                        width="25.326"
-                                                        height="22.553"
-                                                        x="0.849"
-                                                        y="-2.577"
-                                                        colorInterpolationFilters="sRGB"
-                                                        filterUnits="userSpaceOnUse"
-                                                    >
-                                                        <feFlood
-                                                            floodOpacity="0"
-                                                            result="BackgroundImageFix"
-                                                        ></feFlood>
-                                                        <feGaussianBlur
-                                                            in="BackgroundImageFix"
-                                                            stdDeviation="5.263"
-                                                        ></feGaussianBlur>
-                                                        <feComposite
-                                                            in2="SourceAlpha"
-                                                            operator="in"
-                                                            result="effect1_backgroundBlur_288_2301"
-                                                        ></feComposite>
-                                                        <feBlend
-                                                            in="SourceGraphic"
-                                                            in2="effect1_backgroundBlur_288_2301"
-                                                            result="shape"
-                                                        ></feBlend>
-                                                    </filter>
-                                                </defs>
-                                            </svg>
-                                            {dict.buySubscription}
-                                        </a>
-                                    </Link>
-                                    <Link
-                                        href={`${getLinksLang(lang)}/signals`}
-                                        className="flex items-center justify-center gap-3"
-                                    >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="22"
-                                            height="20"
-                                            fill="none"
-                                            viewBox="0 0 22 20"
-                                        >
-                                            <g filter="url(#filter0_b_288_3054)">
-                                                <path
-                                                    stroke="#200E32"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth="1.5"
-                                                    d="M11.714 1.345l2.316 4.659c.116.235.34.399.6.437l5.185.749c.21.028.4.138.528.306a.77.77 0 01-.085 1.032L16.5 12.162a.762.762 0 00-.226.7l.9 5.129a.787.787 0 01-.652.892.868.868 0 01-.516-.08l-4.618-2.421a.776.776 0 00-.742 0l-4.652 2.434a.812.812 0 01-1.077-.33.796.796 0 01-.08-.5l.9-5.128a.788.788 0 00-.227-.7L1.732 8.525a.786.786 0 01-.003-1.112l.003-.004a.91.91 0 01.452-.222l5.186-.75A.812.812 0 007.97 6l2.314-4.655a.787.787 0 01.458-.4.798.798 0 01.61.044.82.82 0 01.362.356z"
-                                                ></path>
-                                            </g>
-                                            <defs>
-                                                <filter
-                                                    id="filter0_b_288_3054"
-                                                    width="41.555"
-                                                    height="40.553"
-                                                    x="-9.776"
-                                                    y="-10.372"
-                                                    colorInterpolationFilters="sRGB"
-                                                    filterUnits="userSpaceOnUse"
-                                                >
-                                                    <feFlood
-                                                        floodOpacity="0"
-                                                        result="BackgroundImageFix"
-                                                    ></feFlood>
-                                                    <feGaussianBlur
-                                                        in="BackgroundImageFix"
-                                                        stdDeviation="5.263"
-                                                    ></feGaussianBlur>
-                                                    <feComposite
-                                                        in2="SourceAlpha"
-                                                        operator="in"
-                                                        result="effect1_backgroundBlur_288_3054"
-                                                    ></feComposite>
-                                                    <feBlend
-                                                        in="SourceGraphic"
-                                                        in2="effect1_backgroundBlur_288_3054"
-                                                        result="shape"
-                                                    ></feBlend>
-                                                </filter>
-                                            </defs>
-                                        </svg>
-                                        {dict.selectedIcons}
-                                    </Link>
-                                    <Link
-                                        href={`${getLinksLang(lang)}/feed`}
-                                        className="flex items-center justify-center gap-3"
-                                    >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="22"
-                                            height="20"
-                                            fill="none"
-                                            viewBox="0 0 22 20"
-                                        >
-                                            <g filter="url(#filter0_b_288_2147)">
-                                                <path
-                                                    stroke="#200E32"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth="1.5"
-                                                    d="M10.761 18.758a34.84 34.84 0 01-6.022-4.689A11.99 11.99 0 011.873 9.5c-1.076-3.345.18-7.174 3.698-8.307a5.978 5.978 0 015.425.914 5.987 5.987 0 015.425-.914c3.517 1.133 4.783 4.962 3.707 8.307a11.99 11.99 0 01-2.866 4.57 34.84 34.84 0 01-6.022 4.689l-.235.146-.244-.146z"
-                                                ></path>
-                                            </g>
-                                            <g filter="url(#filter1_b_288_2147)">
-                                                <path
-                                                    stroke="#200E32"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth="1.5"
-                                                    d="M14.74 4.957a2.782 2.782 0 011.916 2.422"
-                                                ></path>
-                                            </g>
-                                            <defs>
-                                                <filter
-                                                    id="filter0_b_288_2147"
-                                                    width="41.546"
-                                                    height="40.553"
-                                                    x="-9.773"
-                                                    y="-10.372"
-                                                    colorInterpolationFilters="sRGB"
-                                                    filterUnits="userSpaceOnUse"
-                                                >
-                                                    <feFlood
-                                                        floodOpacity="0"
-                                                        result="BackgroundImageFix"
-                                                    ></feFlood>
-                                                    <feGaussianBlur
-                                                        in="BackgroundImageFix"
-                                                        stdDeviation="5.263"
-                                                    ></feGaussianBlur>
-                                                    <feComposite
-                                                        in2="SourceAlpha"
-                                                        operator="in"
-                                                        result="effect1_backgroundBlur_288_2147"
-                                                    ></feComposite>
-                                                    <feBlend
-                                                        in="SourceGraphic"
-                                                        in2="effect1_backgroundBlur_288_2147"
-                                                        result="shape"
-                                                    ></feBlend>
-                                                </filter>
-                                                <filter
-                                                    id="filter1_b_288_2147"
-                                                    width="24.47"
-                                                    height="24.975"
-                                                    x="3.463"
-                                                    y="-6.319"
-                                                    colorInterpolationFilters="sRGB"
-                                                    filterUnits="userSpaceOnUse"
-                                                >
-                                                    <feFlood
-                                                        floodOpacity="0"
-                                                        result="BackgroundImageFix"
-                                                    ></feFlood>
-                                                    <feGaussianBlur
-                                                        in="BackgroundImageFix"
-                                                        stdDeviation="5.263"
-                                                    ></feGaussianBlur>
-                                                    <feComposite
-                                                        in2="SourceAlpha"
-                                                        operator="in"
-                                                        result="effect1_backgroundBlur_288_2147"
-                                                    ></feComposite>
-                                                    <feBlend
-                                                        in="SourceGraphic"
-                                                        in2="effect1_backgroundBlur_288_2147"
-                                                        result="shape"
-                                                    ></feBlend>
-                                                </filter>
-                                            </defs>
-                                        </svg>
-                                        {dict.feed}
-                                    </Link>
-                                    <Link
-                                        href={`${getLinksLang(lang)}/leaderboard`}
-                                        className="flex items-center justify-center gap-3"
-                                    >
-                                        <svg
-                                            width="20"
-                                            height="19"
-                                            viewBox="0 0 20 19"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <g filter="url(#filter0_b_288_2626)">
-                                                <path
-                                                    d="M14.3963 18.6734C14.396 18.6732 14.3957 18.6729 14.3954 18.6727C14.3945 18.6721 14.3936 18.6714 14.3926 18.6707C14.3637 18.6491 14.3359 18.6252 14.3103 18.5998L14.308 18.5978L10.2301 14.501C9.93762 14.2076 9.93942 13.7333 10.2328 13.4408C10.4992 13.1753 10.9159 13.1519 11.2093 13.3706L11.293 13.4435L14.0893 16.2518V4.45068C14.0893 4.03668 14.425 3.70098 14.8399 3.70098C15.2197 3.70098 15.5329 3.98268 15.5824 4.34898L15.5896 4.45068V16.2511L18.3859 13.4435C18.6775 13.1492 19.1527 13.1483 19.4461 13.4408C19.7134 13.7063 19.7386 14.123 19.5217 14.4173L19.4488 14.501L15.3709 18.5978C15.3708 18.5979 15.3711 18.5976 15.3709 18.5978C15.3696 18.5991 15.3677 18.6009 15.3664 18.6022C15.2205 18.7467 15.03 18.819 14.8396 18.819C14.6836 18.819 14.5276 18.7704 14.3963 18.6734ZM4.16772 15.4568L4.16142 15.3551V3.55249L1.36512 6.36228C1.09962 6.62868 0.682919 6.65388 0.388619 6.43698L0.304019 6.36498C0.0376194 6.09858 0.0124194 5.68278 0.229319 5.38848L0.302219 5.30388L4.38012 1.20708C4.46917 1.11772 4.57512 1.05557 4.68771 1.02053C4.6881 1.0204 4.68847 1.02029 4.68886 1.02017C4.69383 1.01863 4.69882 1.01714 4.70382 1.0157C4.70532 1.01527 4.7068 1.01486 4.70831 1.01443C4.71239 1.01329 4.71652 1.01216 4.72062 1.01109C4.72281 1.01052 4.72505 1.00994 4.72725 1.00939C4.73056 1.00855 4.7339 1.00773 4.73722 1.00694C4.74017 1.00624 4.74315 1.00555 4.74611 1.00489C4.74891 1.00426 4.75174 1.00364 4.75455 1.00304C4.7579 1.00233 4.7613 1.00163 4.76467 1.00096C4.76704 1.00049 4.76939 1.00004 4.77177 0.999593C4.77546 0.998897 4.77913 0.998222 4.78283 0.99758C4.7852 0.997172 4.78755 0.996789 4.78992 0.996403C4.79359 0.995805 4.7973 0.995213 4.80099 0.994668C4.80338 0.994314 4.80577 0.993991 4.80817 0.99366C4.81175 0.993167 4.81537 0.992673 4.81897 0.992231C4.82177 0.991885 4.82453 0.991587 4.82734 0.991273C4.83058 0.990912 4.83379 0.990547 4.83704 0.990227C4.84038 0.989898 4.84374 0.989617 4.84708 0.989332C4.84973 0.989108 4.85235 0.988863 4.855 0.988666C4.85949 0.988331 4.86395 0.988068 4.86845 0.987812C4.87007 0.987721 4.87168 0.987604 4.8733 0.987524C4.8918 0.986591 4.91031 0.986347 4.92883 0.986779C4.92876 0.986777 4.9289 0.98678 4.92883 0.986779C4.93429 0.986907 4.93995 0.987108 4.94541 0.987355C4.94632 0.987397 4.94725 0.987445 4.94816 0.987489C4.95275 0.987714 4.95734 0.987981 4.96192 0.988289C4.96322 0.988376 4.96455 0.988465 4.96585 0.988559C4.97034 0.988885 4.97482 0.989251 4.97931 0.989658C4.9803 0.989748 4.98131 0.989827 4.98231 0.989921C4.98735 0.990398 4.99241 0.990927 4.99744 0.991506C4.998 0.99157 4.99851 0.991617 4.99908 0.991683C5.00447 0.992315 5.00989 0.993012 5.01527 0.993761C5.01701 0.994003 5.01878 0.994285 5.02051 0.994539C5.02388 0.995032 5.02728 0.995536 5.03064 0.996074C5.03312 0.996473 5.03559 0.996898 5.03806 0.997321C5.04102 0.997825 5.04396 0.998335 5.04691 0.998875C5.04917 0.99929 5.05141 0.999713 5.05367 1.00015C5.05678 1.00075 5.05989 1.00137 5.063 1.00201C5.06514 1.00245 5.06728 1.00289 5.06941 1.00335C5.07285 1.00408 5.07628 1.00486 5.07971 1.00565C5.08145 1.00604 5.08318 1.00643 5.0849 1.00684C5.18182 1.02979 5.27505 1.07223 5.35842 1.13418L5.36232 1.13753C5.38845 1.15724 5.41322 1.1786 5.43654 1.20149L5.44302 1.20708L9.52092 5.30388C9.81252 5.59728 9.81162 6.07248 9.51822 6.36498C9.25092 6.63048 8.83422 6.65388 8.54172 6.43518L8.45712 6.36228L5.66082 3.55249V15.3551C5.66082 15.7691 5.32512 16.1048 4.91112 16.1048C4.53132 16.1048 4.21812 15.8222 4.16772 15.4568Z"
-                                                    fill="#200E32"
-                                                />
-                                            </g>
-                                            <defs>
-                                                <filter
-                                                    id="filter0_b_288_2626"
-                                                    x="-9.89797"
-                                                    y="-8.9949"
-                                                    width="39.5469"
-                                                    height="37.7953"
-                                                    filterUnits="userSpaceOnUse"
-                                                    colorInterpolationFilters="sRGB"
-                                                >
-                                                    <feFlood
-                                                        floodOpacity="0"
-                                                        result="BackgroundImageFix"
-                                                    />
-                                                    <feGaussianBlur
-                                                        in="BackgroundImageFix"
-                                                        stdDeviation="4.99073"
-                                                    />
-                                                    <feComposite
-                                                        in2="SourceAlpha"
-                                                        operator="in"
-                                                        result="effect1_backgroundBlur_288_2626"
-                                                    />
-                                                    <feBlend
-                                                        mode="normal"
-                                                        in="SourceGraphic"
-                                                        in2="effect1_backgroundBlur_288_2626"
-                                                        result="shape"
-                                                    />
-                                                </filter>
-                                            </defs>
-                                        </svg>
-                                        {dict.bests}
-                                    </Link>
-                                    <Link
-                                        href={`${getLinksLang(lang)}/notifications`}
-                                        className="flex items-center justify-center gap-3"
-                                    >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="24"
-                                            height="24"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <g>
-                                                <g
-                                                    stroke="currentColor"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth="1.5"
-                                                >
-                                                    <path
-                                                        fillRule="evenodd"
-                                                        d="M12 17.848c5.64 0 8.248-.724 8.5-3.627 0-2.902-1.819-2.716-1.819-6.276C18.681 5.165 16.045 2 12 2S5.319 5.164 5.319 7.945c0 3.56-1.819 3.374-1.819 6.276.253 2.914 2.862 3.627 8.5 3.627z"
-                                                        clipRule="evenodd"
-                                                    />
-                                                    <path d="M14.389 20.857c-1.364 1.515-3.492 1.533-4.87 0" />
-                                                </g>
-                                            </g>
-                                        </svg>
-                                        {dict.notification}
-                                    </Link>
                                     <Link
                                         href={`${dict.navMenuItems[1].href}`}
                                         className="flex items-center justify-center gap-3"
@@ -612,42 +217,6 @@ export function Header({ dict, lang, googleLogin = true }) {
                                         {/*    سرمایه گذاری آسان*/}
                                         {/*</Link>*/}
                                     </div>
-                                    {process.env.NEXT_PUBLIC_ENVIRONMENT ===
-                                        'BETA' && (
-                                        <div className="relative inline-block w-48">
-                                            <Dialog
-                                                open={isOpen}
-                                                onOpenChange={setIsOpen}
-                                            >
-                                                <DialogTrigger asChild>
-                                                    <div className="relative flex">
-                                                        <Badge className="absolute -right-1.5 top-1.5 h-4 w-fit rotate-45 border border-neutral-700 bg-white p-2 py-3 text-base text-neutral-700">
-                                                            بزودی
-                                                        </Badge>
-                                                        <Button
-                                                            onClick={(e) => {
-                                                                e.preventDefault();
-                                                            }}
-                                                            className="w-full text-xl font-normal hover:no-underline"
-                                                            variant="info"
-                                                        >
-                                                            + {dict.publish}
-                                                        </Button>
-                                                    </div>
-                                                </DialogTrigger>
-                                                <DialogContent className="w-full px-8 md:max-w-5xl">
-                                                    <PublishSignal
-                                                        setIsOpen={setIsOpen}
-                                                        lang={lang}
-                                                        dict={dict}
-                                                        onEnd={() => {
-                                                            setIsOpen(false);
-                                                        }}
-                                                    />
-                                                </DialogContent>
-                                            </Dialog>
-                                        </div>
-                                    )}
                                 </div>
                             </div>
                             <div>
@@ -710,10 +279,6 @@ export function Header({ dict, lang, googleLogin = true }) {
                         </div>
                     </SheetContent>
                 </Sheet>
-                <SearchIcon
-                    strokeWidth={1.125}
-                    onClick={() => setOpenSuggestion((open) => !open)}
-                />
             </div>
             <div className="flex items-center justify-center gap-5">
                 <Link
@@ -801,7 +366,7 @@ export function Header({ dict, lang, googleLogin = true }) {
                     </Link>
                 ) : (
                     <Link
-                        href={`${getLinksLang(lang)}/user/login?url=${path}`}
+                        href={`${getLinksLang(lang)}/login?url=${path}`}
                         legacyBehavior
                         passHref
                     >
@@ -916,42 +481,6 @@ export function Header({ dict, lang, googleLogin = true }) {
                                 {/*</Link>*/}
                                 {/*<HoverCard openDelay={100} closeDelay={100}>*/}
                                 {/*    <HoverCardTrigger asChild>*/}
-                                <Link
-                                    href={`${getLinksLang(lang)}/notifications`}
-                                    className="relative flex h-12 w-12 items-center justify-center rounded-md bg-neutral-50"
-                                >
-                                    {user.unread_message_count > 0 && (
-                                        <Badge
-                                            className="absolute -right-2.5 -top-2 flex h-5 min-h-5 w-5 items-center justify-center p-0"
-                                            variant="destructive"
-                                        >
-                                            {user.unread_message_count}
-                                        </Badge>
-                                    )}
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="22"
-                                        height="22"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <g>
-                                            <g
-                                                stroke="currentColor"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth="1.5"
-                                            >
-                                                <path
-                                                    fillRule="evenodd"
-                                                    d="M12 17.848c5.64 0 8.248-.724 8.5-3.627 0-2.902-1.819-2.716-1.819-6.276C18.681 5.165 16.045 2 12 2S5.319 5.164 5.319 7.945c0 3.56-1.819 3.374-1.819 6.276.253 2.914 2.862 3.627 8.5 3.627z"
-                                                    clipRule="evenodd"
-                                                />
-                                                <path d="M14.389 20.857c-1.364 1.515-3.492 1.533-4.87 0" />
-                                            </g>
-                                        </g>
-                                    </svg>
-                                </Link>
                                 {/*    </HoverCardTrigger>*/}
                                 {/*    <HoverCardContent className="bg-white">*/}
                                 {/*        <div>*/}
@@ -1001,7 +530,7 @@ export function Header({ dict, lang, googleLogin = true }) {
                             </>
                         ) : (
                             <Link
-                                href={`${getLinksLang(lang)}/user/login?url=${path}`}
+                                href={`${getLinksLang(lang)}/login?url=${path}`}
                                 className="flex h-12 items-center justify-center rounded-md border border-transparent bg-neutral-800 px-10 font-medium text-white"
                             >
                                 {dict.loginRegister}

@@ -85,12 +85,13 @@ export function AddToDashboard({
     };
     const onSubmit = async () => {
         if (isLoading) return;
-        if (!user) return toast.info(dict.loginPrompt,{
-            action: {
-                label: dict.login,
-                onClick: () => router.push(`/user/login?url=${path}`),
-            },
-        });
+        if (!user)
+            return toast.info(dict.loginPrompt, {
+                action: {
+                    label: dict.login,
+                    onClick: () => router.push(`/login?url=${path}`),
+                },
+            });
         if (!user.active_plan?.is_active) return toast(dict.subscriptionPrompt);
         if (!bookmarkId) bookmark();
         else unBookmark();

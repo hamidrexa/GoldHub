@@ -14,17 +14,8 @@ import { Fragment, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useGlobalContext } from '@/contexts/store';
 import Link from 'next/link';
-import { ArrowLeft, Mail, Phone, ShoppingCart } from 'lucide-react';
-import { Button, buttonVariants } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormMessage,
-} from '@/components/ui/form';
-import { Label } from '@/components/ui/label';
+import { Mail, Phone } from 'lucide-react';
+import { buttonVariants } from '@/components/ui/button';
 import { Icons } from '@/components/ui/icons';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
@@ -140,7 +131,10 @@ export function Footer({ dict, lang }) {
                     <div className="mx-auto flex max-w-[1525px] flex-col gap-10 px-14">
                         <BreadcrumbComponent />
                         <div className="flex justify-between">
-                            <Link className="flex text-neutral-800 font-black items-center gap-2.5 text-lg" href={`${getLinksLang(lang)}/`}>
+                            <Link
+                                className="flex items-center gap-2.5 text-lg font-black text-neutral-800"
+                                href={`${getLinksLang(lang)}/`}
+                            >
                                 <Icons.logo />
                                 طلامی
                             </Link>
@@ -207,75 +201,6 @@ export function Footer({ dict, lang }) {
                                     />
                                     <div>info@talame.com</div>
                                 </a>
-                            </div>
-                        </div>
-                        <div className="h-[1px] w-full bg-neutral-200" />
-                        <div className="flex justify-between">
-                            <div className="flex w-full gap-20 text-neutral-700">
-                                <div>
-                                    <div className="mb-6 text-xl font-bold">
-                                        {dict.products}
-                                    </div>
-                                    <ul className="flex flex-col flex-wrap items-start justify-between gap-5 text-base">
-                                        <li>
-                                            <Link
-                                                href={`${getLinksLang(lang)}/signals`}
-                                            >
-                                                {dict.productNav.signals}
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link
-                                                href={`${getLinksLang(lang)}/feed`}
-                                            >
-                                                {dict.productNav.feeds}
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link
-                                                href={`${getLinksLang(lang)}/leaderboard`}
-                                            >
-                                                {dict.productNav.bestTraders}
-                                            </Link>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <div className="mb-6 text-xl font-bold">
-                                        {dict.sahmetoWorld}
-                                    </div>
-                                    <ul className="flex flex-col flex-wrap items-start justify-between gap-5 text-base">
-                                        <li>
-                                            <a
-                                                href="https://shmto.ir/9vg"
-                                                target="_blank"
-                                            >
-                                                {dict.reportProblem}
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="https://dev.sahmeto.com"
-                                            >
-                                                {dict.developWithSahmeto}
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <Link
-                                                href={`${getLinksLang(lang)}/organization`}
-                                            >
-                                                {dict.organizationalSolution}
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link
-                                                href={`${getLinksLang(lang)}/privacy`}
-                                            >
-                                                {dict.rules}
-                                            </Link>
-                                        </li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -426,354 +351,15 @@ export function Footer({ dict, lang }) {
             {/*mobile footer*/}
             <div className="shadow-4xl rounded-tl-lg rounded-tr-lg bg-neutral-100  pb-20 md:hidden">
                 <div className="flex items-center justify-between p-8">
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-6 md:gap-2">
                         <BreadcrumbComponent />
-                        <div>
-                            <svg
-                                version="1.1"
-                                preserveAspectRatio="xMidYMid meet"
-                                viewBox="0 0 64 64"
-                                width={64}
-                                height={64}
-                            >
-                                <defs>
-                                    <path
-                                        d="M26.42 41.9C26.42 41.9 26.42 41.9 26.42 41.9C26.42 43.55 26.42 44.47 26.42 44.65C26.42 44.65 26.42 44.65 26.42 44.65C19.62 44.65 15.85 44.65 15.09 44.65C15.09 44.65 15.09 44.65 15.09 44.65C15.09 43 15.09 42.08 15.09 41.9C15.09 41.9 15.09 41.9 15.09 41.9C21.89 41.9 25.67 41.9 26.42 41.9Z"
-                                        id="h1aja7cujU"
-                                    />
-                                    <path
-                                        d="M51.27 58.8C51.27 58.8 51.27 58.8 51.27 58.8C51.27 59.78 51.27 60.33 51.27 60.44C51.27 60.44 51.27 60.44 51.27 60.44C43.33 60.44 38.91 60.44 38.03 60.44C38.03 60.44 38.03 60.44 38.03 60.44C38.03 59.46 38.03 58.91 38.03 58.8C38.03 58.8 38.03 58.8 38.03 58.8C45.97 58.8 50.39 58.8 51.27 58.8Z"
-                                        id="c1PWMZCesy"
-                                    />
-                                    <path
-                                        d="M64 0C64 0 64 0 64 0C64 19.2 64 29.87 64 32C64 32 64 32 64 32C44.8 32 34.13 32 32 32C32 32 32 32 32 32C32 12.8 32 2.13 32 0C32 0 32 0 32 0C51.2 0 61.87 0 64 0Z"
-                                        id="a1399CTWCj"
-                                    />
-                                    <path
-                                        d="M48.03 17.03L36.89 17.03L36.89 22.37L50.24 22.37L59.07 13.54L55.3 9.76L48.03 17.03Z"
-                                        id="a2baNl3rog"
-                                    />
-                                    <path
-                                        d="M19.62 36.64C19.62 36.64 19.62 36.64 19.62 36.64C19.62 38.3 19.62 39.22 19.62 39.4C19.62 39.4 19.62 39.4 19.62 39.4C15.31 39.4 12.91 39.4 12.43 39.4C12.43 39.4 12.43 39.4 12.43 39.4C12.43 37.75 12.43 36.83 12.43 36.64C12.43 36.64 12.43 36.64 12.43 36.64C16.75 36.64 19.14 36.64 19.62 36.64Z"
-                                        id="aoeB3t71t"
-                                    />
-                                    <path
-                                        d="M4.83 41.9C3.69 41.9 2.76 40.96 2.76 39.82C2.76 38.68 3.69 37.75 4.83 37.75C4.97 37.75 5.66 37.75 6.91 37.75L6.91 40.24L9.67 40.24L9.67 34.99C6.77 34.99 5.16 34.99 4.83 34.99C2.17 34.99 0 37.16 0 39.82C0 42.48 2.17 44.65 4.83 44.65C4.84 44.65 4.89 44.65 4.97 44.65L6.91 44.65L6.91 50.03L9.67 50.03L9.67 44.65L16.3 44.65L16.3 41.89L8.29 41.89L4.97 41.9L4.97 41.9C4.89 41.9 4.84 41.9 4.83 41.9Z"
-                                        id="a2l0kMKNF"
-                                    />
-                                    <path
-                                        d="M58.3 41.88C50.79 41.88 46.62 41.88 45.78 41.88C43.9 41.88 42.13 42.61 40.79 43.94C40.65 44.08 39.93 44.81 38.62 46.1L34.4 41.9L32.33 41.9C32.33 40.15 32.33 39.19 32.33 38.99C32.33 37.35 31.39 35.94 29.87 35.31C28.35 34.68 26.69 35.01 25.53 36.17C25.27 36.44 23.94 37.76 21.56 40.15L21.56 50.03L24.31 50.03L24.31 41.29C26.21 39.39 27.27 38.34 27.48 38.13C28.02 37.59 28.64 37.79 28.81 37.86C28.99 37.93 29.57 38.23 29.57 38.99C29.57 39.19 29.57 40.15 29.57 41.9L26.08 41.9L26.08 44.65L33.26 44.65L36.67 48.05L34.7 50.02L36.64 51.97C40.3 48.33 42.33 46.3 42.74 45.9C43.55 45.09 44.63 44.64 45.78 44.64C46.69 44.64 51.24 44.64 59.44 44.64L64 40.08L62.05 38.13L58.3 41.88Z"
-                                        id="iMeQabzUD"
-                                    />
-                                    <path
-                                        d="M2.22 57.72C2.22 57.71 2.22 57.7 2.22 57.69C2.22 57.28 2.6 56.96 3.31 56.96C4.01 56.96 4.75 57.27 5.49 57.79C5.59 57.65 6.36 56.54 6.45 56.4C5.6 55.71 4.55 55.33 3.33 55.33C1.61 55.33 0.39 56.34 0.39 57.86C0.39 57.86 0.39 57.88 0.39 57.89C0.39 59.56 1.48 60.02 3.17 60.46C4.58 60.82 4.87 61.06 4.87 61.53C4.87 61.53 4.87 61.55 4.87 61.55C4.87 62.04 4.41 62.34 3.65 62.34C2.69 62.34 1.9 61.95 1.14 61.32C1.03 61.45 0.16 62.5 0.05 62.63C1.06 63.53 2.34 63.98 3.62 63.98C5.43 63.98 6.71 63.04 6.71 61.37C6.71 61.37 6.71 61.35 6.71 61.35C6.7 59.88 5.74 59.27 4.04 58.82C2.58 58.45 2.22 58.27 2.22 57.72Z"
-                                        id="b5qhrcyXod"
-                                    />
-                                    <path
-                                        d="M7.41 63.86L9.3 63.86L11.85 57.61L12.96 60.34L11.74 60.34L11.07 61.97L13.62 61.97L14.39 63.86L16.33 63.86L12.72 55.39L11.02 55.39L7.41 63.86Z"
-                                        id="aOzVc2gu3"
-                                    />
-                                    <path
-                                        d="M28.75 55.45L26.76 55.45L26.76 63.86L28.57 63.86L28.57 58.4L30.91 61.96L30.96 61.96L33.33 58.37L33.33 63.86L35.16 63.86L35.16 55.45L33.17 55.45L30.96 59L28.75 55.45Z"
-                                        id="agFj6EOG7"
-                                    />
-                                    <path
-                                        d="M49.97 57.15L49.97 63.86L51.82 63.86L51.82 57.15L54.38 57.15L54.38 55.45L47.41 55.45L47.41 57.15L49.97 57.15Z"
-                                        id="g15RI0MfR8"
-                                    />
-                                    <path
-                                        d="M55.06 59.65C55.06 59.65 55.06 59.67 55.06 59.68C55.06 62.07 56.92 64 59.52 64C62.11 64 64 62.04 64 59.65C64 59.65 64 59.63 64 59.63C64 57.24 62.14 55.3 59.54 55.3C56.95 55.3 55.06 57.26 55.06 59.65ZM59.54 62.29C58.05 62.29 57 61.09 57 59.65C57 59.65 57 59.63 57 59.63C57 58.18 58.03 57.01 59.52 57.01C61.01 57.01 62.07 58.21 62.07 59.65C62.07 59.65 62.07 59.66 62.07 59.68C61.38 61.42 60.54 62.29 59.54 62.29Z"
-                                        id="g3JN50Uk1z"
-                                    />
-                                    <path
-                                        d="M43.53 57.09L43.53 55.45L37.18 55.45L37.18 63.86L43.59 63.86L43.59 62.21L39.02 62.21L39.02 57.09L43.53 57.09Z"
-                                        id="f2gREVeJox"
-                                    />
-                                    <path
-                                        d="M42.98 58.8C42.98 58.8 42.98 58.8 42.98 58.8C42.98 59.78 42.98 60.33 42.98 60.44C42.98 60.44 42.98 60.44 42.98 60.44C41.35 60.44 40.44 60.44 40.26 60.44C40.26 60.44 40.26 60.44 40.26 60.44C40.26 59.46 40.26 58.91 40.26 58.8C40.26 58.8 40.26 58.8 40.26 58.8C41.89 58.8 42.8 58.8 42.98 58.8Z"
-                                        id="byOYIz70v"
-                                    />
-                                    <path
-                                        d="M19.48 58.77L19.48 55.45L17.63 55.45L17.63 63.86L19.48 63.86L19.48 60.48L22.89 60.48L22.89 63.86L24.74 63.86L24.74 55.45L22.89 55.45L22.89 58.77L19.48 58.77Z"
-                                        id="f2Tv4GgQr2"
-                                    />
-                                </defs>
-                                <g>
-                                    <g>
-                                        <g>
-                                            <use
-                                                xlinkHref="#h1aja7cujU"
-                                                opacity={1}
-                                                fill="#10edc5"
-                                                fillOpacity={1}
-                                            />
-                                            <g>
-                                                <use
-                                                    xlinkHref="#h1aja7cujU"
-                                                    opacity={1}
-                                                    fillOpacity={0}
-                                                    stroke="#000000"
-                                                    strokeWidth={1}
-                                                    strokeOpacity={0}
-                                                />
-                                            </g>
-                                        </g>
-                                        <g>
-                                            <use
-                                                xlinkHref="#c1PWMZCesy"
-                                                opacity={1}
-                                                fill="#10edc5"
-                                                fillOpacity={1}
-                                            />
-                                            <g>
-                                                <use
-                                                    xlinkHref="#c1PWMZCesy"
-                                                    opacity={1}
-                                                    fillOpacity={0}
-                                                    stroke="#000000"
-                                                    strokeWidth={1}
-                                                    strokeOpacity={0}
-                                                />
-                                            </g>
-                                        </g>
-                                        <g>
-                                            <use
-                                                xlinkHref="#a1399CTWCj"
-                                                opacity={1}
-                                                fill="#10edc5"
-                                                fillOpacity={1}
-                                            />
-                                            <g>
-                                                <use
-                                                    xlinkHref="#a1399CTWCj"
-                                                    opacity={1}
-                                                    fillOpacity={0}
-                                                    stroke="#000000"
-                                                    strokeWidth={1}
-                                                    strokeOpacity={0}
-                                                />
-                                            </g>
-                                        </g>
-                                        <g>
-                                            <use
-                                                xlinkHref="#a2baNl3rog"
-                                                opacity={1}
-                                                fill="#0c0e3c"
-                                                fillOpacity={1}
-                                            />
-                                            <g>
-                                                <use
-                                                    xlinkHref="#a2baNl3rog"
-                                                    opacity={1}
-                                                    fillOpacity={0}
-                                                    stroke="#000000"
-                                                    strokeWidth={1}
-                                                    strokeOpacity={0}
-                                                />
-                                            </g>
-                                        </g>
-                                        <g>
-                                            <use
-                                                xlinkHref="#aoeB3t71t"
-                                                opacity={1}
-                                                fill="#0c0e3c"
-                                                fillOpacity={1}
-                                            />
-                                            <g>
-                                                <use
-                                                    xlinkHref="#aoeB3t71t"
-                                                    opacity={1}
-                                                    fillOpacity={0}
-                                                    stroke="#000000"
-                                                    strokeWidth={1}
-                                                    strokeOpacity={0}
-                                                />
-                                            </g>
-                                        </g>
-                                        <g>
-                                            <use
-                                                xlinkHref="#a2l0kMKNF"
-                                                opacity={1}
-                                                fill="#0c0e3c"
-                                                fillOpacity={1}
-                                            />
-                                            <g>
-                                                <use
-                                                    xlinkHref="#a2l0kMKNF"
-                                                    opacity={1}
-                                                    fillOpacity={0}
-                                                    stroke="#000000"
-                                                    strokeWidth={1}
-                                                    strokeOpacity={0}
-                                                />
-                                            </g>
-                                        </g>
-                                        <g>
-                                            <use
-                                                xlinkHref="#iMeQabzUD"
-                                                opacity={1}
-                                                fill="#0c0e3c"
-                                                fillOpacity={1}
-                                            />
-                                            <g>
-                                                <use
-                                                    xlinkHref="#iMeQabzUD"
-                                                    opacity={1}
-                                                    fillOpacity={0}
-                                                    stroke="#000000"
-                                                    strokeWidth={1}
-                                                    strokeOpacity={0}
-                                                />
-                                            </g>
-                                        </g>
-                                        <g>
-                                            <use
-                                                xlinkHref="#b5qhrcyXod"
-                                                opacity={1}
-                                                fill="#0c0e3c"
-                                                fillOpacity={1}
-                                            />
-                                            <g>
-                                                <use
-                                                    xlinkHref="#b5qhrcyXod"
-                                                    opacity={1}
-                                                    fillOpacity={0}
-                                                    stroke="#000000"
-                                                    strokeWidth={1}
-                                                    strokeOpacity={0}
-                                                />
-                                            </g>
-                                        </g>
-                                        <g>
-                                            <use
-                                                xlinkHref="#aOzVc2gu3"
-                                                opacity={1}
-                                                fill="#0c0e3c"
-                                                fillOpacity={1}
-                                            />
-                                            <g>
-                                                <use
-                                                    xlinkHref="#aOzVc2gu3"
-                                                    opacity={1}
-                                                    fillOpacity={0}
-                                                    stroke="#000000"
-                                                    strokeWidth={1}
-                                                    strokeOpacity={0}
-                                                />
-                                            </g>
-                                        </g>
-                                        <g>
-                                            <use
-                                                xlinkHref="#agFj6EOG7"
-                                                opacity={1}
-                                                fill="#0c0e3c"
-                                                fillOpacity={1}
-                                            />
-                                            <g>
-                                                <use
-                                                    xlinkHref="#agFj6EOG7"
-                                                    opacity={1}
-                                                    fillOpacity={0}
-                                                    stroke="#000000"
-                                                    strokeWidth={1}
-                                                    strokeOpacity={0}
-                                                />
-                                            </g>
-                                        </g>
-                                        <g>
-                                            <use
-                                                xlinkHref="#g15RI0MfR8"
-                                                opacity={1}
-                                                fill="#0c0e3c"
-                                                fillOpacity={1}
-                                            />
-                                            <g>
-                                                <use
-                                                    xlinkHref="#g15RI0MfR8"
-                                                    opacity={1}
-                                                    fillOpacity={0}
-                                                    stroke="#000000"
-                                                    strokeWidth={1}
-                                                    strokeOpacity={0}
-                                                />
-                                            </g>
-                                        </g>
-                                        <g>
-                                            <use
-                                                xlinkHref="#g3JN50Uk1z"
-                                                opacity={1}
-                                                fill="#0c0e3c"
-                                                fillOpacity={1}
-                                            />
-                                            <g>
-                                                <use
-                                                    xlinkHref="#g3JN50Uk1z"
-                                                    opacity={1}
-                                                    fillOpacity={0}
-                                                    stroke="#000000"
-                                                    strokeWidth={1}
-                                                    strokeOpacity={0}
-                                                />
-                                            </g>
-                                        </g>
-                                        <g>
-                                            <use
-                                                xlinkHref="#f2gREVeJox"
-                                                opacity={1}
-                                                fill="#0c0e3c"
-                                                fillOpacity={1}
-                                            />
-                                            <g>
-                                                <use
-                                                    xlinkHref="#f2gREVeJox"
-                                                    opacity={1}
-                                                    fillOpacity={0}
-                                                    stroke="#000000"
-                                                    strokeWidth={1}
-                                                    strokeOpacity={0}
-                                                />
-                                            </g>
-                                        </g>
-                                        <g>
-                                            <use
-                                                xlinkHref="#byOYIz70v"
-                                                opacity={1}
-                                                fill="#0c0e3c"
-                                                fillOpacity={1}
-                                            />
-                                            <g>
-                                                <use
-                                                    xlinkHref="#byOYIz70v"
-                                                    opacity={1}
-                                                    fillOpacity={0}
-                                                    stroke="#000000"
-                                                    strokeWidth={1}
-                                                    strokeOpacity={0}
-                                                />
-                                            </g>
-                                        </g>
-                                        <g>
-                                            <use
-                                                xlinkHref="#f2Tv4GgQr2"
-                                                opacity={1}
-                                                fill="#0c0e3c"
-                                                fillOpacity={1}
-                                            />
-                                            <g>
-                                                <use
-                                                    xlinkHref="#f2Tv4GgQr2"
-                                                    opacity={1}
-                                                    fillOpacity={0}
-                                                    stroke="#000000"
-                                                    strokeWidth={1}
-                                                    strokeOpacity={0}
-                                                />
-                                            </g>
-                                        </g>
-                                    </g>
-                                </g>
-                            </svg>
-                        </div>
+                        <Link
+                            className="flex items-center gap-2.5 text-lg font-black text-neutral-800"
+                            href={`${getLinksLang(lang)}/`}
+                        >
+                            <Icons.logo />
+                            طلامی
+                        </Link>
                     </div>
                     <div
                         dir="ltr"
@@ -787,8 +373,8 @@ export function Footer({ dict, lang }) {
                         >
                             <Phone
                                 strokeWidth={0.5}
-                                fill="#10EDC5"
-                                className="text-neutral-300 drop-shadow-[0px_0px_1px_rgba(0,_0,_0,_.6)]"
+                                fill="#FFBE00"
+                                className="text-[rgba(0,_0,_0,_.4)] drop-shadow-[0px_0px_1px_rgba(0,_0,_0,_.1)]"
                             />
                             <div className="text-base">۰۲۱-۹۱۳۰۴۹۲۵</div>
                         </a>
@@ -799,37 +385,10 @@ export function Footer({ dict, lang }) {
                         >
                             <Mail
                                 strokeWidth={0.5}
-                                fill="#10EDC5"
+                                fill="#FFBE00"
                                 className="text-[rgba(0,_0,_0,_.4)] drop-shadow-[0px_0px_1px_rgba(0,_0,_0,_.1)]"
                             />
                             <div>info@sahmeto.com</div>
-                        </a>
-                    </div>
-                </div>
-                <div className=" mx-auto my-8 h-[1px] w-[90%] bg-neutral-200" />
-                <div className="items-cente flex flex-col gap-10 px-8">
-                    <a
-                        href="/user/login"
-                        className="flex items-center justify-between"
-                    >
-                        <h6 className="text-base underline underline-offset-2">
-                            فعال سازی ۷ روز هدیه رایگان
-                        </h6>
-                        <ArrowLeft width={24} height={24} />
-                    </a>
-                    <div className="flex justify-center">
-                        <a
-                            href="/pricing"
-                            className={cn(
-                                buttonVariants({
-                                    variant: 'secondary',
-                                    size: 'xl',
-                                }),
-                                'flex w-40 justify-evenly rounded-xl px-1 text-base font-semibold shadow-[0px_0px_50px_10px_rgba(16,_237,_197,_.8)]'
-                            )}
-                        >
-                            <ShoppingCart />
-                            خرید اشتراک
                         </a>
                     </div>
                 </div>
@@ -905,7 +464,7 @@ export function Footer({ dict, lang }) {
                         </div>
                     </div>
                 </div>
-                <div className="px-8 py-2 text-neutral-800">
+                <div className="px-8 py-2 text-neutral-700">
                     <div className="mt-8">
                         <div className="text-lg font-bold">{dict.products}</div>
                         <ul className="flex flex-wrap items-center justify-between gap-x-3 text-sm leading-loose">
@@ -958,7 +517,7 @@ export function Footer({ dict, lang }) {
                         </ul>
                     </div>
                 </div>
-                <div className="mt-3 flex w-full flex-col justify-center gap-2 rounded-t-xl bg-neutral-800 pt-8">
+                <div className="mt-3 flex w-full flex-col justify-center gap-2 rounded-t-xl bg-neutral-700 pt-8">
                     <div className="flex flex-col items-center gap-6">
                         <a
                             href="https://www.instagram.com/sahmeto_com"
@@ -1007,7 +566,7 @@ export function Footer({ dict, lang }) {
                             قوانین
                         </a>
                     </div>
-                    <p className="shadow-6xl mt-10 rounded-tl-lg rounded-tr-lg bg-neutral-300 px-8 py-4 text-center text-sm text-neutral-800">
+                    <p className="shadow-6xl mt-10 rounded-tl-lg rounded-tr-lg bg-neutral-800 px-8 py-4 text-center text-sm text-white">
                         {dict.copyright}
                     </p>
                 </div>

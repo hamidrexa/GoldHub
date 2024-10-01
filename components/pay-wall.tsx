@@ -19,7 +19,7 @@ export function PayWall({ dict, lang }) {
             : [];
         if (
             (!path.includes('/pricing') &&
-                !path.includes('/user/login') &&
+                !path.includes('/login') &&
                 !path.includes('/privacy') &&
                 !path.includes('/profile') &&
                 !path.includes('/notifications')) ||
@@ -47,7 +47,7 @@ export function PayWall({ dict, lang }) {
         !show ||
         path.includes('/pricing') ||
         path.includes('/finochat') ||
-        path.includes('/user/login') ||
+        path.includes('/login') ||
         path.includes('/privacy') ||
         path.includes('/profile') ||
         path.includes('/notifications') ||

@@ -45,7 +45,7 @@ export default function Bargain({
                 {/*            buttonVariants({ variant: 'default' }),*/}
                 {/*            'py-6 text-lg'*/}
                 {/*        )}*/}
-                {/*        href={`${getLinksLang(lang)}/user/login`}*/}
+                {/*        href={`${getLinksLang(lang)}/login`}*/}
                 {/*    >*/}
                 {/*        ثبت نام*/}
                 {/*    </Link>*/}

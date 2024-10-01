@@ -53,9 +53,7 @@ export function PlanWrap({ purePlans, lang, dict, isShow }) {
                 action: {
                     label: dict.login,
                     onClick: () =>
-                        router.push(
-                            `${getLinksLang(lang)}/user/login?url=${path}`
-                        ),
+                        router.push(`${getLinksLang(lang)}/login?url=${path}`),
                 },
             });
         toast.info(dict.payTransfer);
@@ -78,9 +76,7 @@ export function PlanWrap({ purePlans, lang, dict, isShow }) {
                 action: {
                     label: dict.login,
                     onClick: () =>
-                        router.push(
-                            `${getLinksLang(lang)}/user/login?url=${path}`
-                        ),
+                        router.push(`${getLinksLang(lang)}/login?url=${path}`),
                 },
             });
         setIsLoading(true);
@@ -123,7 +119,7 @@ export function PlanWrap({ purePlans, lang, dict, isShow }) {
                 </div>
             )}
             {isShow && (
-                <div className="flex flex-col rounded-md border bg-white p-3 xl:p-5 mb-6">
+                <div className="mb-6 flex flex-col rounded-md border bg-white p-3 xl:p-5">
                     <h2 className="mb-4 text-2xl font-black">
                         {dict.insertDiscountCode}
                     </h2>
@@ -208,7 +204,7 @@ export function PlanWrap({ purePlans, lang, dict, isShow }) {
                             {dict.weekFree}
                         </h4>
                         <Link
-                            href={`${getLinksLang(lang)}/user/login?url=${path}`}
+                            href={`${getLinksLang(lang)}/login?url=${path}`}
                             className={cn(buttonVariants({}), 'w-full')}
                         >
                             {dict.startNow}

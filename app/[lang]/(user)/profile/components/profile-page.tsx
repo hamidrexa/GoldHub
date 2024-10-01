@@ -195,7 +195,7 @@ export function ProfilePage({ dict, lang }) {
     const logout = () => {
         Cookies.remove('token');
         Cookies.remove('token-refresh');
-        location.href = `/user/login`;
+        location.href = `/login`;
         googleLogout();
     };
 

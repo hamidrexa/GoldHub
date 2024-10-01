@@ -71,21 +71,6 @@
   "profile": "پروفایل",
   "navMenuItems": [
     {
-      "title": "راهکار سازمانی",
-      "href": "/organization",
-      "description": ""
-    },
-    {
-      "title": "بلاگ سهمتو",
-      "href": "https://blog.sahmeto.com",
-      "description": ""
-    },
-    {
-      "title": "راهنمای سهمتو",
-      "href": "https://help.sahmeto.com",
-      "description": ""
-    },
-    {
       "title": "قوانین",
       "href": "/privacy",
       "description": ""

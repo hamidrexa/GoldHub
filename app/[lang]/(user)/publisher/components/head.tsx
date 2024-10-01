@@ -38,7 +38,7 @@ export function Head({ dict, lang, id, purePublisher }) {
 
     const requestToClaimPage = async () => {
         if (!user)
-            return router.push(`${getLinksLang(lang)}/user/login?url=${path}`);
+            return router.push(`${getLinksLang(lang)}/login?url=${path}`);
 
         setIsLoading(true);
         await publisherOwnership(publisher.id);

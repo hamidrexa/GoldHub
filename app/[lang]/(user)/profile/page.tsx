@@ -28,7 +28,7 @@ export async function generateMetadata(
 
 export default async function Profile({ params: { lang } }) {
     const dict = await getDictionary(lang);
-    if (!cookies().get('token')) return redirect('/user/login');
+    if (!cookies().get('token')) return redirect('/login');
 
     return (
         <>
