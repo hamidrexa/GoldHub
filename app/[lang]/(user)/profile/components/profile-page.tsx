@@ -240,7 +240,7 @@ export function ProfilePage({ dict, lang }) {
                                 ? `${user.first_name || ''} ${
                                       user.last_name || ''
                                   }`
-                                : 'کاربر سهمتو'}
+                                : 'کاربر طلامی'}
                         </span>
                         <Dialog
                             open={nameDialogOpen}

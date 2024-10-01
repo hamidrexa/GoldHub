@@ -150,7 +150,7 @@ export default function Exchange({ dict, lang, asset, className, ids }: Props) {
                 texts={{
                     title: <>برای خرید از صرافی ثبت نام کنید.</>,
                     description:
-                        'با ثبت نام در سهمتو، 7 روز اشتراک رایگان هدیه بگیرید.',
+                        'با ثبت نام در طلامی، 7 روز اشتراک رایگان هدیه بگیرید.',
                     button: dict.traderLoginModal.button,
                     buttonVariant: 'info',
                     inputLabel: dict.traderLoginModal.inputLabel,

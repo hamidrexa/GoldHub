@@ -136,7 +136,7 @@ export default function Wallet({ dict, lang }: Props) {
                                                 </DialogTrigger>
                                                 <DialogContent className="max-w-xl text-center">
                                                     برای برداشت به پشتیبانی
-                                                    تلگرام سهمتو با آیدی
+                                                    تلگرام طلامی با آیدی
                                                     <a
                                                         href="https://t.me/SahmetoSup"
                                                         className="block font-black"

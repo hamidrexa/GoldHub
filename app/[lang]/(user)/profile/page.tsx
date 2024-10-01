@@ -16,7 +16,7 @@ export async function generateMetadata(
     parent?: ResolvingMetadata
 ): Promise<Metadata> {
     const dict = await getDictionary(params.lang);
-    const seoTitle = 'حساب کاربری | سهمتو';
+    const seoTitle = 'حساب کاربری | طلامی';
 
     return {
         title: seoTitle,

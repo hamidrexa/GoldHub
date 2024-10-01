@@ -18,9 +18,9 @@ import { QuestionMarkIcon } from '@radix-ui/react-icons';
 import Bargain from '@/app/[lang]/(user)/(asset)/components/bargain';
 
 export const metadata: Metadata = {
-    title: 'خرید سریع و آسان ارزدیجیتال | سهمتو',
+    title: 'خرید سریع و آسان ارزدیجیتال | طلامی',
     description:
-        'فروش و خرید آسان ارزدیجیتال با تومان در سهمتو، در سریعترین زمان ممکن، بدون وقفه و با احراز هویت فوری خرید.',
+        'فروش و خرید آسان ارزدیجیتال با تومان در طلامی، در سریعترین زمان ممکن، بدون وقفه و با احراز هویت فوری خرید.',
 };
 
 export default async function InvestPage({ params: { lang }, searchParams }) {
@@ -104,7 +104,7 @@ export default async function InvestPage({ params: { lang }, searchParams }) {
                                     </AccordionTrigger>
                                     <AccordionContent className="p-4 pt-0">
                                         <p>
-                                            خرید آسان در صرافی سهمتو بدون هزینه
+                                            خرید آسان در صرافی طلامی بدون هزینه
                                             کارمزد انجام می‌شود. در نظر داشته
                                             باشید، بهای تمام‌شده خرید آسان به
                                             دلیل تنوع تامین‌کننده ممکن است با

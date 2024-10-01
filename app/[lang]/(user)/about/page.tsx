@@ -37,7 +37,7 @@ export default function AboutUs() {
                     <div>
                         <div className="max-w-sm">
                             <h2 className="text-2xl font-black">
-                                سهمتو برای سرمایه گذاران در بورس :
+                                طلامی برای سرمایه گذاران در بورس :
                             </h2>
                             <h6 className="text-base font-normal">
                                 افراد برای سرمایه گذاری در بورس یا وقت کافی برای
@@ -49,7 +49,7 @@ export default function AboutUs() {
                     <div>
                         <div className="max-w-lg">
                             <h2 className="text-2xl font-black">
-                                سهمتو برای تریدرها در بورس :
+                                طلامی برای تریدرها در بورس :
                             </h2>
                             <h6 className="text-base font-normal">
                                 تریدرها برای سود کردن بیشتر نیاز دارند همه
@@ -61,7 +61,7 @@ export default function AboutUs() {
                     </div>
                 </div>
                 <h4 className="relative z-10 my-24 text-center text-2xl leading-10 md:px-36">
-                    سهمتو کمک میکند تا هر آنچه نیاز است از اطلاعات بورسی و شبکه
+                    طلامی کمک میکند تا هر آنچه نیاز است از اطلاعات بورسی و شبکه
                     اجتماعی برای انتخاب سهم خوب، خرید و فروش و زمان خوب معامله
                     را در اختیار مخاطبان قرار دهد.
                     <span className="absolute left-0 right-0 top-36 -z-10 text-center text-[350px] text-neutral-100">
@@ -78,12 +78,12 @@ export default function AboutUs() {
                 <img
                     className="w-7 object-contain"
                     src="/img/sahmeto_send.png"
-                    alt="سهمتو چه میکند"
+                    alt="طلامی چه میکند"
                 />
                 <div className="flex w-full items-center text-center text-[30px] font-black leading-[40px] tracking-[-0.6px] text-neutral-800">
                     <div className="flex-1 border-b border-neutral-100"></div>
                     <h4 className="mx-[20px] max-w-[550px] text-3xl font-black">
-                        سهمتو چه میکند
+                        طلامی چه میکند
                     </h4>
                     <div className="flex-1 border-b border-neutral-100"></div>
                 </div>
@@ -130,7 +130,7 @@ export default function AboutUs() {
                 <div className="flex w-full items-center text-center text-[30px] font-black leading-[40px] tracking-[-0.6px] text-neutral-800">
                     <div className="flex-1 border-b border-neutral-100"></div>
                     <h4 className="mx-[20px] max-w-[550px] text-3xl font-black leading-relaxed">
-                        شرکت هوش مالی بینا با برند سهمتو فعالیت دارد و از هسته
+                        شرکت هوش مالی بینا با برند طلامی فعالیت دارد و از هسته
                         های زیر تشکیل شده است:
                     </h4>
                     <div className="flex-1 border-b border-neutral-100"></div>

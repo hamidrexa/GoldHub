@@ -8,7 +8,7 @@ import { Footer } from '@/components/footer';
 import { BottomNavigation } from '@/components/bottom-navigation';
 
 export const metadata = {
-    title: 'پیدا نشد | سهمتو',
+    title: 'پیدا نشد | طلامی',
 };
 
 export default async function UserLayout({

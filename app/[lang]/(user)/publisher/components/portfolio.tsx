@@ -38,7 +38,7 @@ export function Portfolio({ dict, lang, id }) {
                     />
                     {(!user || !user?.active_plan?.is_active) && !isLoading && (
                         <button
-                            className="w-full h-full absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-1.5"
+                            className="absolute left-1/2 top-1/2 flex h-full w-full -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-1.5"
                             onClick={() => {
                                 if (!user) return setOpenLoginModal(true);
                                 if (!user.active_plan?.is_active)
@@ -59,7 +59,7 @@ export function Portfolio({ dict, lang, id }) {
                     data={portfolio.stock_portfolio.map((item) => ({
                         ...item,
                         name: item.symbol,
-                        value: item.percent ,
+                        value: item.percent,
                     }))}
                     dataKey="value"
                 />
@@ -76,7 +76,7 @@ export function Portfolio({ dict, lang, id }) {
                         </>
                     ),
                     description:
-                        'با ثبت نام در سهمتو، 7 روز اشتراک رایگان هدیه بگیرید.',
+                        'با ثبت نام در طلامی، 7 روز اشتراک رایگان هدیه بگیرید.',
                     button: dict.traderLoginModal.button,
                     buttonVariant: 'info',
                     inputLabel: dict.traderLoginModal.inputLabel,

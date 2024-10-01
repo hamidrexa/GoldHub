@@ -45,7 +45,7 @@ export default function PublishSignal({ lang, dict, setIsOpen, onEnd }) {
                             {' '}
                             صفحه اختصاصی
                         </Link>{' '}
-                        خود در سهمتو مشاهده و اصلاح کنید.
+                        خود در طلامی مشاهده و اصلاح کنید.
                     </div>
                 </div>
             )}

@@ -180,7 +180,7 @@ export function Phone({
                     </div>
                     <Google lang={lang} />
                     {/*<p className="px-8 text-center text-sm text-neutral-800">*/}
-                    {/*    با ثبت‌نام در سهمتو، شما{' '}*/}
+                    {/*    با ثبت‌نام در طلامی، شما{' '}*/}
                     {/*    <Link*/}
                     {/*        href={`${getLinksLang(lang)}/privacy`}*/}
                     {/*        className="hover:text-primary underline underline-offset-4"*/}

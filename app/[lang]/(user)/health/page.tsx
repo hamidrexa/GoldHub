@@ -5,7 +5,7 @@ import { getDictionary } from '@/get-dictionary';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'سلامت | سهمتو',
+    title: 'سلامت | طلامی',
     description: '',
 };
 
@@ -18,7 +18,7 @@ export default async function HealthPage({ params: { lang } }) {
                 {!isMobile && <ProductsNavigator dict={dict} lang={lang} />}
                 <div className="w-full">
                     <h1 className="mb-6 text-center text-3xl font-bold">
-                        وضعیت سلامت سهمتو
+                        وضعیت سلامت طلامی
                     </h1>
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                         <div className="rounded-lg border border-gray-100 bg-white p-6">

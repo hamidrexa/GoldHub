@@ -64,7 +64,7 @@ export function PayWall({ dict, lang }) {
             texts={{
                 title: 'شما به محدودیت روزانه ۳ صفحه از سایت برخورد کرده اید',
                 description:
-                    'با ثبت نام در سهمتو، 7 روز اشتراک رایگان هدیه بگیرید.',
+                    'با ثبت نام در طلامی، 7 روز اشتراک رایگان هدیه بگیرید.',
                 button: dict.traderLoginModal.button,
                 buttonVariant: 'info',
                 inputLabel: dict.traderLoginModal.inputLabel,
