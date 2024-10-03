@@ -71,7 +71,7 @@ export function PayWall({ dict, lang }) {
                 }}
                 open={show}
                 setOpen={(open) => {
-                    if (!open) router.replace('/feed');
+                    if (!open) router.replace('/');
                 }}
                 redirectUrl={path}
             />

@@ -4,7 +4,6 @@ import {
     FormControl,
     FormField,
     FormItem,
-    FormLabel,
     FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
@@ -16,10 +15,7 @@ import { z } from 'zod';
 import { updateInfo } from '@/app/[lang]/(auth)/login/services/updateInfo';
 import { PasswordSecurityCheck } from '@/app/[lang]/(auth)/login/components/password-security-check';
 import { toast } from 'sonner';
-import { Checkbox } from '@/components/ui/checkbox';
 import { useSearchParams } from 'next/navigation';
-import Link from 'next/link';
-import { getLinksLang } from '@/libs/utils';
 
 const completeInfoFormSchema = z.object({
     email: z
@@ -51,7 +47,7 @@ export function CompleteInfo({ userId, setStep, dict, lang, redirectUrl }) {
                 Object.fromEntries(Object.entries(info).filter(([, v]) => v))
             );
             window.location.href =
-                redirectUrl || searchParams.get('url') || '/feed';
+                redirectUrl || searchParams.get('url') || '/';
         } catch (e) {
             window.focus();
             // @ts-ignore

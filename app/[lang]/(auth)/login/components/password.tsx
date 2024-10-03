@@ -49,7 +49,7 @@ export function Password({ userId, setStep, dict, redirectUrl }) {
             Cookies.set('token', access, { expires: 7 });
             Cookies.set('token-refresh', refresh, { expires: 365 });
             window.location.href =
-                redirectUrl || searchParams.get('url') || '/feed';
+                redirectUrl || searchParams.get('url') || '/';
         } catch (e) {
             window.focus();
             // @ts-ignore
@@ -126,7 +126,7 @@ export function Password({ userId, setStep, dict, redirectUrl }) {
                 <h1 className="text-2xl font-semibold tracking-tight">
                     رمز عبور
                 </h1>
-                <p className="text-sm text-neutral-800">
+                <p className="text-sm">
                     رمز عبور خود را جهت ورود به {userId?.enteredValue} وارد
                     کنید.
                 </p>
@@ -196,7 +196,7 @@ export function Password({ userId, setStep, dict, redirectUrl }) {
                     </div>
                 </div>
                 <button
-                    className="flex cursor-pointer items-center justify-center gap-2 text-center text-sm font-medium text-neutral-800 underline underline-offset-2"
+                    className="flex cursor-pointer items-center justify-center gap-2 text-center text-sm font-medium underline underline-offset-2"
                     disabled={isLoadingForgotPassword}
                     onClick={handleForgetPassword}
                 >

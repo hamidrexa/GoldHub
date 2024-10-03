@@ -54,9 +54,7 @@ export function PasswordSecurityCheck({
     return (
         <div className={cn('relative', className)}>
             <div className="mb-1 flex items-center justify-between">
-                <div className="text-xs font-semibold text-neutral-800">
-                    استحکام رمز
-                </div>
+                <div className="text-xs font-semibold">استحکام رمز</div>
             </div>
             <div className="flex h-2 overflow-hidden rounded bg-gray-300 text-xs">
                 <div

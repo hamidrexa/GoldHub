@@ -343,7 +343,7 @@ export default function FollowWizard({ dict, lang, onEnd }: wizardProps) {
                             </Button>
                             <Link
                                 target="_blank"
-                                href={`${getLinksLang(lang)}/feed`}
+                                href={`${getLinksLang(lang)}/`}
                                 className={cn(
                                     buttonVariants({ variant: 'outline' }),
                                     'mt-8 hover:cursor-pointer hover:bg-blue-50 hover:text-neutral-700'

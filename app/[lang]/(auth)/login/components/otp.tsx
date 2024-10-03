@@ -35,7 +35,7 @@ export function Otp({ userId, isNewUser, setStep, dict, redirectUrl }) {
             if (isNewUser) setStep('complete-info');
             else
                 window.location.href =
-                    redirectUrl || searchParams.get('url') || '/feed';
+                    redirectUrl || searchParams.get('url') || '/';
         } catch (e) {
             window.focus();
             // @ts-ignore
@@ -83,7 +83,7 @@ export function Otp({ userId, isNewUser, setStep, dict, redirectUrl }) {
                 <h1 className="text-2xl font-semibold tracking-tight">
                     کد یکبار مصرف
                 </h1>
-                <p className="text-sm text-neutral-800">
+                <p className="text-sm">
                     {isCounterEnd
                         ? 'کد ارسال شده منقضی شده است. لطفا کد جدید دریافت کنید.'
                         : ` جهت ورود لطفا کد ۴ رقمی ارسال شده به ${userId.enteredValue} را وارد کنید.`}
@@ -148,7 +148,7 @@ export function Otp({ userId, isNewUser, setStep, dict, redirectUrl }) {
                     دریافت مجدد کد
                 </Button>
             ) : (
-                <p className="text-center text-sm text-neutral-800">
+                <p className="text-center text-sm">
                     در صورت عدم دریافت کد یا تغییر شماره می‌توانید تا{' '}
                     <Timer
                         className="inline-block w-9 font-bold"
@@ -168,7 +168,7 @@ export function Otp({ userId, isNewUser, setStep, dict, redirectUrl }) {
                 </div>
             </div>
             <button
-                className="flex cursor-pointer items-center justify-center gap-2 text-center text-sm font-medium text-neutral-800 underline underline-offset-2"
+                className="flex cursor-pointer items-center justify-center gap-2 text-center text-sm font-medium underline underline-offset-2"
                 onClick={() => setStep('password')}
             >
                 ورود با رمز عبور

@@ -179,7 +179,7 @@ export function Phone({
                         </div>
                     </div>
                     <Google lang={lang} />
-                    {/*<p className="px-8 text-center text-sm text-neutral-800">*/}
+                    {/*<p className="px-8 text-center text-sm">*/}
                     {/*    با ثبت‌نام در طلامی، شما{' '}*/}
                     {/*    <Link*/}
                     {/*        href={`${getLinksLang(lang)}/privacy`}*/}

@@ -474,7 +474,7 @@ export function Footer({ dict, lang }) {
                                 </Link>
                             </li>
                             <li>
-                                <Link href={`${getLinksLang(lang)}/feed`}>
+                                <Link href={`${getLinksLang(lang)}/`}>
                                     {dict.feed}
                                 </Link>
                             </li>
