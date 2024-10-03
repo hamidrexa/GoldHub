@@ -342,14 +342,14 @@ export function Footer({ dict, lang }) {
                                 معرفی می‌کند.
                             </p>
                         )}
-                        <p className="shadow-4xl mt-4 rounded-tl-lg rounded-tr-lg bg-neutral-800 px-8 py-4 text-center text-sm text-white">
+                        <p className="shadow-4xl mt-4 rounded-tl-lg rounded-tr-lg bg-neutral-800 px-8 py-4 text-center text-sm text-black">
                             {dict.copyright}
                         </p>
                     </div>
                 </div>
             </div>
             {/*mobile footer*/}
-            <div className="shadow-4xl rounded-tl-lg rounded-tr-lg bg-neutral-100  pb-20 md:hidden">
+            <div className="shadow-4xl rounded-tl-lg rounded-tr-lg bg-neutral-100 md:hidden">
                 <div className="flex items-center justify-between p-8">
                     <div className="flex flex-col gap-6 md:gap-2">
                         <BreadcrumbComponent />
@@ -566,7 +566,7 @@ export function Footer({ dict, lang }) {
                             قوانین
                         </a>
                     </div>
-                    <p className="shadow-6xl mt-10 rounded-tl-lg rounded-tr-lg bg-neutral-800 px-8 py-4 text-center text-sm text-white">
+                    <p className="shadow-6xl mt-10 rounded-tl-lg rounded-tr-lg bg-neutral-800 px-8 py-4 text-center text-sm text-black">
                         {dict.copyright}
                     </p>
                 </div>

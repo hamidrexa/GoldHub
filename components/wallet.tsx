@@ -118,15 +118,16 @@ export default function Wallet({ dict, lang }: Props) {
                             <TableCell>
                                 <div className="flex items-center gap-2">
                                     <Image
-                                        src="https://cdn.sahmeto.com/media/cryptocurrencies/BTC/bitcoin.png"
+                                        src="/gold.svg"
+                                        className="rounded-full"
                                         width={44}
                                         height={44}
-                                        alt="irt"
+                                        alt="gold"
                                     />
                                     <div className="text-base font-medium">
-                                        BTC
+                                        GOLD
                                         <div className="text-sm text-gray-700">
-                                            بیت کوین
+                                            طلا
                                         </div>
                                     </div>
                                 </div>
