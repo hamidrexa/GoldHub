@@ -14,7 +14,6 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Locale } from '@/i18n-config';
-import { PricingModal } from '@/components/pricing-modal';
 import { LoginModal } from '@/components/login-modal';
 import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
@@ -37,7 +36,6 @@ export function DataTableColumnHeader<TData, TValue>({
 }: DataTableColumnHeaderProps<TData, TValue>) {
     const dir = getDirection(lang);
     const { user } = useGlobalContext();
-    const [openPricingModal, setOpenPricingModal] = useState(false);
     const [openLoginModal, setOpenLoginModal] = useState(false);
     const path = usePathname();
     if (!column.getCanSort())
@@ -45,21 +43,6 @@ export function DataTableColumnHeader<TData, TValue>({
 
     return (
         <div className={cn('flex items-center space-x-2', className)}>
-            <PricingModal
-                dict={dict}
-                lang={lang}
-                contents={{
-                    title: (
-                        <>
-                            دسترسی کامل به رتبه بندی
-                            <br />
-                            نیاز به اشتراک دارد.
-                        </>
-                    ),
-                }}
-                open={openPricingModal}
-                setOpen={setOpenPricingModal}
-            />
             <LoginModal
                 lang={lang}
                 dict={dict}
@@ -103,8 +86,6 @@ export function DataTableColumnHeader<TData, TValue>({
                         className="cursor-pointer"
                         onClick={() => {
                             if (!user) return setOpenLoginModal(true);
-                            if (!user.active_plan?.is_active)
-                                return setOpenPricingModal(true);
                             column.toggleSorting(false);
                         }}
                     >
@@ -115,8 +96,6 @@ export function DataTableColumnHeader<TData, TValue>({
                         className="cursor-pointer"
                         onClick={() => {
                             if (!user) return setOpenLoginModal(true);
-                            if (!user.active_plan?.is_active)
-                                return setOpenPricingModal(true);
                             column.toggleSorting(true);
                         }}
                     >

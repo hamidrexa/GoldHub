@@ -7,7 +7,6 @@ import React, { useState } from 'react';
 import { useGlobalContext } from '@/contexts/store';
 import { LoginModal } from '@/components/login-modal';
 import { usePathname } from 'next/navigation';
-import { PricingModal } from '@/components/pricing-modal';
 
 interface DataTablePaginationProps<TData> {
     table: Table<TData>;
@@ -23,7 +22,6 @@ export function DataTablePagination<TData>({
     const dir = getDirection(lang);
     const { user } = useGlobalContext();
     const [pageSize, setPageSize] = useState(10);
-    const [openPricingModal, setOpenPricingModal] = useState(false);
     const [openLoginModal, setOpenLoginModal] = useState(false);
     const path = usePathname();
 
@@ -33,8 +31,6 @@ export function DataTablePagination<TData>({
                 <Button
                     onClick={() => {
                         if (!user) return setOpenLoginModal(true);
-                        if (!user.active_plan?.is_active)
-                            return setOpenPricingModal(true);
                         table.setPageSize(pageSize + 10);
                         setPageSize((prevVal) => prevVal + 10);
                     }}
@@ -62,21 +58,6 @@ export function DataTablePagination<TData>({
                 open={openLoginModal}
                 setOpen={setOpenLoginModal}
                 redirectUrl={path}
-            />
-            <PricingModal
-                dict={dict}
-                lang={lang}
-                contents={{
-                    title: (
-                        <>
-                            دسترسی کامل به رتبه بندی
-                            <br />
-                            نیاز به اشتراک دارد.
-                        </>
-                    ),
-                }}
-                open={openPricingModal}
-                setOpen={setOpenPricingModal}
             />
         </div>
     );

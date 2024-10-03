@@ -8,7 +8,6 @@ import { useGlobalContext } from '@/contexts/store';
 import { LockIcon } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { LoginModal } from '@/components/login-modal';
-import { PricingModal } from '@/components/pricing-modal';
 
 export function Portfolio({ dict, lang, id }) {
     const { user } = useGlobalContext();
@@ -16,7 +15,6 @@ export function Portfolio({ dict, lang, id }) {
         id,
     });
     const [openLoginModal, setOpenLoginModal] = useState(false);
-    const [openPricingModal, setOpenPricingModal] = useState(false);
     const path = usePathname();
 
     return (
@@ -41,8 +39,6 @@ export function Portfolio({ dict, lang, id }) {
                             className="absolute left-1/2 top-1/2 flex h-full w-full -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-1.5"
                             onClick={() => {
                                 if (!user) return setOpenLoginModal(true);
-                                if (!user.active_plan?.is_active)
-                                    setOpenPricingModal(true);
                             }}
                         >
                             <LockIcon stroke="#0C0E3C" strokeWidth={2} />
@@ -84,21 +80,6 @@ export function Portfolio({ dict, lang, id }) {
                 open={openLoginModal}
                 setOpen={setOpenLoginModal}
                 redirectUrl={path}
-            />
-            <PricingModal
-                dict={dict}
-                lang={lang}
-                contents={{
-                    title: (
-                        <>
-                            برای مشاهده سبد تریدر
-                            <br />
-                            طرح خود را ارتقا دهید.
-                        </>
-                    ),
-                }}
-                open={openPricingModal}
-                setOpen={setOpenPricingModal}
             />
         </div>
     );

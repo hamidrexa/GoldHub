@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
-import { payment } from '@/app/[lang]/(user)/pricing/services/payment';
+import { payment } from '@/app/[lang]/(user)/services/payment';
 import { PaymentMethods } from '@/constants/payment-methods';
 import { useExchangePrice } from '@/services/useExchangePrice';
 import Spinner from '@/components/spinner';

@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useGlobalContext } from '@/contexts/store';
-import { PricingModal } from '@/components/pricing-modal';
 import Cookies from 'js-cookie';
 import { LoginModal } from '@/components/login-modal';
 
@@ -57,35 +56,25 @@ export function PayWall({ dict, lang }) {
     )
         return;
 
-    return !user ? (
-        <LoginModal
-            lang={lang}
-            dict={dict}
-            texts={{
-                title: 'شما به محدودیت روزانه ۳ صفحه از سایت برخورد کرده اید',
-                description:
-                    'با ثبت نام در طلامی، 7 روز اشتراک رایگان هدیه بگیرید.',
-                button: dict.traderLoginModal.button,
-                buttonVariant: 'info',
-                inputLabel: dict.traderLoginModal.inputLabel,
-            }}
-            open={show}
-            setOpen={(open) => {
-                if (!open) router.replace('/feed');
-            }}
-            redirectUrl={path}
-        />
-    ) : (
-        <PricingModal
-            dict={dict}
-            lang={lang}
-            contents={{
-                title: 'شما به محدودیت روزانه ۳ صفحه از سایت برخورد کرده اید',
-            }}
-            open={show}
-            setOpen={(open) => {
-                if (!open) router.replace('/feed');
-            }}
-        />
+    return (
+        !user && (
+            <LoginModal
+                lang={lang}
+                dict={dict}
+                texts={{
+                    title: 'شما به محدودیت روزانه ۳ صفحه از سایت برخورد کرده اید',
+                    description:
+                        'با ثبت نام در طلامی، 7 روز اشتراک رایگان هدیه بگیرید.',
+                    button: dict.traderLoginModal.button,
+                    buttonVariant: 'info',
+                    inputLabel: dict.traderLoginModal.inputLabel,
+                }}
+                open={show}
+                setOpen={(open) => {
+                    if (!open) router.replace('/feed');
+                }}
+                redirectUrl={path}
+            />
+        )
     );
 }

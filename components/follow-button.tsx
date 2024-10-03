@@ -5,7 +5,6 @@ import Cookies from 'js-cookie';
 import { useGlobalContext } from '@/contexts/store';
 import { Locale } from '@/i18n-config';
 import { usePathname } from 'next/navigation';
-import { PricingModal } from '@/components/pricing-modal';
 import { LoginModal } from '@/components/login-modal';
 
 export function FollowButton({
@@ -32,7 +31,6 @@ export function FollowButton({
     const { user } = useGlobalContext();
     const [follow, setFollow] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-    const [openPricingModal, setOpenPricingModal] = useState(false);
     const [openLoginModal, setOpenLoginModal] = useState(false);
     const path = usePathname();
 
@@ -76,21 +74,6 @@ export function FollowButton({
 
     return (
         <>
-            <PricingModal
-                dict={dict}
-                lang={lang}
-                contents={{
-                    title: (
-                        <>
-                            {`دنبال کردن ${!!name ? name : ''}`}
-                            <br />
-                            نیاز به اشتراک دارد.
-                        </>
-                    ),
-                }}
-                open={openPricingModal}
-                setOpen={setOpenPricingModal}
-            />
             <LoginModal
                 lang={lang}
                 dict={dict}
@@ -117,8 +100,6 @@ export function FollowButton({
                 onClick={async (e) => {
                     e.stopPropagation();
                     if (!user) return setOpenLoginModal(true);
-                    if (!user.active_plan?.is_active)
-                        return setOpenPricingModal(true);
 
                     if (follow) {
                         setIsLoading(true);
