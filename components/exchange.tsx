@@ -135,7 +135,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                     description:
                         'با ثبت نام در طلامی، بی نهایت سرمایه گذاری کن.',
                     button: 'شروع سرمایه گذاری',
-                    buttonVariant: 'info',
+                    buttonVariant: 'default',
                     inputLabel: dict.traderLoginModal.inputLabel,
                 }}
                 open={openLoginModal}
