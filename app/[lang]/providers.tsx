@@ -133,7 +133,7 @@ export function Providers({ children }) {
                     {children}
                     <ProgressBar
                         height="4px"
-                        color="#10EDC5"
+                        color="#FFBE00"
                         options={{ showSpinner: true }}
                         shallowRouting
                     />

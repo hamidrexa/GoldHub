@@ -89,7 +89,7 @@ export default async function AuthenticationPage({ params: { lang } }) {
                     </div>
                     <div className="flex items-center justify-center gap-10 py-4 text-neutral-800">
                         <Link
-                            href={`${getLinksLang(lang)}/about-us`}
+                            href={`${getLinksLang(lang)}/about`}
                             className="text-center"
                         >
                             {dict.aboutUs}

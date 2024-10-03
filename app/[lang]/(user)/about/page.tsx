@@ -71,7 +71,7 @@ export default function AboutUs() {
             </div>
             <img
                 className="w-full"
-                alt="about-us"
+                alt="about"
                 src="/img/HeroBackground.webp"
             />
             <div className="my-12 flex flex-col items-center justify-center gap-3 text-center">

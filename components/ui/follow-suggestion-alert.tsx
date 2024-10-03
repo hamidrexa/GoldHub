@@ -36,7 +36,7 @@ export default function FollowSuggestionAlert({ dict, lang }: Props) {
         path.includes('/privacy') ||
         path.includes('/pricing') ||
         path.includes('/organization') ||
-        path.includes('/about-us') ||
+        path.includes('/about') ||
         path.includes('/contact') ||
         path.includes('/invest') ||
         path === '/'

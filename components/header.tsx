@@ -134,8 +134,10 @@ export function Header({ dict, lang, googleLogin = true }) {
     return (
         <header
             className={cn(
-                'sticky top-0 z-[60] grid h-16 grid-cols-3 items-center justify-between px-6 text-sm transition-transform md:flex md:h-[90px] md:px-14',
-                path === '/' ? 'bg-neutral-700' : 'bg-white',
+                'sticky top-0 z-[60] grid h-16 grid-cols-3 items-center justify-between px-6 text-sm text-black transition-transform md:flex md:h-[90px] md:px-14',
+                path === '/'
+                    ? 'bg-neutral-700 text-white'
+                    : 'bg-white text-black',
                 isReadingMode
                     ? '-translate-y-full md:translate-y-0'
                     : 'translate-y-0'
@@ -243,7 +245,7 @@ export function Header({ dict, lang, googleLogin = true }) {
                                         </a>
                                     </Link>
                                     <Link
-                                        href={`${getLinksLang(lang)}/about-us`}
+                                        href={`${getLinksLang(lang)}/about`}
                                         legacyBehavior
                                         passHref
                                     >
@@ -282,7 +284,6 @@ export function Header({ dict, lang, googleLogin = true }) {
                     <NavigationMenuList>
                         {dict.navMenuItems.map((navMenuItem) => (
                             <NavigationMenuItem
-                                className="text-white"
                                 key={navMenuItem.title}
                                 title={navMenuItem.title}
                             >
@@ -298,7 +299,7 @@ export function Header({ dict, lang, googleLogin = true }) {
                     </NavigationMenuList>
                 </NavigationMenu>
             </div>
-            <div className="flex justify-end text-white md:hidden">
+            <div className="flex justify-end md:hidden">
                 {user ? (
                     <Link
                         href={`${getLinksLang(lang)}/profile`}
@@ -363,7 +364,7 @@ export function Header({ dict, lang, googleLogin = true }) {
                     </Link>
                 )}
             </div>
-            <div className="hidden items-center gap-5 text-white md:flex">
+            <div className="hidden items-center gap-5 md:flex">
                 {isUserLoading ? (
                     <Skeleton className="h-12 w-12" />
                 ) : user ? (

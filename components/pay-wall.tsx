@@ -22,7 +22,7 @@ export function PayWall({ dict, lang }) {
                 !path.includes('/privacy') &&
                 !path.includes('/profile') &&
                 !path.includes('/notifications')) ||
-            !path.includes('/about-us') ||
+            !path.includes('/about') ||
             !path.includes('/feed') ||
             path !== '/'
         )
@@ -50,7 +50,7 @@ export function PayWall({ dict, lang }) {
         path.includes('/privacy') ||
         path.includes('/profile') ||
         path.includes('/notifications') ||
-        path.includes('/about-us') ||
+        path.includes('/about') ||
         path.includes('/feed') ||
         path === '/'
     )

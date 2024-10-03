@@ -22,8 +22,6 @@ export default async function UserLayout({
             <Header dict={dict} lang={lang} />
             {children}
             <Footer dict={dict} lang={lang} />
-            {/*<BottomNavigation dict={dict} lang={lang} />*/}
-            {/*<FollowSuggestionAlert dict={dict} lang={lang} />*/}
         </>
     );
 }

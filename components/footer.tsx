@@ -75,7 +75,7 @@ export function Footer({ dict, lang }) {
                             search: 'جستجو',
                             notifications: 'هشدار‌ها',
                             pricing: 'خرید اشتراک',
-                            'about-us': 'درباره‌ما',
+                            about: 'درباره‌ما',
                             receipt: 'رسید',
                             contact: 'تماس‌با‌ما',
                             privacy: 'قوانین',
@@ -553,7 +553,7 @@ export function Footer({ dict, lang }) {
                     </div>
                     <div className=" mx-auto my-8 h-[1px] w-[90%] bg-neutral-50" />
                     <div className="flex items-center justify-evenly bg-transparent">
-                        <a className="text-base text-white" href="/about-us">
+                        <a className="text-base text-white" href="/about">
                             درباره ما
                         </a>
                         <a
