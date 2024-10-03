@@ -11,7 +11,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from '@/components/ui/accordion';
-import { ChevronDown, RocketIcon } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { Disclaimer } from '@/components/disclaimer';
 import Wallet from '@/components/wallet';
 import { QuestionMarkIcon } from '@radix-ui/react-icons';
@@ -36,35 +36,21 @@ export default async function InvestPage({ params: { lang }, searchParams }) {
             <div className="jumbotron">
                 {!isMobile && <ProductsNavigator dict={dict} lang={lang} />}
                 <div className="w-full">
-                    <Box>
-                        <BoxTitle>
-                            <RocketIcon strokeWidth={1.5} />
-                            خرید آسان ارز دیجیتال
-                        </BoxTitle>
-                        <BoxContent className="my-8 max-w-none">
-                            <>
-                                <Exchange
-                                    ids={{
-                                        0: 'one-million-swap',
-                                        1: 'five-million-swap',
-                                    }}
-                                    className="my-7 flex w-full md:hidden"
-                                    asset={{
-                                        image: 'https://cdn.sahmeto.com/media/cryptocurrencies/BTC/bitcoin.png',
-                                        symbol: 'BTC',
-                                        name: 'بیت کوین',
-                                    }}
-                                    dict={dict}
-                                    lang={lang}
-                                />
-                                <Bargain
-                                    asset={asset}
-                                    dict={dict}
-                                    lang={lang}
-                                />
-                            </>
-                        </BoxContent>
-                    </Box>
+                    <Exchange
+                        ids={{
+                            0: 'one-million-swap',
+                            1: 'five-million-swap',
+                        }}
+                        className="my-7 flex w-full md:hidden"
+                        asset={{
+                            image: 'https://cdn.sahmeto.com/media/cryptocurrencies/BTC/bitcoin.png',
+                            symbol: 'BTC',
+                            name: 'بیت کوین',
+                        }}
+                        dict={dict}
+                        lang={lang}
+                    />
+                    <Bargain asset={asset} dict={dict} lang={lang} />
                     <Wallet dict={dict} lang={lang} />
                     <Box className="mt-5">
                         <BoxTitle>

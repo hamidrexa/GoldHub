@@ -34,7 +34,6 @@ import { updateUser } from '@/app/[lang]/(user)/profile/services/updateUser';
 import { componentFormat } from '@/libs/stringFormatter';
 import { LinearProgress } from '@/app/[lang]/(user)/profile/components/linear-progress';
 import { StatusBadge } from '@/app/[lang]/(user)/profile/components/status-badge';
-import { Plan } from '@/app/[lang]/(user)/profile/components/plan';
 import { NameEditForm } from '@/app/[lang]/(user)/profile/components/name-edit-form';
 import { EmailEditForm } from '@/app/[lang]/(user)/profile/components/email-edit-form';
 import { ActivationForm } from '@/app/[lang]/(user)/profile/components/activation-form';
@@ -457,54 +456,6 @@ export function ProfilePage({ dict, lang }) {
                                 {dict.exitAccount}
                             </Button>
                         </div>
-                        {!userPlans ? (
-                            <div className="flex h-full w-full animate-pulse flex-row items-center justify-center space-x-5">
-                                <div className="mt-6 h-40 w-full rounded-lg bg-gray-900 lg:mt-0 lg:h-36" />
-                            </div>
-                        ) : (
-                            <div className="mt-6 w-full lg:mt-0 lg:w-full">
-                                <Plan
-                                    dict={dict}
-                                    plan={activePlan || {}}
-                                    showBtn={!userHasMoreThanOnePlan}
-                                    btnTitle={
-                                        activePlan
-                                            ? dict.retrySub
-                                            : dict.buySubscription
-                                    }
-                                    onBtnClick={() => router.push('/pricing')}
-                                    helpText={
-                                        activePlan &&
-                                        !userHasMoreThanOnePlan &&
-                                        dict.retryText
-                                    }
-                                />
-                                {userPlans
-                                    .filter(({ is_active }) => !is_active)
-                                    .map((plan, index, array) => (
-                                        // @ts-ignore
-                                        <Plan
-                                            dict={dict}
-                                            plan={plan}
-                                            key={index}
-                                            isReserve
-                                            dayPostfix={false}
-                                            helpText={
-                                                index === array.length - 1 &&
-                                                `طرح  ${
-                                                    array.length > 1
-                                                        ? 'های'
-                                                        : ''
-                                                } رزرو بعد از اتمام طرح فعلی، به صورت خودکار فعال می ${
-                                                    array.length > 1
-                                                        ? 'شوند'
-                                                        : 'شود'
-                                                }.`
-                                            }
-                                        />
-                                    ))}
-                            </div>
-                        )}
                     </div>
                     <Box className="mt-10">
                         <BoxTitle>

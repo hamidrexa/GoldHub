@@ -71,10 +71,6 @@ html {
     scroll-behavior: smooth;
 }
 
-#goftino_w {
-    z-index: 50 !important;
-}
-
 .PhotoView-Portal {
     user-select: none !important;
 }

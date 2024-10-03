@@ -370,7 +370,7 @@ export function Header({ dict, lang, googleLogin = true }) {
                         legacyBehavior
                         passHref
                     >
-                        <a className="flex items-center rounded-md bg-neutral-300 px-3 py-2 font-medium">
+                        <a className="flex items-center rounded-md bg-neutral-800 px-3 py-2 font-medium">
                             {dict.loginRegister}
                         </a>
                     </Link>

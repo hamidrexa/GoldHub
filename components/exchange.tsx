@@ -1,7 +1,6 @@
 'use client';
 
 import { Locale } from '@/i18n-config';
-import Image from 'next/image';
 import { cn, getDirection, roundNumber } from '@/libs/utils';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
@@ -11,7 +10,6 @@ import { toast } from 'sonner';
 import { payment } from '@/app/[lang]/(user)/pricing/services/payment';
 import { PaymentMethods } from '@/constants/payment-methods';
 import { useExchangePrice } from '@/services/useExchangePrice';
-import { Badge } from '@/components/ui/badge';
 import Spinner from '@/components/spinner';
 import { useGlobalContext } from '@/contexts/store';
 import { LoginModal } from '@/components/login-modal';
@@ -20,12 +18,11 @@ import { usePathname } from 'next/navigation';
 type Props = {
     dict: any;
     lang: Locale;
-    asset: any;
     className?: string;
     ids: Object;
 };
 
-export default function Exchange({ dict, lang, asset, className, ids }: Props) {
+export default function Exchange({ dict, lang, className, ids }: Props) {
     const { user } = useGlobalContext();
     const [equivalent, setEquivalent] = useState('1');
     const [loading, setLoading] = useState(false);
@@ -63,26 +60,10 @@ export default function Exchange({ dict, lang, asset, className, ids }: Props) {
         <>
             <div
                 className={cn(
-                    'relative flex flex-col gap-8 rounded-md border border-gray-400 bg-white px-4 py-6',
+                    'relative flex flex-col gap-8 rounded-md border border-gray-400 bg-white px-4 py-6 text-black',
                     className
                 )}
             >
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                        <Image
-                            width={25}
-                            height={25}
-                            src={asset?.image}
-                            alt={`${asset.symbol}-logo`}
-                        />
-                        <div className="text-base font-medium">
-                            خرید{asset.name}
-                        </div>
-                    </div>
-                    <Badge className="absolute -top-3 left-4" size="default">
-                        جدید
-                    </Badge>
-                </div>
                 <div className="flex w-full flex-col justify-center gap-2.5 md:flex-row md:items-center">
                     <RadioGroup
                         defaultValue="1"
@@ -150,8 +131,8 @@ export default function Exchange({ dict, lang, asset, className, ids }: Props) {
                 texts={{
                     title: <>برای خرید از صرافی ثبت نام کنید.</>,
                     description:
-                        'با ثبت نام در طلامی، 7 روز اشتراک رایگان هدیه بگیرید.',
-                    button: dict.traderLoginModal.button,
+                        'با ثبت نام در طلامی، بی نهایت سرمایه گذاری کن.',
+                    button: 'شروع سرمایه گذاری',
                     buttonVariant: 'info',
                     inputLabel: dict.traderLoginModal.inputLabel,
                 }}

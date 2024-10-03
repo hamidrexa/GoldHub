@@ -1,4 +1,4 @@
-import { ChevronDown, RocketIcon } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { Metadata } from 'next';
 import { getDictionary } from '@/get-dictionary';
 import {
@@ -8,8 +8,6 @@ import {
     AccordionTrigger,
 } from '@/components/ui/accordion';
 import React from 'react';
-import { Box, BoxContent, BoxTitle } from '@/components/box';
-import Exchange from '@/components/exchange';
 import Bargain from '@/app/[lang]/(user)/(asset)/components/bargain';
 import Wallet from '@/components/wallet';
 
@@ -29,40 +27,19 @@ export default async function HomePage({ params: { lang } }) {
 
     return (
         <div className="flex w-full flex-col">
-            <Box>
-                <BoxTitle>
-                    <RocketIcon strokeWidth={1.5} />
-                    خرید آسان طلا
-                </BoxTitle>
-                <BoxContent className="my-8 max-w-none">
-                    <>
-                        <Exchange
-                            ids={{
-                                0: 'one-million-swap',
-                                1: 'five-million-swap',
-                            }}
-                            className="my-7 flex w-full md:hidden"
-                            asset={{
-                                image: 'https://cdn.sahmeto.com/media/cryptocurrencies/BTC/bitcoin.png',
-                                symbol: 'BTC',
-                                name: 'بیت کوین',
-                            }}
-                            dict={dict}
-                            lang={lang}
-                        />
-                        <Bargain
-                            asset={{
-                                symbol: 'BTC',
-                                image: 'https://cdn.sahmeto.com/media/cryptocurrencies/BTC/bitcoin.png',
-                                name: 'بیت کوین',
-                            }}
-                            dict={dict}
-                            lang={lang}
-                        />
-                    </>
-                </BoxContent>
-            </Box>
-            <Wallet dict={dict} lang={lang} />
+            <section className="w-full bg-neutral-700 px-4 py-12 text-neutral-800 md:py-32">
+                <div className="mx-auto w-full max-w-7xl">
+                    <Bargain dict={dict} lang={lang} />
+                </div>
+            </section>
+            <section className="w-full px-4 py-32 text-neutral-800">
+                <div className="mx-auto w-full max-w-7xl">
+                    <h2 className="mb-6 flex items-center justify-center gap-1 text-center text-4xl font-black text-black md:mb-12">
+                        دارایی های شما
+                    </h2>
+                    <Wallet dict={dict} lang={lang} />
+                </div>
+            </section>
             <section className="w-full bg-neutral-700/10 px-4 py-32">
                 <div className="mx-auto w-full max-w-7xl">
                     <h2 className="mb-6 flex items-center justify-center gap-1 text-center text-4xl font-black md:mb-12">
