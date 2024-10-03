@@ -7,7 +7,7 @@ export function LinearProgress({
     progress,
 }) {
     return (
-        <div className="mb-6 flex flex-col gap-4 rounded-lg bg-neutral-700 p-6 lg:flex-row-reverse">
+        <div className="mb-6 flex flex-col gap-4 rounded-lg bg-neutral-700 p-6 text-neutral-800 lg:flex-row-reverse">
             <div className="w-full space-y-4">
                 <div className="flex w-full !justify-between text-base font-semibold">
                     <span>{title}</span>

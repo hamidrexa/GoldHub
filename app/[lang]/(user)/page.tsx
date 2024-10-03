@@ -32,14 +32,7 @@ export default async function HomePage({ params: { lang } }) {
                     <Bargain dict={dict} lang={lang} />
                 </div>
             </section>
-            <section className="w-full px-4 py-12 text-neutral-800 md:py-32">
-                <div className="mx-auto w-full max-w-7xl">
-                    <h2 className="mb-6 flex items-center justify-center gap-1 text-center text-2xl font-black text-black md:mb-12 md:text-4xl">
-                        دارایی های شما
-                    </h2>
-                    <Wallet dict={dict} lang={lang} />
-                </div>
-            </section>
+            <Wallet dict={dict} lang={lang} />
             <section className="w-full bg-neutral-700/10 px-4 py-12 md:py-32">
                 <div className="mx-auto w-full max-w-7xl">
                     <h2 className="mb-6 flex items-center justify-center gap-1 text-center text-2xl font-black md:mb-12 md:text-4xl">

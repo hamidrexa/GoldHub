@@ -10,7 +10,7 @@ import { toast } from 'sonner';
 import { isMobile } from 'react-device-detect';
 import { ProductsNavigator } from '@/components/products-navigator';
 import { getPlans } from '@/app/[lang]/(user)/profile/services/getPlans';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { EditIcon } from 'lucide-react';
 import Cookies from 'js-cookie';
@@ -33,8 +33,7 @@ import { emailVerification } from '@/app/[lang]/(user)/profile/services/emailVer
 import { PasswordChangeForm } from '@/app/[lang]/(user)/profile/components/change-password-form';
 import { PhoneSubmitForm } from '@/app/[lang]/(user)/profile/components/phone-submit-form';
 import { useTransactions } from '@/app/[lang]/(user)/profile/services/useTransactions';
-import { cn, getLinksLang } from '@/libs/utils';
-import Link from 'next/link';
+import { cn } from '@/libs/utils';
 
 dayjs.extend(utc);
 
@@ -199,7 +198,7 @@ export function ProfilePage({ dict, lang }) {
         <main className="main">
             <div className="jumbotron">
                 {!isMobile && <ProductsNavigator dict={dict} lang={lang} />}
-                <div className="w-full">
+                <div className="w-full text-black">
                     {completePercentage && completePercentage < 100 && (
                         // @ts-ignore
                         <LinearProgress
@@ -256,27 +255,11 @@ export function ProfilePage({ dict, lang }) {
                             </DialogContent>
                         </Dialog>
                     </div>
-                    <div
-                        className={
-                            'my-6 flex w-full  flex-col items-center justify-between gap-3 rounded-md border border-yellow-700 bg-yellow-50/80 py-4 text-base font-medium text-yellow-700 duration-200 md:my-12 md:h-14 md:w-1/2 md:flex-row md:gap-0 md:px-3 md:py-8 md:hover:scale-105'
-                        }
-                    >
-                        <div>برای تنظیمات دریافت هشدار، کلیک کنید:</div>
-                        <Link
-                            href={`${getLinksLang(lang)}/notifications?tab=setting`}
-                            className={cn(
-                                buttonVariants({}),
-                                'border border-yellow-700 bg-transparent text-yellow-700 underline-offset-8 hover:bg-yellow-200'
-                            )}
-                        >
-                            رفتن به تنظیمات
-                        </Link>
-                    </div>
                     <div className="flex flex-col-reverse items-start justify-start gap-6 md:flex-row lg:mt-6 lg:w-full">
                         <div className="w-full space-y-7">
                             {lang === 'fa' && (
                                 <div className="space-y-2">
-                                    <div className="flex items-center justify-between text-neutral-800">
+                                    <div className="flex items-center justify-between">
                                         <div className="text-base">
                                             شماره همراه:
                                         </div>
@@ -291,7 +274,7 @@ export function ProfilePage({ dict, lang }) {
                                             }
                                         />
                                     </div>
-                                    <div className="flex h-14 items-center justify-between rounded-md bg-gray-300/60 p-1.5 text-base font-black text-neutral-800 ltr:pl-5 rtl:pr-5">
+                                    <div className="flex h-14 items-center justify-between rounded-md bg-gray-300/60 p-1.5 text-base font-black ltr:pl-5 rtl:pr-5">
                                         <span>{user.phone_number}</span>
                                         <Dialog
                                             open={
@@ -311,7 +294,7 @@ export function ProfilePage({ dict, lang }) {
                                 </div>
                             )}
                             <div className="space-y-2">
-                                <div className="flex items-center justify-between text-neutral-800">
+                                <div className="flex items-center justify-between">
                                     <div className="text-base">
                                         {dict.email}:
                                     </div>
@@ -325,7 +308,7 @@ export function ProfilePage({ dict, lang }) {
                                         }
                                     />
                                 </div>
-                                <div className="flex h-14 items-center justify-between rounded-md bg-gray-300/60 p-1.5 text-base font-black text-neutral-800 ltr:pl-5 rtl:pr-5">
+                                <div className="flex h-14 items-center justify-between rounded-md bg-gray-300/60 p-1.5 text-base font-black ltr:pl-5 rtl:pr-5">
                                     <span>
                                         {user.email ?? 'ایمیلی تعیین نشده'}
                                     </span>
@@ -388,12 +371,12 @@ export function ProfilePage({ dict, lang }) {
                             </div>
                             {lang === 'fa' && (
                                 <div className="space-y-2">
-                                    <div className="flex items-center justify-between text-neutral-800">
+                                    <div className="flex items-center justify-between">
                                         <div className="text-base">
                                             رمز عبور:
                                         </div>
                                     </div>
-                                    <div className="flex h-14 items-center justify-between rounded-md bg-gray-300/60 p-1.5 text-base font-black text-neutral-800 ltr:pl-5 rtl:pr-5">
+                                    <div className="flex h-14 items-center justify-between rounded-md bg-gray-300/60 p-1.5 text-base font-black ltr:pl-5 rtl:pr-5">
                                         <span
                                             className={cn('text-lg', {
                                                 'font-sans': user.has_password,
