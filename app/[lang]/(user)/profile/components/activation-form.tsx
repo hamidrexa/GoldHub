@@ -175,7 +175,7 @@ export function ActivationForm({
                                                     دریافت مجدد کد
                                                 </Button>
                                             ) : (
-                                                <p className="text-center text-sm text-neutral-800">
+                                                <p className="text-center text-sm">
                                                     در صورت عدم دریافت کد یا
                                                     تغییر شماره می‌توانید تا{' '}
                                                     <Timer

@@ -79,7 +79,7 @@ export default async function AuthenticationPage({ params: { lang } }) {
                                     <h1 className="text-2xl font-semibold tracking-tight">
                                         {dict.loginRegister}
                                     </h1>
-                                    <p className="text-sm text-neutral-800">
+                                    <p className="text-sm">
                                         {dict.loginHelper}
                                     </p>
                                 </div>
