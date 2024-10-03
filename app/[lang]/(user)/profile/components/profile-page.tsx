@@ -85,19 +85,7 @@ export function ProfilePage({ dict, lang }) {
             text: dict.confirmedType.confirmed,
         };
     }, [user?.trader_page_status]);
-    const userHasMoreThanOnePlan = userPlans?.length > 1;
 
-    useEffect(() => {
-        // if (!user?.first_name || !user?.last_name)
-        //     setState((state) => ({
-        //         ...state,
-        //         isModalVisible: true,
-        //         editMode: 'nameEdit',
-        //         isNewUser: true,
-        //     }));
-        // if ((!user.phone_number || !user.phone_number_confirmed))
-        //     showModal('phoneNumberConfirm');
-    }, []);
     useEffect(() => {
         async function getData() {
             const userPlans = await getPlans(lang);
@@ -113,14 +101,6 @@ export function ProfilePage({ dict, lang }) {
 
         getData();
     }, [user]);
-    // useEffect(() => {
-    //     async function getData() {
-    //         const { transactions } = await getTransactions();
-    //         setUserTransactions(transactions.splice(0, 5));
-    //     }
-    //
-    //     getData();
-    // }, []);
     const { transactions, isLoading } = useTransactions();
 
     const successful = !!transactions
@@ -204,17 +184,13 @@ export function ProfilePage({ dict, lang }) {
                         <LinearProgress
                             progress={completePercentage}
                             title={dict.profileComplete.title}
-                            description={
-                                <>
-                                    {componentFormat(
-                                        dict.profileComplete.text,
-                                        {},
-                                        <span className="lg:font-bold">
-                                            {dict.profileComplete.notif}
-                                        </span>
-                                    )}
-                                </>
-                            }
+                            description={componentFormat(
+                                dict.profileComplete.text,
+                                {},
+                                <span className="lg:font-bold">
+                                    {dict.profileComplete.notif}
+                                </span>
+                            )}
                         />
                     )}
                     <div className="flex items-center">
@@ -324,7 +300,7 @@ export function ProfilePage({ dict, lang }) {
                                                             true
                                                         );
                                                     }}
-                                                    variant="subtle"
+                                                    variant="info"
                                                 >
                                                     {dict.changeEmail}
                                                 </Button>
@@ -392,7 +368,7 @@ export function ProfilePage({ dict, lang }) {
                                         >
                                             <DialogTrigger asChild>
                                                 <Button
-                                                    variant="subtle"
+                                                    variant="info"
                                                     onClick={async () => {
                                                         setPasswordDialogOpen(
                                                             true

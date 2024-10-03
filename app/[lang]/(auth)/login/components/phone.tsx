@@ -111,7 +111,7 @@ export function Phone({
                 <h1 className="text-2xl font-semibold tracking-tight">
                     {texts.title ?? dict.loginRegister}
                 </h1>
-                <p className="text-lg text-neutral-800">
+                <p className="black text-lg">
                     {texts.description ?? dict.loginHelper}
                 </p>
             </div>

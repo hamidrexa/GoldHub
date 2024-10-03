@@ -48,7 +48,7 @@ export default async function AuthenticationPage({ params: { lang } }) {
                     <div
                         className="absolute inset-0 hidden rounded-lg bg-cover bg-center bg-no-repeat shadow-lg backdrop-blur-xl md:block"
                         style={{
-                            backgroundImage: "url('/img/industrial.jpg')",
+                            backgroundImage: "url('login.png')",
                         }}
                     />
                     <Link
@@ -87,7 +87,7 @@ export default async function AuthenticationPage({ params: { lang } }) {
                             </>
                         )}
                     </div>
-                    <div className="flex items-center justify-center gap-10 py-4 text-neutral-800">
+                    <div className="flex items-center justify-center gap-10 py-4 text-black">
                         <Link
                             href={`${getLinksLang(lang)}/about`}
                             className="text-center"
