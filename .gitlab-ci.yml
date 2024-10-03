@@ -6,7 +6,8 @@ darkube_build_tala_sahmeto-prod_hamravesh-c11:
       - main
   script:
     - IMAGE_ADDRESS="registry.hamdocker.ir/sahmeto/tala"
-    - 'darkube build --push -t $IMAGE:$CI_COMMIT_SHORT_SHA -t $IMAGE:$CI_COMMIT_REF_SLUG --build-arg NEXT_PUBLIC_WEBSITE_URL=${NEXT_PUBLIC_WEBSITE_URL} --build-arg SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN} --build-arg NEXT_PUBLIC_ENVIRONMENT=${NEXT_PUBLIC_ENVIRONMENT} --build-arg NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL} --build-arg NEXT_PUBLIC_API_URL_=${NEXT_PUBLIC_API_URL_} --build-arg NEXT_PUBLIC_HASURA_API_URL=${NEXT_PUBLIC_HASURA_API_URL} --build-arg NEXT_PUBLIC_ISR=${NEXT_PUBLIC_ISR}'
+    - 'darkube build --push -t $IMAGE_ADDRESS:$CI_COMMIT_SHORT_SHA -t $IMAGE_ADDRESS:$CI_COMMIT_REF_SLUG --build-arg NEXT_PUBLIC_WEBSITE_URL=${NEXT_PUBLIC_WEBSITE_URL} --build-arg SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN} --build-arg NEXT_PUBLIC_ENVIRONMENT=${NEXT_PUBLIC_ENVIRONMENT} --build-arg NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL} --build-arg NEXT_PUBLIC_API_URL_=${NEXT_PUBLIC_API_URL_} --build-arg NEXT_PUBLIC_HASURA_API_URL=${NEXT_PUBLIC_HASURA_API_URL} --build-arg NEXT_PUBLIC_ISR=${NEXT_PUBLIC_ISR}
+    --workdir . --file ./Dockerfile --build-context . '
   stage: build
 darkube_deploy_tala_sahmeto-prod_hamravesh-c11:
   image: hamravesh.hamdocker.ir/public/darkube-cli:v1.1
