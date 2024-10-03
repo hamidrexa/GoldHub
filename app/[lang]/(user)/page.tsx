@@ -27,22 +27,22 @@ export default async function HomePage({ params: { lang } }) {
 
     return (
         <div className="flex w-full flex-col">
-            <section className="w-full bg-neutral-700 px-4 py-12 text-neutral-800 md:py-32">
+            <section className="w-full bg-gradient-to-b from-neutral-700 px-4 py-12 md:bg-gradient-to-l md:py-32">
                 <div className="mx-auto w-full max-w-7xl">
                     <Bargain dict={dict} lang={lang} />
                 </div>
             </section>
-            <section className="w-full px-4 py-32 text-neutral-800">
+            <section className="w-full px-4 py-12 text-neutral-800 md:py-32">
                 <div className="mx-auto w-full max-w-7xl">
-                    <h2 className="mb-6 flex items-center justify-center gap-1 text-center text-4xl font-black text-black md:mb-12">
+                    <h2 className="mb-6 flex items-center justify-center gap-1 text-center text-2xl font-black text-black md:mb-12 md:text-4xl">
                         دارایی های شما
                     </h2>
                     <Wallet dict={dict} lang={lang} />
                 </div>
             </section>
-            <section className="w-full bg-neutral-700/10 px-4 py-32">
+            <section className="w-full bg-neutral-700/10 px-4 py-12 md:py-32">
                 <div className="mx-auto w-full max-w-7xl">
-                    <h2 className="mb-6 flex items-center justify-center gap-1 text-center text-4xl font-black md:mb-12">
+                    <h2 className="mb-6 flex items-center justify-center gap-1 text-center text-2xl font-black md:mb-12 md:text-4xl">
                         مزایای خرید طلای آب‌شده از طلامی
                     </h2>
                     <div className="flex flex-col gap-10 md:mt-0 md:flex-row md:flex-wrap lg:flex-nowrap">
@@ -241,21 +241,21 @@ export default async function HomePage({ params: { lang } }) {
                     </div>
                 </div>
             </section>
-            <section className="mx-auto my-32 w-full max-w-7xl px-4">
-                <h2 className="mb-6 flex items-center justify-center gap-1 text-center text-4xl font-black md:mb-12">
+            <section className="mx-auto my-12 w-full max-w-7xl px-4 md:my-32">
+                <h2 className="mb-6 flex items-center justify-center gap-1 text-center text-2xl font-black md:mb-12 md:text-4xl">
                     سوالات متداول خریداران طلای آب شده
                 </h2>
                 <Accordion
                     type="single"
                     collapsible
-                    className="mx-auto w-full space-y-3"
+                    className="mx-auto w-full space-y-3 text-base md:text-lg"
                 >
                     <AccordionItem value="1" className="rounded-md border">
-                        <AccordionTrigger className="px-4 text-lg font-semibold">
+                        <AccordionTrigger className="px-4 font-semibold">
                             طلامی چیست؟
                             <ChevronDown width={20} height={20} />
                         </AccordionTrigger>
-                        <AccordionContent className="p-4 pt-0 text-lg">
+                        <AccordionContent className="p-4 pt-0">
                             <p>
                                 «طلامی»، پلتفرم و سامانۀ خرید و فروش آنلاین طلا
                                 است. در طلامی، پول نقد خودت رو به راحتی به طلا
@@ -266,11 +266,11 @@ export default async function HomePage({ params: { lang } }) {
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="2" className="rounded-md border">
-                        <AccordionTrigger className="px-4 text-lg font-semibold">
+                        <AccordionTrigger className="px-4 font-semibold">
                             کارمزد خرید طلای آب‌شده در طلامی چقدر است؟
                             <ChevronDown width={20} height={20} />
                         </AccordionTrigger>
-                        <AccordionContent className="p-4 pt-0 text-lg">
+                        <AccordionContent className="p-4 pt-0">
                             <p>
                                 کارمزد خرید و فروش طلای آب شده در طلامی نیم
                                 درصده (۰.۵٪). این کارمزد، در هنگام خرید طلا، به
@@ -280,11 +280,11 @@ export default async function HomePage({ params: { lang } }) {
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="3" className="rounded-md border">
-                        <AccordionTrigger className="px-4 text-lg font-semibold">
+                        <AccordionTrigger className="px-4 font-semibold">
                             قیمت طلا در طلامی بر چه اساسی تعیین می‌شود؟
                             <ChevronDown width={20} height={20} />
                         </AccordionTrigger>
-                        <AccordionContent className="p-4 pt-0 text-lg">
+                        <AccordionContent className="p-4 pt-0">
                             <p>
                                 قیمت طلای آب شده در طلامی، بر اساس معاملات واقعی
                                 و در حجم بالای بازار بزرگ تهران به دست میاد.
@@ -292,11 +292,11 @@ export default async function HomePage({ params: { lang } }) {
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="4" className="rounded-md border">
-                        <AccordionTrigger className="px-4 text-lg font-semibold">
+                        <AccordionTrigger className="px-4 font-semibold">
                             طلای آب شده چه ویژگی‌هایی دارد؟
                             <ChevronDown width={20} height={20} />
                         </AccordionTrigger>
-                        <AccordionContent className="p-4 pt-0 text-lg">
+                        <AccordionContent className="p-4 pt-0">
                             <p>
                                 طلای آب‌شده از ذوب شدن شمش طلا یا طلای قیچی
                                 خورده و یا دست دوم بدست میاد. این طلا بر اساس
@@ -309,12 +309,12 @@ export default async function HomePage({ params: { lang } }) {
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="5" className="rounded-md border">
-                        <AccordionTrigger className="px-4 text-lg font-semibold">
+                        <AccordionTrigger className="px-4 font-semibold">
                             طلای ۱۸ عیار یعنی چه و چه تفاوتی با سایر عیارهای طلا
                             دارد؟
                             <ChevronDown width={20} height={20} />
                         </AccordionTrigger>
-                        <AccordionContent className="p-4 pt-0 text-lg">
+                        <AccordionContent className="p-4 pt-0">
                             <p>
                                 طلای ۱۸ عیار که طلای معیار معاملاتی در کشور
                                 ایران محسوب میشه، دارای ۱۸ واحد طلای خالص و ۶

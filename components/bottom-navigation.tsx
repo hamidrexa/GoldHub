@@ -87,7 +87,7 @@ export function BottomNavigation({ dict, lang }) {
                         </defs>
                     </svg>
                 </div>
-                {dict.notification}
+                اعلانات
             </Link>
         </div>
     );

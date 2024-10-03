@@ -2,14 +2,6 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from '@/components/ui/table';
 import Spinner from '@/components/spinner';
 import { useGlobalContext } from '@/contexts/store';
 import dayjs from 'dayjs';
@@ -20,7 +12,7 @@ import { ProductsNavigator } from '@/components/products-navigator';
 import { getPlans } from '@/app/[lang]/(user)/profile/services/getPlans';
 import { Button, buttonVariants } from '@/components/ui/button';
 import Image from 'next/image';
-import { EditIcon, FileClock, UserCheck } from 'lucide-react';
+import { EditIcon } from 'lucide-react';
 import Cookies from 'js-cookie';
 import { googleLogout } from '@react-oauth/google';
 import {
@@ -42,7 +34,6 @@ import { PasswordChangeForm } from '@/app/[lang]/(user)/profile/components/chang
 import { PhoneSubmitForm } from '@/app/[lang]/(user)/profile/components/phone-submit-form';
 import { useTransactions } from '@/app/[lang]/(user)/profile/services/useTransactions';
 import { cn, getLinksLang } from '@/libs/utils';
-import { Box, BoxContent, BoxTitle } from '@/components/box';
 import Link from 'next/link';
 
 dayjs.extend(utc);
@@ -457,199 +448,6 @@ export function ProfilePage({ dict, lang }) {
                             </Button>
                         </div>
                     </div>
-                    <Box className="mt-10">
-                        <BoxTitle>
-                            <FileClock />
-                            {dict.transactionHistory}
-                        </BoxTitle>
-                        <BoxContent className="max-w-none">
-                            <Table className="rounded-md border bg-white">
-                                <TableHeader>
-                                    <TableRow>
-                                        <TableHead>{dict.date}</TableHead>
-                                        <TableHead>{dict.status}</TableHead>
-                                        <TableHead>{dict.plan}</TableHead>
-                                        <TableHead>{dict.port}</TableHead>
-                                        <TableHead>
-                                            {dict.trackingCode}
-                                        </TableHead>
-                                    </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                    {successful ? (
-                                        !successful.length ? (
-                                            <TableRow>
-                                                <TableCell
-                                                    colSpan={10}
-                                                    align="center"
-                                                >
-                                                    <Spinner
-                                                        height={25}
-                                                        width={25}
-                                                        className="mt-2"
-                                                    />
-                                                </TableCell>
-                                            </TableRow>
-                                        ) : (
-                                            successful.map((transaction) => (
-                                                <TableRow
-                                                    key={transaction.id}
-                                                    className="whitespace-nowrap"
-                                                >
-                                                    <TableCell>
-                                                        {new Date(
-                                                            transaction.created_at
-                                                        ).toLocaleDateString(
-                                                            lang
-                                                        )}
-                                                    </TableCell>
-                                                    <TableCell>
-                                                        {transactionStatus[
-                                                            transaction.state
-                                                        ] || (
-                                                            <span className="text-blue-500">
-                                                                {
-                                                                    dict
-                                                                        .transactionStatus
-                                                                        .inProgress
-                                                                }
-                                                            </span>
-                                                        )}
-                                                    </TableCell>
-                                                    <TableCell>
-                                                        {
-                                                            dict.planType[
-                                                                transaction
-                                                                    .plan_id
-                                                            ]
-                                                        }
-                                                    </TableCell>
-                                                    <TableCell>
-                                                        {transaction.plan_id !==
-                                                        4
-                                                            ? dict.bankType[
-                                                                  transaction
-                                                                      .bank
-                                                              ]
-                                                            : ''}
-                                                    </TableCell>
-                                                    <TableCell>
-                                                        {transaction.track_code}
-                                                    </TableCell>
-                                                </TableRow>
-                                            ))
-                                        )
-                                    ) : (
-                                        <TableRow>
-                                            <TableCell
-                                                colSpan={10}
-                                                align="center"
-                                            >
-                                                <Spinner
-                                                    height={25}
-                                                    width={25}
-                                                    className="mt-2"
-                                                />
-                                            </TableCell>
-                                        </TableRow>
-                                    )}
-                                </TableBody>
-                            </Table>
-                        </BoxContent>
-                    </Box>
-                    {traderPageRequestStatus && (
-                        <Box className="mt-10">
-                            <BoxTitle>
-                                <UserCheck />
-                                حالت تریدر
-                            </BoxTitle>
-                            <BoxContent className="mx-[unset] ml-auto max-w-3xl">
-                                <div className=" flex flex-col items-start justify-between lg:flex-row">
-                                    <div className="w-full space-y-8 lg:w-1/2">
-                                        <div className="space-y-2.5">
-                                            <div className="flex !items-center !justify-between text-base text-neutral-800">
-                                                {dict.traderPage}:
-                                                {traderPageRequestStatus && (
-                                                    // @ts-ignore
-                                                    <StatusBadge
-                                                        dict={dict}
-                                                        status={
-                                                            traderPageRequestStatus.status
-                                                        }
-                                                        pendingText={
-                                                            traderPageRequestStatus.text
-                                                        }
-                                                    />
-                                                )}
-                                            </div>
-                                            <div
-                                                dir="ltr"
-                                                className={cn(
-                                                    ' my-3 flex h-14 items-center !justify-between rounded-lg bg-gray-400 p-1.5 pl-5 font-black text-neutral-800'
-                                                )}
-                                            >
-                                                <span
-                                                    dir="ltr"
-                                                    className="leading-none"
-                                                >
-                                                    sahmeto.com/publisher/
-                                                </span>
-                                                <input
-                                                    type="text"
-                                                    className="ltr h-full w-full rounded-lg bg-gray-100 p-4 text-left lowercase"
-                                                    defaultValue={
-                                                        user.trader_page_request
-                                                            ?.primary_username ||
-                                                        user.trader
-                                                            .primary_username
-                                                    }
-                                                    disabled
-                                                />
-                                            </div>
-                                            {traderPageRequestStatus.status ===
-                                                'pending' && (
-                                                <>
-                                                    <p>
-                                                        {componentFormat(
-                                                            dict.telegramDescription,
-                                                            {},
-                                                            <span className="font-bold">
-                                                                {dict.ownerShip}
-                                                            </span>
-                                                        )}
-                                                    </p>
-                                                    <p
-                                                        dir="ltr"
-                                                        className="!mt-0 text-center text-base font-bold"
-                                                    >
-                                                        {user.id}@sahmeto
-                                                    </p>
-                                                </>
-                                            )}
-                                            {traderPageRequestStatus.status ===
-                                                'pending' && (
-                                                <button className=" flex h-12 w-full cursor-default items-center justify-center rounded-lg bg-gray-900 px-6 text-base font-bold text-white">
-                                                    درخواست داده شده
-                                                </button>
-                                            )}
-                                        </div>
-                                        {/*{traderPageRequestStatus.status === 'confirmed' && (*/}
-                                        {/*    <ProfileTraderCard user={user} />*/}
-                                        {/*)}*/}
-                                    </div>
-                                    {traderPageRequestStatus.status ===
-                                        'pending' && (
-                                        <div className="mt-4 w-full lg:mt-0 lg:w-1/2 lg:px-10">
-                                            <div className="text-base font-bold">
-                                                {dict.descriptions}:
-                                            </div>
-                                            <p>{dict.ownerShipWillCheck}</p>
-                                        </div>
-                                    )}
-                                </div>
-                            </BoxContent>
-                        </Box>
-                    )}
                 </div>
             </div>
         </main>

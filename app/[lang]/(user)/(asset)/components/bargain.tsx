@@ -19,11 +19,11 @@ export default function Bargain({ dict, lang, className }: bargainingProps) {
             )}
         >
             <div className="flex max-w-fit flex-col gap-6 text-white">
-                <h2 className="text-4xl font-black">
+                <h2 className="text-3xl font-black md:text-4xl">
                     سرمایه گذاری آسان در{' '}
                     <span className="text-neutral-800">طلا</span>
                 </h2>
-                <p className="text-justify text-base font-normal leading-loose">
+                <p className="text-justify text-xs font-normal leading-loose md:text-base">
                     طلا به عنوان یکی از محبوب‌ترین دارایی‌های با ارزش در جهان،
                     فرصتی بی‌نظیر برای سرمایه‌گذاری مطمئن و پایدار فراهم می‌کند.
                     با استفاده از پلتفرم طلامی، می‌توانید به راحتی و در هر لحظه

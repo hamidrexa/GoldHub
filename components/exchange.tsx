@@ -44,14 +44,14 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
         toast.info('در حال انتقال به درگاه پرداخت');
         try {
             const res = await payment({
-                plan: equivalent === '1' ? 43 : 44,
+                plan: equivalent === '1' ? 1 : 2,
                 bank_type: PaymentMethods['irr'],
             });
             location.replace(
-                `https://api-gateway.sahmeto.com/transaction/payment/${res.id}`
+                `https://talame-api.darkube.app/transaction/payment/${res.id}`
             );
         } catch (error) {
-            // console.log(error);
+            console.log(error);
         }
         setLoading(false);
     };
@@ -104,15 +104,17 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                         <div className="min-w-12 text-base font-semibold">
                             معادل:
                         </div>
-                        <div className="flex flex-row-reverse items-center gap-2 text-lg">
+                        <div className="flex items-center gap-2 text-lg">
                             <div>
                                 {priceIsLoading ? (
-                                    <Spinner width={10} height={10} />
+                                    <Spinner width={15} height={15} />
                                 ) : (
                                     transformPrice(price?.buy_price_irt)
                                 )}
                             </div>
-                            <div className="min-w-10">BTC</div>
+                            <div className="min-w-10 text-sm font-bold text-neutral-800">
+                                گرم طلا
+                            </div>
                         </div>
                     </div>
                     <Button
