@@ -4,8 +4,8 @@ import useSWR from 'swr';
 
 interface Balance {
     irt_balance: string;
-    btc_amount: string;
-    btc_balance_irt: string;
+    gold_amount: string;
+    gold_balance_irt: string;
     total_balance: string;
 }
 

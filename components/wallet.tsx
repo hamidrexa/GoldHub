@@ -134,7 +134,7 @@ export default function Wallet({ dict, lang }: Props) {
                             </TableCell>
                             <TableCell className="text-base font-medium">
                                 {currency(
-                                    parseFloat(wallet.balance?.btc_amount),
+                                    parseFloat(wallet.balance?.gold_amount),
                                     'crypto',
                                     'fa'
                                 ).replace('$', '')}
@@ -142,7 +142,7 @@ export default function Wallet({ dict, lang }: Props) {
                                     ~{' '}
                                     {currency(
                                         parseFloat(
-                                            wallet.balance?.btc_balance_irt
+                                            wallet.balance?.gold_balance_irt
                                         ),
                                         'tse',
                                         'fa'
