@@ -293,7 +293,7 @@ export default function FollowWizard({ dict, lang, onEnd }: wizardProps) {
                     </h4>
                     <p className="mb-4 leading-relaxed">
                         برای با‌خبر شدن از آخرین اتفاقات بازار بورس و
-                        ارزدیجیتال، به ربات تلگرام طلامی متصل شوید.
+                        ارزدیجیتال، به ربات تلگرام طلانو متصل شوید.
                     </p>
                     <div className="flex min-h-48 w-full items-center justify-center">
                         {!!user.telegram_chat_id ? (
@@ -305,7 +305,7 @@ export default function FollowWizard({ dict, lang, onEnd }: wizardProps) {
                                     'h-14 w-full hover:cursor-auto'
                                 )}
                             >
-                                شما به بات طلامی متصل شده اید.
+                                شما به بات طلانو متصل شده اید.
                             </div>
                         ) : (
                             <a

@@ -59,14 +59,14 @@ export function Footer({ dict, lang }) {
                             href="/"
                             className="text-xs font-medium capitalize"
                         >
-                            طلامی
+                            طلانو
                         </BreadcrumbLink>
                     </BreadcrumbItem>
                     {pathNames.length !== 0 && <BreadcrumbSeparator />}
                     {pathNames.slice(0, 2).map((item, index, array) => {
                         const breadcrumbTitles = {
                             leaderboard: 'برترین تریدر‌ها',
-                            finocaht: 'ربات طلامی',
+                            finocaht: 'ربات طلانو',
                             'copy-trade': 'کپی ترید',
                             coins: 'ارزدیجیتال',
                             ticker: 'بورس',
@@ -136,7 +136,7 @@ export function Footer({ dict, lang }) {
                                 href={`${getLinksLang(lang)}/`}
                             >
                                 <Icons.logo />
-                                طلامی
+                                طلانو
                             </Link>
                             <div className="invisible flex flex-col gap-6">
                                 <div>
@@ -307,7 +307,7 @@ export function Footer({ dict, lang }) {
                             href="https://www.instagram.com/sahmeto_com"
                             className="bg-instagram flex gap-5 rounded-2xl px-7 py-5 text-base font-semibold text-white"
                         >
-                            <span>اینستاگرام طلامی</span>
+                            <span>اینستاگرام طلانو</span>
                             <InstagramLogoIcon className="h-6 w-6 text-white" />
                         </a>
                     </div>
@@ -315,7 +315,7 @@ export function Footer({ dict, lang }) {
                         {lang === 'fa' && (
                             <p className="max-w-9/10 mx-auto text-justify">
                                 <Link href={`${getLinksLang(lang)}/`}>
-                                    سامانه هوشمند طلامی
+                                    سامانه هوشمند طلانو
                                 </Link>{' '}
                                 پیام‌های تمام کانال‌های بورسی تلگرام را جمع‌آوری
                                 می‌کند و با استفاده از هوش مصنوعی سیگنال‌های
@@ -324,13 +324,13 @@ export function Footer({ dict, lang }) {
                                 اساس پارامترهایی مثل بازدهی ماهانه سبد پیشنهادی
                                 کانال، قدرت تحلیلگر و میزان ریسکی که تحلیلگر
                                 برای سیگنال‌های خود ارائه می‌کند، آن‌ها را
-                                رتبه‌بندی می‌کند. سهم‌های معرفی شده توسط طلامی
+                                رتبه‌بندی می‌کند. سهم‌های معرفی شده توسط طلانو
                                 معمولا در کوتاه مدت سود مناسبی را به سرمایه‌گذار
-                                می‌رساند اما طلامی هیچگونه مسئولیتی درمورد نماد
+                                می‌رساند اما طلانو هیچگونه مسئولیتی درمورد نماد
                                 های معرفی شده ندارد چرا که این سهم‌ها بر اساس
                                 اطلاعات برامده از شبکه اجتماعی معرفی می‌شود و
-                                طلامی هیچ داده‌ای به محتوای شبکه اجتماعی اضافه
-                                یا کم نمی‌کند. طلامی بر اساس مشخصات هر نماد از
+                                طلانوهیچ داده‌ای به محتوای شبکه اجتماعی اضافه
+                                یا کم نمی‌کند. طلانو بر اساس مشخصات هر نماد از
                                 قبیل جذابیت خرید و فروش، ریسک سرمایه گذاری و
                                 شاخص ترس و طمع و پارامترهای دیگر مانند: تازگی
                                 سیگنال‌ها و اعتبار کانال‌ها که همگی براساس
@@ -358,7 +358,7 @@ export function Footer({ dict, lang }) {
                             href={`${getLinksLang(lang)}/`}
                         >
                             <Icons.logo />
-                            طلامی
+                            طلانو
                         </Link>
                     </div>
                     <div
@@ -523,7 +523,7 @@ export function Footer({ dict, lang }) {
                             href="https://www.instagram.com/sahmeto_com"
                             className="bg-instagram flex gap-5 rounded-2xl px-7 py-5 text-base font-semibold text-white "
                         >
-                            <span>اینستاگرام طلامی</span>
+                            <span>اینستاگرام طلانو</span>
                             <InstagramLogoIcon className="h-6 w-6 text-white" />
                         </a>
                         <div className="flex items-center gap-10">
@@ -560,7 +560,7 @@ export function Footer({ dict, lang }) {
                             className="text-base text-white"
                             href="https://blog.sahmeto.com"
                         >
-                            بلاگ طلامی
+                            بلاگ طلانو
                         </a>
                         <a className="text-base text-white" href="/privact">
                             قوانین

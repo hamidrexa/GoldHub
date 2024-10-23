@@ -55,7 +55,7 @@ export function DataTableColumnHeader<TData, TValue>({
                         </>
                     ),
                     description:
-                        'با ثبت نام در طلامی، 7 روز رایگان از تمامی امکانات استفاده کنید.',
+                        'با ثبت نام در طلانو، 7 روز رایگان از تمامی امکانات استفاده کنید.',
                     button: 'فعال سازی 7 روز رایگان',
                     buttonVariant: 'info',
                     inputLabel: 'ثبت نام سریع',

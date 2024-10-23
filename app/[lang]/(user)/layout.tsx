@@ -5,7 +5,7 @@ import { getDictionary } from '@/get-dictionary';
 import { Footer } from '@/components/footer';
 
 export const metadata = {
-    title: 'پیدا نشد | طلامی',
+    title: 'پیدا نشد | طلانو',
 };
 
 export default async function UserLayout({

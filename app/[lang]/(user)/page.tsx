@@ -12,13 +12,13 @@ import Bargain from '@/app/[lang]/(user)/(asset)/components/bargain';
 import Wallet from '@/components/wallet';
 
 export const metadata: Metadata = {
-    title: 'طلامی | خرید و فروش طلای آب شده آنلاین بدون اجرت',
+    title: 'طلانو | خرید و فروش طلای آب شده آنلاین بدون اجرت',
     description:
-        'طلامی، بستر امن خرید و فروش طلای آب شده آنلاین، بدون مالیات و اجرت، با ارائه فاکتور رسمی تضمینی و گارانتی اصالت با قیمت لحظه‌ای و به‌روز طلای آب شده',
+        'طلانو، بستر امن خرید و فروش طلای آب شده آنلاین، بدون مالیات و اجرت، با ارائه فاکتور رسمی تضمینی و گارانتی اصالت با قیمت لحظه‌ای و به‌روز طلای آب شده',
     openGraph: {
-        title: 'طلامی | خرید و فروش طلای آب شده آنلاین بدون اجرت',
+        title: 'طلانو | خرید و فروش طلای آب شده آنلاین بدون اجرت',
         description:
-            'طلامی، بستر امن خرید و فروش طلای آب شده آنلاین، بدون مالیات و اجرت، با ارائه فاکتور رسمی تضمینی و گارانتی اصالت با قیمت لحظه‌ای و به‌روز طلای آب شده',
+            'طلانو، بستر امن خرید و فروش طلای آب شده آنلاین، بدون مالیات و اجرت، با ارائه فاکتور رسمی تضمینی و گارانتی اصالت با قیمت لحظه‌ای و به‌روز طلای آب شده',
     },
 };
 
@@ -43,7 +43,7 @@ export default async function HomePage({ params: { lang } }) {
             <section className="w-full bg-neutral-700/10 px-4 py-12 md:py-32">
                 <div className="mx-auto w-full max-w-7xl">
                     <h2 className="mb-6 flex items-center justify-center gap-1 text-center text-2xl font-black md:mb-12 md:text-4xl">
-                        مزایای خرید طلای آب‌شده از طلامی
+                        مزایای خرید طلای آب‌شده از طلانو
                     </h2>
                     <div className="flex flex-col gap-10 md:mt-0 md:flex-row md:flex-wrap lg:flex-nowrap">
                         <div className="flex basis-1/3 flex-col items-start justify-start gap-4 rounded-lg bg-white px-5 py-4 md:grow">
@@ -83,7 +83,7 @@ export default async function HomePage({ params: { lang } }) {
                             </div>
                             <h3 className="text-xl font-bold">بدون اجرت</h3>
                             <p className="text-base">
-                                طلایی که از طلامی می‌خرید، دارای کارمزدی شفاف و
+                                طلایی که از طلانو می‌خرید، دارای کارمزدی شفاف و
                                 بدون اجرت، مالیات و کمیسیون فروشنده است.
                             </p>
                         </div>
@@ -204,10 +204,10 @@ export default async function HomePage({ params: { lang } }) {
                                 </svg>
                             </div>
                             <h3 className="text-xl font-bold">
-                                پس‌انداز طلامی‌گرمی طلا
+                                پس‌انداز طلانو ‌گرمی طلا
                             </h3>
                             <p className="text-base">
-                                می‌تونی از یک طلامی‌گرم تا طلامیون‌ها طلامی‌گرم
+                                می‌تونی از یک طلانو‌گرم تا طلامیون‌ها طلانو‌گرم
                                 طلای ۱۸ عیار پس‌انداز و سرمایه‌گذاری کنی.
                             </p>
                         </div>
@@ -234,7 +234,7 @@ export default async function HomePage({ params: { lang } }) {
                                 امن و دارای مجوز است
                             </h3>
                             <p className="text-base">
-                                بستر امن طلامی، تمامی مجوزهای خرید و فروش طلا آب
+                                بستر امن طلانو، تمامی مجوزهای خرید و فروش طلا آب
                                 شده رو داره؛ با خیال راحت سرمایه‌گذاری کن.
                             </p>
                         </div>
@@ -252,41 +252,41 @@ export default async function HomePage({ params: { lang } }) {
                 >
                     <AccordionItem value="1" className="rounded-md border">
                         <AccordionTrigger className="px-4 font-semibold">
-                            طلامی چیست؟
+                            طلانو چیست؟
                             <ChevronDown width={20} height={20} />
                         </AccordionTrigger>
                         <AccordionContent className="p-4 pt-0">
                             <p>
-                                «طلامی»، پلتفرم و سامانۀ خرید و فروش آنلاین طلا
-                                است. در طلامی، پول نقد خودت رو به راحتی به طلا
+                                «طلانو»، پلتفرم و سامانۀ خرید و فروش آنلاین طلا
+                                است. در طلانو، پول نقد خودت رو به راحتی به طلا
                                 تبدیل کن و هر زمان که اراده کردی، اون رو با قیمت
-                                روز به طلامی بفروش یا طلای فیزیکی معادل اون رو
+                                روز به طلانو بفروش یا طلای فیزیکی معادل اون رو
                                 از ما تحویل بگیر.
                             </p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="2" className="rounded-md border">
                         <AccordionTrigger className="px-4 font-semibold">
-                            کارمزد خرید طلای آب‌شده در طلامی چقدر است؟
+                            کارمزد خرید طلای آب‌شده در طلانو چقدر است؟
                             <ChevronDown width={20} height={20} />
                         </AccordionTrigger>
                         <AccordionContent className="p-4 pt-0">
                             <p>
-                                کارمزد خرید و فروش طلای آب شده در طلامی نیم
+                                کارمزد خرید و فروش طلای آب شده در طلانو نیم
                                 درصده (۰.۵٪). این کارمزد، در هنگام خرید طلا، به
                                 مبلغ خرید شما اضافه می‌شه و در هنگام فروش طلا،
-                                از میزان حساب طلای طلامی شما، برداشت میشه.
+                                از میزان حساب طلای طلانوی شما، برداشت میشه.
                             </p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="3" className="rounded-md border">
                         <AccordionTrigger className="px-4 font-semibold">
-                            قیمت طلا در طلامی بر چه اساسی تعیین می‌شود؟
+                            قیمت طلا در طلانو بر چه اساسی تعیین می‌شود؟
                             <ChevronDown width={20} height={20} />
                         </AccordionTrigger>
                         <AccordionContent className="p-4 pt-0">
                             <p>
-                                قیمت طلای آب شده در طلامی، بر اساس معاملات واقعی
+                                قیمت طلای آب شده در طلانو، بر اساس معاملات واقعی
                                 و در حجم بالای بازار بزرگ تهران به دست میاد.
                             </p>
                         </AccordionContent>

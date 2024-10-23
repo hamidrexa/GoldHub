@@ -72,7 +72,7 @@ export function Portfolio({ dict, lang, id }) {
                         </>
                     ),
                     description:
-                        'با ثبت نام در طلامی، 7 روز اشتراک رایگان هدیه بگیرید.',
+                        'با ثبت نام در طلانو، 7 روز اشتراک رایگان هدیه بگیرید.',
                     button: dict.traderLoginModal.button,
                     buttonVariant: 'info',
                     inputLabel: dict.traderLoginModal.inputLabel,

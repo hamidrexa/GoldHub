@@ -133,7 +133,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                 texts={{
                     title: <>برای خرید از صرافی ثبت نام کنید.</>,
                     description:
-                        'با ثبت نام در طلامی، بی نهایت سرمایه گذاری کن.',
+                        'با ثبت نام در طلانو، بی نهایت سرمایه گذاری کن.',
                     button: 'شروع سرمایه گذاری',
                     buttonVariant: 'default',
                     inputLabel: dict.traderLoginModal.inputLabel,

@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 import Wallet from '@/components/wallet';
 
 export const metadata: Metadata = {
-    title: 'کیف پول | طلامی',
+    title: 'کیف پول | طلانو',
     description: '',
 };
 

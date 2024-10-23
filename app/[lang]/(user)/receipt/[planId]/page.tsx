@@ -5,7 +5,7 @@ import { buttonVariants } from '@/components/ui/button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-    title: 'رسید خرید | طلامی',
+    title: 'رسید خرید | طلانو',
     description: '',
 };
 
@@ -41,7 +41,7 @@ export default function ReceiptPage({ params: { planId, lang } }) {
                 </h1>
                 <p className="mt-4">
                     در صورت مشکل در فرایند فعال سازی یا خرید میتوانید از طریق
-                    پشتیبانی طلامی اطلاع دهید.
+                    پشتیبانی طلانو اطلاع دهید.
                 </p>
                 {isSuccess && (
                     <Link

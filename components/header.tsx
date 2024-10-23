@@ -274,7 +274,7 @@ export function Header({ dict, lang, googleLogin = true }) {
                     href={`${getLinksLang(lang)}/`}
                 >
                     <Icons.logo className="h-7 w-24 cursor-pointer md:h-9 md:w-32" />
-                    طلامی
+                    طلانو
                 </Link>
                 <hr className="hidden h-6 w-px bg-neutral-100 md:flex ltr:ml-3 rtl:mr-3" />
                 <NavigationMenu

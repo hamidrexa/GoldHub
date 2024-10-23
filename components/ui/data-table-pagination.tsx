@@ -50,7 +50,7 @@ export function DataTablePagination<TData>({
                         </>
                     ),
                     description:
-                        'با ثبت نام در طلامی، 7 روز رایگان از تمامی امکانات استفاده کنید.',
+                        'با ثبت نام در طلانو، 7 روز رایگان از تمامی امکانات استفاده کنید.',
                     button: 'فعال سازی 7 روز رایگان',
                     inputLabel: 'ثبت نام سریع',
                     buttonVariant: 'info',
