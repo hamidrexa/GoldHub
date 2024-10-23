@@ -190,7 +190,7 @@ export function Footer({ dict, lang }) {
                                     </div>
                                 </a>
                                 <a
-                                    href="mailto:info@talanow.com"
+                                    href="mailto:info@talanow.ir"
                                     dir="ltr"
                                     className="flex items-center gap-2.5"
                                 >
@@ -199,7 +199,7 @@ export function Footer({ dict, lang }) {
                                         fill="#FFBE00"
                                         className="text-[rgba(0,_0,_0,_.4)] drop-shadow-[0px_0px_1px_rgba(0,_0,_0,_.1)]"
                                     />
-                                    <div>info@talanow.com</div>
+                                    <div>info@talanow.ir</div>
                                 </a>
                             </div>
                         </div>
