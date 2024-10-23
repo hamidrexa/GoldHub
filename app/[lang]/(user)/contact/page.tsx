@@ -68,7 +68,7 @@ export default async function ContactPage({ params: { id, lang } }: PageProps) {
                             {dict.callNumber}:{' '}
                             <span dir="ltr">021-91304925</span>
                         </p>
-                        <p className="mt-1.5">{dict.email} : info@talame.com</p>
+                        <p className="mt-1.5">{dict.email} : info@talanow.com</p>
                         <p className="mt-1.5">{dict.postalCode}: 1439956172</p>
                     </div>
                 </div>
