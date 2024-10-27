@@ -1,7 +1,7 @@
 'use client';
 
 import { Locale } from '@/i18n-config';
-import { cn, getDirection, roundNumber } from '@/libs/utils';
+import { cn, currency, getDirection, roundNumber } from '@/libs/utils';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import React, { useEffect, useState } from 'react';
@@ -58,20 +58,20 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
     const handleGeramChange = (event) =>{
         const grams = event.target.value;
         setGeramEq(grams);
-        if (price?.buy_price_irt)  setRialEq((grams * price.buy_price_irt).toString());;
+        if (price?.buy_price_irt)  setRialEq((grams * price.buy_price_irt * 10).toString());;
     }
 
     const handleRialChange = (event) =>{
         const rial = event.target.value;
         setRialEq(rial);
         if (price?.buy_price_irt) {
-            setGeramEq((rial / price.buy_price_irt).toFixed(4));
+            setGeramEq((rial / (price.buy_price_irt * 10 )).toFixed(4));
         }
     }
 
     useEffect(() => {
         setGeramEq('1');
-        setRialEq(`${price?.buy_price_irt}`);
+        setRialEq(`${price?.buy_price_irt * 10}`);
     }, [priceIsLoading]);
 
 
@@ -102,7 +102,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                             const rialValue = 1000000;
                             setRialEq(rialValue.toString());
                             if (price?.buy_price_irt) {
-                                setGeramEq((rialValue / price.buy_price_irt).toFixed(4));
+                                setGeramEq((rialValue / (price.buy_price_irt * 10)).toFixed(4));
                             }
                         }}
                         className="rounded-md border border-neutral-100 p-2.5 text-sm font-light hover:cursor-pointer"
@@ -114,7 +114,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                             const rialValue = 5000000;
                             setRialEq(rialValue.toString());
                             if (price?.buy_price_irt) {
-                                setGeramEq((rialValue / price.buy_price_irt).toFixed(4));
+                                setGeramEq((rialValue / (price.buy_price_irt * 10)).toFixed(4));
                             }
                         }}
                         className="rounded-md border border-neutral-100 p-2.5 text-sm font-light hover:cursor-pointer"
@@ -126,7 +126,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                         const rialValue = 10000000;
                         setRialEq(rialValue.toString());
                         if (price?.buy_price_irt) {
-                            setGeramEq((rialValue / price.buy_price_irt).toFixed(4));
+                            setGeramEq((rialValue / (price.buy_price_irt * 10)).toFixed(4));
                         }
                     }}
                         className="rounded-md border border-neutral-100 p-2.5 text-sm font-light hover:cursor-pointer"
