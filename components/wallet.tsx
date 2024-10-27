@@ -194,7 +194,7 @@ export default function Wallet({ dict, lang }: Props) {
                 lang={lang}
                 dict={dict}
                 texts={{
-                    title: <>برای خرید از صرافی ثبت نام کنید.</>,
+                    title: <>برای خرید از طلانو ثبت نام کنید.</>,
                     description:
                         'با ثبت نام در طلامی، بی نهایت سرمایه گذاری کن.',
                     button: 'شروع سرمایه گذاری',

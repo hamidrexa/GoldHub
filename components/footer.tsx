@@ -464,59 +464,59 @@ export function Footer({ dict, lang }) {
                         </div>
                     </div>
                 </div>
-                <div className="px-8 py-2 text-neutral-700">
-                    <div className="mt-8">
-                        <div className="text-lg font-bold">{dict.products}</div>
-                        <ul className="flex flex-wrap items-center justify-between gap-x-3 text-sm leading-loose">
-                            <li>
-                                <Link href={`${getLinksLang(lang)}/signals`}>
-                                    {dict.selectedIcons}
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href={`${getLinksLang(lang)}/`}>
-                                    {dict.feed}
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href={`${getLinksLang(lang)}/leaderboard`}
-                                >
-                                    {dict.bestTraders}
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="mt-8">
-                        <div className="text-lg font-bold">
-                            {dict.sahmetoWorld}
-                        </div>
-                        <ul className="flex flex-wrap items-center justify-between gap-x-3 text-sm leading-loose [&>li]:min-w-20">
-                            <li className="relative">
-                                <a href="https://shmto.ir/9vg" target="_blank">
-                                    {dict.reportProblem}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://dev.sahmeto.com">
-                                    {dict.developWithSahmeto}
-                                </a>
-                            </li>
-                            <li>
-                                <Link href={`${getLinksLang(lang)}/privacy`}>
-                                    {dict.rules}
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href={`${getLinksLang(lang)}/organization`}
-                                >
-                                    {dict.organizationalSolution}
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                {/*<div className="px-8 py-2 text-neutral-700">*/}
+                {/*    <div className="mt-8">*/}
+                {/*        <div className="text-lg font-bold">{dict.products}</div>*/}
+                {/*        <ul className="flex flex-wrap items-center justify-between gap-x-3 text-sm leading-loose">*/}
+                {/*            <li>*/}
+                {/*                <Link href={`${getLinksLang(lang)}/signals`}>*/}
+                {/*                    {dict.selectedIcons}*/}
+                {/*                </Link>*/}
+                {/*            </li>*/}
+                {/*            <li>*/}
+                {/*                <Link href={`${getLinksLang(lang)}/`}>*/}
+                {/*                    {dict.feed}*/}
+                {/*                </Link>*/}
+                {/*            </li>*/}
+                {/*            <li>*/}
+                {/*                <Link*/}
+                {/*                    href={`${getLinksLang(lang)}/leaderboard`}*/}
+                {/*                >*/}
+                {/*                    {dict.bestTraders}*/}
+                {/*                </Link>*/}
+                {/*            </li>*/}
+                {/*        </ul>*/}
+                {/*    </div>*/}
+                {/*    <div className="mt-8">*/}
+                {/*        <div className="text-lg font-bold">*/}
+                {/*            {dict.sahmetoWorld}*/}
+                {/*        </div>*/}
+                {/*        <ul className="flex flex-wrap items-center justify-between gap-x-3 text-sm leading-loose [&>li]:min-w-20">*/}
+                {/*            <li className="relative">*/}
+                {/*                <a href="https://shmto.ir/9vg" target="_blank">*/}
+                {/*                    {dict.reportProblem}*/}
+                {/*                </a>*/}
+                {/*            </li>*/}
+                {/*            <li>*/}
+                {/*                <a href="https://dev.sahmeto.com">*/}
+                {/*                    {dict.developWithSahmeto}*/}
+                {/*                </a>*/}
+                {/*            </li>*/}
+                {/*            <li>*/}
+                {/*                <Link href={`${getLinksLang(lang)}/privacy`}>*/}
+                {/*                    {dict.rules}*/}
+                {/*                </Link>*/}
+                {/*            </li>*/}
+                {/*            <li>*/}
+                {/*                <Link*/}
+                {/*                    href={`${getLinksLang(lang)}/organization`}*/}
+                {/*                >*/}
+                {/*                    {dict.organizationalSolution}*/}
+                {/*                </Link>*/}
+                {/*            </li>*/}
+                {/*        </ul>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
                 <div className="mt-3 flex w-full flex-col justify-center gap-2 rounded-t-xl bg-neutral-700 pt-8">
                     <div className="flex flex-col items-center gap-6">
                         <a
