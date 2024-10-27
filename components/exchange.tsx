@@ -43,10 +43,10 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
         toast.info('در حال انتقال به درگاه پرداخت');
         try {
             const res = await payment({
-                price: rialEq,
+                price: parseInt(rialEq),
                 bank_type: PaymentMethods['tala'],
             });
-            location.replace(
+            window.open(
                 `https://talame-api.darkube.app/transaction/payment/${res.id}`
             );
         } catch (error) {
