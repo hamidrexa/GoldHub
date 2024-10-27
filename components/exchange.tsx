@@ -31,7 +31,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
         price,
         isLoading: priceIsLoading,
         error: getPriceError,
-    } = usePrice({ id: 24376, condition: true });
+    } = useExchangePrice();
     const [geramEq, setGeramEq] = useState(null);
     const [rialEq, setRialEq] = useState(null);
     const [openLoginModal, setOpenLoginModal] = useState(false);
@@ -58,20 +58,20 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
     const handleGeramChange = (event) =>{
         const grams = event.target.value;
         setGeramEq(grams);
-        if (price?.TOMAN)  setRialEq((grams * price.TOMAN).toString());;
+        if (price?.buy_price_irt)  setRialEq((grams * price.buy_price_irt).toString());;
     }
 
     const handleRialChange = (event) =>{
         const rial = event.target.value;
         setRialEq(rial);
-        if (price?.TOMAN) {
-            setGeramEq((rial / price.TOMAN).toFixed(4));
+        if (price?.buy_price_irt) {
+            setGeramEq((rial / price.buy_price_irt).toFixed(4));
         }
     }
 
     useEffect(() => {
         setGeramEq('1');
-        setRialEq(`${price?.TOMAN}`);
+        setRialEq(`${price?.buy_price_irt}`);
     }, [priceIsLoading]);
 
 
@@ -101,8 +101,8 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                         onClick={() => {
                             const rialValue = 1000000;
                             setRialEq(rialValue.toString());
-                            if (price?.TOMAN) {
-                                setGeramEq((rialValue / price.TOMAN).toFixed(4));
+                            if (price?.buy_price_irt) {
+                                setGeramEq((rialValue / price.buy_price_irt).toFixed(4));
                             }
                         }}
                         className="rounded-md border border-neutral-100 p-2.5 text-sm font-light hover:cursor-pointer"
@@ -113,8 +113,8 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                         onClick={() => {
                             const rialValue = 5000000;
                             setRialEq(rialValue.toString());
-                            if (price?.TOMAN) {
-                                setGeramEq((rialValue / price.TOMAN).toFixed(4));
+                            if (price?.buy_price_irt) {
+                                setGeramEq((rialValue / price.buy_price_irt).toFixed(4));
                             }
                         }}
                         className="rounded-md border border-neutral-100 p-2.5 text-sm font-light hover:cursor-pointer"
@@ -125,8 +125,8 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                         onClick={() => {
                         const rialValue = 10000000;
                         setRialEq(rialValue.toString());
-                        if (price?.TOMAN) {
-                            setGeramEq((rialValue / price.TOMAN).toFixed(4));
+                        if (price?.buy_price_irt) {
+                            setGeramEq((rialValue / price.buy_price_irt).toFixed(4));
                         }
                     }}
                         className="rounded-md border border-neutral-100 p-2.5 text-sm font-light hover:cursor-pointer"
