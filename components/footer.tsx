@@ -93,8 +93,8 @@ export function Footer({ dict, lang }) {
                             item === 'coins' || item === 'ticker'
                                 ? '/signals'
                                 : item === 'publisher'
-                                  ? '/leaderboard'
-                                  : '/' +
+                                    ? '/leaderboard'
+                                    : '/' +
                                     pathNames.slice(0, index + 1).join('/');
                         const title =
                             breadcrumbTitles[item] || breadcrumbTitle || item;
@@ -148,7 +148,7 @@ export function Footer({ dict, lang }) {
                                         buttonVariants({
                                             variant: 'secondary',
                                         }),
-                                        'flex justify-between gap-4 border border-neutral-800 px-4 shadow-[0px_0px_50px_10px_rgba(16,_237,_197,_.8)]'
+                                        'flex justify-between gap-4 border border-neutral-800 px-4 shadow-[0px_0px_50px_10px_rgba(16,_237,_197,_.8)]',
                                     )}
                                 >
                                     <svg
@@ -206,7 +206,8 @@ export function Footer({ dict, lang }) {
                     </div>
                 </div>
                 <div className="-mt-6 rounded-tl-lg rounded-tr-lg bg-neutral-200 pb-14 pt-8">
-                    <div className="grid w-full grid-cols-3 place-items-center gap-3 sm:p-4 md:mx-auto md:max-w-4xl lg:grid-cols-6 lg:p-0">
+                    <div
+                        className="grid w-full grid-cols-3 place-items-center gap-3 sm:p-4 md:mx-auto md:max-w-4xl lg:grid-cols-6 lg:p-0">
                         <div className="h-24 w-24 rounded-lg bg-white p-4 lg:h-28 lg:w-28">
                             <Image
                                 className="h-full w-full object-contain"
@@ -278,68 +279,48 @@ export function Footer({ dict, lang }) {
                     </div>
                 </div>
                 <div className="-mt-6 space-y-6 rounded-tl-lg rounded-tr-lg bg-neutral-700 pb-0 pt-8">
-                    <div className="flex flex-col items-center gap-6">
-                        <div className="flex items-center gap-10">
-                            <a href="https://t.me/sahmetocom" target="_blank">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="20"
-                                    height="20"
-                                    fill="none"
-                                    viewBox="0 0 625 518"
-                                >
-                                    <path
-                                        fill="#fff"
-                                        fillRule="evenodd"
-                                        d="M43.277 222.931c167.624-73.031 279.4-121.178 335.327-144.44C538.288 12.073 571.469.535 593.096.154c4.756-.083 15.392 1.095 22.281 6.686 5.817 4.72 7.418 11.096 8.184 15.571.765 4.476 1.719 14.67.961 22.636-8.653 90.921-46.096 311.563-65.145 413.396-8.06 43.089-23.931 57.537-39.296 58.951-33.391 3.073-58.747-22.067-91.088-43.267-50.607-33.174-79.197-53.825-128.321-86.197-56.77-37.411-19.968-57.972 12.385-91.576 8.467-8.794 155.59-142.614 158.438-154.753.356-1.518.686-7.178-2.676-10.166-3.362-2.988-8.324-1.967-11.905-1.154-5.076 1.152-85.922 54.588-242.538 160.309-22.948 15.758-43.734 23.435-62.357 23.033-20.53-.443-60.023-11.608-89.381-21.151C26.628 280.766-1.992 274.578.5 254.699c1.298-10.355 15.557-20.944 42.776-31.768z"
-                                        clipRule="evenodd"
-                                    ></path>
-                                </svg>
-                            </a>
-                            <a href="https://www.linkedin.com/company/sahmeto">
-                                <LinkedInLogoIcon className="h-6 w-6 text-white" />
-                            </a>
-                            <a href="https://twitter.com/Sahmetocom">
-                                <TwitterLogoIcon className="h-6 w-6 text-white" />
-                            </a>
-                        </div>
-                        <a
-                            href="https://www.instagram.com/sahmeto_com"
-                            className="bg-instagram flex gap-5 rounded-2xl px-7 py-5 text-base font-semibold text-white"
-                        >
-                            <span>اینستاگرام طلانو</span>
-                            <InstagramLogoIcon className="h-6 w-6 text-white" />
-                        </a>
-                    </div>
-                    <div className="mx-auto w-3/4 text-white">
+                    {/*<div className="flex flex-col items-center gap-6">*/}
+                    {/*    <div className="flex items-center gap-10">*/}
+                    {/*        <a href="https://t.me/sahmetocom" target="_blank">*/}
+                    {/*            <svg*/}
+                    {/*                xmlns="http://www.w3.org/2000/svg"*/}
+                    {/*                width="20"*/}
+                    {/*                height="20"*/}
+                    {/*                fill="none"*/}
+                    {/*                viewBox="0 0 625 518"*/}
+                    {/*            >*/}
+                    {/*                <path*/}
+                    {/*                    fill="#fff"*/}
+                    {/*                    fillRule="evenodd"*/}
+                    {/*                    d="M43.277 222.931c167.624-73.031 279.4-121.178 335.327-144.44C538.288 12.073 571.469.535 593.096.154c4.756-.083 15.392 1.095 22.281 6.686 5.817 4.72 7.418 11.096 8.184 15.571.765 4.476 1.719 14.67.961 22.636-8.653 90.921-46.096 311.563-65.145 413.396-8.06 43.089-23.931 57.537-39.296 58.951-33.391 3.073-58.747-22.067-91.088-43.267-50.607-33.174-79.197-53.825-128.321-86.197-56.77-37.411-19.968-57.972 12.385-91.576 8.467-8.794 155.59-142.614 158.438-154.753.356-1.518.686-7.178-2.676-10.166-3.362-2.988-8.324-1.967-11.905-1.154-5.076 1.152-85.922 54.588-242.538 160.309-22.948 15.758-43.734 23.435-62.357 23.033-20.53-.443-60.023-11.608-89.381-21.151C26.628 280.766-1.992 274.578.5 254.699c1.298-10.355 15.557-20.944 42.776-31.768z"*/}
+                    {/*                    clipRule="evenodd"*/}
+                    {/*                ></path>*/}
+                    {/*            </svg>*/}
+                    {/*        </a>*/}
+                    {/*        <a href="https://www.linkedin.com/company/sahmeto">*/}
+                    {/*            <LinkedInLogoIcon className="h-6 w-6 text-white" />*/}
+                    {/*        </a>*/}
+                    {/*        <a href="https://twitter.com/Sahmetocom">*/}
+                    {/*            <TwitterLogoIcon className="h-6 w-6 text-white" />*/}
+                    {/*        </a>*/}
+                    {/*    </div>*/}
+                    {/*    <a*/}
+                    {/*        href="https://www.instagram.com/sahmeto_com"*/}
+                    {/*        className="bg-instagram flex gap-5 rounded-2xl px-7 py-5 text-base font-semibold text-white"*/}
+                    {/*    >*/}
+                    {/*        <span>اینستاگرام طلانو</span>*/}
+                    {/*        <InstagramLogoIcon className="h-6 w-6 text-white" />*/}
+                    {/*    </a>*/}
+                    {/*</div>*/}
+                    <div className="mx-auto px-24 w-3/4 text-white">
                         {lang === 'fa' && (
                             <p className="max-w-9/10 mx-auto text-justify">
                                 <Link href={`${getLinksLang(lang)}/`}>
-                                    سامانه هوشمند طلانو
+                                    سامانه طلانو
                                 </Link>{' '}
-                                پیام‌های تمام کانال‌های بورسی تلگرام را جمع‌آوری
-                                می‌کند و با استفاده از هوش مصنوعی سیگنال‌های
-                                خرید و فروش هر کانال شناسایی و بازدهی سبد سهامی
-                                معرفی شده توسط هر کانال را محاسبه می‌کند و بر
-                                اساس پارامترهایی مثل بازدهی ماهانه سبد پیشنهادی
-                                کانال، قدرت تحلیلگر و میزان ریسکی که تحلیلگر
-                                برای سیگنال‌های خود ارائه می‌کند، آن‌ها را
-                                رتبه‌بندی می‌کند. سهم‌های معرفی شده توسط طلانو
-                                معمولا در کوتاه مدت سود مناسبی را به سرمایه‌گذار
-                                می‌رساند اما طلانو هیچگونه مسئولیتی درمورد نماد
-                                های معرفی شده ندارد چرا که این سهم‌ها بر اساس
-                                اطلاعات برامده از شبکه اجتماعی معرفی می‌شود و
-                                طلانوهیچ داده‌ای به محتوای شبکه اجتماعی اضافه
-                                یا کم نمی‌کند. طلانو بر اساس مشخصات هر نماد از
-                                قبیل جذابیت خرید و فروش، ریسک سرمایه گذاری و
-                                شاخص ترس و طمع و پارامترهای دیگر مانند: تازگی
-                                سیگنال‌ها و اعتبار کانال‌ها که همگی براساس
-                                محتوای پیام های منتشر شده در کانال‌های بورسی
-                                هستند، بهترین نمادها را در{' '}
-                                <Link href={`${getLinksLang(lang)}/signals`}>
-                                    صفحه سیگنال
-                                </Link>
-                                معرفی می‌کند.
+                                امکان خرید و فروش طلای آب شده 18 عیار رو برای کاربران خود فراهم میکنه. با طلانو میتونید
+                                با حداقل سرمایه 100 هزار تومان پس انداز طلایی برای خودتون بسازید. طلانو خرید طلا رو بدون
+                                 اجرت و با حداقل کارمزد براتون انجام میده. واحد خرید و فروش در طلانو، گرم طلای ۱۸ عیاره.
                             </p>
                         )}
                         <p className="shadow-4xl mt-4 rounded-tl-lg rounded-tr-lg bg-neutral-800 px-8 py-4 text-center text-sm text-black">
@@ -379,7 +360,7 @@ export function Footer({ dict, lang }) {
                             <div className="text-base">۰۲۱-۹۱۳۰۴۹۲۵</div>
                         </a>
                         <a
-                            href="mailto:info@sahmeto.com"
+                            href="mailto:info@talanow.ir"
                             dir="ltr"
                             className="flex items-center gap-2.5"
                         >
@@ -388,12 +369,13 @@ export function Footer({ dict, lang }) {
                                 fill="#FFBE00"
                                 className="text-[rgba(0,_0,_0,_.4)] drop-shadow-[0px_0px_1px_rgba(0,_0,_0,_.1)]"
                             />
-                            <div>info@sahmeto.com</div>
+                            <div>info@talanow.ir</div>
                         </a>
                     </div>
                 </div>
                 <div className="mt-12 px-8">
-                    <div className="grid w-full grid-cols-3 place-items-center gap-3 sm:p-4 md:mx-auto md:max-w-4xl lg:grid-cols-6 lg:p-0">
+                    <div
+                        className="grid w-full grid-cols-3 place-items-center gap-3 sm:p-4 md:mx-auto md:max-w-4xl lg:grid-cols-6 lg:p-0">
                         <div className="h-24 w-24 rounded-lg bg-white p-4 lg:h-28 lg:w-28">
                             <Image
                                 className="h-full w-full object-contain"
@@ -518,49 +500,49 @@ export function Footer({ dict, lang }) {
                 {/*    </div>*/}
                 {/*</div>*/}
                 <div className="mt-3 flex w-full flex-col justify-center gap-2 rounded-t-xl bg-neutral-700 pt-8">
-                    <div className="flex flex-col items-center gap-6">
-                        <a
-                            href="https://www.instagram.com/sahmeto_com"
-                            className="bg-instagram flex gap-5 rounded-2xl px-7 py-5 text-base font-semibold text-white "
-                        >
-                            <span>اینستاگرام طلانو</span>
-                            <InstagramLogoIcon className="h-6 w-6 text-white" />
-                        </a>
-                        <div className="flex items-center gap-10">
-                            <a href="https://t.me/sahmetocom" target="_blank">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="20"
-                                    height="20"
-                                    fill="none"
-                                    viewBox="0 0 625 518"
-                                >
-                                    <path
-                                        fill="#fff"
-                                        fillRule="evenodd"
-                                        d="M43.277 222.931c167.624-73.031 279.4-121.178 335.327-144.44C538.288 12.073 571.469.535 593.096.154c4.756-.083 15.392 1.095 22.281 6.686 5.817 4.72 7.418 11.096 8.184 15.571.765 4.476 1.719 14.67.961 22.636-8.653 90.921-46.096 311.563-65.145 413.396-8.06 43.089-23.931 57.537-39.296 58.951-33.391 3.073-58.747-22.067-91.088-43.267-50.607-33.174-79.197-53.825-128.321-86.197-56.77-37.411-19.968-57.972 12.385-91.576 8.467-8.794 155.59-142.614 158.438-154.753.356-1.518.686-7.178-2.676-10.166-3.362-2.988-8.324-1.967-11.905-1.154-5.076 1.152-85.922 54.588-242.538 160.309-22.948 15.758-43.734 23.435-62.357 23.033-20.53-.443-60.023-11.608-89.381-21.151C26.628 280.766-1.992 274.578.5 254.699c1.298-10.355 15.557-20.944 42.776-31.768z"
-                                        clipRule="evenodd"
-                                    ></path>
-                                </svg>
-                            </a>
-                            <a href="https://www.linkedin.com/company/sahmeto">
-                                <LinkedInLogoIcon className="h-6 w-6 text-white" />
-                            </a>
-                            <a href="https://twitter.com/Sahmetocom">
-                                <TwitterLogoIcon className="h-6 w-6 text-white" />
-                            </a>
-                        </div>
-                    </div>
-                    <div className=" mx-auto my-8 h-[1px] w-[90%] bg-neutral-50" />
+                    {/*<div className="flex flex-col items-center gap-6">*/}
+                    {/*    <a*/}
+                    {/*        href="https://www.instagram.com/sahmeto_com"*/}
+                    {/*        className="bg-instagram flex gap-5 rounded-2xl px-7 py-5 text-base font-semibold text-white "*/}
+                    {/*    >*/}
+                    {/*        <span>اینستاگرام طلانو</span>*/}
+                    {/*        <InstagramLogoIcon className="h-6 w-6 text-white" />*/}
+                    {/*    </a>*/}
+                    {/*    <div className="flex items-center gap-10">*/}
+                    {/*        <a href="https://t.me/sahmetocom" target="_blank">*/}
+                    {/*            <svg*/}
+                    {/*                xmlns="http://www.w3.org/2000/svg"*/}
+                    {/*                width="20"*/}
+                    {/*                height="20"*/}
+                    {/*                fill="none"*/}
+                    {/*                viewBox="0 0 625 518"*/}
+                    {/*            >*/}
+                    {/*                <path*/}
+                    {/*                    fill="#fff"*/}
+                    {/*                    fillRule="evenodd"*/}
+                    {/*                    d="M43.277 222.931c167.624-73.031 279.4-121.178 335.327-144.44C538.288 12.073 571.469.535 593.096.154c4.756-.083 15.392 1.095 22.281 6.686 5.817 4.72 7.418 11.096 8.184 15.571.765 4.476 1.719 14.67.961 22.636-8.653 90.921-46.096 311.563-65.145 413.396-8.06 43.089-23.931 57.537-39.296 58.951-33.391 3.073-58.747-22.067-91.088-43.267-50.607-33.174-79.197-53.825-128.321-86.197-56.77-37.411-19.968-57.972 12.385-91.576 8.467-8.794 155.59-142.614 158.438-154.753.356-1.518.686-7.178-2.676-10.166-3.362-2.988-8.324-1.967-11.905-1.154-5.076 1.152-85.922 54.588-242.538 160.309-22.948 15.758-43.734 23.435-62.357 23.033-20.53-.443-60.023-11.608-89.381-21.151C26.628 280.766-1.992 274.578.5 254.699c1.298-10.355 15.557-20.944 42.776-31.768z"*/}
+                    {/*                    clipRule="evenodd"*/}
+                    {/*                ></path>*/}
+                    {/*            </svg>*/}
+                    {/*        </a>*/}
+                    {/*        <a href="https://www.linkedin.com/company/sahmeto">*/}
+                    {/*            <LinkedInLogoIcon className="h-6 w-6 text-white" />*/}
+                    {/*        </a>*/}
+                    {/*        <a href="https://twitter.com/Sahmetocom">*/}
+                    {/*            <TwitterLogoIcon className="h-6 w-6 text-white" />*/}
+                    {/*        </a>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+                    {/*<div className=" mx-auto my-8 h-[1px] w-[90%] bg-neutral-50" />*/}
                     <div className="flex items-center justify-evenly bg-transparent">
                         <a className="text-base text-white" href="/about">
                             درباره ما
                         </a>
                         <a
                             className="text-base text-white"
-                            href="https://blog.sahmeto.com"
+                            href="/contact"
                         >
-                            بلاگ طلانو
+                            تماس با ما
                         </a>
                         <a className="text-base text-white" href="/privact">
                             قوانین

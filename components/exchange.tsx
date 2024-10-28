@@ -16,6 +16,8 @@ import { LoginModal } from '@/components/login-modal';
 import { usePathname } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { usePrice } from '@/app/[lang]/(user)/(asset)/services/usePrice';
+import { ReferenceDot } from 'recharts';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 
 type Props = {
     dict: any;
@@ -200,22 +202,39 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                     {/*        </div>*/}
                     {/*    </div>*/}
                     {/*</div>*/}
-                    <div className="flex w-full gap-1">
+                    <div className="flex items-center w-full gap-1">
                         <Button
                             onClick={onPaymentClick}
-                            className="w-full basis-2/3 font-semibold"
+                            className="w-full basis-3/4 font-semibold"
                             size="default"
                             variant="success"
                         >
                             خرید سریع
                         </Button>
-                        <Button
-                            className="w-full basis-1/3 font-semibold"
-                            size="default"
-                            variant="destructive"
-                        >
-                            فروش
-                        </Button>
+                        <div className="w-full basis-1/4">
+                            <Dialog>
+                                <DialogTrigger className="w-full">
+                                    <Button
+                                        className="font-semibold w-full"
+                                        size="default"
+                                        variant="destructive"
+                                    >
+                                        فروش
+                                    </Button>
+                                </DialogTrigger>
+                                <DialogContent className="max-w-xl text-center">
+                                    برای برداشت به پشتیبانی تلگرام
+                                    طلانو با آیدی
+                                    <a
+                                        href="https://t.me/SahmetoSup"
+                                        className="block font-black"
+                                    >
+                                        https://t.me/SahmetoSup
+                                    </a>
+                                    پیام دهید.
+                                </DialogContent>
+                            </Dialog>
+                        </div>
                     </div>
                 </div>
             </div>

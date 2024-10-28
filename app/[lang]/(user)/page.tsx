@@ -83,8 +83,7 @@ export default async function HomePage({ params: { lang } }) {
                             </div>
                             <h3 className="text-xl font-bold">بدون اجرت</h3>
                             <p className="text-base">
-                                طلایی که از طلانو می‌خرید، دارای کارمزدی شفاف و
-                                بدون اجرت، مالیات و کمیسیون فروشنده است.
+                                خرید از طلانو، دارای کارمزد شفاف و بدون اجرت است.
                             </p>
                         </div>
                         <div className="flex basis-1/3 flex-col items-start justify-start gap-4 rounded-lg bg-neutral-700 px-5 py-4 text-white md:order-3 md:basis-full lg:order-none lg:basis-1/3">
@@ -207,8 +206,7 @@ export default async function HomePage({ params: { lang } }) {
                                 پس‌انداز طلانو ‌گرمی طلا
                             </h3>
                             <p className="text-base">
-                                می‌تونی از یک طلانو‌گرم تا طلامیون‌ها طلانو‌گرم
-                                طلای ۱۸ عیار پس‌انداز و سرمایه‌گذاری کنی.
+                                در طلانو میتونی از صد هزار تومن  طلا تا هر چقدر میخوای طلا بخری و پس انداز کنی.
                             </p>
                         </div>
                         <div className="flex basis-1/3 flex-col items-start justify-start gap-4 rounded-lg bg-white px-5 py-4 md:grow">
@@ -234,8 +232,7 @@ export default async function HomePage({ params: { lang } }) {
                                 امن و دارای مجوز است
                             </h3>
                             <p className="text-base">
-                                بستر امن طلانو، تمامی مجوزهای خرید و فروش طلا آب
-                                شده رو داره؛ با خیال راحت سرمایه‌گذاری کن.
+                                طلانو تمامی مجوزهای خرید و فروش طلای آب شده رو داره. پس میتونی با خیال راحت و با امنیت بالا خرید و فروش کنی.
                             </p>
                         </div>
                     </div>
@@ -273,7 +270,7 @@ export default async function HomePage({ params: { lang } }) {
                         <AccordionContent className="p-4 pt-0">
                             <p>
                                 کارمزد خرید و فروش طلای آب شده در طلانو نیم
-                                درصده (۰.۵٪). این کارمزد، در هنگام خرید طلا، به
+                                درصده (۰.۶٪). این کارمزد، در هنگام خرید طلا، به
                                 مبلغ خرید شما اضافه می‌شه و در هنگام فروش طلا،
                                 از میزان حساب طلای طلانوی شما، برداشت میشه.
                             </p>

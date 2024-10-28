@@ -5,7 +5,7 @@ export function useExchangePrice() {
         {
             url: '/v1/wallet/exchange/get_best_prices',
         },
-        { refreshInterval: 1000 }
+        { refreshInterval: 60000}
     );
     return {
         price: data,

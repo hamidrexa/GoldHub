@@ -40,13 +40,10 @@ export default function Privacy() {
                     طلانو چطور کار میکند؟
                 </h2>
                 <p className="text-lg font-normal">
-                    طلانو اطلاعات منتشر شده در شبکه‌های مجازی را جمع‌آوری و
-                    تحلیل می‌کند. با کمک طلانو می‌توانید توجه تحلیل‌گران به
-                    سهم‌های مختلف را ارزیابی نمایید و به واسطه این تحلیل خرید و
-                    فروش موفق‌تری را تجربه نمایید. فعالیت سایت طلانو در چارچوب
-                    قوانین جمهوری اسلامی است و انجام هر گونه فعالیتی که بر اساس
-                    فهرست کارگروه تعیین مصادیق محتوای مجرمانه تخلف محسوب شود،
-                    ممنوع است.
+                    سامانه طلانو امکان خرید و فروش طلای آب شده 18 عیار رو برای
+                    کاربران خود فراهم میکنه. با طلانو میتونید با حداقل سرمایه
+                    100 هزار تومان پس انداز طلایی برای خودتون بسازید. طلانو خرید
+                    طلا رو بدون اجرت و با حداقل کارمزد براتون انجام میده
                 </p>
                 <p className="text-center text-lg font-semibold">
                     استفاده از خدمات طلانو به معنی خواندن ، فهمیدن و پذیرش کلیه
@@ -209,54 +206,7 @@ export default function Privacy() {
                         به هر دلیلی با شرکت تماس داشته باشید لطفاً با قسمت
                         پشتیبانی شرکت در تماس باشید.
                     </li>
-                    <li className="marker:text-white">
-                        <h2 className="text-2xl font-semibold text-neutral-800">
-                            خط‌ مشی رازداری افزونه طلانو:
-                        </h2>
-                    </li>
-                    <li>
-                        افزونه‌ی طلانو جهت استفاده در هر مرورگر تنها از طریق
-                        فروشگاه‌های معتبر متعلق به آن مرورگر ارائه خواهند شد.
-                    </li>
-                    <li>
-                        جمع اوری داده از مشتری: افزونه طلانو آدرس سایت هایی که
-                        کاربران در مرورگر وارد می کنند را بررسی می کند و داده ی
-                        دیگری از کاربر جمع آوری نمی کند.
-                    </li>
-                    <li>دسترسی‌های مورد نیاز افزونه به شرح زیر است:</li>
-                    <ul className="mt-3 list-disc px-20 marker:text-black">
-                        <li>
-                            “activeTab”, “tabs”: این مجوز به ‌منظور دسترسی به
-                            آدرس وب‌سایت‌ استفاده می شود تا اگر آدرس وب سایتی که
-                            در لیست وب سایت های مورد پشتیبانی افزونه باشد
-                            فراخوانی شود، افزونه به درستی اجرا شود و اطلاعات
-                            تکمیلی را در اختیار کاربر قرار دهد.
-                        </li>
-                    </ul>
                 </ul>
-            </div>
-            <div className="mt-6 flex flex-col gap-3" dir="ltr">
-                <b className="text-2xl">Privacy Policy</b>
-                <p className="text-lg font-normal">
-                    Privacy of users is a very important and serious concern. In
-                    Sahmeto, policies have been adopted so that users privacy
-                    will not be endangered. We are committed to preserve and
-                    respect your privacy.
-                </p>
-                <b className="text-2xl">Customer Data Collection:</b>
-                <p className="text-lg font-normal">
-                    The browser extension checks the URLs of sites that users
-                    enter in the browser and does not collect any other data
-                    from the user.
-                </p>
-                <b className="text-2xl">
-                    The permissions required by the extension are as follows:
-                </b>
-                <p className="text-lg font-normal">
-                    ”activeTab”, “tabs”: This permission is used to get the web
-                    page URL on supported websites for running extension
-                    correctly.
-                </p>
             </div>
         </div>
     );
