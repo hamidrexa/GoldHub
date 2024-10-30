@@ -17,7 +17,7 @@ import { usePathname } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { usePrice } from '@/app/[lang]/(user)/(asset)/services/usePrice';
 import { ReferenceDot } from 'recharts';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 type Props = {
     dict: any;
@@ -60,7 +60,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
     const handleGeramChange = (event) =>{
         const grams = event.target.value;
         setGeramEq(grams);
-        if (price?.buy_price_irt)  setRialEq((grams * price.buy_price_irt * 10).toString());;
+        if (price?.buy_price_irt) setRialEq((grams * price.buy_price_irt * 10).toString());;
     }
 
     const handleRialChange = (event) =>{
@@ -92,7 +92,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                     ) : (
                         <Input
                             onChange={handleRialChange}
-                            value={rialEq}
+                            value={currency(parseInt(rialEq),"tse","fa")}
                             className="w-full"
                             placeholder="مقدار ریالی خرید/فروش"
                         />
@@ -213,18 +213,14 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                         </Button>
                         <div className="w-full basis-1/4">
                             <Dialog>
-                                <DialogTrigger className="w-full">
-                                    <Button
-                                        className="font-semibold w-full"
-                                        size="default"
-                                        variant="destructive"
-                                    >
-                                        فروش
-                                    </Button>
+                                <DialogTrigger
+                                    className="font-semibold w-full text-white bg-red-600 p-2 rounded"
+                                >
+                                    فروش
                                 </DialogTrigger>
                                 <DialogContent className="max-w-xl text-center">
-                                    برای برداشت به پشتیبانی تلگرام
-                                    طلانو با آیدی
+                                    <DialogTitle/>
+                                    برای برداشت به پشتیبانی تلگرام طلانو با آیدی
                                     <a
                                         href="https://t.me/SahmetoSup"
                                         className="block font-black"
@@ -236,6 +232,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                             </Dialog>
                         </div>
                     </div>
+
                 </div>
             </div>
             <LoginModal

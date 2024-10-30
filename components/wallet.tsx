@@ -17,7 +17,7 @@ import { useWalletInfo } from '@/app/[lang]/(user)/wallet/services/useWalletInfo
 import Spinner from '@/components/spinner';
 import { doExchange } from '@/app/[lang]/(user)/wallet/services/doExchange';
 import { toast } from 'sonner';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { LoginModal } from '@/components/login-modal';
 import { usePathname } from 'next/navigation';
 import { useGlobalContext } from '@/contexts/store';
@@ -94,15 +94,11 @@ export default function Wallet({ dict, lang }: Props) {
                                 <TableCell>
                                     <div className="flex justify-end gap-2">
                                         <Dialog>
-                                            <DialogTrigger>
-                                                <Button
-                                                    className="min-w-20"
-                                                    variant="destructive"
-                                                >
-                                                    برداشت
-                                                </Button>
+                                            <DialogTrigger className="h-10 px-5 text-sm rounded-md font-medium min-w-20 bg-red-500 text-white hover:bg-red-600">
+                                                برداشت
                                             </DialogTrigger>
                                             <DialogContent className="max-w-xl text-center">
+                                                <DialogTitle/>
                                                 برای برداشت به پشتیبانی تلگرام
                                                 طلانو با آیدی
                                                 <a

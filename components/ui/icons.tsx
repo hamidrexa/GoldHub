@@ -10,7 +10,7 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
 export const Icons = {
     logo: (props: IconProps) => (
         <svg width="36" height="36" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_1_5)">
+            <g clipPath="url(#clip0_1_5)">
                 <path d="M45.4024 0H0V44.9216H45.4024V0Z" fill="#FFBE00" />
                 <path d="M15.6977 10.4651H30.3488V16.7442H15.6977V10.4651Z" fill="#FFF9F9" />
                 <path d="M15.6977 10.4651H30.3488V16.7442H15.6977V10.4651Z" fill="#FFF9F9" />

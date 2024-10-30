@@ -56,7 +56,7 @@ const nunito = localFont({
 });
 
 export const metadata: Metadata = {
-    metadataBase: new URL('https://sahmeto.com'),
+    metadataBase: new URL('https://talanow.ir'),
     ...(process.env.NEXT_PUBLIC_ENVIRONMENT === 'BETA' &&
         process.env.NODE_ENV === 'production' && {
             manifest: '/manifest.json',
@@ -97,13 +97,14 @@ export const metadata: Metadata = {
         description:
             'تحلیل سیگنال های خرید و فروش ارز دیجیتال و سهام با استفاده از هوش مصنوعی، معرفی بهترین های بازار بورس و ارز دیجیتال برای سرمایه گذاری، اطلاع رسانی لحظه ای سیگنال های خرید بیت کوین و سایر ارزهای دیجیتال',
         type: 'website',
-        images: ['https://sahmeto.com/img/logo.png'],
+        images: ['https://talanow.ir/img/talanow.png'],
     },
     twitter: {
+        card : 'summary',
         title: 'طلانو | بهترین های بازار ارز دیجیتال و بورس در یک نگاه',
         description:
             'تحلیل سیگنال های خرید و فروش ارز دیجیتال و سهام با استفاده از هوش مصنوعی، معرفی بهترین های بازار بورس و ارز دیجیتال برای سرمایه گذاری، اطلاع رسانی لحظه ای سیگنال های خرید بیت کوین و سایر ارزهای دیجیتال',
-        images: ['https://sahmeto.com/img/logo.png'],
+        images: ['https://talanow.ir/img/talanow.png'],
     },
     description:
         'تحلیل سیگنال های خرید و فروش ارز دیجیتال و سهام با استفاده از هوش مصنوعی، معرفی بهترین های بازار بورس و ارز دیجیتال برای سرمایه گذاری، اطلاع رسانی لحظه ای سیگنال های خرید بیت کوین و سایر ارزهای دیجیتال',
@@ -169,7 +170,7 @@ export default async function RootLayout({
                             '@type': 'Organization',
                             '@id': `${websiteUrl}#identity`,
                             alternateName: 'سهم تو',
-                            email: 'info@sahmeto.com',
+                            email: 'info@talanow.ir',
                             image: `${websiteUrl}/img/logo.png`,
                             description:
                                 'بهترین های بازار ارزدیجیتال و بورس در یک نگاه',

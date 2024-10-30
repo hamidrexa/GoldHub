@@ -103,102 +103,102 @@ export default async function HomePage({ params: { lang } }) {
                                         d="M11.12 8.58C16.1568 8.58 20.24 7.10702 20.24 5.29C20.24 3.47298 16.1568 2 11.12 2C6.08316 2 2 3.47298 2 5.29C2 7.10702 6.08316 8.58 11.12 8.58Z"
                                         fill="#FFBD01"
                                         stroke="#051061"
-                                        stroke-width="2.15"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="2.15"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                     ></path>
                                     <path
                                         d="M20.2498 24.86C20.2498 26.68 16.1698 28.15 11.1298 28.15C6.08977 28.15 2.00977 26.68 2.00977 24.86"
                                         stroke="#051061"
-                                        stroke-width="2.15"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="2.15"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                     ></path>
                                     <path
                                         d="M20.2498 18.34C20.2498 20.16 16.1698 21.63 11.1298 21.63C6.08977 21.63 2.00977 20.16 2.00977 18.34"
                                         stroke="#051061"
-                                        stroke-width="2.15"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="2.15"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                     ></path>
                                     <path
                                         d="M2 11.81C2 13.63 6.08 15.1 11.12 15.1C16.16 15.1 20.24 13.63 20.24 11.81"
                                         stroke="#051061"
-                                        stroke-width="2.15"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="2.15"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                     ></path>
                                     <path
                                         d="M20.2498 5.28998C20.2498 7.10998 16.1698 8.57998 11.1298 8.57998C6.08977 8.57998 2.00977 7.10998 2.00977 5.28998"
                                         stroke="#051061"
-                                        stroke-width="2.15"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="2.15"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                     ></path>
                                     <path
                                         d="M20.2498 31.45C20.2498 33.27 16.1698 34.74 11.1298 34.74C6.08977 34.74 2.00977 33.27 2.00977 31.45"
                                         stroke="#051061"
-                                        stroke-width="2.15"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="2.15"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                     ></path>
                                     <path
                                         d="M20.25 5.28998V31.45"
                                         stroke="#051061"
-                                        stroke-width="2.15"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="2.15"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                     ></path>
                                     <path
                                         d="M2 5.28998V31.45"
                                         stroke="#051061"
-                                        stroke-width="2.15"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="2.15"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                     ></path>
                                     <path
                                         d="M11.9805 33.1499V18.6599C11.9805 16.6599 16.4705 15.0399 22.0105 15.0399C27.5505 15.0399 32.0405 16.6599 32.0405 18.6599V33.1499C32.0405 35.1499 27.5505 36.7699 22.0105 36.7699C16.4705 36.7699 11.9805 35.1499 11.9805 33.1499Z"
                                         fill="#F9F9FC"
                                         stroke="#F9F9FC"
-                                        stroke-width="2.96"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="2.96"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                     ></path>
                                     <path
                                         d="M22.4305 22.8699C27.4674 22.8699 31.5505 21.3969 31.5505 19.5799C31.5505 17.7629 27.4674 16.2899 22.4305 16.2899C17.3937 16.2899 13.3105 17.7629 13.3105 19.5799C13.3105 21.3969 17.3937 22.8699 22.4305 22.8699Z"
                                         fill="#FFBD01"
                                         stroke="#051061"
-                                        stroke-width="2.15"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="2.15"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                     ></path>
                                     <path
                                         d="M31.5505 26.1699C31.5505 27.9899 27.4705 29.4599 22.4305 29.4599C17.3905 29.4599 13.3105 27.9899 13.3105 26.1699"
                                         stroke="#051061"
-                                        stroke-width="2.15"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="2.15"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                     ></path>
                                     <path
                                         d="M31.5505 32.7599C31.5505 34.5799 27.4705 36.0499 22.4305 36.0499C17.3905 36.0499 13.3105 34.5799 13.3105 32.7599"
                                         stroke="#051061"
-                                        stroke-width="2.15"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="2.15"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                     ></path>
                                     <path
                                         d="M31.5508 19.5799V32.7599"
                                         stroke="#051061"
-                                        stroke-width="2.15"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="2.15"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                     ></path>
                                     <path
                                         d="M13.3105 19.5799V32.7599"
                                         stroke="#051061"
-                                        stroke-width="2.15"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="2.15"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                     ></path>
                                 </svg>
                             </div>
