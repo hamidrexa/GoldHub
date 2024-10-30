@@ -15,13 +15,27 @@ export const Icons = {
                 <path d="M15.6977 10.4651H30.3488V16.7442H15.6977V10.4651Z" fill="#FFF9F9" />
                 <path d="M15.6977 10.4651H30.3488V16.7442H15.6977V10.4651Z" fill="#FFF9F9" />
                 <rect x="15.6977" y="34.5349" width="17.7907" height="6.27907" transform="rotate(-90 15.6977 34.5349)"
-                      fill="#FFF9F9" />
+                    fill="#FFF9F9" />
             </g>
             <defs>
                 <clipPath id="clip0_1_5">
                     <rect width="45" height="45" fill="white" />
                 </clipPath>
             </defs>
+        </svg>
+    ),
+    question: (props: IconProps) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" {...props}>
+            <circle cx="12" cy="12" r="10" stroke="#1C274C" stroke-width="1.5" />
+            <path d="M10.125 8.875C10.125 7.83947 10.9645 7 12 7C13.0355 7 13.875 7.83947 13.875 8.875C13.875 9.56245 13.505 10.1635 12.9534 10.4899C12.478 10.7711 12 11.1977 12 11.75V13" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+            <circle cx="12" cy="16" r="1" fill="#1C274C" />
+        </svg>
+    ),
+    info: (props: IconProps) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" {...props}>
+            <path d="M12 11.5V16.5" stroke={props.stroke} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 7.51L12.01 7.49889" stroke={props.stroke} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke={props.stroke} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
     ),
     google: (props: IconProps) => (

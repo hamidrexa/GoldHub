@@ -791,5 +791,13 @@
     "notifications": "هشدار‌ها",
     "feeds": "دنبال شده‌ها"
   },
-  "aboutUsTitle": "درباره ما | طلانو"
+  "aboutUsTitle": "درباره ما | طلانو",
+  "totalInventory": "کل موجودی",
+  "toman": "تومان",
+  "countingUnit": {
+    "thousand": "هزار",
+    "hundred": "صد",
+    "million": "میلیون"
+  },
+  "yourInventory":"موجودی شما"
 }
