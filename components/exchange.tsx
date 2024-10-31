@@ -90,12 +90,17 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                     {priceIsLoading ? (
                         <Spinner />
                     ) : (
-                        <Input
-                            onChange={handleRialChange}
-                            value={currency(parseInt(rialEq),"tse","fa")}
-                            className="w-full"
-                            placeholder="مقدار ریالی خرید/فروش"
-                        />
+                        <>
+                            <Input
+                                onChange={handleRialChange}
+                                value={rialEq}
+                                className="w-full"
+                                placeholder="مقدار ریالی خرید/فروش"
+                            />
+                            {/*<div className="text-lg font-semibold mt-2">*/}
+                            {/*    {currency(parseInt(rialEq),"tse","fa")}*/}
+                            {/*</div>*/}
+                        </>
                     )}
                 </div>
                 <div className="flex items-center justify-center gap-3">
