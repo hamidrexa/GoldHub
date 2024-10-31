@@ -544,7 +544,7 @@ export function Footer({ dict, lang }) {
                         >
                             تماس با ما
                         </a>
-                        <a className="text-base text-white" href="/privact">
+                        <a className="text-base text-white" href="/privacy">
                             قوانین
                         </a>
                     </div>
