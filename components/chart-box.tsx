@@ -39,7 +39,7 @@ export default function ChartBox({
     ids,
     headerTitle,
     headerIcon,
-    yourInventory,
+    yourInventory = 0,
     measurementTitle,
     price,
     percentage

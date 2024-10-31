@@ -85,7 +85,7 @@ export default function ExchangeV2({
                             slidesPerView={3.7}
                         >
                                 {ids?.map((id) => {
-                                    return < SwiperSlide >
+                                    return <SwiperSlide>
                                         <div className="w-full">
                                             <RadioGroupItem
                                                 value={id.value}
