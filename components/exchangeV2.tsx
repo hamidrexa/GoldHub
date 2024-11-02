@@ -79,10 +79,11 @@ export default function ExchangeV2({
                             value={equivalent}
                             onValueChange={setEquivalent}
                             dir={getDirection(lang)}
-                            className="flex w-full items-center md:max-w-sm"
+                            className="flex w-full items-center"
                         > <Swiper
+                        className='md:max-w-lg'
                             spaceBetween={10}
-                            slidesPerView={3.7}
+                            slidesPerView={3.5}
                         >
                                 {ids?.map((id) => {
                                     return < SwiperSlide >

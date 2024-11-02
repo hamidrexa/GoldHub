@@ -52,21 +52,7 @@ export default function Bargain({ dict, lang, className }: bargainingProps) {
                     { key: '2000', value: '2000000', title: `200 ${dict.countingUnit.million} ${dict.toman}` },
                 ]}
             />
-              <ChartBox
-                headerTitle='قیمت لحظه ای طلا'
-                price={40900586}
-                percentage={1.9}
-                measurementTitle='هر گرم'
-                className="w-full"
-                dict={dict}
-                lang={lang}
-                ids={[
-                    { key: 'all', value: 'all', title: dict.totalInventory },
-                    { key: '200', value: '200000', title: `200 ${dict.countingUnit.thousand} ${dict.toman}` },
-                    { key: '500', value: '500000', title: `200 ${dict.countingUnit.thousand} ${dict.toman}` },
-                    { key: '2000', value: '2000000', title: `200 ${dict.countingUnit.million} ${dict.toman}` },
-                ]}
-            />
+              
         </div>
     );
 }

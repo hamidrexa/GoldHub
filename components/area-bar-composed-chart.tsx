@@ -34,6 +34,7 @@ export function AreaBarComposedChart({
     dot,
     isAnimationActive,
     market,
+    barChart
 }: {
     dir: string;
     xDataKey: string;
@@ -49,6 +50,7 @@ export function AreaBarComposedChart({
     dot?: boolean;
     isAnimationActive?: boolean;
     market: string;
+    barChart: boolean
 }) {
     const highlightPoint = data.filter((item) => item.viewPoint);
 
@@ -77,23 +79,23 @@ export function AreaBarComposedChart({
                         )}
                         {(entry.dataKey === 'buy_signals_count' ||
                             entry.dataKey === 'sell_signals_count') && (
-                            <svg
-                                width="9"
-                                height="30"
-                                viewBox="0 0 9 30"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M4.67188 29.376C2.46274 29.376 0.671875 27.5851 0.671875 25.376L0.671875 4.17236C0.671875 1.96322 2.46274 0.172363 4.67188 0.172363C6.88101 0.172363 8.67188 1.96322 8.67188 4.17236L8.67188 25.376C8.67188 27.5851 6.88101 29.376 4.67188 29.376Z"
-                                    fill={
-                                        entry.dataKey === 'buy_signals_count'
-                                            ? '#10EDC5'
-                                            : '#DB2777'
-                                    }
-                                />
-                            </svg>
-                        )}
+                                <svg
+                                    width="9"
+                                    height="30"
+                                    viewBox="0 0 9 30"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M4.67188 29.376C2.46274 29.376 0.671875 27.5851 0.671875 25.376L0.671875 4.17236C0.671875 1.96322 2.46274 0.172363 4.67188 0.172363C6.88101 0.172363 8.67188 1.96322 8.67188 4.17236L8.67188 25.376C8.67188 27.5851 6.88101 29.376 4.67188 29.376Z"
+                                        fill={
+                                            entry.dataKey === 'buy_signals_count'
+                                                ? '#10EDC5'
+                                                : '#DB2777'
+                                        }
+                                    />
+                                </svg>
+                            )}
                     </Fragment>
                 ))}
             </div>
@@ -200,7 +202,7 @@ export function AreaBarComposedChart({
                     <Legend
                         content={CustomizedLegend}
                         formatter={(value) => (
-                            <span className="text-sm font-medium not-italic text-black">
+                            <span className="text-sm font-medium not-italic text-black ">
                                 {value}
                             </span>
                         )}
@@ -243,7 +245,7 @@ export function AreaBarComposedChart({
                             textAnchor={dir === 'rtl' ? 'end' : 'start'}
                         />
                     )}
-                    <Bar
+                    {barChart && <Bar
                         dataKey={barDataKey}
                         fill={barColor}
                         name={barName}
@@ -251,7 +253,7 @@ export function AreaBarComposedChart({
                         yAxisId="left"
                         barSize={11}
                         isAnimationActive={isAnimationActive}
-                    />
+                    />}
                     {highlightPoint.length &&
                         highlightPoint.map((item, index) => (
                             <ReferenceDot
