@@ -1,0 +1,313 @@
+'use client';
+
+import { cn, getDirection } from '@/libs/utils';
+import React, { useState } from 'react';
+import { Label } from '@/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { AreaBarComposedChart } from '@/components/area-bar-composed-chart';
+import dayjs from 'dayjs';
+import { useSignalsSummery } from '@/services/useSignalsSummery';
+import { useGlobalContext } from '@/contexts/store';
+import { usePathname } from 'next/navigation';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+
+export function PriceSignalChart({ dict, lang, asset, market }) {
+    const dir = getDirection(lang);
+    const { user } = useGlobalContext();
+    const [durationFilter, setDurationFilter] = useState('12,month');
+    const [signalTypeFilter, setSignalTypeFilter] = useState('buy');
+    const [duration, durationScale] = durationFilter.split(',');
+    const { signalsSummery,isLoading, error } = useSignalsSummery({
+        duration,
+        duration_scale: durationScale,
+        asset_id: asset.asset_id,
+    });
+
+    const percentage = 1.6
+    const items = [
+        { title: 'روز', value: 'day' },
+        { title: 'ماه', value: '"30,day"' },
+        { title: 'سه ماه', value: '90,day' },
+        { title: 'شش ماه', value: '25,week' },
+        { title: 'یکساله', value: '12,month' },
+
+    ]
+
+    return (
+        <div className='flex w-full flex-col p-[12px]'>
+            <div className="flex w-full flex-row justify-between gap-[12px]">
+                <div className='flex flex-row gap-[5px] items-center justify-center'>
+                    <Label
+                        className="flex text-gray-900"
+                    >
+                        سود ماه اخیر:
+                    </Label>
+                    <Label className="flex text-[green] font-black">
+                        %
+                    </Label>
+                    <Label
+                        className="flex text-[green] text-lg"
+                    >
+                        {percentage}  {percentage >= 0 ? '+' : '-'}
+                    </Label>
+                </div>
+                <div className='flex min-w-20'>
+                    <Select
+                        defaultValue={durationFilter}
+                        onValueChange={setDurationFilter}
+                        dir={getDirection(lang)}
+                    >
+                        <SelectTrigger>
+                            <SelectValue placeholder="انتخاب بازه" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectGroup>
+                                {items.map((item, index) => (
+                                    <SelectItem
+                                        key={index}
+                                        value={item.value}
+                                    >
+                                        {item.title}
+                                    </SelectItem>
+                                ))}
+                            </SelectGroup>
+                        </SelectContent>
+                    </Select>
+                </div>
+            </div>
+            <div
+                className={cn('-mx-2.5 md:-mx-0', {
+                    'blur-md': isLoading,
+                })}
+            >
+                <AreaBarComposedChart
+                    dot
+                    barChart={false}
+                    lang={lang}
+                    market={market}
+                    dir={dir}
+                    xDataKey="date"
+                    yDataKey="return_price"
+                    name={`${dict.price}`}
+                    color={signalTypeFilter === 'buy' ? '#10EDC5' : '#DB2777'}
+                    barDataKey={
+                        // signalTypeFilter === 'buy'
+                        // ? 
+                        'buy_signals_count'
+                        // : 'sell_signals_count'
+                    }
+                    barColor={
+                        signalTypeFilter === 'buy' ? '#10EDC5' : '#DB2777'
+                    }
+                    barName={
+                        signalTypeFilter === 'buy'
+                            ? dict.buySignals
+                            : dict.sellSignals
+                    }
+                    interval="preserveEnd"
+                    isAnimationActive={!isLoading}
+                    data={
+                        isLoading
+                            ? [
+                                {
+                                    date: '2023-08-25',
+                                    buy_signals_count: 244,
+                                    sell_signals_count: 204,
+                                    neutral_signals_count: 19,
+                                    return_price: 25963.804954529245,
+                                },
+                                {
+                                    date: '2023-09-01',
+                                    buy_signals_count: 243,
+                                    sell_signals_count: 161,
+                                    neutral_signals_count: 17,
+                                    return_price: 25620.79046354503,
+                                },
+                                {
+                                    date: '2023-09-08',
+                                    buy_signals_count: 198,
+                                    sell_signals_count: 158,
+                                    neutral_signals_count: 12,
+                                    return_price: 25877.797012952156,
+                                },
+                                {
+                                    date: '2023-09-15',
+                                    buy_signals_count: 225,
+                                    sell_signals_count: 172,
+                                    neutral_signals_count: 18,
+                                    return_price: 26412.655517371426,
+                                },
+                                {
+                                    date: '2023-09-22',
+                                    buy_signals_count: 184,
+                                    sell_signals_count: 139,
+                                    neutral_signals_count: 18,
+                                    return_price: 26537.82083309501,
+                                },
+                                {
+                                    date: '2023-09-29',
+                                    buy_signals_count: 171,
+                                    sell_signals_count: 175,
+                                    neutral_signals_count: 7,
+                                    return_price: 26928.47418718301,
+                                },
+                                {
+                                    date: '2023-10-06',
+                                    buy_signals_count: 278,
+                                    sell_signals_count: 173,
+                                    neutral_signals_count: 13,
+                                    return_price: 27975.150590423098,
+                                },
+                                {
+                                    date: '2023-10-13',
+                                    buy_signals_count: 222,
+                                    sell_signals_count: 214,
+                                    neutral_signals_count: 11,
+                                    return_price: 26769.852774850617,
+                                },
+                                {
+                                    date: '2023-10-20',
+                                    buy_signals_count: 278,
+                                    sell_signals_count: 203,
+                                    neutral_signals_count: 20,
+                                    return_price: 29556.928834950508,
+                                },
+                                {
+                                    date: '2023-10-27',
+                                    buy_signals_count: 398,
+                                    sell_signals_count: 297,
+                                    neutral_signals_count: 20,
+                                    return_price: 33673.01384438189,
+                                },
+                                {
+                                    date: '2023-11-03',
+                                    buy_signals_count: 338,
+                                    sell_signals_count: 175,
+                                    neutral_signals_count: 10,
+                                    return_price: 34585.470175809365,
+                                },
+                                {
+                                    date: '2023-11-10',
+                                    buy_signals_count: 303,
+                                    sell_signals_count: 211,
+                                    neutral_signals_count: 7,
+                                    return_price: 37246.84750569102,
+                                },
+                                {
+                                    date: '2023-11-17',
+                                    buy_signals_count: 281,
+                                    sell_signals_count: 202,
+                                    neutral_signals_count: 16,
+                                    return_price: 36325.581244256515,
+                                },
+                                {
+                                    date: '2023-11-24',
+                                    buy_signals_count: 295,
+                                    sell_signals_count: 227,
+                                    neutral_signals_count: 17,
+                                    return_price: 37787.603687667804,
+                                },
+                                {
+                                    date: '2023-12-01',
+                                    buy_signals_count: 266,
+                                    sell_signals_count: 232,
+                                    neutral_signals_count: 17,
+                                    return_price: 38784.25383466603,
+                                },
+                                {
+                                    date: '2023-12-08',
+                                    buy_signals_count: 552,
+                                    sell_signals_count: 320,
+                                    neutral_signals_count: 28,
+                                    return_price: 43963.713808031745,
+                                },
+                                {
+                                    date: '2023-12-15',
+                                    buy_signals_count: 398,
+                                    sell_signals_count: 270,
+                                    neutral_signals_count: 12,
+                                    return_price: 43093.143661035,
+                                },
+                                {
+                                    date: '2023-12-22',
+                                    buy_signals_count: 286,
+                                    sell_signals_count: 228,
+                                    neutral_signals_count: 6,
+                                    return_price: 43560.083618675606,
+                                },
+                                {
+                                    date: '2023-12-29',
+                                    buy_signals_count: 310,
+                                    sell_signals_count: 205,
+                                    neutral_signals_count: 17,
+                                    return_price: 42011.40037528156,
+                                },
+                                {
+                                    date: '2024-01-05',
+                                    buy_signals_count: 375,
+                                    sell_signals_count: 263,
+                                    neutral_signals_count: 21,
+                                    return_price: 44104.58951927037,
+                                },
+                                {
+                                    date: '2024-01-12',
+                                    buy_signals_count: 417,
+                                    sell_signals_count: 301,
+                                    neutral_signals_count: 55,
+                                    return_price: 42778.49582759031,
+                                },
+                                {
+                                    date: '2024-01-19',
+                                    buy_signals_count: 342,
+                                    sell_signals_count: 329,
+                                    neutral_signals_count: 22,
+                                    return_price: 41581.90279608383,
+                                },
+                                {
+                                    date: '2024-01-26',
+                                    buy_signals_count: 315,
+                                    sell_signals_count: 251,
+                                    neutral_signals_count: 19,
+                                    return_price: 41816.87284400344,
+                                },
+                                {
+                                    date: '2024-02-02',
+                                    buy_signals_count: 259,
+                                    sell_signals_count: 211,
+                                    neutral_signals_count: 4,
+                                    return_price: 43185.85943223562,
+                                },
+                                {
+                                    date: '2024-02-04',
+                                    buy_signals_count: 35,
+                                    sell_signals_count: 21,
+                                    neutral_signals_count: 0,
+                                    return_price: 42875.28304930308,
+                                },
+                            ]
+                            : signalsSummery.map((signal, index) => ({
+                                ...signal,
+                                date: dayjs(signal.date)
+                                    .calendar(
+                                        lang === 'fa' ? 'jalali' : 'gregory'
+                                    )
+                                    .locale(lang)
+                                    .format(
+                                        durationFilter.split(',')[1] ===
+                                            'day' ||
+                                            durationFilter.split(',')[1] ===
+                                            'week'
+                                            ? lang === 'fa'
+                                                ? 'DD MMMM'
+                                                : 'DD MMM'
+                                            : 'MMMM'
+                                    ),
+                                viewPoint:
+                                    index === signalsSummery.length - 1,
+                            }))
+                    }
+                />
+            </div>
+        </div>
+    );
+}

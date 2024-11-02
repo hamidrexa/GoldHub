@@ -10,6 +10,8 @@ import {
 import React from 'react';
 import Bargain from '@/app/[lang]/(user)/(asset)/components/bargain';
 import Wallet from '@/components/wallet';
+import ChartBox from '@/components/chart-box';
+import { FinantialCard } from '@/components/finantialCard';
 
 export const metadata: Metadata = {
     title: 'طلانو | خرید و فروش طلای آب شده آنلاین بدون اجرت',
@@ -38,6 +40,30 @@ export default async function HomePage({ params: { lang } }) {
                         دارایی های شما
                     </h2>
                     <Wallet dict={dict} lang={lang} />
+                </div>
+                <div className="mx-auto w-full max-w-7xl">
+                    <ChartBox
+                        headerTitle='قیمت لحظه ای طلا'
+                        price={40900586}
+                        percentage={1.9}
+                        measurementTitle='هر گرم'
+                        className="w-full"
+                        id='IRO1GARN0001'
+                        market="tse"
+                        dict={dict}
+                        lang={lang}
+                    />
+                </div>
+            </section>
+            <section className="w-full px-4 py-12 text-neutral-800 md:py-32">
+                <div className='max-w-lg'>
+                    <FinantialCard
+                        dict={dict}
+                        lang={lang}
+                        headerTitle='دارایی طلا'
+                        value='141 گرم'
+                        equivalent={255488412214}
+                    />
                 </div>
             </section>
             <section className="w-full bg-neutral-700/10 px-4 py-12 md:py-32">
