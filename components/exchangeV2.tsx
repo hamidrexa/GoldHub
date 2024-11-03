@@ -4,12 +4,12 @@ import { Locale } from '@/i18n-config';
 import { cn, currency, getDirection } from '@/libs/utils';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Icons } from '@/components/ui/icons';
 import { Input } from '@/components/ui/input';
 import { Swiper, SwiperSlide } from 'swiper/react';
-// Import Swiper styles
 import 'swiper/css';
+import Spinner from './spinner';
 
 type IdsYpe = {
     value: any,
@@ -23,7 +23,9 @@ type Props = {
     ids: IdsYpe[];
     headerIcon?: any,
     headerTitle: string,
-    yourInventory: number
+    yourInventory?: number,
+    goldValue?: number,
+    loading?: boolean
 };
 
 export default function ExchangeV2({
@@ -33,9 +35,23 @@ export default function ExchangeV2({
     ids,
     headerTitle,
     headerIcon,
-    yourInventory
+    yourInventory,
+    goldValue,
+    loading
 }: Props) {
-    const [equivalent, setEquivalent] = useState('0');
+    const [equivalent, setEquivalent] = useState(null);
+    const [irr, setIrr] = useState<number>(null)
+    const [gerams, setGrams] = useState<number>(null)
+
+    const geramsToRial = (value: number) => {
+        const resIRR = (value) * (goldValue * 10) / 1000
+        setIrr(resIRR)
+    }
+
+    const rialToGerams = (value: number) => {
+        const resIRR = (value) / (goldValue * 10) * 1000
+        setGrams(resIRR)
+    }
 
     return (
         <>
@@ -45,6 +61,10 @@ export default function ExchangeV2({
                     className
                 )}
             >
+                {loading && <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="z-100000 absolute inset-0 bg-white opacity-50 z-10"></div>
+                    <Spinner className='z-20' />
+                </div>}
                 <div className='flex flex-row justify-between items-center'>
                     <div className='flex flex-row gap-[10px]'>
                         {headerIcon ? headerIcon : <Icons.lineChart stroke="#0C0E3C" />}
@@ -69,15 +89,24 @@ export default function ExchangeV2({
                             </Label>
                         </div>
                         <Input
-                            type={'text'}
+                            type={'number'}
                             className="w-full "
                             placeholder="از 100 هزار تومان تا 100 میلیون تومان"
+                            value={irr}
+                            onChange={(e) => {
+                                setIrr(Number(e.target.value))
+                                rialToGerams(Number(e.target.value))
+                            }}
                         />
                     </div>
                     <div className='flex flex-row w-full'>
                         <RadioGroup
                             value={equivalent}
-                            onValueChange={setEquivalent}
+                            onValueChange={(e) => {
+                                setEquivalent(e)
+                                rialToGerams(Number(e)*10)
+                                setIrr(Number(e)*10)
+                            }}
                             dir={getDirection(lang)}
                             className="flex w-full items-center"
                         > <Swiper
@@ -122,13 +151,18 @@ export default function ExchangeV2({
                         <Label
                             className="flex"
                         >
-                            مقدار طلا
+                            مقدار طلا به میلی گرم
                         </Label>
                     </div>
                     <Input
-                        type={'text'}
+                        type={'number'}
                         className="w-full "
                         placeholder="مقدار طلا به میلی گرم"
+                        value={gerams}
+                        onChange={(e) => {
+                            setGrams(Number(e.target.value))
+                            geramsToRial(Number(e.target.value))
+                        }}
                     />
                 </div>
                 <div className="flex flex-col items-center justify-center gap-3 ">
