@@ -81,13 +81,24 @@ export default function ExchangeV2({
                             dir={getDirection(lang)}
                             className="flex w-full items-center"
                         > <Swiper
-                        className='md:max-w-lg'
+                            className='md:max-w-lg'
                             spaceBetween={10}
                             slidesPerView={3.5}
+                            breakpoints={{
+                                0: {
+                                    slidesPerView: 1.5,
+                                },
+                                576: {
+                                    slidesPerView: 2.5,
+                                },
+                                768: {
+                                    slidesPerView: 3.5,
+                                },
+                            }}
                         >
                                 {ids?.map((id) => {
                                     return < SwiperSlide >
-                                        <div className="w-full">
+                                        <div className="w-full overflow-hidden w-auto">
                                             <RadioGroupItem
                                                 value={id.value}
                                                 id={id.key}
