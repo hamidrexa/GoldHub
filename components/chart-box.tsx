@@ -8,23 +8,15 @@ import { Icons } from '@/components/ui/icons';
 
 // Import Swiper styles
 import 'swiper/css';
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { useSignalsSummery } from '@/services/useSignalsSummery';
 import { transformAssetData } from '@/libs/dataTransformers';
 import { getAsset } from '@/app/[lang]/(user)/(asset)/services/getAsset';
-import { BoxContent } from './box';
 import { PriceSignalChart } from './price-signal-chart';
+import Spinner from './spinner';
 
-type IdsYpe = {
-    value: any,
-    title: string,
-    key: string
-}
 type Props = {
     dict: any;
     lang: Locale;
     className?: string;
-    ids?: IdsYpe[];
     headerIcon?: any,
     headerTitle?: string,
     yourInventory?: number,
@@ -32,29 +24,30 @@ type Props = {
     price: number,
     percentage: number,
     market?: string,
-    id: string
+    id: string,
+    loading: boolean
 };
 
 export default function ChartBox({
     dict,
     lang,
     className,
-    ids,
     headerTitle,
     headerIcon,
-    yourInventory,
     measurementTitle,
     price,
-    percentage,
     market,
-    id
+    id,
+    loading
 }: Props) {
-    const dir = getDirection(lang);
-    const [year, setYear] = useState('1403');
+    // ** Constants
+    const asset = transformAssetData(getAsset(market, id, { lang }));
+
+    // ** States
     const [signalTypeFilter, setSignalTypeFilter] = useState('buy');
     const [durationFilter, setDurationFilter] = useState('30,day');
-    const asset = transformAssetData(getAsset(market, id, { lang }));
     const [duration, durationScale] = durationFilter.split(',');
+    const [year, setYear] = useState('1403');
 
     return (
         <>
@@ -64,6 +57,10 @@ export default function ChartBox({
                     className
                 )}
             >
+                {loading && <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="z-100000 absolute inset-0 bg-white opacity-50 z-10"></div>
+                    <Spinner className='z-20' />
+                </div>}
                 <div className='flex flex-row justify-between items-center'>
                     <div className='flex flex-row gap-[10px]'>
                         {headerIcon ? headerIcon : <Icons.lineChart stroke="#0C0E3C" />}

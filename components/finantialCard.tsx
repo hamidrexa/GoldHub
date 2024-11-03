@@ -1,11 +1,12 @@
 'use client';
 
 import { Locale } from '@/i18n-config';
-import { cn} from '@/libs/utils';
+import { cn } from '@/libs/utils';
 import React from 'react';
 import { Icons } from '@/components/ui/icons';
 import { Button } from './ui/button';
 import { Plus } from 'lucide-react';
+import Spinner from './spinner';
 
 type Props = {
     dict: any;
@@ -14,7 +15,8 @@ type Props = {
     headerIcon?: any,
     headerTitle: string,
     value: string,
-    equivalent: string
+    equivalent: string,
+    loading: boolean
 };
 
 export function FinantialCard({
@@ -24,7 +26,8 @@ export function FinantialCard({
     headerTitle,
     headerIcon,
     value,
-    equivalent
+    equivalent,
+    loading
 }: Props) {
 
     return (
@@ -37,6 +40,10 @@ export function FinantialCard({
                 background: 'linear-gradient(203.56deg, rgba(202, 138, 4, 0.06) -0.28%, rgba(250, 255, 254, 0.1) 24.65%, rgba(250, 255, 254, 0.05) 47.94%, rgba(202, 138, 4, 0.08) 69.11%)'
             }}
         >
+            {loading && <div className="absolute inset-0 flex items-center justify-center">
+                <div className="z-100000 absolute inset-0 bg-white opacity-50 z-10"></div>
+                <Spinner className='z-20' />
+            </div>}
             <div className='flex flex-row flex-wrap justify-between items-center z-10'>
                 <div className='flex flex-row gap-[10px]'>
                     {headerIcon ? headerIcon : <Icons.lineChart stroke="#0C0E3C" />}
