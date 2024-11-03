@@ -1,7 +1,7 @@
 'use client';
 
 import { Locale } from '@/i18n-config';
-import { cn, currency } from '@/libs/utils';
+import { cn} from '@/libs/utils';
 import React from 'react';
 import { Icons } from '@/components/ui/icons';
 import { Button } from './ui/button';
@@ -14,7 +14,7 @@ type Props = {
     headerIcon?: any,
     headerTitle: string,
     value: string,
-    equivalent: number
+    equivalent: string
 };
 
 export function FinantialCard({
@@ -30,22 +30,20 @@ export function FinantialCard({
     return (
         <div
             className={cn(
-                'relative flex flex-col gap-8 rounded-md border border-gray-400 bg-white px-4 py-6 text-black overflow-hidden',
+                'relative flex flex-col w-full max-w-lg gap-8 rounded-md border border-gray-400 bg-white px-4 py-6 text-black overflow-hidden',
                 className
             )}
             style={{
                 background: 'linear-gradient(203.56deg, rgba(202, 138, 4, 0.06) -0.28%, rgba(250, 255, 254, 0.1) 24.65%, rgba(250, 255, 254, 0.05) 47.94%, rgba(202, 138, 4, 0.08) 69.11%)'
             }}
         >
-            {/* <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-transparent opacity-50"></div>
-            <div className="absolute inset-0 bg-gradient-to-tl from-red-500 to-transparent opacity-50"></div> */}
             <div className='flex flex-row flex-wrap justify-between items-center z-10'>
                 <div className='flex flex-row gap-[10px]'>
                     {headerIcon ? headerIcon : <Icons.lineChart stroke="#0C0E3C" />}
-                    {headerTitle ? headerTitle : 'خرید و فروش طلا از طلانو'}
+                    {headerTitle ? headerTitle : ''}
                 </div>
                 <div className='cursor-pointer'>
-                    <Button className='rounded-[30px] gap-[12px] bg-[#0C0E3C] text-white'>
+                    <Button variant='info' className='rounded-[30px] gap-[12px] bg-[#0C0E3C] text-white'>
                         <Plus className='text-[#10EDC5] h-[20px] w-[20px]' />
                         <div>
                             {dict.increase}
@@ -59,7 +57,7 @@ export function FinantialCard({
                         {value}
                     </text>
                     <text className='text-[#B3B6C3]'>
-                        معادل {currency(equivalent, 'tse', lang)}
+                        {equivalent}
                     </text>
                 </div>
                 <div>

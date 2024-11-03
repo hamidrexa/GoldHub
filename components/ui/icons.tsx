@@ -31,6 +31,9 @@ export const Icons = {
             <circle cx="12" cy="16" r="1" fill="#1C274C" />
         </svg>
     ),
+    buyer: (props: IconProps) => {
+        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" {...props}><circle cx="10" cy="20.5" r="1" /><circle cx="18" cy="20.5" r="1" /><path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1" /></svg>
+    },
     gold: (props: IconProps) => (
         <svg width={props.width ? props.width : '45'} height={props.height ? props.height : '45'} viewBox="0 0 54 45" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M18.5921 7.8125C17.1547 8.27511 15.9702 8.95549 15.0254 9.90036C14.0805 10.8452 13.4001 12.0297 12.9375 13.4671C12.4749 12.0297 11.7945 10.8452 10.8496 9.90036C9.90478 8.95549 8.72031 8.27511 7.28287 7.8125C8.72031 7.3499 9.90478 6.66952 10.8496 5.72465C11.7945 4.77978 12.4749 3.59531 12.9375 2.15787C13.4001 3.59531 14.0805 4.77978 15.0254 5.72465C15.9702 6.66952 17.1547 7.3499 18.5921 7.8125Z" fill={props.fill} stroke={props.stroke} />
@@ -49,6 +52,14 @@ export const Icons = {
             <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke={props.stroke} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
     ),
+    transaction: (props: IconProps) => {
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24px" height="24px" viewBox="0 0 24 24" fill="none"{...props}>
+            <path d="M10 10L6 6L10 2" stroke="#0C0E3C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M6 6H18" stroke="#0C0E3C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M14 22L18 18L14 14" stroke="#0C0E3C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M6 18H18" stroke="#0C0E3C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    },
     google: (props: IconProps) => (
         <svg role="img" viewBox="0 0 24 24" {...props}>
             <path

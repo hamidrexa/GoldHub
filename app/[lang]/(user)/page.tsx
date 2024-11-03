@@ -12,6 +12,8 @@ import Bargain from '@/app/[lang]/(user)/(asset)/components/bargain';
 import Wallet from '@/components/wallet';
 import ChartBox from '@/components/chart-box';
 import { FinantialCard } from '@/components/finantialCard';
+import { currency } from '@/libs/utils';
+import { InvestmentCard } from '@/components/investmentCard';
 
 export const metadata: Metadata = {
     title: 'طلانو | خرید و فروش طلای آب شده آنلاین بدون اجرت',
@@ -39,9 +41,34 @@ export default async function HomePage({ params: { lang } }) {
                     <h2 className="mb-6 flex items-center justify-center gap-1 text-center text-2xl font-black text-black md:mb-12 md:text-4xl">
                         دارایی های شما
                     </h2>
-                    <Wallet dict={dict} lang={lang} />
+                    <div className='flex flex-wrap w-full gap-5 justify-center'>
+                        <FinantialCard
+                            dict={dict}
+                            lang={lang}
+                            headerTitle='دارایی طلا'
+                            value='141 گرم'
+                            equivalent={`معادل ${currency(85654584, 'tse', lang)} تومان`}
+                        />
+                        <FinantialCard
+                            dict={dict}
+                            lang={lang}
+                            headerTitle='دارایی ریالی'
+                            value='20 میلیون تومان'
+                            equivalent={`معادل ${currency(220, 'tse', lang)} گرم طلا`}
+                        />
+                    </div>
                 </div>
-                <div className="mx-auto w-full max-w-7xl">
+                <div className="flex w-full justify-center mt-14">
+                    <InvestmentCard
+                        headerTitle='سرمایه گذاری آسان در طلا'
+                        dict={dict}
+                        lang={lang}
+                    />
+                </div>
+                <div className="mx-auto w-full max-w-7xl mt-28">
+                    <h2 className="mb-6 flex items-center justify-center gap-1 text-center text-2xl font-black text-black md:mb-12 md:text-4xl">
+                        قیمت لحظه ای
+                    </h2>
                     <ChartBox
                         headerTitle='قیمت لحظه ای طلا'
                         price={40900586}
@@ -52,17 +79,6 @@ export default async function HomePage({ params: { lang } }) {
                         market="tse"
                         dict={dict}
                         lang={lang}
-                    />
-                </div>
-            </section>
-            <section className="w-full px-4 py-12 text-neutral-800 md:py-32">
-                <div className='max-w-lg'>
-                    <FinantialCard
-                        dict={dict}
-                        lang={lang}
-                        headerTitle='دارایی طلا'
-                        value='141 گرم'
-                        equivalent={255488412214}
                     />
                 </div>
             </section>
