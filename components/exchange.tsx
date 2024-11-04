@@ -45,11 +45,13 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
         toast.info('در حال انتقال به درگاه پرداخت');
         try {
             const res = await payment({
-                price: parseInt(rialEq),
+                price: rialEq.replace(/٬/g, "").replace(/[۰-۹]/g, (digit) =>
+                    String.fromCharCode(digit.charCodeAt(0) - 1728)
+                ),
                 bank_type: PaymentMethods['tala'],
             });
             window.open(
-                `https://talame-api.darkube.app/transaction/payment/${res.id}`
+                `https://talame-api.darkube.app/transaction/payment/${res.id}`,
             );
         } catch (error) {
             console.log(error);
@@ -57,23 +59,34 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
         setLoading(false);
     };
 
-    const handleGeramChange = (event) =>{
+    const handleGeramChange = (event) => {
         const grams = event.target.value;
         setGeramEq(grams);
-        if (price?.buy_price_irt) setRialEq((grams * price.buy_price_irt * 10).toString());;
-    }
+        if (price?.buy_price_irt) setRialEq(currency(roundNumber((grams * price.buy_price_irt * 10), 0), 'tse', 'fa').toString());
+    };
 
-    const handleRialChange = (event) =>{
+    const handleRialChange = (event) => {
         const rial = event.target.value;
-        setRialEq(rial);
-        if (price?.buy_price_irt) {
-            setGeramEq((rial / (price.buy_price_irt * 10 )).toFixed(4));
+
+        if (!!!rial){
+            setRialEq("");
+            setGeramEq("");
+            return;
         }
-    }
+
+        const invertedRial = rial.replace(/٬/g, "").replace(/[۰-۹]/g, (digit) =>
+            String.fromCharCode(digit.charCodeAt(0) - 1728)
+        );
+
+        if (!isNaN(parseInt(invertedRial)) && price?.buy_price_irt) {
+            setRialEq(invertedRial);
+            setGeramEq((parseInt(invertedRial) / (price.buy_price_irt * 10)).toFixed(4));
+        }
+    };
 
     useEffect(() => {
         setGeramEq('1');
-        setRialEq(`${price?.buy_price_irt * 10}`);
+        setRialEq(currency(price?.buy_price_irt * 10,"tse","fa").toString());
     }, [priceIsLoading]);
 
 
@@ -82,7 +95,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
             <div
                 className={cn(
                     'relative flex flex-col gap-8 rounded-md border border-gray-400 bg-white px-4 py-6 text-black',
-                    className
+                    className,
                 )}
             >
                 <div className="w-full space-y-3 text-base font-medium">
@@ -107,7 +120,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                     <div
                         onClick={() => {
                             const rialValue = 1000000;
-                            setRialEq(rialValue.toString());
+                            setRialEq(currency(rialValue,"tse","fa").toString());
                             if (price?.buy_price_irt) {
                                 setGeramEq((rialValue / (price.buy_price_irt * 10)).toFixed(4));
                             }
@@ -119,7 +132,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                     <div
                         onClick={() => {
                             const rialValue = 5000000;
-                            setRialEq(rialValue.toString());
+                            setRialEq(currency(rialValue,"tse","fa").toString());
                             if (price?.buy_price_irt) {
                                 setGeramEq((rialValue / (price.buy_price_irt * 10)).toFixed(4));
                             }
@@ -130,12 +143,12 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                     </div>
                     <div
                         onClick={() => {
-                        const rialValue = 10000000;
-                        setRialEq(rialValue.toString());
-                        if (price?.buy_price_irt) {
-                            setGeramEq((rialValue / (price.buy_price_irt * 10)).toFixed(4));
-                        }
-                    }}
+                            const rialValue = 10000000;
+                            setRialEq(currency(rialValue,"tse","fa").toString());
+                            if (price?.buy_price_irt) {
+                                setGeramEq((rialValue / (price.buy_price_irt * 10)).toFixed(4));
+                            }
+                        }}
                         className="rounded-md border border-neutral-100 p-2.5 text-sm font-light hover:cursor-pointer"
                     >
                         ۱ میلیون تومان
@@ -224,7 +237,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                                     فروش
                                 </DialogTrigger>
                                 <DialogContent className="max-w-xl text-center">
-                                    <DialogTitle/>
+                                    <DialogTitle />
                                     برای برداشت به پشتیبانی تلگرام طلانو با آیدی
                                     <a
                                         href="https://t.me/SahmetoSup"
