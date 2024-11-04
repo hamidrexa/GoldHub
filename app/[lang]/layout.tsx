@@ -8,7 +8,7 @@ import { getDictionary } from '@/get-dictionary';
 import { GoogleTagManager } from '@next/third-parties/google';
 import Script from 'next/script';
 import type { Metadata, Viewport } from 'next';
-import { PayWall } from '@/components/pay-wall';
+// import { PayWall } from '@/components/pay-wall';
 import { GlobalContextProvider } from '@/contexts/store';
 
 const yekanBakh = localFont({
@@ -136,9 +136,9 @@ export default async function RootLayout({
             <body>
                 <GlobalContextProvider>
                     <Providers>
-                        {process.env.NEXT_PUBLIC_ENVIRONMENT === 'BETA' && (
+                        {/* {process.env.NEXT_PUBLIC_ENVIRONMENT === 'BETA' && (
                             <PayWall dict={dict} lang={lang} />
-                        )}
+                        )} */}
                         {children}
                         <Toaster
                             position="top-left"
