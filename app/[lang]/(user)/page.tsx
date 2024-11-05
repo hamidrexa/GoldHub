@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/accordion';
 import React from 'react';
 import Bargain from '@/app/[lang]/(user)/(asset)/components/bargain';
-import Wallet from '@/components/wallet';
+import Wallet from '@/app/[lang]/(user)/wallet/components/wallet';
 import ChartBox from '@/components/chart-box';
 import { FinantialCard } from '@/components/finantialCard';
 import { currency } from '@/libs/utils';
@@ -50,10 +50,10 @@ export default async function HomePage({ params: { lang } }) {
                         lang={lang}
                     />
                 </div>
-                {/* <ChartGold
+                <ChartGold
                     lang={lang}
                     dict={dict}
-                /> */}
+                />
             </section>
             <section className="w-full bg-neutral-700/10 px-4 py-12 md:py-32">
                 <div className="mx-auto w-full max-w-7xl">
