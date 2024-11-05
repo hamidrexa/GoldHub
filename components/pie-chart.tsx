@@ -12,7 +12,7 @@ import { roundNumber } from '@/libs/utils';
 import {Empty} from "@/components/empty";
 
 export function PieChart({ className = '', width, height, data, dataKey }) {
-    const COLORS = ['#0C0E3C', '#0D3857', '#0E6270', '#0FB6A3', '#10EDC5'];
+    const COLORS = ['#E2E6E9','#0FB6A3','#0E6270', '#0FB6A3', '#10EDC5'];
     const [selectedPart, setSelectedPart] = useState(null);
     const mostSuggestedSymbols = data.slice(0, 4);
     const otherSuggestedSymbols = data
@@ -105,11 +105,13 @@ export function PieChart({ className = '', width, height, data, dataKey }) {
                 >
                     <Pie
                         data={displayData}
-                        paddingAngle={3}
+                        paddingAngle={5}
                         dataKey={dataKey}
                         outerRadius={75}
                         innerRadius={65}
                         cornerRadius={5}
+                        startAngle={180}  // Start from 180 degrees (left side)
+                        endAngle={0}      // End at 0 degrees (top)
                         onMouseEnter={onMouseEnterHandler}
                         onMouseLeave={onMouseLeaveHandler}
                         onTouchStart={onMouseEnterHandler}

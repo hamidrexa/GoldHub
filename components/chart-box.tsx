@@ -1,15 +1,13 @@
 'use client';
 
 import { Locale } from '@/i18n-config';
-import { cn, currency, getDirection } from '@/libs/utils';
+import { cn, currency } from '@/libs/utils';
 import { Label } from '@/components/ui/label';
-import React, { useState } from 'react';
+import React from 'react';
 import { Icons } from '@/components/ui/icons';
 
 // Import Swiper styles
 import 'swiper/css';
-import { transformAssetData } from '@/libs/dataTransformers';
-import { getAsset } from '@/app/[lang]/(user)/(asset)/services/getAsset';
 import { PriceSignalChart } from './price-signal-chart';
 import Spinner from './spinner';
 
@@ -40,14 +38,6 @@ export default function ChartBox({
     id,
     loading
 }: Props) {
-    // ** Constants
-    const asset = transformAssetData(getAsset(market, id, { lang }));
-
-    // ** States
-    const [signalTypeFilter, setSignalTypeFilter] = useState('buy');
-    const [durationFilter, setDurationFilter] = useState('30,day');
-    const [duration, durationScale] = durationFilter.split(',');
-    const [year, setYear] = useState('1403');
 
     return (
         <>
@@ -98,7 +88,6 @@ export default function ChartBox({
                             dict={dict}
                             lang={lang}
                             market={market}
-                            asset={asset}
                         />
                     </div>
                 </div>

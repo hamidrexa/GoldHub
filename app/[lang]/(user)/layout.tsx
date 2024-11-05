@@ -3,6 +3,7 @@ import { Header } from '@/components/header';
 import { Locale } from '@/i18n-config';
 import { getDictionary } from '@/get-dictionary';
 import { Footer } from '@/components/footer';
+import { MobileMenu } from '@/components/mobileMenu';
 
 export const metadata = {
     title: 'پیدا نشد | طلانو',
@@ -21,6 +22,7 @@ export default async function UserLayout({
         <>
             <Header dict={dict} lang={lang} />
             {children}
+            <MobileMenu dict={dict} lang={lang} />
             <Footer dict={dict} lang={lang} />
         </>
     );

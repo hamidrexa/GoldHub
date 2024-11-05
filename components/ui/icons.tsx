@@ -31,6 +31,56 @@ export const Icons = {
             <circle cx="12" cy="16" r="1" fill="#1C274C" />
         </svg>
     ),
+    home: (props: IconProps) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 20 20" fill={props.fill} {...props}>
+            <g filter="url(#filter0_b_170_511)">
+                <path d="M7.14373 18.7821V15.7152C7.14372 14.9381 7.77567 14.3067 8.55844 14.3018H11.4326C12.2189 14.3018 12.8563 14.9346 12.8563 15.7152V18.7732C12.8562 19.4473 13.404 19.9951 14.0829 20H16.0438C16.9596 20.0023 17.8388 19.6428 18.4872 19.0007C19.1356 18.3586 19.5 17.4868 19.5 16.5775V7.86585C19.5 7.13139 19.1721 6.43471 18.6046 5.9635L11.943 0.674268C10.7785 -0.250877 9.11537 -0.220992 7.98539 0.745384L1.46701 5.9635C0.872741 6.42082 0.517552 7.11956 0.5 7.86585V16.5686C0.5 18.4637 2.04738 20 3.95617 20H5.87229C6.19917 20.0023 6.51349 19.8751 6.74547 19.6464C6.97746 19.4178 7.10793 19.1067 7.10792 18.7821H7.14373Z" fill={props.fill} />
+            </g>
+            <defs>
+                <filter id="filter0_b_170_511" x="-9.48147" y="-9.98147" width="38.9629" height="39.9629" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feGaussianBlur in="BackgroundImageFix" stdDeviation="4.99073" />
+                    <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_170_511" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_170_511" result="shape" />
+                </filter>
+            </defs>
+        </svg>
+    ),
+    fire: (props: IconProps) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 15 20" fill={props.fill} {...props}>
+            <path d="M3.8158 12.1053C4.51374 12.1053 5.18309 11.828 5.67661 11.3345C6.17013 10.841 6.44738 10.1716 6.44738 9.47368C6.44738 8.02105 5.92106 7.36842 5.39475 6.31579C4.26633 4.06 5.15896 2.04842 7.50001 0C8.02633 2.63158 9.60528 5.1579 11.7105 6.84211C13.8158 8.52632 14.8684 10.5263 14.8684 12.6316C14.8684 13.5992 14.6778 14.5574 14.3075 15.4514C13.9372 16.3453 13.3945 17.1576 12.7103 17.8418C12.0261 18.5261 11.2138 19.0688 10.3198 19.4391C9.42581 19.8094 8.46765 20 7.50001 20C6.53238 20 5.57422 19.8094 4.68024 19.4391C3.78626 19.0688 2.97397 18.5261 2.28975 17.8418C1.60553 17.1576 1.06278 16.3453 0.692479 15.4514C0.322181 14.5574 0.131592 13.5992 0.131592 12.6316C0.131592 11.4179 0.587381 10.2168 1.18422 9.47368C1.18422 10.1716 1.46148 10.841 1.95499 11.3345C2.44851 11.828 3.11786 12.1053 3.8158 12.1053Z" fill={props.fill}/>
+        </svg>
+    ),
+    graph: (props: IconProps) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 21 20" fill={props.fill} {...props}>
+            <g filter="url(#filter0_b_170_514)">
+                <path d="M1.92164 15.5142C1.37084 14.5458 1.02254 13.4793 0.898342 12.3777C0.849742 12.051 0.828142 11.7216 0.834442 11.3913C0.847042 7.32692 3.74054 3.81872 7.78964 2.95922C8.28014 2.86742 8.77154 3.11222 8.98484 3.55502C9.03794 3.63512 9.08114 3.72152 9.11174 3.81242C9.24764 5.90942 9.39254 7.97042 9.52844 10.0323C9.52484 10.2465 9.55904 10.4598 9.62834 10.6623C9.79034 11.0628 10.1953 11.3166 10.6336 11.2932L17.2891 10.8675L17.335 10.8846C17.6203 10.8891 17.893 11.0052 18.091 11.2068C18.2899 11.4084 18.3988 11.6793 18.3943 11.9601C18.1315 15.7824 15.3298 18.9756 11.5165 19.7982C10.8863 19.9342 10.2538 20 9.62795 20C6.46701 19.9998 3.48423 18.3201 1.92164 15.5142ZM11.7055 9.09092C11.5174 8.92172 11.4112 8.68322 11.4121 8.43302L10.8955 0.889224V0.765024C10.9054 0.552624 10.9999 0.352824 11.1601 0.209724C11.3194 0.0666243 11.5309 -0.0089757 11.7469 0.000924297C16.318 0.137724 20.1376 3.45602 20.8306 7.89032C20.8342 7.91732 20.8342 7.94432 20.8306 7.97042C20.845 8.18012 20.7739 8.38712 20.6335 8.54552C20.4922 8.70392 20.2924 8.80112 20.0782 8.81462L12.3994 9.32132C12.3722 9.32373 12.345 9.32492 12.3178 9.32492C12.0917 9.32492 11.8735 9.24201 11.7055 9.09092Z" fill={props.fill} />
+            </g>
+            <defs>
+                <filter id="filter0_b_170_514" x="-9.1481" y="-9.98141" width="39.9629" height="39.9628" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feGaussianBlur in="BackgroundImageFix" stdDeviation="4.99073" />
+                    <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_170_514" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_170_514" result="shape" />
+                </filter>
+            </defs>
+        </svg>
+    ),
+    category: (props: IconProps) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 21 20" fill={props.fill} {...props}>
+            <g filter="url(#filter0_b_170_536)">
+                <path d="M14.5805 19.9999C13.1702 19.9999 12.0398 18.8497 12.0398 17.4394V14.0311C12.0398 12.6109 13.1702 11.4697 14.5805 11.4697H17.96C19.3604 11.4697 20.4998 12.6109 20.4998 14.0311V17.4394C20.4998 18.8497 19.3604 19.9999 17.96 19.9999H14.5805ZM3.0398 19.9999C1.6403 19.9999 0.5 18.8497 0.5 17.4394V14.0311C0.5 12.6109 1.6403 11.4697 3.0398 11.4697H6.4202C7.8296 11.4697 8.96 12.6109 8.96 14.0311V17.4394C8.96 18.8497 7.8296 19.9999 6.4202 19.9999H3.0398ZM14.5805 8.53032C13.1702 8.53032 12.0398 7.39002 12.0398 5.96982V2.56152C12.0398 1.15032 13.1702 0.00012207 14.5805 0.00012207H17.96C19.3604 0.00012207 20.4998 1.15032 20.4998 2.56152V5.96982C20.4998 7.39002 19.3604 8.53032 17.96 8.53032H14.5805ZM3.0398 8.53032C1.6403 8.53032 0.5 7.39002 0.5 5.96982V2.56152C0.5 1.15032 1.6403 0.00012207 3.0398 0.00012207H6.4202C7.8296 0.00012207 8.96 1.15032 8.96 2.56152V5.96982C8.96 7.39002 7.8296 8.53032 6.4202 8.53032H3.0398Z" fill={props.fill} />
+            </g>
+            <defs>
+                <filter id="filter0_b_170_536" x="-9.48147" y="-9.98135" width="39.9627" height="39.9628" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feGaussianBlur in="BackgroundImageFix" stdDeviation="4.99073" />
+                    <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_170_536" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_170_536" result="shape" />
+                </filter>
+            </defs>
+        </svg>
+    ),
     buyer: (props: IconProps) => {
         <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" {...props}><circle cx="10" cy="20.5" r="1" /><circle cx="18" cy="20.5" r="1" /><path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1" /></svg>
     },
@@ -53,7 +103,7 @@ export const Icons = {
         </svg>
     ),
     transaction: (props: IconProps) => {
-        <svg  xmlns="http://www.w3.org/2000/svg"  width="24px" height="24px" viewBox="0 0 24 24" fill="none"{...props}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none"{...props}>
             <path d="M10 10L6 6L10 2" stroke="#0C0E3C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             <path d="M6 6H18" stroke="#0C0E3C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             <path d="M14 22L18 18L14 14" stroke="#0C0E3C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />

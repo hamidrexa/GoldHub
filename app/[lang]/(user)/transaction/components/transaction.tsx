@@ -50,7 +50,7 @@ export default function TransactionBox({
     // ** Functions
     const geramsToRial = (value: number) => {
         const goldValue = transactionMode === 'buy' ? price?.buy_price_irt : price?.sell_price_irt
-        const resIRR = (value) * (goldValue * 10) / 1000
+        const resIRR = Math.floor((value * (goldValue * 10)) / 1000);        
         setIrr(resIRR)
     }
 
@@ -135,7 +135,7 @@ export default function TransactionBox({
                                 خرید
                             </Label>
                         </div>
-                        <div className="overflow-hidden w-full">
+                        {/* <div className="overflow-hidden w-full">
                             <RadioGroupItem
                                 value={'sell'}
                                 id={'sell'}
@@ -147,7 +147,7 @@ export default function TransactionBox({
                             >
                                 فروش
                             </Label>
-                        </div>
+                        </div> */}
                     </RadioGroup>
                 </div>
                 <div className={`flex w-full gap-8 ${transactionMode === 'sell' ? 'flex-col-reverse' : ' flex-col'}`}>

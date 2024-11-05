@@ -1,8 +1,7 @@
 'use client';
 
 import { Locale } from '@/i18n-config';
-import { cn, currency } from '@/libs/utils';
-import { useWalletInfo } from '../../wallet/services/useWalletInfo';
+import { cn } from '@/libs/utils';
 import { useExchangePrice } from '@/services/useExchangePrice';
 import ChartBox from '@/components/chart-box';
 
@@ -34,8 +33,8 @@ export default function ChartGold({ dict, lang, className }: bargainingProps) {
                     percentage={1.9}
                     measurementTitle='هر گرم'
                     className="w-full"
-                    id='IRO1GARN0001'
-                    market="tse"
+                    id='1'
+                    market="gold"
                     dict={dict}
                     lang={lang}
                 />

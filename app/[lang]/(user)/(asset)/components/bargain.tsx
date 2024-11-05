@@ -47,7 +47,7 @@ export default function Bargain({ dict, lang, className }: bargainingProps) {
                 ids={[
                     { key: 'all', value: wallet?.balance?.irt_balance, title: dict.totalInventory },
                     { key: '200', value: '200000', title: `200 ${dict.countingUnit.thousand} ${dict.toman}` },
-                    { key: '500', value: '500000', title: `200 ${dict.countingUnit.thousand} ${dict.toman}` },
+                    { key: '500', value: '500000', title: `500 ${dict.countingUnit.thousand} ${dict.toman}` },
                     { key: '2000', value: '2000000', title: `2 ${dict.countingUnit.million} ${dict.toman}` },
                 ]}
             />

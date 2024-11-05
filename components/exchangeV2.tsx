@@ -44,7 +44,7 @@ export default function ExchangeV2({
     const [gerams, setGrams] = useState<number>(null)
 
     const geramsToRial = (value: number) => {
-        const resIRR = (value) * (goldValue * 10) / 1000
+        const resIRR = Math.floor((value * (goldValue * 10)) / 1000);
         setIrr(resIRR)
     }
 
