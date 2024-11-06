@@ -8,8 +8,11 @@ import {
     AccordionTrigger,
 } from '@/components/ui/accordion';
 import React from 'react';
-import Bargain from '@/app/[lang]/(user)/(asset)/components/bargain';
-import Wallet from '@/components/wallet';
+import { InvestmentCard } from '@/components/investmentCard';
+import Financial from './(asset)/components/financial';
+import ChartGold from './(asset)/components/chart';
+import { LinkBox } from '@/components/link-box';
+import { Icons } from '@/components/ui/icons';
 
 export const metadata: Metadata = {
     title: 'طلانو | خرید و فروش طلای آب شده آنلاین بدون اجرت',
@@ -27,17 +30,36 @@ export default async function HomePage({ params: { lang } }) {
 
     return (
         <div className="flex w-full flex-col">
-            <section className="w-full bg-gradient-to-b from-neutral-700 px-4 py-12 md:py-32">
+            {/* <section className="w-full bg-gradient-to-b from-neutral-700 px-4 py-12 md:py-32">
                 <div className="mx-auto w-full max-w-7xl">
                     <Bargain dict={dict} lang={lang} />
                 </div>
-            </section>
-            <section className="w-full px-4 py-12 text-neutral-800 md:py-32">
-                <div className="mx-auto w-full max-w-7xl">
-                    <h2 className="mb-6 flex items-center justify-center gap-1 text-center text-2xl font-black text-black md:mb-12 md:text-4xl">
-                        دارایی های شما
-                    </h2>
-                    <Wallet dict={dict} lang={lang} />
+            </section> */}
+            <section className="w-full px-4 py-10 text-neutral-800 ">
+                <Financial
+                    lang={lang}
+                    dict={dict}
+                />
+                <div className="flex w-full justify-center mt-10">
+                    <InvestmentCard
+                        headerTitle='سرمایه گذاری آسان در طلا'
+                        dict={dict}
+                        lang={lang}
+                    />
+                </div>
+                <div className="mx-auto w-full max-w-7xl mt-10">
+                    <ChartGold
+                        lang={lang}
+                        dict={dict}
+                    />
+                </div>
+                <div className="mx-auto w-full max-w-7xl mt-10 text-black">
+                    <LinkBox
+                        target='_blank'
+                        title='تحلیل طلا'
+                        icon={<Icons.fire stroke='#111' fill='none' />}
+                        href='https://sahmeto.com'
+                    />
                 </div>
             </section>
             <section className="w-full bg-neutral-700/10 px-4 py-12 md:py-32">

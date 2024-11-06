@@ -1,8 +1,11 @@
 'use client';
 
 import { Locale } from '@/i18n-config';
-import Exchange from '@/components/exchange';
 import { cn } from '@/libs/utils';
+import ExchangeV2 from '@/components/exchangeV2';
+import { useWalletInfo } from '../../wallet/services/useWalletInfo';
+import { useExchangePrice } from '@/services/useExchangePrice';
+import Exchange from '@/components/exchange';
 
 type bargainingProps = {
     dict: any;
@@ -11,6 +14,9 @@ type bargainingProps = {
 };
 
 export default function Bargain({ dict, lang, className }: bargainingProps) {
+    const { wallet, isLoading } = useWalletInfo();
+    const { price, isLoading: priceIsLoading } = useExchangePrice();
+
     return (
         <div
             className={cn(
@@ -32,11 +38,26 @@ export default function Bargain({ dict, lang, className }: bargainingProps) {
                 </p>
             </div>
             <Exchange
-                ids={{ 0: 'one-million-bargain', 1: 'five-million-bargain' }}
+            dict={dict}
+            lang={lang}
+            ids={[]}
+            />
+            {/* <ExchangeV2
+                headerTitle='خرید و فروش طلا از طلانو'
+                yourInventory={Number(wallet?.balance?.irt_balance)}
+                loading={isLoading}
+                goldValue={price?.buy_price_irt}
                 className="w-full"
                 dict={dict}
                 lang={lang}
-            />
+                ids={[
+                    { key: 'all', value: wallet?.balance?.irt_balance, title: dict.totalInventory },
+                    { key: '200', value: '200000', title: `200 ${dict.countingUnit.thousand} ${dict.toman}` },
+                    { key: '500', value: '500000', title: `500 ${dict.countingUnit.thousand} ${dict.toman}` },
+                    { key: '2000', value: '2000000', title: `2 ${dict.countingUnit.million} ${dict.toman}` },
+                ]}
+            /> */}
+
         </div>
     );
 }

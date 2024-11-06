@@ -71,6 +71,16 @@
   "profile": "پروفایل",
   "navMenuItems": [
     {
+      "title": "معامله",
+      "href": "/transaction",
+      "description": ""
+    },
+    {
+      "title": "دارایی",
+      "href": "/wallet",
+      "description": ""
+    },
+    {
       "title": "قوانین",
       "href": "/privacy",
       "description": ""
@@ -791,5 +801,14 @@
     "notifications": "هشدار‌ها",
     "feeds": "دنبال شده‌ها"
   },
-  "aboutUsTitle": "درباره ما | طلانو"
+  "aboutUsTitle": "درباره ما | طلانو",
+  "totalInventory": "کل موجودی",
+  "toman": "تومان",
+  "countingUnit": {
+    "thousand": "هزار",
+    "hundred": "صد",
+    "million": "میلیون"
+  },
+  "yourInventory": "موجودی شما",
+  "increase": "افزایش"
 }

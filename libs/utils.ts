@@ -37,8 +37,8 @@ export const fetcher = async (params: FetcherParams) => {
         ...params.headers,
         ...(Cookies.get('token') &&
             (!params.absoluteUrl || params.sendToken) && {
-                Authorization: `Bearer ${Cookies.get('token')}`,
-            }),
+            Authorization: `Bearer ${Cookies.get('token')}`,
+        }),
         ...(params.lang && { language: params.lang }),
     };
 
@@ -297,6 +297,7 @@ export function currency(price: number, market: string, lang: Locale) {
     );
 }
 
+
 export function removeHtmlTags(str: string): string {
     return str.replace(/<\/?[^>]+(>|$)/g, '');
 }
@@ -362,3 +363,4 @@ export function getAssetLink(market, lang, displayIds) {
 
     return null;
 }
+
