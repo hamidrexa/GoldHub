@@ -215,7 +215,7 @@ export default function WalletBox({
                     headerTitle='تاریخچه معاملات'
                 />
                 <div className='flex w-full'>
-                    {/* <div className='flex flex-row w-full justify-between'>
+                    <div className='flex flex-row w-full justify-between'>
                         <div className='flex items-center gap-2'>
                             <Icons.setting stroke='black' />
                             <span className='text-[14px]'>
@@ -272,7 +272,8 @@ export default function WalletBox({
                                 </div>
                             </RadioGroup>
                         </div>
-                    </div> */}
+                    </div>
+
                 </div>
                 <div className='flex w-full justify-between'>
                     <h5 className='text-[16px] text-[#74759A]'>
