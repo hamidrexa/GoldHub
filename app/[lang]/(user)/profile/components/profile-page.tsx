@@ -34,15 +34,17 @@ import { PasswordChangeForm } from '@/app/[lang]/(user)/profile/components/chang
 import { PhoneSubmitForm } from '@/app/[lang]/(user)/profile/components/phone-submit-form';
 import { useTransactions } from '@/app/[lang]/(user)/profile/services/useTransactions';
 import { cn } from '@/libs/utils';
+import { NationalCodeVerificationForm } from './national-code-form';
 
 dayjs.extend(utc);
 
 export function ProfilePage({ dict, lang }) {
     const [verifyOpen, setVerifyOpen] = useState(false);
     const [nameDialogOpen, setNameDialogOpen] = useState(false);
+    const [PhoneModalOpen, setPhoneModalOpen] = useState(true);
     const [emailDialogOpen, setEmailDialogOpen] = useState(false);
     const [passwordDialogOpen, setPasswordDialogOpen] = useState(false);
-    const [PhoneModalOpen, setPhoneModalOpen] = useState(true);
+    const [nationalCodeDialogOpen, setNationalCodeDialogOpen] = useState(false);
     const [open, setOpen] = useState(false);
     const router = useRouter();
     const { user, setUser } = useGlobalContext();
@@ -344,56 +346,64 @@ export function ProfilePage({ dict, lang }) {
                                     </Dialog>
                                 )}
                             </div>
-                            {lang === 'fa' && (
-                                <div className="space-y-2">
-                                    <div className="flex items-center justify-between">
-                                        <div className="text-base">
-                                            شماره ملی:
-                                        </div>
+                            <div className="space-y-2">
+                                <div className="flex items-center justify-between">
+                                    <div className="text-base">
+                                        شماره ملی:
                                     </div>
-                                    <div className="flex h-14 items-center justify-between rounded-md bg-gray-300/60 p-1.5 text-base font-black ltr:pl-5 rtl:pr-5">
-                                        <span
-                                            className={cn('text-lg', {
-                                                'font-sans': user.has_password,
-                                            })}
-                                        >
-                                            {/* {user.has_password
-                                                ? '************' */}
-                                             شماره ملی تعیین نشده است
-                                        </span>
-                                        <Dialog
-                                            open={passwordDialogOpen}
-                                            onOpenChange={setPasswordDialogOpen}
-                                        >
-                                            <DialogTrigger asChild>
+                                    {/*// @ts-ignore*/}
+                                    <StatusBadge
+                                        dict={dict}
+                                        status={
+                                            // user.email_confirmed
+                                            //     ? 'confirmed'
+                                            // : 
+                                            'notConfirmed'
+                                        }
+                                    />
+                                </div>
+                                <div className="flex h-14 items-center justify-between rounded-md bg-gray-300/60 p-1.5 text-base font-black ltr:pl-5 rtl:pr-5">
+                                    <span>
+                                        {'شماره ملی تعیین نشده است'}
+                                    </span>
+                                    <Button
+                                        variant="info"
+                                        onClick={async () => {
+                                            setNationalCodeDialogOpen(
+                                                true
+                                            );
+                                        }}
+                                    >
+                                        احراز هویت
+                                    </Button>
+                                    <Dialog
+                                        open={nationalCodeDialogOpen}
+                                        onOpenChange={setNationalCodeDialogOpen}
+                                    >
+                                        <DialogTrigger asChild>
+                                            {user.signup_type !== 'google' && (
                                                 <Button
-                                                    variant="info"
-                                                    onClick={async () => {
-                                                        setPasswordDialogOpen(
+                                                    onClick={() => {
+                                                        setEmailDialogOpen(
                                                             true
                                                         );
                                                     }}
+                                                    variant="info"
                                                 >
-                                                    احراز هویت
+                                                    {dict.changeEmail}
                                                 </Button>
-                                            </DialogTrigger>
-                                            <DialogContent className="max-w-xl">
-                                                {/*<ChangePassword*/}
-                                                {/*    userId={user.id}*/}
-                                                {/*    dict={dict}*/}
-                                                {/*/>*/}
-                                                <PasswordChangeForm
-                                                    dict={dict}
-                                                    lang={lang}
-                                                    setOpen={
-                                                        setPasswordDialogOpen
-                                                    }
-                                                />
-                                            </DialogContent>
-                                        </Dialog>
-                                    </div>
+                                            )}
+                                        </DialogTrigger>
+                                        <DialogContent className="max-w-xl">
+                                            <NationalCodeVerificationForm
+                                                setOpen={setNationalCodeDialogOpen}
+                                                lang={lang}
+                                                dict={dict}
+                                            />
+                                        </DialogContent>
+                                    </Dialog>
                                 </div>
-                            )}
+                            </div>
                             {lang === 'fa' && (
                                 <div className="space-y-2">
                                     <div className="flex items-center justify-between">
@@ -430,10 +440,6 @@ export function ProfilePage({ dict, lang }) {
                                                 </Button>
                                             </DialogTrigger>
                                             <DialogContent className="max-w-xl">
-                                                {/*<ChangePassword*/}
-                                                {/*    userId={user.id}*/}
-                                                {/*    dict={dict}*/}
-                                                {/*/>*/}
                                                 <PasswordChangeForm
                                                     dict={dict}
                                                     lang={lang}
