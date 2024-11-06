@@ -8,7 +8,6 @@ import React, { useEffect, useState } from 'react';
 import { Icons } from '@/components/ui/icons';
 import { Input } from '@/components/ui/input';
 import 'swiper/css';
-import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
 import { useExchangePrice } from '@/services/useExchangePrice';
 import Spinner from '@/components/spinner';
@@ -17,7 +16,9 @@ import { toast } from 'sonner';
 import { payment } from '../../services/payment';
 import { PaymentMethods } from '@/constants/payment-methods';
 import { LoginModal } from '@/components/login-modal';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { exchange } from '../../services/exchange';
+import { error } from 'console';
 
 
 type Props = {
@@ -35,12 +36,14 @@ export default function TransactionBox({
     // ** Hooks
     const { price, isLoading: priceIsLoading, isValidating } = useExchangePrice();
     const { user } = useGlobalContext();
+    const searchParams = useSearchParams()
+    const type = searchParams.get('type')
 
     const path = usePathname();
 
     // ** States
     const [openLoginModal, setOpenLoginModal] = useState<boolean>(false);
-    const [transactionMode, setTransactionMode] = useState<any>('buy');
+    const [transactionMode, setTransactionMode] = useState<any>(type === 'sell' ? 'sell' : 'buy');
     const [loading, setLoading] = useState<boolean>(false)
     const [checked, setChecked] = useState<boolean>(true)
     const [gerams, setGrams] = useState<number>(null)
@@ -60,22 +63,36 @@ export default function TransactionBox({
     }
 
     const onPaymentClick = async () => {
-        if (!user) return setOpenLoginModal(true);
-        if (!irr) return toast.error('لطفا مبلغی را وارد کنید')
-        if (irr < 1000000) return toast.error('مبلغ وارد شده نباید کمتر از 100 هزار تومان باشد')
-        setLoading(true);
-        toast.info('در حال انتقال به درگاه پرداخت');
-        try {
-            const res = await payment({
-                price: parseInt(JSON.stringify(irr)),
-                bank_type: PaymentMethods['tala'],
-            });
-            window.open(
-                `https://talame-api.darkube.app/transaction/payment/${res.id}`
-            );
-            setLoading(false);
-        } catch (error) {
-            console.log(error);
+        if (transactionMode === 'buy') {
+            if (!user) return setOpenLoginModal(true);
+            if (!irr) return toast.error('لطفا مبلغی را وارد کنید')
+            if (irr < 1000000) return toast.error('مبلغ وارد شده نباید کمتر از 100 هزار تومان باشد')
+            setLoading(true);
+            toast.info('در حال انتقال به درگاه پرداخت');
+            try {
+                const res = await payment({
+                    price: parseInt(JSON.stringify(irr)),
+                    bank_type: PaymentMethods['tala'],
+                });
+                window.open(
+                    `https://talame-api.darkube.app/transaction/payment/${res.id}`
+                );
+                setLoading(false);
+            } catch (error) {
+                console.log(error);
+                setLoading(false);
+            }
+        } else {
+            setLoading(true);
+            await exchange({
+                amount_rls: parseInt(JSON.stringify(irr)),
+                type: 'sell',
+            }).then(() => {
+                toast.success('با موفقیت انجام شد.');
+            }).catch((err) => {
+                setLoading(false);
+                toast.error(err?.error?.messages)
+            })
             setLoading(false);
         }
     };
@@ -167,7 +184,7 @@ export default function TransactionBox({
                                 type={'number'}
                                 className="w-full "
                                 placeholder="از 100 هزار تومان تا 100 میلیون تومان"
-                                value={irr}
+                                value={irr === 0 ? '' : irr}
                                 onChange={(e) => {
                                     setIrr(Number(e.target.value))
                                     rialToGerams(Number(e.target.value))
@@ -187,7 +204,7 @@ export default function TransactionBox({
                             type={'number'}
                             className="w-full "
                             placeholder="مقدار طلا به میلی گرم"
-                            value={gerams}
+                            value={gerams === 0 ? '' : gerams}
                             onChange={(e) => {
                                 setGrams(Number(e.target.value))
                                 geramsToRial(Number(e.target.value))
