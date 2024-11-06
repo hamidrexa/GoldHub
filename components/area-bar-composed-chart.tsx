@@ -49,8 +49,8 @@ export function AreaBarComposedChart({
     lang: Locale;
     dot?: boolean;
     isAnimationActive?: boolean;
-    market: string;
-    barChart: boolean
+    market?: string;
+    barChart?: boolean
 }) {
     const highlightPoint = data.filter((item) => item.viewPoint);
 
