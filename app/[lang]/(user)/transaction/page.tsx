@@ -33,7 +33,7 @@ export default async function Transaction({ params: { lang } }) {
 
     return (
         <div className='flex w-full justify-center'>
-            <div className='flex w-full justify-center'>
+            <div className='flex w-full justify-center pb-12'>
                 <TransactionBox
                     dict={dict}
                     lang={lang}
