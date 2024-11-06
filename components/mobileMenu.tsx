@@ -70,7 +70,7 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
             key: 'home',
             title: 'خانه',
             icon: <Icons.home />,
-            href: '/'
+            href: '/app'
         },
         {
             key: 'home',
