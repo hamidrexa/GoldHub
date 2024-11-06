@@ -52,18 +52,12 @@ export default function Wallet({ dict, lang }: Props) {
     return (
         <>
             <div className="flex flex-col gap-28 text-black">
-                {isLoading ? (
-                    <div className="flex min-h-40 items-center justify-center">
-                        <Spinner />
-                    </div>
-                ) : (
                     <div>
                         <WalletBox
                             dict={dict}
                             lang={lang}
                         />
                     </div>
-                )}
             </div>
             <LoginModal
                 lang={lang}

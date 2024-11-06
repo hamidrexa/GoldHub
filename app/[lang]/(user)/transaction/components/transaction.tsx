@@ -10,7 +10,6 @@ import { Input } from '@/components/ui/input';
 import 'swiper/css';
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
-import { useWalletInfo } from '../../wallet/services/useWalletInfo';
 import { useExchangePrice } from '@/services/useExchangePrice';
 import Spinner from '@/components/spinner';
 import { useGlobalContext } from '@/contexts/store';
@@ -34,7 +33,7 @@ export default function TransactionBox({
 }: Props) {
 
     // ** Hooks
-    const { price, isLoading: priceIsLoading } = useExchangePrice();
+    const { price, isLoading: priceIsLoading, isValidating } = useExchangePrice();
     const { user } = useGlobalContext();
 
     const path = usePathname();
@@ -50,7 +49,7 @@ export default function TransactionBox({
     // ** Functions
     const geramsToRial = (value: number) => {
         const goldValue = transactionMode === 'buy' ? price?.buy_price_irt : price?.sell_price_irt
-        const resIRR = Math.floor((value * (goldValue * 10)) / 1000);        
+        const resIRR = Math.floor((value * (goldValue * 10)) / 1000);
         setIrr(resIRR)
     }
 
@@ -91,7 +90,7 @@ export default function TransactionBox({
     }, [transactionMode])
 
     return (
-        <div className='flex w-full justify-center py-12'>
+        <div className='flex w-full justify-center'>
             <div
                 className={cn(
                     'relative flex w-full md:max-w-2xl flex-col gap-8 rounded-md md:border border-gray-400 bg-white px-4 py-6 text-black',
@@ -104,8 +103,8 @@ export default function TransactionBox({
                 </div>}
                 <div className='flex flex-row justify-between items-center'>
                     <div className='flex flex-row gap-[10px]'>
-                        <Icons.lineChart stroke="#0C0E3C" />
-                        <h2>
+                        <Icons.barChart3 stroke="#0C0E3C" />
+                        <h2 className='text-[22px] font-bold'>
                             معامله
                         </h2>
                     </div>
@@ -132,10 +131,10 @@ export default function TransactionBox({
                                 htmlFor={'buy'}
                                 className="flex w-full cursor-pointer text-nowrap flex-col items-center justify-between rounded-md border-transparent bg-transparent px-1 py-2  peer-data-[state=checked]:bg-[#CA8A04] peer-data-[state=checked]:font-black peer-data-[state=checked]:text-white [&:has([data-state=checked])]:border-neutral-100 [&:has([data-state=checked])]:bg-[#CA8A04] [&:has([data-state=checked])]:font-black"
                             >
-                                خرید
+                                خرید طلا
                             </Label>
                         </div>
-                        {/* <div className="overflow-hidden w-full">
+                        <div className="overflow-hidden w-full">
                             <RadioGroupItem
                                 value={'sell'}
                                 id={'sell'}
@@ -145,9 +144,9 @@ export default function TransactionBox({
                                 htmlFor={'sell'}
                                 className="flex w-full cursor-pointer text-nowrap flex-col items-center justify-between rounded-md border-transparent bg-transparent px-1 py-2  peer-data-[state=checked]:bg-[#CA8A04] peer-data-[state=checked]:font-black peer-data-[state=checked]:text-white [&:has([data-state=checked])]:border-neutral-100 [&:has([data-state=checked])]:bg-[#CA8A04] [&:has([data-state=checked])]:font-black"
                             >
-                                فروش
+                                فروش طلا
                             </Label>
-                        </div> */}
+                        </div>
                     </RadioGroup>
                 </div>
                 <div className={`flex w-full gap-8 ${transactionMode === 'sell' ? 'flex-col-reverse' : ' flex-col'}`}>
@@ -198,34 +197,40 @@ export default function TransactionBox({
                 </div>
                 <div className="flex w-full flex-col gap-[12px]">
                     <div className='flex flex-row gap-3 items-center'>
-                        <Icons.minusSquare stroke='#000' />
+                        <Icons.arrowUpDown stroke='#000' />
                         <Label>
                             قیمت لحظه ای
                         </Label>
+                        <div className="relative flex items-center justify-center">
+                            <div className="h-5 w-5 animate-ping rounded-full bg-[#CA8A04]/40"></div>
+                            <div className="absolute h-2.5 w-2.5 rounded-full bg-[#CA8A04]" />
+                        </div>
                     </div>
-                    <div className='flex w-full justify-center '>
-                        {`1 گرم طلا`} = {`${currency(transactionMode === 'buy' ? price?.buy_price_irt : price?.sell_price_irt, 'tse', lang)} تومان`}
+                    <div className='flex w-full justify-center items-center'>
+                        <div className={`${isValidating ? 'blur-sm' : ''}`}>
+                            {`1 گرم طلا`} = {`${currency(transactionMode === 'buy' ? price?.buy_price_irt : price?.sell_price_irt, 'tse', lang)} تومان`}
+                        </div>
+                        {<Spinner className={`w-[15px] h-[15px] mx-2 opacity-[${isValidating ? '2' : '0'}]`} />}
                     </div>
                 </div>
-                <div className="flex flex-col items-center justify-center gap-3 ">
+                {/* <div className="flex flex-col items-center justify-center gap-3 ">
                     <div className=' flex w-full  gap-[4px] items-center	'>
-                        {/* <Icons.info stroke='#000' /> */}
                         <div className='text-[#5A5C83]'>
                             برای مبالغ زیر 1 میلیون تومان کارمزد 0.01 درصد می باشد
                         </div>
                     </div>
-                </div>
-                {/* <div>
+                </div> */}
+                <div>
                     <div className='flex flex-row items-center justify-between'>
                         <Label className='font-black'>
                             کارمزد
                         </Label>
                         <div className='flex flex-row items-center gap-2 text-[#5A5C83] font-black'>
-                            {currency(2450, 'tse', lang)} تومان <Icons.info stroke='#2228A9' />
+                            {currency(0, 'tse', lang)} تومان <Icons.info stroke='#2228A9' />
                         </div>
                     </div>
                 </div>
-                <div>
+                {/* <div>
                     <div className='flex flex-row items-center justify-between'>
                         <Label className='font-black'>
                             خرید دوره ای طلا

@@ -31,21 +31,22 @@ export function InvestmentCard({
             <h2 className="mb-6 flex items-center justify-center gap-1 text-center text-xl font-black text-black md:mb-4 md:text-xl">
                 {headerTitle}
             </h2>
-            <div className='flex flex-row gap-[6px] justify-center flex-wrap'>
-                <Link className='flex md:max-w-[200px] w-full' href='/transaction'>
+            <div className='flex gap-[6px] justify-center flex-nowrap'>
+                <Link href='/transaction' className='flex w-[60%]'>
                     <Button
                         variant='info'
-                        className='flex bg-[#CA8A04] text-white w-full'
-                    >
+                        className='flex bg-[#CA8A04] text-white w-full'>
                         <ShoppingBasketIcon />
                         خرید
                     </Button>
                 </Link>
-                <Button
-                    variant='info'
-                    className='flex bg-[#e9e9e9] text-[#000] md:max-w-[120px] w-full'>
-                    فروش
-                </Button>
+                <Link href='/transaction' className='flex w-[40%]'>
+                    <Button
+                        variant='info'
+                        className='flex bg-[#e9e9e9] text-[red] w-full'>
+                        فروش
+                    </Button>
+                </Link>
             </div>
         </div>
     );

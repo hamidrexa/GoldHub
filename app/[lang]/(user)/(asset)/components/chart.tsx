@@ -21,11 +21,6 @@ export default function ChartGold({ dict, lang, className }: bargainingProps) {
                 className
             )}
         >
-
-            <div className="mx-auto w-full max-w-7xl mt-28">
-                <h2 className="mb-6 flex items-center justify-center gap-1 text-center text-2xl font-black text-black md:mb-12 md:text-4xl">
-                    قیمت لحظه ای
-                </h2>
                 <ChartBox
                     headerTitle='قیمت لحظه ای طلا'
                     price={price?.buy_price_irt}
@@ -38,7 +33,6 @@ export default function ChartGold({ dict, lang, className }: bargainingProps) {
                     dict={dict}
                     lang={lang}
                 />
-            </div>
         </div>
     );
 }

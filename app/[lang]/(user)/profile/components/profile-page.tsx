@@ -105,10 +105,10 @@ export function ProfilePage({ dict, lang }) {
 
     const successful = !!transactions
         ? transactions.transactions.filter(
-              (item) =>
-                  dayjs().diff(item.created_at, 'day') <= 2 ||
-                  item.state == 'Complete'
-          )
+            (item) =>
+                dayjs().diff(item.created_at, 'day') <= 2 ||
+                item.state == 'Complete'
+        )
         : [];
 
     useEffect(() => {
@@ -177,7 +177,7 @@ export function ProfilePage({ dict, lang }) {
     return (
         <main className="main">
             <div className="jumbotron">
-                {!isMobile && <ProductsNavigator dict={dict} lang={lang} />}
+                {/* {!isMobile && <ProductsNavigator dict={dict} lang={lang} />} */}
                 <div className="w-full text-black">
                     {completePercentage && completePercentage < 100 && (
                         // @ts-ignore
@@ -202,9 +202,8 @@ export function ProfilePage({ dict, lang }) {
                         />
                         <span className="mx-3 text-2xl font-black">
                             {user.first_name || user.last_name
-                                ? `${user.first_name || ''} ${
-                                      user.last_name || ''
-                                  }`
+                                ? `${user.first_name || ''} ${user.last_name || ''
+                                }`
                                 : 'کاربر طلانو'}
                         </span>
                         <Dialog
@@ -244,7 +243,7 @@ export function ProfilePage({ dict, lang }) {
                                             dict={dict}
                                             status={
                                                 user &&
-                                                user.phone_number_confirmed
+                                                    user.phone_number_confirmed
                                                     ? 'confirmed'
                                                     : 'notConfirmed'
                                             }
@@ -345,6 +344,56 @@ export function ProfilePage({ dict, lang }) {
                                     </Dialog>
                                 )}
                             </div>
+                            {lang === 'fa' && (
+                                <div className="space-y-2">
+                                    <div className="flex items-center justify-between">
+                                        <div className="text-base">
+                                            شماره ملی:
+                                        </div>
+                                    </div>
+                                    <div className="flex h-14 items-center justify-between rounded-md bg-gray-300/60 p-1.5 text-base font-black ltr:pl-5 rtl:pr-5">
+                                        <span
+                                            className={cn('text-lg', {
+                                                'font-sans': user.has_password,
+                                            })}
+                                        >
+                                            {/* {user.has_password
+                                                ? '************' */}
+                                             شماره ملی تعیین نشده است
+                                        </span>
+                                        <Dialog
+                                            open={passwordDialogOpen}
+                                            onOpenChange={setPasswordDialogOpen}
+                                        >
+                                            <DialogTrigger asChild>
+                                                <Button
+                                                    variant="info"
+                                                    onClick={async () => {
+                                                        setPasswordDialogOpen(
+                                                            true
+                                                        );
+                                                    }}
+                                                >
+                                                    احراز هویت
+                                                </Button>
+                                            </DialogTrigger>
+                                            <DialogContent className="max-w-xl">
+                                                {/*<ChangePassword*/}
+                                                {/*    userId={user.id}*/}
+                                                {/*    dict={dict}*/}
+                                                {/*/>*/}
+                                                <PasswordChangeForm
+                                                    dict={dict}
+                                                    lang={lang}
+                                                    setOpen={
+                                                        setPasswordDialogOpen
+                                                    }
+                                                />
+                                            </DialogContent>
+                                        </Dialog>
+                                    </div>
+                                </div>
+                            )}
                             {lang === 'fa' && (
                                 <div className="space-y-2">
                                     <div className="flex items-center justify-between">

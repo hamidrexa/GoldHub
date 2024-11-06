@@ -24,7 +24,6 @@ export function PriceSignalChart(props: Props) {
     const { user } = useGlobalContext();
     const [durationFilter, setDurationFilter] = useState('daily');
     const [signalTypeFilter, setSignalTypeFilter] = useState('buy');
-    const [duration, durationScale] = durationFilter.split(',');
     const { assets, isLoading, error } = useChartAssets({
         id: 1,
         filter: durationFilter
@@ -32,9 +31,9 @@ export function PriceSignalChart(props: Props) {
 
     const percentage = 1.6
     const items = [
-        { title: 'روزانه', value: 'daily' },
-        { title: 'هفتگی', value: 'weekly' },
-        { title: 'ماهانه', value: 'monthly' },
+        { title: 'روز اخیر', value: 'daily' },
+        { title: 'هفته اخیر', value: 'weekly' },
+        { title: 'ماه اخیر', value: 'monthly' },
         // { title: 'ماه', value: '"30,day"' },
         // { title: 'سه ماه', value: '90,day' },
         // { title: 'شش ماه', value: '25,week' },
@@ -53,23 +52,24 @@ export function PriceSignalChart(props: Props) {
         return datetime; // در غیر این صورت
     };
 
+    const percentageChange = (assets[assets.length - 1]?.price && assets[0]?.price) ? Number(((assets[assets.length - 1]?.price / assets[0]?.price - 1) * 100).toFixed(2)) : 0
     return (
-        <div className='flex w-full flex-col p-[12px]'>
-            <div className="flex w-full flex-row justify-between gap-[12px]">
+        <div className='flex w-full flex-col p-[10px]'>
+            <div className="flex w-full flex-row justify-between gap-[8px]">
                 <div className='flex flex-row gap-[5px] items-center justify-center'>
-                    {/* <Label
+                    <h5
                         className="flex text-gray-900"
                     >
                         سود ماه اخیر:
-                    </Label>
-                    <Label className="flex text-[green] font-black">
+                    </h5>
+                    <Label className={`flex text-[${Number(percentageChange) > 0 ? 'green' : 'red'}] font-black text-[28px]`}>
                         %
                     </Label>
                     <Label
-                        className="flex text-[green] text-lg"
+                        className={`flex text-[green] font-black text-lg text-[28px] text-[${Number(percentageChange) > 0 ? 'green' : 'red'}]`}
                     >
-                        {percentage}  {percentage >= 0 ? '+' : '-'}
-                    </Label> */}
+                        {Math.abs(Number(percentageChange))}  {Number(percentageChange) >= 0 ? '+' : '-'}
+                    </Label>
                 </div>
                 <div className='flex min-w-20'>
                     <Select
@@ -108,7 +108,7 @@ export function PriceSignalChart(props: Props) {
                     dir={dir}
                     xDataKey="datetime"
                     yDataKey="price"
-                    name={`${props.dict.price}`}
+                    name={` `}
                     color={signalTypeFilter === 'buy' ? '#10EDC5' : '#DB2777'}
                     barDataKey={
                         // signalTypeFilter === 'buy'
@@ -313,7 +313,7 @@ export function PriceSignalChart(props: Props) {
                                     )
                                     .locale(props.lang)
                                     .format(
-                                      formatDate(signal.datetime, durationFilter, props.lang)
+                                        formatDate(signal.datetime, durationFilter, props.lang)
                                     ),
                                 viewPoint:
                                     index === assets.length - 1,
