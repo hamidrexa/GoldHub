@@ -210,7 +210,9 @@ export default function TransactionBox({
                         <div className={`${isValidating ? 'blur-sm' : ''}`}>
                             {`1 گرم طلا`} = {`${currency(transactionMode === 'buy' ? price?.buy_price_irt : price?.sell_price_irt, 'tse', lang)} تومان`}
                         </div>
-                        {<Spinner className={`w-[15px] h-[15px] mx-2 opacity-[${isValidating ? '2' : '0'}]`} />}
+                        <div className={`${isValidating ? 'opacity-1' : 'opacity-0'}`}>
+                            {<Spinner className={`w-[15px] h-[15px] mx-2 opacity-[${isValidating ? '2' : '0'}]`} />}
+                        </div>
                     </div>
                 </div>
                 {/* <div className="flex flex-col items-center justify-center gap-3 ">
