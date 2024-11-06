@@ -108,7 +108,7 @@ export function PriceSignalChart(props: Props) {
                     dir={dir}
                     xDataKey="datetime"
                     yDataKey="price"
-                    name={` `}
+                    name={`قیمت`}
                     color={signalTypeFilter === 'buy' ? '#10EDC5' : '#DB2777'}
                     barDataKey={
                         // signalTypeFilter === 'buy'
