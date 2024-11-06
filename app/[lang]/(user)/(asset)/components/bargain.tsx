@@ -5,6 +5,7 @@ import { cn } from '@/libs/utils';
 import ExchangeV2 from '@/components/exchangeV2';
 import { useWalletInfo } from '../../wallet/services/useWalletInfo';
 import { useExchangePrice } from '@/services/useExchangePrice';
+import Exchange from '@/components/exchange';
 
 type bargainingProps = {
     dict: any;
@@ -36,7 +37,12 @@ export default function Bargain({ dict, lang, className }: bargainingProps) {
                     بهره‌مند شوید.
                 </p>
             </div>
-            <ExchangeV2
+            <Exchange
+            dict={dict}
+            lang={lang}
+            ids={[]}
+            />
+            {/* <ExchangeV2
                 headerTitle='خرید و فروش طلا از طلانو'
                 yourInventory={Number(wallet?.balance?.irt_balance)}
                 loading={isLoading}
@@ -50,7 +56,7 @@ export default function Bargain({ dict, lang, className }: bargainingProps) {
                     { key: '500', value: '500000', title: `500 ${dict.countingUnit.thousand} ${dict.toman}` },
                     { key: '2000', value: '2000000', title: `2 ${dict.countingUnit.million} ${dict.toman}` },
                 ]}
-            />
+            /> */}
 
         </div>
     );

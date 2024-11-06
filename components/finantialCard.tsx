@@ -7,6 +7,7 @@ import { Icons } from '@/components/ui/icons';
 import { Button } from './ui/button';
 import { Plus } from 'lucide-react';
 import Spinner from './spinner';
+import Link from 'next/link';
 
 type Props = {
     dict: any;
@@ -45,17 +46,19 @@ export function FinantialCard({
                 <Spinner className='z-20' />
             </div>}
             <div className='flex flex-row flex-wrap justify-between items-center z-10'>
-                <div className='flex flex-row gap-[10px]'>
-                    {headerIcon ? headerIcon : <Icons.lineChart stroke="#0C0E3C" />}
+                <div className='flex flex-row gap-[10px] text-[22px] font-bold'>
+                    {headerIcon ? headerIcon : <Icons.barChart3 stroke="#0C0E3C" />}
                     {headerTitle ? headerTitle : ''}
                 </div>
                 <div className='cursor-pointer'>
-                    <Button variant='info' className='rounded-[30px] gap-[12px] bg-[#0C0E3C] text-white'>
-                        <Plus className='text-[#10EDC5] h-[20px] w-[20px]' />
-                        <div>
-                            {dict.increase}
-                        </div>
-                    </Button>
+                    <Link href={'/transaction'}>
+                        <Button variant='info' className='rounded-[30px] drop-shadow-[0px_2px_5px_rgba(0,_0,_0,_.)] gap-[12px] bg-[#0C0E3C] text-white'>
+                            <Plus className='text-[#10EDC5] h-[20px] w-[20px]' />
+                            <div>
+                                {dict.increase}
+                            </div>
+                        </Button>
+                    </Link>
                 </div>
             </div>
             <div className='flex flex-wrap flex-row justify-center items-center gap-[40px] z-10'>

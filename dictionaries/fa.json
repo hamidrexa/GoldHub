@@ -71,6 +71,16 @@
   "profile": "پروفایل",
   "navMenuItems": [
     {
+      "title": "معامله",
+      "href": "/transaction",
+      "description": ""
+    },
+    {
+      "title": "دارایی",
+      "href": "/wallet",
+      "description": ""
+    },
+    {
       "title": "قوانین",
       "href": "/privacy",
       "description": ""

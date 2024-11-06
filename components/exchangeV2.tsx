@@ -67,7 +67,7 @@ export default function ExchangeV2({
                 </div>}
                 <div className='flex flex-row justify-between items-center'>
                     <div className='flex flex-row gap-[10px]'>
-                        {headerIcon ? headerIcon : <Icons.lineChart stroke="#0C0E3C" />}
+                        {headerIcon ? headerIcon : <Icons.barChart3 stroke="#0C0E3C" />}
                         {headerTitle ? headerTitle : 'خرید و فروش طلا از طلانو'}
                     </div>
                     <div className='cursor-pointer'>

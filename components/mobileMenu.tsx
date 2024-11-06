@@ -174,7 +174,7 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
                 {items.map((item) => {
                     const isActive = path === item.href;
                     return (
-                        <Link key={item.key} href={item.href} className='flex justify-center flex-col items-center gap-1'>
+                        <Link key={item.key} href={item.href} className='flex justify-center flex-col items-center gap-1 h-[30px]'>
                             <div
                                 className={cn(
                                     'flex items-center justify-center p-2 rounded-lg', // Add padding and border radius if needed
