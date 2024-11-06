@@ -1,14 +1,10 @@
 'use client';
 
 import { cn, getDirection } from '@/libs/utils';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { AreaBarComposedChart } from '@/components/area-bar-composed-chart';
 import dayjs from 'dayjs';
-import { useSignalsSummery } from '@/services/useSignalsSummery';
-import { useGlobalContext } from '@/contexts/store';
-import { usePathname } from 'next/navigation';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { useChartAssets } from '@/services/useChartAssets';
 
@@ -21,35 +17,33 @@ type Props = {
 
 export function PriceSignalChart(props: Props) {
     const dir = getDirection(props.lang);
-    const { user } = useGlobalContext();
     const [durationFilter, setDurationFilter] = useState('daily');
+    const [durationFilterTitle, setDurationFilterTitle] = useState('روز اخیر');
     const [signalTypeFilter, setSignalTypeFilter] = useState('buy');
-    const { assets, isLoading, error } = useChartAssets({
+
+    const { assets, isLoading } = useChartAssets({
         id: 1,
         filter: durationFilter
     });
 
-    const percentage = 1.6
+    useEffect(() => {
+        setDurationFilterTitle((items.find((item) => item.value === durationFilter))?.title)
+    }, [durationFilter])
     const items = [
         { title: 'روز اخیر', value: 'daily' },
         { title: 'هفته اخیر', value: 'weekly' },
         { title: 'ماه اخیر', value: 'monthly' },
-        // { title: 'ماه', value: '"30,day"' },
-        // { title: 'سه ماه', value: '90,day' },
-        // { title: 'شش ماه', value: '25,week' },
-        // { title: 'یکساله', value: '12,month' },
-
     ]
 
     const formatDate = (datetime, filter, lang) => {
         if (filter === 'daily') {
-            return 'HH:MM'; // روز و تاریخ کامل برای روزانه
+            return 'HH:MM';
         } else if (filter === 'weekly') {
-            return 'dddd'; // فقط روز برای هفتگی
+            return 'dddd';
         } else if (filter === 'monthly') {
-            return 'DD MMMM'; // روز و ماه برای ماهانه
+            return 'DD MMMM';
         }
-        return datetime; // در غیر این صورت
+        return datetime;
     };
 
     const percentageChange = (assets[assets.length - 1]?.price && assets[0]?.price) ? Number(((assets[assets.length - 1]?.price / assets[0]?.price - 1) * 100).toFixed(2)) : 0
@@ -60,7 +54,7 @@ export function PriceSignalChart(props: Props) {
                     <h5
                         className="flex text-gray-900"
                     >
-                        سود ماه اخیر:
+                        سود {durationFilterTitle} :
                     </h5>
                     <Label className={`flex text-[${Number(percentageChange) > 0 ? 'green' : 'red'}] font-black text-[28px]`}>
                         %
