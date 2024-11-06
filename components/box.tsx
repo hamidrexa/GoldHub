@@ -34,6 +34,7 @@ interface BoxContentProps extends React.HTMLAttributes<HTMLDivElement> {
     className?: string;
 }
 
+//kofr
 const BoxContent = React.forwardRef<HTMLDivElement, BoxContentProps>(
     ({ className, ...props }, ref) => (
         <div
