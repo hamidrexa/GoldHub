@@ -59,7 +59,7 @@ export default async function HomePage({ params: { lang } }) {
                         target='_blank'
                         title='تحلیل طلا'
                         icon={<Icons.fire stroke='#111' fill='none' />}
-                        href='https://sahmeto.com'
+                        href='https://sahmeto.com/ticker/IRG0000/%D9%86%D8%AA%D8%A7%DB%8C%D8%AC-%DA%A9%D9%84%DB%8C-%D8%B3%DB%8C%DA%AF%D9%86%D8%A7%D9%84-%D9%87%D8%A7%DB%8C-%D8%AE%D8%B1%DB%8C%D8%AF-%D9%88-%D9%81%D8%B1%D9%88%D8%B4-%D8%B3%D9%87%D9%85-%D8%B7%D9%84%D8%A7-%DB%B1%DB%B8-%D8%B9%DB%8C%D8%A7%D8%B1'
                     />
                 </div>
             </section>
