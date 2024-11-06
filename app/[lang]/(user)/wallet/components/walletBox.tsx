@@ -14,7 +14,9 @@ import { Label } from '@/components/ui/label';
 import { useTransactionHistory } from '../services/useTransactionHistory';
 import Spinner from '@/components/spinner';
 import dayjs from 'dayjs';
+import jalaliday from 'jalaliday';
 
+dayjs.extend(jalaliday);
 
 type Props = {
     dict: any;
@@ -80,10 +82,10 @@ export default function WalletBox({
     const HistoryItem = (item) => {
         const dateItem = item?.created_at?.replace(/\.\d+/g, '')
         const date = dateItem && dayjs(dateItem)
-            // .calendar(
-            //     lang === 'fa' ? 'jalali' : 'gregory'
-            // )
-            // .locale(lang)
+            .calendar(
+                lang === 'fa' ? 'jalali' : 'gregory'
+            )
+            .locale(lang)
             .format(
                 'HH:mm - YYYY/MM/DD'
             )
@@ -213,7 +215,7 @@ export default function WalletBox({
                     headerTitle='تاریخچه معاملات'
                 />
                 <div className='flex w-full'>
-                    <div className='flex flex-row w-full justify-between'>
+                    {/* <div className='flex flex-row w-full justify-between'>
                         <div className='flex items-center gap-2'>
                             <Icons.setting stroke='black' />
                             <span className='text-[14px]'>
@@ -270,8 +272,7 @@ export default function WalletBox({
                                 </div>
                             </RadioGroup>
                         </div>
-                    </div>
-
+                    </div> */}
                 </div>
                 <div className='flex w-full justify-between'>
                     <h5 className='text-[16px] text-[#74759A]'>
