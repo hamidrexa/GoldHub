@@ -21,6 +21,7 @@ import { updateInfo } from '@/app/[lang]/(auth)/login/services/updateInfo';
 import { useGlobalContext } from '@/contexts/store';
 import { emailVerification } from '@/app/[lang]/(user)/profile/services/emailVerification';
 import Spinner from '@/components/spinner';
+import { natiionalCodeVerification } from '../services/natinalCodeVerification';
 
 type formProp = {
     setOpen: any;
@@ -51,11 +52,11 @@ export function NationalCodeVerificationForm({ lang, dict, setOpen }: formProp) 
         try {
             setUser({
                 ...user,
-                email: info.email,
-                email_confirmed: false,
+                national_code: info.national_code,
+                national_code_confirmed: false,
             });
-            await updateInfo({ email: info.email });
-            await emailVerification();
+            await updateInfo({ national_code: info.national_code });
+            await natiionalCodeVerification();
             setOpen(false)
         } catch (e) {
             window.focus();
