@@ -53,7 +53,7 @@ export default async function HomePage({ params: { lang } }) {
                         dict={dict}
                     />
                 </div>
-                <div className="flex w-full justify-center mt-10 text-black">
+                <div className="mx-auto w-full max-w-7xl mt-10 text-black">
                     <LinkBox
                         target='_blank'
                         title='تحلیل طلا'
