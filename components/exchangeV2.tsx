@@ -104,8 +104,8 @@ export default function ExchangeV2({
                             value={equivalent}
                             onValueChange={(e) => {
                                 setEquivalent(e)
-                                rialToGerams(Number(e)*10)
-                                setIrr(Number(e)*10)
+                                rialToGerams(Number(e) * 10)
+                                setIrr(Number(e) * 10)
                             }}
                             dir={getDirection(lang)}
                             className="flex w-full items-center"
@@ -126,7 +126,7 @@ export default function ExchangeV2({
                             }}
                         >
                                 {ids?.map((id) => {
-                                    return < SwiperSlide >
+                                    return < SwiperSlide key={id.key}>
                                         <div className="w-full overflow-hidden w-auto">
                                             <RadioGroupItem
                                                 value={id.value}
