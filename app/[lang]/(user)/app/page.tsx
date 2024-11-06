@@ -9,11 +9,10 @@ import {
 } from '@/components/ui/accordion';
 import React from 'react';
 import { InvestmentCard } from '@/components/investmentCard';
-import Financial from './(asset)/components/financial';
-import ChartGold from './(asset)/components/chart';
+import Financial from '../(asset)/components/financial';
+import ChartGold from '../(asset)/components/chart';
 import { LinkBox } from '@/components/link-box';
 import { Icons } from '@/components/ui/icons';
-import Bargain from './(asset)/components/bargain';
 
 export const metadata: Metadata = {
     title: 'طلانو | خرید و فروش طلای آب شده آنلاین بدون اجرت',
@@ -31,11 +30,6 @@ export default async function HomePage({ params: { lang } }) {
 
     return (
         <div className="flex w-full flex-col">
-            <section className="w-full bg-gradient-to-b from-neutral-700 px-4 py-12 md:py-32">
-                <div className="mx-auto w-full max-w-7xl">
-                    <Bargain dict={dict} lang={lang} />
-                </div>
-            </section>
             <section className="w-full px-4 py-10 text-neutral-800 ">
                 <Financial
                     lang={lang}

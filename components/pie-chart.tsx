@@ -9,13 +9,21 @@ import {
 } from 'recharts';
 import React, { useState } from 'react';
 import { roundNumber } from '@/libs/utils';
-import {Empty} from "@/components/empty";
 
-export function PieChart({ className = '', width, height, data, dataKey }) {
-    const COLORS = ['#0C0E3C', '#0D3857', '#0E6270', '#0FB6A3', '#10EDC5'];
+type Props = {
+    className?: any,
+    width?: any,
+    height?: any,
+    data?: any,
+    dataKey?: any,
+    legendSection?: boolean,
+    mainPercantage?: any
+}
+export function PieChart(props: Props) {
+    const COLORS = ['#E2E6E9', '#0FB6A3', '#0E6270', '#0FB6A3', '#10EDC5'];
     const [selectedPart, setSelectedPart] = useState(null);
-    const mostSuggestedSymbols = data.slice(0, 4);
-    const otherSuggestedSymbols = data
+    const mostSuggestedSymbols = props.data.slice(0, 4);
+    const otherSuggestedSymbols = props.data
         .slice(4)
         .map((item) => {
             return item.percent;
@@ -27,11 +35,11 @@ export function PieChart({ className = '', width, height, data, dataKey }) {
         ...mostSuggestedSymbols,
         ...(mostSuggestedSymbols.length > 3 && otherSuggestedSymbols > 0
             ? [
-                  {
-                      other: true,
-                      [dataKey]: roundNumber(otherSuggestedSymbols, 2),
-                  },
-              ]
+                {
+                    other: true,
+                    [props.dataKey]: roundNumber(otherSuggestedSymbols, 2),
+                },
+            ]
             : []),
     ];
 
@@ -61,7 +69,7 @@ export function PieChart({ className = '', width, height, data, dataKey }) {
                         <span className="whitespace-nowrap text-base font-black">
                             {!entry.payload.other
                                 ? entry.value
-                                : `${data.length - 4} مورد دیگر`}
+                                : `${props.data.length - 4} مورد دیگر`}
                         </span>
                         <span className="whitespace-nowrap text-base font-black">
                             {!entry.other
@@ -94,22 +102,24 @@ export function PieChart({ className = '', width, height, data, dataKey }) {
     };
 
     return (
-       <div className="mx-auto w-full max-w-sm">
+        <div className="mx-auto w-full max-w-sm relative justify-center items-center">
             <ResponsiveContainer
-                className={className}
-                width={width}
-                height={height}
+                className={props.className}
+                width={props.width}
+                height={props.height}
             >
                 <PieChartComponent
                     margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
                 >
                     <Pie
                         data={displayData}
-                        paddingAngle={3}
-                        dataKey={dataKey}
+                        paddingAngle={5}
+                        dataKey={props.dataKey}
                         outerRadius={75}
                         innerRadius={65}
                         cornerRadius={5}
+                        startAngle={215}  // Start from 180 degrees (left side)
+                        endAngle={-35}      // End at 0 degrees (top)
                         onMouseEnter={onMouseEnterHandler}
                         onMouseLeave={onMouseLeaveHandler}
                         onTouchStart={onMouseEnterHandler}
@@ -125,14 +135,27 @@ export function PieChart({ className = '', width, height, data, dataKey }) {
                             />
                         ))}
                     </Pie>
-                    <Legend
+                    {props.legendSection && <Legend
                         content={CustomLegend}
                         verticalAlign="middle"
                         align="left"
                         layout="vertical"
-                    />
+                    />}
+
                 </PieChartComponent>
             </ResponsiveContainer>
+            <div
+                className="absolute top-[60%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 text-center gap-4 justify-center items-center text-base font-bold flex-col text-[#0F7E81]"
+            >
+                <div className='flex justify-center mb-[4px] text-[14px]'>
+                    دارایی طلا
+                </div>
+                <div className='flex'>
+                    <span className='font-black text-[28px]'>
+                        {props.mainPercantage}%
+                    </span>
+                </div>
+            </div>
         </div>
     );
 }

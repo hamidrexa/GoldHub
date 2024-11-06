@@ -3,6 +3,8 @@
 import { Locale } from '@/i18n-config';
 import Exchange from '@/components/exchange';
 import { cn } from '@/libs/utils';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 type bargainingProps = {
     dict: any;
@@ -30,6 +32,15 @@ export default function Bargain({ dict, lang, className }: bargainingProps) {
                     طلا خریداری کنید و از مزایای این سرمایه‌گذاری با ارزش
                     بهره‌مند شوید.
                 </p>
+                <div className='flex w-full justify-center'>
+                    <Link 
+                    className='flex w-full justify-center md:justify-start'
+                    href={'/app'}>
+                        <Button className='text-white w-full max-w-md md:max-w-[150px]' >
+                            ورود به اپلیکیشن
+                        </Button>
+                    </Link>
+                </div>
             </div>
             <Exchange
                 ids={{ 0: 'one-million-bargain', 1: 'five-million-bargain' }}

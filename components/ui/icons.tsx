@@ -15,7 +15,7 @@ export const Icons = {
                 <path d="M15.6977 10.4651H30.3488V16.7442H15.6977V10.4651Z" fill="#FFF9F9" />
                 <path d="M15.6977 10.4651H30.3488V16.7442H15.6977V10.4651Z" fill="#FFF9F9" />
                 <rect x="15.6977" y="34.5349" width="17.7907" height="6.27907" transform="rotate(-90 15.6977 34.5349)"
-                      fill="#FFF9F9" />
+                    fill="#FFF9F9" />
             </g>
             <defs>
                 <clipPath id="clip0_1_5">
@@ -24,6 +24,181 @@ export const Icons = {
             </defs>
         </svg>
     ),
+    question: (props: IconProps) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" {...props}>
+            <circle cx="12" cy="12" r="10" stroke="#1C274C" stroke-width="1.5" />
+            <path d="M10.125 8.875C10.125 7.83947 10.9645 7 12 7C13.0355 7 13.875 7.83947 13.875 8.875C13.875 9.56245 13.505 10.1635 12.9534 10.4899C12.478 10.7711 12 11.1977 12 11.75V13" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+            <circle cx="12" cy="16" r="1" fill="#1C274C" />
+        </svg>
+    ),
+    home: (props: IconProps) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 20 20" fill={props.fill} {...props}>
+            <g filter="url(#filter0_b_170_511)">
+                <path d="M7.14373 18.7821V15.7152C7.14372 14.9381 7.77567 14.3067 8.55844 14.3018H11.4326C12.2189 14.3018 12.8563 14.9346 12.8563 15.7152V18.7732C12.8562 19.4473 13.404 19.9951 14.0829 20H16.0438C16.9596 20.0023 17.8388 19.6428 18.4872 19.0007C19.1356 18.3586 19.5 17.4868 19.5 16.5775V7.86585C19.5 7.13139 19.1721 6.43471 18.6046 5.9635L11.943 0.674268C10.7785 -0.250877 9.11537 -0.220992 7.98539 0.745384L1.46701 5.9635C0.872741 6.42082 0.517552 7.11956 0.5 7.86585V16.5686C0.5 18.4637 2.04738 20 3.95617 20H5.87229C6.19917 20.0023 6.51349 19.8751 6.74547 19.6464C6.97746 19.4178 7.10793 19.1067 7.10792 18.7821H7.14373Z" fill={props.fill} />
+            </g>
+            <defs>
+                <filter id="filter0_b_170_511" x="-9.48147" y="-9.98147" width="38.9629" height="39.9629" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feGaussianBlur in="BackgroundImageFix" stdDeviation="4.99073" />
+                    <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_170_511" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_170_511" result="shape" />
+                </filter>
+            </defs>
+        </svg>
+    ),
+    arrowUpDown: (props: IconProps) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" {...props}>
+            <path d="M10 10L6 6L10 2" stroke="#0C0E3C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M6 6H18" stroke="#0C0E3C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M14 22L18 18L14 14" stroke="#0C0E3C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M6 18H18" stroke="#0C0E3C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    ),
+    chevronLeft: (props: IconProps) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" {...props}>
+            <path d="M15 18L9 12L15 6" stroke="#0C0E3C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    ),
+    buyGold: (props: IconProps) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="37" height="28" viewBox="0 0 37 28" fill="none" {...props}>
+            <g filter="url(#filter0_b_145_240)">
+                <path d="M29.4417 1.00098V22.7893" stroke="#200E32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <g filter="url(#filter1_b_145_240)">
+                <path d="M23 7.55464L29.4418 1L35.8836 7.55464" stroke="#200E32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <path d="M16.5345 12.6945C15.902 12.0762 9.57732 12.0763 9.15565 12.6945C8.73398 13.3127 6.83657 17.4344 7.25824 18.2587C7.67991 19.083 18.0102 19.083 18.4319 18.2587C18.8535 17.4344 17.167 13.3127 16.5345 12.6945Z" stroke="black" stroke-width="1.5" />
+            <path d="M10.337 20.8175C9.70446 20.1993 3.37981 20.1994 2.95814 20.8175C2.53647 21.4357 0.639063 25.5575 1.06073 26.3818C1.4824 27.2061 11.8127 27.2061 12.2344 26.3818C12.656 25.5575 10.9694 21.4358 10.337 20.8175Z" stroke="black" stroke-width="1.5" />
+            <path d="M22.7317 20.8175C22.0992 20.1993 15.7746 20.1994 15.3529 20.8175C14.9312 21.4357 13.0338 25.5575 13.4555 26.3818C13.8772 27.2061 24.2075 27.2061 24.6291 26.3818C25.0508 25.5575 23.3642 21.4358 22.7317 20.8175Z" stroke="black" stroke-width="1.5" />
+            <defs>
+                <filter id="filter0_b_145_240" x="17.9153" y="-10.5253" width="23.0526" height="44.841" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feGaussianBlur in="BackgroundImageFix" stdDeviation="5.26316" />
+                    <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_145_240" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_145_240" result="shape" />
+                </filter>
+                <filter id="filter1_b_145_240" x="11.4737" y="-10.5263" width="35.9362" height="29.6073" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feGaussianBlur in="BackgroundImageFix" stdDeviation="5.26316" />
+                    <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_145_240" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_145_240" result="shape" />
+                </filter>
+            </defs>
+        </svg>
+    ),
+    sellGold: (props: IconProps) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="37" height="28" viewBox="0 0 37 28" fill="none" {...props}>
+            <g filter="url(#filter0_b_145_241)">
+                <path d="M29.4417 26.7883V4.99999" stroke="#200E32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <g filter="url(#filter1_b_145_241)">
+                <path d="M23 20.2347L29.4418 26.7893L35.8836 20.2347" stroke="#200E32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <path d="M16.5345 1.69449C15.902 1.07624 9.57732 1.07633 9.15565 1.6945C8.73398 2.31267 6.83657 6.43442 7.25824 7.25872C7.67991 8.08303 18.0102 8.08303 18.4319 7.25872C18.8535 6.43442 17.167 2.31273 16.5345 1.69449Z" stroke="black" stroke-width="1.5" />
+            <path d="M10.337 9.81753C9.70446 9.19928 3.37981 9.19937 2.95814 9.81754C2.53647 10.4357 0.639063 14.5575 1.06073 15.3818C1.4824 16.2061 11.8127 16.2061 12.2344 15.3818C12.656 14.5575 10.9694 10.4358 10.337 9.81753Z" stroke="black" stroke-width="1.5" />
+            <path d="M22.7317 9.81753C22.0992 9.19928 15.7746 9.19937 15.3529 9.81754C14.9312 10.4357 13.0338 14.5575 13.4555 15.3818C13.8772 16.2061 24.2075 16.2061 24.6291 15.3818C25.0508 14.5575 23.3642 10.4358 22.7317 9.81753Z" stroke="black" stroke-width="1.5" />
+            <defs>
+                <filter id="filter0_b_145_241" x="17.9153" y="-6.52632" width="23.0526" height="44.841" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feGaussianBlur in="BackgroundImageFix" stdDeviation="5.26316" />
+                    <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_145_241" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_145_241" result="shape" />
+                </filter>
+                <filter id="filter1_b_145_241" x="11.4737" y="8.70836" width="35.9362" height="29.6073" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feGaussianBlur in="BackgroundImageFix" stdDeviation="5.26316" />
+                    <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_145_241" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_145_241" result="shape" />
+                </filter>
+            </defs>
+        </svg>
+    ),
+    setting: (props: IconProps) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none" {...props}>
+            <path d="M20 7.5H11" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M14 17.5H5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M17 20.5C18.6569 20.5 20 19.1569 20 17.5C20 15.8431 18.6569 14.5 17 14.5C15.3431 14.5 14 15.8431 14 17.5C14 19.1569 15.3431 20.5 17 20.5Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M7 10.5C8.65685 10.5 10 9.15685 10 7.5C10 5.84315 8.65685 4.5 7 4.5C5.34315 4.5 4 5.84315 4 7.5C4 9.15685 5.34315 10.5 7 10.5Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    ),
+    barChart3: (props: IconProps) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 22 22" fill="none" {...props}>
+            <path d="M2.75 2.75V19.25H19.25" stroke="#0C0E3C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M16.5 15.5833V8.25" stroke="#0C0E3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M11.9167 15.5833V4.58331" stroke="#0C0E3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M7.33325 15.5833V12.8333" stroke="#0C0E3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    ),
+    plus: (props: IconProps) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 22 22" fill="none"{...props}>
+            <path d="M11 4.58334V17.4167" stroke="#0C0E3C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M4.58337 11H17.4167" stroke="#0C0E3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    ),
+    fire: (props: IconProps) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 15 20" fill={props.fill} {...props}>
+            <path d="M3.8158 12.1053C4.51374 12.1053 5.18309 11.828 5.67661 11.3345C6.17013 10.841 6.44738 10.1716 6.44738 9.47368C6.44738 8.02105 5.92106 7.36842 5.39475 6.31579C4.26633 4.06 5.15896 2.04842 7.50001 0C8.02633 2.63158 9.60528 5.1579 11.7105 6.84211C13.8158 8.52632 14.8684 10.5263 14.8684 12.6316C14.8684 13.5992 14.6778 14.5574 14.3075 15.4514C13.9372 16.3453 13.3945 17.1576 12.7103 17.8418C12.0261 18.5261 11.2138 19.0688 10.3198 19.4391C9.42581 19.8094 8.46765 20 7.50001 20C6.53238 20 5.57422 19.8094 4.68024 19.4391C3.78626 19.0688 2.97397 18.5261 2.28975 17.8418C1.60553 17.1576 1.06278 16.3453 0.692479 15.4514C0.322181 14.5574 0.131592 13.5992 0.131592 12.6316C0.131592 11.4179 0.587381 10.2168 1.18422 9.47368C1.18422 10.1716 1.46148 10.841 1.95499 11.3345C2.44851 11.828 3.11786 12.1053 3.8158 12.1053Z" fill={props.fill} />
+        </svg>
+    ),
+    graph: (props: IconProps) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 21 20" fill={props.fill} {...props}>
+            <g filter="url(#filter0_b_170_514)">
+                <path d="M1.92164 15.5142C1.37084 14.5458 1.02254 13.4793 0.898342 12.3777C0.849742 12.051 0.828142 11.7216 0.834442 11.3913C0.847042 7.32692 3.74054 3.81872 7.78964 2.95922C8.28014 2.86742 8.77154 3.11222 8.98484 3.55502C9.03794 3.63512 9.08114 3.72152 9.11174 3.81242C9.24764 5.90942 9.39254 7.97042 9.52844 10.0323C9.52484 10.2465 9.55904 10.4598 9.62834 10.6623C9.79034 11.0628 10.1953 11.3166 10.6336 11.2932L17.2891 10.8675L17.335 10.8846C17.6203 10.8891 17.893 11.0052 18.091 11.2068C18.2899 11.4084 18.3988 11.6793 18.3943 11.9601C18.1315 15.7824 15.3298 18.9756 11.5165 19.7982C10.8863 19.9342 10.2538 20 9.62795 20C6.46701 19.9998 3.48423 18.3201 1.92164 15.5142ZM11.7055 9.09092C11.5174 8.92172 11.4112 8.68322 11.4121 8.43302L10.8955 0.889224V0.765024C10.9054 0.552624 10.9999 0.352824 11.1601 0.209724C11.3194 0.0666243 11.5309 -0.0089757 11.7469 0.000924297C16.318 0.137724 20.1376 3.45602 20.8306 7.89032C20.8342 7.91732 20.8342 7.94432 20.8306 7.97042C20.845 8.18012 20.7739 8.38712 20.6335 8.54552C20.4922 8.70392 20.2924 8.80112 20.0782 8.81462L12.3994 9.32132C12.3722 9.32373 12.345 9.32492 12.3178 9.32492C12.0917 9.32492 11.8735 9.24201 11.7055 9.09092Z" fill={props.fill} />
+            </g>
+            <defs>
+                <filter id="filter0_b_170_514" x="-9.1481" y="-9.98141" width="39.9629" height="39.9628" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feGaussianBlur in="BackgroundImageFix" stdDeviation="4.99073" />
+                    <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_170_514" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_170_514" result="shape" />
+                </filter>
+            </defs>
+        </svg>
+    ),
+    category: (props: IconProps) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 21 20" fill={props.fill} {...props}>
+            <g filter="url(#filter0_b_170_536)">
+                <path d="M14.5805 19.9999C13.1702 19.9999 12.0398 18.8497 12.0398 17.4394V14.0311C12.0398 12.6109 13.1702 11.4697 14.5805 11.4697H17.96C19.3604 11.4697 20.4998 12.6109 20.4998 14.0311V17.4394C20.4998 18.8497 19.3604 19.9999 17.96 19.9999H14.5805ZM3.0398 19.9999C1.6403 19.9999 0.5 18.8497 0.5 17.4394V14.0311C0.5 12.6109 1.6403 11.4697 3.0398 11.4697H6.4202C7.8296 11.4697 8.96 12.6109 8.96 14.0311V17.4394C8.96 18.8497 7.8296 19.9999 6.4202 19.9999H3.0398ZM14.5805 8.53032C13.1702 8.53032 12.0398 7.39002 12.0398 5.96982V2.56152C12.0398 1.15032 13.1702 0.00012207 14.5805 0.00012207H17.96C19.3604 0.00012207 20.4998 1.15032 20.4998 2.56152V5.96982C20.4998 7.39002 19.3604 8.53032 17.96 8.53032H14.5805ZM3.0398 8.53032C1.6403 8.53032 0.5 7.39002 0.5 5.96982V2.56152C0.5 1.15032 1.6403 0.00012207 3.0398 0.00012207H6.4202C7.8296 0.00012207 8.96 1.15032 8.96 2.56152V5.96982C8.96 7.39002 7.8296 8.53032 6.4202 8.53032H3.0398Z" fill={props.fill} />
+            </g>
+            <defs>
+                <filter id="filter0_b_170_536" x="-9.48147" y="-9.98135" width="39.9627" height="39.9628" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feGaussianBlur in="BackgroundImageFix" stdDeviation="4.99073" />
+                    <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_170_536" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_170_536" result="shape" />
+                </filter>
+            </defs>
+        </svg>
+    ),
+    buyer: (props: IconProps) => {
+        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" {...props}><circle cx="10" cy="20.5" r="1" /><circle cx="18" cy="20.5" r="1" /><path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1" /></svg>
+    },
+    gold: (props: IconProps) => (
+        <svg width={props.width ? props.width : '45'} height={props.height ? props.height : '45'} viewBox="0 0 54 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18.5921 7.8125C17.1547 8.27511 15.9702 8.95549 15.0254 9.90036C14.0805 10.8452 13.4001 12.0297 12.9375 13.4671C12.4749 12.0297 11.7945 10.8452 10.8496 9.90036C9.90478 8.95549 8.72031 8.27511 7.28287 7.8125C8.72031 7.3499 9.90478 6.66952 10.8496 5.72465C11.7945 4.77978 12.4749 3.59531 12.9375 2.15787C13.4001 3.59531 14.0805 4.77978 15.0254 5.72465C15.9702 6.66952 17.1547 7.3499 18.5921 7.8125Z" fill={props.fill} stroke={props.stroke} />
+            <path d="M28.4795 7.8125C28.1592 7.97951 27.8733 8.18522 27.623 8.43551C27.3727 8.6858 27.167 8.97174 27 9.29204C26.833 8.97174 26.6273 8.6858 26.377 8.43551C26.1267 8.18522 25.8408 7.97951 25.5205 7.8125C25.8408 7.64549 26.1267 7.43978 26.377 7.18949C26.6273 6.9392 26.833 6.65326 27 6.33296C27.167 6.65326 27.3727 6.9392 27.623 7.18949C27.8733 7.43978 28.1592 7.64549 28.4795 7.8125Z" fill={props.fill} stroke={props.stroke} />
+            <path d="M9.49879 20.3125C8.83895 20.5855 8.27236 20.9502 7.79879 21.4238C7.32522 21.8974 6.96051 22.464 6.6875 23.1238C6.41449 22.464 6.04978 21.8974 5.57621 21.4238C5.10264 20.9502 4.53605 20.5855 3.87621 20.3125C4.53605 20.0395 5.10264 19.6748 5.57621 19.2012C6.04978 18.7276 6.41449 18.1611 6.6875 17.5012C6.96051 18.1611 7.32522 18.7276 7.79879 19.2012C8.27236 19.6748 8.83895 20.0395 9.49879 20.3125Z" fill={props.fill} stroke={props.stroke} />
+            <path d="M34.7799 13.947C33.4453 12.659 20.0999 12.6592 19.2102 13.947C18.3204 15.2349 14.3168 23.8219 15.2065 25.5392C16.0963 27.2566 37.8939 27.2566 38.7835 25.5392C39.6732 23.8219 36.1145 15.235 34.7799 13.947Z" stroke={props.stroke} stroke-width="2.5" />
+            <path d="M21.7015 30.8698C20.3669 29.5817 7.02153 29.5819 6.13179 30.8698C5.24205 32.1576 1.2384 40.7447 2.12814 42.462C3.01788 44.1793 24.8155 44.1793 25.7052 42.462C26.5948 40.7447 23.0361 32.1578 21.7015 30.8698Z" stroke={props.stroke} stroke-width="2.5" />
+            <path d="M47.8582 30.8698C46.5237 29.5817 33.1783 29.5819 32.2885 30.8698C31.3988 32.1576 27.3951 40.7447 28.2849 42.462C29.1746 44.1793 50.9722 44.1793 51.8619 42.462C52.7515 40.7447 49.1928 32.1578 47.8582 30.8698Z" stroke={props.stroke} stroke-width="2.5" />
+        </svg>
+
+    ),
+    info: (props: IconProps) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" {...props}>
+            <path d="M12 11.5V16.5" stroke={props.stroke} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 7.51L12.01 7.49889" stroke={props.stroke} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke={props.stroke} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    ),
+    transaction: (props: IconProps) => {
+        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none"{...props}>
+            <path d="M10 10L6 6L10 2" stroke="#0C0E3C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M6 6H18" stroke="#0C0E3C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M14 22L18 18L14 14" stroke="#0C0E3C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M6 18H18" stroke="#0C0E3C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    },
     google: (props: IconProps) => (
         <svg role="img" viewBox="0 0 24 24" {...props}>
             <path
