@@ -10,11 +10,20 @@ import {
 import React, { useState } from 'react';
 import { roundNumber } from '@/libs/utils';
 
-export function PieChart({ className = '', width, height, data, dataKey, legendSection = false, mainPercantage }) {
+type Props = {
+    className?: any,
+    width?: any,
+    height?: any,
+    data?: any,
+    dataKey?: any,
+    legendSection?: boolean,
+    mainPercantage?: any
+}
+export function PieChart(props: Props) {
     const COLORS = ['#E2E6E9', '#0FB6A3', '#0E6270', '#0FB6A3', '#10EDC5'];
     const [selectedPart, setSelectedPart] = useState(null);
-    const mostSuggestedSymbols = data.slice(0, 4);
-    const otherSuggestedSymbols = data
+    const mostSuggestedSymbols = props.data.slice(0, 4);
+    const otherSuggestedSymbols = props.data
         .slice(4)
         .map((item) => {
             return item.percent;
@@ -28,7 +37,7 @@ export function PieChart({ className = '', width, height, data, dataKey, legendS
             ? [
                 {
                     other: true,
-                    [dataKey]: roundNumber(otherSuggestedSymbols, 2),
+                    [props.dataKey]: roundNumber(otherSuggestedSymbols, 2),
                 },
             ]
             : []),
@@ -60,7 +69,7 @@ export function PieChart({ className = '', width, height, data, dataKey, legendS
                         <span className="whitespace-nowrap text-base font-black">
                             {!entry.payload.other
                                 ? entry.value
-                                : `${data.length - 4} مورد دیگر`}
+                                : `${props.data.length - 4} مورد دیگر`}
                         </span>
                         <span className="whitespace-nowrap text-base font-black">
                             {!entry.other
@@ -95,9 +104,9 @@ export function PieChart({ className = '', width, height, data, dataKey, legendS
     return (
         <div className="mx-auto w-full max-w-sm relative justify-center items-center">
             <ResponsiveContainer
-                className={className}
-                width={width}
-                height={height}
+                className={props.className}
+                width={props.width}
+                height={props.height}
             >
                 <PieChartComponent
                     margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
@@ -105,7 +114,7 @@ export function PieChart({ className = '', width, height, data, dataKey, legendS
                     <Pie
                         data={displayData}
                         paddingAngle={5}
-                        dataKey={dataKey}
+                        dataKey={props.dataKey}
                         outerRadius={75}
                         innerRadius={65}
                         cornerRadius={5}
@@ -126,7 +135,7 @@ export function PieChart({ className = '', width, height, data, dataKey, legendS
                             />
                         ))}
                     </Pie>
-                    {legendSection && <Legend
+                    {props.legendSection && <Legend
                         content={CustomLegend}
                         verticalAlign="middle"
                         align="left"
@@ -143,7 +152,7 @@ export function PieChart({ className = '', width, height, data, dataKey, legendS
                 </div>
                 <div className='flex'>
                     <span className='font-black text-[28px]'>
-                        {mainPercantage}%
+                        {props.mainPercantage}%
                     </span>
                 </div>
             </div>
