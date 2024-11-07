@@ -4,7 +4,7 @@ import { Locale } from '@/i18n-config';
 import { cn, currency, getDirection, roundNumber } from '@/libs/utils';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { payment } from '@/app/[lang]/(user)/services/payment';
@@ -34,8 +34,9 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
         isLoading: priceIsLoading,
         error: getPriceError,
     } = useExchangePrice();
-    const [geramEq, setGeramEq] = useState(null);
-    const [rialEq, setRialEq] = useState(null);
+    const [mGramEq, setMGramEq] = useState(null);
+    const [tomanEq, setTomanEq] = useState(null);
+    const inputRef = useRef([null,null]);
     const [openLoginModal, setOpenLoginModal] = useState(false);
     const path = usePathname();
     const onPaymentClick = async () => {
@@ -45,7 +46,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
         toast.info('در حال انتقال به درگاه پرداخت');
         try {
             const res = await payment({
-                price: rialEq.replace(/٬/g, "").replace(/[۰-۹]/g, (digit) =>
+                price: tomanEq.replace(/٬/g, "").replace(/[۰-۹]/g, (digit) =>
                     String.fromCharCode(digit.charCodeAt(0) - 1728)
                 ),
                 bank_type: PaymentMethods['tala'],
@@ -59,36 +60,47 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
         setLoading(false);
     };
 
-    const handleGeramChange = (event) => {
-        const grams = event.target.value;
-        setGeramEq(grams);
-        if (price?.buy_price_irt) setRialEq(currency(roundNumber((grams * price.buy_price_irt * 10), 0), 'tse', 'fa').toString());
-    };
+    const handleNumericInput = (event) => {
+        if(event.target.value.startsWith('0')) {
+            event.target.value = "";
+        }
+        event.target.value = event.target.value.replace(/\D/g, '');
+    }
 
-    const handleRialChange = (event) => {
-        const rial = event.target.value;
+    const formatWithCommas = (value: string) =>
+        value.replace(/\B(?=(\d{3})+(?!\d))/g, '٬');
 
-        if (!!!rial){
-            setRialEq("");
-            setGeramEq("");
+    const handleRialChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const toman = event.target.value.replace(/\D/g, '');
+
+        if(!!!toman){
+            setMGramEq('');
+            setTomanEq('');
             return;
         }
 
-        const invertedRial = rial.replace(/٬/g, "").replace(/[۰-۹]/g, (digit) =>
-            String.fromCharCode(digit.charCodeAt(0) - 1728)
-        );
+        if (price?.buy_price_irt) {
+            setTomanEq(formatWithCommas(toman));
+            setMGramEq((parseInt(toman) / (price.buy_price_irt /1000)).toFixed(0));
+        }
+    };
 
-        if (!isNaN(parseInt(invertedRial)) && price?.buy_price_irt) {
-            setRialEq(invertedRial);
-            setGeramEq((parseInt(invertedRial) / (price.buy_price_irt * 10)).toFixed(4));
+    const handleGeramChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const mgram = event.target.value.replace(/\D/g, '');
+        setMGramEq(mgram);
+        if (price?.buy_price_irt) {
+            setTomanEq(
+                formatWithCommas(
+                    currency(roundNumber(parseInt(mgram) * (price.buy_price_irt / 1000), 0), 'tse', 'fa').toString()
+                )
+            );
         }
     };
 
     useEffect(() => {
-        setGeramEq('1');
-        setRialEq(currency(price?.buy_price_irt * 10,"tse","fa").toString());
+        setMGramEq('1');
+        setTomanEq(currency(roundNumber((price?.buy_price_irt / 1000),0),"tse","fa").toString());
     }, [priceIsLoading]);
-
 
     return (
         <>
@@ -99,19 +111,22 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                 )}
             >
                 <div className="w-full space-y-3 text-base font-medium">
-                    <label>معادل ریالی:</label>
+                    <label>معادل تومان:</label>
                     {priceIsLoading ? (
                         <Spinner />
                     ) : (
                         <>
                             <Input
+                                ref={inputRef[0]}
                                 onChange={handleRialChange}
-                                value={rialEq}
-                                className="w-full"
-                                placeholder="مقدار ریالی خرید/فروش"
+                                onInput={handleNumericInput}
+                                value={tomanEq}
+                                className="w-full text-left"
+                                placeholder="تومان خرید/فروش"
+                                style={{ direction: 'ltr', textAlign: tomanEq ? 'left' : 'right' }}
                             />
                             {/*<div className="text-lg font-semibold mt-2">*/}
-                            {/*    {currency(parseInt(rialEq),"tse","fa")}*/}
+                            {/*    {currency(parseInt(tomanEq),"tse","fa")}*/}
                             {/*</div>*/}
                         </>
                     )}
@@ -119,10 +134,10 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                 <div className="flex items-center justify-center gap-3">
                     <div
                         onClick={() => {
-                            const rialValue = 1000000;
-                            setRialEq(currency(rialValue,"tse","fa").toString());
+                            const tomanValue = 100000;
+                            setTomanEq(currency(tomanValue,"tse","fa").toString());
                             if (price?.buy_price_irt) {
-                                setGeramEq((rialValue / (price.buy_price_irt * 10)).toFixed(4));
+                                setMGramEq((tomanValue / (price.buy_price_irt/1000)).toFixed(4));
                             }
                         }}
                         className="rounded-md border border-neutral-100 p-2.5 text-sm font-light hover:cursor-pointer"
@@ -131,10 +146,10 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                     </div>
                     <div
                         onClick={() => {
-                            const rialValue = 5000000;
-                            setRialEq(currency(rialValue,"tse","fa").toString());
+                            const tomanValue = 500000;
+                            setTomanEq(currency(tomanValue,"tse","fa").toString());
                             if (price?.buy_price_irt) {
-                                setGeramEq((rialValue / (price.buy_price_irt * 10)).toFixed(4));
+                                setMGramEq((tomanValue / (price.buy_price_irt/1000)).toFixed(4));
                             }
                         }}
                         className="rounded-md border border-neutral-100 p-2.5 text-sm font-light hover:cursor-pointer"
@@ -143,10 +158,10 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                     </div>
                     <div
                         onClick={() => {
-                            const rialValue = 10000000;
-                            setRialEq(currency(rialValue,"tse","fa").toString());
+                            const tomanValue = 1000000;
+                            setTomanEq(currency(tomanValue,"tse","fa").toString());
                             if (price?.buy_price_irt) {
-                                setGeramEq((rialValue / (price.buy_price_irt * 10)).toFixed(4));
+                                setMGramEq((tomanValue / (price.buy_price_irt/1000)).toFixed(4));
                             }
                         }}
                         className="rounded-md border border-neutral-100 p-2.5 text-sm font-light hover:cursor-pointer"
@@ -155,15 +170,18 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                     </div>
                 </div>
                 <div className="space-y-3 text-base font-medium">
-                    <label>گرم طلا:</label>
+                    <label>میلی گرم طلا:</label>
                     {priceIsLoading ? (
                         <Spinner />
                     ) : (
                         <Input
+                            ref={inputRef[1]}
                             onChange={handleGeramChange}
+                            onInput={handleNumericInput}
                             className="w-full"
-                            value={geramEq}
-                            placeholder="گرم طلای خرید/فروش"
+                            value={mGramEq}
+                            placeholder="میلی گرم طلای خرید/فروش"
+                            style={{ direction: 'ltr', textAlign: mGramEq ? 'left' : 'right' }}
                         />
                     )}
                 </div>
