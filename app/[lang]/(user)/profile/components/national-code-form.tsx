@@ -38,9 +38,6 @@ export function NationalCodeVerificationForm({ lang, dict, setOpen }: formProp) 
                 required_error: 'پر کردن این فیلد الزامی است.',
             })
             .regex(/^\d{10}$/, 'لطفا شماره ملی را درست وارد کنید.')
-            .refine(value => {
-                return value[0] !== '0';
-            }, 'کد ملی نمی‌تواند با ۰ شروع شود.')
     });
     type formValue = z.infer<typeof formSchema>;
     const [loading, setLoading] = useState(false);
