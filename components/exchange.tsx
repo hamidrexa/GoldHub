@@ -87,7 +87,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
 
         if (price?.buy_price_irt) {
             setTomanEq(formatWithCommas(toman));
-            setMGramEq(Math.floor(parseInt(toman) / (price.buy_price_irt /1000)));
+            setMGramEq(formatWithCommas(Math.floor(parseInt(toman) / (price.buy_price_irt /1000)).toString()));
         }
     };
 
@@ -100,7 +100,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
             return;
         }
 
-        setMGramEq(mgram);
+        setMGramEq(formatWithCommas(mgram));
         if (price?.buy_price_irt) {
             setTomanEq(
                 formatWithCommas(
@@ -197,9 +197,9 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                                placeholder="میلی گرم طلای خرید/فروش"
                                style={{ direction: 'ltr', textAlign: mGramEq ? 'left' : 'right' }}
                            />
-                           <div style={{visibility :mGramEq > 0 ? 'visible' : 'hidden'}} className="mt-1.5 text-start text-sm text-neutral-200">
+                           <div style={{visibility :mGramEq.length > 0 ? 'visible' : 'hidden'}} className="mt-1.5 text-start text-sm text-neutral-200">
                                    معادل
-                                   <span className="mx-1"> {mGramEq /1000}</span>
+                                   <span className="mx-1"> {mGramEq.replace(/\D/g, '')/1000}</span>
                                    گرم طلای ۱۸ عیار
                                </div>
                            </div>
