@@ -169,7 +169,7 @@ export function ProfilePage({ dict, lang }) {
         location.href = `/login`;
         googleLogout();
     };
-
+    
     if (!user)
         return (
             <div className="flex h-[calc(100vh-64px)] w-full items-center justify-center md:h-[calc(100vh-90px)]">
@@ -355,42 +355,32 @@ export function ProfilePage({ dict, lang }) {
                                     <StatusBadge
                                         dict={dict}
                                         status={
-                                            // user.email_confirmed
-                                            //     ? 'confirmed'
-                                            // : 
-                                            'notConfirmed'
+                                            user.national_code_confirmed
+                                                ? 'confirmed'
+                                                :
+                                                'notConfirmed'
                                         }
                                     />
                                 </div>
                                 <div className="flex h-14 items-center justify-between rounded-md bg-gray-300/60 p-1.5 text-base font-black ltr:pl-5 rtl:pr-5">
                                     <span>
-                                        {'شماره ملی تعیین نشده است'}
+                                        {user.national_code ? user.national_code : 'شماره ملی تعیین نشده است'}
                                     </span>
-                                    <Button
-                                        variant="info"
-                                        onClick={async () => {
-                                            setNationalCodeDialogOpen(
-                                                true
-                                            );
-                                        }}
-                                    >
-                                        احراز هویت
-                                    </Button>
                                     <Dialog
                                         open={nationalCodeDialogOpen}
                                         onOpenChange={setNationalCodeDialogOpen}
                                     >
                                         <DialogTrigger asChild>
-                                            {user.signup_type !== 'google' && (
+                                            {(!user.national_code || !user.national_code_confirmed) && (
                                                 <Button
                                                     onClick={() => {
-                                                        setEmailDialogOpen(
+                                                        setNationalCodeDialogOpen(
                                                             true
                                                         );
                                                     }}
                                                     variant="info"
                                                 >
-                                                    {dict.changeEmail}
+                                                    احراز هویت
                                                 </Button>
                                             )}
                                         </DialogTrigger>
