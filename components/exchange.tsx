@@ -41,6 +41,12 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
     const path = usePathname();
     const onPaymentClick = async () => {
         if (!user) return setOpenLoginModal(true);
+        if (tomanEq.replace(/٬/g, "").replace(/[۰-۹]/g, (digit) =>
+            String.fromCharCode(digit.charCodeAt(0) - 1728)
+        ) < 100000) return toast.warning("حداقل مبلغ پرداختی ۱۰۰ هزار تومان میباشد.")
+        if (tomanEq.replace(/٬/g, "").replace(/[۰-۹]/g, (digit) =>
+            String.fromCharCode(digit.charCodeAt(0) - 1728)
+        ) > 50000000) return toast.warning("حداکثر مبلغ پرداختی ۵۰ میلیون تومان میباشد.")
 
         setLoading(true);
         toast.info('در حال انتقال به درگاه پرداخت');
@@ -48,7 +54,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
             const res = await payment({
                 price: tomanEq.replace(/٬/g, "").replace(/[۰-۹]/g, (digit) =>
                     String.fromCharCode(digit.charCodeAt(0) - 1728)
-                ),
+                ) * 10,
                 bank_type: PaymentMethods['tala'],
             });
             window.open(
@@ -81,12 +87,19 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
 
         if (price?.buy_price_irt) {
             setTomanEq(formatWithCommas(toman));
-            setMGramEq((parseInt(toman) / (price.buy_price_irt /1000)).toFixed(0));
+            setMGramEq(Math.floor(parseInt(toman) / (price.buy_price_irt /1000)));
         }
     };
 
     const handleGeramChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const mgram = event.target.value.replace(/\D/g, '');
+
+        if(!!!mgram){
+            setMGramEq('');
+            setTomanEq('');
+            return;
+        }
+
         setMGramEq(mgram);
         if (price?.buy_price_irt) {
             setTomanEq(
@@ -121,7 +134,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                                 onChange={handleRialChange}
                                 onInput={handleNumericInput}
                                 value={tomanEq}
-                                className="w-full text-left"
+                                className="w-full text-base text-left"
                                 placeholder="تومان خرید/فروش"
                                 style={{ direction: 'ltr', textAlign: tomanEq ? 'left' : 'right' }}
                             />
@@ -137,7 +150,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                             const tomanValue = 100000;
                             setTomanEq(currency(tomanValue,"tse","fa").toString());
                             if (price?.buy_price_irt) {
-                                setMGramEq((tomanValue / (price.buy_price_irt/1000)).toFixed(4));
+                                setMGramEq(Math.floor(tomanValue / (price.buy_price_irt/1000)).toFixed(0));
                             }
                         }}
                         className="rounded-md border border-neutral-100 p-2.5 text-sm font-light hover:cursor-pointer"
@@ -149,7 +162,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                             const tomanValue = 500000;
                             setTomanEq(currency(tomanValue,"tse","fa").toString());
                             if (price?.buy_price_irt) {
-                                setMGramEq((tomanValue / (price.buy_price_irt/1000)).toFixed(4));
+                                setMGramEq(Math.floor(tomanValue / (price.buy_price_irt/1000)).toFixed(0));
                             }
                         }}
                         className="rounded-md border border-neutral-100 p-2.5 text-sm font-light hover:cursor-pointer"
@@ -161,7 +174,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                             const tomanValue = 1000000;
                             setTomanEq(currency(tomanValue,"tse","fa").toString());
                             if (price?.buy_price_irt) {
-                                setMGramEq((tomanValue / (price.buy_price_irt/1000)).toFixed(4));
+                                setMGramEq(Math.floor(tomanValue / (price.buy_price_irt/1000)));
                             }
                         }}
                         className="rounded-md border border-neutral-100 p-2.5 text-sm font-light hover:cursor-pointer"
@@ -174,15 +187,22 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                     {priceIsLoading ? (
                         <Spinner />
                     ) : (
-                        <Input
-                            ref={inputRef[1]}
-                            onChange={handleGeramChange}
-                            onInput={handleNumericInput}
-                            className="w-full"
-                            value={mGramEq}
-                            placeholder="میلی گرم طلای خرید/فروش"
-                            style={{ direction: 'ltr', textAlign: mGramEq ? 'left' : 'right' }}
-                        />
+                       <div className="relative">
+                           <Input
+                               ref={inputRef[1]}
+                               onChange={handleGeramChange}
+                               onInput={handleNumericInput}
+                               className="w-full text-base"
+                               value={mGramEq}
+                               placeholder="میلی گرم طلای خرید/فروش"
+                               style={{ direction: 'ltr', textAlign: mGramEq ? 'left' : 'right' }}
+                           />
+                           <div style={{visibility :mGramEq > 0 ? 'visible' : 'hidden'}} className="mt-1.5 text-start text-sm text-neutral-200">
+                                   معادل
+                                   <span className="mx-1"> {mGramEq /1000}</span>
+                                   گرم طلای ۱۸ عیار
+                               </div>
+                           </div>
                     )}
                 </div>
                 {/*<div className="flex w-full flex-col justify-center gap-2.5 md:flex-row md:items-center">*/}
