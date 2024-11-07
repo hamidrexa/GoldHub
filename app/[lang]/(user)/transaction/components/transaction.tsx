@@ -1,7 +1,7 @@
 'use client';
 
 import { Locale } from '@/i18n-config';
-import { cn, currency, getDirection } from '@/libs/utils';
+import { cn, currency, getDirection, roundNumber } from '@/libs/utils';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import React, { useEffect, useState } from 'react';
@@ -18,7 +18,6 @@ import { PaymentMethods } from '@/constants/payment-methods';
 import { LoginModal } from '@/components/login-modal';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { exchange } from '../../services/exchange';
-import { error } from 'console';
 
 
 type Props = {
@@ -46,32 +45,60 @@ export default function TransactionBox({
     const [transactionMode, setTransactionMode] = useState<any>(type === 'sell' ? 'sell' : 'buy');
     const [loading, setLoading] = useState<boolean>(false)
     const [checked, setChecked] = useState<boolean>(true)
-    const [gerams, setGrams] = useState<number>(null)
-    const [irr, setIrr] = useState<number>(null)
+    const [mGramEq, setMGramEq] = useState<string>(null)
+    const [tomanEq, setTomanEq] = useState<string>(null)
 
     // ** Functions
-    const geramsToRial = (value: number) => {
-        const goldValue = transactionMode === 'buy' ? price?.buy_price_irt : price?.sell_price_irt
-        const resIRR = Math.floor((value * (goldValue * 10)) / 1000);
-        setIrr(resIRR)
-    }
+    const formatWithCommas = (value: string) =>
+        value.replace(/\B(?=(\d{3})+(?!\d))/g, '٬');
 
-    const rialToGerams = (value: number) => {
-        const goldValue = transactionMode === 'buy' ? price?.buy_price_irt : price?.sell_price_irt
-        const resIRR = (value) / (goldValue * 10) * 1000
-        setGrams(resIRR)
+    const handleRialChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const toman = event.target.value.replace(/\D/g, '');
+
+        if (!!!toman) {
+            setMGramEq('');
+            setTomanEq('');
+            return;
+        }
+
+        if (price?.buy_price_irt) {
+            setTomanEq(formatWithCommas(toman));
+            setMGramEq((parseInt(toman) / (price.buy_price_irt / 1000)).toFixed(0));
+        }
+    };
+
+    const handleGeramChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const mgram = event.target.value.replace(/\D/g, '');
+        setMGramEq(mgram);
+        if (price?.buy_price_irt) {
+            setTomanEq(
+                formatWithCommas(
+                    currency(roundNumber(parseInt(mgram) * (price.buy_price_irt / 1000), 0), 'tse', 'fa').toString()
+                )
+            );
+        }
+    };
+
+    const handleNumericInput = (event) => {
+        if (event.target.value.startsWith('0')) {
+            event.target.value = "";
+        }
+        event.target.value = event.target.value.replace(/\D/g, '');
     }
 
     const onPaymentClick = async () => {
+        const rial = tomanEq.replace(/٬/g, "").replace(/[۰-۹]/g, (digit) =>
+            String.fromCharCode(digit.charCodeAt(0) - 1728)
+        )
         if (transactionMode === 'buy') {
             if (!user) return setOpenLoginModal(true);
-            if (!irr) return toast.error('لطفا مبلغی را وارد کنید')
-            if (irr < 1000000) return toast.error('مبلغ وارد شده نباید کمتر از 100 هزار تومان باشد')
+            if (!tomanEq) return toast.error('لطفا مبلغی را وارد کنید')
+            if (Number(rial) < 1000000) return toast.error('مبلغ وارد شده نباید کمتر از 100 هزار تومان باشد')
             setLoading(true);
             toast.info('در حال انتقال به درگاه پرداخت');
             try {
                 const res = await payment({
-                    price: parseInt(JSON.stringify(irr)),
+                    price: rial,
                     bank_type: PaymentMethods['tala'],
                 });
                 window.open(
@@ -79,13 +106,12 @@ export default function TransactionBox({
                 );
                 setLoading(false);
             } catch (error) {
-                console.log(error);
                 setLoading(false);
             }
         } else {
             setLoading(true);
-            await exchange({
-                amount_rls: parseInt(JSON.stringify(irr)),
+            await exchange(null, {
+                amount_rls: rial,
                 type: 'sell',
             }).then(() => {
                 toast.success('با موفقیت انجام شد.');
@@ -97,14 +123,14 @@ export default function TransactionBox({
         }
     };
 
-    // ** UseEffects
-    useEffect(() => {
-        if (transactionMode === 'buy') {
-            rialToGerams(irr)
-        } else {
-            geramsToRial(gerams)
-        }
-    }, [transactionMode])
+    // // ** UseEffects
+    // useEffect(() => {
+    //     if (transactionMode === 'buy') {
+    //         rialToGerams(tomanEq)
+    //     } else {
+    //         geramsToRial(mGramEq)
+    //     }
+    // }, [transactionMode])
 
     return (
         <div className='flex w-full justify-center'>
@@ -181,14 +207,12 @@ export default function TransactionBox({
                                 </Label>
                             </div>
                             <Input
-                                type={'number'}
-                                className="w-full "
+                                className="w-full text-left"
                                 placeholder="از 100 هزار تومان تا 100 میلیون تومان"
-                                value={irr === 0 ? '' : irr}
-                                onChange={(e) => {
-                                    setIrr(Number(e.target.value))
-                                    rialToGerams(Number(e.target.value))
-                                }}
+                                style={{ direction: 'ltr', textAlign: tomanEq ? 'left' : 'right' }}
+                                value={tomanEq}
+                                onInput={handleNumericInput}
+                                onChange={handleRialChange}
                             />
                         </div>
                     </div>
@@ -201,14 +225,12 @@ export default function TransactionBox({
                             </Label>
                         </div>
                         <Input
-                            type={'number'}
                             className="w-full "
                             placeholder="مقدار طلا به میلی گرم"
-                            value={gerams === 0 ? '' : gerams}
-                            onChange={(e) => {
-                                setGrams(Number(e.target.value))
-                                geramsToRial(Number(e.target.value))
-                            }}
+                            value={mGramEq}
+                            style={{ direction: 'ltr', textAlign: mGramEq ? 'left' : 'right' }}
+                            onInput={handleNumericInput}
+                            onChange={handleGeramChange}
                         />
                     </div>
                 </div>
