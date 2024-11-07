@@ -45,8 +45,8 @@ export default function TransactionBox({
     const [transactionMode, setTransactionMode] = useState<any>(type === 'sell' ? 'sell' : 'buy');
     const [loading, setLoading] = useState<boolean>(false)
     const [checked, setChecked] = useState<boolean>(true)
-    const [mGramEq, setMGramEq] = useState<string>(null)
-    const [tomanEq, setTomanEq] = useState<string>(null)
+    const [mGramEq, setMGramEq] = useState(null)
+    const [tomanEq, setTomanEq] = useState(null)
 
     // ** Functions
     const formatWithCommas = (value: string) =>
@@ -93,7 +93,8 @@ export default function TransactionBox({
         if (transactionMode === 'buy') {
             if (!user) return setOpenLoginModal(true);
             if (!tomanEq) return toast.error('لطفا مبلغی را وارد کنید')
-            if (Number(rial) < 1000000) return toast.error('مبلغ وارد شده نباید کمتر از 100 هزار تومان باشد')
+            if (Number(rial) < 100000) return toast.warning("حداقل مبلغ پرداختی ۱۰۰ هزار تومان میباشد.")
+            if (Number(rial) > 50000000) return toast.warning("حداکثر مبلغ پرداختی ۵۰ میلیون تومان میباشد.")
             setLoading(true);
             toast.info('در حال انتقال به درگاه پرداخت');
             try {
@@ -111,7 +112,7 @@ export default function TransactionBox({
         } else {
             setLoading(true);
             await exchange(null, {
-                amount_rls: rial,
+                amount_rls: Number(rial) * 10,
                 type: 'sell',
             }).then(() => {
                 toast.success('با موفقیت انجام شد.');
@@ -196,19 +197,15 @@ export default function TransactionBox({
                     <div className="flex w-full flex-col justify-center gap-2.5  md:items-center">
                         <div className="flex w-full flex-col gap-[12px]">
                             <div className='w-full flex flex-row justify-between'>
-                                <Label
-                                    className="flex"
+                                <label
+                                    className="flex font-medium"
                                 >
-                                    مبلغ پرداختی به ریال
-                                </Label>
-                                <Label
-                                    className="flex text-[green]"
-                                >
-                                </Label>
+                                    مبلغ پرداختی به تومان
+                                </label>
                             </div>
                             <Input
                                 className="w-full text-left"
-                                placeholder="از 100 هزار تومان تا 100 میلیون تومان"
+                                placeholder="از 100 هزار تومان تا 50 میلیون تومان"
                                 style={{ direction: 'ltr', textAlign: tomanEq ? 'left' : 'right' }}
                                 value={tomanEq}
                                 onInput={handleNumericInput}
@@ -218,11 +215,11 @@ export default function TransactionBox({
                     </div>
                     <div className="flex w-full flex-col gap-[12px]">
                         <div className='w-full flex flex-row justify-between'>
-                            <Label
-                                className="flex"
+                            <label
+                                className="flex font-medium"
                             >
                                 مقدار طلا به میلی گرم
-                            </Label>
+                            </label>
                         </div>
                         <Input
                             className="w-full "
@@ -232,6 +229,14 @@ export default function TransactionBox({
                             onInput={handleNumericInput}
                             onChange={handleGeramChange}
                         />
+                        <div
+                            style={{ visibility: mGramEq?.length > 0 ? 'visible' : 'hidden' }}
+                            className="mt-1.5 text-start text-sm text-neutral-200"
+                        >
+                            معادل
+                            <span className="mx-1"> {Number(JSON.stringify(mGramEq).replace(/\D/g, '')) / 1000}</span>
+                            گرم طلای ۱۸ عیار
+                        </div>
                     </div>
                 </div>
                 <div className="flex w-full flex-col gap-[12px]">
@@ -289,7 +294,7 @@ export default function TransactionBox({
                         </div>
                     </div>
                 </div> */}
-                <Button onClick={onPaymentClick}>
+                <Button className='sticky' onClick={onPaymentClick}>
                     ادامه
                 </Button>
             </div >
