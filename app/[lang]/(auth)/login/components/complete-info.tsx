@@ -53,10 +53,12 @@ export function CompleteInfo({ userId, setStep, dict, lang, redirectUrl }) {
             // @ts-ignore
             document.activeElement?.blur();
             toast.error(
+                e?.error?.params[0]||
                 e?.error?.params?.detail ||
-                    e?.error?.messages?.error?.[0] ||
-                    e?.error?.params?.non_field_errors?.[0] ||
-                    e?.error?.params?.email?.[0]
+                e?.error?.messages?.error?.[0] ||
+                e?.error?.params?.non_field_errors?.[0] ||
+                e?.error?.params?.email?.[0] ||
+                dict?.retry
             );
         }
         setIsLoading(false);

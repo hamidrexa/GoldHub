@@ -22,6 +22,7 @@ import { useGlobalContext } from '@/contexts/store';
 import { emailVerification } from '@/app/[lang]/(user)/profile/services/emailVerification';
 import Spinner from '@/components/spinner';
 import { natiionalCodeVerification } from '../services/natinalCodeVerification';
+import { updateUser } from '../services/updateUser';
 
 type formProp = {
     setOpen: any;
@@ -32,13 +33,14 @@ type formProp = {
 export function NationalCodeVerificationForm({ lang, dict, setOpen }: formProp) {
     const { user, setUser } = useGlobalContext();
     const formSchema = z.object({
-        email: z
+        national_code: z
             .string({
                 required_error: 'پر کردن این فیلد الزامی است.',
             })
-            .email({
-                message: 'لطفا شماره ملی را درست وارد کنید.',
-            }),
+            .regex(/^\d{10}$/, 'لطفا شماره ملی را درست وارد کنید.')
+            .refine(value => {
+                return value[0] !== '0';
+            }, 'کد ملی نمی‌تواند با ۰ شروع شود.')
     });
     type formValue = z.infer<typeof formSchema>;
     const [loading, setLoading] = useState(false);
@@ -56,13 +58,22 @@ export function NationalCodeVerificationForm({ lang, dict, setOpen }: formProp) 
                 national_code_confirmed: false,
             });
             await updateInfo({ national_code: info.national_code });
-            await natiionalCodeVerification();
+            await natiionalCodeVerification().then(() => {
+                setUser({
+                    ...user,
+                    national_code: info.national_code,
+                    national_code_confirmed: true,
+                })
+            })
             setOpen(false)
         } catch (e) {
             window.focus();
             // @ts-ignore
             document.activeElement?.blur();
-            toast.info('متاسفانه انجام نشده است.');
+            toast.info(
+                e?.error?.params[0] ||
+                'متاسفانه انجام نشده است.'
+            );
         }
         setLoading(false);
     };
@@ -87,7 +98,7 @@ export function NationalCodeVerificationForm({ lang, dict, setOpen }: formProp) 
                                     <FormMessage />
                                 </FormItem>
                             )}
-                            name="email"
+                            name="national_code"
                         />
                         <Button type="submit" className={cn('w-full')}>
                             {loading ? <Spinner /> : 'تایید شماره ملی'}
