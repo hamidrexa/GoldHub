@@ -35,7 +35,6 @@ export default function TransactionBox({
     // ** Hooks
     const { price, isLoading: priceIsLoading, isValidating } = useExchangePrice();
     const { user } = useGlobalContext();
-
     const path = usePathname();
 
     // ** States
