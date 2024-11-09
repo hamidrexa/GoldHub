@@ -13,6 +13,7 @@ import { useTransactionHistory } from '../services/useTransactionHistory';
 import dayjs from 'dayjs';
 import jalaliday from 'jalaliday';
 import HistoryItem from './historyItem';
+import { useExchangePrice } from '@/services/useExchangePrice';
 
 dayjs.extend(jalaliday);
 
@@ -30,6 +31,7 @@ export default function WalletBox({
 
     // ** Hooks
     const { wallet, isLoading } = useWalletInfo();
+    const { price, isLoading: priceIsLoading, isValidating } = useExchangePrice();
     const { transactions, isLoading: transactionLoading } = useTransactionHistory();
     const [selectedFilter, setSelectedFilter] = useState<any>('all');
     const [percentages, setPercentages] = useState({
@@ -67,7 +69,7 @@ export default function WalletBox({
     }, [wallet])
 
     console.log(wallet.balance);
-    
+
     return (
         <div className='flex w-full items-center justify-center flex-col gap-10'>
             <div
@@ -129,7 +131,7 @@ export default function WalletBox({
                                     </span>
                                 </div>
                                 <text className='text-neutral-200 whitespace-nowrap text-base '>
-                                    مجموع: معادل {currency(Number(wallet?.balance?.gold_balance_irt + wallet?.balance?.irt_balance), 'tse', lang)} تومان
+                                    مجموع: معادل {currency((Number(wallet?.balance?.gold_amount) * Number(price?.sell_price_irt)) + Number(wallet?.balance?.irt_balance), 'tse', lang)} تومان
                                 </text>
                             </div>
                             <div className='flex flex-col justify-start items-end gap-3'>
