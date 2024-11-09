@@ -4,11 +4,10 @@ import { Locale } from '@/i18n-config';
 import { cn, currency, getDirection, roundNumber } from '@/libs/utils';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Icons } from '@/components/ui/icons';
 import { Input } from '@/components/ui/input';
 import 'swiper/css';
-import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
 import { useExchangePrice } from '@/services/useExchangePrice';
 import Spinner from '@/components/spinner';
@@ -19,6 +18,7 @@ import { PaymentMethods } from '@/constants/payment-methods';
 import { LoginModal } from '@/components/login-modal';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { exchange } from '../../services/exchange';
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 
 type Props = {
@@ -35,19 +35,20 @@ export default function TransactionBox({
 
     // ** Hooks
     const { price, isLoading: priceIsLoading, isValidating } = useExchangePrice();
-    const { user } = useGlobalContext();
     const searchParams = useSearchParams()
     const type = searchParams.get('type')
-
+    const { user } = useGlobalContext();
     const path = usePathname();
 
+
     // ** States
-    const [openLoginModal, setOpenLoginModal] = useState<boolean>(false);
     const [transactionMode, setTransactionMode] = useState<any>(type === 'sell' ? 'sell' : 'buy');
-    const [loading, setLoading] = useState<boolean>(false)
-    const [checked, setChecked] = useState<boolean>(true)
-    const [mGramEq, setMGramEq] = useState<string>(null)
-    const [tomanEq, setTomanEq] = useState<string>(null)
+    const [openLoginModal, setOpenLoginModal] = useState<boolean>(false);
+    const [exchangDialog, setExchangeDialog] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [checked, setChecked] = useState<boolean>(true);
+    const [mGramEq, setMGramEq] = useState<string>(null);
+    const [tomanEq, setTomanEq] = useState<string>(null);
 
     // ** Functions
     const formatWithCommas = (value: string) =>
@@ -123,15 +124,6 @@ export default function TransactionBox({
             setLoading(false);
         }
     };
-
-    // // ** UseEffects
-    // useEffect(() => {
-    //     if (transactionMode === 'buy') {
-    //         rialToGerams(tomanEq)
-    //     } else {
-    //         geramsToRial(mGramEq)
-    //     }
-    // }, [transactionMode])
 
     return (
         <div className='flex w-full justify-center'>
@@ -269,7 +261,7 @@ export default function TransactionBox({
                             کارمزد
                         </Label>
                         <div className='flex flex-row items-center gap-2 text-[#5A5C83] font-black'>
-                            {currency(0, 'tse', lang)} تومان <Icons.info stroke='#2228A9' />
+                            {currency(0, 'tse', lang)} {transactionMode === 'buy' ? 'تومان' : 'میلی گرم'} <Icons.info stroke='#2228A9' />
                         </div>
                     </div>
                 </div>
@@ -295,6 +287,19 @@ export default function TransactionBox({
                     ادامه
                 </Button>
             </div >
+            <Dialog open={exchangDialog}>
+                <DialogContent className="max-w-xl text-center">
+                    <DialogTitle />
+                    برای برداشت به پشتیبانی تلگرام طلانو با آیدی
+                    <a
+                        href="https://t.me/SahmetoSup"
+                        className="block font-black"
+                    >
+                        https://t.me/SahmetoSup
+                    </a>
+                    پیام دهید.
+                </DialogContent>
+            </Dialog>
             <LoginModal
                 lang={lang}
                 dict={dict}

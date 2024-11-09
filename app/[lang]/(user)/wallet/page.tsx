@@ -1,5 +1,3 @@
-import { isMobile } from 'react-device-detect';
-import { ProductsNavigator } from '@/components/products-navigator';
 import React from 'react';
 import { getDictionary } from '@/get-dictionary';
 import { Metadata } from 'next';
@@ -16,7 +14,6 @@ export default async function WalletPage({ params: { lang }, searchParams }) {
     return (
         <main className="main">
             <div className="jumbotron">
-                {/* {!isMobile && <ProductsNavigator dict={dict} lang={lang} />} */}
                 <div className="w-full">
                     <Wallet dict={dict} lang={lang} />
                 </div>
