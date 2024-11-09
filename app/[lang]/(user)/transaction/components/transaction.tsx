@@ -225,7 +225,7 @@ export default function TransactionBox({
                         </div>
                     </RadioGroup>
                 </div>
-                {(transactionMode === 'buy') && <div className='flex flex-col w-full justify-center items-end gap-3'>
+                {transactionMode === 'buy' && <div className='flex flex-col w-full justify-center items-end gap-3'>
                     <div className='flex justify-end items-center gap-2'>
                         <Label>
                             خرید از موجودی
