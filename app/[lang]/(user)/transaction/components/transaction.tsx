@@ -116,9 +116,14 @@ export default function TransactionBox({
                 type: 'sell',
             }).then(() => {
                 toast.success('با موفقیت انجام شد.');
-            }).catch((err) => {
+            }).catch((e) => {
                 setLoading(false);
-                toast.error(err?.error?.messages)
+                toast.error(
+                    e?.error?.params[0] ||
+                    e?.error?.params?.detail ||
+                    e?.error?.messages?.error?.[0] ||
+                    e?.error?.messages
+                )
             })
             setLoading(false);
         }
@@ -272,7 +277,7 @@ export default function TransactionBox({
                             کارمزد
                         </Label>
                         <div className='flex flex-row items-center gap-2 text-[#5A5C83] font-black'>
-                            {currency(0, 'tse', lang)} تومان <Icons.info stroke='#2228A9' />
+                            {currency(0, 'tse', lang)} {transactionMode === 'buy' ? 'تومان' : 'میلی گرم'} <Icons.info stroke='#2228A9' />
                         </div>
                     </div>
                 </div>
