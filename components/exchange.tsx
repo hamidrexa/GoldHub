@@ -67,11 +67,19 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
     };
 
     const handleNumericInput = (event) => {
-        if(event.target.value.startsWith('0')) {
-            event.target.value = "";
+
+        event.target.value = event.target.value
+            .replace(/[۰-۹]/g, (digit) =>
+                String.fromCharCode(digit.charCodeAt(0) - 1728)
+            )
+            .replace(/[^\d]/g, '');
+
+        if (event.target.value.startsWith('0')) {
+            event.target.value = '';
         }
-        event.target.value = event.target.value.replace(/\D/g, '');
-    }
+    };
+
+
 
     const formatWithCommas = (value: string) =>
         value.replace(/\B(?=(\d{3})+(?!\d))/g, '٬');
