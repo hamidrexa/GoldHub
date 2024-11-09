@@ -96,12 +96,11 @@ export default function TransactionBox({
         if (Number(rial) > 50000000) return toast.warning("حداکثر مبلغ پرداختی ۵۰ میلیون تومان میباشد.")
         if (transactionMode === 'buy') {
             setLoading(true);
+            toast.info('در حال انتقال به درگاه پرداخت');
             try {
                 const res = await payment({
-                    price: rial,
+                    price: rial + '0',
                     bank_type: PaymentMethods['tala'],
-                }).then(()=>{
-                    toast.info('در حال انتقال به درگاه پرداخت');
                 });
                 window.open(
                     `https://talame-api.darkube.app/transaction/payment/${res.id}`
