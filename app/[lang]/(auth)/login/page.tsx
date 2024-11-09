@@ -83,7 +83,7 @@ export default async function AuthenticationPage({ params: { lang } }) {
                                         {dict.loginHelper}
                                     </p>
                                 </div>
-                                <Google lang={lang} />
+                                <Google lang={lang} dict={dict}/>
                             </>
                         )}
                     </div>

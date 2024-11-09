@@ -40,7 +40,7 @@ export function InvestmentCard({
                         خرید
                     </Button>
                 </Link>
-                <Link href='/transaction' className='flex w-[40%]'>
+                <Link href='/transaction?type=sell' className='flex w-[40%]'>
                     <Button
                         variant='info'
                         className='flex bg-[#e9e9e9] text-[red] w-full'>

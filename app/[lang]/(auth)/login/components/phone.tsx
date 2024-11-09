@@ -96,10 +96,12 @@ export function Phone({
             // @ts-ignore
             document.activeElement?.blur();
             toast.error(
+                e?.error?.params[0]||
                 e?.error?.params?.detail ||
-                    e?.error?.messages?.error?.[0] ||
-                    e?.error?.params?.non_field_errors?.[0] ||
-                    e?.error?.params?.email?.[0]
+                e?.error?.messages?.error?.[0] ||
+                e?.error?.params?.non_field_errors?.[0] ||
+                e?.error?.params?.email?.[0] ||
+                dict?.retry
             );
         }
         setIsLoading(false);
@@ -178,7 +180,7 @@ export function Phone({
                             </span>
                         </div>
                     </div>
-                    <Google lang={lang} />
+                    <Google lang={lang} dict={dict} />
                     {/*<p className="px-8 text-center text-sm">*/}
                     {/*    با ثبت‌نام در طلانو، شما{' '}*/}
                     {/*    <Link*/}
