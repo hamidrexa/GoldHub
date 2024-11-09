@@ -8,7 +8,7 @@ import Cookies from 'js-cookie';
 import { useSearchParams } from 'next/navigation';
 import { getLinksLang } from '@/libs/utils';
 
-export function Google({ lang }) {
+export function Google({ lang, dict }) {
     const searchParams = useSearchParams();
     const redirectUrl = searchParams.get('url') || '/';
 
@@ -22,9 +22,11 @@ export function Google({ lang }) {
             else window.location.href = redirectUrl;
         } catch (e) {
             toast.error(
+                e?.error?.params[0]||
                 e?.error?.params?.detail ||
-                    e?.error?.messages?.error?.[0] ||
-                    e?.error?.params?.non_field_errors?.[0]
+                e?.error?.messages?.error?.[0] ||
+                e?.error?.params?.non_field_errors?.[0] ||
+                dict?.retry
             );
         }
     };

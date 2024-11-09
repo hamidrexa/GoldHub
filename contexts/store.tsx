@@ -24,6 +24,8 @@ interface ContextProps {
         phone_number: string;
         phone_number_confirmed: boolean;
         username: string;
+        national_code: string;
+        national_code_confirmed:boolean;
         pushe_notification_id: string;
         unread_message_count: number;
         email_confirmed: boolean;
