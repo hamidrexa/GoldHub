@@ -1,7 +1,7 @@
 'use client';
 
 import { Locale } from '@/i18n-config';
-import { cn, currency } from '@/libs/utils';
+import { cn, currency, roundNumber } from '@/libs/utils';
 import React, { useEffect, useState } from 'react';
 import { Icons } from '@/components/ui/icons';
 import 'swiper/css';
@@ -131,7 +131,7 @@ export default function WalletBox({
                                     </span>
                                 </div>
                                 <text className='text-neutral-200 whitespace-nowrap text-base '>
-                                    مجموع: معادل {currency((Number(wallet?.balance?.gold_amount) * Number(price?.sell_price_irt)) + Number(wallet?.balance?.irt_balance), 'tse', lang)} تومان
+                                    مجموع: معادل {currency(roundNumber((Number(wallet?.balance?.gold_amount) * Number(price?.sell_price_irt)) + Number(wallet?.balance?.irt_balance)), 'tse', lang)} تومان
                                 </text>
                             </div>
                             <div className='flex flex-col justify-start items-end gap-3'>

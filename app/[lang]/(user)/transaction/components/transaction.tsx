@@ -96,8 +96,6 @@ export default function TransactionBox({
         )
         if (!user) return setOpenLoginModal(true);
         if (!tomanEq) return toast.error('لطفا مبلغی را وارد کنید')
-        if (Number(rial) < 100000) return toast.warning("حداقل مبلغ پرداختی ۱۰۰ هزار تومان میباشد.")
-        if (Number(rial) > 50000000) return toast.warning("حداکثر مبلغ پرداختی ۵۰ میلیون تومان میباشد.")
         if (buyWithWallet && transactionMode === 'buy') {
             setLoading(true);
             await exchange(null, {
@@ -119,6 +117,8 @@ export default function TransactionBox({
             return
         }
         if (transactionMode === 'buy') {
+            if (Number(rial) < 100000) return toast.warning("حداقل مبلغ پرداختی ۱۰۰ هزار تومان میباشد.")
+            if (Number(rial) > 50000000) return toast.warning("حداکثر مبلغ پرداختی ۵۰ میلیون تومان میباشد.")
             setLoading(true);
             try {
                 await payment({
