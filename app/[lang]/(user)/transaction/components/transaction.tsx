@@ -120,12 +120,12 @@ export default function TransactionBox({
         }
         if (transactionMode === 'buy') {
             setLoading(true);
-            toast.info('در حال انتقال به درگاه پرداخت');
             try {
                 await payment({
                     price: rial,
                     bank_type: PaymentMethods['tala'],
                 }).then((res) => {
+                    toast.info('در حال انتقال به درگاه پرداخت');
                     setLoading(false);
                     window.open(
                         `https://talame-api.darkube.app/transaction/payment/${res.id}`
