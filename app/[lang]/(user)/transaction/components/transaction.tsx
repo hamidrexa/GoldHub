@@ -290,6 +290,10 @@ export default function TransactionBox({
                         </div>
                     </div>
                 </div> */}
+                <div className='flex w-full'>
+                    
+
+                </div>
                 <Button className='sticky' onClick={onPaymentClick}>
                     ادامه
                 </Button>
