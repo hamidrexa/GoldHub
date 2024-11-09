@@ -18,6 +18,8 @@ import { PaymentMethods } from '@/constants/payment-methods';
 import { LoginModal } from '@/components/login-modal';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { exchange } from '../../services/exchange';
+import { Switch } from '@/components/ui/switch';
+import { useWalletInfo } from '../../wallet/services/useWalletInfo';
 
 
 type Props = {
@@ -34,6 +36,7 @@ export default function TransactionBox({
 
     // ** Hooks
     const { price, isLoading: priceIsLoading, isValidating } = useExchangePrice();
+    const { wallet } = useWalletInfo();
     const { user } = useGlobalContext();
     const searchParams = useSearchParams()
     const type = searchParams.get('type')
@@ -43,6 +46,7 @@ export default function TransactionBox({
     // ** States
     const [openLoginModal, setOpenLoginModal] = useState<boolean>(false);
     const [transactionMode, setTransactionMode] = useState<any>(type === 'sell' ? 'sell' : 'buy');
+    const [buyWithWallet, setBuyWithWallet] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(false)
     const [checked, setChecked] = useState<boolean>(true)
     const [mGramEq, setMGramEq] = useState(null)
@@ -94,6 +98,26 @@ export default function TransactionBox({
         if (!tomanEq) return toast.error('لطفا مبلغی را وارد کنید')
         if (Number(rial) < 100000) return toast.warning("حداقل مبلغ پرداختی ۱۰۰ هزار تومان میباشد.")
         if (Number(rial) > 50000000) return toast.warning("حداکثر مبلغ پرداختی ۵۰ میلیون تومان میباشد.")
+        if (buyWithWallet && transactionMode === 'buy') {
+            setLoading(true);
+            await exchange(null, {
+                amount_rls: Number(rial) * 10,
+                type: 'buy',
+            }).then(() => {
+                toast.success('با موفقیت انجام شد.');
+                setLoading(false);
+            }).catch((e) => {
+                setLoading(false);
+                toast.error(
+                    e?.error?.params[0] ||
+                    e?.error?.params?.detail ||
+                    e?.error?.messages?.error?.[0] ||
+                    e?.error?.messages
+                )
+            })
+            setLoading(false);
+            return
+        }
         if (transactionMode === 'buy') {
             setLoading(true);
             toast.info('در حال انتقال به درگاه پرداخت');
@@ -119,6 +143,7 @@ export default function TransactionBox({
             } catch (error) {
                 setLoading(false);
             }
+            return
         } else {
             setLoading(true);
             await exchange(null, {
@@ -126,6 +151,7 @@ export default function TransactionBox({
                 type: 'sell',
             }).then(() => {
                 toast.success('با موفقیت انجام شد.');
+                setLoading(false);
             }).catch((e) => {
                 setLoading(false);
                 toast.error(
@@ -199,6 +225,42 @@ export default function TransactionBox({
                         </div>
                     </RadioGroup>
                 </div>
+                {(transactionMode === 'buy') && <div className='flex flex-col w-full justify-center items-end gap-3'>
+                    <div className='flex justify-end items-center gap-2'>
+                        <Label>
+                            خرید از موجودی
+                        </Label>
+                        <Switch
+                            disabled={!wallet?.balance?.irt_balance}
+                            checked={!!buyWithWallet}
+                            onCheckedChange={(checked) => {
+                                setBuyWithWallet(checked)
+                                if (checked && wallet?.balance?.irt_balance && Number(wallet?.balance?.irt_balance) > 0) {
+                                    const toman = wallet?.balance?.irt_balance
+                                    if (!!!toman) {
+                                        setMGramEq('');
+                                        setTomanEq('');
+                                        return;
+                                    }
+                                    if (price?.buy_price_irt) {
+                                        setTomanEq(formatWithCommas(toman));
+                                        setMGramEq((parseInt(toman) / (price.buy_price_irt / 1000)).toFixed(0));
+                                    }
+                                }
+                            }}
+                        />
+                    </div>
+                    {buyWithWallet && <div className="flex  flex-col justify-center gap-2.5  md:items-center">
+                        <div className='w-full flex flex-row justify-center items-center gap-2'>
+                            <Label>
+                                موجودی:
+                            </Label>
+                            <text className='text-neutral-200'>
+                                {currency(Number(wallet?.balance?.irt_balance), 'tse', lang)} تومان
+                            </text>
+                        </div>
+                    </div>}
+                </div>}
                 <div className={`flex w-full gap-8 ${transactionMode === 'sell' ? 'flex-col-reverse' : ' flex-col'}`}>
                     <div className="flex w-full flex-col justify-center gap-2.5  md:items-center">
                         <div className="flex w-full flex-col gap-[12px]">

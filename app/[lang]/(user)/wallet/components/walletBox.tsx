@@ -66,6 +66,8 @@ export default function WalletBox({
         }
     }, [wallet])
 
+    console.log(wallet.balance);
+    
     return (
         <div className='flex w-full items-center justify-center flex-col gap-10'>
             <div
@@ -127,7 +129,7 @@ export default function WalletBox({
                                     </span>
                                 </div>
                                 <text className='text-neutral-200 whitespace-nowrap text-base '>
-                                    مجموع: معادل {currency(Number(wallet?.balance?.gold_amount + wallet?.balance?.irt_balance), 'tse', lang)} تومان
+                                    مجموع: معادل {currency(Number(wallet?.balance?.gold_balance_irt + wallet?.balance?.irt_balance), 'tse', lang)} تومان
                                 </text>
                             </div>
                             <div className='flex flex-col justify-start items-end gap-3'>
