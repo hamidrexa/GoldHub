@@ -310,7 +310,7 @@ export function PriceSignalChart(props: Props) {
                                         formatDate(signal.datetime, durationFilter, props.lang)
                                     ),
                                 viewPoint:
-                                    index === assets.length - 1,
+                                    index === assets?.length - 1,
                             }))
                     }
                 />

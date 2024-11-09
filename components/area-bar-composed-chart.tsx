@@ -254,7 +254,7 @@ export function AreaBarComposedChart({
                         barSize={11}
                         isAnimationActive={isAnimationActive}
                     />}
-                    {highlightPoint.length &&
+                    {highlightPoint?.length &&
                         highlightPoint.map((item, index) => (
                             <ReferenceDot
                                 key={index}

@@ -118,7 +118,7 @@ export function BarChart({
                         dataKey={key}
                         background={{ fill: '#E2E6E9', radius: 100 }}
                         radius={100}
-                        barSize={yDataKey.length > 1 ? 9 : 11}
+                        barSize={yDataKey?.length > 1 ? 9 : 11}
                         yAxisId={key}
                         name={name[i]}
                     >

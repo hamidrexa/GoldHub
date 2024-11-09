@@ -17,7 +17,7 @@ type CommentsProps = {
 export function Comments({ message }: CommentsProps) {
     return (
         <div className="mb-2 mt-5 flex w-full items-center justify-center gap-10 md:flex-row">
-            {!!message.length && <div className="flex w-1/5 flex-col items-center justify-center gap-y-4">
+            {!!message?.length && <div className="flex w-1/5 flex-col items-center justify-center gap-y-4">
                 <div className="flex items-center justify-center gap-5">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -42,12 +42,12 @@ export function Comments({ message }: CommentsProps) {
                         />
                     </svg>
                     <div className="text-xl font-bold underline">
-                        {message.length}نظر
+                        {message?.length}نظر
                     </div>
                 </div>
                 <div className="text-[#8E8FB2]"> نظرات کاربران</div>
             </div>}
-            {!!message.length && <div className="flex w-3/5 items-center justify-center">
+            {!!message?.length && <div className="flex w-3/5 items-center justify-center">
                 <Carousel
                     opts={{
                         align: 'start',

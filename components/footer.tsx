@@ -62,8 +62,8 @@ export function Footer({ dict, lang }) {
                             طلانو
                         </BreadcrumbLink>
                     </BreadcrumbItem>
-                    {pathNames.length !== 0 && <BreadcrumbSeparator />}
-                    {pathNames.slice(0, 2).map((item, index, array) => {
+                    {pathNames?.length !== 0 && <BreadcrumbSeparator />}
+                    {pathNames?.slice(0, 2).map((item, index, array) => {
                         const breadcrumbTitles = {
                             leaderboard: 'برترین تریدر‌ها',
                             finocaht: 'ربات طلانو',
