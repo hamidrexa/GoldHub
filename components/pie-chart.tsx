@@ -33,7 +33,7 @@ export function PieChart(props: Props) {
         }, 0);
     const displayData = [
         ...mostSuggestedSymbols,
-        ...(mostSuggestedSymbols.length > 3 && otherSuggestedSymbols > 0
+        ...(mostSuggestedSymbols?.length > 3 && otherSuggestedSymbols > 0
             ? [
                 {
                     other: true,
@@ -69,7 +69,7 @@ export function PieChart(props: Props) {
                         <span className="whitespace-nowrap text-base font-black">
                             {!entry.payload.other
                                 ? entry.value
-                                : `${props.data.length - 4} مورد دیگر`}
+                                : `${props.data?.length - 4} مورد دیگر`}
                         </span>
                         <span className="whitespace-nowrap text-base font-black">
                             {!entry.other

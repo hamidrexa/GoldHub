@@ -157,7 +157,7 @@ export function getImage({
 }
 
 export function sliceText(text: string, length: number) {
-    if (text.length <= length) return text;
+    if (text?.length <= length) return text;
     else return text.slice(0, length) + '...';
 }
 

@@ -66,7 +66,7 @@ export function Suggestion({ dict, lang, open, setOpen }) {
                         <Spinner />
                     </Command.Loading>
                 )}
-                {!!searchHistory.length && !isLoading && !search && (
+                {!!searchHistory?.length && !isLoading && !search && (
                     <CommandGroup
                         heading={
                             <div className="flex items-center gap-2">
