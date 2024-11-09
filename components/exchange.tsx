@@ -67,11 +67,17 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
     };
 
     const handleNumericInput = (event) => {
-        if(event.target.value.startsWith('0')) {
-            event.target.value = "";
+
+        event.target.value = event.target.value
+            .replace(/[۰-۹]/g, (digit) =>
+                String.fromCharCode(digit.charCodeAt(0) - 1728)
+            )
+            .replace(/[^\d]/g, '');
+
+        if (event.target.value.startsWith('0')) {
+            event.target.value = '';
         }
-        event.target.value = event.target.value.replace(/\D/g, '');
-    }
+    };
 
     const formatWithCommas = (value: string) =>
         value.replace(/\B(?=(\d{3})+(?!\d))/g, '٬');
@@ -174,7 +180,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                             const tomanValue = 1000000;
                             setTomanEq(currency(tomanValue,"tse","fa").toString());
                             if (price?.buy_price_irt) {
-                                setMGramEq(Math.floor(tomanValue / (price.buy_price_irt/1000)));
+                                setMGramEq(Math.floor(tomanValue / (price.buy_price_irt/1000)).toFixed(0));
                             }
                         }}
                         className="rounded-md border border-neutral-100 p-2.5 text-sm font-light hover:cursor-pointer"
@@ -187,22 +193,22 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                     {priceIsLoading ? (
                         <Spinner />
                     ) : (
-                       <div className="relative">
-                           <Input
-                               ref={inputRef[1]}
-                               onChange={handleGeramChange}
-                               onInput={handleNumericInput}
-                               className="w-full text-base"
-                               value={mGramEq}
-                               placeholder="میلی گرم طلای خرید/فروش"
-                               style={{ direction: 'ltr', textAlign: mGramEq ? 'left' : 'right' }}
-                           />
-                           <div style={{visibility :mGramEq.length > 0 ? 'visible' : 'hidden'}} className="mt-1.5 text-start text-sm text-neutral-200">
-                                   معادل
-                                   <span className="mx-1"> {mGramEq.replace(/\D/g, '')/1000}</span>
-                                   گرم طلای ۱۸ عیار
-                               </div>
-                           </div>
+                        <div className="relative">
+                            <Input
+                                ref={inputRef[1]}
+                                onChange={handleGeramChange}
+                                onInput={handleNumericInput}
+                                className="w-full text-base"
+                                value={mGramEq}
+                                placeholder="میلی گرم طلای خرید/فروش"
+                                style={{ direction: 'ltr', textAlign: mGramEq ? 'left' : 'right' }}
+                            />
+                            <div style={{visibility :mGramEq.length > 0 ? 'visible' : 'hidden'}} className="mt-1.5 text-start text-sm text-neutral-200">
+                                معادل
+                                <span className="mx-1"> {mGramEq.replace(/\D/g, '')/1000}</span>
+                                گرم طلای ۱۸ عیار
+                            </div>
+                        </div>
                     )}
                 </div>
                 {/*<div className="flex w-full flex-col justify-center gap-2.5 md:flex-row md:items-center">*/}
