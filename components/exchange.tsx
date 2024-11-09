@@ -79,8 +79,6 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
         }
     };
 
-
-
     const formatWithCommas = (value: string) =>
         value.replace(/\B(?=(\d{3})+(?!\d))/g, '٬');
 
