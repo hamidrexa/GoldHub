@@ -174,7 +174,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                             const tomanValue = 1000000;
                             setTomanEq(currency(tomanValue,"tse","fa").toString());
                             if (price?.buy_price_irt) {
-                                setMGramEq(Math.floor(tomanValue / (price.buy_price_irt/1000)));
+                                setMGramEq(Math.floor(tomanValue / (price.buy_price_irt/1000)).toFixed(0));
                             }
                         }}
                         className="rounded-md border border-neutral-100 p-2.5 text-sm font-light hover:cursor-pointer"
