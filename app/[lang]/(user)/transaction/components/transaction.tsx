@@ -18,7 +18,6 @@ import { PaymentMethods } from '@/constants/payment-methods';
 import { LoginModal } from '@/components/login-modal';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { exchange } from '../../services/exchange';
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 
 type Props = {
@@ -35,20 +34,19 @@ export default function TransactionBox({
 
     // ** Hooks
     const { price, isLoading: priceIsLoading, isValidating } = useExchangePrice();
+    const { user } = useGlobalContext();
     const searchParams = useSearchParams()
     const type = searchParams.get('type')
-    const { user } = useGlobalContext();
+
     const path = usePathname();
 
-
     // ** States
-    const [transactionMode, setTransactionMode] = useState<any>(type === 'sell' ? 'sell' : 'buy');
     const [openLoginModal, setOpenLoginModal] = useState<boolean>(false);
-    const [exchangDialog, setExchangeDialog] = useState<boolean>(false);
-    const [loading, setLoading] = useState<boolean>(false);
-    const [checked, setChecked] = useState<boolean>(true);
-    const [mGramEq, setMGramEq] = useState<string>(null);
-    const [tomanEq, setTomanEq] = useState<string>(null);
+    const [transactionMode, setTransactionMode] = useState<any>(type === 'sell' ? 'sell' : 'buy');
+    const [loading, setLoading] = useState<boolean>(false)
+    const [checked, setChecked] = useState<boolean>(true)
+    const [mGramEq, setMGramEq] = useState(null)
+    const [tomanEq, setTomanEq] = useState(null)
 
     // ** Functions
     const formatWithCommas = (value: string) =>
@@ -95,7 +93,8 @@ export default function TransactionBox({
         if (transactionMode === 'buy') {
             if (!user) return setOpenLoginModal(true);
             if (!tomanEq) return toast.error('لطفا مبلغی را وارد کنید')
-            if (Number(rial) < 1000000) return toast.error('مبلغ وارد شده نباید کمتر از 100 هزار تومان باشد')
+            if (Number(rial) < 100000) return toast.warning("حداقل مبلغ پرداختی ۱۰۰ هزار تومان میباشد.")
+            if (Number(rial) > 50000000) return toast.warning("حداکثر مبلغ پرداختی ۵۰ میلیون تومان میباشد.")
             setLoading(true);
             toast.info('در حال انتقال به درگاه پرداخت');
             try {
@@ -113,13 +112,18 @@ export default function TransactionBox({
         } else {
             setLoading(true);
             await exchange(null, {
-                amount_rls: rial,
+                amount_rls: Number(rial) * 10,
                 type: 'sell',
             }).then(() => {
                 toast.success('با موفقیت انجام شد.');
-            }).catch((err) => {
+            }).catch((e) => {
                 setLoading(false);
-                toast.error(err?.error?.messages)
+                toast.error(
+                    e?.error?.params[0] ||
+                    e?.error?.params?.detail ||
+                    e?.error?.messages?.error?.[0] ||
+                    e?.error?.messages
+                )
             })
             setLoading(false);
         }
@@ -189,19 +193,15 @@ export default function TransactionBox({
                     <div className="flex w-full flex-col justify-center gap-2.5  md:items-center">
                         <div className="flex w-full flex-col gap-[12px]">
                             <div className='w-full flex flex-row justify-between'>
-                                <Label
-                                    className="flex"
+                                <label
+                                    className="flex font-medium"
                                 >
-                                    مبلغ پرداختی به ریال
-                                </Label>
-                                <Label
-                                    className="flex text-[green]"
-                                >
-                                </Label>
+                                    مبلغ پرداختی به تومان
+                                </label>
                             </div>
                             <Input
                                 className="w-full text-left"
-                                placeholder="از 100 هزار تومان تا 100 میلیون تومان"
+                                placeholder="تومان خرید/فروش"
                                 style={{ direction: 'ltr', textAlign: tomanEq ? 'left' : 'right' }}
                                 value={tomanEq}
                                 onInput={handleNumericInput}
@@ -211,21 +211,28 @@ export default function TransactionBox({
                     </div>
                     <div className="flex w-full flex-col gap-[12px]">
                         <div className='w-full flex flex-row justify-between'>
-                            <Label
-                                className="flex"
+                            <label
+                                className="flex font-medium"
                             >
                                 مقدار طلا به میلی گرم
-                            </Label>
+                            </label>
                         </div>
                         <Input
-                            type={'number'}
                             className="w-full "
-                            placeholder="مقدار طلا به میلی گرم"
+                            placeholder="میلی گرم طلای خرید/فروش"
                             value={mGramEq}
                             style={{ direction: 'ltr', textAlign: mGramEq ? 'left' : 'right' }}
                             onInput={handleNumericInput}
                             onChange={handleGeramChange}
                         />
+                        <div
+                            style={{ visibility: mGramEq?.length > 0 ? 'visible' : 'hidden' }}
+                            className="mt-1.5 text-start text-sm text-neutral-200"
+                        >
+                            معادل
+                            <span className="mx-1"> {Number(JSON.stringify(mGramEq).replace(/\D/g, '')) / 1000}</span>
+                            گرم طلای ۱۸ عیار
+                        </div>
                     </div>
                 </div>
                 <div className="flex w-full flex-col gap-[12px]">
@@ -283,23 +290,10 @@ export default function TransactionBox({
                         </div>
                     </div>
                 </div> */}
-                <Button onClick={onPaymentClick}>
+                <Button className='sticky' onClick={onPaymentClick}>
                     ادامه
                 </Button>
             </div >
-            <Dialog open={exchangDialog}>
-                <DialogContent className="max-w-xl text-center">
-                    <DialogTitle />
-                    برای برداشت به پشتیبانی تلگرام طلانو با آیدی
-                    <a
-                        href="https://t.me/SahmetoSup"
-                        className="block font-black"
-                    >
-                        https://t.me/SahmetoSup
-                    </a>
-                    پیام دهید.
-                </DialogContent>
-            </Dialog>
             <LoginModal
                 lang={lang}
                 dict={dict}
