@@ -87,14 +87,14 @@ export default function TransactionBox({
     }
 
     const onPaymentClick = async () => {
-        const rial = tomanEq.replace(/٬/g, "").replace(/[۰-۹]/g, (digit) =>
+        const rial = tomanEq?.replace(/٬/g, "").replace(/[۰-۹]/g, (digit) =>
             String.fromCharCode(digit.charCodeAt(0) - 1728)
         )
+        if (!user) return setOpenLoginModal(true);
+        if (!tomanEq) return toast.error('لطفا مبلغی را وارد کنید')
+        if (Number(rial) < 100000) return toast.warning("حداقل مبلغ پرداختی ۱۰۰ هزار تومان میباشد.")
+        if (Number(rial) > 50000000) return toast.warning("حداکثر مبلغ پرداختی ۵۰ میلیون تومان میباشد.")
         if (transactionMode === 'buy') {
-            if (!user) return setOpenLoginModal(true);
-            if (!tomanEq) return toast.error('لطفا مبلغی را وارد کنید')
-            if (Number(rial) < 100000) return toast.warning("حداقل مبلغ پرداختی ۱۰۰ هزار تومان میباشد.")
-            if (Number(rial) > 50000000) return toast.warning("حداکثر مبلغ پرداختی ۵۰ میلیون تومان میباشد.")
             setLoading(true);
             toast.info('در حال انتقال به درگاه پرداخت');
             try {
