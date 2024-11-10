@@ -4,7 +4,7 @@ import { Locale } from '@/i18n-config';
 import { cn, currency, getDirection, roundNumber } from '@/libs/utils';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Icons } from '@/components/ui/icons';
 import { Input } from '@/components/ui/input';
 import 'swiper/css';
@@ -20,6 +20,9 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { exchange } from '../../services/exchange';
 import { Switch } from '@/components/ui/switch';
 import { useWalletInfo } from '../../wallet/services/useWalletInfo';
+import { NewDragSlider } from '@/components/new-range-chart';
+import { Slider } from '@/components/ui/slider';
+import { NewRangeSlider } from '@/components/new-range-slider';
 
 
 type Props = {
@@ -36,7 +39,7 @@ export default function TransactionBox({
 
     // ** Hooks
     const { price, isLoading: priceIsLoading, isValidating } = useExchangePrice();
-    const { wallet } = useWalletInfo();
+    const { wallet, mutate } = useWalletInfo();
     const { user } = useGlobalContext();
     const searchParams = useSearchParams()
     const type = searchParams.get('type')
@@ -47,6 +50,7 @@ export default function TransactionBox({
     const [openLoginModal, setOpenLoginModal] = useState<boolean>(false);
     const [transactionMode, setTransactionMode] = useState<any>(type === 'sell' ? 'sell' : 'buy');
     const [buyWithWallet, setBuyWithWallet] = useState<boolean>(false)
+    const [sliderValue, setSliderValue] = useState<any>(0)
     const [loading, setLoading] = useState<boolean>(false)
     const [checked, setChecked] = useState<boolean>(true)
     const [mGramEq, setMGramEq] = useState(null)
@@ -54,10 +58,11 @@ export default function TransactionBox({
 
     // ** Functions
     const formatWithCommas = (value: string) =>
-        value.replace(/\B(?=(\d{3})+(?!\d))/g, '٬');
+        value?.replace(/\B(?=(\d{3})+(?!\d))/g, '٬');
 
-    const handleRialChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const toman = event.target.value.replace(/\D/g, '');
+    const handleRialChange = (event: any) => {
+        const toman = event?.target?.value?.replace(/\D/g, '');
+        const value = transactionMode === 'buy' ? price?.buy_price_irt : price?.sell_price_irt
 
         if (!!!toman) {
             setMGramEq('');
@@ -65,19 +70,21 @@ export default function TransactionBox({
             return;
         }
 
-        if (price?.buy_price_irt) {
+        if (value) {
             setTomanEq(formatWithCommas(toman));
-            setMGramEq((parseInt(toman) / (price.buy_price_irt / 1000)).toFixed(0));
+            setMGramEq((parseInt(toman) / (parseInt(value) / 1000)).toFixed(0));
         }
     };
 
-    const handleGeramChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const mgram = event.target.value.replace(/\D/g, '');
+    const handleGeramChange = (event: any) => {
+        const mgram = event?.target?.value?.replace(/\D/g, '');
+        const value = transactionMode === 'buy' ? price?.buy_price_irt : price?.sell_price_irt
+
         setMGramEq(mgram);
-        if (price?.buy_price_irt) {
+        if (value) {
             setTomanEq(
                 formatWithCommas(
-                    currency(roundNumber(parseInt(mgram) * (price.buy_price_irt / 1000), 0), 'tse', 'fa').toString()
+                    currency(roundNumber(parseInt(mgram) * (parseInt(value) / 1000), 0), 'tse', 'fa').toString()
                 )
             );
         }
@@ -95,16 +102,19 @@ export default function TransactionBox({
             String.fromCharCode(digit.charCodeAt(0) - 1728)
         )
         if (!user) return setOpenLoginModal(true);
-        if (!tomanEq) return toast.error('لطفا مبلغی را وارد کنید')
         if (buyWithWallet && transactionMode === 'buy') {
-            if (Number(rial) < 100000) return toast.warning("حداقل مبلغ پرداختی ۱۰۰ هزار تومان میباشد.")
-            if (Number(rial) > 50000000) return toast.warning("حداکثر مبلغ پرداختی ۵۰ میلیون تومان میباشد.")
+            if (!sliderValue) return toast.error('لطفا مبلغی را وارد کنید')
+            if (Number(sliderValue) < 100000) return toast.warning("حداقل مبلغ پرداختی ۱۰۰ هزار تومان میباشد.")
+            if (Number(sliderValue) > 50000000) return toast.warning("حداکثر مبلغ پرداختی ۵۰ میلیون تومان میباشد.")
             setLoading(true);
             await exchange(null, {
-                amount_rls: Number(rial) * 10,
+                amount_rls: Number(sliderValue) * 10,
                 type: 'buy',
             }).then(() => {
                 toast.success('با موفقیت انجام شد.');
+                mutate()
+                setMGramEq('')
+                setTomanEq('')
                 setLoading(false);
             }).catch((e) => {
                 setLoading(false);
@@ -119,6 +129,7 @@ export default function TransactionBox({
             return
         }
         if (transactionMode === 'buy') {
+            if (!tomanEq) return toast.error('لطفا مبلغی را وارد کنید')
             if (Number(rial) < 100000) return toast.warning("حداقل مبلغ پرداختی ۱۰۰ هزار تومان میباشد.")
             if (Number(rial) > 50000000) return toast.warning("حداکثر مبلغ پرداختی ۵۰ میلیون تومان میباشد.")
             setLoading(true);
@@ -142,18 +153,23 @@ export default function TransactionBox({
                     )
                 })
                 setLoading(false);
+                mutate()
             } catch (error) {
                 setLoading(false);
             }
             return
         } else {
+            if (!tomanEq) return toast.error('لطفا مبلغی را وارد کنید')
             setLoading(true);
             await exchange(null, {
                 amount_rls: Number(rial) * 10,
                 type: 'sell',
             }).then(() => {
                 toast.success('با موفقیت انجام شد.');
+                setMGramEq('')
+                setTomanEq('')
                 setLoading(false);
+                mutate()
             }).catch((e) => {
                 setLoading(false);
                 toast.error(
@@ -164,6 +180,23 @@ export default function TransactionBox({
                 )
             })
             setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        handleGeramChange({ target: { value: mGramEq } })
+        if (buyWithWallet && transactionMode === 'buy') {
+            setSliderValue(0)
+            setMGramEq('')
+            setTomanEq('')
+        }
+    }, [transactionMode])
+
+    const handleSliderChange = (value: number) => {
+        if (value) {
+            const exchange = transactionMode === 'buy' ? price?.buy_price_irt : price?.sell_price_irt
+            setSliderValue(value);
+            setMGramEq((value / (parseInt(exchange) / 1000)).toFixed(0));
         }
     };
 
@@ -228,43 +261,45 @@ export default function TransactionBox({
                     </RadioGroup>
                 </div>
                 {transactionMode === 'buy' && <div className='flex flex-col w-full justify-center items-end gap-3'>
-                    <div className='flex justify-end items-center gap-2'>
-                        <Label>
-                            خرید از موجودی
-                        </Label>
-                        <Switch
-                            disabled={!wallet?.balance?.irt_balance}
-                            checked={!!buyWithWallet}
-                            onCheckedChange={(checked) => {
-                                setBuyWithWallet(checked)
-                                if (checked && wallet?.balance?.irt_balance && Number(wallet?.balance?.irt_balance) > 0) {
-                                    const toman = wallet?.balance?.irt_balance
-                                    if (!!!toman) {
-                                        setMGramEq('');
-                                        setTomanEq('');
-                                        return;
-                                    }
-                                    if (price?.buy_price_irt) {
-                                        setTomanEq(formatWithCommas(toman));
-                                        setMGramEq((parseInt(toman) / (price.buy_price_irt / 1000)).toFixed(0));
-                                    }
-                                }
-                            }}
-                        />
-                    </div>
-                    {buyWithWallet && <div className="flex  flex-col justify-center gap-2.5  md:items-center">
-                        <div className='w-full flex flex-row justify-center items-center gap-2'>
+                    <div className='flex w-full justify-between items-center'>
+                        <div>
+                            {buyWithWallet && <Label>
+                                مبلغ: {formatWithCommas(JSON.stringify(sliderValue))} تومان
+                            </Label>}
+                        </div>
+                        <div className='flex justify-end items-center gap-2'>
                             <Label>
-                                موجودی:
+                                خرید از موجودی
                             </Label>
-                            <text className='text-neutral-200'>
+                            <Switch
+                                className="relative h-[23px] w-[42px] rounded-full bg-[#0C0E3C] outline-none data-[state=checked]:bg-[#0C0E3C"
+                                disabled={!wallet?.balance?.irt_balance}
+                                checked={!!buyWithWallet}
+                                onCheckedChange={(checked) => {
+                                    setBuyWithWallet(checked)
+                                }}
+                            />
+                        </div>
+                    </div>
+                    {buyWithWallet && <div className="flex w-full flex-col justify-center gap-6  md:items-center">
+                        <NewRangeSlider
+                            min={0}
+                            max={Number(wallet?.balance?.irt_balance) || 0}
+                            value={sliderValue}
+                            onChange={handleSliderChange}
+                        />
+                        <div className='w-full flex flex-row justify-end items-center gap-2'>
+                            <Label>
+                                موجودی کل:
+                            </Label>
+                            <Label>
                                 {currency(Number(wallet?.balance?.irt_balance), 'tse', lang)} تومان
-                            </text>
+                            </Label>
                         </div>
                     </div>}
                 </div>}
                 <div className={`flex w-full gap-8 ${transactionMode === 'sell' ? 'flex-col-reverse' : ' flex-col'}`}>
-                    <div className="flex w-full flex-col justify-center gap-2.5  md:items-center">
+                    {(!buyWithWallet || transactionMode === 'sell') && <div className="flex w-full flex-col justify-center gap-2.5  md:items-center">
                         <div className="flex w-full flex-col gap-[12px]">
                             <div className='w-full flex flex-row justify-between'>
                                 <label
@@ -279,17 +314,22 @@ export default function TransactionBox({
                                 style={{ direction: 'ltr', textAlign: tomanEq ? 'left' : 'right' }}
                                 value={tomanEq}
                                 onInput={handleNumericInput}
-                                onChange={handleRialChange}
+                                onChange={(e) => {
+                                    handleRialChange(e)
+                                }}
                             />
                         </div>
-                    </div>
+                    </div>}
                     <div className="flex w-full flex-col gap-[12px]">
-                        <div className='w-full flex flex-row justify-between'>
+                        <div className='w-full flex flex-row justify-between items-center'>
                             <label
                                 className="flex font-medium"
                             >
                                 مقدار طلا به میلی گرم
                             </label>
+                            {transactionMode === 'sell' && <Label className='text-[#07BB61]'>
+                                موجودی طلا: {roundNumber(Number(wallet?.balance?.gold_amount) * 1000, 4)} میلی گرم
+                            </Label>}
                         </div>
                         <Input
                             className="w-full "
@@ -304,7 +344,7 @@ export default function TransactionBox({
                             className="mt-1.5 text-start text-sm text-neutral-200"
                         >
                             معادل
-                            <span className="mx-1"> {Number(JSON.stringify(mGramEq).replace(/\D/g, '')) / 1000}</span>
+                            <span className="mx-1"> {Number(JSON.stringify(mGramEq)?.replace(/\D/g, '')) / 1000}</span>
                             گرم طلای ۱۸ عیار
                         </div>
                     </div>

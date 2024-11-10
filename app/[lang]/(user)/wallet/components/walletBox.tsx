@@ -131,7 +131,7 @@ export default function WalletBox({
                                     </span>
                                 </div>
                                 <text className='text-neutral-200 whitespace-nowrap text-base '>
-                                    مجموع: معادل {currency(roundNumber((Number(wallet?.balance?.gold_amount) * Number(price?.sell_price_irt)) + Number(wallet?.balance?.irt_balance)), 'tse', lang)} تومان
+                                    مجموع: معادل {currency(roundNumber((Number(wallet?.balance?.gold_amount) * Number(price?.sell_price_irt)) + Number(wallet?.balance?.irt_balance),0), 'tse', lang)} تومان
                                 </text>
                             </div>
                             <div className='flex flex-col justify-start items-end gap-3'>
@@ -159,6 +159,11 @@ export default function WalletBox({
                         href='/transaction'
                         icon={<Icons.plus />}
                         title='خرید طلا'
+                    />
+                    <LinkBox
+                        href='/transaction?type=sell'
+                        icon={<Icons.plus />}
+                        title='تبدیل موجودی به طلا'
                     />
                 </div>
             </div >
