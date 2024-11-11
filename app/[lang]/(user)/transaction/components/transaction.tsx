@@ -32,10 +32,10 @@ type Props = {
 };
 
 export default function TransactionBox({
-    dict,
-    lang,
-    className
-}: Props) {
+                                           dict,
+                                           lang,
+                                           className
+                                       }: Props) {
 
     // ** Hooks
     const { price, isLoading: priceIsLoading, isValidating } = useExchangePrice();
