@@ -27,7 +27,7 @@ export default function WalletBox({
     dict,
     lang,
     className
-}: Props) {
+}: Props){
 
     // ** Hooks
     const { wallet, isLoading } = useWalletInfo();
@@ -67,8 +67,6 @@ export default function WalletBox({
             setPercentages(result)
         }
     }, [wallet])
-
-    console.log(wallet.balance);
 
     return (
         <div className='flex w-full items-center justify-center flex-col gap-10'>
@@ -116,7 +114,7 @@ export default function WalletBox({
                     <div className='flex flex-col rounded-lg bg-[#F8F9FA] border min-h-[40px]'>
                         <div className='flex flex-row justify-between p-4'>
                             <div className='flex flex-col justify-start items-start gap-3'>
-                                <div className='flex flex-row gap-2 justify-center items-center' >
+                                <div className='flex flex-row gap-2 justify-center items-center'>
                                     <div className='flex w-[20px] h-[20px] bg-[#0FB6A3] rounded' />
                                     <text className='text-[#0FB6A3] whitespace-nowrap text-base font-black'>
                                         طلا
@@ -131,11 +129,12 @@ export default function WalletBox({
                                     </span>
                                 </div>
                                 <text className='text-neutral-200 whitespace-nowrap text-base '>
-                                    مجموع: معادل {currency(roundNumber((Number(wallet?.balance?.gold_amount) * Number(price?.sell_price_irt)) + Number(wallet?.balance?.irt_balance),0), 'tse', lang)} تومان
+                                    مجموع:
+                                    معادل {currency(roundNumber((Number(wallet?.balance?.gold_amount) * Number(price?.sell_price_irt)) + Number(wallet?.balance?.irt_balance), 0), 'tse', lang)} تومان
                                 </text>
                             </div>
                             <div className='flex flex-col justify-start items-end gap-3'>
-                                <div className='flex flex-row gap-2 justify-center items-center' >
+                                <div className='flex flex-row gap-2 justify-center items-center'>
                                     <div className='text-neutral-200 whitespace-nowrap text-base font-black'>
                                         تومان
                                     </div>
@@ -166,8 +165,9 @@ export default function WalletBox({
                         title='تبدیل موجودی به طلا'
                     />
                 </div>
-            </div >
-            <div className={`relative flex w-full md:max-w-2xl flex-col gap-8 rounded-md md:border border-gray-400 bg-white px-4 text-black md:p-12 ${transactionLoading && 'blur-md'}`}>
+            </div>
+            <div
+                className={`relative flex w-full md:max-w-2xl flex-col gap-8 rounded-md md:border border-gray-400 bg-white px-4 text-black md:p-12 ${transactionLoading && 'blur-md'}`}>
                 <CardHeader
                     headerTitle='تاریخچه معاملات'
                 />
