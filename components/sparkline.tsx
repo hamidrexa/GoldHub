@@ -110,7 +110,7 @@ const SparkLine = ({
                         <stop offset="1" stopColor={color} stopOpacity="0" />
                     </linearGradient>
                 </defs>
-                {highlightedPoint.length &&
+                {highlightedPoint?.length &&
                     highlightedPoint.map((item, index) => (
                         <Fragment key={index}>
                             <ReferenceLine

@@ -226,7 +226,7 @@ export default async function HomePage({ params: { lang } }) {
                                 </svg>
                             </div>
                             <h3 className="text-xl font-bold">
-                                پس‌انداز طلانو ‌گرمی طلا
+                                پس‌انداز ‌گرمی طلا
                             </h3>
                             <p className="text-base">
                                 در طلانو میتونی از صد هزار تومن  طلا تا هر چقدر میخوای طلا بخری و پس انداز کنی.
