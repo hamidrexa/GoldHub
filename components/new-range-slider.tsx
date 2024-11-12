@@ -8,6 +8,7 @@ type Props = {
     min: number,
     max: number,
     value?: number
+    disabled?: boolean;
     className?: string,
     onChange?: (value: number) => void;
 
@@ -17,6 +18,7 @@ export function NewRangeSlider({
     max,
     className,
     value,
+    disabled,
     onChange
 }: Props) {
     return (
@@ -25,7 +27,8 @@ export function NewRangeSlider({
             min={min}
             max={max}
             value={value}
-            onChange={onChange} 
+            disabled={disabled}
+            onChange={onChange}
             styles={{
                 track: {
                     background:
@@ -36,6 +39,7 @@ export function NewRangeSlider({
                     height: 15,
                 },
                 handle: {
+                    display: disabled && 'none',
                     top: 7,
                     width: 20,
                     height: 20,
@@ -48,8 +52,8 @@ export function NewRangeSlider({
                     boxShadow: 'none',
                 },
                 rail: {
-                    height: 15,
-                    background:'#3D424A1A'
+                    height: disabled ? 0 : 15,
+                    background: '#3D424A1A',
                 },
             }}
             dotStyle={{

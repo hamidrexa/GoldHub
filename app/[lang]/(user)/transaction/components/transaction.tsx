@@ -202,6 +202,9 @@ export default function TransactionBox({
             setSliderValue(value);
             setMGramEq((value / (parseInt(exchange) / 1000)).toFixed(0));
         }
+        else {
+            setSliderValue(0)
+        }
     };
 
     return (
@@ -288,7 +291,8 @@ export default function TransactionBox({
                     {buyWithWallet && <div className="flex w-full flex-col justify-center gap-6  md:items-center">
                         <NewRangeSlider
                             min={0}
-                            max={Number(wallet?.balance?.irt_balance) || 0}
+                            disabled={Number(wallet?.balance?.irt_balance) > 0 ? false : true}
+                            max={Number(wallet?.balance?.irt_balance) || 1}
                             value={sliderValue}
                             onChange={handleSliderChange}
                         />
