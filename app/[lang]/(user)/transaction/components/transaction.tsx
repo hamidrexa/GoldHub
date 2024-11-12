@@ -32,10 +32,10 @@ type Props = {
 };
 
 export default function TransactionBox({
-                                           dict,
-                                           lang,
-                                           className
-                                       }: Props) {
+    dict,
+    lang,
+    className
+}: Props) {
 
     // ** Hooks
     const { price, isLoading: priceIsLoading, isValidating } = useExchangePrice();
@@ -191,6 +191,10 @@ export default function TransactionBox({
             setTomanEq('')
         }
     }, [transactionMode])
+
+    useEffect(() => {
+        handleGeramChange({ target: { value: mGramEq } })
+    }, [price])
 
     const handleSliderChange = (value: number) => {
         if (value) {
