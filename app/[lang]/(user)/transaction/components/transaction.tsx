@@ -192,6 +192,10 @@ export default function TransactionBox({
         }
     }, [transactionMode])
 
+    useEffect(() => {
+        handleGeramChange({ target: { value: mGramEq } })
+    }, [price])
+    
     const handleSliderChange = (value: number) => {
         if (value) {
             const exchange = transactionMode === 'buy' ? price?.buy_price_irt : price?.sell_price_irt
