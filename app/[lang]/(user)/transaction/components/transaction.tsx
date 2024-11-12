@@ -32,10 +32,10 @@ type Props = {
 };
 
 export default function TransactionBox({
-                                           dict,
-                                           lang,
-                                           className
-                                       }: Props) {
+    dict,
+    lang,
+    className
+}: Props) {
 
     // ** Hooks
     const { price, isLoading: priceIsLoading, isValidating } = useExchangePrice();
@@ -195,12 +195,15 @@ export default function TransactionBox({
     useEffect(() => {
         handleGeramChange({ target: { value: mGramEq } })
     }, [price])
-    
+
     const handleSliderChange = (value: number) => {
         if (value) {
             const exchange = transactionMode === 'buy' ? price?.buy_price_irt : price?.sell_price_irt
             setSliderValue(value);
             setMGramEq((value / (parseInt(exchange) / 1000)).toFixed(0));
+        }
+        else {
+            setSliderValue(0)
         }
     };
 
@@ -288,7 +291,8 @@ export default function TransactionBox({
                     {buyWithWallet && <div className="flex w-full flex-col justify-center gap-6  md:items-center">
                         <NewRangeSlider
                             min={0}
-                            max={Number(wallet?.balance?.irt_balance) || 0}
+                            disabled={Number(wallet?.balance?.irt_balance) > 0 ? false : true}
+                            max={Number(wallet?.balance?.irt_balance) || 1}
                             value={sliderValue}
                             onChange={handleSliderChange}
                         />
