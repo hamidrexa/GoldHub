@@ -21,7 +21,7 @@ type Props = {
     colors?: string[]
 }
 export function PieChart(props: Props) {
-    const COLORS = props.colors ? props.colors : ['#84859C', '#0FB6A3', '#0E6270', '#0FB6A3', '#10EDC5'];
+    const COLORS = props.colors ? props.colors : ['#E2E6E9', '#0FB6A3', '#0E6270', '#0FB6A3', '#10EDC5'];
     const [selectedPart, setSelectedPart] = useState(null);
     const mostSuggestedSymbols = props.data.slice(0, 4);
     const otherSuggestedSymbols = props.data

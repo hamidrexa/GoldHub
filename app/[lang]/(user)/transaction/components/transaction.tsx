@@ -416,7 +416,7 @@ export default function TransactionBox({
 
 
                 </div>
-                <Button className='sticky' onClick={onPaymentClick}>
+                <Button className='sticky bottom-[80px] md:bottom-[5px]' onClick={onPaymentClick}>
                     ادامه
                 </Button>
             </div >
