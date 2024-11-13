@@ -110,6 +110,7 @@ export default function WalletBox({ dict, lang, className }: Props) {
                                 value: percentages?.goldBalanceIrtPercentage,
                             },
                         ]}
+                        colors={['#84859C', '#0FB6A3']}
                         dataKey="value"
                     />
                 </div>
@@ -159,7 +160,7 @@ export default function WalletBox({ dict, lang, className }: Props) {
                                     <div className="whitespace-nowrap text-base font-black text-neutral-200">
                                         تومان
                                     </div>
-                                    <div className="flex h-[20px] w-[20px] rounded bg-[#E2E6E9]" />
+                                    <div className="flex h-[20px] w-[20px] rounded bg-[#84859C]" />
                                 </div>
                                 <div className="flex gap-1">
                                     <span className="font-black">
