@@ -49,21 +49,33 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
         ) > 50000000) return toast.warning("حداکثر مبلغ پرداختی ۵۰ میلیون تومان میباشد.")
 
         setLoading(true);
-        toast.info('در حال انتقال به درگاه پرداخت');
         try {
-            const res = await payment({
+            await payment({
                 price: tomanEq.replace(/٬/g, "").replace(/[۰-۹]/g, (digit) =>
                     String.fromCharCode(digit.charCodeAt(0) - 1728)
                 ) * 10,
                 bank_type: PaymentMethods['tala'],
-            });
-            window.open(
-                `https://talame-api.darkube.app/transaction/payment/${res.id}`,
-            );
+            }).then((res) => {
+                toast.info('در حال انتقال به درگاه پرداخت');
+                setLoading(false);
+                window.open(
+                    `https://talame-api.darkube.app/transaction/payment/${res.id}`,
+                );
+            }).catch((e) => {
+                setLoading(false);
+                toast.error(
+                    e?.error?.params[0] ||
+                    e?.error?.params?.detail ||
+                    e?.error?.messages?.error?.[0] ||
+                    e?.error?.messages
+                )
+            })
+            setLoading(false);
         } catch (error) {
+            setLoading(false)
             console.log(error);
         }
-        setLoading(false);
+
     };
 
     const handleNumericInput = (event) => {
