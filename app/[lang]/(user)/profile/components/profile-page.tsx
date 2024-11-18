@@ -807,6 +807,7 @@ export function ProfilePage({ dict, lang }) {
 
                                 </div>
                             </Box> */}
+                            
                             <Button
                                 variant="outline-destructive"
                                 className="w-full"
