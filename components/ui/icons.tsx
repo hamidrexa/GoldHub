@@ -131,8 +131,8 @@ export const Icons = {
     ),
     plus: (props: IconProps) => (
         <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 22 22" fill="none"{...props}>
-            <path d="M11 4.58334V17.4167" stroke="#0C0E3C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M4.58337 11H17.4167" stroke="#0C0E3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M11 4.58334V17.4167" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M4.58337 11H17.4167" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
     ),
     fire: (props: IconProps) => (
@@ -183,6 +183,12 @@ export const Icons = {
             <path d="M47.8582 30.8698C46.5237 29.5817 33.1783 29.5819 32.2885 30.8698C31.3988 32.1576 27.3951 40.7447 28.2849 42.462C29.1746 44.1793 50.9722 44.1793 51.8619 42.462C52.7515 40.7447 49.1928 32.1578 47.8582 30.8698Z" stroke={props.stroke} stroke-width="2.5" />
         </svg>
 
+    ),
+    copy: (props: IconProps) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 -0.5 25 25" fill="none" {...props}>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.676 14.248C17.676 15.8651 16.3651 17.176 14.748 17.176H7.428C5.81091 17.176 4.5 15.8651 4.5 14.248V6.928C4.5 5.31091 5.81091 4 7.428 4H14.748C16.3651 4 17.676 5.31091 17.676 6.928V14.248Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M10.252 20H17.572C19.1891 20 20.5 18.689 20.5 17.072V9.75195" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
     ),
     info: (props: IconProps) => (
         <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" {...props}>
@@ -596,11 +602,12 @@ export const Icons = {
             viewBox="0 0 20 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            {...props}
         >
             <g filter="url(#filter0_b_4396_11387)">
                 <path
                     d="M9.77359 18.3877C7.71722 17.1222 5.80421 15.6327 4.0688 13.9459C2.84873 12.7312 1.9199 11.2503 1.35346 9.61663C0.334136 6.44761 1.52477 2.81968 4.85685 1.74602C6.60805 1.18226 8.52064 1.50447 9.9963 2.61187C11.4725 1.50582 13.3844 1.18372 15.1357 1.74602C18.4678 2.81968 19.667 6.44761 18.6477 9.61663C18.0813 11.2503 17.1524 12.7312 15.9324 13.9459C14.197 15.6327 12.2839 17.1222 10.2276 18.3877L10.0049 18.5263L9.77359 18.3877Z"
-                    stroke="#84859C"
+                    // stroke="#84859C"
                     strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -609,7 +616,7 @@ export const Icons = {
             <g filter="url(#filter1_b_4396_11387)">
                 <path
                     d="M13.542 5.31348C14.5512 5.63587 15.2683 6.54193 15.3579 7.60799"
-                    stroke="#84859C"
+                    // stroke="#84859C"
                     strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
