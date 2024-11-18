@@ -30,7 +30,7 @@ export function CopyButton({
     return (
         <button
             className={cn(
-                'flex items-center justify-center gap-2 rounded-md bg-gray-200 font-medium',
+                'flex items-center justify-center gap-2 rounded-md  font-medium',
                 className
             )}
             onClick={() => {

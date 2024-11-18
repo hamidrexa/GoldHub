@@ -12,7 +12,7 @@ import { ProductsNavigator } from '@/components/products-navigator';
 import { getPlans } from '@/app/[lang]/(user)/profile/services/getPlans';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { EditIcon } from 'lucide-react';
+import { EditIcon, FileClock } from 'lucide-react';
 import Cookies from 'js-cookie';
 import { googleLogout } from '@react-oauth/google';
 import {
@@ -33,8 +33,15 @@ import { emailVerification } from '@/app/[lang]/(user)/profile/services/emailVer
 import { PasswordChangeForm } from '@/app/[lang]/(user)/profile/components/change-password-form';
 import { PhoneSubmitForm } from '@/app/[lang]/(user)/profile/components/phone-submit-form';
 import { useTransactions } from '@/app/[lang]/(user)/profile/services/useTransactions';
-import { cn } from '@/libs/utils';
+import { cn, currency, roundNumber } from '@/libs/utils';
 import { NationalCodeVerificationForm } from './national-code-form';
+import { Box, BoxContent, BoxTitle } from '@/components/box';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Icons } from '@/components/ui/icons';
+import { FinantialAccount } from './finantial-account';
+import { Label } from '@/components/ui/label';
+import { CopyButton } from '@/components/copy-button';
+import { useCart } from '../services/getCart';
 
 dayjs.extend(utc);
 
@@ -45,12 +52,17 @@ export function ProfilePage({ dict, lang }) {
     const [emailDialogOpen, setEmailDialogOpen] = useState(false);
     const [passwordDialogOpen, setPasswordDialogOpen] = useState(false);
     const [nationalCodeDialogOpen, setNationalCodeDialogOpen] = useState(false);
+    const [finantialAccountOpen, setFinantialAccountOpen] = useState(false);
     const [open, setOpen] = useState(false);
     const router = useRouter();
     const { user, setUser } = useGlobalContext();
     const [isGetReadyPushNotification, setIsGetReadyPushNotification] =
         useState(false);
     const [userPlans, setUserPlans] = useState(null);
+    const { data, isLoading: cartIsloding, mutate } = useCart()
+
+    console.log(data, 'lll');
+
     const [userTransactions, setUserTransactions] = useState(null);
     const completePercentage = useMemo(() => {
         if (!user) return;
@@ -163,6 +175,7 @@ export function ProfilePage({ dict, lang }) {
             </span>
         ),
     };
+
     const logout = () => {
         Cookies.remove('token');
         Cookies.remove('token-refresh');
@@ -442,6 +455,358 @@ export function ProfilePage({ dict, lang }) {
                                     </div>
                                 </div>
                             )}
+                            <Box className="pt-[50px]">
+                                <Box className='flex flex-row justify-between w-full '>
+                                    <BoxTitle>
+                                        <FileClock />
+                                        اطلاعات مالی
+                                    </BoxTitle>
+                                    {(!data[0]?.cart_number && !data[0]?.shaba_number) && <Dialog
+                                        open={finantialAccountOpen}
+                                        onOpenChange={setFinantialAccountOpen}
+                                    >
+                                        <DialogTrigger asChild>
+                                            <Button
+                                                variant="info"
+                                                onClick={async () => {
+                                                    setFinantialAccountOpen(
+                                                        true
+                                                    );
+                                                }}
+                                            >
+                                                حساب جدید
+                                                <Icons.plus stroke='#fff' />
+                                            </Button>
+                                        </DialogTrigger>
+                                        <DialogContent className="max-w-xl">
+                                            <FinantialAccount
+                                                dict={dict}
+                                                lang={lang}
+                                                isEdit={false}
+                                                setOpen={
+                                                    setFinantialAccountOpen
+                                                }
+                                            />
+                                        </DialogContent>
+                                    </Dialog>}
+                                </Box>
+                                <BoxContent className="max-w-none">
+                                    <Table className="rounded-md border bg-white">
+                                        <TableHeader>
+                                            <TableRow>
+                                                <TableHead>ردیف</TableHead>
+                                                <TableHead>شماره شبا</TableHead>
+                                                <TableHead>شماره کارت</TableHead>
+                                                <TableHead>وضعیت شبا</TableHead>
+                                                <TableHead>وضعیت کارت</TableHead>
+                                                <TableHead >کارت اصلی</TableHead>
+                                                <TableHead align='left' >ویرایش</TableHead>
+                                            </TableRow>
+                                        </TableHeader>
+                                        <TableBody>
+                                            {data ? (
+                                                cartIsloding ? (
+                                                    <TableRow>
+                                                        <TableCell
+                                                            colSpan={10}
+                                                            align="center"
+                                                        >
+                                                            <Spinner
+                                                                height={25}
+                                                                width={25}
+                                                                className="mt-2"
+                                                            />
+                                                        </TableCell>
+                                                    </TableRow>
+                                                ) : (
+                                                    data?.map((cart, index) => (
+                                                        (cart.shaba_number || cart.cart_number) && <TableRow
+                                                            key={cart.id}
+                                                            className="whitespace-nowrap"
+                                                        >
+                                                            <TableCell>
+                                                                {index + 1}
+                                                            </TableCell>
+                                                            <TableCell>
+                                                                {cart?.shaba_number}
+                                                            </TableCell>
+                                                            <TableCell>
+                                                                {cart?.cart_number}
+                                                            </TableCell>
+                                                            <TableCell>
+                                                                {/*// @ts-ignore*/}
+                                                                {<StatusBadge
+                                                                    dict={dict}
+                                                                    status={
+                                                                        cart.shaba_number_confirmed
+                                                                            ? 'confirmed'
+                                                                            :
+                                                                            'notConfirmed'
+                                                                    }
+                                                                />}
+                                                            </TableCell>
+                                                            <TableCell>
+                                                                {/*// @ts-ignore*/}
+                                                                {<StatusBadge
+                                                                    dict={dict}
+                                                                    status={
+                                                                        cart.cart_number_confirmed
+                                                                            ? 'confirmed'
+                                                                            :
+                                                                            'notConfirmed'
+                                                                    }
+                                                                />}
+                                                            </TableCell>
+                                                            <TableCell>
+                                                                {cart.is_default ? <Icons.tick stroke='green' /> : ''}
+                                                            </TableCell>
+                                                            <TableCell className='w-[40px]'>
+                                                                <Dialog
+                                                                    open={finantialAccountOpen}
+                                                                    onOpenChange={setFinantialAccountOpen}
+                                                                >
+                                                                    <DialogTrigger asChild>
+                                                                        <Button
+                                                                            onClick={async () => {
+                                                                                setFinantialAccountOpen(
+                                                                                    true
+                                                                                );
+                                                                            }}
+                                                                        >
+                                                                            ویرایش
+                                                                        </Button>
+                                                                    </DialogTrigger>
+                                                                    <DialogContent className="max-w-xl">
+                                                                        <FinantialAccount
+                                                                            dict={dict}
+                                                                            lang={lang}
+                                                                            isEdit={true}
+                                                                            cartData={cart}
+                                                                            submit={mutate}
+                                                                            setOpen={setFinantialAccountOpen}
+                                                                        />
+                                                                    </DialogContent>
+                                                                </Dialog>
+                                                            </TableCell>
+                                                        </TableRow>
+                                                    ))
+                                                )
+                                            ) : (
+                                                <TableRow>
+                                                    <TableCell
+                                                        colSpan={10}
+                                                        align="center"
+                                                    >
+                                                        <Spinner
+                                                            height={25}
+                                                            width={25}
+                                                            className="mt-2"
+                                                        />
+                                                    </TableCell>
+                                                </TableRow>
+                                            )}
+                                        </TableBody>
+                                    </Table>
+                                </BoxContent>
+                            </Box>
+                            {/* <Box className='flex justify-center w-full'>
+                                <div
+                                    className={
+                                        'flex w-full flex-col items-center justify-between gap-3 rounded-md border border-yellow-700 bg-yellow-50/80 py-4 text-base font-medium text-yellow-700 duration-200 md:my-6 md:h-14 md:w-1/2  md:flex-row md:gap-0 md:px-3 md:py-8 '
+                                    }
+                                >
+                                    <div className='flex w-full justify-between px-4'>
+                                        <Label className='text-[16px]'>
+                                            کد معرف:
+                                        </Label>
+                                        <div className='flex flex-row gap-3 justify-center items-center'>
+                                            <Label className='text-[18px]'>
+                                                dkcmk
+                                            </Label>
+                                            <CopyButton value={'dkcmk'} dict={dict} />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </Box>
+                            <Box className='flex flex-col w-full gap-[20px] md:flex-row'>
+                                <div
+                                    className={
+                                        'flex w-full flex-col items-center justify-between gap-3 rounded-md border py-4 text-base font-medium duration-200 md:h-min md:w-1/2  md:flex-row md:gap-0 md:px-3 md:py-8 '
+                                    }
+                                >
+                                    <div className='flex flex-col w-full justify-between gap-[20px]'>
+                                        <div className='flex flex-row gap-[8px]'>
+                                            <Icons.graph />
+                                            <Label className='text-[18px]'>
+                                                میزان درآمد
+                                            </Label>
+                                        </div>
+                                        <div className={`flex w-full flex-col`}>
+                                            <div className="flex min-h-[40px] flex-col rounded-lg border bg-[#F8F9FA]">
+                                                <div className="flex flex-row justify-between p-4  flex-wrap gap-4">
+                                                    <div className="flex flex-col items-start justify-start gap-3">
+                                                        <div className="flex flex-row items-center justify-center gap-2">
+                                                            <div className="flex h-[20px] w-[20px] rounded bg-[#0FB6A3]" />
+                                                            <text className="whitespace-nowrap text-base font-black text-[#0FB6A3]">
+                                                                تعداد دعوت شدگان
+                                                            </text>
+                                                        </div>
+                                                        <div className="flex gap-1">
+                                                            <span className="font-black">
+                                                                {currency(
+                                                                    50,
+                                                                    'tse',
+                                                                    lang
+                                                                )}
+                                                            </span>
+                                                            <span>نفر</span>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex flex-col items-end justify-start gap-3">
+                                                        <div className="flex flex-row items-center justify-center gap-2">
+                                                            <div className="whitespace-nowrap text-base font-black text-neutral-200">
+                                                                درآمد به ازای هر فرد
+                                                            </div>
+                                                            <div className="flex h-[20px] w-[20px] rounded bg-[#84859C]" />
+                                                        </div>
+                                                        <div className="flex gap-1">
+                                                            <span className="font-black">
+                                                                {currency(
+                                                                    50000,
+                                                                    'tse',
+                                                                    lang
+                                                                )}
+                                                            </span>
+                                                            <span>تومان</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div className='flex w-[full%] justify-center '>
+                                                        <hr className='flex w-[85%]' />
+                                                    </div>
+                                                </div>
+                                                <div className='flex w-full justify-center py-2'>
+                                                    <text className="whitespace-nowrap text-base text-neutral-200 ">
+                                                        مجموع: معادل{' '}
+                                                        {currency(
+                                                            150000,
+                                                            'tse',
+                                                            lang
+                                                        )}{' '}
+                                                        تومان
+                                                    </text>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div
+                                    className={
+                                        'flex w-full flex-col items-center justify-between gap-3 rounded-md border py-4 text-base font-medium duration-200  md:w-1/2  md:flex-col md:gap-0 md:px-3 md:py-8 '
+                                    }
+                                >
+                                    <div className='flex flex-col w-full justify-between gap-[20px]'>
+                                        <div className='flex flex-row gap-[8px]'>
+                                            <Icons.popular stroke='#111' />
+                                            <Label className='text-[18px]'>
+                                                دعوت شدگان
+                                            </Label>
+                                        </div>
+                                        <Table className="rounded-md border bg-white">
+                                            <TableHeader>
+                                                <TableRow>
+                                                    <TableHead>ردیف</TableHead>
+                                                    <TableHead>نام و نام خانوادگی</TableHead>
+                                                    <TableHead>تاریخ دعوت</TableHead>
+                                                </TableRow>
+                                            </TableHeader>
+                                            <TableBody>
+                                                {successful ? (
+                                                    !successful.length ? (
+                                                        <TableRow>
+                                                            <TableCell
+                                                                colSpan={10}
+                                                                align="center"
+                                                            >
+                                                                <Spinner
+                                                                    height={25}
+                                                                    width={25}
+                                                                    className="mt-2"
+                                                                />
+                                                            </TableCell>
+                                                        </TableRow>
+                                                    ) : (
+                                                        successful.map((transaction) => (
+                                                            <TableRow
+                                                                key={transaction.id}
+                                                                className="whitespace-nowrap"
+                                                            >
+                                                                <TableCell>
+                                                                    {new Date(
+                                                                        transaction.created_at
+                                                                    ).toLocaleDateString(
+                                                                        lang
+                                                                    )}
+                                                                </TableCell>
+                                                                <TableCell>
+                                                                    {transactionStatus[
+                                                                        transaction.state
+                                                                    ] || (
+                                                                            <span className="text-blue-500">
+                                                                                {
+                                                                                    dict
+                                                                                        .transactionStatus
+                                                                                        .inProgress
+                                                                                }
+                                                                            </span>
+                                                                        )}
+                                                                </TableCell>
+                                                                <TableCell>
+                                                                    {
+                                                                        dict.planType[
+                                                                        transaction
+                                                                            .plan_id
+                                                                        ]
+                                                                    }
+                                                                </TableCell>
+                                                                <TableCell>
+                                                                    {transaction.plan_id !==
+                                                                        4
+                                                                        ? dict.bankType[
+                                                                        transaction
+                                                                            .bank
+                                                                        ]
+                                                                        : ''}
+                                                                </TableCell>
+                                                                <TableCell>
+                                                                    {transaction.track_code}
+                                                                </TableCell>
+                                                            </TableRow>
+                                                        ))
+                                                    )
+                                                ) : (
+                                                    <TableRow>
+                                                        <TableCell
+                                                            colSpan={10}
+                                                            align="center"
+                                                        >
+                                                            <Spinner
+                                                                height={25}
+                                                                width={25}
+                                                                className="mt-2"
+                                                            />
+                                                        </TableCell>
+                                                    </TableRow>
+                                                )}
+                                            </TableBody>
+                                        </Table>
+                                    </div>
+
+                                </div>
+                            </Box> */}
                             <Button
                                 variant="outline-destructive"
                                 className="w-full"
