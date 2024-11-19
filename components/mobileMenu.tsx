@@ -146,7 +146,7 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
             const { data, status } = await getProfile();
             setUser(data);
         } catch (e) {
-            if (e?.status === 403) {
+            if (e?.status === 403 || e?.status === 401) {
                 const token = await refreshToken(Cookies.get('token-refresh'));
                 Cookies.set('token', token.access, { expires: 7 });
                 Cookies.set('token-refresh', token.refresh, { expires: 365 });
