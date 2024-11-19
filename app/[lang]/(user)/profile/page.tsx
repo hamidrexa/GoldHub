@@ -5,6 +5,7 @@ import { Locale } from '@/i18n-config';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import AnnouncementAlert from '@/components/announcement-alert';
+import Permission from './components/permission';
 
 type Props = {
     params: { id: string; lang: Locale };
@@ -28,10 +29,10 @@ export async function generateMetadata(
 
 export default async function Profile({ params: { lang } }) {
     const dict = await getDictionary(lang);
-    if (!cookies().get('token')) return redirect('/login');
 
     return (
         <>
+            <Permission />
             <AnnouncementAlert dict={dict} lang={lang} page="profile" />
             <ProfilePage dict={dict} lang={lang} />
         </>

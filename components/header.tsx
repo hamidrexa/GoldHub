@@ -87,8 +87,8 @@ export function Header({ dict, lang, googleLogin = true }) {
             } catch (e) {
                 toast.error(
                     e?.error?.params?.detail ||
-                        e?.error?.messages?.error?.[0] ||
-                        e?.error?.params?.non_field_errors?.[0]
+                    e?.error?.messages?.error?.[0] ||
+                    e?.error?.params?.non_field_errors?.[0]
                 );
             }
         },
@@ -120,7 +120,7 @@ export function Header({ dict, lang, googleLogin = true }) {
             const { data, status } = await getProfile();
             setUser(data);
         } catch (e) {
-            if (e?.status === 403) {
+            if (e?.status === 403 || e?.status === 401) {
                 const token = await refreshToken(Cookies.get('token-refresh'));
                 Cookies.set('token', token.access, { expires: 7 });
                 Cookies.set('token-refresh', token.refresh, { expires: 365 });
