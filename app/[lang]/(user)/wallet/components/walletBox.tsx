@@ -143,10 +143,10 @@ export default function WalletBox({ dict, lang, className }: Props) {
                                             Number(
                                                 wallet?.balance?.gold_amount
                                             ) *
-                                                Number(price?.sell_price_irt) +
-                                                Number(
-                                                    wallet?.balance?.irt_balance
-                                                ),
+                                            Number(price?.sell_price_irt) +
+                                            Number(
+                                                wallet?.balance?.irt_balance
+                                            ),
                                             0
                                         ),
                                         'tse',
