@@ -9,7 +9,6 @@ import { redirect } from 'next/navigation';
 import { Google } from '@/app/[lang]/(auth)/login/components/google';
 import { getLinksLang } from '@/libs/utils';
 import Link from 'next/link';
-import Permission from './components/permission';
 
 type Props = {
     params: { id: string; lang: Locale };
@@ -39,12 +38,14 @@ export async function generateMetadata(
 
 export default async function AuthenticationPage({ params: { lang } }) {
     const dict = await getDictionary(lang);
+    const token = cookies().get('token')?.value;
+
+    if (token) {
+        return redirect(`${getLinksLang(lang)}/profile`);
+    }
 
     return (
         <>
-            <Permission
-                lang={lang}
-            />
             <div className="relative flex h-[calc(100dvh)] flex-col justify-between p-2.5 md:!grid md:grid-cols-2 md:items-center">
                 <div className="relative flex flex-col p-7 text-white md:h-full md:p-10">
                     <div
