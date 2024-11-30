@@ -486,6 +486,7 @@ export function ProfilePage({ dict, lang }) {
                                                 setOpen={
                                                     setFinantialAccountOpen
                                                 }
+                                                submit={mutate}
                                             />
                                         </DialogContent>
                                     </Dialog>}
@@ -807,7 +808,7 @@ export function ProfilePage({ dict, lang }) {
 
                                 </div>
                             </Box> */}
-                            
+
                             <Button
                                 variant="outline-destructive"
                                 className="w-full"

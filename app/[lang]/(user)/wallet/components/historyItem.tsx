@@ -1,5 +1,6 @@
 import { Icons } from "@/components/ui/icons"
 import { Locale } from "@/i18n-config";
+import { currency } from "@/libs/utils";
 import dayjs from "dayjs"
 
 type Props = {
@@ -22,11 +23,27 @@ export default function HistoryItem({ item, lang }: Props) {
     const items = {
         sell: {
             title: 'فروش طلا',
-            icon: <Icons.sellGold />
+            icon: <Icons.sellGold />,
+            measure: 'geram',
+            measureTitle: 'گرم'
         },
         buy: {
             title: 'خرید طلا',
-            icon: <Icons.buyGold />
+            icon: <Icons.buyGold />,
+            measure: 'geram',
+            measureTitle: 'گرم'
+        },
+        deposit: {
+            title: 'واریز تومان',
+            icon: <Icons.money />,
+            measure: 'toman',
+            measureTitle: 'تومان'
+        },
+        withdraw: {
+            title: 'برداشت تومان',
+            icon: <Icons.money />,
+            measure: 'toman',
+            measureTitle: 'تومان'
         },
     }
 
@@ -46,10 +63,12 @@ export default function HistoryItem({ item, lang }: Props) {
                         color: item.type_choice === 'buy' ? '#07BB61' : '#DB2777CC'
                     }}
                 >
-                    {Number(item?.amount)?.toFixed(4)}
+                    {
+                        items[item?.type_choice]?.measureTitle === 'geram' ? Number(item?.amount)?.toFixed(4) : currency(Number(item.amount), 'tse', lang)
+                    }
                 </span>
                 <span className='text-[14px] text-[#74759A]'>
-                    گرم
+                    {items[item?.type_choice]?.measureTitle}
                 </span>
             </div>
             <div className='text-[14px] text-[#74759A]'>

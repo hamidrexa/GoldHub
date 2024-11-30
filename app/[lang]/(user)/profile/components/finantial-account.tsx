@@ -31,7 +31,7 @@ type formProp = {
     lang: Locale;
     isEdit?: boolean
     cartData?: any
-    submit?: any
+    submit?: () => {}
 };
 
 export function FinantialAccount({ lang, dict, setOpen, isEdit, cartData, submit }: formProp) {
@@ -93,7 +93,7 @@ export function FinantialAccount({ lang, dict, setOpen, isEdit, cartData, submit
                 <form autoComplete="off" onSubmit={form.handleSubmit(onSubmit)}>
                     <div className="space-y-3">
                         <FormField
-                            defaultValue={cartData.cart_number}
+                            defaultValue={cartData?.cart_number}
                             control={form.control}
                             rules={{ required: false }}
                             render={({ field }) => (
@@ -112,7 +112,7 @@ export function FinantialAccount({ lang, dict, setOpen, isEdit, cartData, submit
                             name="cart_number"
                         />
                         <FormField
-                            defaultValue={cartData.shaba_number}
+                            defaultValue={cartData?.shaba_number}
                             control={form.control}
                             rules={{ required: false }}
                             render={({ field }) => (
@@ -135,7 +135,7 @@ export function FinantialAccount({ lang, dict, setOpen, isEdit, cartData, submit
                         </Button>
                     </div>
                 </form>
-            </Form>
+            </Form> 
         </div>
     );
 }
