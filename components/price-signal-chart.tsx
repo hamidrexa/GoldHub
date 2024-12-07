@@ -54,7 +54,7 @@ export function PriceSignalChart(props: Props) {
                     <h5
                         className="flex text-gray-900"
                     >
-                        سود {durationFilterTitle} :
+                        تغییرات قیمت :
                     </h5>
                     <Label className={`flex text-[${Number(percentageChange) > 0 ? 'green' : 'red'}] font-black text-[28px]`}>
                         %
