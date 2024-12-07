@@ -69,7 +69,7 @@ export function PriceSignalChart(props: Props) {
                     <Select
                         defaultValue={durationFilter}
                         onValueChange={setDurationFilter}
-                        dir={getDirection(props.lang)}
+                        dir='rtl'
                     >
                         <SelectTrigger>
                             <SelectValue placeholder="انتخاب بازه" />
