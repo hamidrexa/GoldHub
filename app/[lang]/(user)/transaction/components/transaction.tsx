@@ -135,7 +135,7 @@ export default function TransactionBox({
             setLoading(true);
             try {
                 await payment({
-                    price: rial,
+                    price: rial*10,
                     bank_type: PaymentMethods['tala'],
                 }).then((res) => {
                     toast.info('در حال انتقال به درگاه پرداخت');
