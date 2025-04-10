@@ -25,7 +25,7 @@ export async function configureServerSideGrowthBook() {
             'https://api.growthbook.sahmeto.com',
         clientKey:
             process.env.NEXT_PUBLIC_GROWTHBOOK_CLIENT_KEY ??
-            'sdk-Hr49hC2tAo5Y6uK',
+            'sdk-fF7IIVNUAGLLo5S8',
     });
     await gb.init({ timeout: 2000 });
 
