@@ -278,7 +278,7 @@ export default function Exchange({ dict, lang, className, ids }: Props) {
                     {/*</div>*/}
                     <div className="flex items-center w-full gap-1">
                         <Button
-                            onClick={onPaymentClick}
+                            onClick={()=>{toast.info("امکان خرید طلا تا اطلاع ثانوی وجود ندارد.")}}
                             className="w-full basis-3/4 font-semibold"
                             size="default"
                             variant="success"
