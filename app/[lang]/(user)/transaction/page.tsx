@@ -22,7 +22,7 @@ export async function generateMetadata(
     return {
         title: seoTitle,
         alternates: {
-            canonical: `https://sahmeto.com${params.lang !== 'fa' ? `/${params.lang}` : ''}/profile`,
+            canonical: `https://talanow.ir${params.lang !== 'fa' ? `/${params.lang}` : ''}/profile`,
         },
     };
 }

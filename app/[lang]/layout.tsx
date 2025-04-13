@@ -155,7 +155,7 @@ export default async function RootLayout({
                         />
                     </Providers>
                 </GlobalContextProvider>
-                <GoogleTagManager gtmId="GTM-WFRHFRV" />
+                <GoogleTagManager gtmId="GTM-558BXMSS" />
                 <Script
                     id="pushe"
                     strategy="beforeInteractive"
@@ -169,33 +169,33 @@ export default async function RootLayout({
                             '@context': 'https://schema.org',
                             '@type': 'Organization',
                             '@id': `${websiteUrl}#identity`,
-                            alternateName: 'سهم تو',
+                            alternateName: 'طلانو',
                             email: 'info@talanow.ir',
                             image: `${websiteUrl}/img/logo.png`,
                             description:
-                                'بهترین های بازار ارزدیجیتال و بورس در یک نگاه',
+                                'سرمایه گذاری آسان طلا',
                             awards: [
                                 'دانش بنیان',
                                 'پارک علم و فناوری',
                                 'اینماد',
                             ],
                             disambiguatingDescription:
-                                'سامانه هوشمند طلانو پیام‌های تمام کانال‌های بورسی تلگرام را جمع‌آوری می‌کند و با استفاده از هوش مصنوعی سیگنال‌های خرید و فروش هر کانال شناسایی و بازدهی سبد سهامی معرفی شده توسط هر کانال را محاسبه می‌کند',
-                            keywords: ['بورس', 'ارزدیجیتال', 'مالی', 'بازار'],
-                            legalName: 'هوش مالی بینا',
+                                'سرمایه گذاری آسان طلا',
+                            keywords: ['خرید', 'بازار', 'طلا'],
+                            legalName: 'فن‌آوری هوشمند طلانو',
                             logo: `${websiteUrl}/img/logo.png`,
                             sameAs: [
-                                'https://twitter.com/Sahmetocom',
-                                'https://t.me/sahmetocom',
-                                'https://www.linkedin.com/company/sahmeto',
-                                'https://www.instagram.com/sahmeto_com',
-                                'https://sahmeto.com',
+                                'https://twitter.com/Talanowir',
+                                'https://t.me/Talanowir',
+                                'https://www.linkedin.com/company/Talanowir',
+                                'https://www.instagram.com/Talanowir',
+                                'https://Talanow.ir',
                             ],
-                            slogan: 'بهترین های بازار ارزدیجیتال و بورس در یک نگاه',
+                            slogan: 'سرمایه گذاری آسان طلا',
                             telephone: '02191304925',
-                            url: 'https://sahmeto.com/',
-                            name: 'Sahmeto.com | طلانو',
-                            mainEntityOfPage: 'https://sahmeto.com/',
+                            url: 'https://talanow.ir/',
+                            name: 'talanow.ir | طلانو',
+                            mainEntityOfPage: 'https://talanow.ir/',
                             address: {
                                 '@type': 'PostalAddress',
                                 streetAddress:

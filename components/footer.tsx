@@ -217,7 +217,7 @@ export function Footer({ dict, lang }) {
                                 alt="zarinpal"
                             />
                         </div>
-                        <div className="h-24 w-24 rounded-lg bg-white p-4 lg:h-28 lg:w-28">
+                        {/* <div className="h-24 w-24 rounded-lg bg-white p-4 lg:h-28 lg:w-28">
                             <Image
                                 className="h-full w-full object-contain"
                                 src="/img/science.png"
@@ -275,7 +275,7 @@ export function Footer({ dict, lang }) {
                                 height={96}
                                 referrerPolicy="origin"
                             />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className="-mt-6 space-y-6 rounded-tl-lg rounded-tr-lg bg-neutral-700 pb-0 pt-8">
@@ -385,7 +385,7 @@ export function Footer({ dict, lang }) {
                                 height={96}
                             />
                         </div>
-                        <div className="h-24 w-24 rounded-lg bg-white p-4 lg:h-28 lg:w-28">
+                        {/* <div className="h-24 w-24 rounded-lg bg-white p-4 lg:h-28 lg:w-28">
                             <Image
                                 className="h-full w-full object-contain"
                                 src="/img/science.png"
@@ -443,7 +443,7 @@ export function Footer({ dict, lang }) {
                                 width={96}
                                 height={96}
                             />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 {/*<div className="px-8 py-2 text-neutral-700">*/}

@@ -148,7 +148,7 @@ export function ProfilePage({ dict, lang }) {
         window.Pushe.subscribe({
             showDialog: false,
             showBell: false,
-            icon: 'https://sahmeto.com/img/logo.png',
+            icon: 'https://talanow.ir/img/logo.png',
         });
         window.Pushe.addEventListener(
             window.Pushe.EVENTS.SUBSCRIPTION_CHANGE,

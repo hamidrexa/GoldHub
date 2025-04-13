@@ -53,7 +53,7 @@ export default async function HomePage({ params: { lang } }) {
                         target='_blank'
                         title='تحلیل طلا'
                         icon={<Icons.fire stroke='#111' fill='none' />}
-                        href='https://sahmeto.com'
+                        href='https://talanow.ir'
                     />
                 </div>
             </section>

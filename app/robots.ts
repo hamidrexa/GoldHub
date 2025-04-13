@@ -7,13 +7,9 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: '/system/health-check',
         },
-        host: 'https://sahmeto.com',
+        host: 'https://talanow.ir',
         sitemap: [
-            'https://sahmeto.com/sitemap.xml',
-            'https://sahmeto.com/blog/post-sitemap.xml',
-            'https://sahmeto.com/blog/docs-sitemap.xml',
-            'https://sahmeto.com/publisher-messages.xml',
-            'https://blog.sahmeto.com/post-sitemap.xml',
+            'https://talanow.ir/sitemap.xml',
         ],
     };
 }

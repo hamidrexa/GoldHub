@@ -233,13 +233,13 @@ export function Header({ dict, lang, googleLogin = true }) {
                             <div>
                                 <div className="flex items-start justify-center gap-8">
                                     <Link
-                                        href="https://www.instagram.com/sahmeto_com"
+                                        href="https://www.instagram.com/talanowir"
                                         rel="nofollow"
                                     >
                                         <InstagramIcon strokeWidth={1.125} />
                                     </Link>
                                     <Link
-                                        href="https://www.linkedin.com/company/sahmeto"
+                                        href="https://www.linkedin.com/company/talanowir"
                                         rel="nofollow"
                                     >
                                         <LinkedinIcon strokeWidth={1.125} />
