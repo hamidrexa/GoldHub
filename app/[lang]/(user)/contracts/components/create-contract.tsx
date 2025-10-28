@@ -94,17 +94,17 @@ export default function CreateContract({ dict, lang }: Props) {
     };
 
     return (
-        <div className="mb-6 grid w-full grid-cols-1 gap-4 md:grid-cols-2">
-            <div className="rounded-lg border bg-white p-4">
-                <div className="mb-2 text-lg font-bold">قرارداد نوع ۱</div>
-                <div className="mb-4 text-sm text-gray-600">
+        <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
+            <div className="rounded-md border border-gray-200 bg-white p-4">
+                <div className="mb-2 text-base font-bold">قرارداد نوع ۱</div>
+                <div className="mb-4 text-sm text-[#5A5C83]">
                     سپردن طلا/نقد و دریافت سود سالانه نزدیک ۱۰٪ بر پایه طلا.
                 </div>
                 <Button onClick={() => openModalFor('type1')}>ایجاد قرارداد</Button>
             </div>
-            <div className="rounded-lg border bg-white p-4">
-                <div className="mb-2 text-lg font-bold">قرارداد نوع ۲</div>
-                <div className="mb-4 text-sm text-gray-600">
+            <div className="rounded-md border border-gray-200 bg-white p-4">
+                <div className="mb-2 text-base font-bold">قرارداد نوع ۲</div>
+                <div className="mb-4 text-sm text-[#5A5C83]">
                     سرمایه‌گذاری ساده با انتخاب مدت و نوع تسویه.
                 </div>
                 <Button variant="secondary" onClick={() => openModalFor('type2')}>

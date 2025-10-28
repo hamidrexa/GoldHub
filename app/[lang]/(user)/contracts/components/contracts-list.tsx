@@ -49,8 +49,7 @@ export default function ContractsList({ dict, lang }: Props) {
     }
 
     return (
-        <div className="mt-6 rounded-lg border bg-white p-4">
-            <div className="mb-4 text-lg font-bold">لیست قراردادها</div>
+        <div className="mt-2">
             {loading && <div className="text-sm text-gray-600">در حال بارگذاری...</div>}
             {!loading && contracts.length === 0 && (
                 <div className="text-sm text-gray-600">قراردادی یافت نشد.</div>
@@ -59,7 +58,7 @@ export default function ContractsList({ dict, lang }: Props) {
                 {contracts.map((c) => (
                     <div
                         key={c.id}
-                        className="flex flex-col gap-2 rounded-md border p-3 text-sm"
+                        className="flex flex-col gap-2 rounded-md border border-gray-200 bg-white p-3 text-sm"
                     >
                         <div className="flex items-center justify-between">
                             <Label>نوع قرارداد</Label>

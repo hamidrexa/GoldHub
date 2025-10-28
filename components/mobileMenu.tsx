@@ -74,9 +74,9 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
         },
         {
             key: 'home',
-            title: 'معامله',
+            title: 'قرارداد',
             icon: <Icons.fire />,
-            href: '/transaction'
+            href: '/contracts'
         },
         {
             key: 'home',

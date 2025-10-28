@@ -71,8 +71,8 @@
   "profile": "پروفایل",
   "navMenuItems": [
     {
-      "title": "معامله",
-      "href": "/transaction",
+      "title": "قرارداد",
+      "href": "/contracts",
       "description": ""
     },
     {
