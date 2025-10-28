@@ -78,7 +78,7 @@ export function CompleteInfo({ userId, setStep, dict, lang, redirectUrl }) {
                         className="space-y-3"
                         autoComplete="off"
                     >
-                        <FormField
+                        {/* <FormField
                             control={form.control}
                             name="email"
                             render={({ field }) => (
@@ -97,7 +97,7 @@ export function CompleteInfo({ userId, setStep, dict, lang, redirectUrl }) {
                                     <FormMessage />
                                 </FormItem>
                             )}
-                        />
+                        /> */}
                         <FormField
                             control={form.control}
                             name="password"
