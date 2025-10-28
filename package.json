@@ -48,6 +48,7 @@
     "@radix-ui/react-tooltip": "^1.0.7",
     "@react-oauth/google": "^0.12.1",
     "@sentry/nextjs": "8",
+    "@supabase/supabase-js": "^2.76.1",
     "@tanstack/react-table": "^8.17.3",
     "@types/negotiator": "^0.6.3",
     "@types/node": "20.11.5",
