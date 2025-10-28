@@ -11,6 +11,7 @@ import {
 interface ContextProps {
     user: {
         id: number | string;
+        groups?: { id: number | string; name: string }[];
         trader: {
             id: number | string;
             primary_username: string;
