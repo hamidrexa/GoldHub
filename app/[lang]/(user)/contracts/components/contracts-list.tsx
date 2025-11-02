@@ -1,7 +1,8 @@
+
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { supabase, type ContractRow } from '@/app/[lang]/(user)/contracts/services/supabase';
+import { supabase, type Contract, type ContractType } from '@/services/supabase';
 import { useGlobalContext } from '@/contexts/store';
 import { Locale } from '@/i18n-config';
 import { Label } from '@/components/ui/label';
@@ -13,7 +14,7 @@ type Props = {
 
 export default function ContractsList({ dict, lang }: Props) {
     const { user } = useGlobalContext();
-    const [contracts, setContracts] = useState<ContractRow[]>([]);
+    const [contracts, setContracts] = useState<(Contract & { contract_types?: ContractType })[]>([]);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -23,14 +24,14 @@ export default function ContractsList({ dict, lang }: Props) {
             setLoading(true);
             const { data, error } = await supabase
                 .from('contracts')
-                .select('*')
+                .select('*, contract_types(*)')
                 .eq('user_id', user.id)
                 .order('created_at', { ascending: false });
             if (!isMounted) return;
             if (error) {
                 setContracts([]);
             } else {
-                setContracts((data || []) as ContractRow[]);
+                setContracts((data || []) as (Contract & { contract_types?: ContractType })[]);
             }
             setLoading(false);
         }
@@ -62,7 +63,11 @@ export default function ContractsList({ dict, lang }: Props) {
                     >
                         <div className="flex items-center justify-between">
                             <Label>نوع قرارداد</Label>
-                            <div>{c.type === 'type1' ? 'نوع ۱' : 'نوع ۲'}</div>
+                            <div>{c.contract_types?.name || '-'}</div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                            <Label>توضیحات</Label>
+                            <div>{c.contract_types?.description || '-'}</div>
                         </div>
                         <div className="flex items-center justify-between">
                             <Label>مبلغ (ریال)</Label>

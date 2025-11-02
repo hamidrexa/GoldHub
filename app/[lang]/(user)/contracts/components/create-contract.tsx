@@ -13,7 +13,7 @@ import {
     SelectValue,
 } from '@/components/ui/select';
 import { toast } from 'sonner';
-import { supabase } from '@/app/[lang]/(user)/contracts/services/supabase';
+import { createContract, supabase } from '@/services/supabase';
 import { useGlobalContext } from '@/contexts/store';
 import { Locale } from '@/i18n-config';
 
@@ -32,7 +32,7 @@ export default function CreateContract({ dict, lang }: Props) {
     const { user } = useGlobalContext();
 
     const [open, setOpen] = useState(false);
-    const [selectedType, setSelectedType] = useState<ContractType | null>(null);
+    const [selectedType, setSelectedType] = useState<string>('');
     const [amount, setAmount] = useState<string>('');
     const [guaranteeType, setGuaranteeType] = useState<string>('');
     const [duration, setDuration] = useState<string>('12');
@@ -49,8 +49,19 @@ export default function CreateContract({ dict, lang }: Props) {
     };
 
     const openModalFor = (type: ContractType) => {
-        setSelectedType(type);
-        setOpen(true);
+    setSelectedType(String(type));
+    setOpen(true);
+    };
+
+    const getBrokerIdForUser = async (userId: string) => {
+        // Get broker_id from broker_links table for the current user
+        const { data, error } = await supabase
+            .from('broker_links')
+            .select('broker_id')
+            .eq('member_id', userId)
+            .single();
+        if (error || !data) return null;
+        return data.broker_id;
     };
 
     const handleSubmit = async () => {
@@ -73,16 +84,26 @@ export default function CreateContract({ dict, lang }: Props) {
         }
         setSubmitting(true);
         try {
-            const { error } = await supabase.from('contracts').insert({
-                user_id: user.id,
-                type: selectedType,
+            // Get broker_id for this user
+            const broker_id = await getBrokerIdForUser(user.id);
+            if (!broker_id) {
+                toast.error('خطا در یافتن بروکر.');
+                setSubmitting(false);
+                return;
+            }
+            // TODO: contract_type_id should be selected from UI, for now use selectedType as string
+            const contractData = {
+                user_id: String(user.id),
+                broker_id: String(broker_id),
+                contract_type_id: selectedType || '',
                 amount_rls: amountRls * 10,
-                guarantee_type: showGuarantee ? guaranteeType : null,
+                guarantee_type: showGuarantee && guaranteeType ? guaranteeType : null,
                 duration_months: Number(duration),
                 settlement_type: settlementType,
                 status: 'pending',
-            });
-            if (error) throw error;
+            };
+            const result = await createContract(contractData);
+            if (!result) throw new Error('خطا در ایجاد قرارداد');
             toast.success('درخواست قرارداد با موفقیت ثبت شد.');
             setOpen(false);
             resetForm();

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { supabase } from '@/app/[lang]/(user)/broker/services/supabase';
+import { supabase } from '@/services/supabase';
 import { useGlobalContext } from '@/contexts/store';
 import { Locale } from '@/i18n-config';
 import { Label } from '@/components/ui/label';
@@ -14,12 +14,9 @@ type Props = {
 
 type MemberRow = {
     id: string;
-    broker_id: string | number;
-    user_id: string | number;
     phone_number?: string;
     first_name?: string;
     last_name?: string;
-    created_at?: string;
 };
 
 export default function MemberList({ dict, lang }: Props) {
@@ -33,13 +30,12 @@ export default function MemberList({ dict, lang }: Props) {
             if (!user) return;
             setLoading(true);
             const { data, error } = await supabase
-                .from('broker_members')
-                .select('*')
-                .eq('broker_id', user.id)
-                .order('created_at', { ascending: false });
+                .from('broker_links')
+                .select('users(*)')
+                .eq('broker_id', user.id);
             if (!mounted) return;
             if (error) setMembers([]);
-            else setMembers((data || []) as MemberRow[]);
+            else setMembers((data.map(item => item.users) || []).flat() as MemberRow[]);
             setLoading(false);
         }
         fetchMembers();
@@ -58,7 +54,9 @@ export default function MemberList({ dict, lang }: Props) {
                 {members.map((m) => (
                     <div key={m.id} className="flex items-center justify-between rounded-md border border-gray-200 bg-white p-3 text-sm">
                         <div className="flex items-center gap-3">
-                            <GroupAvatar name={`${m.first_name || ''} ${m.last_name || ''}`.trim() || m.phone_number || 'U'} />
+                            <div className="flex items-center justify-center h-8 w-8 rounded-full bg-gray-100 text-gray-700 font-bold">
+                                {`${m.first_name || ''} ${m.last_name || ''}`.trim() || m.phone_number || 'U'}
+                            </div>
                             <div className="flex flex-col">
                                 <div className="font-medium">{`${m.first_name || ''} ${m.last_name || ''}`.trim() || '—'}</div>
                                 <div className="text-xs text-[#5A5C83]">{m.phone_number || '—'}</div>
@@ -67,7 +65,7 @@ export default function MemberList({ dict, lang }: Props) {
                         <div className="flex items-center gap-6">
                             <div className="flex items-center gap-2">
                                 <Label>شناسه</Label>
-                                <div>{m.user_id}</div>
+                                <div>{m.id}</div>
                             </div>
                         </div>
                     </div>
