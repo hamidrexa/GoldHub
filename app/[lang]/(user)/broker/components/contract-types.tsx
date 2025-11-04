@@ -48,8 +48,8 @@ export default function ContractTypes({ dict, lang }: Props) {
             if (!user) return;
             setLoading(true);
             const { data, error } = await supabase
-                .from('broker_contract_types')
-                .select('contract_types(*)')
+                .from('talanow_broker_contract_types')
+                .select('talanow_contract_types(*)')
                 .eq('broker_id', user.id);
             if (!mounted) return;
             if (error) setItems([]);
@@ -99,7 +99,7 @@ export default function ContractTypes({ dict, lang }: Props) {
             if (editing) {
                 // Update contract_types table
                 const { error } = await supabase
-                    .from('contract_types')
+                    .from('talanow_contract_types')
                     .update({
                         name,
                         description,
@@ -117,7 +117,7 @@ export default function ContractTypes({ dict, lang }: Props) {
                 toast.success('بروزرسانی شد');
             } else {
                 // Create in contract_types table
-                const { data, error } = await supabase.from('contract_types').insert({
+                const { data, error } = await supabase.from('talanow_contract_types').insert({
                     name,
                     description,
                     min_investment: minInvestment ? Number(minInvestment) : null,
@@ -136,12 +136,12 @@ export default function ContractTypes({ dict, lang }: Props) {
             if (contract_type_id) {
                 // Check if link already exists to avoid duplicates
                 const { data: existingLink, error: linkCheckError } = await supabase
-                    .from('broker_contract_types')
+                    .from('talanow_broker_contract_types')
                     .select('id')
                     .eq('broker_id', String(user.id))
                     .eq('contract_type_id', String(contract_type_id));
                 if (!existingLink?.length) {
-                    const { error: linkError } = await supabase.from('broker_contract_types').insert({
+                    const { error: linkError } = await supabase.from('talanow_broker_contract_types').insert({
                         broker_id: String(user.id),
                         contract_type_id: String(contract_type_id),
                     });
@@ -151,8 +151,8 @@ export default function ContractTypes({ dict, lang }: Props) {
             setOpen(false);
             // refresh list
             const { data } = await supabase
-                .from('broker_contract_types')
-                .select('contract_types(*)')
+                .from('talanow_broker_contract_types')
+                .select('talanow_contract_types(*)')
                 .eq('broker_id', user.id);
             setItems((data.map(item => item.contract_types) || []).flat());
         } catch (e: any) {

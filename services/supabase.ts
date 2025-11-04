@@ -64,7 +64,7 @@ export const getBrokers = async () => {
 
 export const getBrokerMembers = async (brokerId: string) => {
     const { data, error } = await supabase
-        .from('broker_links')
+        .from('talanow_broker_links')
         .select('member_id, users(*)')
         .eq('broker_id', brokerId);
     if (error) {
@@ -76,12 +76,12 @@ export const getBrokerMembers = async (brokerId: string) => {
 
 export const getBrokerSummary = async (brokerId: string) => {
     const { count: memberCount, error: memberError } = await supabase
-        .from('broker_links')
+        .from('talanow_broker_links')
         .select('*', { count: 'exact', head: true })
         .eq('broker_id', brokerId);
 
     const { count: activeContractsCount, error: contractsError } = await supabase
-        .from('contracts')
+        .from('talanow_contracts')
         .select('*', { count: 'exact', head: true })
         .eq('broker_id', brokerId)
         .eq('status', 'active'); // Assuming 'active' is a status
@@ -96,8 +96,8 @@ export const getBrokerSummary = async (brokerId: string) => {
 
 export const getContractTypesForBroker = async (brokerId: string) => {
     const { data, error } = await supabase
-        .from('broker_contract_types')
-        .select('contract_types(*)')
+        .from('talanow_broker_contract_types')
+        .select('talanow_contract_types(*)')
         .eq('broker_id', brokerId);
 
     if (error) {
@@ -109,7 +109,7 @@ export const getContractTypesForBroker = async (brokerId: string) => {
 
 export const getBrokerContractsSummary = async (brokerId: string) => {
     const { count: contractTypesCount, error: contractTypesError } = await supabase
-        .from('broker_contract_types')
+        .from('talanow_broker_contract_types')
         .select('*', { count: 'exact', head: true })
         .eq('broker_id', brokerId);
 
@@ -117,7 +117,7 @@ export const getBrokerContractsSummary = async (brokerId: string) => {
     oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
 
     const { data: profitData, error: profitError } = await supabase
-        .from('contracts')
+        .from('talanow_contracts')
         .select('amount_rls, contract_types(profit_share)')
         .eq('broker_id', brokerId)
         .gte('created_at', oneMonthAgo.toISOString());
@@ -147,7 +147,7 @@ export const getBrokerContractsSummary = async (brokerId: string) => {
 };
 
 export const createContractType = async (contractTypeData: Partial<ContractType>) => {
-    const { data, error } = await supabase.from('contract_types').insert(contractTypeData).select();
+    const { data, error } = await supabase.from('talanow_contract_types').insert(contractTypeData).select();
     if (error) {
         console.error('Error creating contract type:', error);
         return null;
@@ -156,7 +156,7 @@ export const createContractType = async (contractTypeData: Partial<ContractType>
 };
 
 export const updateContractType = async (id: string, updates: Partial<ContractType>) => {
-    const { data, error } = await supabase.from('contract_types').update(updates).eq('id', id).select();
+    const { data, error } = await supabase.from('talanow_contract_types').update(updates).eq('id', id).select();
     if (error) {
         console.error('Error updating contract type:', error);
         return null;
@@ -165,7 +165,7 @@ export const updateContractType = async (id: string, updates: Partial<ContractTy
 };
 
 export const deactivateContractType = async (id: string) => {
-    const { data, error } = await supabase.from('contract_types').update({ active: false }).eq('id', id).select();
+    const { data, error } = await supabase.from('talanow_contract_types').update({ active: false }).eq('id', id).select();
     if (error) {
         console.error('Error deactivating contract type:', error);
         return null;
@@ -174,7 +174,7 @@ export const deactivateContractType = async (id: string) => {
 };
 
 export const createContract = async (contractData: Partial<Contract>) => {
-    const { data, error } = await supabase.from('contracts').insert(contractData).select();
+    const { data, error } = await supabase.from('talanow_contracts').insert(contractData).select();
     if (error) {
         console.error('Error creating contract:', error);
         return null;
@@ -183,7 +183,7 @@ export const createContract = async (contractData: Partial<Contract>) => {
 };
 
 export const getContractsForUser = async (userId: string) => {
-    const { data, error } = await supabase.from('contracts').select('*, contract_types(*)').eq('user_id', userId);
+    const { data, error } = await supabase.from('talanow_contracts').select('*, contract_types(*)').eq('user_id', userId);
     if (error) {
         console.error('Error fetching contracts for user:', error);
         return [];

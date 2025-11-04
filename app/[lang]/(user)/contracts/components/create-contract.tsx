@@ -54,9 +54,9 @@ export default function CreateContract({ dict, lang }: Props) {
     };
 
     const getBrokerIdForUser = async (userId: string) => {
-        // Get broker_id from broker_links table for the current user
+        // Get broker_id from talanow_broker_links table for the current user
         const { data, error } = await supabase
-            .from('broker_links')
+            .from('talanow_broker_links')
             .select('broker_id')
             .eq('member_id', userId)
             .single();

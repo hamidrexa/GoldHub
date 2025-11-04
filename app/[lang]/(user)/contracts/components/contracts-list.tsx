@@ -23,7 +23,7 @@ export default function ContractsList({ dict, lang }: Props) {
             if (!user) return;
             setLoading(true);
             const { data, error } = await supabase
-                .from('contracts')
+                .from('talanow_contracts')
                 .select('*, contract_types(*)')
                 .eq('user_id', user.id)
                 .order('created_at', { ascending: false });
