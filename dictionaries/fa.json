@@ -812,4 +812,17 @@
   "yourInventory": "موجودی شما",
   "increase": "افزایش",
   "retry": "لطفا مجدد تلاش کنید"
+  ,
+  "admin": {
+    "create_contract": "ایجاد قرارداد",
+    "edit_contract": "ویرایش قرارداد",
+    "contract_types": "انواع قرارداد",
+    "last_month_profit": "سود ماه گذشته",
+    "show_contracts": "نمایش قراردادها",
+    "hide_contracts": "مخفی کردن قراردادها",
+    "edit": "ویرایش",
+    "deactivate": "غیرفعال کردن",
+    "save": "ذخیره",
+    "cancel": "انصراف"
+  }
 }
