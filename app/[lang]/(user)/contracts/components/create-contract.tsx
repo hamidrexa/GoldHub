@@ -97,9 +97,9 @@ export default function CreateContract({ dict, lang }: Props) {
                 broker_id: String(broker_id),
                 contract_type_id: selectedType || '',
                 amount_rls: amountRls * 10,
-                guarantee_type: showGuarantee && guaranteeType ? (guaranteeType as 'ملک' | 'چک' | 'سفته') : null,
+                guarantee_type: showGuarantee && guaranteeType ? (guaranteeType as 'ملک' | 'چک' | 'سفته') : undefined,
                 duration_months: Number(duration),
-                settlement_type: settlementType,
+                settlement_type: settlementType as 'آبشده' | 'کیف داریک' | 'ریالی' | 'مصنوع و سکه',
                 status: 'pending',
             };
             const result = await createContract(contractData);

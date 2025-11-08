@@ -5,7 +5,6 @@ import { supabase } from '@/services/supabase';
 import { useGlobalContext } from '@/contexts/store';
 import { Locale } from '@/i18n-config';
 import { Label } from '@/components/ui/label';
-import { GroupAvatar } from '@/components/group-avatar';
 
 type Props = {
     dict: any;
@@ -14,9 +13,6 @@ type Props = {
 
 type MemberRow = {
     id: string;
-    phone_number?: string;
-    first_name?: string;
-    last_name?: string;
 };
 
 export default function MemberList({ dict, lang }: Props) {
@@ -31,11 +27,21 @@ export default function MemberList({ dict, lang }: Props) {
             setLoading(true);
             const { data, error } = await supabase
                 .from('talanow_broker_member_link')
-                .select('users(*)')
+                .select('member_id')
                 .eq('broker_id', user.id);
             if (!mounted) return;
             if (error) setMembers([]);
-            else setMembers((data.map(item => item.users) || []).flat() as MemberRow[]);
+            else {
+                // Supabase join can return member_id as string or object; normalize to { id }
+                const users = data
+                    .map(item => item.member_id)
+                    .filter(Boolean)
+                    .flat();
+                const rows = (users as any[]).map(u =>
+                    typeof u === 'string' ? { id: u } : (u && u.id ? { id: u.id } : { id: String(u) })
+                );
+                setMembers(rows as MemberRow[]);
+            }
             setLoading(false);
         }
         fetchMembers();
@@ -55,11 +61,10 @@ export default function MemberList({ dict, lang }: Props) {
                     <div key={m.id} className="flex items-center justify-between rounded-md border border-gray-200 bg-white p-3 text-sm">
                         <div className="flex items-center gap-3">
                             <div className="flex items-center justify-center h-8 w-8 rounded-full bg-gray-100 text-gray-700 font-bold">
-                                {`${m.first_name || ''} ${m.last_name || ''}`.trim() || m.phone_number || 'U'}
+                                {m.id}
                             </div>
                             <div className="flex flex-col">
-                                <div className="font-medium">{`${m.first_name || ''} ${m.last_name || ''}`.trim() || '—'}</div>
-                                <div className="text-xs text-[#5A5C83]">{m.phone_number || '—'}</div>
+                                <div className="font-medium">{m.id}</div>
                             </div>
                         </div>
                         <div className="flex items-center gap-6">
