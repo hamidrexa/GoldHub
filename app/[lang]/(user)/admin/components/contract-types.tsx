@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { toast } from 'sonner';
 import { supabase, type ContractType } from '@/services/supabase';
 import { Locale } from '@/i18n-config';
+import Cookies from 'js-cookie';
 
 type Props = {
     dict: any;
@@ -27,12 +28,14 @@ type BrokerAssignment = {
 export default function ContractTypes({ dict, lang }: Props) {
     const [contractTypes, setContractTypes] = useState<ContractType[]>([]);
     const [brokers, setBrokers] = useState<any[]>([]);
-    const [brokerAssignments, setBrokerAssignments] = useState<Record<string, BrokerAssignment[]>>({});
+    const [brokerAssignments, setBrokerAssignments] = useState<Record<string, BrokerAssignment | null>>({});
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
     const [openBrokerModal, setOpenBrokerModal] = useState(false);
     const [selectedContractTypeId, setSelectedContractTypeId] = useState<string | null>(null);
     const [editing, setEditing] = useState<ContractType | null>(null);
+    const [selectedBrokerId, setSelectedBrokerId] = useState<string | null>(null);
+    const [assigningBroker, setAssigningBroker] = useState(false);
 
     // form fields
     const [name, setName] = useState('');
@@ -50,59 +53,86 @@ export default function ContractTypes({ dict, lang }: Props) {
 
     useEffect(() => {
         let mounted = true;
+        const controller = new AbortController();
+
         async function fetchData() {
             setLoading(true);
-            // Fetch contract types
-            const { data: contractData, error: contractError } = await supabase
-                .from('talanow_contract_types')
-                .select('*')
-                .order('created_at', { ascending: false });
-            
-            // Fetch brokers (users with broker group)
-            // Since groups is stored as JSONB array, we'll fetch all users and filter client-side
-            // Or use a function/getBrokers if available
-            const { data: brokerData, error: brokerError } = await supabase
-                .from('users')
-                .select('id, first_name, last_name, username, phone_number, groups');
-            
-            // Filter brokers client-side (users with broker group)
-            const filteredBrokers = brokerData?.filter((user: any) => 
-                user.groups?.some((g: any) => g?.name === 'broker')
-            ) || [];
-            
-            // Fetch broker assignments
-            const { data: assignmentData, error: assignmentError } = await supabase
-                .from('talanow_broker_contract_types_link')
-                .select('*');
-            
-            if (!mounted) return;
-            
-            if (contractError) {
-                setContractTypes([]);
-            } else {
-                setContractTypes((contractData || []) as ContractType[]);
-            }
-            
-            if (!brokerError) {
-                setBrokers(filteredBrokers);
-            }
-            
-            if (!assignmentError && assignmentData) {
-                const assignmentsByContract: Record<string, BrokerAssignment[]> = {};
-                assignmentData.forEach((assignment: BrokerAssignment) => {
-                    if (!assignmentsByContract[assignment.contract_type_id]) {
-                        assignmentsByContract[assignment.contract_type_id] = [];
+            try {
+                const [{ data: contractData, error: contractError }, { data: assignmentData, error: assignmentError }] = await Promise.all([
+                    supabase
+                        .from('talanow_contract_types')
+                        .select('*')
+                        .order('created_at', { ascending: false }),
+                    supabase.from('talanow_broker_contract_types_link').select('*'),
+                ]);
+
+                if (!mounted) return;
+
+                if (contractError) {
+                    setContractTypes([]);
+                } else {
+                    setContractTypes((contractData || []) as ContractType[]);
+                }
+
+                if (!assignmentError && assignmentData) {
+                    const assignmentsByContract: Record<string, BrokerAssignment | null> = {};
+                    assignmentData.forEach((assignment: BrokerAssignment) => {
+                        if (!assignmentsByContract[assignment.contract_type_id]) {
+                            assignmentsByContract[assignment.contract_type_id] = assignment;
+                        }
+                    });
+                    setBrokerAssignments(assignmentsByContract);
+                }
+
+                const token = Cookies.get('token');
+                if (!token) {
+                    setBrokers([]);
+                    return;
+                }
+
+                const response = await fetch(
+                    `${process.env.NEXT_PUBLIC_API_URL}/v1/users/group_users?group_name=broker`,
+                    {
+                        signal: controller.signal,
+                        credentials: 'include',
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
                     }
-                    assignmentsByContract[assignment.contract_type_id].push(assignment);
-                });
-                setBrokerAssignments(assignmentsByContract);
+                );
+
+                if (!mounted) return;
+
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch brokers (${response.status})`);
+                }
+
+                const payload = await response.json();
+                const list = Array.isArray(payload)
+                    ? payload
+                    : Array.isArray(payload?.results)
+                        ? payload.results
+                        : [];
+
+                setBrokers(list);
+            } catch (error: any) {
+                if (error?.name === 'AbortError') return;
+                if (mounted) {
+                    setBrokers([]);
+                    console.error('Error loading contract types/brokers', error);
+                }
+            } finally {
+                if (mounted) {
+                    setLoading(false);
+                }
             }
-            
-            setLoading(false);
         }
+
         fetchData();
+
         return () => {
             mounted = false;
+            controller.abort();
         };
     }, []);
 
@@ -237,12 +267,19 @@ export default function ContractTypes({ dict, lang }: Props) {
                             <div>{it.profit_share || '—'}</div>
                         </div>
                         <div className="mt-2 flex flex-col gap-2">
-                            <Label>بروکرهای اختصاص یافته:</Label>
+                            <Label>بروکر اختصاص یافته:</Label>
                             <div className="flex flex-wrap gap-2">
-                                {brokerAssignments[it.id]?.map((assignment) => {
+                                {(() => {
+                                    const assignment = brokerAssignments[it.id];
+                                    if (!assignment) {
+                                        return <span className="text-xs text-gray-400">هیچ بروکری اختصاص نیافته</span>;
+                                    }
                                     const broker = brokers.find(b => String(b.id) === String(assignment.broker_id));
-                                    return broker ? (
-                                        <div key={assignment.id} className="flex items-center gap-1 rounded-md border border-gray-200 bg-gray-50 px-2 py-1 text-xs">
+                                    if (!broker) {
+                                        return <span className="text-xs text-gray-400">اطلاعات بروکر موجود نیست</span>;
+                                    }
+                                    return (
+                                        <div className="flex items-center gap-1 rounded-md border border-gray-200 bg-gray-50 px-2 py-1 text-xs">
                                             <span>{broker.first_name} {broker.last_name} ({broker.username || broker.phone_number})</span>
                                             <button
                                                 onClick={async () => {
@@ -250,16 +287,13 @@ export default function ContractTypes({ dict, lang }: Props) {
                                                         .from('talanow_broker_contract_types_link')
                                                         .delete()
                                                         .eq('id', assignment.id);
-                                                    if (error) toast.error('خطا در حذف');
-                                                    else {
+                                                    if (error) {
+                                                        toast.error('خطا در حذف');
+                                                    } else {
                                                         toast.success('حذف شد');
-                                                        const { data } = await supabase
-                                                            .from('talanow_broker_contract_types_link')
-                                                            .select('*')
-                                                            .eq('contract_type_id', it.id);
                                                         setBrokerAssignments(prev => ({
                                                             ...prev,
-                                                            [it.id]: data || []
+                                                            [it.id]: null,
                                                         }));
                                                     }
                                                 }}
@@ -268,21 +302,20 @@ export default function ContractTypes({ dict, lang }: Props) {
                                                 ×
                                             </button>
                                         </div>
-                                    ) : null;
-                                })}
-                                {(!brokerAssignments[it.id] || brokerAssignments[it.id].length === 0) && (
-                                    <span className="text-xs text-gray-400">هیچ بروکری اختصاص نیافته</span>
-                                )}
+                                    );
+                                })()}
                             </div>
                             <Button
                                 variant="outline"
                                 size="sm"
                                 onClick={() => {
                                     setSelectedContractTypeId(it.id);
+                                    const currentAssignment = brokerAssignments[it.id];
+                                    setSelectedBrokerId(currentAssignment ? String(currentAssignment.broker_id) : null);
                                     setOpenBrokerModal(true);
                                 }}
                             >
-                                {dict.admin.assign_broker || 'افزودن بروکر'}
+                                {dict.admin.assign_broker}
                             </Button>
                         </div>
                         <div className="flex justify-end gap-2">
@@ -395,59 +428,105 @@ export default function ContractTypes({ dict, lang }: Props) {
                 </DialogContent>
             </Dialog>
 
-            <Dialog open={openBrokerModal} onOpenChange={setOpenBrokerModal}>
+            <Dialog open={openBrokerModal} onOpenChange={(value) => {
+                setOpenBrokerModal(value);
+                if (!value) {
+                    setSelectedBrokerId(null);
+                    setSelectedContractTypeId(null);
+                }
+            }}>
                 <DialogContent className="w-full max-w-lg gap-5 text-black">
-                    <div className="text-base font-bold">{dict.admin.assign_broker || 'افزودن بروکر'}</div>
-                    <div className="flex flex-col gap-2 max-h-96 overflow-y-auto">
-                        {brokers
-                            .filter(broker => {
-                                const assignments = brokerAssignments[selectedContractTypeId || ''] || [];
-                                return !assignments.some(a => String(a.broker_id) === String(broker.id));
-                            })
-                            .map((broker) => (
-                                <div key={broker.id} className="flex items-center justify-between rounded-md border border-gray-200 p-2">
-                                    <div>
-                                        <div className="font-medium">{broker.first_name} {broker.last_name}</div>
-                                        <div className="text-xs text-gray-500">{broker.username || broker.phone_number}</div>
-                                    </div>
-                                    <Button
-                                        size="sm"
-                                        onClick={async () => {
-                                            if (!selectedContractTypeId) return;
+                    <div className="text-base font-bold">{dict.admin.assign_broker}</div>
+                    <div className="flex flex-col gap-3">
+                        <div className="flex flex-col gap-2">
+                            <Label>انتخاب بروکر</Label>
+                            <Select value={selectedBrokerId ?? undefined} onValueChange={(value) => setSelectedBrokerId(value)}>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="یکی از بروکرها را انتخاب کنید" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {brokers.map((broker) => (
+                                        <SelectItem key={broker.id} value={String(broker.id)}>
+                                            {broker.first_name} {broker.last_name}{' '}
+                                            {broker.username || broker.phone_number ? `(${broker.username || broker.phone_number})` : ''}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <Button
+                                disabled={assigningBroker}
+                                onClick={async () => {
+                                    if (!selectedContractTypeId) {
+                                        toast.error('نوع قرارداد مشخص نیست');
+                                        return;
+                                    }
+                                    if (!selectedBrokerId) {
+                                        toast.error('بروکر را انتخاب کنید');
+                                        return;
+                                    }
+                                    setAssigningBroker(true);
+                                    try {
+                                        const currentAssignment = brokerAssignments[selectedContractTypeId] ?? null;
+                                        if (currentAssignment && String(currentAssignment.broker_id) === selectedBrokerId) {
+                                            toast.info('بروکر بدون تغییر است');
+                                            setAssigningBroker(false);
+                                            return;
+                                        }
+
+                                        if (currentAssignment) {
+                                            const { error } = await supabase
+                                                .from('talanow_broker_contract_types_link')
+                                                .update({
+                                                    broker_id: selectedBrokerId,
+                                                })
+                                                .eq('id', currentAssignment.id);
+                                            if (error) throw error;
+                                        } else {
                                             const { error } = await supabase
                                                 .from('talanow_broker_contract_types_link')
                                                 .insert({
-                                                    broker_id: broker.id,
+                                                    broker_id: selectedBrokerId,
                                                     contract_type_id: selectedContractTypeId,
                                                 });
-                                            if (error) {
-                                                toast.error('خطا در افزودن');
-                                            } else {
-                                                toast.success('افزوده شد');
-                                                const { data } = await supabase
-                                                    .from('talanow_broker_contract_types_link')
-                                                    .select('*')
-                                                    .eq('contract_type_id', selectedContractTypeId);
-                                                setBrokerAssignments(prev => ({
-                                                    ...prev,
-                                                    [selectedContractTypeId]: data || []
-                                                }));
-                                            }
-                                        }}
-                                    >
-                                        {dict.admin.add || 'افزودن'}
-                                    </Button>
-                                </div>
-                            ))}
-                        {brokers.filter(broker => {
-                            const assignments = brokerAssignments[selectedContractTypeId || ''] || [];
-                            return !assignments.some(a => String(a.broker_id) === String(broker.id));
-                        }).length === 0 && (
-                            <div className="text-sm text-gray-500">همه بروکرها اختصاص یافته‌اند</div>
-                        )}
-                    </div>
-                    <div className="mt-2">
-                        <Button variant="outline" onClick={() => setOpenBrokerModal(false)}>{dict.admin.cancel}</Button>
+                                            if (error) throw error;
+                                        }
+
+                                        const { data, error: fetchError } = await supabase
+                                            .from('talanow_broker_contract_types_link')
+                                            .select('*')
+                                            .eq('contract_type_id', selectedContractTypeId)
+                                            .order('created_at', { ascending: false })
+                                            .limit(1);
+                                        if (fetchError) throw fetchError;
+
+                                        const latestAssignment: BrokerAssignment | null = data?.[0] ?? null;
+                                        setBrokerAssignments((prev) => ({
+                                            ...prev,
+                                            [selectedContractTypeId]: latestAssignment,
+                                        }));
+                                        toast.success(currentAssignment ? 'بروکر بروزرسانی شد' : 'بروکر اختصاص داده شد');
+                                        setOpenBrokerModal(false);
+                                        setSelectedBrokerId(null);
+                                        setSelectedContractTypeId(null);
+                                    } catch (error: any) {
+                                        toast.error(error?.message || 'خطا در اختصاص بروکر');
+                                    } finally {
+                                        setAssigningBroker(false);
+                                    }
+                                }}
+                            >
+                                {assigningBroker ? 'در حال ذخیره...' : 'ثبت اختصاص'}
+                            </Button>
+                            <Button variant="outline" onClick={() => {
+                                setOpenBrokerModal(false);
+                                setSelectedBrokerId(null);
+                                setSelectedContractTypeId(null);
+                            }}>
+                                {dict.admin.cancel}
+                            </Button>
+                        </div>
                     </div>
                 </DialogContent>
             </Dialog>

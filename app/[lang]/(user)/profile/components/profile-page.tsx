@@ -10,6 +10,7 @@ import { toast } from 'sonner';
 import { isMobile } from 'react-device-detect';
 import { ProductsNavigator } from '@/components/products-navigator';
 import { getPlans } from '@/app/[lang]/(user)/profile/services/getPlans';
+import { supabase } from '@/services/supabase';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { EditIcon, FileClock } from 'lucide-react';
@@ -40,6 +41,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Icons } from '@/components/ui/icons';
 import { FinantialAccount } from './finantial-account';
 import { Label } from '@/components/ui/label';
+import { Badge } from '@/components/ui/badge';
 import { CopyButton } from '@/components/copy-button';
 import { useCart } from '../services/getCart';
 
@@ -59,9 +61,14 @@ export function ProfilePage({ dict, lang }) {
     const [isGetReadyPushNotification, setIsGetReadyPushNotification] =
         useState(false);
     const [userPlans, setUserPlans] = useState(null);
-    const { data, isLoading: cartIsloding, mutate } = useCart()
-
-    console.log(data, 'lll');
+    const { data, isLoading: cartIsloding, mutate } = useCart();
+    const [memberBrokerId, setMemberBrokerId] = useState<string | null>(null);
+    const [isMemberBrokerLoading, setIsMemberBrokerLoading] = useState(false);
+    const userGroups = user?.groups ?? [];
+    const hasAdmin = userGroups.some((g) => g?.name === 'admin');
+    const hasBroker = userGroups.some((g) => g?.name === 'broker');
+    const hasExplicitMember = userGroups.some((g) => g?.name === 'member');
+    const hasMember = !!user && (userGroups.length === 0 || hasExplicitMember || (!hasAdmin && !hasBroker));
 
     const [userTransactions, setUserTransactions] = useState(null);
     const completePercentage = useMemo(() => {
@@ -128,6 +135,41 @@ export function ProfilePage({ dict, lang }) {
     useEffect(() => {
         setUserTransactions(transactions?.transactions);
     }, [transactions]);
+
+    useEffect(() => {
+        let active = true;
+
+        async function fetchMemberBroker() {
+            if (!user?.id) return;
+
+            setIsMemberBrokerLoading(true);
+            const { data, error } = await supabase
+                .from('talanow_broker_member_links')
+                .select('broker_id')
+                .eq('member_id', user.id)
+                .maybeSingle();
+
+            if (!active) return;
+
+            if (error) {
+                setMemberBrokerId(null);
+            } else {
+                setMemberBrokerId(data?.broker_id ?? null);
+            }
+            setIsMemberBrokerLoading(false);
+        }
+
+        if (hasMember && user?.id) {
+            fetchMemberBroker();
+        } else {
+            setMemberBrokerId(null);
+            setIsMemberBrokerLoading(false);
+        }
+
+        return () => {
+            active = false;
+        };
+    }, [hasMember, user?.id]);
 
     const setPusheId = async (reset?: any) => {
         if (user.pushe_notification_id && !reset) return;
@@ -208,42 +250,71 @@ export function ProfilePage({ dict, lang }) {
                             )}
                         />
                     )}
-                    <div className="flex items-center">
+                    <div className="flex items-center gap-3">
                         <Image
                             height={60}
                             width={60}
                             src="/img/user.png"
                             alt="avatar"
                         />
-                        <span className="mx-3 text-2xl font-black">
-                            {user.first_name || user.last_name
-                                ? `${user.first_name || ''} ${user.last_name || ''
-                                }`
-                                : 'کاربر طلانو'}
-                        </span>
-                        <Dialog
-                            open={nameDialogOpen}
-                            onOpenChange={setNameDialogOpen}
-                        >
-                            <DialogTrigger>
-                                <EditIcon
-                                    onClick={() => {
-                                        setNameDialogOpen(true);
-                                    }}
-                                    className="cursor-pointer"
-                                />
-                            </DialogTrigger>
-                            <DialogContent className="max-w-xl">
-                                <DialogHeader>
-                                    <DialogTitle>ویرایش اطلاعات</DialogTitle>
-                                </DialogHeader>
-                                <NameEditForm
-                                    setOpen={setNameDialogOpen}
-                                    lang={lang}
-                                    dict={dict}
-                                />
-                            </DialogContent>
-                        </Dialog>
+                        <div className="flex flex-col gap-2">
+                            <div className="flex items-center gap-2">
+                                <span className="text-2xl font-black">
+                                    {user.first_name || user.last_name
+                                        ? `${user.first_name || ''} ${user.last_name || ''}`
+                                        : 'کاربر طلانو'}
+                                </span>
+                                <Dialog
+                                    open={nameDialogOpen}
+                                    onOpenChange={setNameDialogOpen}
+                                >
+                                    <DialogTrigger>
+                                        <EditIcon
+                                            onClick={() => {
+                                                setNameDialogOpen(true);
+                                            }}
+                                            className="cursor-pointer"
+                                        />
+                                    </DialogTrigger>
+                                    <DialogContent className="max-w-xl">
+                                        <DialogHeader>
+                                            <DialogTitle>ویرایش اطلاعات</DialogTitle>
+                                        </DialogHeader>
+                                        <NameEditForm
+                                            setOpen={setNameDialogOpen}
+                                            lang={lang}
+                                            dict={dict}
+                                        />
+                                    </DialogContent>
+                                </Dialog>
+                            </div>
+                            {(hasAdmin || hasBroker || hasMember) && (
+                                <div className="flex flex-wrap items-center gap-2 text-sm">
+                                    {hasAdmin && (
+                                        <Badge variant="secondary" size="sm">
+                                            ادمین
+                                        </Badge>
+                                    )}
+                                    {hasBroker && (
+                                        <Badge variant="success" size="sm">
+                                            کارگزار
+                                        </Badge>
+                                    )}
+                                    {hasMember && (
+                                        <>
+                                            <Badge variant="light" size="sm">
+                                                عضو
+                                            </Badge>
+                                            <Badge variant="outline-blue" size="sm">
+                                                {isMemberBrokerLoading
+                                                    ? 'شناسه کارگزار در حال دریافت...'
+                                                    : `شناسه کارگزار: ${memberBrokerId ?? '—'}`}
+                                            </Badge>
+                                        </>
+                                    )}
+                                </div>
+                            )}
+                        </div>
                     </div>
                     <div className="flex flex-col-reverse items-start justify-start gap-6 md:flex-row lg:mt-6 lg:w-full">
                         <div className="w-full space-y-7">
