@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { toast } from 'sonner';
-import { ContractType, BrokerContractType, supabase } from '@/services/supabase';
+import { ContractType, supabase } from '@/services/supabase';
 import { useGlobalContext } from '@/contexts/store';
 import { Locale } from '@/i18n-config';
 
@@ -25,20 +25,13 @@ export default function ContractTypes({ dict, lang }: Props) {
     const [open, setOpen] = useState(false);
     const [editing, setEditing] = useState<ContractType | null>(null);
 
-    // form
-    const [name, setName] = useState('');
+    // form - broker can only edit: description, min_investment, max_investment, min_duration_months, max_duration_months
     const [description, setDescription] = useState('');
     const [minInvestment, setMinInvestment] = useState('');
     const [maxInvestment, setMaxInvestment] = useState('');
-    const [guaranteeTypes, setGuaranteeTypes] = useState<string[]>([]);
     const [minDuration, setMinDuration] = useState('1');
     const [maxDuration, setMaxDuration] = useState('12');
-    const [settlementTypes, setSettlementTypes] = useState<string[]>([]);
-    const [profitShare, setProfitShare] = useState('');
-    const [submitting, setSubmitting] = useState(false); // reuse state to keep minimal
-
-    // Guarantee options
-    const guaranteeOptions = ['ملک', 'چک', 'سفته'];
+    const [submitting, setSubmitting] = useState(false);
 
     const monthsOptions = useMemo(() => Array.from({ length: 12 }).map((_, i) => `${i + 1}`), []);
 
@@ -48,12 +41,12 @@ export default function ContractTypes({ dict, lang }: Props) {
             if (!user) return;
             setLoading(true);
             const { data, error } = await supabase
-                .from('talanow_broker_contract_types')
+                .from('talanow_broker_contract_types_link')
                 .select('talanow_contract_types(*)')
                 .eq('broker_id', user.id);
             if (!mounted) return;
             if (error) setItems([]);
-            else setItems((data.map(item => item.contract_types) || []).flat() as ContractType[]);
+            else setItems((data.map(item => item.talanow_contract_types) || []).flat() as ContractType[]);
             setLoading(false);
         }
         fetchData();
@@ -62,111 +55,52 @@ export default function ContractTypes({ dict, lang }: Props) {
         };
     }, [user]);
 
-    const openCreate = () => {
-        setEditing(null);
-        setName('');
-        setDescription('');
-        setMinInvestment('');
-        setMaxInvestment('');
-        setGuaranteeTypes([]);
-        setMinDuration('1');
-        setMaxDuration('12');
-        setSettlementTypes([]);
-        setProfitShare('');
-        setOpen(true);
-    };
-
     const openEdit = (row: ContractType) => {
-    setEditing(row);
-    setName(row.name);
-    setDescription(row.description || '');
-    setMinInvestment(row.min_investment ? String(row.min_investment) : '');
-    setMaxInvestment(row.max_investment ? String(row.max_investment) : '');
-    setGuaranteeTypes(row.guarantee_type || []);
-    setMinDuration(row.min_duration_months ? String(row.min_duration_months) : '1');
-    setMaxDuration(row.max_duration_months ? String(row.max_duration_months) : '12');
-    setSettlementTypes(row.settlement_type || []);
-    setProfitShare(row.profit_share ? String(row.profit_share) : '');
-    setOpen(true);
+        setEditing(row);
+        setDescription(row.description || '');
+        setMinInvestment(row.min_investment ? String(row.min_investment) : '');
+        setMaxInvestment(row.max_investment ? String(row.max_investment) : '');
+        setMinDuration(row.min_duration_months ? String(row.min_duration_months) : '1');
+        setMaxDuration(row.max_duration_months ? String(row.max_duration_months) : '12');
+        setOpen(true);
     };
 
     const handleSubmit = async () => {
         if (!user) return toast.info('ابتدا وارد شوید');
-        if (!name?.trim()) return toast.error('عنوان را وارد کنید');
-        setLoading(true);
+        if (!editing) return toast.error('خطا در ویرایش');
+        setSubmitting(true);
         try {
-            let contract_type_id: string | undefined;
-            if (editing) {
-                // Update contract_types table
-                const { error } = await supabase
-                    .from('talanow_contract_types')
-                    .update({
-                        name,
-                        description,
-                        min_investment: minInvestment ? Number(minInvestment) : null,
-                        max_investment: maxInvestment ? Number(maxInvestment) : null,
-                        guarantee_type: guaranteeTypes,
-                        min_duration_months: minDuration ? Number(minDuration) : 1,
-                        max_duration_months: maxDuration ? Number(maxDuration) : 12,
-                        settlement_type: settlementTypes,
-                        profit_share: profitShare ? Number(profitShare) : null,
-                    })
-                    .eq('id', editing.id);
-                if (error) throw error;
-                contract_type_id = editing.id;
-                toast.success('بروزرسانی شد');
-            } else {
-                // Create in contract_types table
-                const { data, error } = await supabase.from('talanow_contract_types').insert({
-                    name,
+            // Broker can only update: description, min_investment, max_investment, min_duration_months, max_duration_months
+            const { error } = await supabase
+                .from('talanow_contract_types')
+                .update({
                     description,
                     min_investment: minInvestment ? Number(minInvestment) : null,
                     max_investment: maxInvestment ? Number(maxInvestment) : null,
-                    guarantee_type: guaranteeTypes,
-                    min_duration_months: minDuration ? Number(minDuration) : 1,
-                    max_duration_months: maxDuration ? Number(maxDuration) : 12,
-                    settlement_type: settlementTypes,
-                    profit_share: profitShare ? Number(profitShare) : null,
-                }).select();
-                if (error || !data || !data[0]?.id) throw error || new Error('خطا در ایجاد قرارداد');
-                contract_type_id = data[0].id;
-                toast.success('ایجاد شد');
-            }
-            // Always create BrokerContractType row (link)
-            if (contract_type_id) {
-                // Check if link already exists to avoid duplicates
-                const { data: existingLink, error: linkCheckError } = await supabase
-                    .from('talanow_broker_contract_types')
-                    .select('id')
-                    .eq('broker_id', String(user.id))
-                    .eq('contract_type_id', String(contract_type_id));
-                if (!existingLink?.length) {
-                    const { error: linkError } = await supabase.from('talanow_broker_contract_types').insert({
-                        broker_id: String(user.id),
-                        contract_type_id: String(contract_type_id),
-                    });
-                    if (linkError) throw linkError;
-                }
-            }
+                    min_duration_months: Number(minDuration),
+                    max_duration_months: Number(maxDuration),
+                })
+                .eq('id', editing.id);
+            if (error) throw error;
+            toast.success('بروزرسانی شد');
             setOpen(false);
             // refresh list
             const { data } = await supabase
-                .from('talanow_broker_contract_types')
+                .from('talanow_broker_contract_types_link')
                 .select('talanow_contract_types(*)')
                 .eq('broker_id', user.id);
-            setItems((data.map(item => item.contract_types) || []).flat());
+            setItems((data.map(item => item.talanow_contract_types) || []).flat() as ContractType[]);
         } catch (e: any) {
             toast.error(e?.message || 'خطا');
         } finally {
-            setLoading(false);
+            setSubmitting(false);
         }
     };
 
     return (
         <div className="flex w-full flex-col gap-4">
             <div className="flex items-center justify-between">
-                <div className="text-sm text-[#5A5C83]">قراردادهای تعریف شده توسط شما</div>
-                <Button onClick={openCreate}>قرارداد جدید</Button>
+                <div className="text-sm text-[#5A5C83]">قراردادهای اختصاص یافته به شما</div>
             </div>
 
             {loading && <div className="text-sm text-gray-600">در حال بارگذاری...</div>}
@@ -222,65 +156,67 @@ export default function ContractTypes({ dict, lang }: Props) {
 
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogContent className="w-full max-w-lg gap-5 text-black">
-                    <div className="text-base font-bold">{editing ? 'ویرایش قرارداد' : 'قرارداد جدید'}</div>
-                    <div className="flex flex-col gap-2">
-                        <Label>عنوان</Label>
-                        <Input placeholder="مثال: سرمایه‌گذاری ۱۲ ماهه" value={name} onChange={(e) => setName(e.target.value)} />
-                    </div>
+                    <div className="text-base font-bold">ویرایش قرارداد{editing && `: ${editing.name}`}</div>
+
+                    {editing && (
+                        <>
+                            <div className="rounded-md border border-gray-200 bg-gray-50 p-3 text-sm">
+                                <div className="mb-2 font-semibold">اطلاعات غیرقابل ویرایش:</div>
+                                <div className="flex flex-col gap-1 text-xs">
+                                    <div>عنوان: {editing.name}</div>
+                                    <div>انواع تضامین: {Array.isArray(editing.guarantee_type) ? editing.guarantee_type.join(', ') : '—'}</div>
+                                    <div>انواع تسویه: {Array.isArray(editing.settlement_type) ? editing.settlement_type.join(', ') : '—'}</div>
+                                    <div>درصد سود: {editing.profit_share || '—'}</div>
+                                </div>
+                            </div>
+                        </>
+                    )}
+
                     <div className="flex flex-col gap-2">
                         <Label>توضیحات</Label>
                         <Input placeholder="توضیحات" value={description} onChange={(e) => setDescription(e.target.value)} />
                     </div>
+
                     <div className="flex flex-col gap-2">
                         <Label>حداقل سرمایه‌گذاری</Label>
                         <Input type="number" placeholder="حداقل" value={minInvestment} onChange={(e) => setMinInvestment(e.target.value)} />
                     </div>
+
                     <div className="flex flex-col gap-2">
                         <Label>حداکثر سرمایه‌گذاری</Label>
                         <Input type="number" placeholder="حداکثر" value={maxInvestment} onChange={(e) => setMaxInvestment(e.target.value)} />
                     </div>
-                    <div className="flex flex-col gap-2">
-                        <Label>انواع تضامین</Label>
-                        <div className="flex gap-2">
-                            {guaranteeOptions.map((g) => (
-                                <label key={g} className="flex items-center gap-1">
-                                    <input type="checkbox" checked={guaranteeTypes.includes(g)} onChange={e => {
-                                        if (e.target.checked) setGuaranteeTypes([...guaranteeTypes, g]);
-                                        else setGuaranteeTypes(guaranteeTypes.filter(x => x !== g));
-                                    }} />
-                                    {g}
-                                </label>
-                            ))}
-                        </div>
-                    </div>
+
                     <div className="flex flex-col gap-2">
                         <Label>حداقل مدت (ماه)</Label>
-                        <Input type="number" min="1" max="12" value={minDuration} onChange={e => setMinDuration(e.target.value)} />
+                        <Select value={minDuration} onValueChange={setMinDuration}>
+                            <SelectTrigger>
+                                <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {monthsOptions.map((m) => (
+                                    <SelectItem key={m} value={m}>{m}</SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
                     </div>
+
                     <div className="flex flex-col gap-2">
                         <Label>حداکثر مدت (ماه)</Label>
-                        <Input type="number" min="1" max="12" value={maxDuration} onChange={e => setMaxDuration(e.target.value)} />
+                        <Select value={maxDuration} onValueChange={setMaxDuration}>
+                            <SelectTrigger>
+                                <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {monthsOptions.map((m) => (
+                                    <SelectItem key={m} value={m}>{m}</SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
                     </div>
-                    <div className="flex flex-col gap-2">
-                        <Label>انواع تسویه</Label>
-                        <div className="flex gap-2">
-                            {settlementOptions.map((s) => (
-                                <label key={s} className="flex items-center gap-1">
-                                    <input type="checkbox" checked={settlementTypes.includes(s)} onChange={e => {
-                                        if (e.target.checked) setSettlementTypes([...settlementTypes, s]);
-                                        else setSettlementTypes(settlementTypes.filter(x => x !== s));
-                                    }} />
-                                    {s}
-                                </label>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <Label>درصد سود</Label>
-                        <Input type="number" placeholder="درصد سود" value={profitShare} onChange={e => setProfitShare(e.target.value)} />
-                    </div>
+
                     <div className="mt-2 flex gap-3">
-                        <Button disabled={submitting} onClick={handleSubmit}>{submitting ? 'در حال ثبت...' : 'ثبت'}</Button>
+                        <Button disabled={submitting} onClick={handleSubmit}>{submitting ? 'در حال ثبت...' : 'ذخیره'}</Button>
                         <Button type="button" variant="outline" onClick={() => setOpen(false)}>انصراف</Button>
                     </div>
                 </DialogContent>

@@ -64,7 +64,7 @@ export const getBrokers = async () => {
 
 export const getBrokerMembers = async (brokerId: string) => {
     const { data, error } = await supabase
-        .from('talanow_broker_links')
+        .from('talanow_broker_member_links')
         .select('member_id, users(*)')
         .eq('broker_id', brokerId);
     if (error) {
@@ -76,7 +76,7 @@ export const getBrokerMembers = async (brokerId: string) => {
 
 export const getBrokerSummary = async (brokerId: string) => {
     const { count: memberCount, error: memberError } = await supabase
-        .from('talanow_broker_links')
+        .from('talanow_broker_member_links')
         .select('*', { count: 'exact', head: true })
         .eq('broker_id', brokerId);
 
@@ -96,7 +96,7 @@ export const getBrokerSummary = async (brokerId: string) => {
 
 export const getContractTypesForBroker = async (brokerId: string) => {
     const { data, error } = await supabase
-        .from('talanow_broker_contract_types')
+        .from('talanow_broker_contract_types_link')
         .select('talanow_contract_types(*)')
         .eq('broker_id', brokerId);
 
@@ -109,7 +109,7 @@ export const getContractTypesForBroker = async (brokerId: string) => {
 
 export const getBrokerContractsSummary = async (brokerId: string) => {
     const { count: contractTypesCount, error: contractTypesError } = await supabase
-        .from('talanow_broker_contract_types')
+        .from('talanow_broker_contract_types_link')
         .select('*', { count: 'exact', head: true })
         .eq('broker_id', brokerId);
 
