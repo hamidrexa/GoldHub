@@ -30,7 +30,7 @@ export default function MemberList({ dict, lang }: Props) {
             if (!user) return;
             setLoading(true);
             const { data, error } = await supabase
-                .from('talanow_broker_member_links')
+                .from('talanow_broker_member_link')
                 .select('users(*)')
                 .eq('broker_id', user.id);
             if (!mounted) return;

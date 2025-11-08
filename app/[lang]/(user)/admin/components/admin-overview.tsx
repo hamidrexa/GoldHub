@@ -116,7 +116,7 @@ export function AdminOverviewSection({ className }: AdminOverviewSectionProps) {
                         .from('talanow_contract_types')
                         .select('*', { count: 'exact', head: true }),
                     supabase
-                        .from('talanow_broker_member_links')
+                        .from('talanow_broker_member_link')
                         .select('member_id', { count: 'exact', head: true }),
                 ]);
 

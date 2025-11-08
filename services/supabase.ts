@@ -64,7 +64,7 @@ export const getBrokers = async () => {
 
 export const getBrokerMembers = async (brokerId: string) => {
     const { data, error } = await supabase
-        .from('talanow_broker_member_links')
+        .from('talanow_broker_member_link')
         .select('member_id, users(*)')
         .eq('broker_id', brokerId);
     if (error) {
@@ -76,7 +76,7 @@ export const getBrokerMembers = async (brokerId: string) => {
 
 export const getBrokerSummary = async (brokerId: string) => {
     const { count: memberCount, error: memberError } = await supabase
-        .from('talanow_broker_member_links')
+        .from('talanow_broker_member_link')
         .select('*', { count: 'exact', head: true })
         .eq('broker_id', brokerId);
 
@@ -104,7 +104,8 @@ export const getContractTypesForBroker = async (brokerId: string) => {
         console.error('Error fetching contract types for broker:', error);
         return [];
     }
-    return data.map((item) => item.contract_types);
+    // Corrected mapping logic
+    return data.map((item) => item.talanow_contract_types || []);
 };
 
 export const getBrokerContractsSummary = async (brokerId: string) => {
@@ -183,7 +184,7 @@ export const createContract = async (contractData: Partial<Contract>) => {
 };
 
 export const getContractsForUser = async (userId: string) => {
-    const { data, error } = await supabase.from('talanow_contracts').select('*, contract_types(*)').eq('user_id', userId);
+    const { data, error } = await supabase.from('talanow_contracts').select('*, talanow_contract_types(*)').eq('user_id', userId);
     if (error) {
         console.error('Error fetching contracts for user:', error);
         return [];

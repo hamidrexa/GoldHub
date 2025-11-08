@@ -54,9 +54,9 @@ export default function CreateContract({ dict, lang }: Props) {
     };
 
     const getBrokerIdForUser = async (userId: string) => {
-        // Get broker_id from talanow_broker_member_links table for the current user
+        // Get broker_id from talanow_broker_member_link table for the current user
         const { data, error } = await supabase
-            .from('talanow_broker_member_links')
+            .from('talanow_broker_member_link')
             .select('broker_id')
             .eq('member_id', userId)
             .single();
@@ -85,7 +85,7 @@ export default function CreateContract({ dict, lang }: Props) {
         setSubmitting(true);
         try {
             // Get broker_id for this user
-            const broker_id = await getBrokerIdForUser(user.id);
+            const broker_id = await getBrokerIdForUser(String(user.id));
             if (!broker_id) {
                 toast.error('خطا در یافتن بروکر.');
                 setSubmitting(false);
@@ -97,7 +97,7 @@ export default function CreateContract({ dict, lang }: Props) {
                 broker_id: String(broker_id),
                 contract_type_id: selectedType || '',
                 amount_rls: amountRls * 10,
-                guarantee_type: showGuarantee && guaranteeType ? guaranteeType : null,
+                guarantee_type: showGuarantee && guaranteeType ? (guaranteeType as 'ملک' | 'چک' | 'سفته') : null,
                 duration_months: Number(duration),
                 settlement_type: settlementType,
                 status: 'pending',

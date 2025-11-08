@@ -2,6 +2,7 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 import Cookies from "js-cookie";
+import { supabase } from "@/services/supabase";
 
 type BrokerListProps = {
     dict: any;
@@ -21,11 +22,13 @@ type BrokerRecord = {
 
 const BrokerList = ({ dict }: BrokerListProps) => {
     const [brokers, setBrokers] = useState<BrokerRecord[]>([]);
+    const [brokerSummaries, setBrokerSummaries] = useState<Record<string, { members: number; contractTypes: number }>>({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const controller = new AbortController();
+        let active = true;
 
         async function fetchBrokers() {
             try {
@@ -59,18 +62,61 @@ const BrokerList = ({ dict }: BrokerListProps) => {
                         ? payload.results
                         : [];
 
-                setBrokers(list as BrokerRecord[]);
+                if (!active) return;
+
+                const typedBrokers = (list as BrokerRecord[]) ?? [];
+                setBrokers(typedBrokers);
+
+                const [contractAssignments, memberLinks] = await Promise.all([
+                    supabase.from("talanow_broker_contract_types_link").select("id, broker_id"),
+                    supabase.from("talanow_broker_member_link").select("id, broker_id"),
+                ]);
+
+                if (!active) return;
+
+                if (contractAssignments.error) {
+                    throw contractAssignments.error;
+                }
+                if (memberLinks.error) {
+                    throw memberLinks.error;
+                }
+
+                const contractCounts: Record<string, number> = {};
+                (contractAssignments.data ?? []).forEach((item) => {
+                    const key = String(item.broker_id);
+                    contractCounts[key] = (contractCounts[key] ?? 0) + 1;
+                });
+
+                const memberCounts: Record<string, number> = {};
+                (memberLinks.data ?? []).forEach((item) => {
+                    const key = String(item.broker_id);
+                    memberCounts[key] = (memberCounts[key] ?? 0) + 1;
+                });
+
+                if (!active) return;
+
+                const summaries = typedBrokers.reduce<Record<string, { members: number; contractTypes: number }>>((acc, broker) => {
+                    const key = String(broker.id);
+                    acc[key] = {
+                        members: memberCounts[key] ?? 0,
+                        contractTypes: contractCounts[key] ?? 0,
+                    };
+                    return acc;
+                }, {});
+
+                setBrokerSummaries(summaries);
             } catch (err: any) {
                 if (err?.name === "AbortError") return;
                 setError(err?.message ?? "خطا در دریافت اطلاعات");
             } finally {
-                setLoading(false);
+                if (active) setLoading(false);
             }
         }
 
         fetchBrokers();
 
         return () => {
+            active = false;
             controller.abort();
         };
     }, []);
@@ -101,6 +147,8 @@ const BrokerList = ({ dict }: BrokerListProps) => {
                     || broker.email
                     || broker.id;
 
+                const summary = brokerSummaries[String(broker.id)] ?? { members: 0, contractTypes: 0 };
+
                 return (
                     <div key={broker.id} className="rounded-md border border-gray-200 bg-white p-4">
                         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
@@ -112,11 +160,12 @@ const BrokerList = ({ dict }: BrokerListProps) => {
                                 </div>
                             </div>
                             <div className="flex flex-wrap gap-4 text-sm text-[#0C0E3C]">
-                                {typeof broker.member_count === "number" && (
-                                    <div>
-                                        {(dict?.admin?.members ?? "تعداد اعضا")}: {broker.member_count}
-                                    </div>
-                                )}
+                                <div>
+                                    {(dict?.admin?.members ?? "تعداد اعضا")}: {summary.members}
+                                </div>
+                                <div>
+                                    {(dict?.admin?.assigned_contract_types ?? "انواع قرارداد اختصاص یافته")}: {summary.contractTypes}
+                                </div>
                             </div>
                         </div>
                     </div>

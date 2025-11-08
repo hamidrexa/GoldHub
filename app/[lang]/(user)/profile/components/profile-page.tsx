@@ -144,7 +144,7 @@ export function ProfilePage({ dict, lang }) {
 
             setIsMemberBrokerLoading(true);
             const { data, error } = await supabase
-                .from('talanow_broker_member_links')
+                .from('talanow_broker_member_link')
                 .select('broker_id')
                 .eq('member_id', user.id)
                 .maybeSingle();
