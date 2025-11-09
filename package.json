@@ -86,6 +86,7 @@
     "react-photo-view": "^1.2.6",
     "react-read-otp": "^1.0.0",
     "react-resizable-panels": "^1.0.10",
+    "react-toastify": "^11.0.5",
     "react-use": "^17.4.3",
     "react-use-scrollspy": "^3.1.1",
     "recharts": "2.13.0-alpha.4",

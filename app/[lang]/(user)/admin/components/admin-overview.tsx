@@ -137,11 +137,16 @@ export function AdminOverviewSection({ className }: AdminOverviewSectionProps) {
                     },
                 });
 
+console.log('Brokers response:', brokersResponse);
+
                 if (!brokersResponse.ok) {
                     throw new Error('خطا در دریافت اطلاعات بروکرها');
                 }
 
                 const brokersPayload = await brokersResponse.json();
+                
+console.log('Brokers payload:', brokersPayload);
+
                 const brokersList = Array.isArray(brokersPayload)
                     ? brokersPayload
                     : Array.isArray(brokersPayload?.results)

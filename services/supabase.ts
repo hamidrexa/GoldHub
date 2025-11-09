@@ -191,3 +191,20 @@ export const getContractsForUser = async (userId: string) => {
     }
     return data;
 };
+
+export const getBrokerByUsername = async (username: string) => {
+    // This function assumes there's a users table or similar in Supabase
+    // If the user data comes from the API, this might not be needed
+    // But we can use it to get additional broker info from Supabase if needed
+    const { data, error } = await supabase
+        .from('users')
+        .select('*')
+        .eq('username', username)
+        .single();
+    
+    if (error) {
+        console.error('Error fetching broker by username:', error);
+        return null;
+    }
+    return data;
+};

@@ -59,14 +59,7 @@ export default function MemberList({ dict, lang }: Props) {
             <div className="grid grid-cols-1 gap-3">
                 {members.map((m) => (
                     <div key={m.id} className="flex items-center justify-between rounded-md border border-gray-200 bg-white p-3 text-sm">
-                        <div className="flex items-center gap-3">
-                            <div className="flex items-center justify-center h-8 w-8 rounded-full bg-gray-100 text-gray-700 font-bold">
-                                {m.id}
-                            </div>
-                            <div className="flex flex-col">
-                                <div className="font-medium">{m.id}</div>
-                            </div>
-                        </div>
+                        
                         <div className="flex items-center gap-6">
                             <div className="flex items-center gap-2">
                                 <Label>شناسه</Label>
