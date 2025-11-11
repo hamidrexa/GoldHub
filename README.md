@@ -228,13 +228,13 @@ the supabase is rls disabled. and no require RLS policies.
 
 #### `talanow_brokers`
 ```sql
-CREATE TABLE talanow_brokers (
+CREATE TABLE IF NOT EXISTS talanow_brokers (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     broker_id TEXT UNIQUE NOT NULL,
     username TEXT NOT NULL,
-    first_name TEXT NOT NULL,
-    last_name TEXT NOT NULL,
-    nickname TEXT NOT NULL,
+    first_name TEXT,
+    last_name TEXT,
+    nickname TEXT,
     email TEXT,
     phone_number TEXT,
     status TEXT NOT NULL DEFAULT 'inactive',
@@ -251,12 +251,12 @@ CREATE TABLE talanow_contract_types (
     description TEXT,
     min_investment NUMERIC,
     max_investment NUMERIC,
-    guarantee_type TEXT[] NOT NULL, -- ['ملک', 'چک', 'سفته']
+    guarantee_type TEXT[] NOT NULL DEFAULT '{}',
     min_duration_months INTEGER NOT NULL,
     max_duration_months INTEGER NOT NULL,
-    settlement_type TEXT[] NOT NULL, -- ['آبشده', 'کیف داریک', 'ریالی', 'مصنوع و سکه']
+    settlement_type TEXT[] NOT NULL DEFAULT '{}',
     profit_share NUMERIC,
-    active BOOLEAN DEFAULT true,
+    status TEXT NOT NULL DEFAULT 'inactive',
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 ```
@@ -266,18 +266,18 @@ CREATE TABLE talanow_contract_types (
 CREATE TABLE talanow_broker_contract_types_link (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     broker_id TEXT NOT NULL,
-    contract_type_id UUID NOT NULL REFERENCES talanow_contract_types(id),
+    contract_type_id UUID NOT NULL REFERENCES talanow_contract_types(id) ON DELETE CASCADE,
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 ```
 
 #### `talanow_broker_member_link`
 ```sql
-CREATE TABLE talanow_broker_member_link (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    broker_id TEXT NOT NULL,
-    member_id TEXT NOT NULL,
-    created_at TIMESTAMPTZ DEFAULT NOW()
+CREATE TABLE IF NOT EXISTS talanow_broker_member_link (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  member_id TEXT NOT NULL,
+  broker_id TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW()
 );
 ```
 
@@ -287,11 +287,11 @@ CREATE TABLE talanow_contracts (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id TEXT NOT NULL,
     broker_id TEXT NOT NULL,
-    contract_type_id UUID NOT NULL REFERENCES talanow_contract_types(id),
-    amount_rls NUMERIC NOT NULL,
-    guarantee_type TEXT, -- 'ملک' | 'چک' | 'سفته'
+    contract_type_id UUID NOT NULL REFERENCES talanow_contract_types(id) ON DELETE CASCADE,
+    amount_rls BIGINT NOT NULL,
+    guarantee_type TEXT[] NOT NULL DEFAULT '{}',
     duration_months INTEGER NOT NULL,
-    settlement_type TEXT NOT NULL, -- 'آبشده' | 'کیف داریک' | 'ریالی' | 'مصنوع و سکه'
+    settlement_type TEXT NOT NULL,
     status TEXT NOT NULL,
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -331,7 +331,13 @@ Response:
     "email": "broker@talanow.com",
     "first_name": "بروکر",
     "last_name": "1",
-    "phone_number": "9120000001"
+    "phone_number": "9120000001",
+        "groups": [
+            {
+                "id": 1,
+                "name": "broker"
+            }
+        ],
   }
 ]
 ```

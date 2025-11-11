@@ -148,6 +148,38 @@ export const getBrokerContractsSummary = async (brokerId: string) => {
     return { contractTypesCount: contractTypesCount ?? 0, lastMonthProfit };
 };
 
+export const getBrokerMembershipForUser = async (memberId: string) => {
+    const { data, error } = await supabase
+        .from('talanow_broker_member_link')
+        .select('*')
+        .eq('member_id', memberId)
+        .maybeSingle();
+
+    if (error) {
+        console.error('Error fetching broker membership:', error);
+        return { data: null, error };
+    }
+
+    return { data, error: null };
+};
+
+export const linkMemberToBroker = async (memberId: string, brokerId: string) => {
+    const { data, error } = await supabase
+        .from('talanow_broker_member_link')
+        .upsert(
+            { member_id: memberId, broker_id: brokerId },
+            { onConflict: 'member_id' }
+        )
+        .select();
+
+    if (error) {
+        console.error('Error linking member to broker:', error);
+        return { data: null, error };
+    }
+
+    return { data: data?.[0] ?? null, error: null };
+};
+
 export const createContractType = async (contractTypeData: Partial<ContractType>) => {
     const { data, error } = await supabase.from('talanow_contract_types').insert(contractTypeData).select();
     if (error) {

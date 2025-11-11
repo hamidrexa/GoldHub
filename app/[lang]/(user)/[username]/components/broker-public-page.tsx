@@ -1,10 +1,41 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { ContractType, supabase } from '@/services/supabase';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import Cookies from 'js-cookie';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { toast } from 'sonner';
+
+import {
+    ContractType,
+    createContract,
+    getBrokerMembershipForUser,
+    linkMemberToBroker,
+    supabase,
+} from '@/services/supabase';
+
+interface BrokerContractTypeLink {
+    talanow_contract_types: ContractType;
+}
+
 import { Icons } from '@/components/ui/icons';
 import { Button } from '@/components/ui/button';
-import { useRouter } from 'next/navigation';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from '@/components/ui/dialog';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
+import { useGlobalContext } from '@/contexts/store';
 
 type Props = {
     broker: any;
@@ -12,10 +43,47 @@ type Props = {
     lang: string;
 };
 
+type BrokerMembership = {
+    broker_id: string;
+    member_id: string;
+};
+
+const BROKER_COOKIE_KEY = 'tala_broker_ref';
+const CONTRACT_QUERY_KEY = 'contract';
+
 export default function BrokerPublicPage({ broker, dict, lang }: Props) {
     const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+    const { user, isUserLoading } = useGlobalContext();
+
     const [contractTypes, setContractTypes] = useState<ContractType[]>([]);
     const [loading, setLoading] = useState(true);
+    const [membership, setMembership] = useState<BrokerMembership | null>(null);
+    const [membershipLoading, setMembershipLoading] = useState(false);
+    const [authDialogOpen, setAuthDialogOpen] = useState(false);
+    const [contractDialogOpen, setContractDialogOpen] = useState(false);
+    const [selectedContract, setSelectedContract] = useState<ContractType | null>(null);
+    const [pendingContractId, setPendingContractId] = useState<string | null>(null);
+    const [amount, setAmount] = useState('');
+    const [duration, setDuration] = useState('');
+    const [settlementType, setSettlementType] = useState('');
+    const [guaranteeType, setGuaranteeType] = useState('');
+    const [submitting, setSubmitting] = useState(false);
+
+    const autoFlowTriggeredRef = useRef(false);
+
+    const monthsOptions = useMemo(() =>
+        Array.from({ length: 12 }).map((_, index) => `${index + 1}`),
+    []);
+    const settlementOptions = useMemo(() =>
+        ['آبشده', 'کیف داریک', 'ریالی', 'مصنوع و سکه'] as const,
+    []);
+
+    const isAuthenticated = Boolean(user?.id);
+    const isMemberOfAnotherBroker = useMemo(() =>
+        membership && membership.broker_id && membership.broker_id !== broker?.id,
+    [membership, broker?.id]);
 
     useEffect(() => {
         let mounted = true;
@@ -25,18 +93,22 @@ export default function BrokerPublicPage({ broker, dict, lang }: Props) {
             try {
                 const { data, error } = await supabase
                     .from('talanow_broker_contract_types_link')
-                    .select('talanow_contract_types(*)')
-                    .eq('broker_id', broker.id);
+                    .select('talanow_contract_types!inner(*)')
+                    .eq('broker_id', broker.broker_id)
+                    .eq('talanow_contract_types.status', 'active');
 
                 if (!mounted) return;
 
                 if (error) {
                     console.error('Error fetching contract types:', error);
                     setContractTypes([]);
-                } else {
-                    const types = (data?.map(item => item.talanow_contract_types) || []).flat() as ContractType[];
-                    // Filter only active contract types
-                    setContractTypes(types.filter(t => t.active !== false));
+                } else if (data) {
+                    // Type assertion for the response data
+                    const responseData = data as unknown as BrokerContractTypeLink[];
+                    // Map the response to ContractType array
+                    const types = responseData.map(item => item.talanow_contract_types);
+                    console.log('Fetched contract types:', types);
+                    setContractTypes(types);
                 }
             } catch (err) {
                 console.error('Error:', err);

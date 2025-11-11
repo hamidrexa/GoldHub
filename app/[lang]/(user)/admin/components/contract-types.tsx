@@ -197,6 +197,7 @@ export default function ContractTypes({ dict, lang }: Props) {
                     settlement_type: settlementTypes,
                     profit_share: profitShare ? Number(profitShare) : null,
                     active: true,
+                    status: 'inactive'
                 });
                 if (error) throw error;
                 toast.success('ایجاد شد');
