@@ -179,13 +179,6 @@ tala/
    ```
 
 3. **Set up environment variables**
-   
-   Create a `.env` file with:
-   ```env
-   NEXT_PUBLIC_API_URL=<your-api-url>
-   NEXT_PUBLIC_SUPABASE_URL=<your-supabase-url>
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=<your-supabase-anon-key>
-   ```
 
 4. **Run the development server**
    ```bash
@@ -231,6 +224,7 @@ yarn start
 ## 🗄 Database Schema
 
 ### Core Tables (Supabase)
+the supabase is rls disabled. and no require RLS policies.
 
 #### `talanow_brokers`
 ```sql
@@ -365,10 +359,8 @@ The project includes a `.gitlab-ci.yml` configuration for automated deployment.
 ### Environment Variables
 
 Required production environment variables:
-- `NEXT_PUBLIC_API_URL`
-- `NEXT_PUBLIC_SUPABASE_URL`
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- `SENTRY_DSN` (optional)
+- `NEXT_PUBLIC_WEBSITE_URL`
+- `NEXT_PUBLIC_API_URL` // for connect to back-end api not supabase
 
 ## 📝 Development Guidelines
 
