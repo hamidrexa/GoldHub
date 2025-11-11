@@ -74,16 +74,27 @@ Brokers have access to:
 
 ### 🌐 Public Broker Pages (`/[username]`)
 
-Each broker gets a unique public marketing page:
+Each broker gets a unique public marketing page designed for maximum conversion:
 
 - **URL Format**: `NEXT_PUBLIC_WEBSITE_URL/[broker-username]` // example: talanow.ir/9120000001
 - **Features**:
-  - Professional broker profile display
-  - Broker contact information
-  - List of active contract types
-  - Call-to-action for starting contracts
-  - No authentication required for viewing
-  - Mobile-responsive design
+  - **Professional broker profile display** with gradient designs and modern UI
+  - **Broker contact information** and credentials
+  - **Active contract types display** - Only shows contract types with `status='active'`
+  - **Individual CTAs per contract type** - Each contract has its own "Start Contract" button
+  - **Automatic broker referral tracking** - Saves broker ID in cookie (30 days) for attribution
+  - **Smart member registration flow**:
+    - Non-authenticated users → Redirected to login/signup
+    - After authentication → Automatically linked to broker as member
+    - Existing members of other brokers → Cannot join new broker (restriction enforced)
+  - **In-page contract creation**:
+    - Modal dialog for contract details
+    - Real-time validation (min/max investment, duration)
+    - Profit calculator preview
+    - Contract saved to `talanow_contracts` table with status='pending'
+  - **Trust indicators** - Security, guaranteed profit, professional support badges
+  - **No authentication required for viewing**
+  - **Mobile-responsive design** with hover effects and animations
 
 ### 📊 Contract System
 
@@ -93,6 +104,38 @@ Each broker gets a unique public marketing page:
 - Configurable profit sharing
 - Duration-based contracts (1-12 months)
 - Status tracking (active, pending, completed)
+
+### 🔗 Broker Referral & Member Linking System
+
+The platform implements a sophisticated broker attribution and member management system:
+
+#### Broker Cookie Tracking
+- When a user visits a broker's public page, their `broker_id` is saved in a cookie (`tala_broker_ref`)
+- Cookie expires after 30 days
+- Persists across sessions and page navigations
+- Used for attribution when user signs up later
+
+#### Member-Broker Relationship
+- **One-to-One Relationship**: Each member can only belong to ONE broker
+- **Automatic Linking**: When a user clicks "Start Contract" on a broker's page:
+  1. If not authenticated → Redirect to login with return URL
+  2. After login → Check if user is already a member of another broker
+  3. If not a member → Automatically link user to broker in `talanow_broker_member_link`
+  4. If already a member of another broker → Show error, prevent linking
+- **Database Table**: `talanow_broker_member_link`
+  - `member_id`: User ID (TEXT)
+  - `broker_id`: Broker ID (TEXT)
+  - Enforces one broker per member
+
+#### Contract Creation Flow
+1. User clicks CTA on contract type card
+2. System checks authentication status
+3. System checks/creates broker membership
+4. Opens contract creation dialog
+5. User fills contract details (amount, duration, settlement, guarantee)
+6. Real-time validation against contract type constraints
+7. Contract saved to `talanow_contracts` with `status='pending'`
+8. Broker receives notification to approve contract
 
 ## 🛠 Tech Stack
 
