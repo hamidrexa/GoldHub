@@ -320,15 +320,27 @@ export default function ContractTypes({ dict, lang }: Props) {
                         </div>
                         <div className="flex justify-end gap-2">
                             <Button variant="outline" onClick={() => openEdit(it)}>{dict.admin.edit}</Button>
-                            <Button variant="destructive" onClick={async () => {
-                                const { error } = await supabase.from('talanow_contract_types').update({ active: false }).eq('id', it.id);
-                                if (error) toast.error('خطا');
-                                else {
-                                    toast.success('غیرفعال شد');
-                                    const { data } = await supabase.from('talanow_contract_types').select('*').order('created_at', { ascending: false });
-                                    setContractTypes((data || []) as ContractType[]);
-                                }
-                            }}>{dict.admin.deactivate}</Button>
+                            {it.status === 'active' ? (
+                                <Button variant="destructive" onClick={async () => {
+                                    const { error } = await supabase.from('talanow_contract_types').update({ status: 'inactive' }).eq('id', it.id);
+                                    if (error) toast.error('خطا');
+                                    else {
+                                        toast.success('غیرفعال شد');
+                                        const { data } = await supabase.from('talanow_contract_types').select('*').order('created_at', { ascending: false });
+                                        setContractTypes((data || []) as ContractType[]);
+                                    }
+                                }}>{dict.admin.deactivate}</Button>
+                            ) : (
+                                <Button variant="success" onClick={async () => {
+                                    const { error } = await supabase.from('talanow_contract_types').update({ status: 'active' }).eq('id', it.id);
+                                    if (error) toast.error('خطا');
+                                    else {
+                                        toast.success('فعال شد');
+                                        const { data } = await supabase.from('talanow_contract_types').select('*').order('created_at', { ascending: false });
+                                        setContractTypes((data || []) as ContractType[]);
+                                    }
+                                }}>{dict.admin.activate}</Button>
+                            )}
                         </div>
                     </div>
                 ))}

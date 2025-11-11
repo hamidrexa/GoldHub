@@ -30,6 +30,7 @@ export interface ContractType {
     profit_share?: number;
     active?: boolean;
     created_at?: string;
+    status?: string;
 }
 
 export interface BrokerContractType {

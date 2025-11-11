@@ -149,6 +149,35 @@ export default function ContractTypes({ dict, lang }: Props) {
                         </div>
                         <div className="flex justify-end">
                             <Button variant="outline" onClick={() => openEdit(it)}>ویرایش</Button>
+                            {it.status === 'active' ? (
+                                <Button variant="destructive" onClick={async () => {
+                                    const { error } = await supabase.from('talanow_contract_types').update({ status: 'inactive' }).eq('id', it.id);
+                                    if (error) toast.error('خطا');
+                                    else {
+                                        toast.success('غیرفعال شد');
+                                        // refresh list
+                                        const { data } = await supabase
+                                            .from('talanow_broker_contract_types_link')
+                                            .select('talanow_contract_types(*)')
+                                            .eq('broker_id', user.id);
+                                        setItems((data.map(item => item.talanow_contract_types) || []).flat() as ContractType[]);
+                                    }
+                                }}>{dict.admin.deactivate}</Button>
+                            ) : (
+                                <Button variant="success" onClick={async () => {
+                                    const { error } = await supabase.from('talanow_contract_types').update({ status: 'active' }).eq('id', it.id);
+                                    if (error) toast.error('خطا');
+                                    else {
+                                        toast.success('فعال شد');
+                                        // refresh list
+                                        const { data } = await supabase
+                                            .from('talanow_broker_contract_types_link')
+                                            .select('talanow_contract_types(*)')
+                                            .eq('broker_id', user.id);
+                                        setItems((data.map(item => item.talanow_contract_types) || []).flat() as ContractType[]);
+                                    }
+                                }}>{dict.admin.activate}</Button>
+                            )}
                         </div>
                     </div>
                 ))}
