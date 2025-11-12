@@ -36,12 +36,7 @@ export interface ContractType {
     description?: string;
     min_investment?: number;
     max_investment?: number;
-    guarantee_types: Array<{
-        guarantee_type_id: string;
-        profit_share: number;
-        description?: string;
-        guarantee_type: Pick<GuaranteeType, 'id' | 'name'>;
-    }>;
+    guarantee_type_ids: string[]; // Array of guarantee type IDs
     min_duration_months: number;
     max_duration_months: number;
     settlement_type: ('آبشده' | 'کیف داریک' | 'ریالی' | 'مصنوع و سکه')[];
@@ -258,4 +253,75 @@ export const getBrokerByUsername = async (username: string) => {
         return null;
     }
     return data;
+};
+
+// Guarantee Type Functions
+export const getGuaranteeTypes = async () => {
+    const { data, error } = await supabase
+        .from('talanow_guarantee_types')
+        .select('*')
+        .eq('status', 'active')
+        .order('created_at', { ascending: false });
+
+    if (error) {
+        console.error('Error fetching guarantee types:', error);
+        return [];
+    }
+    return data || [];
+};
+
+export const getGuaranteeTypesForAdmin = async (userId: string) => {
+    const { data, error } = await supabase
+        .from('talanow_guarantee_types')
+        .select('*')
+        .eq('owner', userId)
+        .order('created_at', { ascending: false });
+
+    if (error) {
+        console.error('Error fetching admin guarantee types:', error);
+        return [];
+    }
+    return data || [];
+};
+
+export const createGuaranteeType = async (guaranteeData: GuaranteeTypePayload) => {
+    const { data, error } = await supabase
+        .from('talanow_guarantee_types')
+        .insert([guaranteeData])
+        .select()
+        .single();
+
+    if (error) {
+        console.error('Error creating guarantee type:', error);
+        return null;
+    }
+    return data;
+};
+
+export const updateGuaranteeType = async (id: string, updates: Partial<GuaranteeType>) => {
+    const { data, error } = await supabase
+        .from('talanow_guarantee_types')
+        .update(updates)
+        .eq('id', id)
+        .select()
+        .single();
+
+    if (error) {
+        console.error('Error updating guarantee type:', error);
+        return null;
+    }
+    return data;
+};
+
+export const deleteGuaranteeType = async (id: string) => {
+    const { error } = await supabase
+        .from('talanow_guarantee_types')
+        .delete()
+        .eq('id', id);
+
+    if (error) {
+        console.error('Error deleting guarantee type:', error);
+        return false;
+    }
+    return true;
 };

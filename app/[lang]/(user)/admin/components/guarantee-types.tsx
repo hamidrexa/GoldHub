@@ -9,8 +9,10 @@ import { Textarea } from '@/components/ui/textarea';
 import { Plus, Trash2, Pencil, X, Check } from 'lucide-react';
 import { toast } from 'sonner';
 import { supabase } from '@/services/supabase';
+import { useGlobalContext } from '@/contexts/store';
 
 export default function GuaranteeTypes() {
+    const { user } = useGlobalContext();
     const [guaranteeTypes, setGuaranteeTypes] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [editingId, setEditingId] = useState<string | null>(null);
@@ -48,6 +50,11 @@ export default function GuaranteeTypes() {
             return;
         }
 
+        if (!user?.id) {
+            toast.error('خطا: شناسایی کاربر ممکن نیست');
+            return;
+        }
+
         try {
             if (editingId) {
                 const { error } = await supabase
@@ -69,6 +76,7 @@ export default function GuaranteeTypes() {
                         name: formData.name,
                         description: formData.description,
                         profit_share: formData.profit_share,
+                        owner: String(user.id),
                         status: 'active'
                     }]);
 

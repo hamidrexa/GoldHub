@@ -129,7 +129,7 @@ export default function ContractTypes({ dict, lang }: Props) {
                         </div>
                         <div className="flex items-center justify-between">
                             <Label>انواع تضامین</Label>
-                            <div>{Array.isArray(it.guarantee_type) ? it.guarantee_type.join(', ') : ''}</div>
+                            <div>{Array.isArray(it.guarantee_type_ids) ? it.guarantee_type_ids.join(', ') : ''}</div>
                         </div>
                         <div className="flex items-center justify-between">
                             <Label>حداقل مدت (ماه)</Label>
@@ -193,7 +193,7 @@ export default function ContractTypes({ dict, lang }: Props) {
                                 <div className="mb-2 font-semibold">اطلاعات غیرقابل ویرایش:</div>
                                 <div className="flex flex-col gap-1 text-xs">
                                     <div>عنوان: {editing.name}</div>
-                                    <div>انواع تضامین: {Array.isArray(editing.guarantee_type) ? editing.guarantee_type.join(', ') : '—'}</div>
+                                    <div>انواع تضامین: {Array.isArray(editing.guarantee_type_ids) ? editing.guarantee_type_ids.join(', ') : '—'}</div>
                                     <div>انواع تسویه: {Array.isArray(editing.settlement_type) ? editing.settlement_type.join(', ') : '—'}</div>
                                     <div>درصد سود: {editing.profit_share || '—'}</div>
                                 </div>

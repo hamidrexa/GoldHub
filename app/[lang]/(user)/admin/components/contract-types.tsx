@@ -96,22 +96,14 @@ export default function ContractTypes({ dict, lang }: Props) {
                 ] = await Promise.all([
                     supabase
                         .from('talanow_contract_types')
-                        .select(`
-                            *,
-                            contract_type_guarantees:guarantee_types!talanow_contract_type_guarantees(
-                                guarantee_type_id,
-                                profit_share,
-                                description,
-                                guarantee_type:guarantee_types(id, name)
-                            )
-                        `)
+                        .select('*')
                         .order('created_at', { ascending: false }),
                     supabase.from('talanow_broker_contract_types_link').select('*'),
                     supabase.from('talanow_guarantee_types').select('*').eq('status', 'active')
                 ]);
 
                 if (guaranteeTypesData && !guaranteeTypesError) {
-                    setAllGuaranteeTypes(guaranteeTypesData);
+                    setAvailableGuaranteeTypes(guaranteeTypesData);
                 }
 
                 if (!mounted) return;
@@ -210,29 +202,50 @@ export default function ContractTypes({ dict, lang }: Props) {
         setSettlementTypes(row.settlement_type || []);
         setProfitShare(row.profit_share ? String(row.profit_share) : '');
         
-        // Fetch the guarantee types for this contract
-        if (row.id) {
-            const { data: contractGuarantees, error } = await supabase
-                .from('talanow_contract_type_guarantees')
-                .select(`
-                    *,
-                    guarantee_type:guarantee_type_id (id, name, description)
-                `)
-                .eq('contract_type_id', row.id);
-
-            if (!error && contractGuarantees) {
-                const formattedGuarantees = contractGuarantees.map(g => ({
-                    id: g.guarantee_type.id,
-                    name: g.guarantee_type.name,
-                    profit_share: g.profit_share,
-                    description: g.description || g.guarantee_type.description || ''
-                }));
-                setGuaranteeTypes(formattedGuarantees);
-            }
+        // Convert guarantee_type_ids array to guaranteeTypes format
+        if (row.guarantee_type_ids && row.guarantee_type_ids.length > 0) {
+            const formattedGuarantees = row.guarantee_type_ids
+                .map(gtId => {
+                    // Find the guarantee type in available types
+                    const foundType = availableGuaranteeTypes.find(gt => gt.id === gtId);
+                    if (foundType) {
+                        return {
+                            id: foundType.id,
+                            name: foundType.name,
+                            profit_share: foundType.profit_share || 0,
+                            description: foundType.description || ''
+                        };
+                    }
+                    return null;
+                })
+                .filter((gt) => gt !== null);
+            
+            setGuaranteeTypes(formattedGuarantees as GuaranteeTypeInput[]);
+        } else {
+            setGuaranteeTypes([]);
         }
         
         setFormLevel(1);
         setOpen(true);
+    };
+
+    const fetchContractTypes = async () => {
+        try {
+            const { data, error } = await supabase
+                .from('talanow_contract_types')
+                .select('*')
+                .order('created_at', { ascending: false });
+
+            if (error) {
+                toast.error('خطا در بارگذاری انواع قراردادها');
+                return;
+            }
+
+            setContractTypes((data || []) as ContractType[]);
+        } catch (error) {
+            console.error('Error fetching contract types:', error);
+            toast.error('خطا در بارگذاری انواع قراردادها');
+        }
     };
 
     const handleSubmit = async () => {
@@ -253,9 +266,12 @@ export default function ContractTypes({ dict, lang }: Props) {
 
         setSubmitting(true);
         try {
+            // Prepare guarantee type IDs array
+            const guaranteeTypeIds = guaranteeTypes.map(gt => gt.id);
+
             if (editing) {
                 // Update existing contract type
-                const { data: updatedContract, error: updateError } = await supabase
+                const { error: updateError } = await supabase
                     .from('talanow_contract_types')
                     .update({
                         name,
@@ -265,44 +281,17 @@ export default function ContractTypes({ dict, lang }: Props) {
                         min_duration_months: Number(minDuration),
                         max_duration_months: Number(maxDuration),
                         settlement_type: settlementTypes,
+                        guarantee_type_ids: guaranteeTypeIds,
                         profit_share: totalProfitShare,
                         updated_at: new Date().toISOString()
                     })
-                    .eq('id', editing.id)
-                    .select()
-                    .single();
+                    .eq('id', editing.id);
 
                 if (updateError) throw updateError;
-
-                // Update guarantee types
-                if (updatedContract) {
-                    // Delete existing guarantee type associations
-                    await supabase
-                        .from('talanow_contract_type_guarantees')
-                        .delete()
-                        .eq('contract_type_id', updatedContract.id);
-
-                    // Insert new guarantee type associations
-                    const guaranteeTypeInserts = guaranteeTypes.map(gt => ({
-                        contract_type_id: updatedContract.id,
-                        guarantee_type_id: gt.id,
-                        profit_share: gt.profit_share,
-                        description: gt.description
-                    }));
-
-                    if (guaranteeTypeInserts.length > 0) {
-                        const { error: insertError } = await supabase
-                            .from('talanow_contract_type_guarantees')
-                            .insert(guaranteeTypeInserts);
-
-                        if (insertError) throw insertError;
-                    }
-                }
-
                 toast.success('نوع قرارداد با موفقیت به‌روزرسانی شد');
             } else {
                 // Create new contract type
-                const { data: newContractType, error: insertError } = await supabase
+                const { error: insertError } = await supabase
                     .from('talanow_contract_types')
                     .insert({
                         name,
@@ -312,32 +301,12 @@ export default function ContractTypes({ dict, lang }: Props) {
                         min_duration_months: Number(minDuration),
                         max_duration_months: Number(maxDuration),
                         settlement_type: settlementTypes,
+                        guarantee_type_ids: guaranteeTypeIds,
                         profit_share: totalProfitShare,
                         status: 'active'
-                    })
-                    .select()
-                    .single();
+                    });
 
                 if (insertError) throw insertError;
-
-                // Add guarantee types for the new contract
-                if (newContractType) {
-                    const guaranteeTypeInserts = guaranteeTypes.map(gt => ({
-                        contract_type_id: newContractType.id,
-                        guarantee_type_id: gt.id,
-                        profit_share: gt.profit_share,
-                        description: gt.description
-                    }));
-
-                    if (guaranteeTypeInserts.length > 0) {
-                        const { error: gtError } = await supabase
-                            .from('talanow_contract_type_guarantees')
-                            .insert(guaranteeTypeInserts);
-
-                        if (gtError) throw gtError;
-                    }
-                }
-
                 toast.success('نوع قرارداد جدید با موفقیت ایجاد شد');
             }
 
@@ -385,18 +354,21 @@ export default function ContractTypes({ dict, lang }: Props) {
                         <div className="flex items-start justify-between">
                             <Label>انواع تضامین</Label>
                             <div className="text-right">
-                                {it.guarantee_types?.length > 0 ? (
+                                {it.guarantee_type_ids && it.guarantee_type_ids.length > 0 ? (
                                     <div className="space-y-1">
-                                        {it.guarantee_types.map((gt, i) => (
-                                            <div key={i} className="text-sm">
-                                                {gt.guarantee_type?.name}: {gt.profit_share}%
-                                                {gt.description && (
-                                                    <div className="text-xs text-gray-500 mt-1">{gt.description}</div>
-                                                )}
-                                            </div>
-                                        ))}
+                                        {it.guarantee_type_ids.map((gtId, i) => {
+                                            const gtData = availableGuaranteeTypes.find(gt => gt.id === gtId);
+                                            return (
+                                                <div key={i} className="text-sm">
+                                                    {gtData?.name || gtId}: {gtData?.profit_share || 0}%
+                                                    {gtData?.description && (
+                                                        <div className="text-xs text-gray-500 mt-1">{gtData.description}</div>
+                                                    )}
+                                                </div>
+                                            );
+                                        })}
                                         <div className="text-sm font-medium mt-2">
-                                            مجموع: {it.guarantee_types.reduce((sum, gt) => sum + (gt.profit_share || 0), 0)}%
+                                            مجموع: {it.profit_share || 0}%
                                         </div>
                                     </div>
                                 ) : '—'}
@@ -516,7 +488,17 @@ export default function ContractTypes({ dict, lang }: Props) {
                         <button
                             type="button"
                             className={`px-4 py-2 text-sm font-medium ${formLevel === 2 ? 'text-primary border-b-2 border-primary' : 'text-gray-500'}`}
-                            onClick={() => setFormLevel(2)}
+                            onClick={async () => {
+                                setFormLevel(2);
+                                // Refresh guarantee types when moving to level 2
+                                const { data, error } = await supabase
+                                    .from('talanow_guarantee_types')
+                                    .select('*')
+                                    .eq('status', 'active');
+                                if (!error && data) {
+                                    setAvailableGuaranteeTypes(data);
+                                }
+                            }}
                             disabled={!name.trim()}
                         >
                             تنظیمات تضامین
@@ -598,107 +580,133 @@ export default function ContractTypes({ dict, lang }: Props) {
                                 </div>
                             </div>
                         ) : (
-                            <div className="space-y-4 py-2">
-                                <div className="flex items-center justify-between">
-                                    <Label className="text-lg">انواع تضامین</Label>
-                                    <Select
-                                        onValueChange={(value) => {
-                                            const selected = availableGuaranteeTypes.find(gt => gt.id === value);
-                                            if (selected && !guaranteeTypes.some(gt => gt.id === selected.id)) {
-                                                setGuaranteeTypes([...guaranteeTypes, {
-                                                    id: selected.id,
-                                                    name: selected.name,
-                                                    profit_share: selected.profit_share || 0,
-                                                    description: selected.description || ''
-                                                }]);
-                                            }
-                                        }}
-                                    >
-                                        <SelectTrigger className="w-[200px]">
-                                            <SelectValue placeholder="انتخاب تضمین" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {availableGuaranteeTypes.map((type) => (
-                                                <SelectItem 
-                                                    key={type.id} 
-                                                    value={type.id}
-                                                    disabled={guaranteeTypes.some(gt => gt.id === type.id)}
-                                                >
-                                                    {type.name}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
+                            <div className="space-y-6 py-2">
+                                {/* Available Guarantee Types Section */}
+                                <div className="space-y-3">
+                                    <div>
+                                        <Label className="text-lg font-semibold text-gray-900">انواع تضامین دسترس پذیر</Label>
+                                        <p className="text-xs text-gray-500 mt-1">برای افزودن تضمین به قرارداد، روی تضمین مورد نظر کلیک کنید</p>
+                                    </div>
+
+                                    {availableGuaranteeTypes.length === 0 ? (
+                                        <div className="text-center py-6 text-gray-500 border border-dashed rounded-lg bg-gray-50">
+                                            <p className="text-sm">هیچ نوع تضمینی موجود نیست</p>
+                                            <p className="text-xs text-gray-400 mt-1">ابتدا در بخش "مدیریت تضامین" تضمین جدید ایجاد کنید</p>
+                                        </div>
+                                    ) : (
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                            {availableGuaranteeTypes.map((type) => {
+                                                const isSelected = guaranteeTypes.some(gt => gt.id === type.id);
+                                                return (
+                                                    <button
+                                                        key={type.id}
+                                                        type="button"
+                                                        onClick={() => {
+                                                            if (!isSelected) {
+                                                                setGuaranteeTypes([...guaranteeTypes, {
+                                                                    id: type.id,
+                                                                    name: type.name,
+                                                                    profit_share: type.profit_share || 0,
+                                                                    description: type.description || ''
+                                                                }]);
+                                                            }
+                                                        }}
+                                                        className={`p-3 rounded-lg border-2 transition text-right ${
+                                                            isSelected
+                                                                ? 'border-green-500 bg-green-50'
+                                                                : 'border-gray-200 bg-white hover:border-blue-300 hover:bg-blue-50'
+                                                        }`}
+                                                    >
+                                                        <div className="flex items-center justify-between gap-2">
+                                                            <div className="flex-1">
+                                                                <div className="font-medium text-sm text-gray-900">{type.name}</div>
+                                                                <div className="text-xs text-gray-500 mt-0.5">سود: {type.profit_share}%</div>
+                                                            </div>
+                                                            {isSelected && (
+                                                                <div className="text-green-600 text-lg">✓</div>
+                                                            )}
+                                                        </div>
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
+                                    )}
                                 </div>
 
-                                <div className="space-y-4">
-                                    {guaranteeTypes.map((gt, index) => (
-                                        <div key={index} className="border rounded-lg p-3 space-y-2">
-                                            <div className="flex justify-between items-center">
-                                                <div className="flex-1">
-                                                    <Label>نوع تضمین</Label>
-                                                    <div className="mt-1 text-sm font-medium">{gt.name}</div>
-                                                </div>
-                                                
-                                                <div className="w-32 ml-2">
-                                                    <Label>درصد سود</Label>
-                                                    <Input 
-                                                        type="number" 
-                                                        value={gt.profit_share}
-                                                        onChange={(e) => {
-                                                            const updated = [...guaranteeTypes];
-                                                            updated[index].profit_share = Number(e.target.value) || 0;
-                                                            setGuaranteeTypes(updated);
-                                                        }}
-                                                        min="0"
-                                                        max="100"
-                                                        step="0.1"
-                                                    />
-                                                </div>
-                                                
-                                                <Button 
-                                                    type="button" 
-                                                    variant="ghost" 
-                                                    size="icon" 
-                                                    className="text-red-500 hover:text-red-700"
-                                                    onClick={() => {
-                                                        setGuaranteeTypes(guaranteeTypes.filter((_, i) => i !== index));
-                                                    }}
-                                                >
-                                                    <Trash2 className="h-4 w-4" />
-                                                </Button>
-                                            </div>
-                                            
-                                            <div>
-                                                <Label>توضیحات</Label>
-                                                <Textarea 
-                                                    value={gt.description}
-                                                    onChange={(e) => {
-                                                        const updated = [...guaranteeTypes];
-                                                        updated[index].description = e.target.value;
-                                                        setGuaranteeTypes(updated);
-                                                    }}
-                                                    placeholder="توضیحات اختیاری"
-                                                    rows={2}
-                                                />
-                                            </div>
+                                {/* Divider */}
+                                <div className="border-t border-gray-200"></div>
+
+                                {/* Selected Guarantee Types Section */}
+                                <div className="space-y-3">
+                                    <div>
+                                        <Label className="text-lg font-semibold text-gray-900">تضامین انتخاب شده</Label>
+                                        <p className="text-xs text-gray-500 mt-1">درصد سود برای هر تضمین را مشخص کنید</p>
+                                    </div>
+
+                                    {guaranteeTypes.length === 0 ? (
+                                        <div className="text-center py-6 text-gray-500 border-2 border-dashed rounded-lg bg-gray-50">
+                                            <p className="font-medium">هیچ تضمینی انتخاب نشده است</p>
+                                            <p className="text-xs text-gray-400 mt-1">از بخش "انواع تضامین دسترس پذیر" تضمین انتخاب کنید</p>
                                         </div>
-                                    ))}
+                                    ) : (
+                                        <div className="space-y-3">
+                                            {guaranteeTypes.map((gt, index) => (
+                                                <div key={index} className="border border-blue-200 rounded-lg p-4 space-y-3 bg-blue-50 hover:shadow-sm transition">
+                                                    <div className="flex justify-between items-start gap-4">
+                                                        <div className="flex-1">
+                                                            <Label className="text-xs text-gray-600 uppercase tracking-wide">نوع تضمین</Label>
+                                                            <div className="mt-1 text-base font-semibold text-gray-900">{gt.name}</div>
+                                                        </div>
+                                                        
+                                                        <Button 
+                                                            type="button" 
+                                                            variant="ghost" 
+                                                            size="sm"
+                                                            className="text-red-500 hover:text-red-700 hover:bg-red-50"
+                                                            onClick={() => {
+                                                                setGuaranteeTypes(guaranteeTypes.filter((_, i) => i !== index));
+                                                            }}
+                                                        >
+                                                            <Trash2 className="h-4 w-4" />
+                                                        </Button>
+                                                    </div>
+                                                    
+                                                    <div className="space-y-2">
+                                                        <Label className="text-xs text-gray-600">درصد سود برای این تضمین</Label>
+                                                        <Input 
+                                                            type="number" 
+                                                            value={gt.profit_share}
+                                                            onChange={(e) => {
+                                                                const updated = [...guaranteeTypes];
+                                                                updated[index].profit_share = Number(e.target.value) || 0;
+                                                                setGuaranteeTypes(updated);
+                                                            }}
+                                                            min="0"
+                                                            max="100"
+                                                            step="0.1"
+                                                            className="text-right"
+                                                            placeholder="درصد سود"
+                                                        />
+                                                    </div>
+                                                    
+                                                    {gt.description && (
+                                                        <div className="text-xs text-gray-700 bg-white rounded p-3 border border-gray-200">
+                                                            <span className="font-medium block mb-1">توضیحات:</span>
+                                                            {gt.description}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                    
+                                    {guaranteeTypes.length > 0 && (
+                                        <div className="flex justify-between items-center p-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg text-white mt-4 shadow-md">
+                                            <span className="font-medium">جمع درصد سود:</span>
+                                            <span className="text-2xl font-bold">{totalProfitShare.toFixed(1)}%</span>
+                                        </div>
+                                    )}
                                 </div>
-                                
-                                {guaranteeTypes.length > 0 && (
-                                    <div className="flex justify-between items-center p-3 bg-gray-50 rounded-md border">
-                                        <span className="text-sm font-medium">جمع درصد سود:</span>
-                                        <span className="font-bold text-lg">{totalProfitShare.toFixed(1)}%</span>
-                                    </div>
-                                )}
-                                
-                                {guaranteeTypes.length === 0 && (
-                                    <div className="text-center py-8 text-gray-500 border-2 border-dashed rounded-lg">
-                                        <p>هیچ تضمینی انتخاب نشده است</p>
-                                        <p className="text-sm mt-2">برای افزودن تضمین از لیست بالا انتخاب کنید</p>
-                                    </div>
-                                )}
                             </div>
                         )}
                     </div>

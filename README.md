@@ -39,17 +39,24 @@ The admin panel provides comprehensive management capabilities:
   - Define contract parameters:
     - Investment amount range (min/max)
     - Duration (months)
-    - Select from available guarantee types
+    - Select from available guarantee types with "افزودن تضمین" (Add Guarantee) button
+    - Customize profit share percentage for each selected guarantee type
     - Settlement types (آبشده, کیف داریک, ریالی, مصنوع و سکه)
     - Automatic profit share calculation based on selected guarantees
+  - Two-level form workflow:
+    - **Level 1**: Basic information (name, description, investment range, duration)
+    - **Level 2**: Guarantee types selection and profit share configuration
   - Assign contract types to specific brokers
   - Activate/deactivate contract types
 
-- **Guarantee Type Management**
+- **Guarantee Type Management** (`مدیریت تضامین`)
   - Create and manage guarantee types (e.g., ملک, چک)
   - Set default profit share percentages for each guarantee type
   - Add descriptions and additional details for each guarantee type
+  - Track owner of each guarantee type (admin who created it)
   - View usage statistics of each guarantee type
+  - Edit existing guarantee types
+  - Delete unused guarantee types
 
 - **System Overview**
   - Dashboard with key metrics
@@ -106,11 +113,29 @@ Each broker gets a unique public marketing page designed for maximum conversion:
 ### 📊 Contract System
 
 - Multiple contract types with flexible parameters
-- Support for various guarantee types
+- Support for various guarantee types with customizable profit shares
 - Multiple settlement options
-- Configurable profit sharing
+- Configurable profit sharing per guarantee type
 - Duration-based contracts (1-12 months)
 - Status tracking (active, pending, completed)
+
+#### Admin Workflow for Contract Type Management
+
+1. **Setup Guarantee Types** (`مدیریت تضامین`):
+   - Admin creates guarantee types (e.g., "ملک", "چک") with default profit share percentages
+   - Each guarantee type is owned by the admin who created it
+   - Guarantee types are marked as 'active' and can be edited/deleted
+
+2. **Create Contract Types**:
+   - Admin creates contract type with basic info (name, description, investment range, duration)
+   - In step 2, admin adds guarantee types by clicking "افزودن تضمین" (Add Guarantee)
+   - Each selected guarantee type can have its profit share customized for this specific contract
+   - Total profit share is automatically calculated
+
+3. **Assign to Brokers**:
+   - Admin assigns created contract types to specific brokers
+   - Only one broker can be assigned per contract type at a time
+   - Assignment can be changed or removed as needed
 
 ### 🔗 Broker Referral & Member Linking System
 
@@ -282,11 +307,11 @@ the supabase is rls disabled. and no require RLS policies.
 ```sql
 CREATE TABLE talanow_guarantee_types (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name TEXT,
+    name TEXT NOT NULL,
     profit_share NUMERIC DEFAULT 0,
     description TEXT,
-    owner TEXT NOT NULL, -- user id
-    status TEXT NOT NULL DEFAULT 'inactive',
+    owner TEXT NOT NULL, -- user id of admin who created the guarantee type
+    status TEXT NOT NULL DEFAULT 'active',
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -369,17 +394,29 @@ CREATE TABLE IF NOT EXISTS talanow_broker_member_link (
 
 The `services/supabase.ts` file provides the following functions:
 
+#### Broker Functions
 - `getBrokers()` - Fetch all brokers
 - `getBrokerMembers(brokerId)` - Get members for a broker
 - `getBrokerSummary(brokerId)` - Get broker statistics
 - `getContractTypesForBroker(brokerId)` - Get assigned contract types
 - `getBrokerContractsSummary(brokerId)` - Get contract analytics
+- `getBrokerByUsername(username)` - Find broker by username
+- `getBrokerMembershipForUser(memberId)` - Get broker membership for a user
+- `linkMemberToBroker(memberId, brokerId)` - Link a member to a broker
+
+#### Contract Type Functions
 - `createContractType(data)` - Create new contract type
 - `updateContractType(id, data)` - Update contract type
 - `deactivateContractType(id)` - Deactivate contract type
 - `createContract(data)` - Create new contract
 - `getContractsForUser(userId)` - Get user contracts
-- `getBrokerByUsername(username)` - Find broker by username
+
+#### Guarantee Type Functions
+- `getGuaranteeTypes()` - Fetch all active guarantee types
+- `getGuaranteeTypesForAdmin(userId)` - Fetch guarantee types created by specific admin
+- `createGuaranteeType(data)` - Create new guarantee type with owner field
+- `updateGuaranteeType(id, updates)` - Update guarantee type
+- `deleteGuaranteeType(id)` - Delete guarantee type
 
 ## 🔌 API Integration
 

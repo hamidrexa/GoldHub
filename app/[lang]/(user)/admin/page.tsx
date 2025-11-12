@@ -28,19 +28,6 @@ export default async function AdminPage({ params: { lang } }) {
                                 <div className="flex flex-row items-center justify-between">
                                     <div className="flex flex-row gap-[10px]">
                                         <Icons.barChart3 stroke="#0C0E3C" />
-                                        <h2 className="text-[22px] font-bold">مدیریت تضامین</h2>
-                                    </div>
-                                    <div className="cursor-pointer">
-                                        <Icons.question />
-                                    </div>
-                                </div>
-                                <GuaranteeTypes />
-                            </div>
-
-                            <div className="relative flex w-full flex-col gap-6 rounded-md border-gray-400 bg-white px-4 py-6 md:border">
-                                <div className="flex flex-row items-center justify-between">
-                                    <div className="flex flex-row gap-[10px]">
-                                        <Icons.barChart3 stroke="#0C0E3C" />
                                         <h2 className="text-[22px] font-bold">لیست بروکرها</h2>
                                     </div>
                                     <div className="cursor-pointer">
@@ -61,6 +48,19 @@ export default async function AdminPage({ params: { lang } }) {
                                     </div>
                                 </div>
                                 <ContractTypes dict={dict} lang={lang} />
+                            </div>
+
+                            <div className="relative flex w-full flex-col gap-6 rounded-md border-gray-400 bg-white px-4 py-6 md:border">
+                                <div className="flex flex-row items-center justify-between">
+                                    <div className="flex flex-row gap-[10px]">
+                                        <Icons.barChart3 stroke="#0C0E3C" />
+                                        <h2 className="text-[22px] font-bold">مدیریت تضامین</h2>
+                                    </div>
+                                    <div className="cursor-pointer">
+                                        <Icons.question />
+                                    </div>
+                                </div>
+                                <GuaranteeTypes />
                             </div>
                         </div>
                     </div>

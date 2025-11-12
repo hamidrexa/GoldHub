@@ -390,14 +390,14 @@ export default function BrokerPublicPage({ broker, dict, lang }: Props) {
                                                 </span>
                                             </div>
 
-                                            {contractType.guarantee_type && contractType.guarantee_type.length > 0 && (
+                                            {contractType.guarantee_type_ids && contractType.guarantee_type_ids.length > 0 && (
                                                 <div className="flex items-center justify-between rounded-lg bg-white p-3 shadow-sm">
                                                     <span className="flex items-center gap-2 text-[#5A5C83]">
                                                         <Icons.shield className="h-4 w-4 text-green-500" />
                                                         انواع تضامین:
                                                     </span>
                                                     <span className="font-bold text-[#0C0E3C]">
-                                                        {contractType.guarantee_type.join('، ')}
+                                                        {contractType.guarantee_type_ids.join('، ')}
                                                     </span>
                                                 </div>
                                             )}
@@ -559,11 +559,9 @@ export default function BrokerPublicPage({ broker, dict, lang }: Props) {
                                         <SelectValue placeholder="انتخاب نوع تضمین" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        {selectedContract?.guarantee_type?.map((type) => (
-                                            <SelectItem key={type} value={type}>
-                                                {type}
-                                            </SelectItem>
-                                        ))}
+                                        <SelectItem value="ملک">ملک</SelectItem>
+                                        <SelectItem value="چک">چک</SelectItem>
+                                        <SelectItem value="سفته">سفته</SelectItem>
                                     </SelectContent>
                                 </Select>
                             </div>
