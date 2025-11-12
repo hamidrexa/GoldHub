@@ -46,7 +46,7 @@ The admin panel provides comprehensive management capabilities:
   - Activate/deactivate contract types
 
 - **Guarantee Type Management**
-  - Create and manage guarantee types (e.g., ملک, چک, سفته)
+  - Create and manage guarantee types (e.g., ملک, چک)
   - Set default profit share percentages for each guarantee type
   - Add descriptions and additional details for each guarantee type
   - View usage statistics of each guarantee type
