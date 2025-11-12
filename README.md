@@ -76,6 +76,16 @@ Brokers have access to:
     - Min/max duration months
   - Cannot modify: name, guarantee types, settlement types, profit share
 
+- **Guarantee Type Management** (`مدیریت تضامین`)
+  - Create and manage their own guarantee types
+  - Each guarantee type is owned by the broker who created it
+  - Set profit share percentages for each guarantee type
+  - Add descriptions and details
+  - Edit or delete their guarantee types
+  - View active guarantee types in a table format
+  - Toggle guarantee type status (active/inactive)
+  - Private management - brokers only see their own guarantee types
+
 - **Member Management**
   - View all assigned members
   - Track member contracts
@@ -85,6 +95,7 @@ Brokers have access to:
   - Summary statistics
   - Active contracts overview
   - Member count and engagement
+  - Multiple management sections: Contract Types, Guarantee Types, Members
 
 ### 🌐 Public Broker Pages (`/[username]`)
 
@@ -121,18 +132,26 @@ Each broker gets a unique public marketing page designed for maximum conversion:
 
 #### Admin Workflow for Contract Type Management
 
-1. **Setup Guarantee Types** (`مدیریت تضامین`):
-   - Admin creates guarantee types (e.g., "ملک", "چک") with default profit share percentages
+1. **Setup Guarantee Types** (`مدیریت تضامین` - Admin Version):
+   - Admin creates system-level guarantee types (e.g., "ملک", "چک") with default profit share percentages
    - Each guarantee type is owned by the admin who created it
    - Guarantee types are marked as 'active' and can be edited/deleted
+   - Admin can view all guarantee types from all users (admin view shows owner)
 
-2. **Create Contract Types**:
+2. **Broker Guarantee Types** (`مدیریت تضامین` - Broker Version):
+   - Brokers can create their own guarantee types for use in their contracts
+   - Broker guarantee types are owned by the broker (owner = broker.id)
+   - Brokers only see and manage their own guarantee types
+   - Both admin and broker guarantee types can be used in contracts
+
+3. **Create Contract Types**:
    - Admin creates contract type with basic info (name, description, investment range, duration)
    - In step 2, admin adds guarantee types by clicking "افزودن تضمین" (Add Guarantee)
+   - Can select from both admin-created and broker-created guarantee types
    - Each selected guarantee type can have its profit share customized for this specific contract
    - Total profit share is automatically calculated
 
-3. **Assign to Brokers**:
+4. **Assign to Brokers**:
    - Admin assigns created contract types to specific brokers
    - Only one broker can be assigned per contract type at a time
    - Assignment can be changed or removed as needed

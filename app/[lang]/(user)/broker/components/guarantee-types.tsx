@@ -1,4 +1,4 @@
-// app/[lang]/(user)/admin/components/guarantee-types.tsx
+// app/[lang]/(user)/broker/components/guarantee-types.tsx
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Plus, Trash2, Pencil, X, Check, Power } from 'lucide-react';
+import { Trash2, Pencil, Power } from 'lucide-react';
 import { toast } from 'sonner';
 import { supabase } from '@/services/supabase';
 import { useGlobalContext } from '@/contexts/store';
@@ -27,10 +27,16 @@ export default function GuaranteeTypes() {
     }, []);
 
     const fetchGuaranteeTypes = async () => {
+        if (!user?.id) {
+            setLoading(false);
+            return;
+        }
+
         try {
             const { data, error } = await supabase
                 .from('talanow_guarantee_types')
                 .select('*')
+                .eq('owner', String(user.id))
                 .order('created_at', { ascending: false });
 
             if (error) throw error;
@@ -106,17 +112,6 @@ export default function GuaranteeTypes() {
         if (!confirm('آیا از حذف این نوع تضمین اطمینان دارید؟')) return;
 
         try {
-            // First check if this guarantee type is being used
-            const { count } = await supabase
-                .from('talanow_contract_type_guarantees')
-                .select('*', { count: 'exact', head: true })
-                .eq('guarantee_type_id', id);
-
-            if (count && count > 0) {
-                toast.error('این نوع تضمین در حال استفاده است و قابل حذف نمی‌باشد');
-                return;
-            }
-
             const { error } = await supabase
                 .from('talanow_guarantee_types')
                 .delete()
@@ -153,7 +148,7 @@ export default function GuaranteeTypes() {
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold">مدیریت انواع تضمین‌ها</h2>
+                <h2 className="text-2xl font-bold">مدیریت انواع تضمین‌های من</h2>
             </div>
 
             <div className="bg-white rounded-lg shadow p-6">
@@ -219,7 +214,6 @@ export default function GuaranteeTypes() {
                                 <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">عنوان</th>
                                 <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">درصد سود</th>
                                 <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">توضیحات</th>
-                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">مالک</th>
                                 <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">وضعیت</th>
                                 <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">عملیات</th>
                             </tr>
@@ -243,7 +237,6 @@ export default function GuaranteeTypes() {
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{type.name}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{type.profit_share}%</td>
                                         <td className="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{type.description}</td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-mono text-xs">{type.owner}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm">
                                             <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                                                 type.status === 'active' 

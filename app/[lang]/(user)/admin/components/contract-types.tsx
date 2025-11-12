@@ -328,114 +328,171 @@ export default function ContractTypes({ dict, lang }: Props) {
     return (
         <div className="flex w-full flex-col gap-4">
             <div className="flex items-center justify-between">
-                <div className="text-sm text-[#5A5C83]">انواع قراردادهای سرمایه‌گذاری</div>
-                <Button onClick={openCreate}>{dict.admin.create_contract}</Button>
+                <div className="text-lg font-semibold text-[#0C0E3C]">انواع قراردادهای سرمایه‌گذاری</div>
+                <Button onClick={openCreate} className="gap-2">{dict.admin.create_contract}</Button>
             </div>
 
-            {loading && <div className="text-sm text-gray-600">در حال بارگذاری...</div>}
+            {loading && (
+                <div className="flex justify-center items-center py-12">
+                    <div className="text-sm text-gray-500">در حال بارگذاری...</div>
+                </div>
+            )}
             {!loading && contractTypes.length === 0 && (
-                <div className="text-sm text-gray-600">موردی یافت نشد.</div>
+                <div className="flex justify-center items-center py-12 rounded-lg border border-dashed border-gray-300 bg-gray-50">
+                    <div className="text-center">
+                        <div className="text-sm text-gray-500">موردی یافت نشد</div>
+                        <Button onClick={openCreate} variant="outline" className="mt-4">اولین قرارداد را ایجاد کنید</Button>
+                    </div>
+                </div>
             )}
 
-            <div className="grid grid-cols-1 gap-3">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {contractTypes.map((it) => (
-                    <div key={it.id} className="flex flex-col gap-2 rounded-md border border-gray-200 bg-white p-3 text-sm">
-                        <div className="flex items-center justify-between">
-                            <Label>عنوان</Label>
-                            <div>{it.name}</div>
+                    <div key={it.id} className="flex flex-col rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow">
+                        {/* Header */}
+                        <div className="flex items-start justify-between bg-gradient-to-r from-blue-50 to-indigo-50 px-6 py-4 border-b border-gray-100">
+                            <div className="flex-1">
+                                <h3 className="text-lg font-semibold text-[#0C0E3C]">{it.name}</h3>
+                                <p className="text-sm text-gray-600 mt-1 line-clamp-2">{it.description || 'بدون توضیح'}</p>
+                            </div>
+                            <div className="flex items-center gap-2 ml-4">
+                                <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
+                                    it.status === 'active' 
+                                        ? 'bg-green-100 text-green-700' 
+                                        : 'bg-gray-100 text-gray-700'
+                                }`}>
+                                    {it.status === 'active' ? 'فعال' : 'غیرفعال'}
+                                </span>
+                            </div>
                         </div>
-                        <div className="flex items-center justify-between">
-                            <Label>توضیحات</Label>
-                            <div>{it.description || '—'}</div>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <Label>حداقل سرمایه‌گذاری</Label>
-                            <div>{it.min_investment || '—'}</div>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <Label>حداکثر سرمایه‌گذاری</Label>
-                            <div>{it.max_investment || '—'}</div>
-                        </div>
-                        <div className="flex items-start justify-between">
-                            <Label>انواع تضامین</Label>
-                            <div className="text-right">
-                                {it.guarantee_type_ids && it.guarantee_type_ids.length > 0 ? (
-                                    <div className="space-y-1">
-                                        {it.guarantee_type_ids.map((gtId, i) => {
-                                            const gtData = availableGuaranteeTypes.find(gt => gt.id === gtId);
-                                            return (
-                                                <div key={i} className="text-sm">
-                                                    {gtData?.name || gtId}: {gtData?.profit_share || 0}%
-                                                    {gtData?.description && (
-                                                        <div className="text-xs text-gray-500 mt-1">{gtData.description}</div>
-                                                    )}
+
+                        {/* Content */}
+                        <div className="flex-1 p-6 space-y-4">
+                            {/* Investment Range */}
+                            <div>
+                                <div className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">محدوده سرمایه‌گذاری</div>
+                                <div className="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2">
+                                    <span className="text-sm text-gray-600">حداقل</span>
+                                    <span className="text-sm font-medium text-[#0C0E3C]">{(it.min_investment || 0).toLocaleString('fa-IR')} ریال</span>
+                                </div>
+                                <div className="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2 mt-2">
+                                    <span className="text-sm text-gray-600">حداکثر</span>
+                                    <span className="text-sm font-medium text-[#0C0E3C]">{(it.max_investment || 0).toLocaleString('fa-IR')} ریال</span>
+                                </div>
+                            </div>
+
+                            {/* Duration */}
+                            <div>
+                                <div className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">مدت قرارداد</div>
+                                <div className="flex items-center gap-2 text-sm">
+                                    <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full font-medium">{it.min_duration_months} - {it.max_duration_months}</span>
+                                    <span className="text-gray-600">ماه</span>
+                                </div>
+                            </div>
+
+                            {/* Settlement Types */}
+                            <div>
+                                <div className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">انواع تسویه</div>
+                                <div className="flex flex-wrap gap-2">
+                                    {Array.isArray(it.settlement_type) && it.settlement_type.length > 0 ? (
+                                        it.settlement_type.map((st, idx) => (
+                                            <span key={idx} className="inline-block bg-indigo-100 text-indigo-700 text-xs px-2.5 py-1 rounded-full">
+                                                {st}
+                                            </span>
+                                        ))
+                                    ) : (
+                                        <span className="text-sm text-gray-500">—</span>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Guarantee Types */}
+                            <div>
+                                <div className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">انواع تضامین و سود</div>
+                                <div className="space-y-2 bg-gray-50 rounded-lg p-3">
+                                    {it.guarantee_type_ids && it.guarantee_type_ids.length > 0 ? (
+                                        <>
+                                            {it.guarantee_type_ids.map((gtId, idx) => {
+                                                const gtData = availableGuaranteeTypes.find(gt => gt.id === gtId);
+                                                return (
+                                                    <div key={idx} className="flex items-center justify-between text-sm">
+                                                        <span className="text-gray-700">{gtData?.name || gtId}</span>
+                                                        <span className="font-medium text-green-600">{gtData?.profit_share || 0}%</span>
+                                                    </div>
+                                                );
+                                            })}
+                                            <div className="pt-2 mt-2 border-t border-gray-200 flex items-center justify-between">
+                                                <span className="font-medium text-gray-900">مجموع</span>
+                                                <span className="font-bold text-lg text-green-700">{it.profit_share || 0}%</span>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <span className="text-sm text-gray-500">تضمینی تعریف نشده</span>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Broker Assignment */}
+                            <div>
+                                <div className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">بروکر اختصاص یافته</div>
+                                <div className="bg-blue-50 rounded-lg p-3 border border-blue-100">
+                                    {(() => {
+                                        const assignment = brokerAssignments[it.id];
+                                        if (!assignment) {
+                                            return <span className="text-sm text-gray-500">هیچ بروکری اختصاص نیافته</span>;
+                                        }
+                                        const broker = brokers.find(b => String(b.id) === String(assignment.broker_id));
+                                        if (!broker) {
+                                            return <span className="text-sm text-gray-500">اطلاعات بروکر موجود نیست</span>;
+                                        }
+                                        return (
+                                            <div className="flex items-center justify-between">
+                                                <div>
+                                                    <div className="font-medium text-gray-900">{broker.first_name} {broker.last_name}</div>
+                                                    <div className="text-xs text-gray-600 mt-0.5">{broker.username || broker.phone_number}</div>
                                                 </div>
-                                            );
-                                        })}
-                                        <div className="text-sm font-medium mt-2">
-                                            مجموع: {it.profit_share || 0}%
-                                        </div>
-                                    </div>
-                                ) : '—'}
+                                                <button
+                                                    onClick={async () => {
+                                                        const { error } = await supabase
+                                                            .from('talanow_broker_contract_types_link')
+                                                            .delete()
+                                                            .eq('id', assignment.id);
+                                                        if (error) {
+                                                            toast.error('خطا در حذف');
+                                                        } else {
+                                                            toast.success('حذف شد');
+                                                            setBrokerAssignments(prev => ({
+                                                                ...prev,
+                                                                [it.id]: null,
+                                                            }));
+                                                        }
+                                                    }}
+                                                    className="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded transition-colors"
+                                                    title="حذف"
+                                                >
+                                                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        );
+                                    })()}
+                                </div>
                             </div>
                         </div>
-                        <div className="flex items-center justify-between">
-                            <Label>حداقل مدت (ماه)</Label>
-                            <div>{it.min_duration_months}</div>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <Label>حداکثر مدت (ماه)</Label>
-                            <div>{it.max_duration_months}</div>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <Label>انواع تسویه</Label>
-                            <div>{Array.isArray(it.settlement_type) ? it.settlement_type.join(', ') : '—'}</div>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <Label>درصد سود</Label>
-                            <div>{it.profit_share || '—'}</div>
-                        </div>
-                        <div className="mt-2 flex flex-col gap-2">
-                            <Label>بروکر اختصاص یافته:</Label>
-                            <div className="flex flex-wrap gap-2">
-                                {(() => {
-                                    const assignment = brokerAssignments[it.id];
-                                    if (!assignment) {
-                                        return <span className="text-xs text-gray-400">هیچ بروکری اختصاص نیافته</span>;
-                                    }
-                                    const broker = brokers.find(b => String(b.id) === String(assignment.broker_id));
-                                    if (!broker) {
-                                        return <span className="text-xs text-gray-400">اطلاعات بروکر موجود نیست</span>;
-                                    }
-                                    return (
-                                        <div className="flex items-center gap-1 rounded-md border border-gray-200 bg-gray-50 px-2 py-1 text-xs">
-                                            <span>{broker.first_name} {broker.last_name} ({broker.username || broker.phone_number})</span>
-                                            <button
-                                                onClick={async () => {
-                                                    const { error } = await supabase
-                                                        .from('talanow_broker_contract_types_link')
-                                                        .delete()
-                                                        .eq('id', assignment.id);
-                                                    if (error) {
-                                                        toast.error('خطا در حذف');
-                                                    } else {
-                                                        toast.success('حذف شد');
-                                                        setBrokerAssignments(prev => ({
-                                                            ...prev,
-                                                            [it.id]: null,
-                                                        }));
-                                                    }
-                                                }}
-                                                className="text-red-500 hover:text-red-700"
-                                            >
-                                                ×
-                                            </button>
-                                        </div>
-                                    );
-                                })()}
-                            </div>
-                            <Button
-                                variant="outline"
+
+                        {/* Footer Actions */}
+                        <div className="flex items-center gap-2 border-t border-gray-100 px-6 py-4 bg-gray-50 rounded-b-lg">
+                            <Button 
+                                variant="outline" 
+                                size="sm"
+                                onClick={() => openEdit(it)}
+                                className="flex-1"
+                            >
+                                ویرایش
+                            </Button>
+                            <Button 
+                                variant="outline" 
                                 size="sm"
                                 onClick={() => {
                                     setSelectedContractTypeId(it.id);
@@ -443,32 +500,44 @@ export default function ContractTypes({ dict, lang }: Props) {
                                     setSelectedBrokerId(currentAssignment ? String(currentAssignment.broker_id) : null);
                                     setOpenBrokerModal(true);
                                 }}
+                                className="flex-1"
                             >
-                                {dict.admin.assign_broker}
+                                اختصاص بروکر
                             </Button>
-                        </div>
-                        <div className="flex justify-end gap-2">
-                            <Button variant="outline" onClick={() => openEdit(it)}>{dict.admin.edit}</Button>
                             {it.status === 'active' ? (
-                                <Button variant="destructive" onClick={async () => {
-                                    const { error } = await supabase.from('talanow_contract_types').update({ status: 'inactive', updated_at: new Date().toISOString() }).eq('id', it.id);
-                                    if (error) toast.error('خطا');
-                                    else {
-                                        toast.success('غیرفعال شد');
-                                        const { data } = await supabase.from('talanow_contract_types').select('*').order('created_at', { ascending: false });
-                                        setContractTypes((data || []) as ContractType[]);
-                                    }
-                                }}>{dict.admin.deactivate}</Button>
+                                <Button 
+                                    variant="destructive" 
+                                    size="sm"
+                                    onClick={async () => {
+                                        const { error } = await supabase.from('talanow_contract_types').update({ status: 'inactive', updated_at: new Date().toISOString() }).eq('id', it.id);
+                                        if (error) toast.error('خطا');
+                                        else {
+                                            toast.success('غیرفعال شد');
+                                            const { data } = await supabase.from('talanow_contract_types').select('*').order('created_at', { ascending: false });
+                                            setContractTypes((data || []) as ContractType[]);
+                                        }
+                                    }}
+                                    className="flex-1"
+                                >
+                                    غیرفعال
+                                </Button>
                             ) : (
-                                <Button variant="success" onClick={async () => {
-                                    const { error } = await supabase.from('talanow_contract_types').update({ status: 'active', updated_at: new Date().toISOString() }).eq('id', it.id);
-                                    if (error) toast.error('خطا');
-                                    else {
-                                        toast.success('فعال شد');
-                                        const { data } = await supabase.from('talanow_contract_types').select('*').order('created_at', { ascending: false });
-                                        setContractTypes((data || []) as ContractType[]);
-                                    }
-                                }}>{dict.admin.activate}</Button>
+                                <Button 
+                                    variant="outline" 
+                                    size="sm"
+                                    onClick={async () => {
+                                        const { error } = await supabase.from('talanow_contract_types').update({ status: 'active', updated_at: new Date().toISOString() }).eq('id', it.id);
+                                        if (error) toast.error('خطا');
+                                        else {
+                                            toast.success('فعال شد');
+                                            const { data } = await supabase.from('talanow_contract_types').select('*').order('created_at', { ascending: false });
+                                            setContractTypes((data || []) as ContractType[]);
+                                        }
+                                    }}
+                                    className="flex-1 text-green-600 border-green-300 hover:bg-green-50"
+                                >
+                                    فعال
+                                </Button>
                             )}
                         </div>
                     </div>

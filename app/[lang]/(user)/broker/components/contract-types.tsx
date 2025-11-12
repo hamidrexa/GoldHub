@@ -7,9 +7,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { toast } from 'sonner';
-import { ContractType, supabase } from '@/services/supabase';
+import { ContractType, GuaranteeType, getGuaranteeTypes, supabase } from '@/services/supabase';
 import { useGlobalContext } from '@/contexts/store';
 import { Locale } from '@/i18n-config';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 type Props = {
     dict: any;
@@ -24,6 +25,7 @@ export default function ContractTypes({ dict, lang }: Props) {
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
     const [editing, setEditing] = useState<ContractType | null>(null);
+    const [guaranteeTypes, setGuaranteeTypes] = useState<GuaranteeType[]>([]);
 
     // form - broker can only edit: description, min_investment, max_investment, min_duration_months, max_duration_months
     const [description, setDescription] = useState('');
@@ -65,6 +67,30 @@ export default function ContractTypes({ dict, lang }: Props) {
             mounted = false;
         };
     }, [user]);
+
+    useEffect(() => {
+        let mounted = true;
+        async function fetchGuaranteeTypes() {
+            try {
+                const list = await getGuaranteeTypes();
+                if (!mounted) return;
+                setGuaranteeTypes(list as GuaranteeType[]);
+            } catch (e) {
+                if (!mounted) return;
+                setGuaranteeTypes([]);
+            }
+        }
+        fetchGuaranteeTypes();
+        return () => {
+            mounted = false;
+        };
+    }, []);
+
+    const guaranteeMap = useMemo(() => {
+        const map: Record<string, GuaranteeType> = {};
+        for (const g of guaranteeTypes) map[g.id] = g;
+        return map;
+    }, [guaranteeTypes]);
 
     const openEdit = (row: ContractType) => {
         setEditing(row);
@@ -121,44 +147,77 @@ export default function ContractTypes({ dict, lang }: Props) {
 
             <div className="grid grid-cols-1 gap-3">
                 {items.map((it) => (
-                    <div key={it.id} className="flex flex-col gap-2 rounded-md border border-gray-200 bg-white p-3 text-sm">
+                    <div key={it.id} className="flex flex-col gap-4 rounded-md border border-gray-200 bg-white p-4 text-sm">
                         <div className="flex items-center justify-between">
-                            <Label>عنوان</Label>
-                            <div>{it.name}</div>
+                            <div className="text-base font-semibold">{it.name}</div>
+                            <div className={`rounded-full px-2 py-0.5 text-xs ${it.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>{it.status === 'active' ? 'فعال' : 'غیرفعال'}</div>
                         </div>
-                        <div className="flex items-center justify-between">
-                            <Label>توضیحات</Label>
-                            <div>{it.description}</div>
+
+                        <div className="rounded-md border border-gray-100 bg-gray-50 p-3 leading-6">
+                            {it.description || '—'}
                         </div>
-                        <div className="flex items-center justify-between">
-                            <Label>حداقل سرمایه‌گذاری</Label>
-                            <div>{it.min_investment}</div>
+
+                        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+                            <div className="flex items-center justify-between rounded-md border border-gray-100 p-3">
+                                <Label>حداقل سرمایه‌گذاری</Label>
+                                <div>{it.min_investment ?? '—'}</div>
+                            </div>
+                            <div className="flex items-center justify-between rounded-md border border-gray-100 p-3">
+                                <Label>حداکثر سرمایه‌گذاری</Label>
+                                <div>{it.max_investment ?? '—'}</div>
+                            </div>
+                            <div className="flex items-center justify-between rounded-md border border-gray-100 p-3">
+                                <Label>حداقل مدت (ماه)</Label>
+                                <div>{it.min_duration_months}</div>
+                            </div>
+                            <div className="flex items-center justify-between rounded-md border border-gray-100 p-3">
+                                <Label>حداکثر مدت (ماه)</Label>
+                                <div>{it.max_duration_months}</div>
+                            </div>
+                            <div className="md:col-span-2 flex items-center justify-between rounded-md border border-gray-100 p-3">
+                                <Label>انواع تسویه</Label>
+                                <div className="text-left">{Array.isArray(it.settlement_type) ? it.settlement_type.join('، ') : '—'}</div>
+                            </div>
+                            <div className="md:col-span-2 flex items-center justify-between rounded-md border border-gray-100 p-3">
+                                <Label>درصد سود کل</Label>
+                                <div>{it.profit_share ?? '—'}</div>
+                            </div>
                         </div>
-                        <div className="flex items-center justify-between">
-                            <Label>حداکثر سرمایه‌گذاری</Label>
-                            <div>{it.max_investment}</div>
+
+                        <div className="flex flex-col gap-2">
+                            <div className="text-sm font-medium">انواع تضامین</div>
+                            <div className="rounded-md border border-gray-200">
+                                <Table>
+                                    <TableHeader>
+                                        <TableRow>
+                                            <TableHead className="text-right">نام تضمین</TableHead>
+                                            <TableHead className="text-right">درصد سود پیش‌فرض</TableHead>
+                                            <TableHead className="text-right">توضیحات</TableHead>
+                                        </TableRow>
+                                    </TableHeader>
+                                    <TableBody>
+                                        {Array.isArray(it.guarantee_type_ids) && it.guarantee_type_ids.length > 0 ? (
+                                            it.guarantee_type_ids.map((gid) => {
+                                                const g = guaranteeMap[gid];
+                                                return (
+                                                    <TableRow key={gid}>
+                                                        <TableCell className="font-medium">{g?.name || gid}</TableCell>
+                                                        <TableCell>{g?.profit_share ?? '—'}%</TableCell>
+                                                        <TableCell className="max-w-[28rem] truncate md:whitespace-normal">{g?.description || '—'}</TableCell>
+                                                    </TableRow>
+                                                );
+                                            })
+                                        ) : (
+                                            <TableRow>
+                                                <TableCell colSpan={3} className="text-center text-gray-500">—</TableCell>
+                                            </TableRow>
+                                        )}
+                                    </TableBody>
+                                </Table>
+                            </div>
                         </div>
-                        <div className="flex items-center justify-between">
-                            <Label>انواع تضامین</Label>
-                            <div>{Array.isArray(it.guarantee_type_ids) ? it.guarantee_type_ids.join(', ') : ''}</div>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <Label>حداقل مدت (ماه)</Label>
-                            <div>{it.min_duration_months}</div>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <Label>حداکثر مدت (ماه)</Label>
-                            <div>{it.max_duration_months}</div>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <Label>انواع تسویه</Label>
-                            <div>{Array.isArray(it.settlement_type) ? it.settlement_type.join(', ') : ''}</div>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <Label>درصد سود</Label>
-                            <div>{it.profit_share}</div>
-                        </div>
-                        <div className="flex justify-end">
+
+                        <div className="flex justify-end gap-2">
                             <Button variant="outline" onClick={() => openEdit(it)}>ویرایش</Button>
                             {it.status === 'active' ? (
                                 <Button variant="destructive" onClick={async () => {
@@ -166,7 +225,6 @@ export default function ContractTypes({ dict, lang }: Props) {
                                     if (error) toast.error('خطا');
                                     else {
                                         toast.success('غیرفعال شد');
-                                        // refresh list
                                         const { data } = await supabase
                                             .from('talanow_broker_contract_types_link')
                                             .select('talanow_contract_types(*)')
@@ -180,7 +238,6 @@ export default function ContractTypes({ dict, lang }: Props) {
                                     if (error) toast.error('خطا');
                                     else {
                                         toast.success('فعال شد');
-                                        // refresh list
                                         const { data } = await supabase
                                             .from('talanow_broker_contract_types_link')
                                             .select('talanow_contract_types(*)')
@@ -204,7 +261,7 @@ export default function ContractTypes({ dict, lang }: Props) {
                                 <div className="mb-2 font-semibold">اطلاعات غیرقابل ویرایش:</div>
                                 <div className="flex flex-col gap-1 text-xs">
                                     <div>عنوان: {editing.name}</div>
-                                    <div>انواع تضامین: {Array.isArray(editing.guarantee_type_ids) ? editing.guarantee_type_ids.join(', ') : '—'}</div>
+                                    <div>انواع تضامین: {Array.isArray(editing.guarantee_type_ids) ? editing.guarantee_type_ids.map(id => guaranteeMap[id]?.name || id).join('، ') : '—'}</div>
                                     <div>انواع تسویه: {Array.isArray(editing.settlement_type) ? editing.settlement_type.join(', ') : '—'}</div>
                                     <div>درصد سود: {editing.profit_share || '—'}</div>
                                 </div>
