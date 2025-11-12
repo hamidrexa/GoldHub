@@ -69,12 +69,17 @@ The admin panel provides comprehensive management capabilities:
 Brokers have access to:
 
 - **Contract Type Management**
-  - View assigned contract types
-  - Edit contract parameters (limited scope):
-    - Description
-    - Min/max investment amounts
-    - Min/max duration months
-  - Cannot modify: name, guarantee types, settlement types, profit share
+  - View assigned contract types with comprehensive details
+  - Edit contract parameters in a two-level form:
+    - **Level 1 - Basic Information**: Description, min/max investment amounts, min/max duration months
+    - **Level 2 - Guarantee Management**: 
+      - View admin-defined guarantees (read-only) with their profit shares
+      - Add custom guarantees specific to this contract type
+      - Edit or delete custom guarantees
+      - Automatic profit share calculation from all guarantees (both admin and broker-defined)
+  - View readonly fields: Name, settlement types (cannot be modified)
+  - Cannot modify: name, admin-defined guarantees, settlement types
+  - Broker-added guarantees are stored as guarantee types owned by the broker
 
 - **Guarantee Type Management** (`مدیریت تضامین`)
   - Create and manage their own guarantee types
@@ -155,6 +160,44 @@ Each broker gets a unique public marketing page designed for maximum conversion:
    - Admin assigns created contract types to specific brokers
    - Only one broker can be assigned per contract type at a time
    - Assignment can be changed or removed as needed
+
+#### Broker Workflow for Contract Customization
+
+When a broker edits an assigned contract type, they follow a two-level form:
+
+1. **Level 1 - Basic Information** (editable fields):
+   - Description
+   - Min/max investment amounts
+   - Min/max duration months
+   - Read-only fields: Name, Settlement types
+
+2. **Level 2 - Guarantee Management**:
+   - **Admin Guarantees Section** (read-only):
+     - View all guarantees defined by admin for this contract
+     - Display names, descriptions, and profit share percentages
+     - Cannot edit or delete
+   - **Broker Guarantees Selection** (select from pre-defined):
+     - Shows all guarantee types created by this broker from their "مدیریت تضامین" section
+     - Only displays active guarantees (status must be 'active' in "مدیریت تضامین")
+     - Click on a guarantee card to add it to this contract
+     - Selected guarantees highlighted with checkmark and green border
+   - **Selected Broker Guarantees Section** (management):
+     - Display all currently selected guarantees with names, descriptions, profit shares
+     - Remove guarantee by clicking trash icon
+   - **Total Profit Share** (auto-calculated):
+     - Sum of all profit shares from both admin and broker guarantees
+     - Updated in real-time as guarantees are added/removed
+
+3. **Submission**:
+   - All changes saved to database: contract parameters, guarantee list, profit share
+   - Guarantees are already pre-defined in "مدیریت تضامین" section - only the selection (guarantee IDs) is updated
+   - Contract type updated with new guarantee IDs array and total profit share
+
+**Important Note on Guarantee Visibility:**
+- Broker guarantees are only visible in the Level 2 form if:
+  1. They were created in the broker's "مدیریت تضامین" section (owner = broker ID)
+  2. They have status = 'active' in the guarantee management section
+- If a guarantee doesn't appear in the "تضامین شخصی دسترس پذیر" section, check that it's marked as active in "مدیریت تضامین"
 
 ### 🔗 Broker Referral & Member Linking System
 
