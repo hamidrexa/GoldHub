@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Plus, Trash2, Pencil, X, Check } from 'lucide-react';
+import { Plus, Trash2, Pencil, X, Check, Power } from 'lucide-react';
 import { toast } from 'sonner';
 import { supabase } from '@/services/supabase';
 import { useGlobalContext } from '@/contexts/store';
@@ -132,6 +132,24 @@ export default function GuaranteeTypes() {
         }
     };
 
+    const handleToggleStatus = async (id: string, currentStatus: string) => {
+        try {
+            const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
+            const { error } = await supabase
+                .from('talanow_guarantee_types')
+                .update({ status: newStatus, updated_at: new Date().toISOString() })
+                .eq('id', id);
+
+            if (error) throw error;
+            
+            toast.success(`وضعیت به "${newStatus === 'active' ? 'فعال' : 'غیرفعال'}" تغییر کرد`);
+            fetchGuaranteeTypes();
+        } catch (error) {
+            console.error('Error toggling guarantee type status:', error);
+            toast.error('خطا در تغییر وضعیت');
+        }
+    };
+
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
@@ -201,19 +219,20 @@ export default function GuaranteeTypes() {
                                 <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">عنوان</th>
                                 <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">درصد سود</th>
                                 <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">توضیحات</th>
+                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">وضعیت</th>
                                 <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">عملیات</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
                             {loading ? (
                                 <tr>
-                                    <td colSpan={4} className="px-6 py-4 text-center text-gray-500">
+                                    <td colSpan={5} className="px-6 py-4 text-center text-gray-500">
                                         در حال بارگذاری...
                                     </td>
                                 </tr>
                             ) : guaranteeTypes.length === 0 ? (
                                 <tr>
-                                    <td colSpan={4} className="px-6 py-4 text-center text-gray-500">
+                                    <td colSpan={5} className="px-6 py-4 text-center text-gray-500">
                                         موردی یافت نشد
                                     </td>
                                 </tr>
@@ -223,8 +242,30 @@ export default function GuaranteeTypes() {
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{type.name}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{type.profit_share}%</td>
                                         <td className="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{type.description}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm">
+                                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                                                type.status === 'active' 
+                                                    ? 'bg-green-100 text-green-800' 
+                                                    : 'bg-red-100 text-red-800'
+                                            }`}>
+                                                {type.status === 'active' ? 'فعال' : 'غیرفعال'}
+                                            </span>
+                                        </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <div className="flex justify-end space-x-2 space-x-reverse">
+                                                <Button
+                                                    variant="ghost"
+                                                    size="icon"
+                                                    className={`h-8 w-8 p-0 ${
+                                                        type.status === 'active'
+                                                            ? 'text-orange-600 hover:text-orange-800'
+                                                            : 'text-green-600 hover:text-green-800'
+                                                    }`}
+                                                    onClick={() => handleToggleStatus(type.id, type.status)}
+                                                    title={type.status === 'active' ? 'غیرفعال کنید' : 'فعال کنید'}
+                                                >
+                                                    <Power className="h-4 w-4" />
+                                                </Button>
                                                 <Button
                                                     variant="ghost"
                                                     size="icon"

@@ -57,7 +57,7 @@ export interface Contract {
     broker_id: string;
     contract_type_id: string;
     amount_rls: number;
-    guarantee_type?: 'ملک' | 'چک' | 'سفته';
+    guarantee_type_ids: string[]; // Array of guarantee type UUIDs
     duration_months: number;
     settlement_type: 'آبشده' | 'کیف داریک' | 'ریالی' | 'مصنوع و سکه';
     status: string;

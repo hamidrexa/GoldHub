@@ -134,7 +134,7 @@ const BrokerList = ({ dict }: BrokerListProps) => {
             const newStatus = currentStatus === "active" ? "inactive" : "active";
             const { error } = await supabase
                 .from("talanow_brokers")
-                .update({ status: newStatus })
+                .update({ status: newStatus, updated_at: new Date().toISOString() })
                 .eq("broker_id", brokerId);
 
             if (error) {

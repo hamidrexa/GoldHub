@@ -331,7 +331,8 @@ CREATE TABLE talanow_contract_types (
     settlement_type TEXT[] NOT NULL DEFAULT '{}',
     profit_share NUMERIC,
     status TEXT NOT NULL DEFAULT 'inactive',
-    created_at TIMESTAMPTZ DEFAULT NOW()
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 ```
 
@@ -347,7 +348,8 @@ CREATE TABLE talanow_contracts (
     duration_months INTEGER NOT NULL,
     settlement_type TEXT NOT NULL,
     status TEXT NOT NULL,
-    created_at TIMESTAMPTZ DEFAULT NOW()
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 ```
 
@@ -376,7 +378,8 @@ CREATE TABLE talanow_broker_contract_types_link (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     broker_id TEXT NOT NULL,
     contract_type_id UUID NOT NULL REFERENCES talanow_contract_types(id) ON DELETE CASCADE,
-    created_at TIMESTAMPTZ DEFAULT NOW()
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 ```
 
@@ -386,7 +389,8 @@ CREATE TABLE IF NOT EXISTS talanow_broker_member_link (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   member_id TEXT NOT NULL,
   broker_id TEXT NOT NULL,
-  created_at TIMESTAMPTZ DEFAULT NOW()
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 ```
 

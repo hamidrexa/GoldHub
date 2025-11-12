@@ -40,14 +40,25 @@ export default function ContractTypes({ dict, lang }: Props) {
         async function fetchData() {
             if (!user) return;
             setLoading(true);
-            const { data, error } = await supabase
-                .from('talanow_broker_contract_types_link')
-                .select('talanow_contract_types(*)')
-                .eq('broker_id', user.id);
-            if (!mounted) return;
-            if (error) setItems([]);
-            else setItems((data.map(item => item.talanow_contract_types) || []).flat() as ContractType[]);
-            setLoading(false);
+            try {
+                const { data, error } = await supabase
+                    .from('talanow_broker_contract_types_link')
+                    .select('talanow_contract_types(*)')
+                    .eq('broker_id', user.id);
+
+                if (!mounted) return;
+
+                if (error) {
+                    setItems([]);
+                } else {
+                    setItems((data?.map(item => item.talanow_contract_types) || []).flat() as ContractType[]);
+                }
+            } catch (error) {
+                console.error('Error fetching contract types:', error);
+                setItems([]);
+            } finally {
+                if (mounted) setLoading(false);
+            }
         }
         fetchData();
         return () => {
@@ -151,7 +162,7 @@ export default function ContractTypes({ dict, lang }: Props) {
                             <Button variant="outline" onClick={() => openEdit(it)}>ویرایش</Button>
                             {it.status === 'active' ? (
                                 <Button variant="destructive" onClick={async () => {
-                                    const { error } = await supabase.from('talanow_contract_types').update({ status: 'inactive' }).eq('id', it.id);
+                                    const { error } = await supabase.from('talanow_contract_types').update({ status: 'inactive', updated_at: new Date().toISOString() }).eq('id', it.id);
                                     if (error) toast.error('خطا');
                                     else {
                                         toast.success('غیرفعال شد');
@@ -165,7 +176,7 @@ export default function ContractTypes({ dict, lang }: Props) {
                                 }}>{dict.admin.deactivate}</Button>
                             ) : (
                                 <Button variant="success" onClick={async () => {
-                                    const { error } = await supabase.from('talanow_contract_types').update({ status: 'active' }).eq('id', it.id);
+                                    const { error } = await supabase.from('talanow_contract_types').update({ status: 'active', updated_at: new Date().toISOString() }).eq('id', it.id);
                                     if (error) toast.error('خطا');
                                     else {
                                         toast.success('فعال شد');

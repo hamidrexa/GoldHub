@@ -67,6 +67,11 @@ export default function ContractTypes({ dict, lang }: Props) {
         return guaranteeTypes.reduce((sum, gt) => sum + (gt.profit_share || 0), 0);
     }, [guaranteeTypes]);
 
+    // Filter only active guarantee types for form level 2
+    const activeGuaranteeTypes = useMemo(() => {
+        return availableGuaranteeTypes.filter(gt => gt.status === 'active');
+    }, [availableGuaranteeTypes]);
+
     useEffect(() => {
         const fetchGuaranteeTypes = async () => {
             const { data, error } = await supabase
@@ -446,7 +451,7 @@ export default function ContractTypes({ dict, lang }: Props) {
                             <Button variant="outline" onClick={() => openEdit(it)}>{dict.admin.edit}</Button>
                             {it.status === 'active' ? (
                                 <Button variant="destructive" onClick={async () => {
-                                    const { error } = await supabase.from('talanow_contract_types').update({ status: 'inactive' }).eq('id', it.id);
+                                    const { error } = await supabase.from('talanow_contract_types').update({ status: 'inactive', updated_at: new Date().toISOString() }).eq('id', it.id);
                                     if (error) toast.error('خطا');
                                     else {
                                         toast.success('غیرفعال شد');
@@ -456,7 +461,7 @@ export default function ContractTypes({ dict, lang }: Props) {
                                 }}>{dict.admin.deactivate}</Button>
                             ) : (
                                 <Button variant="success" onClick={async () => {
-                                    const { error } = await supabase.from('talanow_contract_types').update({ status: 'active' }).eq('id', it.id);
+                                    const { error } = await supabase.from('talanow_contract_types').update({ status: 'active', updated_at: new Date().toISOString() }).eq('id', it.id);
                                     if (error) toast.error('خطا');
                                     else {
                                         toast.success('فعال شد');
@@ -595,7 +600,7 @@ export default function ContractTypes({ dict, lang }: Props) {
                                         </div>
                                     ) : (
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                                            {availableGuaranteeTypes.map((type) => {
+                                            {activeGuaranteeTypes.map((type) => {
                                                 const isSelected = guaranteeTypes.some(gt => gt.id === type.id);
                                                 return (
                                                     <button
@@ -640,7 +645,7 @@ export default function ContractTypes({ dict, lang }: Props) {
                                 <div className="space-y-3">
                                     <div>
                                         <Label className="text-lg font-semibold text-gray-900">تضامین انتخاب شده</Label>
-                                        <p className="text-xs text-gray-500 mt-1">درصد سود برای هر تضمین را مشخص کنید</p>
+                                        <p className="text-xs text-gray-500 mt-1">اطلاعات تضامین انتخاب شده</p>
                                     </div>
 
                                     {guaranteeTypes.length === 0 ? (
@@ -672,21 +677,10 @@ export default function ContractTypes({ dict, lang }: Props) {
                                                     </div>
                                                     
                                                     <div className="space-y-2">
-                                                        <Label className="text-xs text-gray-600">درصد سود برای این تضمین</Label>
-                                                        <Input 
-                                                            type="number" 
-                                                            value={gt.profit_share}
-                                                            onChange={(e) => {
-                                                                const updated = [...guaranteeTypes];
-                                                                updated[index].profit_share = Number(e.target.value) || 0;
-                                                                setGuaranteeTypes(updated);
-                                                            }}
-                                                            min="0"
-                                                            max="100"
-                                                            step="0.1"
-                                                            className="text-right"
-                                                            placeholder="درصد سود"
-                                                        />
+                                                        <Label className="text-xs text-gray-600">درصد سود پیش‌فرض</Label>
+                                                        <div className="px-3 py-2 bg-white rounded border border-gray-200 text-right">
+                                                            <span className="text-sm font-medium text-gray-900">{gt.profit_share}%</span>
+                                                        </div>
                                                     </div>
                                                     
                                                     {gt.description && (
