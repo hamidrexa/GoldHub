@@ -269,7 +269,58 @@ yarn start
 ### Core Tables (Supabase)
 the supabase is rls disabled. and no require RLS policies.
 
-#### `talanow_brokers`
+#### 1. about contact:
+
+##### `talanow_guarantee_types`
+```sql
+CREATE TABLE talanow_guarantee_types (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name TEXT,
+    profit_share NUMERIC DEFAULT 0,
+    description TEXT,
+    status TEXT NOT NULL DEFAULT 'inactive',
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+```
+
+##### `talanow_contract_types`
+```sql
+CREATE TABLE talanow_contract_types (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name TEXT NOT NULL,
+    description TEXT,
+    min_investment NUMERIC,
+    max_investment NUMERIC,
+    guarantee_type_id UUID NOT NULL REFERENCES talanow_guarantee_types(id) ON DELETE RESTRICT,
+    min_duration_months INTEGER NOT NULL,
+    max_duration_months INTEGER NOT NULL,
+    settlement_type TEXT[] NOT NULL DEFAULT '{}',
+    profit_share NUMERIC,
+    status TEXT NOT NULL DEFAULT 'inactive',
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+```
+
+##### `talanow_contracts`
+```sql
+CREATE TABLE talanow_contracts (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id TEXT NOT NULL,
+    broker_id TEXT NOT NULL,
+    contract_type_id UUID NOT NULL REFERENCES talanow_contract_types(id) ON DELETE RESTRICT,
+    amount_rls BIGINT NOT NULL,
+    guarantee_type_id UUID NOT NULL REFERENCES talanow_guarantee_types(id) ON DELETE RESTRICT,
+    duration_months INTEGER NOT NULL,
+    settlement_type TEXT NOT NULL,
+    status TEXT NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+```
+
+#### 2. about broker:
+
+##### `talanow_brokers`
 ```sql
 CREATE TABLE IF NOT EXISTS talanow_brokers (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -286,25 +337,7 @@ CREATE TABLE IF NOT EXISTS talanow_brokers (
 );
 ```
 
-#### `talanow_contract_types`
-```sql
-CREATE TABLE talanow_contract_types (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name TEXT NOT NULL,
-    description TEXT,
-    min_investment NUMERIC,
-    max_investment NUMERIC,
-    guarantee_type TEXT[] NOT NULL DEFAULT '{}',
-    min_duration_months INTEGER NOT NULL,
-    max_duration_months INTEGER NOT NULL,
-    settlement_type TEXT[] NOT NULL DEFAULT '{}',
-    profit_share NUMERIC,
-    status TEXT NOT NULL DEFAULT 'inactive',
-    created_at TIMESTAMPTZ DEFAULT NOW()
-);
-```
-
-#### `talanow_broker_contract_types_link`
+##### `talanow_broker_contract_types_link`
 ```sql
 CREATE TABLE talanow_broker_contract_types_link (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -314,29 +347,13 @@ CREATE TABLE talanow_broker_contract_types_link (
 );
 ```
 
-#### `talanow_broker_member_link`
+##### `talanow_broker_member_link`
 ```sql
 CREATE TABLE IF NOT EXISTS talanow_broker_member_link (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   member_id TEXT NOT NULL,
   broker_id TEXT NOT NULL,
   created_at TIMESTAMPTZ DEFAULT NOW()
-);
-```
-
-#### `talanow_contracts`
-```sql
-CREATE TABLE talanow_contracts (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id TEXT NOT NULL,
-    broker_id TEXT NOT NULL,
-    contract_type_id UUID NOT NULL REFERENCES talanow_contract_types(id) ON DELETE CASCADE,
-    amount_rls BIGINT NOT NULL,
-    guarantee_type TEXT[] NOT NULL DEFAULT '{}',
-    duration_months INTEGER NOT NULL,
-    settlement_type TEXT NOT NULL,
-    status TEXT NOT NULL,
-    created_at TIMESTAMPTZ DEFAULT NOW()
 );
 ```
 
