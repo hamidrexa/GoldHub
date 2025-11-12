@@ -17,17 +17,32 @@ export interface BrokerLink {
     created_at?: string;
 }
 
+export interface GuaranteeType {
+    id: string;
+    name: string;
+    profit_share: number;
+    description?: string;
+    status: string;
+    created_at?: string;
+    updated_at?: string;
+}
+
 export interface ContractType {
     id: string;
     name: string;
     description?: string;
     min_investment?: number;
     max_investment?: number;
-    guarantee_type: ('ملک' | 'چک' | 'سفته')[];
+    guarantee_types: Array<{
+        guarantee_type_id: string;
+        profit_share: number;
+        description?: string;
+        guarantee_type: Pick<GuaranteeType, 'id' | 'name'>;
+    }>;
     min_duration_months: number;
     max_duration_months: number;
     settlement_type: ('آبشده' | 'کیف داریک' | 'ریالی' | 'مصنوع و سکه')[];
-    profit_share?: number;
+    profit_share?: number; // This will be calculated as the sum of guarantee type profit shares
     active?: boolean;
     created_at?: string;
     status?: string;

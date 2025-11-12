@@ -39,16 +39,23 @@ The admin panel provides comprehensive management capabilities:
   - Define contract parameters:
     - Investment amount range (min/max)
     - Duration (months)
-    - Guarantee types (ملک, چک, سفته)
+    - Select from available guarantee types
     - Settlement types (آبشده, کیف داریک, ریالی, مصنوع و سکه)
-    - Profit share percentage
+    - Automatic profit share calculation based on selected guarantees
   - Assign contract types to specific brokers
   - Activate/deactivate contract types
+
+- **Guarantee Type Management**
+  - Create and manage guarantee types (e.g., ملک, چک, سفته)
+  - Set default profit share percentages for each guarantee type
+  - Add descriptions and additional details for each guarantee type
+  - View usage statistics of each guarantee type
 
 - **System Overview**
   - Dashboard with key metrics
   - Broker performance statistics
   - Contract analytics
+  - Guarantee type utilization reports
 
 ### 👔 Broker Panel (`/broker`)
 
@@ -278,6 +285,7 @@ CREATE TABLE talanow_guarantee_types (
     name TEXT,
     profit_share NUMERIC DEFAULT 0,
     description TEXT,
+    owner TEXT NOT NULL, -- user id
     status TEXT NOT NULL DEFAULT 'inactive',
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
@@ -292,7 +300,7 @@ CREATE TABLE talanow_contract_types (
     description TEXT,
     min_investment NUMERIC,
     max_investment NUMERIC,
-    guarantee_type_id UUID NOT NULL REFERENCES talanow_guarantee_types(id) ON DELETE RESTRICT,
+    guarantee_type_ids UUID[] NOT NULL DEFAULT '{}',
     min_duration_months INTEGER NOT NULL,
     max_duration_months INTEGER NOT NULL,
     settlement_type TEXT[] NOT NULL DEFAULT '{}',
@@ -310,7 +318,7 @@ CREATE TABLE talanow_contracts (
     broker_id TEXT NOT NULL,
     contract_type_id UUID NOT NULL REFERENCES talanow_contract_types(id) ON DELETE RESTRICT,
     amount_rls BIGINT NOT NULL,
-    guarantee_type_id UUID NOT NULL REFERENCES talanow_guarantee_types(id) ON DELETE RESTRICT,
+    guarantee_type_ids UUID[] NOT NULL DEFAULT '{}',
     duration_months INTEGER NOT NULL,
     settlement_type TEXT NOT NULL,
     status TEXT NOT NULL,
