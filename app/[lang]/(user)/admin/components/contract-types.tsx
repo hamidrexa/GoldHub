@@ -346,28 +346,78 @@ export default function ContractTypes({ dict, lang }: Props) {
                 </div>
             )}
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4">
                 {contractTypes.map((it) => (
-                    <div key={it.id} className="flex flex-col rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow">
+                    <div key={it.id} className="flex flex-col rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition-all duration-200 hover:border-blue-100">
                         {/* Header */}
-                        <div className="flex items-start justify-between bg-gradient-to-r from-blue-50 to-indigo-50 px-6 py-4 border-b border-gray-100">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-gradient-to-r from-blue-50 to-indigo-50 px-4 sm:px-6 py-3 border-b border-gray-100">
                             <div className="flex-1">
-                                <h3 className="text-lg font-semibold text-[#0C0E3C]">{it.name}</h3>
-                                <p className="text-sm text-gray-600 mt-1 line-clamp-2">{it.description || 'بدون توضیح'}</p>
-                            </div>
-                            <div className="flex items-center gap-2 ml-4">
-                                <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-                                    it.status === 'active' 
-                                        ? 'bg-green-100 text-green-700' 
-                                        : 'bg-gray-100 text-gray-700'
-                                }`}>
-                                    {it.status === 'active' ? 'فعال' : 'غیرفعال'}
-                                </span>
+                                <div className="flex items-center gap-3">
+                                    <h3 className="text-base sm:text-lg font-semibold text-[#0C0E3C]">{it.name}</h3>
+                                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                                        it.status === 'active' 
+                                            ? 'bg-green-100 text-green-800' 
+                                            : 'bg-gray-100 text-gray-700'
+                                    }`}>
+                                        {it.status === 'active' ? 'فعال' : 'غیرفعال'}
+                                    </span>
+                                </div>
+                                {it.description && (
+                                    <p className="text-xs sm:text-sm text-gray-600 mt-1 line-clamp-2">{it.description}</p>
+                                )}
                             </div>
                         </div>
 
                         {/* Content */}
-                        <div className="flex-1 p-6 space-y-4">
+                        <div className="flex-1 p-4 sm:p-5 space-y-3 sm:space-y-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                                {/* Investment Range */}
+                                <div className="bg-gray-50 rounded-lg p-3">
+                                    <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">محدوده سرمایه‌گذاری</div>
+                                    <div className="space-y-2">
+                                        <div className="flex items-center justify-between text-sm">
+                                            <span className="text-gray-600">حداقل:</span>
+                                            <span className="font-medium">{(it.min_investment || 0).toLocaleString('fa-IR')} ریال</span>
+                                        </div>
+                                        <div className="flex items-center justify-between text-sm">
+                                            <span className="text-gray-600">حداکثر:</span>
+                                            <span className="font-medium">{(it.max_investment || 0).toLocaleString('fa-IR')} ریال</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Duration */}
+                                <div className="bg-gray-50 rounded-lg p-3">
+                                    <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">مدت قرارداد</div>
+                                    <div className="flex items-center gap-2 text-sm">
+                                        <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full font-medium">
+                                            {it.min_duration_months} - {it.max_duration_months} ماه
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {/* Settlement Types */}
+                                <div className="bg-gray-50 rounded-lg p-3">
+                                    <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">انواع تسویه</div>
+                                    <div className="flex flex-wrap gap-1.5">
+                                        {Array.isArray(it.settlement_type) && it.settlement_type.length > 0 ? (
+                                            it.settlement_type.map((st, idx) => (
+                                                <span key={idx} className="inline-block bg-indigo-100 text-indigo-700 text-xs px-2 py-0.5 rounded-full">
+                                                    {st}
+                                                </span>
+                                            ))
+                                        ) : (
+                                            <span className="text-xs text-gray-500">—</span>
+                                        )}
+                                    </div>
+                                </div>
+
+                                {/* Profit Share */}
+                                <div className="bg-gray-50 rounded-lg p-3">
+                                    <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">سود کل</div>
+                                    <div className="text-lg font-bold text-green-700">{it.profit_share || 0}%</div>
+                                </div>
+                            </div>
                             {/* Investment Range */}
                             <div>
                                 <div className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">محدوده سرمایه‌گذاری</div>
@@ -407,25 +457,21 @@ export default function ContractTypes({ dict, lang }: Props) {
                             </div>
 
                             {/* Guarantee Types */}
-                            <div>
-                                <div className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">انواع تضامین و سود</div>
-                                <div className="space-y-2 bg-gray-50 rounded-lg p-3">
+                            <div className="mt-2">
+                                <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">انواع تضامین</div>
+                                <div className="bg-gray-50 rounded-lg p-3">
                                     {it.guarantee_type_ids && it.guarantee_type_ids.length > 0 ? (
-                                        <>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
                                             {it.guarantee_type_ids.map((gtId, idx) => {
                                                 const gtData = availableGuaranteeTypes.find(gt => gt.id === gtId);
                                                 return (
-                                                    <div key={idx} className="flex items-center justify-between text-sm">
-                                                        <span className="text-gray-700">{gtData?.name || gtId}</span>
-                                                        <span className="font-medium text-green-600">{gtData?.profit_share || 0}%</span>
+                                                    <div key={idx} className="flex items-center justify-between text-sm bg-white p-2 rounded border border-gray-100">
+                                                        <span className="text-gray-800 truncate">{gtData?.name || gtId}</span>
+                                                        <span className="font-medium text-green-600 whitespace-nowrap mr-2">{gtData?.profit_share || 0}%</span>
                                                     </div>
                                                 );
                                             })}
-                                            <div className="pt-2 mt-2 border-t border-gray-200 flex items-center justify-between">
-                                                <span className="font-medium text-gray-900">مجموع</span>
-                                                <span className="font-bold text-lg text-green-700">{it.profit_share || 0}%</span>
-                                            </div>
-                                        </>
+                                        </div>
                                     ) : (
                                         <span className="text-sm text-gray-500">تضمینی تعریف نشده</span>
                                     )}
@@ -433,8 +479,8 @@ export default function ContractTypes({ dict, lang }: Props) {
                             </div>
 
                             {/* Broker Assignment */}
-                            <div>
-                                <div className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">بروکر اختصاص یافته</div>
+                            <div className="mt-2">
+                                <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">بروکر اختصاص یافته</div>
                                 <div className="bg-blue-50 rounded-lg p-3 border border-blue-100">
                                     {(() => {
                                         const assignment = brokerAssignments[it.id];
@@ -447,12 +493,16 @@ export default function ContractTypes({ dict, lang }: Props) {
                                         }
                                         return (
                                             <div className="flex items-center justify-between">
-                                                <div>
-                                                    <div className="font-medium text-gray-900">{broker.first_name} {broker.last_name}</div>
-                                                    <div className="text-xs text-gray-600 mt-0.5">{broker.username || broker.phone_number}</div>
+                                                <div className="flex items-center gap-2">
+                                                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                                                    <div>
+                                                        <div className="font-medium text-sm text-gray-900">{broker.first_name} {broker.last_name}</div>
+                                                        <div className="text-xs text-gray-500">{broker.username || broker.phone_number}</div>
+                                                    </div>
                                                 </div>
                                                 <button
-                                                    onClick={async () => {
+                                                    onClick={async (e) => {
+                                                        e.stopPropagation();
                                                         const { error } = await supabase
                                                             .from('talanow_broker_contract_types_link')
                                                             .delete()
@@ -467,10 +517,10 @@ export default function ContractTypes({ dict, lang }: Props) {
                                                             }));
                                                         }
                                                     }}
-                                                    className="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded transition-colors"
+                                                    className="text-red-500 hover:text-red-700 hover:bg-red-50 p-1.5 rounded-full transition-colors"
                                                     title="حذف"
                                                 >
-                                                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                                    <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
                                                         <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
                                                     </svg>
                                                 </button>
@@ -482,12 +532,12 @@ export default function ContractTypes({ dict, lang }: Props) {
                         </div>
 
                         {/* Footer Actions */}
-                        <div className="flex items-center gap-2 border-t border-gray-100 px-6 py-4 bg-gray-50 rounded-b-lg">
+                        <div className="flex items-center gap-2 border-t border-gray-100 px-4 py-3 bg-gray-50 rounded-b-lg">
                             <Button 
                                 variant="outline" 
                                 size="sm"
                                 onClick={() => openEdit(it)}
-                                className="flex-1"
+                                className="h-8 text-xs px-3"
                             >
                                 ویرایش
                             </Button>
@@ -500,7 +550,7 @@ export default function ContractTypes({ dict, lang }: Props) {
                                     setSelectedBrokerId(currentAssignment ? String(currentAssignment.broker_id) : null);
                                     setOpenBrokerModal(true);
                                 }}
-                                className="flex-1"
+                                className="h-8 text-xs px-3"
                             >
                                 اختصاص بروکر
                             </Button>
@@ -508,6 +558,7 @@ export default function ContractTypes({ dict, lang }: Props) {
                                 <Button 
                                     variant="destructive" 
                                     size="sm"
+                                    className="h-8 text-xs px-3 flex-1"
                                     onClick={async () => {
                                         const { error } = await supabase.from('talanow_contract_types').update({ status: 'inactive', updated_at: new Date().toISOString() }).eq('id', it.id);
                                         if (error) toast.error('خطا');
@@ -517,7 +568,6 @@ export default function ContractTypes({ dict, lang }: Props) {
                                             setContractTypes((data || []) as ContractType[]);
                                         }
                                     }}
-                                    className="flex-1"
                                 >
                                     غیرفعال
                                 </Button>
