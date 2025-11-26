@@ -418,43 +418,6 @@ export default function ContractTypes({ dict, lang }: Props) {
                                     <div className="text-lg font-bold text-green-700">{it.profit_share || 0}%</div>
                                 </div>
                             </div>
-                            {/* Investment Range */}
-                            <div>
-                                <div className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">محدوده سرمایه‌گذاری</div>
-                                <div className="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2">
-                                    <span className="text-sm text-gray-600">حداقل</span>
-                                    <span className="text-sm font-medium text-[#0C0E3C]">{(it.min_investment || 0).toLocaleString('fa-IR')} ریال</span>
-                                </div>
-                                <div className="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2 mt-2">
-                                    <span className="text-sm text-gray-600">حداکثر</span>
-                                    <span className="text-sm font-medium text-[#0C0E3C]">{(it.max_investment || 0).toLocaleString('fa-IR')} ریال</span>
-                                </div>
-                            </div>
-
-                            {/* Duration */}
-                            <div>
-                                <div className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">مدت قرارداد</div>
-                                <div className="flex items-center gap-2 text-sm">
-                                    <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full font-medium">{it.min_duration_months} - {it.max_duration_months}</span>
-                                    <span className="text-gray-600">ماه</span>
-                                </div>
-                            </div>
-
-                            {/* Settlement Types */}
-                            <div>
-                                <div className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">انواع تسویه</div>
-                                <div className="flex flex-wrap gap-2">
-                                    {Array.isArray(it.settlement_type) && it.settlement_type.length > 0 ? (
-                                        it.settlement_type.map((st, idx) => (
-                                            <span key={idx} className="inline-block bg-indigo-100 text-indigo-700 text-xs px-2.5 py-1 rounded-full">
-                                                {st}
-                                            </span>
-                                        ))
-                                    ) : (
-                                        <span className="text-sm text-gray-500">—</span>
-                                    )}
-                                </div>
-                            </div>
 
                             {/* Guarantee Types */}
                             <div className="mt-2">
