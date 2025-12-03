@@ -479,7 +479,7 @@ export default function ContractTypes({ dict, lang }: Props) {
                                             return (
                                                 <div className="text-center py-6 text-gray-500 border border-dashed rounded-lg bg-gray-50">
                                                     <p className="text-sm">هیچ تضمین شخصی تعریف نشده‌ای وجود ندارد</p>
-                                                    <p className="text-xs text-gray-400 mt-1">ابتدا در بخش "مدیریت تضامین" تضمین جدید ایجاد کنید</p>
+                                                    <p className="text-xs text-gray-400 mt-1">ابتدا در بخش &quot;مدیریت تضامین&quot; تضمین جدید ایجاد کنید</p>
                                                 </div>
                                             );
                                         }
@@ -538,7 +538,7 @@ export default function ContractTypes({ dict, lang }: Props) {
                                     {brokerGuarantees.length === 0 ? (
                                         <div className="text-center py-6 text-gray-500 border-2 border-dashed rounded-lg bg-gray-50">
                                             <p className="font-medium">هیچ تضمین شخصی انتخاب نشده است</p>
-                                            <p className="text-xs text-gray-400 mt-1">از بخش "تضامین شخصی دسترس پذیر" تضمین انتخاب کنید</p>
+                                            <p className="text-xs text-gray-400 mt-1">از بخش &quot;تضامین شخصی دسترس پذیر&quot; تضمین انتخاب کنید</p>
                                         </div>
                                     ) : (
                                         <div className="space-y-3">
