@@ -34,14 +34,21 @@ export function DashboardLayout({ children, dict, lang }: DashboardLayoutProps) 
     }
 
     return (
-        <div className="flex min-h-screen w-full bg-muted/40">
+        <div className="flex min-h-screen w-full bg-gray-50">
+            {/* Sidebar - Desktop Only */}
             <Sidebar dict={dict} lang={lang} />
-            <div className="flex flex-col flex-1 overflow-hidden">
-                {/* Mobile Header Placeholder if needed, or Sidebar handles it via fixed button */}
-                {/* The Sidebar component has a fixed mobile trigger button. */}
-                <main className="flex-1 overflow-y-auto p-4 md:p-6">
+
+            <div className="flex flex-col flex-1 min-h-screen transition-all duration-300">
+                {/* Header - Visible on all screens */}
+                <Header dict={dict} lang={lang} />
+
+                {/* Main Content - Light Gradient Background */}
+                <main className="flex-1 overflow-y-auto p-4 md:p-6 bg-gradient-to-br from-gray-50 via-white to-gray-100">
                     {children}
                 </main>
+
+                {/* Mobile Menu - Mobile Only */}
+                <MobileMenu dict={dict} lang={lang} />
             </div>
         </div>
     );

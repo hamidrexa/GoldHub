@@ -71,12 +71,12 @@ export function Sidebar({ dict, lang }: SidebarProps) {
     ];
 
     const SidebarContent = () => (
-        <div className="flex h-full flex-col gap-4 py-4">
-            <div className="px-6 flex items-center gap-2 font-bold text-xl">
-                <Icons.logo className="h-8 w-8" />
+        <div className="flex h-full flex-col gap-4 py-4 bg-[#111827] text-white">
+            <div className="px-6 flex items-center gap-2 font-bold text-xl text-white">
+                <Icons.logo className="h-8 w-8 fill-white" />
                 <span>طلانو</span>
             </div>
-            <Separator />
+            <Separator className="bg-gray-800" />
             <ScrollArea className="flex-1 px-4">
                 <nav className="flex flex-col gap-2">
                     {navItems.map((item, index) => {
@@ -87,8 +87,10 @@ export function Sidebar({ dict, lang }: SidebarProps) {
                                 href={item.href}
                                 onClick={() => setOpen(false)}
                                 className={cn(
-                                    "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground",
-                                    pathname === item.href ? "bg-accent text-accent-foreground" : "text-muted-foreground"
+                                    "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200",
+                                    pathname === item.href
+                                        ? "bg-white/10 text-white shadow-sm backdrop-blur-sm"
+                                        : "text-gray-400 hover:text-white hover:bg-white/5"
                                 )}
                             >
                                 {item.icon}
@@ -98,40 +100,40 @@ export function Sidebar({ dict, lang }: SidebarProps) {
                     })}
                 </nav>
             </ScrollArea>
-            <Separator />
+            <Separator className="bg-gray-800" />
             <div className="px-4 py-2">
                 {user ? (
                     <div className="flex flex-col gap-2">
-                        <div className="flex items-center gap-3 px-3 py-2">
-                            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary">
-                                <User className="h-5 w-5" />
+                        <div className="flex items-center gap-3 px-3 py-2 rounded-lg bg-white/5">
+                            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/20 text-primary-foreground">
+                                <User className="h-5 w-5 text-white" />
                             </div>
-                            <div className="flex flex-col">
-                                <span className="text-sm font-medium">
+                            <div className="flex flex-col overflow-hidden">
+                                <span className="text-sm font-medium text-white truncate">
                                     {user.first_name ? `${user.first_name} ${user.last_name}` : dict.sahmetoUser}
                                 </span>
-                                <span className="text-xs text-muted-foreground truncate max-w-[120px]">
+                                <span className="text-xs text-gray-400 truncate">
                                     {user.email || user.phone_number}
                                 </span>
                             </div>
                         </div>
-                        <Button variant="ghost" className="w-full justify-start gap-2 text-red-500 hover:text-red-600 hover:bg-red-50" onClick={logout}>
+                        <Button variant="ghost" className="w-full justify-start gap-2 text-red-400 hover:text-red-300 hover:bg-red-900/20" onClick={logout}>
                             <LogOut className="h-4 w-4" />
                             {dict.logout || 'Logout'}
                         </Button>
                     </div>
                 ) : (
                     <Link href={`${getLinksLang(lang)}/login`}>
-                        <Button className="w-full">
+                        <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
                             {dict.loginRegister}
                         </Button>
                     </Link>
                 )}
             </div>
-            <div className="px-4 py-2 text-xs text-muted-foreground">
+            <div className="px-4 py-2 text-xs text-gray-500">
                 <div className="flex flex-wrap gap-x-4 gap-y-2 justify-center">
                     {footerLinks.map((link, i) => (
-                        <Link key={i} href={link.href} className="hover:underline flex items-center gap-1">
+                        <Link key={i} href={link.href} className="hover:text-gray-300 transition-colors flex items-center gap-1">
                             {link.icon}
                             {link.title}
                         </Link>
@@ -142,23 +144,8 @@ export function Sidebar({ dict, lang }: SidebarProps) {
     );
 
     return (
-        <>
-            {/* Mobile Trigger */}
-            <Sheet open={open} onOpenChange={setOpen}>
-                <SheetTrigger asChild>
-                    <Button variant="ghost" size="icon" className="md:hidden fixed top-4 right-4 z-50">
-                        <MenuIcon className="h-6 w-6" />
-                    </Button>
-                </SheetTrigger>
-                <SheetContent side="right" className="p-0 w-[300px]">
-                    <SidebarContent />
-                </SheetContent>
-            </Sheet>
-
-            {/* Desktop Sidebar */}
-            <aside className="hidden md:flex h-screen w-[280px] flex-col border-l bg-background sticky top-0">
-                <SidebarContent />
-            </aside>
-        </>
+        <aside className="hidden md:flex h-screen w-[280px] flex-col border-l border-gray-800 bg-[#111827] sticky top-0 shadow-xl z-40">
+            <SidebarContent />
+        </aside>
     );
 }
