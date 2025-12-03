@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "engines": {
-    "node": "20.9.0"
+    "node": "20.19.4"
   },
   "scripts": {
     "dev": "next dev",
@@ -115,7 +115,7 @@
     "prettier-plugin-tailwindcss": "^0.5.14"
   },
   "volta": {
-    "node": "20.9.0",
-    "yarn": "1.2.1"
+    "node": "20.19.4",
+    "yarn": "1.22.22"
   }
 }
