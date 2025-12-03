@@ -1,0 +1,830 @@
+{
+  "tel": "Telegram",
+  "linkedin": "LinkedIn",
+  "instagram": "Instagram",
+  "twitter": "Twitter",
+  "sahmeto": "Talano",
+  "contactPageTitleSeo": "Contact Us | Talano",
+  "location": "Address",
+  "title": "Talano",
+  "buy": "Buy",
+  "address": "Tehran, Amirabrad, North Kargar, University of Tehran Technical Faculty Building, Nextra Coworking Space, No. 1450",
+  "email": "Email",
+  "callNumber": "Phone Number",
+  "postalCode": "Postal Code",
+  "sell": "Sell",
+  "neutral": "Neutral",
+  "socialNetworks": "Social Networks",
+  "sahmetoProducts": "Talano Products",
+  "selectedIcons": "Featured Symbol",
+  "notification": "Alert",
+  "feed": "Following",
+  "dashboard": "Watchlist",
+  "bestTraders": "Top Traders",
+  "search": "Search",
+  "sahmetoUser": "Talano User",
+  "edit": "Edit",
+  "planFinished": "Your plan has ended",
+  "loginToAccount": "Login to Account",
+  "buySubscription": "Purchase Subscription",
+  "organizationalSolution": "Organizational Solution",
+  "help": "Help",
+  "rules": "Terms",
+  "aboutUs": "About Us",
+  "contactUs": "Contact Us",
+  "buyFromBroker": "Buy from Broker",
+  "buyFromExchange": "Buy from Exchange",
+  "industry": "Industry",
+  "lastWeekTraderSignals": "In last week's trader messages, there are {component} signals about {assetSymbol} stock,",
+  "lastWeekTraderSignals2": "In last week's trader messages, there are {component} signals about {assetSymbol},",
+  "whatIsAssetAnalysisDiagram": "What is the {assetSymbol} symbol analysis chart?",
+  "whatIsAssetAnalysisDiagramInfo": "What does stock chart analysis show?",
+  "whatIsAssetAnalysisDiagramDescription": "Talano collects all analyst messages from social networks such as Telegram channels, Rahavard and Sahamyab websites, and based on AI algorithms identifies the number of buy and sell signals for each stock, and finally shows the summary of social network analysts' opinions in the form of this chart.",
+  "whatIsAssetAnalysisDiagramTitle2": "How does this chart's needle determine stock buy and sell timing?",
+  "whatIsAssetAnalysisDiagramDescription2": "If the chart needle points to buy, it means from the analysts' perspective it's time to buy this stock, and if it points to sell, it means you should consider selling and taking profit. If the needle is in the neutral zone, the stock is volatile and it's not the right time to buy or sell yet.",
+  "signalsTab": "{assetSymbol} Signals",
+  "tradersTab": "{assetSymbol} Traders",
+  "traderAssetPriceAnalysis": "Traders' Opinion on {assetSymbol} Price",
+  "traderAssetAnalysis": "Traders' Opinion on {assetSymbol}",
+  "faqTitle": "Help | Talano",
+  "faqQuestion1": "What does stock chart analysis show?",
+  "faqAnswer1": "Talano collects all analyst messages from social networks such as Telegram channels, Rahavard and Sahamyab websites, and based on AI algorithms identifies the number of buy and sell signals for each stock, and finally shows the summary of social network analysts' opinions in the form of this chart.",
+  "faqQuestion2": "How does this chart's needle determine stock buy and sell timing?",
+  "faqAnswer2": "If the chart needle points to buy, it means from the analysts' perspective it's time to buy this stock, and if it points to sell, it means you should consider selling and taking profit. If the needle is in the neutral zone, the stock is volatile and it's not the right time to buy or sell yet.",
+  "breadcrumbTitle": "Breadcrumb | Talano",
+  "priceChartTitle": "{assetSymbol} Price Chart and {assetSymbol} Signal Trends",
+  "priceAdjustedChartTitle": "{assetSymbol} Price Chart and {assetSymbol} Signal Trends",
+  "profitTarget": "Nearest Profit Target",
+  "stopLoss": "Nearest Stop Loss",
+  "none": "None",
+  "buyRecommendation": "{component} traders out of {component} have recommended {assetSymbol} symbol for purchase.",
+  "price": "Price",
+  "products": "Products",
+  "afzoone": {
+    "title": "Download Extension",
+    "href": "https://chrome.google.com/webstore/detail/%D8%A7%D9%81%D8%B2%D9%88%D9%86%D9%87-%D8%A8%D9%88%D8%B1%D8%B3-%D8%B3%D9%87%D9%85%D8%AA%D9%88-sahmeto/mnnkkdhkjbcnjljenmicbmlojmnpmaaf?hl=en",
+    "rel": "nofollow",
+    "description": ""
+  },
+  "more": "More",
+  "loginRegister": "Login/Register",
+  "profile": "Profile",
+  "navMenuItems": [
+    {
+      "title": "Contract",
+      "href": "/contracts",
+      "description": ""
+    },
+    {
+      "title": "Assets",
+      "href": "/wallet",
+      "description": ""
+    },
+    {
+      "title": "Terms",
+      "href": "/privacy",
+      "description": ""
+    },
+    {
+      "title": "About Us",
+      "href": "/about",
+      "description": ""
+    },
+    {
+      "title": "Contact Us",
+      "href": "/contact",
+      "description": ""
+    }
+  ],
+  "searchPlaceholder": "Search among +10,000 traders, stock symbols and cryptocurrencies",
+  "loginPrompt": "You need to login/register to access this section",
+  "subscriptionPrompt": "You need to purchase a subscription to access this section",
+  "addedToDashboard": "Added to Watchlist",
+  "addToDashboard": "Add to Watchlist",
+  "sortBasedOn": "Sort messages by",
+  "related": "Related",
+  "latest": "Latest",
+  "filter": "Filter",
+  "signalType": "Signal Type",
+  "all": "All",
+  "buySuggestion": "Buy Recommendation",
+  "sellSuggestion": "Sell Recommendation",
+  "signalCount": "Signal Count",
+  "commentSuccessfullySubmit": "Your comment has been submitted.",
+  "showUsersComments": "View Other Users' Comments",
+  "backToSubmitComment": "Back to Submit Comment",
+  "rank": "Rank",
+  "powerOfAnalytics": "Analysis Power",
+  "showFullText": "Show Full Text",
+  "showOriginalMessage": "Show Original Message",
+  "translatedFrom": "Translated from",
+  "typeOfAnalysis": "Type of Analysis",
+  "source": "Source",
+  "bargainTypes": {
+    "B": {
+      "title": "Buy",
+      "alternativeTitle": "Bullish"
+    },
+    "N": {
+      "title": "Neutral",
+      "variant": "light"
+    },
+    "S": {
+      "title": "Sell",
+      "alternativeTitle": "Bearish",
+      "variant": "destructive"
+    },
+    "E": {
+      "title": "Unknown",
+      "variant": "light"
+    }
+  },
+  "analysisTypes": {
+    "F": {
+      "title": "Fundamental",
+      "variant": "light"
+    },
+    "T": {
+      "title": "Technical",
+      "variant": "light"
+    },
+    "B": {
+      "title": "Tape Reading",
+      "variant": "light"
+    }
+  },
+  "messagesSourceType": {
+    "tradingview": {
+      "title": "TradingView",
+      "logo": "/img/messages-source/tradingview.svg"
+    },
+    "telegram": {
+      "title": "Telegram",
+      "logo": "/img/messages-source/telegram.svg"
+    },
+    "rahavard": {
+      "title": "Rahavard",
+      "logo": "/img/messages-source/rahavard.svg"
+    },
+    "sahamyab": {
+      "title": "Sahamyab",
+      "logo": "/img/messages-source/sahamyab.svg"
+    },
+    "arzdigital": {
+      "title": "ArzDigital",
+      "logo": "/img/messages-source/arzdigital.svg"
+    },
+    "institutional": {
+      "title": "Shareholder",
+      "logo": "/img/messages-source/tse.svg"
+    },
+    "bot": {
+      "title": "Talano Bot",
+      "logo": "/img/messages-source/bot.svg"
+    },
+    "sahmeto": {
+      "title": "Talano",
+      "logo": "/img/messages-source/sahmeto.svg"
+    },
+    "wallet": {
+      "title": "Wallet",
+      "logo": "/img/messages-source/wallet.svg"
+    }
+  },
+  "timeframe": "Timeframe",
+  "timeout": "Validity Period",
+  "day": "Day",
+  "entryPoint": "Entry Point",
+  "profitPrice": "Profit Target",
+  "stopLossPrice": "Stop Loss",
+  "supportPrice": "First Support",
+  "resistancePrice": "First Resistance",
+  "share": "Share",
+  "purchaseSignalLastWeek": "Last Week's Buy Signal",
+  "neutralSignalLastWeek": "Last Week's Neutral Signal",
+  "sellSignalLastWeek": "Last Week's Sell Signal",
+  "alertMessage": "To be notified of {component} buy and sell signals, add #{assetSymbol} symbol to your watchlist. By adding to watchlist, you'll be {component} informed about {component} signals regarding {assetSymbol} {component} from others.",
+  "sellRecommendation": "{component} traders out of {component} have recommended {assetSymbol} symbol for sale.",
+  "topOneHundred": "Top 100 Traders",
+  "assetInfo": "{component} {assetSymbol} price from {component} perspective",
+  "profitLossTarget": "Profit and Loss Target",
+  "trader": "Trader",
+  "commentsOfUsersAboutSymbol": "{component} Talano users' opinions about {symbol} symbol",
+  "usersCanCommentJustOnceInDay": "Each user can only submit comments {component} per day.",
+  "once": "once",
+  "users": "Users",
+  "yourCommentAboutSymbol": "Your opinion about {component}",
+  "whatSymbolBetterThanSymbol": "Which symbol is better to buy than {symbol}?",
+  "cryptoMarket": "Cryptocurrency Market",
+  "investment": "Investment",
+  "buySahmetoStock": "Buy Talano Shares",
+  "soon": "Coming Soon",
+  "sahmetoWorld": "Talano World",
+  "reportProblem": "Report Problem and Feedback",
+  "joinUs": "Collaboration Invitation",
+  "developWithSahmeto": "Develop with Talano (APIs)",
+  "investOnSahmeto": "Invest in Talano",
+  "copyright": "All rights reserved for Talano Company 1403",
+  "fundraising": "Capital Raising",
+  "bests": "Top Traders",
+  "assetRecommendation": "{assetSymbol} symbol is {component}.",
+  "goodChange": "Good opportunity for",
+  "expertTraders": "{assetSymbol} Expert Traders",
+  "bestOrdersOnAsset": "{component} in the last 3 months have made {component} good trades from {assetSymbol}.",
+  "profit": "Profit",
+  "alert": "Alert",
+  "faster": "Faster",
+  "bestTrader": "Top Traders",
+  "company": "Company",
+  "symbolAnalytics": "{assetSymbol} Analysis",
+  "traderRank": "Trader Rank",
+  "seeOriginalMessageInSource": "View in {source}",
+  "showMore": "Show More",
+  "showLess": "Show Less",
+  "companySize": [
+    {
+      "value": {
+        "market_cap_from": 0,
+        "market_cap_to": 10000000000000
+      },
+      "title": "Very Small"
+    },
+    {
+      "value": {
+        "market_cap_from": 10000000000000,
+        "market_cap_to": 50000000000000
+      },
+      "title": "Small"
+    },
+    {
+      "value": {
+        "market_cap_from": 50000000000000,
+        "market_cap_to": 200000000000000
+      },
+      "title": "Medium"
+    },
+    {
+      "value": {
+        "market_cap_from": 200000000000000,
+        "market_cap_to": 700000000000000
+      },
+      "title": "Large"
+    },
+    {
+      "value": {
+        "market_cap_from": 700000000000000,
+        "market_cap_to": 10000000000000000
+      },
+      "title": "Very Large"
+    }
+  ],
+  "timeframes": {
+    "00:15:00": "15 minutes",
+    "00:30:00": "30 minutes",
+    "01:00:00": "1 hour",
+    "04:00:00": "4 hours",
+    "1 00:00:00": "1 day",
+    "7 00:00:00": "1 week",
+    "30 00:00:00": "1 month",
+    "60 00:00:00": "2 months",
+    "90 00:00:00": "3 months",
+    "180 00:00:00": "6 months",
+    "360 00:00:00": "1 year",
+    "365 00:00:00": "1 year"
+  },
+  "hourAgo": "hour ago",
+  "minuteAgo": "minute ago",
+  "fundamentalAnalysis": "Fundamental Analysis",
+  "capitalIncreaseCalendar": "Capital Increase Calendar",
+  "assetPageTitle1": "{symbolName} | Latest Analysis on Talano",
+  "assetPageTitle2": "{symbolName} | Latest Trader Analysis on Talano",
+  "assetPageDescription": "When is the right time to buy {symbolName}? What did which analyst say? All {symbolName} stock signals at a glance, {name} | Talano",
+  "assetPageDescription2": "Buy and sell signals and {name} predictions | Real-time {name} price chart | {name} analysis based on social networks and news | {name} technical analysis | {name} fundamental analysis | {name} price | {symbolName}",
+  "lastUpdate": "Last Update",
+  "todaySignalCount": "Today's {symbol} message count",
+  "message": "Message",
+  "signalPageSlogan": "{component} featured by top traders",
+  "signalPageSloganComponent1": "Opportunities",
+  "tse": "Stock Market",
+  "crypto": "Cryptocurrency",
+  "marketOpportunities": "{marketName} Top Opportunities",
+  "show": "View",
+  "numberViewsUsers": "User Views",
+  "publishTime": "Publish Time",
+  "traderInfo": "Analyst Information",
+  "amongNTopTraders": "Among top {rank} traders",
+  "traderPowerOfAnalytics": "Trader Success Rate",
+  "investmentOpportunityProfile": "Investment Opportunity Details",
+  "messagePageSeoDescription": "Analysis and updated news of {symbol} symbol by trader {publisherName} on Talano, Trader rank on Talano: {publisherRank}, Analysis of stock and cryptocurrency symbols by top traders in the stock and cryptocurrency markets.",
+  "messagePageSeoDescription2": "Analysis of {symbol} symbol by trader {publisherName} on Talano, Trader rank on Talano: {publisherRank}, Analysis of stock and cryptocurrency symbols by top market traders.",
+  "todayNews": "Today's News",
+  "emptyFeed": "You have no following",
+  "buySignals": "Traders' Buy Signals",
+  "sellSignals": "Traders' Sell Signals",
+  "follow": "Follow",
+  "addDashboard": "Add to Watchlist",
+  "addedDashboard": "Added to Watchlist",
+  "followed": "Followed",
+  "analytics": "Analysis",
+  "about": "About",
+  "messagePageH1": "{publisherName}'s {analysisType} analysis about {market} {symbol} on {date}",
+  "messagePageSecondH1": "{publisherName}'s {analysisType} analysis about {market} {symbol}: {bargainType} recommendation ({date})",
+  "messagePageSeoTitle": "{bargainType} recommendation for {symbol} | {publisher} {analysisType} analysis: {messageText}",
+  "messagePageSeoTitle2": "Start of {bargainType} trend for {symbol} | {publisher} {analysisType} analysis: {messageText}",
+  "stock": "Stock",
+  "symbol": "Symbol",
+  "verifiedTraders": "Verified Traders",
+  "market": "Market",
+  "traderType": "Trader Type",
+  "telegram": "Telegram",
+  "tradingview": "TradingView",
+  "rahavard": "Rahavard",
+  "sahamyab": "Sahamyab",
+  "shareholders": "Institutional Shareholders",
+  "personalFormula": "Personal Formula",
+  "name": "Name",
+  "noTraderFound": "No trader found",
+  "performances": {
+    "signal": [
+      {
+        "title": "Weekly Return",
+        "value": "7d"
+      },
+      {
+        "title": "Monthly Return",
+        "value": "30d"
+      },
+      {
+        "title": "3-Month Return",
+        "value": "90d"
+      },
+      {
+        "title": "6-Month Return",
+        "value": "180d"
+      }
+    ],
+    "cryptocurrency": [
+      {
+        "title": "Weekly Return",
+        "value": "7d"
+      },
+      {
+        "title": "1-Month Return",
+        "value": "30d"
+      },
+      {
+        "title": "3-Month Return",
+        "value": "90d"
+      },
+      {
+        "title": "6-Month Return",
+        "value": "180d"
+      }
+    ]
+  },
+  "noData": "No Data",
+  "leaderboardPageTitleSeo": "Top Cryptocurrency and Stock Market Traders | Talano",
+  "leaderboardPageDescriptionSeo": "Best stock channels, best cryptocurrency and Bitcoin channels, cryptocurrency traders and stock market traders",
+  "feedPageH1": "Get inspired by top traders",
+  "groupPageH1": "Gold",
+  "messages": "Messages",
+  "myTraders": "My Traders",
+  "myAssets": "Watchlist",
+  "feedPageTitleSeo": "Following | Talano",
+  "attractivenessBuySell": "Buy/Sell Attractiveness",
+  "risk": "Risk",
+  "hour": "Hour",
+  "copy": "Copy",
+  "copied": "Copied",
+  "asc": "Ascending",
+  "des": "Descending",
+  "weekPerformance": "Weekly Performance",
+  "monthPerformance": "Monthly Performance",
+  "threeMonthPerformance": "3-Month Performance",
+  "sixMonthPerformance": "6-Month Performance",
+  "rowsPerPage": "Rows per page",
+  "topPublishers": "Top Traders",
+  "opinion": "Opinion",
+  "moreInfo": "More Information",
+  "opinionSummary": "Summary of traders' opinions in the last month",
+  "prediction": "Prediction",
+  "oneMonth": "1 Month",
+  "threeMonth": "3 Months",
+  "sixMonth": "6 Months",
+  "oneYear": "1 Year",
+  "allTraders": "All Traders",
+  "top100Traders": "Top 100 Traders",
+  "observes": "Views",
+  "lastTransaction": "Last Trade",
+  "followers": "Followers",
+  "tradersProfitPrediction": "Traders predict about {component} profit from {symbol}",
+  "tradersLossPrediction": "Traders predict about {component} loss from {symbol}",
+  "mostProfitFrom": "Which trader made the most profit from {symbol}?",
+  "last3Month": "In the last 3 months",
+  "profitSymbol": "made good profits from {symbol}.",
+  "traderSymbolLimit": "Profit and loss limits for {symbol} from trader's perspective",
+  "nearestProfitLimit": "Nearest profit target",
+  "nearestDamageLimit": "Nearest stop loss",
+  "summary": "Summary",
+  "assetMostProfit": "Who made the most profit from {symbol}?",
+  "monthProfit": "1-month profit:",
+  "tradesPriceComment": "Traders' opinion on price",
+  "newestAnalysis": "{symbolName} | Latest analysis on Talano",
+  "newestTradersAnalysis": "{symbolName} | Latest trader analysis on Talano",
+  "commonQuestion": "| Talano When is the right time to buy {symbolName}? What did which analyst say? All {symbolName} stock signals at a glance, {symbolName}",
+  "mainResults": "Main-results-of-buy-and-sell-signals-for-{symbolName}-stock",
+  "timeSlice": "Time Period",
+  "possibleDamage": "Potential Loss",
+  "possibleProfit": "Potential Profit",
+  "nowPrice": "Current Price",
+  "profitLimit": "Profit Target",
+  "damageLimit": "Stop Loss",
+  "oneWeek": "One Week",
+  "goToMassage": "Go to Message",
+  "notAnnounce": "Not Announced",
+  "pageOwner": "I own this page",
+  "followersNumber": "Number of Followers",
+  "registerDate": "Registration Date",
+  "traderSocialMedia": "Trader's Social Media",
+  "rankAmong": "Rank among {number} traders",
+  "traderMonthPerformance": "Trader's last month performance",
+  "top100traderMonthPerformance": "Average last month performance of top 100 traders",
+  "totalIndexMonthPerformance": "Average last month performance of total index",
+  "totalBTCMonthPerformance": "Last month BTC performance",
+  "analysisPower": "Analysis Power",
+  "successPercentageAll": "Trader's success rate in all signals",
+  "messageNum": "Number of Messages",
+  "traderMessage": "Trader's Messages",
+  "basket": "Trader's Basket",
+  "performance": "Trader's Performance",
+  "buySuggest": "Which symbol does the trader recommend to buy?",
+  "buyHistory": "Purchase History",
+  "monthToMonthPerformance": "Estimated month-to-month trader performance",
+  "traderSignalChart": "Trader's Signal Chart",
+  "login": "Login",
+  "statusBarRightName": "Profitable Trade",
+  "statusBarLeftName": "Loss-Making Trade",
+  "specialUserView": "Viewing this section {component}",
+  "specialView": "is exclusive to {component} premium users",
+  "buyAccount": "Purchase Subscription",
+  "totalIndexCompare": "Comparison with Total Index",
+  "top100TraderCompare": "Comparison with Top 100 Traders",
+  "year": "Year",
+  "Authentication": "By authenticating as the owner",
+  "blueTick": "Get Talano blue tick",
+  "openPrice": "Entry Price",
+  "closePrice": "Exit Price",
+  "openTime": "Entry Time",
+  "closeTime": "Exit Time",
+  "Continue": "Continue",
+  "nonAnnounce": "Not Announced",
+  "opportunities": "Opportunities",
+  "opportunity": "Opportunity",
+  "marketsCompare": "Markets Comparison",
+  "functionHistory": "Performance History",
+  "fundDivisionSuggest": "Suggested capital distribution in markets",
+  "analyserRank": "Analyst Rank",
+  "analyserPower": "Analyst Power",
+  "symbolScore": "Symbol Score",
+  "inRange": "In the range of",
+  "longTime": "Long Term",
+  "shortTime": "Short Term",
+  "traderExitSymbol": "Trader has {component} from {symbol}",
+  "exit": "exited",
+  "highSell": "High Sell",
+  "highBuy": "High Buy",
+  "inStatus": "in status",
+  "assetRecommendationTitle": "Summary of traders' opinions about {symbol}:",
+  "previous": "Previous",
+  "next": "Next",
+  "traderNumber": "Number of Traders",
+  "efficiency": "Performance",
+  "efficiency100Traders": "Top 100 Traders Performance",
+  "totalIndexReturn": "Total Index Return",
+  "valueTypes": {
+    "B": "Buy",
+    "S": "Sell",
+    "B,S": "All"
+  },
+  "signalsType": {
+    "N": "Normal",
+    "F": "Fundamental",
+    "T": "Technical"
+  },
+  "creditDuration": {
+    "1": "One Day",
+    "7": "One Week",
+    "30": "One Month",
+    "90": "Three Months",
+    "180": "Six Months",
+    "360": "One Year"
+  },
+  "loginPageSeoTitle": "Login | Talano",
+  "loginStaticUser": "Ehsan Akbarzadeh",
+  "loginStaticUserComment": "This month with Talano I was able to make 20% profit from Shapaksa, thank you.",
+  "loginWithGoogle": "Login with Google",
+  "orContinueWith": "Or continue with",
+  "loginHelper": "To login/register, please enter your mobile number.",
+  "pricingPageTitle": "Purchase Subscription | Talano",
+  "issueReport": "Report Problem",
+  "portfolioIsEmpty": "Trader's portfolio is currently empty.",
+  "buyHistoryIsEmpty": "Trader has no purchase history",
+  "noSignalToShow": "No signal to display",
+  "noMessageFound": "No message found",
+  "publishPrice": "Price at publication time",
+  "ownerRequestSuccess": "Your ownership request has been {component} successfully completed.",
+  "withSuccess": "successfully",
+  "doFollowing": "To complete the process, please do the following",
+  "setTelegramDescription": "Put the following phrase in the Description section of your Telegram channel:",
+  "ownerShipWillCheck": "Talano bot will read your channel information within the next 24 hours and ownership transfer will be done automatically.",
+  "presentProfit": "Current Profit",
+  "viewpointSubmitted": "Your feedback has been submitted.",
+  "unboundedAccess": "Unlimited access to the best of cryptocurrency and stock markets",
+  "unit": {
+    "Rial": "Rial",
+    "coin": "Cryptocurrency"
+  },
+  "discount": {
+    "sevenPer": "7% more discount",
+    "discount": "Discount"
+  },
+  "bestSell": "Best Seller",
+  "professionalUse": "Suitable for professional use",
+  "amountToPay": "Amount Payable",
+  "monthly": "Monthly",
+  "pay": "Pay",
+  "insertDiscountCode": "Enter your subscription purchase discount code.",
+  "discountMessages": {
+    "insert": "Enter your code",
+    "isEmpty": "Discount code cannot be empty",
+    "isWrong": "The entered discount code is incorrect"
+  },
+  "codeConfirm": "Confirm Code",
+  "confirm": "Confirmed",
+  "payTransfer": "Transferring to payment gateway",
+  "privacyPageTitle": "Terms and Conditions | Talano",
+  "accountChoose": "Choose your plan",
+  "gift": "Talano Gift",
+  "useAllFree": "Use all Talano features for free",
+  "weekFree": "7 days free",
+  "startNow": "Start now",
+  "services": {
+    "first": "View stock and crypto traders' track records",
+    "second": "Identify and follow traders and create custom feed",
+    "third": "View symbol scores for buy/sell",
+    "fourth": "View suggested value range for each symbol by traders"
+  },
+  "accountServices": {
+    "first": "View symbols selected by top traders",
+    "second": "View trader's suggested basket",
+    "third": "Follow top active traders in social media",
+    "fourth": "Quick notification of traders' latest analysis",
+    "fifth": "View all published analysis about each symbol",
+    "sixth": "Summary of top 100 traders' opinions about each symbol"
+  },
+  "QA": {
+    "n1": {
+      "title": "What is Talano and what does it do?",
+      "text": "Talano analyzes signals from 34,000 stock and cryptocurrency traders every day and introduces you to the top traders in financial markets so you can follow them and have more profitable trades using these people's analysis!"
+    },
+    "n2": {
+      "title": "How can I find top traders with the highest rank?",
+      "text": "Top traders are listed on the relevant page and you can see each trader's rank next to them. Also, if you search for your trader's name on Talano, you can enter that person's dedicated page and see that trader's track record with all details."
+    },
+    "n3": {
+      "title": "How are Talano featured symbols generated?",
+      "text": "Top traders are listed on the relevant page and featured symbols are suggested based on the summary of top traders' signals. These are symbols that top-ranked individuals have issued the most buy signals for in recent days."
+    },
+    "n4": {
+      "title": "Is there a fee to use Talano?",
+      "text": "Part of Talano's services is free for all users. But if you want to use the featured symbols section or want to be informed in time of top traders' latest decisions about your stocks, you need to have Talano subscription."
+    },
+    "n5": {
+      "title": "How can I test Talano product before purchasing subscription?",
+      "text": "Talano has provided a free gift plan for all users so you can test the product before purchasing and if our product is valuable to you, proceed with purchase."
+    },
+    "n6": {
+      "title": "How do I receive the gift plan?",
+      "text": "No extra work is needed to use Talano gift subscription. To use Talano gift, just register on Talano website and we'll activate the Talano gift for you right away."
+    },
+    "n7": {
+      "title": "Is there a difference between bronze, silver and gold plans?",
+      "text": "All Talano plans are similar in terms of features and their only difference is in usage duration. Of course, we've considered special discounts for those who purchase silver and gold plans!"
+    },
+    "n8": {
+      "title": "Can I cancel my membership whenever I want?",
+      "text": "There's no option to cancel membership in Talano mid-plan. But you can change your plan up or down for your future purchases."
+    },
+    "n9": {
+      "title": "Can I use a discount code to join Talano?",
+      "text": "We do have discount codes. If you'd like to use a discount code, contact our support to get a discount code. Just enter the discount code you received from us or anywhere else in the relevant section and"
+    },
+    "n10": {
+    "title": "How do we know when it's time to sell or buy a stock?",
+    "text": "There's usually no exact time to buy and sell a stock. But on the featured symbols page, we try to introduce symbols that top traders are paying attention to so you can select them. We also inform you of stock status changes from buy to sell according to top traders' signals. Note that if you've received suitable profit (for example above 20 percent) from a stock, it's better to cash out part of it."
+    },
+    "n11": {
+    "title": "Can I trust Talano signals?",
+    "text": "Talano generates its signals using algorithms based on collective intelligence and we ourselves use these signals for buying and selling. For more confidence, you can follow Talano signals for a while and after ensuring performance, proceed with buying and selling based on them. It should be noted that these signals are only analysis and the consequences of buying and selling and decisions are your own responsibility."
+    },
+    "n12": {
+    "title": "Does Talano give buy or sell alerts?",
+    "text": "On each stock's page, there's an option to activate the alert system. If you activate the alert system for each stock, you can receive Talano alerts for buying and selling."
+    }
+    },
+    "questionAsk": "Q&A",
+    "addBest": {
+    "asset": {
+    "title": "Add market's best to watchlist:",
+    "text": "Be informed of best symbol analysis."
+    },
+    "trader": {
+    "title": "Follow the best traders:",
+    "text": "Be instantly aware of traders' buy and sell signals."
+    }
+    },
+    "nextStep": "Next Step",
+    "goToFeed": "Go to Watchlist",
+    "analysisMessagesCount": "Number of messages analyzed today",
+    "homeBest": {
+    "first": "Market's best",
+    "second": "cryptocurrency and stock market at",
+    "third": "a glance"
+    },
+    "seeTops": "View Featured",
+    "topTraderIn1000": "Top traders among +1000 traders",
+    "seeAll": "See All",
+    "commonQuestions": "Frequently Asked Questions",
+    "cryptoTop": "Top Cryptocurrencies",
+    "tickerTop": "Top Stocks",
+    "CQA": {
+    "n1": {
+    "title": "What exactly does Talano do?",
+    "text": {
+    "name": "Talano",
+    "first": "1- Ranks social media traders like Telegram, Rahavard, TradingView, etc. and introduces you to the best stock and cryptocurrency market traders.",
+    "second": "2- Instantly notifies you of the best stocks and cryptocurrencies that top traders recommend."
+    }
+    },
+    "n2": {
+    "title": "What is the featured symbols page?",
+    "text": "On the featured symbols page, you can see the best stock and cryptocurrency symbols recommended by top financial market traders."
+    },
+    "n3": {
+    "title": "If I subscribe, what features will be activated for me?",
+    "text": {
+    "first": "1- Unlimited access to featured symbols page",
+    "second": "2- Access to top traders page and full view of traders' signals",
+    "third": "3- Create custom watchlist and receive instant alerts from followed symbols and traders"
+    },
+    "n4": {
+    "title": "What does Talano NOT do?",
+    "text": "Talano has no responsibility for signals that traders give and only collects traders' opinions and doesn't provide additional analysis itself."
+    }
+    }
+    },
+    "homePageSeoTitle": "Talano | Market's best cryptocurrency and stock market at a glance",
+    "homePageDescription": "Analysis of cryptocurrency and stock buy and sell signals using artificial intelligence, introducing the best of stock and cryptocurrency markets for investment, instant notification of Bitcoin buy signals and other cryptocurrencies",
+    "signalsPageTitle": "Today's cryptocurrency and stock signals | Talano",
+    "signalsPageDescription": "Cryptocurrencies and stocks of interest to traders today, buy and sell recommendation signals, Bitcoin signal, buy Bitcoin, Bitcoin analysis, Telegram signal",
+    "publisherPageTitle": "Trader analysis on Talano",
+    "confirmedType": {
+    "confirmed": "Confirmed",
+    "pend": "Pending confirmation",
+    "rejected": "Not confirmed"
+    },
+    "bankType": {
+    "1": "Rial",
+    "2": "Cryptocurrency",
+    "3": "Rial",
+    "4": "Rial"
+    },
+    "planType": {
+    "1": "Gold",
+    "2": "Silver",
+    "3": "Bronze",
+    "4": "Gift",
+    "5": "Gift",
+    "6": "Gift",
+    "43": "Bitcoin Order",
+    "44": "Bitcoin Order",
+    "76": "Bitcoin Order"
+    },
+    "exitAccount": "Logout",
+    "setEmail": "Set Email",
+    "confirmEmail": "Confirm Email",
+    "changeEmail": "Change Email",
+    "remain": "Remaining",
+    "plans": {
+    "activated": "Active Plan",
+    "reserve": "Reserved Plan",
+    "noPlan": "No Plan"
+    },
+    "authorizeFailed": "Authentication Failed",
+    "notifNotActive": "App notification not activated for you",
+    "activeBrowserNotif": "Please enable your browser notification access",
+    "transactionStatus": {
+    "cancel": "Cancelled by user",
+    "success": "Successful",
+    "inProgress": "Processing"
+    },
+    "profileComplete": {
+    "title": "Complete Profile",
+    "text": "To fully use Talano features such as {component}, please complete your profile",
+    "notif": "Alert capability"
+    },
+    "status": "Status",
+    "date": "Date",
+    "plan": "Plan",
+    "port": "Gateway",
+    "trackingCode": "Tracking Code",
+    "setting": "Settings",
+    "activateNotif": "Activate app alert:",
+    "activate": "Activated",
+    "notActivate": "Not activated",
+    "notifButton": {
+    "enable": "Enable",
+    "disable": "Disable",
+    "pend": "Waiting for access"
+    },
+    "notifMessage": "This alert is sent through the browser. So after pressing the enable button, press the Allow button in the browser message. By activating app alert, Talano alerts will appear instantly on your mobile or computer device.",
+    "telegramDescription": "To receive {component}, place the following phrase in the Description section of your Telegram channel",
+    "ownerShip": "Ownership",
+    "transactionHistory": "Transaction History",
+    "descriptions": "Descriptions",
+    "traderPage": "Trader page on Talano",
+    "retrySub": "Renew plan",
+    "retryText": "By renewing the plan, it will be added to your current subscription.",
+    "publish": "Submit Analysis",
+    "new": "New",
+    "traderLoginModal": {
+    "title": "Login/register required to view this trader",
+    "description": "By registering on Talano, use all features free for 7 days.",
+    "button": "Activate 7 days free",
+    "inputLabel": "Quick registration"
+    },
+    "bestTickerPerformance": "Top stock traders performance",
+    "bestCryptoPerformance": "Top cryptocurrency traders performance",
+    "profitSimulate": "If you had traded 6 months ago based on Talano top traders' buy and sell signals, you would have achieved {component} percent return. List of top traders 6 months ago:",
+    "top10SixMonthPer": "Last 6 months return (top traders)",
+    "planNeed": {
+    "following": "Following {component} requires subscription",
+    "noPlan": "You have no active plan",
+    "seeMore": "See more plans"
+    },
+    "priceModal": {
+    "otherAdvantage": "Other subscription purchase benefits",
+    "portfolio": "View traders' portfolio",
+    "lastAnalysis": "Notification of traders' latest analysis",
+    "topAsset": "View featured symbols"
+    },
+    "markets": {
+    "crypto": {
+    "name": "Cryptocurrency",
+    "symbol": "$",
+    "color": "#CA8A04"
+    },
+    "ticker": {
+    "name": "Stock",
+    "symbol": "#",
+    "color": "#10EDC5"
+    },
+    "tse": {
+    "name": "Stock",
+    "symbol": "#",
+    "color": "#10EDC5"
+    }
+    },
+    "productNav": {
+    "bestTraders": "Top Traders",
+    "signals": "Featured Symbols",
+    "notifications": "Alerts",
+    "feeds": "Following"
+    },
+    "aboutUsTitle": "About Us | Talano",
+    "totalInventory": "Total Balance",
+    "toman": "Toman",
+    "countingUnit": {
+    "thousand": "Thousand",
+    "hundred": "Hundred",
+    "million": "Million"
+    },
+    "yourInventory": "Your Balance",
+    "increase": "Increase",
+    "retry": "Please try again",
+    "admin": {
+    "create_contract": "Create Contract",
+    "edit_contract": "Edit Contract",
+    "contract_types": "Contract Types",
+    "last_month_profit": "Last Month Profit",
+    "show_contracts": "Show Contracts",
+    "hide_contracts": "Hide Contracts",
+    "edit": "Edit",
+    "activate": "Activate",
+    "deactivate": "Deactivate",
+    "save": "Save",
+    "cancel": "Cancel",
+    "assign_broker": "Assign to Broker",
+    "add": "Add"
+    }
+    }

@@ -1,11 +1,11 @@
 import React from 'react';
 import { getDictionary } from '@/get-dictionary';
 import { Metadata } from 'next';
-import ContractTypes from '@/app/[lang]/(user)/broker/components/contract-types';
-import GuaranteeTypes from '@/app/[lang]/(user)/broker/components/guarantee-types';
-import MemberList from '@/app/[lang]/(user)/broker/components/member-list';
+import ContractTypes from '@/app/[lang]/(user)/supplier/components/contract-types';
+import GuaranteeTypes from '@/app/[lang]/(user)/supplier/components/guarantee-types';
+import MemberList from '@/app/[lang]/(user)/supplier/components/member-list';
 import { Icons } from '@/components/ui/icons';
-import BrokerGuard from '@/app/[lang]/(user)/broker/components/guard';
+import BrokerGuard from '@/app/[lang]/(user)/supplier/components/guard';
 
 export const metadata: Metadata = {
     title: 'قرارداد ها | طلانو',
@@ -33,7 +33,7 @@ export default async function ContractsPage({ params: { lang } }) {
                                 </div>
                                 <MemberList dict={dict} lang={lang} />
                             </div>
-                            
+
                             <div className="relative flex w-full flex-col gap-6 rounded-md border-gray-400 bg-white px-4 py-6 md:border">
                                 <div className="flex flex-row items-center justify-between">
                                     <div className="flex flex-row gap-[10px]">
