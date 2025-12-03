@@ -31,7 +31,7 @@ export default async function HomePage({ params: { lang } }) {
 
     return (
         <div className="flex w-full flex-col">
-            <section className="w-full bg-gradient-to-b from-neutral-700 px-4 py-12 md:py-32">
+            <section className="w-full bg-white px-4 py-12 md:py-32">
                 <div className="mx-auto w-full max-w-7xl">
                     <Bargain dict={dict} lang={lang} />
                 </div>

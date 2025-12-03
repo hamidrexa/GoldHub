@@ -65,6 +65,11 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
         useGlobalContext();
     const path = usePathname();
 
+    const isAdmin = !!user?.groups?.some((g) => g?.name === 'admin');
+    const isBroker = !!user?.groups?.some((g) => g?.name === 'broker');
+    const roleTitle = isAdmin ? 'مدیریت' : isBroker ? 'بروکر' : 'پروفایل';
+    const roleHref = isAdmin ? '/admin' : isBroker ? '/broker' : '/profile';
+
     const items = [
         {
             key: 'home',
@@ -74,9 +79,9 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
         },
         {
             key: 'home',
-            title: 'معامله',
+            title: 'قرارداد',
             icon: <Icons.fire />,
-            href: '/transaction'
+            href: '/contracts'
         },
         {
             key: 'home',
@@ -85,10 +90,10 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
             href: '/wallet'
         },
         {
-            key: 'home',
-            title: 'خدمات',
+            key: 'role',
+            title: roleTitle,
             icon: <Icons.category />,
-            href: '/services'
+            href: roleHref
         }
     ]
     useGoogleOneTapLogin({

@@ -136,7 +136,7 @@ export function Header({ dict, lang, googleLogin = true }) {
             className={cn(
                 'sticky top-0 z-[60] grid h-16 grid-cols-3 items-center justify-between px-6 text-sm text-black transition-transform md:flex md:h-[90px] md:px-14',
                 path === '/'
-                    ? 'bg-neutral-700 text-white'
+                    ? 'bg-violet-900 text-white'
                     : 'bg-white text-black',
                 isReadingMode
                     ? '-translate-y-full md:translate-y-0'
@@ -164,7 +164,7 @@ export function Header({ dict, lang, googleLogin = true }) {
                                                 : dict.sahmetoUser}{' '}
                                             <Link
                                                 href={`${getLinksLang(lang)}/profile`}
-                                                className="text-neutral-700 underline underline-offset-2"
+                                                className="text-violet-900 underline underline-offset-2"
                                             >
                                                 ({dict.edit})
                                             </Link>
