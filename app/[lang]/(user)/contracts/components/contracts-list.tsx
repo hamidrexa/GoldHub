@@ -73,10 +73,10 @@ export default function ContractsList({ dict, lang }: Props) {
                             <Label>مبلغ (ریال)</Label>
                             <div>{c.amount_rls?.toLocaleString('fa-IR')}</div>
                         </div>
-                        {c.guarantee_type && (
+                        {c.guarantee_type_ids && (
                             <div className="flex items-center justify-between">
                                 <Label>تضامین</Label>
-                                <div>{c.guarantee_type}</div>
+                                <div>{c.guarantee_type_ids}</div>
                             </div>
                         )}
                         <div className="flex items-center justify-between">

@@ -678,7 +678,7 @@ export default function ContractTypes({ dict, lang }: Props) {
                                     {availableGuaranteeTypes.length === 0 ? (
                                         <div className="text-center py-6 text-gray-500 border border-dashed rounded-lg bg-gray-50">
                                             <p className="text-sm">هیچ نوع تضمینی موجود نیست</p>
-                                            <p className="text-xs text-gray-400 mt-1">ابتدا در بخش "مدیریت تضامین" تضمین جدید ایجاد کنید</p>
+                                            <p className="text-xs text-gray-400 mt-1">ابتدا در بخش &quot;مدیریت تضامین&quot; تضمین جدید ایجاد کنید</p>
                                         </div>
                                     ) : (
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -733,7 +733,7 @@ export default function ContractTypes({ dict, lang }: Props) {
                                     {guaranteeTypes.length === 0 ? (
                                         <div className="text-center py-6 text-gray-500 border-2 border-dashed rounded-lg bg-gray-50">
                                             <p className="font-medium">هیچ تضمینی انتخاب نشده است</p>
-                                            <p className="text-xs text-gray-400 mt-1">از بخش "انواع تضامین دسترس پذیر" تضمین انتخاب کنید</p>
+                                            <p className="text-xs text-gray-400 mt-1">از بخش &quot;انواع تضامین دسترس پذیر&quot; تضمین انتخاب کنید</p>
                                         </div>
                                     ) : (
                                         <div className="space-y-3">
