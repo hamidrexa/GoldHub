@@ -9,7 +9,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Icons } from '@/components/ui/icons';
 import { useGlobalContext } from '@/contexts/store';
-import { MenuIcon, Home, User, Settings, LogOut, Wallet, FileText, HelpCircle, Phone, Info, Shield } from 'lucide-react';
+import { MenuIcon, Home, User, Settings, LogOut, Wallet, FileText, HelpCircle, Phone, Info, Shield, Package, DollarSign, ShoppingBag, BarChart3, ShoppingCart, Heart, Store } from 'lucide-react';
 import Cookies from 'js-cookie';
 import { googleLogout } from '@react-oauth/google';
 import { Separator } from '@/components/ui/separator';
@@ -31,7 +31,12 @@ export function Sidebar({ dict, lang }: SidebarProps) {
         googleLogout();
     };
 
-    const navItems = [
+    // Detect role based on current pathname
+    const isSupplier = pathname.includes('/supplier');
+    const isAdmin = pathname.includes('/admin');
+    const isBuyer = pathname.includes('/buyer');
+
+    const adminNavItems = [
         {
             title: 'Dashboard',
             href: `${getLinksLang(lang)}/admin`,
@@ -57,6 +62,68 @@ export function Sidebar({ dict, lang }: SidebarProps) {
             show: true,
         },
     ];
+
+    const supplierNavItems = [
+        {
+            title: 'Dashboard',
+            href: `${getLinksLang(lang)}/supplier/dashboard`,
+            icon: <BarChart3 className="h-5 w-5" />,
+            show: true,
+        },
+        {
+            title: 'My Products',
+            href: `${getLinksLang(lang)}/supplier/products`,
+            icon: <Package className="h-5 w-5" />,
+            show: true,
+        },
+        {
+            title: 'Pricing',
+            href: `${getLinksLang(lang)}/supplier/pricing`,
+            icon: <DollarSign className="h-5 w-5" />,
+            show: true,
+        },
+        {
+            title: 'Orders',
+            href: `${getLinksLang(lang)}/supplier/orders`,
+            icon: <ShoppingBag className="h-5 w-5" />,
+            show: true,
+        },
+    ];
+
+    const buyerNavItems = [
+        {
+            title: 'Dashboard',
+            href: `${getLinksLang(lang)}/buyer`,
+            icon: <Home className="h-5 w-5" />,
+            show: true,
+        },
+        {
+            title: 'Catalog',
+            href: `${getLinksLang(lang)}/buyer/catalog`,
+            icon: <Store className="h-5 w-5" />,
+            show: true,
+        },
+        {
+            title: 'My Orders',
+            href: `${getLinksLang(lang)}/buyer/orders`,
+            icon: <ShoppingBag className="h-5 w-5" />,
+            show: true,
+        },
+        {
+            title: 'Cart',
+            href: `${getLinksLang(lang)}/buyer/cart`,
+            icon: <ShoppingCart className="h-5 w-5" />,
+            show: true,
+        },
+        {
+            title: 'Favorites',
+            href: `${getLinksLang(lang)}/buyer/favorites`,
+            icon: <Heart className="h-5 w-5" />,
+            show: true,
+        },
+    ];
+
+    const navItems = isBuyer ? buyerNavItems : isSupplier ? supplierNavItems : adminNavItems;
 
     const footerLinks = [
         { title: dict.help, href: 'https://help.sahmeto.com', icon: <HelpCircle className="h-4 w-4" /> },
@@ -85,8 +152,8 @@ export function Sidebar({ dict, lang }: SidebarProps) {
                             {user.email || 'robohamid@gmail.com'}
                         </p>
                         <div className="mt-2">
-                            <span className="inline-block px-3 py-1 text-xs font-medium bg-red-500 text-white rounded">
-                                Administrator
+                            <span className={`inline-block px-3 py-1 text-xs font-medium text-white rounded ${isBuyer ? 'bg-blue-500' : isSupplier ? 'bg-yellow-500' : 'bg-red-500'}`}>
+                                {isBuyer ? 'Buyer' : isSupplier ? 'Supplier' : 'Administrator'}
                             </span>
                         </div>
                     </div>

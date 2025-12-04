@@ -1,12 +1,64 @@
 // Mock data for admin dashboard
 
+export type OrderStatus =
+    | 'draft'
+    | 'submitted'
+    | 'pending_supplier'
+    | 'confirmed'
+    | 'in_processing'
+    | 'ready'
+    | 'shipped'
+    | 'delivered'
+    | 'closed'
+    | 'cancelled';
+
 export interface Order {
     id: string;
     buyer: string;
     items: number;
     total: number;
-    status: 'confirmed' | 'shipped' | 'pending_supplier' | 'completed' | 'cancelled';
+    status: OrderStatus;
     date: string;
+}
+
+// Buyer-specific types
+export interface CartItem {
+    productId: string;
+    product: Product;
+    quantity: number;
+    addedAt: string;
+}
+
+export interface OrderTimelineEntry {
+    status: OrderStatus;
+    timestamp: string;
+    notes?: string;
+    completed: boolean;
+}
+
+export interface OrderDetail extends Order {
+    orderItems: {
+        product: Product;
+        quantity: number;
+        priceAtOrder: number;
+        subtotal: number;
+    }[];
+    timeline: OrderTimelineEntry[];
+    shippingAddress?: {
+        street: string;
+        city: string;
+        country: string;
+        postalCode: string;
+    };
+    subtotal: number;
+    tax: number;
+    shipping: number;
+}
+
+export interface WishlistItem {
+    productId: string;
+    product: Product;
+    addedAt: string;
 }
 
 export interface User {
@@ -69,7 +121,7 @@ export const mockOrders: Order[] = [
         buyer: 'Premium Jewelers Inc.',
         items: 3,
         total: 45600,
-        status: 'completed',
+        status: 'closed',
         date: '1/10/2024'
     },
     {
@@ -101,7 +153,7 @@ export const mockOrders: Order[] = [
         buyer: 'Luxury Metals Ltd.',
         items: 8,
         total: 52300,
-        status: 'completed',
+        status: 'closed',
         date: '1/8/2024'
     },
     {
@@ -133,7 +185,7 @@ export const mockOrders: Order[] = [
         buyer: 'Elite Precious Metals',
         items: 20,
         total: 125000,
-        status: 'completed',
+        status: 'closed',
         date: '1/5/2024'
     }
 ];
@@ -182,6 +234,7 @@ export const mockUsers: User[] = [
         role: 'retailer',
         kycStatus: 'not_submitted',
         companyName: 'Royal Gold House',
+        documentsUploaded: false,
         joinedDate: '2024-01-18'
     },
     {
@@ -311,4 +364,151 @@ export const mockDashboardStats: DashboardStats = {
     totalRevenue: 1245000,
     activeUsers: 45,
     pendingKyc: 8
+};
+
+// Supplier-specific data
+
+export interface Product {
+    id: string;
+    name: string;
+    category: 'gold_bar' | 'gold_coin' | 'jewelry' | 'necklace' | 'bracelet' | 'earring' | 'ring';
+    karat: '18K' | '22K' | '24K';
+    weight: number; // grams
+    price: number; // USD
+    stock: number;
+    image?: string; // S3 URL placeholder
+    status: 'active' | 'inactive' | 'draft';
+    createdDate: string;
+    specifications?: string;
+}
+
+export interface SupplierStats {
+    activeProducts: number;
+    pendingOrders: number;
+    revenueMTD: number;
+    avgOrderValue: number;
+    liveGoldPrice: number;
+    goldPriceChange: number; // percentage
+}
+
+export interface PricingConfig {
+    spotPricePerGram: number; // USD per gram
+    markupPercentage: number;
+    automaticPricing: boolean;
+    lastUpdated: string;
+}
+
+export const mockProducts: Product[] = [
+    {
+        id: 'PROD-001',
+        name: '24K Gold Bar 100g',
+        category: 'gold_bar',
+        karat: '24K',
+        weight: 100,
+        price: 7450,
+        stock: 22,
+        status: 'active',
+        createdDate: '2024-01-05',
+        specifications: 'Gold Bar · 24K · 100gram'
+    },
+    {
+        id: 'PROD-002',
+        name: 'Gold Krugerrand 1oz',
+        category: 'gold_coin',
+        karat: '22K',
+        weight: 31.1,
+        price: 2150,
+        stock: 50,
+        status: 'active',
+        createdDate: '2024-01-10',
+        specifications: 'Gold Coin · 22K · 1ounce'
+    },
+    {
+        id: 'PROD-003',
+        name: '18K Diamond Necklace',
+        category: 'necklace',
+        karat: '18K',
+        weight: 45,
+        price: 8900,
+        stock: 10,
+        status: 'active',
+        createdDate: '2024-01-12',
+        specifications: 'Jewelry · 18K · 45gram'
+    },
+    {
+        id: 'PROD-004',
+        name: '22K Gold Bracelet',
+        category: 'bracelet',
+        karat: '22K',
+        weight: 25,
+        price: 1875,
+        stock: 15,
+        status: 'active',
+        createdDate: '2024-01-08',
+        specifications: 'Jewelry · 22K · 25gram'
+    },
+    {
+        id: 'PROD-005',
+        name: '24K Gold Bar 50g',
+        category: 'gold_bar',
+        karat: '24K',
+        weight: 50,
+        price: 3725,
+        stock: 35,
+        status: 'active',
+        createdDate: '2024-01-15',
+        specifications: 'Gold Bar · 24K · 50gram'
+    },
+    {
+        id: 'PROD-006',
+        name: '18K Gold Earrings',
+        category: 'earring',
+        karat: '18K',
+        weight: 8,
+        price: 650,
+        stock: 28,
+        status: 'active',
+        createdDate: '2024-01-18',
+        specifications: 'Jewelry · 18K · 8gram'
+    },
+    {
+        id: 'PROD-007',
+        name: '22K Wedding Ring',
+        category: 'ring',
+        karat: '22K',
+        weight: 12,
+        price: 890,
+        stock: 18,
+        status: 'draft',
+        createdDate: '2024-01-19',
+        specifications: 'Jewelry · 22K · 12gram'
+    },
+    {
+        id: 'PROD-008',
+        name: '24K Gold Coin Set',
+        category: 'gold_coin',
+        karat: '24K',
+        weight: 62.2,
+        price: 4650,
+        stock: 12,
+        status: 'active',
+        createdDate: '2024-01-14',
+        specifications: 'Gold Coin · 24K · 2oz'
+    }
+];
+
+export const mockSupplierStats: SupplierStats = {
+    activeProducts: 7,
+    pendingOrders: 12,
+    revenueMTD: 156000,
+    avgOrderValue: 3250,
+    liveGoldPrice: 74.50, // per gram
+    goldPriceChange: 1.2 // +1.2%
+};
+
+export const mockPricingConfig: PricingConfig = {
+    spotPricePerGram: 74.50,
+    markupPercentage: 8.5,
+    automaticPricing: true,
+    lastUpdated: '2024-01-19 14:30:00'
 };
