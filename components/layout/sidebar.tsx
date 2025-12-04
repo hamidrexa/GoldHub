@@ -133,11 +133,11 @@ export function Sidebar({ dict, lang }: SidebarProps) {
     ];
 
     const SidebarContent = () => (
-        <div className="flex h-full flex-col py-6 bg-[#111827] text-white">
+        <div className="flex h-full flex-col py-6 bg-sidebar-bg text-white">
             {/* Logo and User Profile Section at Top */}
             <div className="px-6 mb-6">
                 <div className="flex items-center gap-2 font-bold text-xl text-white mb-6">
-                    <div className="bg-yellow-500 rounded-lg p-2">
+                    <div className="bg-gold-600 rounded-lg p-2">
                         <Icons.logo className="h-5 w-5 fill-black" />
                     </div>
                     <span>GoldTrade</span>
@@ -152,7 +152,7 @@ export function Sidebar({ dict, lang }: SidebarProps) {
                             {user.email || 'robohamid@gmail.com'}
                         </p>
                         <div className="mt-2">
-                            <span className={`inline-block px-3 py-1 text-xs font-medium text-white rounded ${isBuyer ? 'bg-blue-500' : isSupplier ? 'bg-yellow-500' : 'bg-red-500'}`}>
+                            <span className={`inline-block px-3 py-1 text-xs font-medium text-white rounded ${isBuyer ? 'bg-emerald-500' : isSupplier ? 'bg-gold-600' : 'bg-navy-900'}`}>
                                 {isBuyer ? 'Buyer' : isSupplier ? 'Supplier' : 'Administrator'}
                             </span>
                         </div>
@@ -209,7 +209,7 @@ export function Sidebar({ dict, lang }: SidebarProps) {
     );
 
     return (
-        <aside className="hidden md:flex h-screen w-[280px] flex-col border-l border-gray-800 bg-[#111827] sticky top-0 shadow-xl z-40">
+        <aside className="hidden md:flex h-screen w-[280px] flex-col border-l border-gray-800 bg-sidebar-bg sticky top-0 shadow-xl z-40">
             <SidebarContent />
         </aside>
     );
