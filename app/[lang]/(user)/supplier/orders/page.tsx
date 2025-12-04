@@ -17,7 +17,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-type StatusFilter = 'all' | 'pending_supplier' | 'confirmed' | 'shipped' | 'completed';
+type StatusFilter = 'all' | 'pending_supplier' | 'confirmed' | 'shipped' | 'closed';
 
 export default function SupplierOrdersPage() {
     const [searchQuery, setSearchQuery] = useState('');
@@ -56,7 +56,7 @@ export default function SupplierOrdersPage() {
 
     // Supplier sees orders where they need to take action
     const supplierRelevantOrders = mockOrders.filter(o =>
-        ['pending_supplier', 'confirmed', 'shipped', 'completed'].includes(o.status)
+        ['pending_supplier', 'confirmed', 'shipped', 'closed'].includes(o.status)
     );
 
     const filteredOrders = filterOrders(supplierRelevantOrders);
@@ -67,7 +67,7 @@ export default function SupplierOrdersPage() {
         pending_supplier: supplierRelevantOrders.filter(o => o.status === 'pending_supplier').length,
         confirmed: supplierRelevantOrders.filter(o => o.status === 'confirmed').length,
         shipped: supplierRelevantOrders.filter(o => o.status === 'shipped').length,
-        completed: supplierRelevantOrders.filter(o => o.status === 'completed').length,
+        closed: supplierRelevantOrders.filter(o => o.status === 'closed').length,
     };
 
     return (
@@ -103,8 +103,8 @@ export default function SupplierOrdersPage() {
                     <TabsTrigger value="shipped">
                         Shipped ({statusCounts.shipped})
                     </TabsTrigger>
-                    <TabsTrigger value="completed">
-                        Completed ({statusCounts.completed})
+                    <TabsTrigger value="closed">
+                        Closed ({statusCounts.closed})
                     </TabsTrigger>
                 </TabsList>
 
@@ -116,7 +116,7 @@ export default function SupplierOrdersPage() {
                                     statusFilter === 'pending_supplier' ? 'New Orders' :
                                         statusFilter === 'confirmed' ? 'Processing Orders' :
                                             statusFilter === 'shipped' ? 'Shipped Orders' :
-                                                'Completed Orders'}
+                                                'Closed Orders'}
                             </CardTitle>
                         </CardHeader>
                         <CardContent>

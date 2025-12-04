@@ -33,7 +33,7 @@ export default function OrderDetailPage() {
                 <div className="text-center py-12">
                     <Package className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
                     <h2 className="text-2xl font-bold">Order not found</h2>
-                    <p className="text-muted-foreground mt-2">The order you're looking for doesn't exist</p>
+                    <p className="text-muted-foreground mt-2">The order you are looking for does not exist</p>
                     <Link href={`/${lang}/buyer/orders`}>
                         <Button className="mt-4">Back to Orders</Button>
                     </Link>

@@ -8,7 +8,6 @@ import {
     AccordionTrigger,
 } from '@/components/ui/accordion';
 import React from 'react';
-import { InvestmentCard } from '@/components/investmentCard';
 import { LinkBox } from '@/components/link-box';
 import { Icons } from '@/components/ui/icons';
 
@@ -32,13 +31,6 @@ export default async function HomePage({ params: { lang } }) {
             </section>
             <section className="w-full px-4 py-10 text-neutral-800 ">
 
-                <div className="flex w-full justify-center mt-10">
-                    <InvestmentCard
-                        headerTitle='سرمایه گذاری آسان در طلا'
-                        dict={dict}
-                        lang={lang}
-                    />
-                </div>
                 <div className="mx-auto w-full max-w-7xl mt-10 text-black">
                     <LinkBox
                         target='_blank'

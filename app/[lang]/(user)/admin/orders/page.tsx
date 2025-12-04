@@ -25,7 +25,7 @@ export default function OrdersPage() {
             confirmed: { variant: 'default' as const, label: 'Confirmed', className: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100' },
             shipped: { variant: 'default' as const, label: 'Shipped', className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
             pending_supplier: { variant: 'default' as const, label: 'Pending Supplier', className: 'bg-orange-100 text-orange-800 hover:bg-orange-100' },
-            completed: { variant: 'default' as const, label: 'Completed', className: 'bg-green-100 text-green-800 hover:bg-green-100' },
+            closed: { variant: 'default' as const, label: 'Closed', className: 'bg-green-100 text-green-800 hover:bg-green-100' },
             cancelled: { variant: 'default' as const, label: 'Cancelled', className: 'bg-red-100 text-red-800 hover:bg-red-100' },
         };
         const config = badges[status];
@@ -48,8 +48,8 @@ export default function OrdersPage() {
             filtered = filtered.filter(order => order.status === 'pending_supplier');
         } else if (activeTab === 'active') {
             filtered = filtered.filter(order => order.status === 'confirmed' || order.status === 'shipped');
-        } else if (activeTab === 'completed') {
-            filtered = filtered.filter(order => order.status === 'completed');
+        } else if (activeTab === 'closed') {
+            filtered = filtered.filter(order => order.status === 'closed');
         }
 
         return filtered;
@@ -99,10 +99,10 @@ export default function OrdersPage() {
                         Active ({activeCount})
                     </TabsTrigger>
                     <TabsTrigger
-                        value="completed"
+                        value="closed"
                         className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-4 py-3"
                     >
-                        Completed
+                        Closed
                     </TabsTrigger>
                 </TabsList>
 
