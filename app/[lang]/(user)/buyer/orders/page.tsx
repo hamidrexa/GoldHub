@@ -30,15 +30,15 @@ export default function BuyerOrdersPage() {
 
     const getStatusBadge = (status: OrderStatus) => {
         const badges = {
-            draft: { label: 'Draft', className: 'bg-gray-100 text-gray-800 hover:bg-gray-100' },
-            submitted: { label: 'Submitted', className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
-            pending_supplier: { label: 'Pending Supplier', className: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100' },
-            confirmed: { label: 'Confirmed', className: 'bg-green-100 text-green-800 hover:bg-green-100' },
-            in_processing: { label: 'Processing', className: 'bg-purple-100 text-purple-800 hover:bg-purple-100' },
-            ready: { label: 'Ready', className: 'bg-indigo-100 text-indigo-800 hover:bg-indigo-100' },
-            shipped: { label: 'Shipped', className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
-            delivered: { label: 'Delivered', className: 'bg-green-100 text-green-800 hover:bg-green-100' },
-            closed: { label: 'Closed', className: 'bg-gray-100 text-gray-800 hover:bg-gray-100' },
+            draft: { label: 'Draft', className: 'bg-status-draft-bg text-status-draft-text hover:bg-status-draft-bg' },
+            submitted: { label: 'Submitted', className: 'bg-status-shipped-bg text-status-shipped-text hover:bg-status-shipped-bg' },
+            pending_supplier: { label: 'Pending Supplier', className: 'bg-status-pending-bg text-status-pending-text hover:bg-status-pending-bg' },
+            confirmed: { label: 'Confirmed', className: 'bg-status-confirmed-bg text-status-confirmed-text hover:bg-status-confirmed-bg' },
+            in_processing: { label: 'Processing', className: 'bg-status-shipped-bg text-status-shipped-text hover:bg-status-shipped-bg' },
+            ready: { label: 'Ready', className: 'bg-status-shipped-bg text-status-shipped-text hover:bg-status-shipped-bg' },
+            shipped: { label: 'Shipped', className: 'bg-status-shipped-bg text-status-shipped-text hover:bg-status-shipped-bg' },
+            delivered: { label: 'Delivered', className: 'bg-status-delivered-bg text-status-delivered-text hover:bg-status-delivered-bg' },
+            closed: { label: 'Closed', className: 'bg-status-draft-bg text-status-draft-text hover:bg-status-draft-bg' },
             cancelled: { label: 'Cancelled', className: 'bg-red-100 text-red-800 hover:bg-red-100' },
         };
         const config = badges[status] || badges.draft;
@@ -194,7 +194,7 @@ export default function BuyerOrdersPage() {
                                                     <div className="flex items-center gap-2">
                                                         <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
                                                             <div
-                                                                className="h-full bg-yellow-500 transition-all duration-300"
+                                                                className="h-full bg-gold-600 transition-all duration-300"
                                                                 style={{ width: `${getProgressPercentage(order)}%` }}
                                                             />
                                                         </div>
@@ -208,7 +208,7 @@ export default function BuyerOrdersPage() {
                                             {/* Right Section: Price and Action */}
                                             <div className="text-right space-y-3">
                                                 <div>
-                                                    <p className="text-2xl font-bold text-yellow-600">
+                                                    <p className="text-2xl font-bold text-gold-600">
                                                         ${order.total.toLocaleString()}
                                                     </p>
                                                     <p className="text-sm text-muted-foreground">

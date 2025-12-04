@@ -25,10 +25,10 @@ export default function SupplierOrdersPage() {
 
     const getStatusBadge = (status: Order['status']) => {
         const badges = {
-            pending_supplier: { label: 'New', className: 'bg-orange-100 text-orange-800 hover:bg-orange-100' },
-            confirmed: { label: 'Processing', className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
-            shipped: { label: 'Shipped', className: 'bg-purple-100 text-purple-800 hover:bg-purple-100' },
-            completed: { label: 'Completed', className: 'bg-green-100 text-green-800 hover:bg-green-100' },
+            pending_supplier: { label: 'New', className: 'bg-[#FEF3C7] text-[#92400E] hover:bg-[#FEF3C7]' },
+            confirmed: { label: 'Processing', className: 'bg-[#DBEAFE] text-[#1E40AF] hover:bg-[#DBEAFE]' },
+            shipped: { label: 'Shipped', className: 'bg-[#DBEAFE] text-[#1E40AF] hover:bg-[#DBEAFE]' },
+            completed: { label: 'Completed', className: 'bg-[#D1FAE5] text-[#065F46] hover:bg-[#D1FAE5]' },
             cancelled: { label: 'Cancelled', className: 'bg-red-100 text-red-800 hover:bg-red-100' },
         };
         const config = badges[status] || badges.pending_supplier;

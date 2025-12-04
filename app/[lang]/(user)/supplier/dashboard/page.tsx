@@ -23,32 +23,32 @@ export default function SupplierDashboardPage() {
             value: stats.activeProducts,
             icon: Package,
             description: 'Listed products',
-            color: 'text-blue-600',
-            bgColor: 'bg-blue-50',
+            color: 'text-navy-600',
+            bgColor: 'bg-navy-50',
         },
         {
             title: 'Pending Orders',
             value: stats.pendingOrders,
             icon: ShoppingCart,
             description: 'Awaiting fulfillment',
-            color: 'text-orange-600',
-            bgColor: 'bg-orange-50',
+            color: 'text-gold-600',
+            bgColor: 'bg-gold-50',
         },
         {
             title: 'Revenue MTD',
             value: `$${stats.revenueMTD.toLocaleString()}`,
             icon: DollarSign,
             description: 'Month to date',
-            color: 'text-green-600',
-            bgColor: 'bg-green-50',
+            color: 'text-emerald-600',
+            bgColor: 'bg-emerald-50',
         },
         {
             title: 'Avg. Order Value',
             value: `$${stats.avgOrderValue.toLocaleString()}`,
             icon: TrendingUp,
             description: 'Per transaction',
-            color: 'text-purple-600',
-            bgColor: 'bg-purple-50',
+            color: 'text-navy-500',
+            bgColor: 'bg-navy-50',
         },
     ];
 
@@ -85,7 +85,7 @@ export default function SupplierDashboardPage() {
             </div>
 
             {/* Live Gold Price Card */}
-            <Card className="border-yellow-200 bg-gradient-to-br from-yellow-50 to-orange-50">
+            <Card className="border-gold-200 bg-gradient-to-br from-gold-50 to-gold-100">
                 <CardHeader>
                     <CardTitle className="flex items-center justify-between">
                         <span>Live Gold Price</span>
@@ -103,7 +103,7 @@ export default function SupplierDashboardPage() {
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <div className="text-4xl font-bold text-yellow-700">
+                    <div className="text-4xl font-bold text-gold-700">
                         ${stats.liveGoldPrice.toFixed(2)}
                         <span className="text-base font-normal text-muted-foreground ml-2">/ gram</span>
                     </div>

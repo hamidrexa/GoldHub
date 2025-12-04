@@ -45,10 +45,10 @@ export default function BuyerDashboard() {
 
     const getStatusBadge = (status: string) => {
         const badges: Record<string, { label: string; className: string }> = {
-            pending_supplier: { label: 'Pending Supplier', className: 'bg-yellow-100 text-yellow-800' },
-            confirmed: { label: 'Confirmed', className: 'bg-green-100 text-green-800' },
-            shipped: { label: 'Shipped', className: 'bg-blue-100 text-blue-800' },
-            delivered: { label: 'Delivered', className: 'bg-green-100 text-green-800' },
+            pending_supplier: { label: 'Pending Supplier', className: 'bg-status-pending-bg text-status-pending-text' },
+            confirmed: { label: 'Confirmed', className: 'bg-status-confirmed-bg text-status-confirmed-text' },
+            shipped: { label: 'Shipped', className: 'bg-status-shipped-bg text-status-shipped-text' },
+            delivered: { label: 'Delivered', className: 'bg-status-delivered-bg text-status-delivered-text' },
         };
         const config = badges[status] || { label: status, className: 'bg-gray-100 text-gray-800' };
         return <Badge className={config.className}>{config.label}</Badge>;
@@ -63,7 +63,7 @@ export default function BuyerDashboard() {
                     <p className="text-muted-foreground">Browse the catalog and manage your orders</p>
                 </div>
                 <Link href={`/${lang}/buyer/catalog`}>
-                    <Button className="bg-yellow-500 hover:bg-yellow-600 text-black">
+                    <Button className="bg-gold-600 hover:bg-gold-700 text-black">
                         <ShoppingBag className="h-4 w-4 mr-2" />
                         Browse Catalog
                     </Button>
@@ -79,8 +79,8 @@ export default function BuyerDashboard() {
                                 <p className="text-sm font-medium text-muted-foreground">Active Orders</p>
                                 <p className="text-3xl font-bold mt-2">{activeOrders}</p>
                             </div>
-                            <div className="h-12 w-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                                <ShoppingBag className="h-6 w-6 text-yellow-600" />
+                            <div className="h-12 w-12 bg-gold-100 rounded-full flex items-center justify-center">
+                                <ShoppingBag className="h-6 w-6 text-gold-600" />
                             </div>
                         </div>
                     </CardContent>
