@@ -66,7 +66,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                                 {product.name}
                             </h3>
                             {product.stock < 10 && product.stock > 0 && (
-                                <Badge variant="outline" className="text-xs whitespace-nowrap">
+                                <Badge variant="outline-blue" className="text-xs whitespace-nowrap">
                                     Low Stock
                                 </Badge>
                             )}

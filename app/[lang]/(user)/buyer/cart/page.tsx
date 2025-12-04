@@ -187,7 +187,7 @@ export default function CartPage() {
                                 </div>
 
                                 <Link href={`/${lang}/buyer/orders`}>
-                                    <Button className="w-full" size="lg">
+                                    <Button className="w-full" size="xl">
                                         Proceed to Checkout
                                     </Button>
                                 </Link>

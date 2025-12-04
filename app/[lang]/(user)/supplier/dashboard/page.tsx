@@ -137,7 +137,7 @@ export default function SupplierDashboardPage() {
                                         </div>
                                         <div className="text-right">
                                             <p className="font-medium text-sm">${order.total.toLocaleString()}</p>
-                                            <Badge variant="outline" className="text-xs">
+                                            <Badge variant="outline-blue" className="text-xs">
                                                 {order.status === 'pending_supplier' ? 'Pending' : 'Confirmed'}
                                             </Badge>
                                         </div>
