@@ -19,10 +19,10 @@ export default async function NotFound() {
                 </h1>
                 <div>
                     <h2 className="text-4xl font-bold leading-none">
-                        You're Lost!
+                        You are Lost!
                     </h2>
                     <p className="mt-4 w-full text-xl leading-none">
-                        The page you're looking for was not found!
+                        The page you are looking for was not found!
                     </p>
                 </div>
                 <Link
