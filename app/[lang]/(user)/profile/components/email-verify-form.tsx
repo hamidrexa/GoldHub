@@ -33,10 +33,10 @@ export function EmailVerificationForm({ lang, dict, setStep }: formProp) {
     const formSchema = z.object({
         email: z
             .string({
-                required_error: 'پر کردن این فیلد الزامی است.',
+                required_error: dict.marketplace.profile.emailVerifyForm.requiredError,
             })
             .email({
-                message: 'لطفا فرمت ایمیل را درست وارد کنید.',
+                message: dict.marketplace.profile.emailVerifyForm.formatError,
             }),
     });
     type formValue = z.infer<typeof formSchema>;
@@ -61,7 +61,7 @@ export function EmailVerificationForm({ lang, dict, setStep }: formProp) {
             window.focus();
             // @ts-ignore
             document.activeElement?.blur();
-            toast.info('ایمیل قبلا تایید شده است.');
+            toast.info(dict.marketplace.profile.emailVerifyForm.alreadyConfirmed);
         }
         setLoading(false);
     };
@@ -75,11 +75,11 @@ export function EmailVerificationForm({ lang, dict, setStep }: formProp) {
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>ایمیل</FormLabel>
+                                    <FormLabel>{dict.marketplace.profile.emailVerifyForm.email}</FormLabel>
                                     <FormControl>
                                         <Input
                                             className="w-full"
-                                            placeholder="ایمیل جدید خود را وارد کنید"
+                                            placeholder={dict.marketplace.profile.emailVerifyForm.emailPlaceholder}
                                             {...field}
                                         />
                                     </FormControl>
@@ -89,7 +89,7 @@ export function EmailVerificationForm({ lang, dict, setStep }: formProp) {
                             name="email"
                         />
                         <Button type="submit" className={cn('w-full')}>
-                            {loading ? <Spinner /> : 'تایید ایمیل'}
+                            {loading ? <Spinner /> : dict.marketplace.profile.emailVerifyForm.confirmEmail}
                         </Button>
                     </div>
                 </form>

@@ -11,9 +11,10 @@ import { useParams } from 'next/navigation';
 
 interface ProductCardProps {
     product: Product;
+    dict: any;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, dict }: ProductCardProps) {
     const [isFavorite, setIsFavorite] = useState(false);
     const [isAddingToCart, setIsAddingToCart] = useState(false);
     const params = useParams();
@@ -67,7 +68,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                             </h3>
                             {product.stock < 10 && product.stock > 0 && (
                                 <Badge variant="outline-blue" className="text-xs whitespace-nowrap">
-                                    Low Stock
+                                    {dict.marketplace.buyer.productCard.lowStock}
                                 </Badge>
                             )}
                         </div>
@@ -80,7 +81,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                             <div>
                                 <p className="text-xl font-bold">${product.price.toLocaleString()}</p>
                                 <p className="text-xs text-muted-foreground">
-                                    {product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}
+                                    {product.stock > 0 ? `${product.stock} ${dict.marketplace.buyer.productCard.inStock}` : dict.marketplace.buyer.productCard.outOfStock}
                                 </p>
                             </div>
                         </div>
@@ -94,11 +95,11 @@ export default function ProductCard({ product }: ProductCardProps) {
                         disabled={product.stock === 0 || isAddingToCart}
                     >
                         {isAddingToCart ? (
-                            <>Adding...</>
+                            <>{dict.marketplace.buyer.productCard.adding}</>
                         ) : (
                             <>
                                 <ShoppingCart className="h-4 w-4 mr-2" />
-                                Add to Cart
+                                {dict.marketplace.buyer.productCard.addToCart}
                             </>
                         )}
                     </Button>

@@ -1,10 +1,14 @@
 import { redirect } from 'next/navigation';
 import { Metadata } from 'next';
+import { getDictionary } from '@/get-dictionary';
 
-export const metadata: Metadata = {
-    title: 'Admin Dashboard | GoldTrade',
-    description: 'Gold and jewelry marketplace admin panel',
-};
+export async function generateMetadata({ params: { lang } }): Promise<Metadata> {
+    const dict = await getDictionary(lang);
+    return {
+        title: dict.marketplace.admin.title,
+        description: dict.marketplace.admin.description,
+    };
+}
 
 export default async function AdminPage({ params: { lang } }) {
     // Redirect to dashboard

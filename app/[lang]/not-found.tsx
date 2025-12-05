@@ -7,8 +7,8 @@ import Link from 'next/link';
 import { getLinksLang } from '@/libs/utils';
 
 export default async function NotFound() {
-    const lang = 'fa';
-    const dict = await getDictionary('fa');
+    const lang = 'en';
+    const dict = await getDictionary('en');
 
     return (
         <>
@@ -19,17 +19,17 @@ export default async function NotFound() {
                 </h1>
                 <div>
                     <h2 className="text-4xl font-bold leading-none">
-                        گم شدید!
+                        You're Lost!
                     </h2>
                     <p className="mt-4 w-full text-xl leading-none">
-                        صفحه مورد نظر شما پیدا نشد!
+                        The page you're looking for was not found!
                     </p>
                 </div>
                 <Link
                     href={`${getLinksLang(lang)}/`}
                     className={buttonVariants()}
                 >
-                    بازگشت به صفحه اصلی
+                    Return to Home
                 </Link>
             </div>
             <Footer dict={dict} lang={lang} />

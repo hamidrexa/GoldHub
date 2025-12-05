@@ -56,11 +56,11 @@ export function DataTable<TData, TValue>({
         data: loading ? Array(5).fill({}) : data,
         columns: loading
             ? columns.map((column) => ({
-                  ...column,
-                  cell: () => (
-                      <Skeleton className="h-6 max-w-40 rounded-full" />
-                  ),
-              }))
+                ...column,
+                cell: () => (
+                    <Skeleton className="h-6 max-w-40 rounded-full" />
+                ),
+            }))
             : columns,
         state: {
             sorting,
@@ -104,10 +104,10 @@ export function DataTable<TData, TValue>({
                                         {header.isPlaceholder
                                             ? null
                                             : flexRender(
-                                                  header.column.columnDef
-                                                      .header,
-                                                  header.getContext()
-                                              )}
+                                                header.column.columnDef
+                                                    .header,
+                                                header.getContext()
+                                            )}
                                     </TableHead>
                                 );
                             })}
@@ -140,7 +140,7 @@ export function DataTable<TData, TValue>({
                                                     onClick={
                                                         // @ts-ignore
                                                         row.original[
-                                                            'lockAction'
+                                                        'lockAction'
                                                         ]
                                                     }
                                                     className="absolute bottom-0 left-0 right-0 top-0 flex h-full w-full cursor-pointer flex-col items-center justify-center gap-2 bg-white/20 p-4 text-xs backdrop-blur-lg"
@@ -149,7 +149,7 @@ export function DataTable<TData, TValue>({
                                                         stroke="#0C0E3C"
                                                         strokeWidth={2}
                                                     />
-                                                    نیاز به اشتراک دارد
+                                                    Subscription required
                                                 </div>
                                             )}
                                     </TableCell>
@@ -162,7 +162,7 @@ export function DataTable<TData, TValue>({
                                 colSpan={columns.length}
                                 className="h-24 text-center"
                             >
-                                نتیجه ای یافت نشد.
+                                No results found.
                             </TableCell>
                         </TableRow>
                     )}

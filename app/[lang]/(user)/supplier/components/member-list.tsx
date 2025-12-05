@@ -52,17 +52,17 @@ export default function MemberList({ dict, lang }: Props) {
 
     return (
         <div className="flex w-full flex-col gap-3">
-            {loading && <div className="text-sm text-gray-600">در حال بارگذاری...</div>}
+            {loading && <div className="text-sm text-gray-600">{dict.marketplace.supplier.memberList.loading}</div>}
             {!loading && members.length === 0 && (
-                <div className="text-sm text-gray-600">عضوی ثبت نشده است.</div>
+                <div className="text-sm text-gray-600">{dict.marketplace.supplier.memberList.noMembers}</div>
             )}
             <div className="grid grid-cols-1 gap-3">
                 {members.map((m) => (
                     <div key={m.id} className="flex items-center justify-between rounded-md border border-gray-200 bg-white p-3 text-sm">
-                        
+
                         <div className="flex items-center gap-6">
                             <div className="flex items-center gap-2">
-                                <Label>شناسه</Label>
+                                <Label>{dict.marketplace.supplier.memberList.id}</Label>
                                 <div>{m.id}</div>
                             </div>
                         </div>
@@ -72,5 +72,3 @@ export default function MemberList({ dict, lang }: Props) {
         </div>
     );
 }
-
-

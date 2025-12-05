@@ -44,10 +44,10 @@ export default function ContractTypes({ dict, lang }: Props) {
     const [maxInvestment, setMaxInvestment] = useState('');
     const [minDuration, setMinDuration] = useState('1');
     const [maxDuration, setMaxDuration] = useState('12');
-    
+
     // Broker-added guarantees (selected from existing broker-defined guarantees)
     const [brokerGuarantees, setBrokerGuarantees] = useState<BrokerGuaranteeInput[]>([]);
-    
+
     const [submitting, setSubmitting] = useState(false);
 
     const monthsOptions = useMemo(() => Array.from({ length: 12 }).map((_, i) => `${i + 1}`), []);
@@ -161,7 +161,7 @@ export default function ContractTypes({ dict, lang }: Props) {
         setMaxInvestment(row.max_investment ? String(row.max_investment) : '');
         setMinDuration(row.min_duration_months ? String(row.min_duration_months) : '1');
         setMaxDuration(row.max_duration_months ? String(row.max_duration_months) : '12');
-        
+
         // Load broker-specific guarantees already selected for this contract
         const brokerGuaranteesList = Array.isArray(row.guarantee_type_ids)
             ? row.guarantee_type_ids
@@ -174,7 +174,7 @@ export default function ContractTypes({ dict, lang }: Props) {
                     description: g!.description || ''
                 }))
             : [];
-        
+
         setBrokerGuarantees(brokerGuaranteesList);
         setFormLevel(1);
         setOpen(true);
@@ -183,15 +183,15 @@ export default function ContractTypes({ dict, lang }: Props) {
     const handleSubmit = async () => {
         if (formLevel === 1) {
             if (!minInvestment?.trim() || !maxInvestment?.trim()) {
-                toast.error('حداقل و حداکثر سرمایه‌گذاری الزامی هستند');
+                toast.error(dict.marketplace.supplier.contractTypes.messages.requiredInvestment);
                 return;
             }
             setFormLevel(2);
             return;
         }
 
-        if (!user) return toast.info('ابتدا وارد شوید');
-        if (!editing) return toast.error('خطا در ویرایش');
+        if (!user) return toast.info(dict.marketplace.supplier.contractTypes.messages.loginFirst);
+        if (!editing) return toast.error(dict.marketplace.supplier.contractTypes.messages.editError);
         setSubmitting(true);
         try {
             // Broker guarantees are already defined - just collect their IDs
@@ -217,11 +217,11 @@ export default function ContractTypes({ dict, lang }: Props) {
                     updated_at: new Date().toISOString()
                 })
                 .eq('id', editing.id);
-            
+
             if (error) throw error;
-            toast.success('بروزرسانی شد');
+            toast.success(dict.marketplace.supplier.contractTypes.messages.updated);
             setOpen(false);
-            
+
             // refresh list
             const { data } = await supabase
                 .from('talanow_broker_contract_types_link')
@@ -229,7 +229,7 @@ export default function ContractTypes({ dict, lang }: Props) {
                 .eq('broker_id', user.id);
             setItems((data.map(item => item.talanow_contract_types) || []).flat() as ContractType[]);
         } catch (e: any) {
-            toast.error(e?.message || 'خطا');
+            toast.error(e?.message || dict.marketplace.supplier.contractTypes.messages.error);
         } finally {
             setSubmitting(false);
         }
@@ -238,12 +238,12 @@ export default function ContractTypes({ dict, lang }: Props) {
     return (
         <div className="flex w-full flex-col gap-4">
             <div className="flex items-center justify-between">
-                <div className="text-sm text-[#5A5C83]">قراردادهای اختصاص یافته به شما</div>
+                <div className="text-sm text-[#5A5C83]">{dict.marketplace.supplier.contractTypes.title}</div>
             </div>
 
-            {loading && <div className="text-sm text-gray-600">در حال بارگذاری...</div>}
+            {loading && <div className="text-sm text-gray-600">{dict.marketplace.supplier.contractTypes.loading}</div>}
             {!loading && items.length === 0 && (
-                <div className="text-sm text-gray-600">موردی یافت نشد.</div>
+                <div className="text-sm text-gray-600">{dict.marketplace.supplier.contractTypes.noItems}</div>
             )}
 
             <div className="grid grid-cols-1 gap-3">
@@ -251,7 +251,9 @@ export default function ContractTypes({ dict, lang }: Props) {
                     <div key={it.id} className="flex flex-col gap-4 rounded-md border border-gray-200 bg-white p-4 text-sm">
                         <div className="flex items-center justify-between">
                             <div className="text-base font-semibold">{it.name}</div>
-                            <div className={`rounded-full px-2 py-0.5 text-xs ${it.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>{it.status === 'active' ? 'فعال' : 'غیرفعال'}</div>
+                            <div className={`rounded-full px-2 py-0.5 text-xs ${it.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>
+                                {it.status === 'active' ? dict.marketplace.supplier.contractTypes.status.active : dict.marketplace.supplier.contractTypes.status.inactive}
+                            </div>
                         </div>
 
                         <div className="rounded-md border border-gray-100 bg-gray-50 p-3 leading-6">
@@ -260,40 +262,40 @@ export default function ContractTypes({ dict, lang }: Props) {
 
                         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                             <div className="flex items-center justify-between rounded-md border border-gray-100 p-3">
-                                <Label>حداقل سرمایه‌گذاری</Label>
+                                <Label>{dict.marketplace.supplier.contractTypes.fields.minInvestment}</Label>
                                 <div>{it.min_investment ?? '—'}</div>
                             </div>
                             <div className="flex items-center justify-between rounded-md border border-gray-100 p-3">
-                                <Label>حداکثر سرمایه‌گذاری</Label>
+                                <Label>{dict.marketplace.supplier.contractTypes.fields.maxInvestment}</Label>
                                 <div>{it.max_investment ?? '—'}</div>
                             </div>
                             <div className="flex items-center justify-between rounded-md border border-gray-100 p-3">
-                                <Label>حداقل مدت (ماه)</Label>
+                                <Label>{dict.marketplace.supplier.contractTypes.fields.minDuration}</Label>
                                 <div>{it.min_duration_months}</div>
                             </div>
                             <div className="flex items-center justify-between rounded-md border border-gray-100 p-3">
-                                <Label>حداکثر مدت (ماه)</Label>
+                                <Label>{dict.marketplace.supplier.contractTypes.fields.maxDuration}</Label>
                                 <div>{it.max_duration_months}</div>
                             </div>
                             <div className="md:col-span-2 flex items-center justify-between rounded-md border border-gray-100 p-3">
-                                <Label>انواع تسویه</Label>
+                                <Label>{dict.marketplace.supplier.contractTypes.fields.settlementTypes}</Label>
                                 <div className="text-left">{Array.isArray(it.settlement_type) ? it.settlement_type.join('، ') : '—'}</div>
                             </div>
                             <div className="md:col-span-2 flex items-center justify-between rounded-md border border-gray-100 p-3">
-                                <Label>درصد سود کل</Label>
+                                <Label>{dict.marketplace.supplier.contractTypes.fields.totalProfitShare}</Label>
                                 <div>{it.profit_share ?? '—'}</div>
                             </div>
                         </div>
 
                         <div className="flex flex-col gap-2">
-                            <div className="text-sm font-medium">انواع تضامین</div>
+                            <div className="text-sm font-medium">{dict.marketplace.supplier.contractTypes.fields.guaranteeTypes}</div>
                             <div className="rounded-md border border-gray-200">
                                 <Table>
                                     <TableHeader>
                                         <TableRow>
-                                            <TableHead className="text-right">نام تضمین</TableHead>
-                                            <TableHead className="text-right">درصد سود پیش‌فرض</TableHead>
-                                            <TableHead className="text-right">توضیحات</TableHead>
+                                            <TableHead className="text-right">{dict.marketplace.supplier.contractTypes.fields.guaranteeName}</TableHead>
+                                            <TableHead className="text-right">{dict.marketplace.supplier.contractTypes.fields.defaultProfitShare}</TableHead>
+                                            <TableHead className="text-right">{dict.marketplace.supplier.contractTypes.fields.description}</TableHead>
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
@@ -319,33 +321,33 @@ export default function ContractTypes({ dict, lang }: Props) {
                         </div>
 
                         <div className="flex justify-end gap-2">
-                            <Button variant="outline" onClick={() => openEdit(it)}>ویرایش</Button>
+                            <Button variant="outline" onClick={() => openEdit(it)}>{dict.marketplace.supplier.contractTypes.actions.edit}</Button>
                             {it.status === 'active' ? (
                                 <Button variant="destructive" onClick={async () => {
                                     const { error } = await supabase.from('talanow_contract_types').update({ status: 'inactive', updated_at: new Date().toISOString() }).eq('id', it.id);
-                                    if (error) toast.error('خطا');
+                                    if (error) toast.error(dict.marketplace.supplier.contractTypes.messages.error);
                                     else {
-                                        toast.success('غیرفعال شد');
+                                        toast.success(dict.marketplace.supplier.contractTypes.messages.deactivated);
                                         const { data } = await supabase
                                             .from('talanow_broker_contract_types_link')
                                             .select('talanow_contract_types(*)')
                                             .eq('broker_id', user.id);
                                         setItems((data.map(item => item.talanow_contract_types) || []).flat() as ContractType[]);
                                     }
-                                }}>{dict.admin.deactivate}</Button>
+                                }}>{dict.marketplace.supplier.contractTypes.actions.deactivate}</Button>
                             ) : (
                                 <Button variant="success" onClick={async () => {
                                     const { error } = await supabase.from('talanow_contract_types').update({ status: 'active', updated_at: new Date().toISOString() }).eq('id', it.id);
-                                    if (error) toast.error('خطا');
+                                    if (error) toast.error(dict.marketplace.supplier.contractTypes.messages.error);
                                     else {
-                                        toast.success('فعال شد');
+                                        toast.success(dict.marketplace.supplier.contractTypes.messages.activated);
                                         const { data } = await supabase
                                             .from('talanow_broker_contract_types_link')
                                             .select('talanow_contract_types(*)')
                                             .eq('broker_id', user.id);
                                         setItems((data.map(item => item.talanow_contract_types) || []).flat() as ContractType[]);
                                     }
-                                }}>{dict.admin.activate}</Button>
+                                }}>{dict.marketplace.supplier.contractTypes.actions.activate}</Button>
                             )}
                         </div>
                     </div>
@@ -355,7 +357,7 @@ export default function ContractTypes({ dict, lang }: Props) {
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogContent className="sm:max-w-[600px] h-[calc(100vh-2rem)] flex flex-col max-h-screen">
                     <DialogHeader>
-                        <DialogTitle>ویرایش قرارداد {editing && `: ${editing.name}`}</DialogTitle>
+                        <DialogTitle>{dict.marketplace.supplier.contractTypes.dialog.editTitle} {editing && `: ${editing.name}`}</DialogTitle>
                     </DialogHeader>
 
                     {/* Form Level Tabs */}
@@ -365,14 +367,14 @@ export default function ContractTypes({ dict, lang }: Props) {
                             className={`px-4 py-2 text-sm font-medium ${formLevel === 1 ? 'text-primary border-b-2 border-primary' : 'text-gray-500'}`}
                             onClick={() => setFormLevel(1)}
                         >
-                            اطلاعات پایه
+                            {dict.marketplace.supplier.contractTypes.dialog.tabs.basicInfo}
                         </button>
                         <button
                             type="button"
                             className={`px-4 py-2 text-sm font-medium ${formLevel === 2 ? 'text-primary border-b-2 border-primary' : 'text-gray-500'}`}
                             onClick={() => setFormLevel(2)}
                         >
-                            مدیریت تضامین
+                            {dict.marketplace.supplier.contractTypes.dialog.tabs.guaranteeManagement}
                         </button>
                     </div>
 
@@ -382,35 +384,35 @@ export default function ContractTypes({ dict, lang }: Props) {
                                 {/* Read-only info */}
                                 {editing && (
                                     <div className="rounded-md border border-gray-200 bg-gray-50 p-3 text-sm">
-                                        <div className="mb-2 font-semibold">اطلاعات ثابت:</div>
+                                        <div className="mb-2 font-semibold">{dict.marketplace.supplier.contractTypes.dialog.fixedInfo}</div>
                                         <div className="flex flex-col gap-1 text-xs">
-                                            <div>عنوان: <span className="font-medium">{editing.name}</span></div>
-                                            <div>انواع تسویه: <span className="font-medium">{Array.isArray(editing.settlement_type) ? editing.settlement_type.join('، ') : '—'}</span></div>
+                                            <div>{dict.marketplace.supplier.contractTypes.dialog.title} <span className="font-medium">{editing.name}</span></div>
+                                            <div>{dict.marketplace.supplier.contractTypes.fields.settlementTypes}: <span className="font-medium">{Array.isArray(editing.settlement_type) ? editing.settlement_type.join('، ') : '—'}</span></div>
                                         </div>
                                     </div>
                                 )}
 
                                 {/* Editable fields */}
                                 <div className="flex flex-col gap-2">
-                                    <Label>توضیحات</Label>
-                                    <Input placeholder="توضیحات" value={description} onChange={(e) => setDescription(e.target.value)} />
+                                    <Label>{dict.marketplace.supplier.contractTypes.fields.description}</Label>
+                                    <Input placeholder={dict.marketplace.supplier.contractTypes.fields.description} value={description} onChange={(e) => setDescription(e.target.value)} />
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="flex flex-col gap-2">
-                                        <Label>حداقل سرمایه‌گذاری</Label>
-                                        <Input type="number" placeholder="حداقل" value={minInvestment} onChange={(e) => setMinInvestment(e.target.value)} />
+                                        <Label>{dict.marketplace.supplier.contractTypes.fields.minInvestment}</Label>
+                                        <Input type="number" placeholder={dict.marketplace.supplier.contractTypes.fields.minInvestment} value={minInvestment} onChange={(e) => setMinInvestment(e.target.value)} />
                                     </div>
 
                                     <div className="flex flex-col gap-2">
-                                        <Label>حداکثر سرمایه‌گذاری</Label>
-                                        <Input type="number" placeholder="حداکثر" value={maxInvestment} onChange={(e) => setMaxInvestment(e.target.value)} />
+                                        <Label>{dict.marketplace.supplier.contractTypes.fields.maxInvestment}</Label>
+                                        <Input type="number" placeholder={dict.marketplace.supplier.contractTypes.fields.maxInvestment} value={maxInvestment} onChange={(e) => setMaxInvestment(e.target.value)} />
                                     </div>
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="flex flex-col gap-2">
-                                        <Label>حداقل مدت (ماه)</Label>
+                                        <Label>{dict.marketplace.supplier.contractTypes.fields.minDuration}</Label>
                                         <Select value={minDuration} onValueChange={setMinDuration}>
                                             <SelectTrigger>
                                                 <SelectValue />
@@ -424,7 +426,7 @@ export default function ContractTypes({ dict, lang }: Props) {
                                     </div>
 
                                     <div className="flex flex-col gap-2">
-                                        <Label>حداکثر مدت (ماه)</Label>
+                                        <Label>{dict.marketplace.supplier.contractTypes.fields.maxDuration}</Label>
                                         <Select value={maxDuration} onValueChange={setMaxDuration}>
                                             <SelectTrigger>
                                                 <SelectValue />
@@ -442,7 +444,7 @@ export default function ContractTypes({ dict, lang }: Props) {
                             <div className="space-y-6 py-2">
                                 {/* Admin Guarantees - Read Only */}
                                 <div>
-                                    <div className="text-sm font-semibold mb-3">تضامین اداری (غیرقابل ویرایش)</div>
+                                    <div className="text-sm font-semibold mb-3">{dict.marketplace.supplier.contractTypes.dialog.adminGuarantees}</div>
                                     {adminGuarantees.length > 0 ? (
                                         <div className="space-y-2 bg-gray-50 rounded-lg p-3 border border-gray-200">
                                             {adminGuarantees.map((ag) => (
@@ -457,7 +459,7 @@ export default function ContractTypes({ dict, lang }: Props) {
                                         </div>
                                     ) : (
                                         <div className="text-sm text-gray-500 p-3 bg-gray-50 rounded-lg border border-gray-200">
-                                            هیچ تضمین اداری وجود ندارد
+                                            {dict.marketplace.supplier.contractTypes.dialog.noAdminGuarantees}
                                         </div>
                                     )}
                                 </div>
@@ -465,8 +467,8 @@ export default function ContractTypes({ dict, lang }: Props) {
                                 {/* Broker Guarantees - Selection */}
                                 <div className="space-y-3">
                                     <div>
-                                        <Label className="text-lg font-semibold text-gray-900">تضامین شخصی دسترس پذیر</Label>
-                                        <p className="text-xs text-gray-500 mt-1">برای افزودن تضمین شخصی به قرارداد، روی تضمین مورد نظر کلیک کنید</p>
+                                        <Label className="text-lg font-semibold text-gray-900">{dict.marketplace.supplier.contractTypes.dialog.availablePersonalGuarantees}</Label>
+                                        <p className="text-xs text-gray-500 mt-1">{dict.marketplace.supplier.contractTypes.dialog.clickToAdd}</p>
                                     </div>
 
                                     {/* Get all broker's guarantee types (created in guarantee management) */}
@@ -474,12 +476,12 @@ export default function ContractTypes({ dict, lang }: Props) {
                                         // use broker-specific active guarantees fetched directly from DB
                                         const brokerDefinedGuarantees = brokerAvailableGuarantees;
                                         const alreadyAddedIds = brokerGuarantees.map(bg => bg.id);
-                                        
+
                                         if (brokerDefinedGuarantees.length === 0) {
                                             return (
                                                 <div className="text-center py-6 text-gray-500 border border-dashed rounded-lg bg-gray-50">
-                                                    <p className="text-sm">هیچ تضمین شخصی تعریف نشده‌ای وجود ندارد</p>
-                                                    <p className="text-xs text-gray-400 mt-1">ابتدا در بخش &quot;مدیریت تضامین&quot; تضمین جدید ایجاد کنید</p>
+                                                    <p className="text-sm">{dict.marketplace.supplier.contractTypes.dialog.noPersonalGuaranteesDefined}</p>
+                                                    <p className="text-xs text-gray-400 mt-1">{dict.marketplace.supplier.contractTypes.dialog.createFirst}</p>
                                                 </div>
                                             );
                                         }
@@ -502,16 +504,15 @@ export default function ContractTypes({ dict, lang }: Props) {
                                                                     }]);
                                                                 }
                                                             }}
-                                                            className={`p-3 rounded-lg border-2 transition text-right ${
-                                                                isSelected
+                                                            className={`p-3 rounded-lg border-2 transition text-right ${isSelected
                                                                     ? 'border-green-500 bg-green-50'
                                                                     : 'border-gray-200 bg-white hover:border-blue-300 hover:bg-blue-50'
-                                                            }`}
+                                                                }`}
                                                         >
                                                             <div className="flex items-center justify-between gap-2">
                                                                 <div className="flex-1">
                                                                     <div className="font-medium text-sm text-gray-900">{type.name}</div>
-                                                                    <div className="text-xs text-gray-500 mt-0.5">سود: {type.profit_share}%</div>
+                                                                    <div className="text-xs text-gray-500 mt-0.5">{dict.marketplace.supplier.contractTypes.fields.profit}: {type.profit_share}%</div>
                                                                 </div>
                                                                 {isSelected && (
                                                                     <div className="text-green-600 text-lg">✓</div>
@@ -531,14 +532,14 @@ export default function ContractTypes({ dict, lang }: Props) {
                                 {/* Selected Broker Guarantees Section */}
                                 <div className="space-y-3">
                                     <div>
-                                        <Label className="text-lg font-semibold text-gray-900">تضامین شخصی انتخاب شده</Label>
-                                        <p className="text-xs text-gray-500 mt-1">اطلاعات تضامین شخصی انتخاب شده برای این قرارداد</p>
+                                        <Label className="text-lg font-semibold text-gray-900">{dict.marketplace.supplier.contractTypes.dialog.selectedPersonalGuarantees}</Label>
+                                        <p className="text-xs text-gray-500 mt-1">{dict.marketplace.supplier.contractTypes.dialog.selectedInfo}</p>
                                     </div>
 
                                     {brokerGuarantees.length === 0 ? (
                                         <div className="text-center py-6 text-gray-500 border-2 border-dashed rounded-lg bg-gray-50">
-                                            <p className="font-medium">هیچ تضمین شخصی انتخاب نشده است</p>
-                                            <p className="text-xs text-gray-400 mt-1">از بخش &quot;تضامین شخصی دسترس پذیر&quot; تضمین انتخاب کنید</p>
+                                            <p className="font-medium">{dict.marketplace.supplier.contractTypes.dialog.noSelected}</p>
+                                            <p className="text-xs text-gray-400 mt-1">{dict.marketplace.supplier.contractTypes.dialog.selectFromAvailable}</p>
                                         </div>
                                     ) : (
                                         <div className="space-y-3">
@@ -546,13 +547,13 @@ export default function ContractTypes({ dict, lang }: Props) {
                                                 <div key={index} className="border border-blue-200 rounded-lg p-4 space-y-3 bg-blue-50 hover:shadow-sm transition">
                                                     <div className="flex justify-between items-start gap-4">
                                                         <div className="flex-1">
-                                                            <Label className="text-xs text-gray-600 uppercase tracking-wide">نوع تضمین</Label>
+                                                            <Label className="text-xs text-gray-600 uppercase tracking-wide">{dict.marketplace.supplier.contractTypes.fields.guaranteeType}</Label>
                                                             <div className="mt-1 text-base font-semibold text-gray-900">{bg.name}</div>
                                                         </div>
-                                                        
-                                                        <Button 
-                                                            type="button" 
-                                                            variant="ghost" 
+
+                                                        <Button
+                                                            type="button"
+                                                            variant="ghost"
                                                             size="sm"
                                                             className="text-red-500 hover:text-red-700 hover:bg-red-50"
                                                             onClick={() => {
@@ -562,17 +563,17 @@ export default function ContractTypes({ dict, lang }: Props) {
                                                             <Trash2 className="h-4 w-4" />
                                                         </Button>
                                                     </div>
-                                                    
+
                                                     <div className="space-y-2">
-                                                        <Label className="text-xs text-gray-600">درصد سود</Label>
+                                                        <Label className="text-xs text-gray-600">{dict.marketplace.supplier.contractTypes.fields.profitShare}</Label>
                                                         <div className="px-3 py-2 bg-white rounded border border-gray-200 text-right">
                                                             <span className="text-sm font-medium text-gray-900">{bg.profit_share}%</span>
                                                         </div>
                                                     </div>
-                                                    
+
                                                     {bg.description && (
                                                         <div className="text-xs text-gray-700 bg-white rounded p-3 border border-gray-200">
-                                                            <span className="font-medium block mb-1">توضیحات:</span>
+                                                            <span className="font-medium block mb-1">{dict.marketplace.supplier.contractTypes.fields.description}:</span>
                                                             {bg.description}
                                                         </div>
                                                     )}
@@ -580,10 +581,10 @@ export default function ContractTypes({ dict, lang }: Props) {
                                             ))}
                                         </div>
                                     )}
-                                    
+
                                     {(adminGuarantees.length > 0 || brokerGuarantees.length > 0) && (
                                         <div className="flex justify-between items-center p-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg text-white mt-4 shadow-md">
-                                            <span className="font-medium">جمع درصد سود:</span>
+                                            <span className="font-medium">{dict.marketplace.supplier.contractTypes.dialog.totalProfit}</span>
                                             <span className="text-2xl font-bold">{totalProfitShare.toFixed(1)}%</span>
                                         </div>
                                     )}
@@ -595,14 +596,14 @@ export default function ContractTypes({ dict, lang }: Props) {
                     <DialogFooter className="border-t pt-4">
                         {formLevel === 1 ? (
                             <>
-                                <Button type="button" variant="outline" onClick={() => setOpen(false)}>انصراف</Button>
-                                <Button onClick={() => setFormLevel(2)}>ادامه</Button>
+                                <Button type="button" variant="outline" onClick={() => setOpen(false)}>{dict.marketplace.supplier.contractTypes.actions.cancel}</Button>
+                                <Button onClick={() => setFormLevel(2)}>{dict.marketplace.supplier.contractTypes.actions.continue}</Button>
                             </>
                         ) : (
                             <>
-                                <Button type="button" variant="outline" onClick={() => setFormLevel(1)}>بازگشت</Button>
-                                <Button type="button" variant="outline" onClick={() => setOpen(false)}>انصراف</Button>
-                                <Button disabled={submitting} onClick={handleSubmit}>{submitting ? 'در حال ثبت...' : 'ذخیره'}</Button>
+                                <Button type="button" variant="outline" onClick={() => setFormLevel(1)}>{dict.marketplace.supplier.contractTypes.actions.back}</Button>
+                                <Button type="button" variant="outline" onClick={() => setOpen(false)}>{dict.marketplace.supplier.contractTypes.actions.cancel}</Button>
+                                <Button disabled={submitting} onClick={handleSubmit}>{submitting ? dict.marketplace.supplier.contractTypes.actions.saving : dict.marketplace.supplier.contractTypes.actions.save}</Button>
                             </>
                         )}
                     </DialogFooter>
@@ -611,5 +612,3 @@ export default function ContractTypes({ dict, lang }: Props) {
         </div>
     );
 }
-
-

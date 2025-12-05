@@ -620,86 +620,86 @@
       "text": "We do have discount codes. If you'd like to use a discount code, contact our support to get a discount code. Just enter the discount code you received from us or anywhere else in the relevant section and"
     },
     "n10": {
-    "title": "How do we know when it's time to sell or buy a stock?",
-    "text": "There's usually no exact time to buy and sell a stock. But on the featured symbols page, we try to introduce symbols that top traders are paying attention to so you can select them. We also inform you of stock status changes from buy to sell according to top traders' signals. Note that if you've received suitable profit (for example above 20 percent) from a stock, it's better to cash out part of it."
+      "title": "How do we know when it's time to sell or buy a stock?",
+      "text": "There's usually no exact time to buy and sell a stock. But on the featured symbols page, we try to introduce symbols that top traders are paying attention to so you can select them. We also inform you of stock status changes from buy to sell according to top traders' signals. Note that if you've received suitable profit (for example above 20 percent) from a stock, it's better to cash out part of it."
     },
     "n11": {
-    "title": "Can I trust Talano signals?",
-    "text": "Talano generates its signals using algorithms based on collective intelligence and we ourselves use these signals for buying and selling. For more confidence, you can follow Talano signals for a while and after ensuring performance, proceed with buying and selling based on them. It should be noted that these signals are only analysis and the consequences of buying and selling and decisions are your own responsibility."
+      "title": "Can I trust Talano signals?",
+      "text": "Talano generates its signals using algorithms based on collective intelligence and we ourselves use these signals for buying and selling. For more confidence, you can follow Talano signals for a while and after ensuring performance, proceed with buying and selling based on them. It should be noted that these signals are only analysis and the consequences of buying and selling and decisions are your own responsibility."
     },
     "n12": {
-    "title": "Does Talano give buy or sell alerts?",
-    "text": "On each stock's page, there's an option to activate the alert system. If you activate the alert system for each stock, you can receive Talano alerts for buying and selling."
+      "title": "Does Talano give buy or sell alerts?",
+      "text": "On each stock's page, there's an option to activate the alert system. If you activate the alert system for each stock, you can receive Talano alerts for buying and selling."
     }
-    },
-    "questionAsk": "Q&A",
-    "addBest": {
+  },
+  "questionAsk": "Q&A",
+  "addBest": {
     "asset": {
-    "title": "Add market's best to watchlist:",
-    "text": "Be informed of best symbol analysis."
+      "title": "Add market's best to watchlist:",
+      "text": "Be informed of best symbol analysis."
     },
     "trader": {
-    "title": "Follow the best traders:",
-    "text": "Be instantly aware of traders' buy and sell signals."
+      "title": "Follow the best traders:",
+      "text": "Be instantly aware of traders' buy and sell signals."
     }
-    },
-    "nextStep": "Next Step",
-    "goToFeed": "Go to Watchlist",
-    "analysisMessagesCount": "Number of messages analyzed today",
-    "homeBest": {
+  },
+  "nextStep": "Next Step",
+  "goToFeed": "Go to Watchlist",
+  "analysisMessagesCount": "Number of messages analyzed today",
+  "homeBest": {
     "first": "Market's best",
     "second": "cryptocurrency and stock market at",
     "third": "a glance"
-    },
-    "seeTops": "View Featured",
-    "topTraderIn1000": "Top traders among +1000 traders",
-    "seeAll": "See All",
-    "commonQuestions": "Frequently Asked Questions",
-    "cryptoTop": "Top Cryptocurrencies",
-    "tickerTop": "Top Stocks",
-    "CQA": {
+  },
+  "seeTops": "View Featured",
+  "topTraderIn1000": "Top traders among +1000 traders",
+  "seeAll": "See All",
+  "commonQuestions": "Frequently Asked Questions",
+  "cryptoTop": "Top Cryptocurrencies",
+  "tickerTop": "Top Stocks",
+  "CQA": {
     "n1": {
-    "title": "What exactly does Talano do?",
-    "text": {
-    "name": "Talano",
-    "first": "1- Ranks social media traders like Telegram, Rahavard, TradingView, etc. and introduces you to the best stock and cryptocurrency market traders.",
-    "second": "2- Instantly notifies you of the best stocks and cryptocurrencies that top traders recommend."
-    }
+      "title": "What exactly does Talano do?",
+      "text": {
+        "name": "Talano",
+        "first": "1- Ranks social media traders like Telegram, Rahavard, TradingView, etc. and introduces you to the best stock and cryptocurrency market traders.",
+        "second": "2- Instantly notifies you of the best stocks and cryptocurrencies that top traders recommend."
+      }
     },
     "n2": {
-    "title": "What is the featured symbols page?",
-    "text": "On the featured symbols page, you can see the best stock and cryptocurrency symbols recommended by top financial market traders."
+      "title": "What is the featured symbols page?",
+      "text": "On the featured symbols page, you can see the best stock and cryptocurrency symbols recommended by top financial market traders."
     },
     "n3": {
-    "title": "If I subscribe, what features will be activated for me?",
-    "text": {
-    "first": "1- Unlimited access to featured symbols page",
-    "second": "2- Access to top traders page and full view of traders' signals",
-    "third": "3- Create custom watchlist and receive instant alerts from followed symbols and traders"
-    },
-    "n4": {
-    "title": "What does Talano NOT do?",
-    "text": "Talano has no responsibility for signals that traders give and only collects traders' opinions and doesn't provide additional analysis itself."
+      "title": "If I subscribe, what features will be activated for me?",
+      "text": {
+        "first": "1- Unlimited access to featured symbols page",
+        "second": "2- Access to top traders page and full view of traders' signals",
+        "third": "3- Create custom watchlist and receive instant alerts from followed symbols and traders"
+      },
+      "n4": {
+        "title": "What does Talano NOT do?",
+        "text": "Talano has no responsibility for signals that traders give and only collects traders' opinions and doesn't provide additional analysis itself."
+      }
     }
-    }
-    },
-    "homePageSeoTitle": "Talano | Market's best cryptocurrency and stock market at a glance",
-    "homePageDescription": "Analysis of cryptocurrency and stock buy and sell signals using artificial intelligence, introducing the best of stock and cryptocurrency markets for investment, instant notification of Bitcoin buy signals and other cryptocurrencies",
-    "signalsPageTitle": "Today's cryptocurrency and stock signals | Talano",
-    "signalsPageDescription": "Cryptocurrencies and stocks of interest to traders today, buy and sell recommendation signals, Bitcoin signal, buy Bitcoin, Bitcoin analysis, Telegram signal",
-    "publisherPageTitle": "Trader analysis on Talano",
-    "confirmedType": {
+  },
+  "homePageSeoTitle": "Talano | Market's best cryptocurrency and stock market at a glance",
+  "homePageDescription": "Analysis of cryptocurrency and stock buy and sell signals using artificial intelligence, introducing the best of stock and cryptocurrency markets for investment, instant notification of Bitcoin buy signals and other cryptocurrencies",
+  "signalsPageTitle": "Today's cryptocurrency and stock signals | Talano",
+  "signalsPageDescription": "Cryptocurrencies and stocks of interest to traders today, buy and sell recommendation signals, Bitcoin signal, buy Bitcoin, Bitcoin analysis, Telegram signal",
+  "publisherPageTitle": "Trader analysis on Talano",
+  "confirmedType": {
     "confirmed": "Confirmed",
     "pend": "Pending confirmation",
     "rejected": "Not confirmed"
-    },
-    "bankType": {
+  },
+  "bankType": {
     "1": "Rial",
     "2": "Cryptocurrency",
     "3": "Rial",
     "4": "Rial"
-    },
-    "planType": {
+  },
+  "planType": {
     "1": "Gold",
     "2": "Silver",
     "3": "Bronze",
@@ -709,110 +709,110 @@
     "43": "Bitcoin Order",
     "44": "Bitcoin Order",
     "76": "Bitcoin Order"
-    },
-    "exitAccount": "Logout",
-    "setEmail": "Set Email",
-    "confirmEmail": "Confirm Email",
-    "changeEmail": "Change Email",
-    "remain": "Remaining",
-    "plans": {
+  },
+  "exitAccount": "Logout",
+  "setEmail": "Set Email",
+  "confirmEmail": "Confirm Email",
+  "changeEmail": "Change Email",
+  "remain": "Remaining",
+  "plans": {
     "activated": "Active Plan",
     "reserve": "Reserved Plan",
     "noPlan": "No Plan"
-    },
-    "authorizeFailed": "Authentication Failed",
-    "notifNotActive": "App notification not activated for you",
-    "activeBrowserNotif": "Please enable your browser notification access",
-    "transactionStatus": {
+  },
+  "authorizeFailed": "Authentication Failed",
+  "notifNotActive": "App notification not activated for you",
+  "activeBrowserNotif": "Please enable your browser notification access",
+  "transactionStatus": {
     "cancel": "Cancelled by user",
     "success": "Successful",
     "inProgress": "Processing"
-    },
-    "profileComplete": {
+  },
+  "profileComplete": {
     "title": "Complete Profile",
     "text": "To fully use Talano features such as {component}, please complete your profile",
     "notif": "Alert capability"
-    },
-    "status": "Status",
-    "date": "Date",
-    "plan": "Plan",
-    "port": "Gateway",
-    "trackingCode": "Tracking Code",
-    "setting": "Settings",
-    "activateNotif": "Activate app alert:",
-    "activate": "Activated",
-    "notActivate": "Not activated",
-    "notifButton": {
+  },
+  "status": "Status",
+  "date": "Date",
+  "plan": "Plan",
+  "port": "Gateway",
+  "trackingCode": "Tracking Code",
+  "setting": "Settings",
+  "activateNotif": "Activate app alert:",
+  "activate": "Activated",
+  "notActivate": "Not activated",
+  "notifButton": {
     "enable": "Enable",
     "disable": "Disable",
     "pend": "Waiting for access"
-    },
-    "notifMessage": "This alert is sent through the browser. So after pressing the enable button, press the Allow button in the browser message. By activating app alert, Talano alerts will appear instantly on your mobile or computer device.",
-    "telegramDescription": "To receive {component}, place the following phrase in the Description section of your Telegram channel",
-    "ownerShip": "Ownership",
-    "transactionHistory": "Transaction History",
-    "descriptions": "Descriptions",
-    "traderPage": "Trader page on Talano",
-    "retrySub": "Renew plan",
-    "retryText": "By renewing the plan, it will be added to your current subscription.",
-    "publish": "Submit Analysis",
-    "new": "New",
-    "traderLoginModal": {
+  },
+  "notifMessage": "This alert is sent through the browser. So after pressing the enable button, press the Allow button in the browser message. By activating app alert, Talano alerts will appear instantly on your mobile or computer device.",
+  "telegramDescription": "To receive {component}, place the following phrase in the Description section of your Telegram channel",
+  "ownerShip": "Ownership",
+  "transactionHistory": "Transaction History",
+  "descriptions": "Descriptions",
+  "traderPage": "Trader page on Talano",
+  "retrySub": "Renew plan",
+  "retryText": "By renewing the plan, it will be added to your current subscription.",
+  "publish": "Submit Analysis",
+  "new": "New",
+  "traderLoginModal": {
     "title": "Login/register required to view this trader",
     "description": "By registering on Talano, use all features free for 7 days.",
     "button": "Activate 7 days free",
     "inputLabel": "Quick registration"
-    },
-    "bestTickerPerformance": "Top stock traders performance",
-    "bestCryptoPerformance": "Top cryptocurrency traders performance",
-    "profitSimulate": "If you had traded 6 months ago based on Talano top traders' buy and sell signals, you would have achieved {component} percent return. List of top traders 6 months ago:",
-    "top10SixMonthPer": "Last 6 months return (top traders)",
-    "planNeed": {
+  },
+  "bestTickerPerformance": "Top stock traders performance",
+  "bestCryptoPerformance": "Top cryptocurrency traders performance",
+  "profitSimulate": "If you had traded 6 months ago based on Talano top traders' buy and sell signals, you would have achieved {component} percent return. List of top traders 6 months ago:",
+  "top10SixMonthPer": "Last 6 months return (top traders)",
+  "planNeed": {
     "following": "Following {component} requires subscription",
     "noPlan": "You have no active plan",
     "seeMore": "See more plans"
-    },
-    "priceModal": {
+  },
+  "priceModal": {
     "otherAdvantage": "Other subscription purchase benefits",
     "portfolio": "View traders' portfolio",
     "lastAnalysis": "Notification of traders' latest analysis",
     "topAsset": "View featured symbols"
-    },
-    "markets": {
+  },
+  "markets": {
     "crypto": {
-    "name": "Cryptocurrency",
-    "symbol": "$",
-    "color": "#CA8A04"
+      "name": "Cryptocurrency",
+      "symbol": "$",
+      "color": "#CA8A04"
     },
     "ticker": {
-    "name": "Stock",
-    "symbol": "#",
-    "color": "#10EDC5"
+      "name": "Stock",
+      "symbol": "#",
+      "color": "#10EDC5"
     },
     "tse": {
-    "name": "Stock",
-    "symbol": "#",
-    "color": "#10EDC5"
+      "name": "Stock",
+      "symbol": "#",
+      "color": "#10EDC5"
     }
-    },
-    "productNav": {
+  },
+  "productNav": {
     "bestTraders": "Top Traders",
     "signals": "Featured Symbols",
     "notifications": "Alerts",
     "feeds": "Following"
-    },
-    "aboutUsTitle": "About Us | Talano",
-    "totalInventory": "Total Balance",
-    "toman": "Toman",
-    "countingUnit": {
+  },
+  "aboutUsTitle": "About Us | Talano",
+  "totalInventory": "Total Balance",
+  "toman": "Toman",
+  "countingUnit": {
     "thousand": "Thousand",
     "hundred": "Hundred",
     "million": "Million"
-    },
-    "yourInventory": "Your Balance",
-    "increase": "Increase",
-    "retry": "Please try again",
-    "admin": {
+  },
+  "yourInventory": "Your Balance",
+  "increase": "Increase",
+  "retry": "Please try again",
+  "admin": {
     "create_contract": "Create Contract",
     "edit_contract": "Edit Contract",
     "contract_types": "Contract Types",
@@ -826,5 +826,795 @@
     "cancel": "Cancel",
     "assign_broker": "Assign to Broker",
     "add": "Add"
+  },
+  "marketplace": {
+    "common": {
+      "dashboard": "Dashboard",
+      "viewAll": "View All",
+      "viewMore": "View More",
+      "edit": "Edit",
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "add": "Add",
+      "create": "Create",
+      "update": "Update",
+      "search": "Search",
+      "filter": "Filter",
+      "reset": "Reset",
+      "actions": "Actions",
+      "status": "Status",
+      "date": "Date",
+      "total": "Total",
+      "amount": "Amount",
+      "price": "Price",
+      "quantity": "Quantity",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "loading": "Loading...",
+      "noResults": "No results found",
+      "noData": "No data available",
+      "confirm": "Confirm",
+      "close": "Close",
+      "back": "Back",
+      "next": "Next",
+      "previous": "Previous",
+      "submit": "Submit",
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "shipped": "Shipped",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled",
+      "active": "Active",
+      "inactive": "Inactive",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "inStock": "In Stock",
+      "outOfStock": "Out of Stock",
+      "perGram": "/ gram",
+      "gram": "g",
+      "hoursAgo": "hours ago",
+      "daysAgo": "days ago",
+      "ordersWaiting": "orders waiting",
+      "applicationsPending": "applications pending",
+      "activeUsers": "active users"
+    },
+    "admin": {
+      "title": "Admin Dashboard",
+      "description": "Gold and jewelry marketplace admin panel",
+      "welcomeMessage": "Welcome back! Here is an overview of your marketplace",
+      "totalOrders": "Total Orders",
+      "allTimeOrders": "All time orders",
+      "pendingOrders": "Pending Orders",
+      "awaitingAction": "Awaiting action",
+      "totalRevenue": "Total Revenue",
+      "thisMonth": "This month",
+      "activeUsers": "Active Users",
+      "registeredUsers": "Registered users",
+      "pendingKyc": "Pending KYC",
+      "requiresReview": "Requires review",
+      "recentActivity": "Recent Activity",
+      "newOrderReceived": "New order received",
+      "orderFrom": "Order #ORD-003 from Eastern Gold Ltd.",
+      "kycSubmitted": "KYC submitted",
+      "kycSubmittedDesc": "Sarah Chen submitted KYC documents",
+      "paymentReceived": "Payment received",
+      "paymentReceivedDesc": ",300 from Order #ORD-008",
+      "newUserRegistered": "New user registered",
+      "newUserRegisteredDesc": "Emma Wilson joined as retailer",
+      "quickActions": "Quick Actions",
+      "reviewPendingOrders": "Review Pending Orders",
+      "reviewKycRequests": "Review KYC Requests",
+      "viewAuditLogs": "View Audit Logs",
+      "monitorSystemActivity": "Monitor system activity",
+      "manageUsers": "Manage Users",
+      "usersKyc": "Users & KYC",
+      "auditLogs": "Audit Logs",
+      "allOrders": "All Orders",
+      "usersKycPage": {
+        "title": "Users & KYC",
+        "description": "Manage user accounts and KYC verification",
+        "searchPlaceholder": "Search users...",
+        "tabs": {
+          "all": "All Users",
+          "pending": "Pending KYC",
+          "approved": "Approved"
+        },
+        "table": {
+          "name": "Name",
+          "email": "Email",
+          "company": "Company",
+          "role": "Role",
+          "kycStatus": "KYC Status",
+          "joined": "Joined",
+          "actions": "Actions",
+          "submitted": "Submitted",
+          "approved": "Approved"
+        },
+        "status": {
+          "approved": "Approved",
+          "pendingReview": "Pending Review",
+          "rejected": "Rejected",
+          "notSubmitted": "Not Submitted"
+        },
+        "dialog": {
+          "title": "KYC Details",
+          "description": "Review KYC information for",
+          "companyInfo": "Company Information",
+          "companyName": "Company Name",
+          "notProvided": "Not provided",
+          "bankingInfo": "Banking Information",
+          "iban": "IBAN",
+          "swift": "SWIFT Code",
+          "documents": "Documents",
+          "businessRegistration": "Business Registration",
+          "uploadedOn": "Uploaded on",
+          "idVerification": "ID Verification",
+          "view": "View",
+          "noDocuments": "No documents uploaded",
+          "status": "Status",
+          "currentStatus": "Current Status",
+          "approve": "Approve",
+          "reject": "Reject"
+        }
+      },
+      "ordersPage": {
+        "title": "Orders",
+        "description": "Manage incoming orders from buyers",
+        "searchPlaceholder": "Search orders...",
+        "tabs": {
+          "all": "All Orders",
+          "pending": "Pending Action",
+          "active": "Active",
+          "closed": "Closed"
+        },
+        "table": {
+          "orderId": "Order ID",
+          "buyer": "Buyer",
+          "items": "Items",
+          "total": "Total",
+          "status": "Status",
+          "date": "Date",
+          "actions": "Actions",
+          "noOrders": "No orders found",
+          "itemsSuffix": "items"
+        },
+        "status": {
+          "confirmed": "Confirmed",
+          "shipped": "Shipped",
+          "pendingSupplier": "Pending Supplier",
+          "closed": "Closed",
+          "cancelled": "Cancelled"
+        }
+      },
+      "auditLogsPage": {
+        "title": "Audit Logs",
+        "description": "Monitor system activity and user events",
+        "searchPlaceholder": "Search logs by user, IP, or device...",
+        "tabs": {
+          "all": "All Events",
+          "login": "Login/Logout",
+          "kyc": "KYC Events",
+          "orders": "Orders"
+        },
+        "table": {
+          "timestamp": "Timestamp",
+          "user": "User",
+          "event": "Event",
+          "ipAddress": "IP Address",
+          "device": "Device / Browser",
+          "noLogs": "No logs found"
+        },
+        "stats": {
+          "totalEvents": "Total Events (24h)",
+          "loginEvents": "Login Events",
+          "kycEvents": "KYC Events"
+        },
+        "events": {
+          "login": "Login",
+          "logout": "Logout",
+          "orderCreated": "Order Created",
+          "kycSubmitted": "KYC Submitted",
+          "kycApproved": "KYC Approved",
+          "kycRejected": "KYC Rejected"
+        }
+      }
+    },
+    "buyer": {
+      "title": "Buyer Dashboard",
+      "welcomeBack": "Welcome back!",
+      "browseDescription": "Browse the catalog and manage your orders",
+      "browseCatalog": "Browse Catalog",
+      "activeOrders": "Active Orders",
+      "totalSpent": "Total Spent",
+      "pendingDeliveries": "Pending Deliveries",
+      "savedItems": "Saved Items",
+      "marketPrices": "Market Prices",
+      "recentOrders": "Recent Orders",
+      "featuredProducts": "Featured Products",
+      "viewCatalog": "View catalog",
+      "pendingSupplier": "Pending Supplier",
+      "productCatalog": "Product Catalog",
+      "myOrders": "My Orders",
+      "myCart": "My Cart",
+      "myFavorites": "My Favorites",
+      "addToCart": "Add to Cart",
+      "removeFromCart": "Remove from Cart",
+      "checkout": "Checkout",
+      "orderDetails": "Order Details",
+      "orderTimeline": "Order Timeline",
+      "orderPlaced": "Order Placed",
+      "orderConfirmed": "Order Confirmed",
+      "orderShipped": "Order Shipped",
+      "orderDelivered": "Order Delivered",
+      "trackOrder": "Track Order",
+      "contactSupplier": "Contact Supplier",
+      "emptyCart": "Your cart is empty",
+      "noFavorites": "No favorites yet",
+      "continueShopping": "Continue Shopping",
+      "catalogPage": {
+        "title": "Product Catalog",
+        "description": "Browse gold, silver, and jewelry from verified suppliers",
+        "filters": {
+          "title": "Filters",
+          "clearAll": "Clear All",
+          "search": "Search",
+          "searchPlaceholder": "Search products...",
+          "category": "Category",
+          "karat": "Karat",
+          "allKarats": "All Karats",
+          "priceRange": "Price Range (USD)",
+          "weightRange": "Weight (grams)",
+          "apply": "Apply Filters",
+          "show": "Show Filters",
+          "hide": "Hide Filters"
+        },
+        "toolbar": {
+          "showing": "Showing",
+          "products": "products",
+          "sortBy": "Sort by:",
+          "sortOptions": {
+            "recommended": "Recommended",
+            "priceLow": "Price: Low to High",
+            "priceHigh": "Price: High to Low",
+            "newest": "Newest"
+          }
+        },
+        "noResults": {
+          "title": "No products found",
+          "description": "Try adjusting your filters"
+        },
+        "categories": {
+          "goldBar": "Gold Bars",
+          "goldCoin": "Gold Coins",
+          "jewelry": "Jewelry",
+          "necklace": "Necklaces",
+          "bracelet": "Bracelets",
+          "earring": "Earrings",
+          "ring": "Rings"
+        }
+      },
+      "productCard": {
+        "lowStock": "Low Stock",
+        "inStock": "in stock",
+        "outOfStock": "Out of stock",
+        "adding": "Adding...",
+        "addToCart": "Add to Cart"
+      },
+      "ordersPage": {
+        "title": "My Orders",
+        "description": "Track and manage your orders",
+        "searchPlaceholder": "Search by order ID or supplier...",
+        "tabs": {
+          "all": "All Orders",
+          "active": "Active",
+          "completed": "Completed"
+        },
+        "noOrders": "No orders found",
+        "table": {
+          "orderId": "Order ID",
+          "date": "Date",
+          "items": "Items",
+          "total": "Total",
+          "status": "Status",
+          "actions": "Actions"
+        },
+        "card": {
+          "supplier": "Supplier:",
+          "created": "Created:",
+          "itemsSuffix": "items",
+          "viewDetails": "View Details"
+        },
+        "status": {
+          "draft": "Draft",
+          "submitted": "Submitted",
+          "pendingSupplier": "Pending Supplier",
+          "confirmed": "Confirmed",
+          "processing": "Processing",
+          "inProcessing": "In Processing",
+          "ready": "Ready",
+          "shipped": "Shipped",
+          "delivered": "Delivered",
+          "closed": "Closed",
+          "cancelled": "Cancelled"
+        }
+      },
+      "orderDetailModal": {
+        "title": "Order",
+        "timeline": "Order Timeline",
+        "current": "Current",
+        "supplier": "Supplier",
+        "supplierId": "ID:",
+        "summary": "Order Summary",
+        "total": "Total:",
+        "created": "Created:",
+        "items": "Order Items",
+        "qty": "Qty:"
+      },
+      "orderDetailPage": {
+        "notFound": {
+          "title": "Order not found",
+          "description": "The order you are looking for does not exist",
+          "backToOrders": "Back to Orders"
+        },
+        "backToOrders": "Back to Orders",
+        "placedOn": "Placed on",
+        "orderStatus": "Order Status",
+        "orderItems": "Order Items",
+        "table": {
+          "product": "Product",
+          "specifications": "Specifications",
+          "quantity": "Quantity",
+          "price": "Price",
+          "subtotal": "Subtotal"
+        },
+        "summary": {
+          "subtotal": "Subtotal",
+          "tax": "Tax",
+          "shipping": "Shipping",
+          "total": "Total"
+        },
+        "shippingAddress": "Shipping Address",
+        "actions": {
+          "cancelOrder": "Cancel Order",
+          "contactSupplier": "Contact Supplier",
+          "downloadInvoice": "Download Invoice"
+        }
+      },
+      "cartPage": {
+        "title": "Shopping Cart",
+        "itemsInCart": "items in your cart",
+        "continueShopping": "Continue Shopping",
+        "empty": {
+          "title": "Your cart is empty",
+          "description": "Add products from the catalog to get started",
+          "browseCatalog": "Browse Catalog"
+        },
+        "item": {
+          "each": "each",
+          "remove": "Remove"
+        },
+        "summary": {
+          "title": "Order Summary",
+          "subtotal": "Subtotal",
+          "tax": "Tax (8%)",
+          "shipping": "Shipping",
+          "free": "FREE",
+          "freeShippingMsg": " You qualify for free shipping!",
+          "total": "Total",
+          "checkout": "Proceed to Checkout",
+          "secureCheckout": "Secure checkout  Buyer protection included"
+        }
+      },
+      "favoritesPage": {
+        "title": "My Favorites",
+        "savedItems": "saved items",
+        "browseCatalog": "Browse Catalog",
+        "empty": {
+          "title": "No favorites yet",
+          "description": "Start adding products to your wishlist",
+          "browseProducts": "Browse Products"
+        },
+        "item": {
+          "added": "Added",
+          "addToCart": "Add to Cart"
+        }
+      }
+    },
+    "supplier": {
+      "title": "Supplier Dashboard",
+      "welcomeMessage": "Welcome back! Here is your supplier overview",
+      "activeProducts": "Active Products",
+      "listedProducts": "Listed products",
+      "pendingOrders": "Pending Orders",
+      "awaitingFulfillment": "Awaiting fulfillment",
+      "revenueMtd": "Revenue MTD",
+      "monthToDate": "Month to date",
+      "avgOrderValue": "Avg. Order Value",
+      "perTransaction": "Per transaction",
+      "liveGoldPrice": "Live Gold Price",
+      "lastUpdated": "Last updated",
+      "recentOrders": "Recent Orders",
+      "noRecentOrders": "No recent orders",
+      "yourProducts": "Your Products",
+      "myProducts": "My Products",
+      "addProduct": "Add Product",
+      "editProduct": "Edit Product",
+      "deleteProduct": "Delete Product",
+      "productName": "Product Name",
+      "productDescription": "Product Description",
+      "productCategory": "Category",
+      "productWeight": "Weight",
+      "productKarat": "Karat",
+      "productPrice": "Price",
+      "productStock": "Stock",
+      "pricingCalculator": "Pricing Calculator",
+      "manageOrders": "Manage Orders",
+      "orderManagement": "Order Management",
+      "confirmOrder": "Confirm Order",
+      "shipOrder": "Ship Order",
+      "viewOrder": "View Order",
+      "productsPage": {
+        "title": "My Products",
+        "description": "Manage your product listings",
+        "addProduct": "Add Product",
+        "searchPlaceholder": "Search products...",
+        "category": "Category",
+        "categories": {
+          "all": "All Categories",
+          "goldBar": "Gold Bar",
+          "goldCoin": "Gold Coin",
+          "jewelry": "Jewelry",
+          "necklace": "Necklace",
+          "bracelet": "Bracelet",
+          "earring": "Earring",
+          "ring": "Ring"
+        },
+        "noProducts": "No products found",
+        "inStock": "in stock",
+        "edit": "Edit",
+        "status": {
+          "active": "Active",
+          "inactive": "Inactive",
+          "draft": "Draft"
+        }
+      },
+      "productFormDialog": {
+        "title": {
+          "edit": "Edit Product",
+          "add": "Add New Product"
+        },
+        "description": {
+          "edit": "Update product details below",
+          "add": "Fill in the details for your new product"
+        },
+        "fields": {
+          "name": {
+            "label": "Product Name",
+            "placeholder": "e.g., 24K Gold Bar 100g"
+          },
+          "category": "Category",
+          "karat": {
+            "label": "Karat",
+            "options": {
+              "18k": "18K (75% pure)",
+              "22k": "22K (91.6% pure)",
+              "24k": "24K (100% pure)"
+            }
+          },
+          "weight": "Weight (grams)",
+          "price": "Price (USD)",
+          "stock": "Stock",
+          "specifications": {
+            "label": "Specifications",
+            "placeholder": "e.g., Gold Bar  24K  100gram"
+          },
+          "status": "Status",
+          "image": {
+            "label": "Product Image",
+            "clickToUpload": "Click to upload image",
+            "s3Required": "(S3 integration required)"
+          }
+        },
+        "actions": {
+          "cancel": "Cancel",
+          "update": "Update Product",
+          "add": "Add Product"
+        }
+      },
+      "ordersPage": {
+        "title": "Orders",
+        "description": "Manage and track your supplier orders",
+        "searchPlaceholder": "Search orders...",
+        "tabs": {
+          "all": "All",
+          "new": "New",
+          "processing": "Processing",
+          "shipped": "Shipped",
+          "closed": "Closed"
+        },
+        "cardTitles": {
+          "all": "All Orders",
+          "new": "New Orders",
+          "processing": "Processing Orders",
+          "shipped": "Shipped Orders",
+          "closed": "Closed Orders"
+        },
+        "noOrders": "No orders found",
+        "table": {
+          "orderId": "Order ID",
+          "buyer": "Buyer",
+          "items": "Items",
+          "total": "Total",
+          "date": "Date",
+          "status": "Status",
+          "actions": "Actions"
+        },
+        "itemsSuffix": "items",
+        "markShipped": "Mark Shipped",
+        "status": {
+          "new": "New",
+          "processing": "Processing",
+          "shipped": "Shipped",
+          "completed": "Completed",
+          "cancelled": "Cancelled"
+        }
+      },
+      "pricingPage": {
+        "title": "Pricing",
+        "description": "Manage your pricing configuration and calculator",
+        "liveGoldPrice": "Live Gold Price",
+        "perGram": "/ gram",
+        "lastUpdated": "Last updated:",
+        "configuration": {
+          "title": "Pricing Configuration",
+          "automaticPricing": "Automatic Pricing",
+          "automaticPricingDesc": "Update prices based on spot price",
+          "markupPercentage": "Markup Percentage (%)",
+          "markupDesc": "Applied to all products with automatic pricing",
+          "status": "Status:",
+          "automatic": "Automatic",
+          "manualOverride": "Manual Override"
+        },
+        "calculator": {
+          "title": "Price Calculator",
+          "weight": "Weight (grams)",
+          "karat": "Karat",
+          "spotValue": "Spot Value:",
+          "markup": "Markup",
+          "finalPrice": "Final Price:"
+        },
+        "summary": {
+          "title": "Product Price Summary",
+          "table": {
+            "product": "Product",
+            "karat": "Karat",
+            "weight": "Weight",
+            "baseCost": "Base Cost",
+            "markup": "Markup",
+            "finalPrice": "Final Price",
+            "mode": "Mode"
+          },
+          "auto": "Auto",
+          "manual": "Manual"
+        }
+      },
+      "contractTypes": {
+        "title": "Contracts assigned to you",
+        "loading": "Loading...",
+        "noItems": "No items found.",
+        "status": {
+          "active": "Active",
+          "inactive": "Inactive"
+        },
+        "fields": {
+          "minInvestment": "Min Investment",
+          "maxInvestment": "Max Investment",
+          "minDuration": "Min Duration (months)",
+          "maxDuration": "Max Duration (months)",
+          "settlementTypes": "Settlement Types",
+          "totalProfitShare": "Total Profit Share",
+          "guaranteeTypes": "Guarantee Types",
+          "guaranteeName": "Guarantee Name",
+          "defaultProfitShare": "Default Profit Share",
+          "description": "Description",
+          "profit": "Profit",
+          "guaranteeType": "Guarantee Type",
+          "profitShare": "Profit Share"
+        },
+        "actions": {
+          "edit": "Edit",
+          "deactivate": "Deactivate",
+          "activate": "Activate",
+          "cancel": "Cancel",
+          "continue": "Continue",
+          "back": "Back",
+          "save": "Save",
+          "saving": "Saving..."
+        },
+        "dialog": {
+          "editTitle": "Edit Contract",
+          "tabs": {
+            "basicInfo": "Basic Info",
+            "guaranteeManagement": "Guarantee Management"
+          },
+          "fixedInfo": "Fixed Info:",
+          "title": "Title:",
+          "adminGuarantees": "Admin Guarantees (Read-only)",
+          "noAdminGuarantees": "No admin guarantees",
+          "availablePersonalGuarantees": "Available Personal Guarantees",
+          "clickToAdd": "Click to add personal guarantee",
+          "noPersonalGuaranteesDefined": "No personal guarantees defined",
+          "createFirst": "Create new guarantee in Guarantee Management first",
+          "selectedPersonalGuarantees": "Selected Personal Guarantees",
+          "selectedInfo": "Info of selected personal guarantees",
+          "noSelected": "No personal guarantee selected",
+          "selectFromAvailable": "Select guarantee from available section",
+          "totalProfit": "Total Profit Share:"
+        },
+        "messages": {
+          "deactivated": "Deactivated",
+          "activated": "Activated",
+          "error": "Error",
+          "requiredInvestment": "Min and max investment are required",
+          "loginFirst": "Please login first",
+          "editError": "Error editing",
+          "updated": "Updated"
+        }
+      },
+      "guaranteeTypes": {
+        "title": "Manage My Guarantee Types",
+        "fields": {
+          "title": "Guarantee Title *",
+          "placeholder": "e.g., Property, Check, Promissory Note",
+          "profitShare": "Default Profit Share",
+          "description": "Description (Optional)"
+        },
+        "actions": {
+          "cancel": "Cancel",
+          "update": "Update",
+          "saveNew": "Save New Guarantee",
+          "deactivate": "Deactivate",
+          "activate": "Activate"
+        },
+        "table": {
+          "title": "Title",
+          "profitShare": "Profit Share",
+          "description": "Description",
+          "status": "Status",
+          "actions": "Actions",
+          "loading": "Loading...",
+          "noItems": "No items found",
+          "active": "Active",
+          "inactive": "Inactive"
+        },
+        "messages": {
+          "fetchError": "Error fetching guarantee list",
+          "titleRequired": "Guarantee title is required",
+          "userError": "Error: User identification not possible",
+          "updateSuccess": "Guarantee updated successfully",
+          "addSuccess": "New guarantee added successfully",
+          "saveError": "Error saving guarantee",
+          "deleteConfirm": "Are you sure you want to delete this guarantee type?",
+          "deleteSuccess": "Guarantee type deleted successfully",
+          "deleteError": "Error deleting guarantee type",
+          "statusChanged": "Status changed to",
+          "statusError": "Error changing status"
+        }
+      },
+      "memberList": {
+        "loading": "Loading...",
+        "noMembers": "No members registered.",
+        "id": "ID"
+      }
+    },
+    "profile": {
+      "title": "Profile",
+      "myProfile": "My Profile",
+      "editProfile": "Edit Profile",
+      "personalInfo": "Personal Information",
+      "accountSettings": "Account Settings",
+      "securitySettings": "Security Settings",
+      "changePassword": "Change Password",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password",
+      "updatePassword": "Update Password",
+      "emailAddress": "Email Address",
+      "verifyEmail": "Verify Email",
+      "phoneNumber": "Phone Number",
+      "verifyPhone": "Verify Phone",
+      "nationalCode": "National Code",
+      "fullName": "Full Name",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "financialAccount": "Financial Account",
+      "bankAccount": "Bank Account",
+      "plan": "Plan",
+      "planDays": "Plan Days",
+      "daysRemaining": "days remaining",
+      "activatePlan": "Activate Plan",
+      "permission": "Permission",
+      "notifications": "Notifications",
+      "saveChanges": "Save Changes",
+      "profilePage": {
+        "defaultUser": "Talanow User",
+        "editInfo": "Edit Info",
+        "roles": {
+          "admin": "Admin",
+          "broker": "Broker",
+          "member": "Member"
+        },
+        "brokerIdLoading": "Fetching broker ID...",
+        "brokerId": "Broker ID:",
+        "phoneNumber": "Phone Number:",
+        "noEmail": "No email set",
+        "nationalCode": "National Code:",
+        "noNationalCode": "National Code not set",
+        "verifyIdentity": "Verify Identity",
+        "password": "Password:",
+        "noPassword": "Password not set",
+        "changePassword": "Change Password",
+        "setPassword": "Set Password",
+        "financialInfo": "Financial Info",
+        "newAccount": "New Account",
+        "table": {
+          "row": "Row",
+          "shabaNumber": "Shaba Number",
+          "cardNumber": "Card Number",
+          "shabaStatus": "Shaba Status",
+          "cardStatus": "Card Status",
+          "mainCard": "Main Card",
+          "edit": "Edit",
+          "fullName": "Full Name",
+          "inviteDate": "Invitation Date"
+        },
+        "referral": {
+          "code": "Referral Code:",
+          "income": "Income Amount",
+          "inviteesCount": "Number of Invitees",
+          "person": "Person",
+          "incomePerPerson": "Income per Person",
+          "toman": "Toman",
+          "total": "Total: Equivalent to",
+          "invitees": "Invitees",
+          "emptyList": "List is empty"
+        }
+      },
+      "nameEditForm": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "firstNamePlaceholder": "Enter your first name",
+        "lastNamePlaceholder": "Enter your last name",
+        "save": "Save"
+      },
+      "emailVerifyForm": {
+        "email": "Email",
+        "emailPlaceholder": "Enter your new email",
+        "confirmEmail": "Confirm Email",
+        "requiredError": "This field is required.",
+        "formatError": "Please enter a valid email format.",
+        "alreadyConfirmed": "Email is already confirmed."
+      },
+      "activationForm": {
+        "verifyCode": "Verify Code",
+        "codeRequired": "Verification code is required.",
+        "codeInvalid": "The entered code is incorrect.",
+        "codeInvalidToast": "The entered code is invalid.",
+        "sendError": "An error occurred while sending the code.",
+        "resendCode": "Resend Code",
+        "timerMessage": "If you did not receive the code or want to change the number, you can try again in",
+        "minutes": "minutes."
+      },
+      "nationalCodeForm": {
+        "nationalCode": "National Code",
+        "placeholder": "Enter your national code",
+        "confirm": "Confirm National Code",
+        "requiredError": "This field is required.",
+        "formatError": "Please enter a valid national code.",
+        "error": "Unfortunately, it was not done."
+      }
     }
-    }
+  }
+}

@@ -59,9 +59,9 @@ export default function Wallet({ dict, lang }: Props) {
                     <Table className="rounded-md bg-white shadow-box">
                         <TableHeader>
                             <TableRow>
-                                <TableHead className="min-w-40">نماد</TableHead>
+                                <TableHead className="min-w-40">Symbol</TableHead>
                                 <TableHead className="min-w-40">
-                                    ارزش تقریبی دارایی ها
+                                    Estimated Asset Value
                                 </TableHead>
                                 <TableHead></TableHead>
                             </TableRow>
@@ -79,7 +79,7 @@ export default function Wallet({ dict, lang }: Props) {
                                         <div className="text-base font-medium">
                                             IRT
                                             <div className="text-sm text-gray-700">
-                                                تومان
+                                                Toman
                                             </div>
                                         </div>
                                     </div>
@@ -95,19 +95,17 @@ export default function Wallet({ dict, lang }: Props) {
                                     <div className="flex justify-end gap-2">
                                         <Dialog>
                                             <DialogTrigger className="h-10 px-5 text-sm rounded-md font-medium min-w-20 bg-red-500 text-white hover:bg-red-600">
-                                                برداشت
+                                                Withdraw
                                             </DialogTrigger>
                                             <DialogContent className="max-w-xl text-center">
-                                                <DialogTitle/>
-                                                برای برداشت به پشتیبانی تلگرام
-                                                طلانو با آیدی
+                                                <DialogTitle />
+                                                To withdraw, please contact GoldTrade Telegram support at
                                                 <a
                                                     href="https://t.me/SahmetoSup"
                                                     className="block font-black"
                                                 >
                                                     https://t.me/SahmetoSup
                                                 </a>
-                                                پیام دهید.
                                             </DialogContent>
                                         </Dialog>
                                     </div>
@@ -126,7 +124,7 @@ export default function Wallet({ dict, lang }: Props) {
                                         <div className="text-base font-medium">
                                             GOLD
                                             <div className="text-sm text-gray-700">
-                                                طلا
+                                                Gold
                                             </div>
                                         </div>
                                     </div>
@@ -146,7 +144,7 @@ export default function Wallet({ dict, lang }: Props) {
                                             'tse',
                                             'fa'
                                         )}
-                                        تومان
+                                        Toman
                                     </div>
                                 </TableCell>
                                 <TableCell>
@@ -162,7 +160,7 @@ export default function Wallet({ dict, lang }: Props) {
                                                     height={24}
                                                 />
                                             ) : (
-                                                'خرید'
+                                                'Buy'
                                             )}
                                         </Button>
                                         <Button
@@ -176,7 +174,7 @@ export default function Wallet({ dict, lang }: Props) {
                                                     height={24}
                                                 />
                                             ) : (
-                                                'فروش'
+                                                'Sell'
                                             )}
                                         </Button>
                                     </div>
@@ -190,12 +188,12 @@ export default function Wallet({ dict, lang }: Props) {
                 lang={lang}
                 dict={dict}
                 texts={{
-                    title: <>برای خرید از طلانو ثبت نام کنید.</>,
+                    title: <>Register to buy from GoldTrade.</>,
                     description:
-                        'با ثبت نام در طلامی، بی نهایت سرمایه گذاری کن.',
-                    button: 'شروع سرمایه گذاری',
+                        'By registering on GoldTrade, invest infinitely.',
+                    button: 'Start Investing',
                     buttonVariant: 'default',
-                    inputLabel: 'شماره تلفن همراه',
+                    inputLabel: 'Mobile Number',
                 }}
                 open={openLoginModal}
                 setOpen={setOpenLoginModal}

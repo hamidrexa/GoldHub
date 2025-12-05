@@ -9,28 +9,29 @@ import {
 } from '@/components/ui/dialog';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { Check, Circle } from 'lucide-react';
+import { Check, Circle, Package as PackageIcon } from 'lucide-react';
 import { OrderDetail, OrderStatus } from '@/lib/mock-data';
 
 interface OrderDetailModalProps {
     order: OrderDetail;
     open: boolean;
     onClose: () => void;
+    dict: any;
 }
 
-export default function OrderDetailModal({ order, open, onClose }: OrderDetailModalProps) {
+export default function OrderDetailModal({ order, open, onClose, dict }: OrderDetailModalProps) {
     const getStatusLabel = (status: OrderStatus): string => {
         const labels = {
-            draft: 'Draft',
-            submitted: 'Submitted',
-            pending_supplier: 'Pending Supplier',
-            confirmed: 'Confirmed',
-            in_processing: 'In Processing',
-            ready: 'Ready',
-            shipped: 'Shipped',
-            delivered: 'Delivered',
-            closed: 'Closed',
-            cancelled: 'Cancelled',
+            draft: dict.marketplace.buyer.ordersPage.status.draft,
+            submitted: dict.marketplace.buyer.ordersPage.status.submitted,
+            pending_supplier: dict.marketplace.buyer.ordersPage.status.pendingSupplier,
+            confirmed: dict.marketplace.buyer.ordersPage.status.confirmed,
+            in_processing: dict.marketplace.buyer.ordersPage.status.inProcessing,
+            ready: dict.marketplace.buyer.ordersPage.status.ready,
+            shipped: dict.marketplace.buyer.ordersPage.status.shipped,
+            delivered: dict.marketplace.buyer.ordersPage.status.delivered,
+            closed: dict.marketplace.buyer.ordersPage.status.closed,
+            cancelled: dict.marketplace.buyer.ordersPage.status.cancelled,
         };
         return labels[status] || status;
     };
@@ -39,13 +40,13 @@ export default function OrderDetailModal({ order, open, onClose }: OrderDetailMo
         <Dialog open={open} onOpenChange={onClose}>
             <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
-                    <DialogTitle>Order {order.id}</DialogTitle>
+                    <DialogTitle>{dict.marketplace.buyer.orderDetailModal.title} {order.id}</DialogTitle>
                 </DialogHeader>
 
                 <div className="space-y-6">
                     {/* Order Timeline */}
                     <div>
-                        <h3 className="font-semibold mb-4">Order Timeline</h3>
+                        <h3 className="font-semibold mb-4">{dict.marketplace.buyer.orderDetailModal.timeline}</h3>
                         <div className="space-y-3">
                             {order.timeline.map((entry, index) => {
                                 const isCurrent = entry.status === order.status;
@@ -56,8 +57,8 @@ export default function OrderDetailModal({ order, open, onClose }: OrderDetailMo
                                         {/* Icon */}
                                         <div
                                             className={`flex h-6 w-6 items-center justify-center rounded-full ${isCompleted
-                                                    ? 'bg-yellow-500'
-                                                    : 'border-2 border-gray-300 bg-white'
+                                                ? 'bg-yellow-500'
+                                                : 'border-2 border-gray-300 bg-white'
                                                 }`}
                                         >
                                             {isCompleted ? (
@@ -77,7 +78,7 @@ export default function OrderDetailModal({ order, open, onClose }: OrderDetailMo
                                             </span>
                                             {isCurrent && (
                                                 <span className="text-xs px-2 py-0.5 bg-yellow-100 text-yellow-800 rounded">
-                                                    Current
+                                                    {dict.marketplace.buyer.orderDetailModal.current}
                                                 </span>
                                             )}
                                         </div>
@@ -94,18 +95,18 @@ export default function OrderDetailModal({ order, open, onClose }: OrderDetailMo
                         {/* Supplier */}
                         <Card>
                             <CardContent className="p-4">
-                                <h4 className="font-semibold mb-2">Supplier</h4>
+                                <h4 className="font-semibold mb-2">{dict.marketplace.buyer.orderDetailModal.supplier}</h4>
                                 <p className="text-sm">{order.orderItems[0]?.product.name.includes('Premium') ? 'Premium Gold Co.' : 'Luxury Jewelers Inc.'}</p>
-                                <p className="text-xs text-muted-foreground">ID: s1</p>
+                                <p className="text-xs text-muted-foreground">{dict.marketplace.buyer.orderDetailModal.supplierId} s1</p>
                             </CardContent>
                         </Card>
 
                         {/* Order Summary */}
                         <Card>
                             <CardContent className="p-4">
-                                <h4 className="font-semibold mb-2">Order Summary</h4>
-                                <p className="text-sm">Total: <span className="font-bold">${order.total.toLocaleString()}</span></p>
-                                <p className="text-xs text-muted-foreground">Created: {order.date}</p>
+                                <h4 className="font-semibold mb-2">{dict.marketplace.buyer.orderDetailModal.summary}</h4>
+                                <p className="text-sm">{dict.marketplace.buyer.orderDetailModal.total} <span className="font-bold">${order.total.toLocaleString()}</span></p>
+                                <p className="text-xs text-muted-foreground">{dict.marketplace.buyer.orderDetailModal.created} {order.date}</p>
                             </CardContent>
                         </Card>
                     </div>
@@ -114,7 +115,7 @@ export default function OrderDetailModal({ order, open, onClose }: OrderDetailMo
 
                     {/* Order Items */}
                     <div>
-                        <h3 className="font-semibold mb-4">Order Items</h3>
+                        <h3 className="font-semibold mb-4">{dict.marketplace.buyer.orderDetailModal.items}</h3>
                         <div className="space-y-3">
                             {order.orderItems.map((item, index) => (
                                 <Card key={index}>
@@ -122,7 +123,7 @@ export default function OrderDetailModal({ order, open, onClose }: OrderDetailMo
                                         <div className="flex items-center justify-between">
                                             <div className="flex items-center gap-3">
                                                 <div className="w-12 h-12 bg-gray-100 rounded flex items-center justify-center">
-                                                    <Package className="h-6 w-6 text-gray-400" />
+                                                    <PackageIcon className="h-6 w-6 text-gray-400" />
                                                 </div>
                                                 <div>
                                                     <p className="font-medium text-sm">{item.product.name}</p>
@@ -133,7 +134,7 @@ export default function OrderDetailModal({ order, open, onClose }: OrderDetailMo
                                             </div>
                                             <div className="text-right">
                                                 <p className="font-semibold">${item.priceAtOrder.toLocaleString()}</p>
-                                                <p className="text-xs text-muted-foreground">Qty: {item.quantity}</p>
+                                                <p className="text-xs text-muted-foreground">{dict.marketplace.buyer.orderDetailModal.qty} {item.quantity}</p>
                                             </div>
                                         </div>
                                     </CardContent>
@@ -144,13 +145,5 @@ export default function OrderDetailModal({ order, open, onClose }: OrderDetailMo
                 </div>
             </DialogContent>
         </Dialog>
-    );
-}
-
-function Package({ className }: { className?: string }) {
-    return (
-        <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-        </svg>
     );
 }

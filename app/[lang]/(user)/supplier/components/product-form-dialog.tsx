@@ -27,6 +27,7 @@ interface ProductFormDialogProps {
     onOpenChange: (open: boolean) => void;
     product?: Product | null;
     onSave?: (product: Partial<Product>) => void;
+    dict: any;
 }
 
 export default function ProductFormDialog({
@@ -34,6 +35,7 @@ export default function ProductFormDialog({
     onOpenChange,
     product,
     onSave,
+    dict,
 }: ProductFormDialogProps) {
     const [formData, setFormData] = useState<Partial<Product>>({
         name: product?.name || '',
@@ -55,26 +57,26 @@ export default function ProductFormDialog({
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
-                    <DialogTitle>{product ? 'Edit Product' : 'Add New Product'}</DialogTitle>
+                    <DialogTitle>{product ? dict.marketplace.supplier.productFormDialog.title.edit : dict.marketplace.supplier.productFormDialog.title.add}</DialogTitle>
                     <DialogDescription>
-                        {product ? 'Update product details below' : 'Fill in the details for your new product'}
+                        {product ? dict.marketplace.supplier.productFormDialog.description.edit : dict.marketplace.supplier.productFormDialog.description.add}
                     </DialogDescription>
                 </DialogHeader>
 
                 <div className="grid gap-4 py-4">
                     <div className="grid gap-2">
-                        <Label htmlFor="name">Product Name</Label>
+                        <Label htmlFor="name">{dict.marketplace.supplier.productFormDialog.fields.name.label}</Label>
                         <Input
                             id="name"
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            placeholder="e.g., 24K Gold Bar 100g"
+                            placeholder={dict.marketplace.supplier.productFormDialog.fields.name.placeholder}
                         />
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
                         <div className="grid gap-2">
-                            <Label htmlFor="category">Category</Label>
+                            <Label htmlFor="category">{dict.marketplace.supplier.productFormDialog.fields.category}</Label>
                             <Select
                                 value={formData.category}
                                 onValueChange={(value: Product['category']) =>
@@ -85,19 +87,19 @@ export default function ProductFormDialog({
                                     <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="gold_bar">Gold Bar</SelectItem>
-                                    <SelectItem value="gold_coin">Gold Coin</SelectItem>
-                                    <SelectItem value="jewelry">Jewelry</SelectItem>
-                                    <SelectItem value="necklace">Necklace</SelectItem>
-                                    <SelectItem value="bracelet">Bracelet</SelectItem>
-                                    <SelectItem value="earring">Earring</SelectItem>
-                                    <SelectItem value="ring">Ring</SelectItem>
+                                    <SelectItem value="gold_bar">{dict.marketplace.supplier.productsPage.categories.goldBar}</SelectItem>
+                                    <SelectItem value="gold_coin">{dict.marketplace.supplier.productsPage.categories.goldCoin}</SelectItem>
+                                    <SelectItem value="jewelry">{dict.marketplace.supplier.productsPage.categories.jewelry}</SelectItem>
+                                    <SelectItem value="necklace">{dict.marketplace.supplier.productsPage.categories.necklace}</SelectItem>
+                                    <SelectItem value="bracelet">{dict.marketplace.supplier.productsPage.categories.bracelet}</SelectItem>
+                                    <SelectItem value="earring">{dict.marketplace.supplier.productsPage.categories.earring}</SelectItem>
+                                    <SelectItem value="ring">{dict.marketplace.supplier.productsPage.categories.ring}</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
 
                         <div className="grid gap-2">
-                            <Label htmlFor="karat">Karat</Label>
+                            <Label htmlFor="karat">{dict.marketplace.supplier.productFormDialog.fields.karat.label}</Label>
                             <Select
                                 value={formData.karat}
                                 onValueChange={(value: Product['karat']) =>
@@ -108,9 +110,9 @@ export default function ProductFormDialog({
                                     <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="18K">18K (75% pure)</SelectItem>
-                                    <SelectItem value="22K">22K (91.6% pure)</SelectItem>
-                                    <SelectItem value="24K">24K (100% pure)</SelectItem>
+                                    <SelectItem value="18K">{dict.marketplace.supplier.productFormDialog.fields.karat.options['18k']}</SelectItem>
+                                    <SelectItem value="22K">{dict.marketplace.supplier.productFormDialog.fields.karat.options['22k']}</SelectItem>
+                                    <SelectItem value="24K">{dict.marketplace.supplier.productFormDialog.fields.karat.options['24k']}</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
@@ -118,7 +120,7 @@ export default function ProductFormDialog({
 
                     <div className="grid grid-cols-3 gap-4">
                         <div className="grid gap-2">
-                            <Label htmlFor="weight">Weight (grams)</Label>
+                            <Label htmlFor="weight">{dict.marketplace.supplier.productFormDialog.fields.weight}</Label>
                             <Input
                                 id="weight"
                                 type="number"
@@ -131,7 +133,7 @@ export default function ProductFormDialog({
                         </div>
 
                         <div className="grid gap-2">
-                            <Label htmlFor="price">Price (USD)</Label>
+                            <Label htmlFor="price">{dict.marketplace.supplier.productFormDialog.fields.price}</Label>
                             <Input
                                 id="price"
                                 type="number"
@@ -144,7 +146,7 @@ export default function ProductFormDialog({
                         </div>
 
                         <div className="grid gap-2">
-                            <Label htmlFor="stock">Stock</Label>
+                            <Label htmlFor="stock">{dict.marketplace.supplier.productFormDialog.fields.stock}</Label>
                             <Input
                                 id="stock"
                                 type="number"
@@ -157,17 +159,17 @@ export default function ProductFormDialog({
                     </div>
 
                     <div className="grid gap-2">
-                        <Label htmlFor="specifications">Specifications</Label>
+                        <Label htmlFor="specifications">{dict.marketplace.supplier.productFormDialog.fields.specifications.label}</Label>
                         <Input
                             id="specifications"
                             value={formData.specifications}
                             onChange={(e) => setFormData({ ...formData, specifications: e.target.value })}
-                            placeholder="e.g., Gold Bar · 24K · 100gram"
+                            placeholder={dict.marketplace.supplier.productFormDialog.fields.specifications.placeholder}
                         />
                     </div>
 
                     <div className="grid gap-2">
-                        <Label htmlFor="status">Status</Label>
+                        <Label htmlFor="status">{dict.marketplace.supplier.productFormDialog.fields.status}</Label>
                         <Select
                             value={formData.status}
                             onValueChange={(value: Product['status']) =>
@@ -178,22 +180,22 @@ export default function ProductFormDialog({
                                 <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectItem value="active">Active</SelectItem>
-                                <SelectItem value="inactive">Inactive</SelectItem>
-                                <SelectItem value="draft">Draft</SelectItem>
+                                <SelectItem value="active">{dict.marketplace.supplier.productsPage.status.active}</SelectItem>
+                                <SelectItem value="inactive">{dict.marketplace.supplier.productsPage.status.inactive}</SelectItem>
+                                <SelectItem value="draft">{dict.marketplace.supplier.productsPage.status.draft}</SelectItem>
                             </SelectContent>
                         </Select>
                     </div>
 
                     <div className="grid gap-2">
-                        <Label htmlFor="image">Product Image</Label>
+                        <Label htmlFor="image">{dict.marketplace.supplier.productFormDialog.fields.image.label}</Label>
                         <div className="border-2 border-dashed rounded-lg p-6 text-center hover:bg-muted/50 transition-colors cursor-pointer">
                             <Upload className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
                             <p className="text-sm text-muted-foreground">
-                                Click to upload image
+                                {dict.marketplace.supplier.productFormDialog.fields.image.clickToUpload}
                             </p>
                             <p className="text-xs text-muted-foreground mt-1">
-                                (S3 integration required)
+                                {dict.marketplace.supplier.productFormDialog.fields.image.s3Required}
                             </p>
                         </div>
                     </div>
@@ -201,10 +203,10 @@ export default function ProductFormDialog({
 
                 <DialogFooter>
                     <Button variant="outline" onClick={() => onOpenChange(false)}>
-                        Cancel
+                        {dict.marketplace.supplier.productFormDialog.actions.cancel}
                     </Button>
                     <Button onClick={handleSave} className="bg-yellow-500 hover:bg-yellow-600 text-black">
-                        {product ? 'Update Product' : 'Add Product'}
+                        {product ? dict.marketplace.supplier.productFormDialog.actions.update : dict.marketplace.supplier.productFormDialog.actions.add}
                     </Button>
                 </DialogFooter>
             </DialogContent>

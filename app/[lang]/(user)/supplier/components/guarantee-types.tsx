@@ -11,7 +11,11 @@ import { toast } from 'sonner';
 import { supabase } from '@/services/supabase';
 import { useGlobalContext } from '@/contexts/store';
 
-export default function GuaranteeTypes() {
+interface GuaranteeTypesProps {
+    dict: any;
+}
+
+export default function GuaranteeTypes({ dict }: GuaranteeTypesProps) {
     const { user } = useGlobalContext();
     const [guaranteeTypes, setGuaranteeTypes] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
@@ -43,7 +47,7 @@ export default function GuaranteeTypes() {
             setGuaranteeTypes(data || []);
         } catch (error) {
             console.error('Error fetching guarantee types:', error);
-            toast.error('خطا در دریافت لیست تضمین‌ها');
+            toast.error(dict.marketplace.supplier.guaranteeTypes.messages.fetchError);
         } finally {
             setLoading(false);
         }
@@ -52,12 +56,12 @@ export default function GuaranteeTypes() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!formData.name.trim()) {
-            toast.error('عنوان تضمین الزامی است');
+            toast.error(dict.marketplace.supplier.guaranteeTypes.messages.titleRequired);
             return;
         }
 
         if (!user?.id) {
-            toast.error('خطا: شناسایی کاربر ممکن نیست');
+            toast.error(dict.marketplace.supplier.guaranteeTypes.messages.userError);
             return;
         }
 
@@ -74,7 +78,7 @@ export default function GuaranteeTypes() {
                     .eq('id', editingId);
 
                 if (error) throw error;
-                toast.success('تضمین با موفقیت به‌روزرسانی شد');
+                toast.success(dict.marketplace.supplier.guaranteeTypes.messages.updateSuccess);
             } else {
                 const { error } = await supabase
                     .from('talanow_guarantee_types')
@@ -87,7 +91,7 @@ export default function GuaranteeTypes() {
                     }]);
 
                 if (error) throw error;
-                toast.success('تضمین جدید با موفقیت اضافه شد');
+                toast.success(dict.marketplace.supplier.guaranteeTypes.messages.addSuccess);
             }
 
             setFormData({ name: '', description: '', profit_share: 0 });
@@ -95,7 +99,7 @@ export default function GuaranteeTypes() {
             fetchGuaranteeTypes();
         } catch (error) {
             console.error('Error saving guarantee type:', error);
-            toast.error('خطا در ذخیره‌سازی تضمین');
+            toast.error(dict.marketplace.supplier.guaranteeTypes.messages.saveError);
         }
     };
 
@@ -109,7 +113,7 @@ export default function GuaranteeTypes() {
     };
 
     const handleDelete = async (id: string) => {
-        if (!confirm('آیا از حذف این نوع تضمین اطمینان دارید؟')) return;
+        if (!confirm(dict.marketplace.supplier.guaranteeTypes.messages.deleteConfirm)) return;
 
         try {
             const { error } = await supabase
@@ -119,11 +123,11 @@ export default function GuaranteeTypes() {
 
             if (error) throw error;
 
-            toast.success('نوع تضمین با موفقیت حذف شد');
+            toast.success(dict.marketplace.supplier.guaranteeTypes.messages.deleteSuccess);
             fetchGuaranteeTypes();
         } catch (error) {
             console.error('Error deleting guarantee type:', error);
-            toast.error('خطا در حذف نوع تضمین');
+            toast.error(dict.marketplace.supplier.guaranteeTypes.messages.deleteError);
         }
     };
 
@@ -136,36 +140,37 @@ export default function GuaranteeTypes() {
                 .eq('id', id);
 
             if (error) throw error;
-            
-            toast.success(`وضعیت به "${newStatus === 'active' ? 'فعال' : 'غیرفعال'}" تغییر کرد`);
+
+            const statusText = newStatus === 'active' ? dict.marketplace.supplier.guaranteeTypes.table.active : dict.marketplace.supplier.guaranteeTypes.table.inactive;
+            toast.success(`${dict.marketplace.supplier.guaranteeTypes.messages.statusChanged} "${statusText}"`);
             fetchGuaranteeTypes();
         } catch (error) {
             console.error('Error toggling guarantee type status:', error);
-            toast.error('خطا در تغییر وضعیت');
+            toast.error(dict.marketplace.supplier.guaranteeTypes.messages.statusError);
         }
     };
 
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold">مدیریت انواع تضمین‌های من</h2>
+                <h2 className="text-2xl font-bold">{dict.marketplace.supplier.guaranteeTypes.title}</h2>
             </div>
 
             <div className="bg-white rounded-lg shadow p-6">
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div className="space-y-2">
-                            <Label htmlFor="name">عنوان تضمین *</Label>
+                            <Label htmlFor="name">{dict.marketplace.supplier.guaranteeTypes.fields.title}</Label>
                             <Input
                                 id="name"
                                 value={formData.name}
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                placeholder="مثال: ملک، چک، سفته"
+                                placeholder={dict.marketplace.supplier.guaranteeTypes.fields.placeholder}
                                 required
                             />
                         </div>
                         <div className="space-y-2">
-                            <Label htmlFor="profit_share">درصد سود پیش‌فرض</Label>
+                            <Label htmlFor="profit_share">{dict.marketplace.supplier.guaranteeTypes.fields.profitShare}</Label>
                             <Input
                                 id="profit_share"
                                 type="number"
@@ -177,7 +182,7 @@ export default function GuaranteeTypes() {
                             />
                         </div>
                         <div className="space-y-2 md:col-span-3">
-                            <Label htmlFor="description">توضیحات (اختیاری)</Label>
+                            <Label htmlFor="description">{dict.marketplace.supplier.guaranteeTypes.fields.description}</Label>
                             <Textarea
                                 id="description"
                                 value={formData.description}
@@ -196,11 +201,11 @@ export default function GuaranteeTypes() {
                                     setEditingId(null);
                                 }}
                             >
-                                انصراف
+                                {dict.marketplace.supplier.guaranteeTypes.actions.cancel}
                             </Button>
                         )}
                         <Button type="submit">
-                            {editingId ? 'بروزرسانی' : 'ذخیره تضمین جدید'}
+                            {editingId ? dict.marketplace.supplier.guaranteeTypes.actions.update : dict.marketplace.supplier.guaranteeTypes.actions.saveNew}
                         </Button>
                     </div>
                 </form>
@@ -211,24 +216,24 @@ export default function GuaranteeTypes() {
                     <table className="min-w-full divide-y divide-gray-200">
                         <thead className="bg-gray-50">
                             <tr>
-                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">عنوان</th>
-                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">درصد سود</th>
-                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">توضیحات</th>
-                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">وضعیت</th>
-                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">عملیات</th>
+                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">{dict.marketplace.supplier.guaranteeTypes.table.title}</th>
+                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">{dict.marketplace.supplier.guaranteeTypes.table.profitShare}</th>
+                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">{dict.marketplace.supplier.guaranteeTypes.table.description}</th>
+                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">{dict.marketplace.supplier.guaranteeTypes.table.status}</th>
+                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">{dict.marketplace.supplier.guaranteeTypes.table.actions}</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
                             {loading ? (
                                 <tr>
                                     <td colSpan={5} className="px-6 py-4 text-center text-gray-500">
-                                        در حال بارگذاری...
+                                        {dict.marketplace.supplier.guaranteeTypes.table.loading}
                                     </td>
                                 </tr>
                             ) : guaranteeTypes.length === 0 ? (
                                 <tr>
                                     <td colSpan={5} className="px-6 py-4 text-center text-gray-500">
-                                        موردی یافت نشد
+                                        {dict.marketplace.supplier.guaranteeTypes.table.noItems}
                                     </td>
                                 </tr>
                             ) : (
@@ -238,12 +243,11 @@ export default function GuaranteeTypes() {
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{type.profit_share}%</td>
                                         <td className="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{type.description}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm">
-                                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                                                type.status === 'active' 
-                                                    ? 'bg-green-100 text-green-800' 
+                                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${type.status === 'active'
+                                                    ? 'bg-green-100 text-green-800'
                                                     : 'bg-red-100 text-red-800'
-                                            }`}>
-                                                {type.status === 'active' ? 'فعال' : 'غیرفعال'}
+                                                }`}>
+                                                {type.status === 'active' ? dict.marketplace.supplier.guaranteeTypes.table.active : dict.marketplace.supplier.guaranteeTypes.table.inactive}
                                             </span>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
@@ -251,13 +255,12 @@ export default function GuaranteeTypes() {
                                                 <Button
                                                     variant="ghost"
                                                     size="icon"
-                                                    className={`h-8 w-8 p-0 ${
-                                                        type.status === 'active'
+                                                    className={`h-8 w-8 p-0 ${type.status === 'active'
                                                             ? 'text-orange-600 hover:text-orange-800'
                                                             : 'text-green-600 hover:text-green-800'
-                                                    }`}
+                                                        }`}
                                                     onClick={() => handleToggleStatus(type.id, type.status)}
-                                                    title={type.status === 'active' ? 'غیرفعال کنید' : 'فعال کنید'}
+                                                    title={type.status === 'active' ? dict.marketplace.supplier.guaranteeTypes.actions.deactivate : dict.marketplace.supplier.guaranteeTypes.actions.activate}
                                                 >
                                                     <Power className="h-4 w-4" />
                                                 </Button>

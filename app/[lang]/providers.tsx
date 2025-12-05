@@ -44,8 +44,8 @@ export function Providers({ children }) {
     }, [user]);
     useEffect(() => {
         if (!networkState.online)
-            toast.loading('مشکل در ارتباط', {
-                description: 'ارتباط شما با اینترنت قطع شده است.',
+            toast.loading('Connection Issue', {
+                description: 'Your internet connection has been lost.',
                 closeButton: false,
                 position: 'top-center',
             });

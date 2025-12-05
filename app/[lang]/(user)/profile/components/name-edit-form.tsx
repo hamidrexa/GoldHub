@@ -58,14 +58,14 @@ export function NameEditForm({ lang, dict, setOpen }) {
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>نام</FormLabel>
+                                    <FormLabel>{dict.marketplace.profile.nameEditForm.firstName}</FormLabel>
                                     <FormControl>
                                         <Input
                                             defaultValue={
                                                 !!user && user.first_name
                                             }
                                             className="w-full"
-                                            placeholder={'نام خود را وارد کنید'}
+                                            placeholder={dict.marketplace.profile.nameEditForm.firstNamePlaceholder}
                                             {...field}
                                         />
                                     </FormControl>
@@ -78,16 +78,14 @@ export function NameEditForm({ lang, dict, setOpen }) {
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>نام‌ خانوادگی</FormLabel>
+                                    <FormLabel>{dict.marketplace.profile.nameEditForm.lastName}</FormLabel>
                                     <FormControl>
                                         <Input
                                             className="w-full"
                                             defaultValue={
                                                 !!user && user.last_name
                                             }
-                                            placeholder={
-                                                'نام‌ خانوادگی خود را وارد کنید'
-                                            }
+                                            placeholder={dict.marketplace.profile.nameEditForm.lastNamePlaceholder}
                                             {...field}
                                         />
                                     </FormControl>
@@ -96,7 +94,7 @@ export function NameEditForm({ lang, dict, setOpen }) {
                             name="lastName"
                         />
                         <Button type="submit" className={cn('w-full')}>
-                            {loading ? <Spinner /> : 'ذخیره'}
+                            {loading ? <Spinner /> : dict.marketplace.profile.nameEditForm.save}
                         </Button>
                     </div>
                 </form>
