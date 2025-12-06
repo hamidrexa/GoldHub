@@ -129,6 +129,7 @@ export interface ProductsListParams {
     min_price?: number;
     max_price?: number;
     supplier?: string;
+    [key: string]: string | number | undefined;
 }
 
 export interface AddToCartRequest {
