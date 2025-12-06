@@ -5,7 +5,7 @@ import { Header } from '@/components/header';
 import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
 import { Footer } from '@/components/footer';
-import faJson from '@/dictionaries/fa.json';
+import enJson from '@/dictionaries/en.json';
 import * as Sentry from '@sentry/nextjs';
 import { getLinksLang } from '@/libs/utils';
 
@@ -16,8 +16,8 @@ export default function Error({
     error: Error & { digest?: string };
     reset: () => void;
 }) {
-    const lang = 'fa';
-    const dict = faJson;
+    const lang = 'en';
+    const dict = enJson;
 
     useEffect(() => {
         Sentry.captureException(error);
@@ -32,17 +32,17 @@ export default function Error({
                 </h1>
                 <div>
                     <h2 className="text-4xl font-bold leading-none">
-                        مشکلی پیش آمده!
+                        Something went wrong!
                     </h2>
                     <p className="mt-4 w-full text-xl leading-none">
-                        لطفا چند دقیقه دیگر مجدد تلاش کنید.
+                        Please try again in a few minutes.
                     </p>
                 </div>
                 <Link
                     href={`${getLinksLang(lang)}/`}
                     className={buttonVariants()}
                 >
-                    بازگشت به صفحه اصلی
+                    Return to Home
                 </Link>
             </div>
             <Footer dict={dict} lang={lang} />

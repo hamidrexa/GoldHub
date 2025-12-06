@@ -224,7 +224,7 @@ export function ProfilePage({ dict, lang }) {
         location.href = `/login`;
         googleLogout();
     };
-    
+
     if (!user)
         return (
             <div className="flex h-[calc(100vh-64px)] w-full items-center justify-center md:h-[calc(100vh-90px)]">
@@ -262,7 +262,7 @@ export function ProfilePage({ dict, lang }) {
                                 <span className="text-2xl font-black">
                                     {user.first_name || user.last_name
                                         ? `${user.first_name || ''} ${user.last_name || ''}`
-                                        : 'کاربر طلانو'}
+                                        : dict.marketplace.profile.profilePage.defaultUser}
                                 </span>
                                 <Dialog
                                     open={nameDialogOpen}
@@ -278,7 +278,7 @@ export function ProfilePage({ dict, lang }) {
                                     </DialogTrigger>
                                     <DialogContent className="max-w-xl">
                                         <DialogHeader>
-                                            <DialogTitle>ویرایش اطلاعات</DialogTitle>
+                                            <DialogTitle>{dict.marketplace.profile.profilePage.editInfo}</DialogTitle>
                                         </DialogHeader>
                                         <NameEditForm
                                             setOpen={setNameDialogOpen}
@@ -292,23 +292,23 @@ export function ProfilePage({ dict, lang }) {
                                 <div className="flex flex-wrap items-center gap-2 text-sm">
                                     {hasAdmin && (
                                         <Badge variant="secondary" size="sm">
-                                            ادمین
+                                            {dict.marketplace.profile.profilePage.roles.admin}
                                         </Badge>
                                     )}
                                     {hasBroker && (
                                         <Badge variant="success" size="sm">
-                                            کارگزار
+                                            {dict.marketplace.profile.profilePage.roles.broker}
                                         </Badge>
                                     )}
                                     {hasMember && (
                                         <>
                                             <Badge variant="light" size="sm">
-                                                عضو
+                                                {dict.marketplace.profile.profilePage.roles.member}
                                             </Badge>
                                             <Badge variant="outline-blue" size="sm">
                                                 {isMemberBrokerLoading
-                                                    ? 'شناسه کارگزار در حال دریافت...'
-                                                    : `شناسه کارگزار: ${memberBrokerId ?? '—'}`}
+                                                    ? dict.marketplace.profile.profilePage.brokerIdLoading
+                                                    : `${dict.marketplace.profile.profilePage.brokerId} ${memberBrokerId ?? '—'}`}
                                             </Badge>
                                         </>
                                     )}
@@ -322,7 +322,7 @@ export function ProfilePage({ dict, lang }) {
                                 <div className="space-y-2">
                                     <div className="flex items-center justify-between">
                                         <div className="text-base">
-                                            شماره همراه:
+                                            {dict.marketplace.profile.profilePage.phoneNumber}
                                         </div>
                                         {/*// @ts-ignore*/}
                                         <StatusBadge
@@ -371,7 +371,7 @@ export function ProfilePage({ dict, lang }) {
                                 </div>
                                 <div className="flex h-14 items-center justify-between rounded-md bg-gray-300/60 p-1.5 text-base font-black ltr:pl-5 rtl:pr-5">
                                     <span>
-                                        {user.email ?? 'ایمیلی تعیین نشده'}
+                                        {user.email ?? dict.marketplace.profile.profilePage.noEmail}
                                     </span>
                                     <Dialog
                                         open={emailDialogOpen}
@@ -433,7 +433,7 @@ export function ProfilePage({ dict, lang }) {
                             <div className="space-y-2">
                                 <div className="flex items-center justify-between">
                                     <div className="text-base">
-                                        شماره ملی:
+                                        {dict.marketplace.profile.profilePage.nationalCode}
                                     </div>
                                     {/*// @ts-ignore*/}
                                     <StatusBadge
@@ -448,7 +448,7 @@ export function ProfilePage({ dict, lang }) {
                                 </div>
                                 <div className="flex h-14 items-center justify-between rounded-md bg-gray-300/60 p-1.5 text-base font-black ltr:pl-5 rtl:pr-5">
                                     <span>
-                                        {user.national_code ? user.national_code : 'شماره ملی تعیین نشده است'}
+                                        {user.national_code ? user.national_code : dict.marketplace.profile.profilePage.noNationalCode}
                                     </span>
                                     <Dialog
                                         open={nationalCodeDialogOpen}
@@ -464,7 +464,7 @@ export function ProfilePage({ dict, lang }) {
                                                     }}
                                                     variant="info"
                                                 >
-                                                    احراز هویت
+                                                    {dict.marketplace.profile.profilePage.verifyIdentity}
                                                 </Button>
                                             )}
                                         </DialogTrigger>
@@ -482,7 +482,7 @@ export function ProfilePage({ dict, lang }) {
                                 <div className="space-y-2">
                                     <div className="flex items-center justify-between">
                                         <div className="text-base">
-                                            رمز عبور:
+                                            {dict.marketplace.profile.profilePage.password}
                                         </div>
                                     </div>
                                     <div className="flex h-14 items-center justify-between rounded-md bg-gray-300/60 p-1.5 text-base font-black ltr:pl-5 rtl:pr-5">
@@ -493,7 +493,7 @@ export function ProfilePage({ dict, lang }) {
                                         >
                                             {user.has_password
                                                 ? '************'
-                                                : 'رمز عبور تعیین نشده'}
+                                                : dict.marketplace.profile.profilePage.noPassword}
                                         </span>
                                         <Dialog
                                             open={passwordDialogOpen}
@@ -509,8 +509,8 @@ export function ProfilePage({ dict, lang }) {
                                                     }}
                                                 >
                                                     {user.has_password
-                                                        ? 'تغییر رمز عبور'
-                                                        : 'تعیین رمز عبور'}
+                                                        ? dict.marketplace.profile.profilePage.changePassword
+                                                        : dict.marketplace.profile.profilePage.setPassword}
                                                 </Button>
                                             </DialogTrigger>
                                             <DialogContent className="max-w-xl">
@@ -530,7 +530,7 @@ export function ProfilePage({ dict, lang }) {
                                 <Box className='flex flex-row justify-between w-full '>
                                     <BoxTitle>
                                         <FileClock />
-                                        اطلاعات مالی
+                                        {dict.marketplace.profile.profilePage.financialInfo}
                                     </BoxTitle>
                                     {(!data[0]?.cart_number && !data[0]?.shaba_number) && <Dialog
                                         open={finantialAccountOpen}
@@ -545,7 +545,7 @@ export function ProfilePage({ dict, lang }) {
                                                     );
                                                 }}
                                             >
-                                                حساب جدید
+                                                {dict.marketplace.profile.profilePage.newAccount}
                                                 <Icons.plus stroke='#fff' />
                                             </Button>
                                         </DialogTrigger>
@@ -566,13 +566,13 @@ export function ProfilePage({ dict, lang }) {
                                     <Table className="rounded-md border bg-white">
                                         <TableHeader>
                                             <TableRow>
-                                                <TableHead>ردیف</TableHead>
-                                                <TableHead>شماره شبا</TableHead>
-                                                <TableHead>شماره کارت</TableHead>
-                                                <TableHead>وضعیت شبا</TableHead>
-                                                <TableHead>وضعیت کارت</TableHead>
-                                                <TableHead >کارت اصلی</TableHead>
-                                                <TableHead align='left' >ویرایش</TableHead>
+                                                <TableHead>{dict.marketplace.profile.profilePage.table.row}</TableHead>
+                                                <TableHead>{dict.marketplace.profile.profilePage.table.shabaNumber}</TableHead>
+                                                <TableHead>{dict.marketplace.profile.profilePage.table.cardNumber}</TableHead>
+                                                <TableHead>{dict.marketplace.profile.profilePage.table.shabaStatus}</TableHead>
+                                                <TableHead>{dict.marketplace.profile.profilePage.table.cardStatus}</TableHead>
+                                                <TableHead >{dict.marketplace.profile.profilePage.table.mainCard}</TableHead>
+                                                <TableHead align='left' >{dict.marketplace.profile.profilePage.table.edit}</TableHead>
                                             </TableRow>
                                         </TableHeader>
                                         <TableBody>
@@ -645,7 +645,7 @@ export function ProfilePage({ dict, lang }) {
                                                                                 );
                                                                             }}
                                                                         >
-                                                                            ویرایش
+                                                                            {dict.marketplace.profile.profilePage.table.edit}
                                                                         </Button>
                                                                     </DialogTrigger>
                                                                     <DialogContent className="max-w-xl">

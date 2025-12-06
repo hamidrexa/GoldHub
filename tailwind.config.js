@@ -263,6 +263,71 @@ module.exports = {
             },
         },
         extend: {
+            colors: {
+                // Core Brand Colors - Navy Blue (Primary)
+                navy: {
+                    50: '#E6EBF1',
+                    100: '#C2D1E0',
+                    200: '#9AB4CD',
+                    300: '#7297BA',
+                    400: '#5481AC',
+                    500: '#366B9E',
+                    600: '#2F5C88',
+                    700: '#264A6D',
+                    800: '#1D3952',
+                    900: '#102E50', // Primary navy
+                },
+
+                // Gold (Accent)
+                gold: {
+                    50: '#FEF8E7',
+                    100: '#FDEEC3',
+                    200: '#FCE39B',
+                    300: '#FAD873',
+                    400: '#F9CF55',
+                    500: '#F8C537',
+                    600: '#F0A202', // Primary gold
+                    700: '#C98502',
+                    800: '#A26901',
+                    900: '#7A4F01',
+                },
+
+                // Background Colors
+                bg: {
+                    light: '#F5F5F0',
+                    card: '#FFFFFF',
+                },
+
+                // Sidebar Colors
+                sidebar: {
+                    bg: '#1A1A1A',
+                    active: '#2A2A2A',
+                },
+
+                // Status Colors
+                status: {
+                    confirmed: {
+                        bg: '#FEF3C7',
+                        text: '#92400E',
+                    },
+                    shipped: {
+                        bg: '#DBEAFE',
+                        text: '#1E40AF',
+                    },
+                    pending: {
+                        bg: '#FEF3C7',
+                        text: '#92400E',
+                    },
+                    delivered: {
+                        bg: '#D1FAE5',
+                        text: '#065F46',
+                    },
+                    draft: {
+                        bg: '#F3F4F6',
+                        text: '#4B5563',
+                    },
+                },
+            },
             keyframes: {
                 'scale-pulse': {
                     '0%,100%': { transform: 'scale(1)' },

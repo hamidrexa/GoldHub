@@ -31,7 +31,7 @@ export function DataTableRowActions<TData>({
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-[140px]">
-                <DropdownMenuItem>دنبال کردن</DropdownMenuItem>
+                <DropdownMenuItem>Follow</DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     );

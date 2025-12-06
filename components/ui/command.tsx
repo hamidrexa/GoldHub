@@ -28,14 +28,14 @@ const Command = React.forwardRef<
 ));
 Command.displayName = CommandPrimitive.displayName;
 
-interface CommandDialogProps extends DialogProps {}
+interface CommandDialogProps extends DialogProps { }
 
 const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
     return (
         <Dialog {...props}>
             <DialogContent className="h-full max-w-2xl overflow-hidden rounded-none border-none p-0 shadow-lg md:h-fit md:rounded-md">
                 <DialogTitle className="hidden" />
-                <DialogDescription className="hidden">جستوجو</DialogDescription>
+                <DialogDescription className="hidden">Search</DialogDescription>
                 <Command
                     shouldFilter={false}
                     className="rounded-none md:rounded-md [&_[cmdk-group-heading]]:px-4 [&_[cmdk-group-heading]]:font-bold [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-4 [&_[cmdk-item]]:px-4 [&_[cmdk-item]]:py-3"

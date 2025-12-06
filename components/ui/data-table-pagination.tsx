@@ -35,7 +35,7 @@ export function DataTablePagination<TData>({
                         setPageSize((prevVal) => prevVal + 10);
                     }}
                 >
-                    مشاهده بیشتر
+                    View More
                 </Button>
             )}
             <LoginModal
@@ -44,15 +44,15 @@ export function DataTablePagination<TData>({
                 texts={{
                     title: (
                         <>
-                            دسترسی کامل به رتبه بندی
+                            Full access to rankings
                             <br />
-                            نیاز به اشتراک دارد.
+                            requires subscription.
                         </>
                     ),
                     description:
-                        'با ثبت نام در طلانو، 7 روز رایگان از تمامی امکانات استفاده کنید.',
-                    button: 'فعال سازی 7 روز رایگان',
-                    inputLabel: 'ثبت نام سریع',
+                        'By registering on GoldTrade, use all features free for 7 days.',
+                    button: 'Activate 7 days free',
+                    inputLabel: 'Quick registration',
                     buttonVariant: 'info',
                 }}
                 open={openLoginModal}

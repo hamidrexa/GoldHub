@@ -55,9 +55,9 @@ export function ActivationForm({
     });
     const formSchema = z.object({
         code: z
-            .string({ required_error: 'وارد کردن کد تایید الزامی است.' })
+            .string({ required_error: dict.marketplace.profile.activationForm.codeRequired })
             .length(4)
-            .regex(/^\d{4}$/, 'کد وارد شده نادرست است.'),
+            .regex(/^\d{4}$/, dict.marketplace.profile.activationForm.codeInvalid),
     });
     type formValue = z.infer<typeof formSchema>;
     const defaultValues: Partial<formValue> = {};
@@ -94,7 +94,7 @@ export function ActivationForm({
             window.focus();
             // @ts-ignore
             document.activeElement?.blur();
-            toast.error('کد وارد شده نامعتبرست.');
+            toast.error(dict.marketplace.profile.activationForm.codeInvalidToast);
         }
         activated === 'password' && setStep(2);
         setIsLoading(false);
@@ -110,7 +110,7 @@ export function ActivationForm({
             window.focus();
             // @ts-ignore
             document.activeElement?.blur();
-            toast.error('خطایی در ارسال کد رخ داده است.');
+            toast.error(dict.marketplace.profile.activationForm.sendError);
         }
         setIsLoadingOtpRetry(false);
     };
@@ -124,7 +124,7 @@ export function ActivationForm({
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>تایید کد</FormLabel>
+                                    <FormLabel>{dict.marketplace.profile.activationForm.verifyCode}</FormLabel>
                                     <FormControl>
                                         <div
                                             dir="ltr"
@@ -172,12 +172,11 @@ export function ActivationForm({
                                                             height={20}
                                                         />
                                                     )}
-                                                    دریافت مجدد کد
+                                                    {dict.marketplace.profile.activationForm.resendCode}
                                                 </Button>
                                             ) : (
                                                 <p className="text-center text-sm">
-                                                    در صورت عدم دریافت کد یا
-                                                    تغییر شماره می‌توانید تا{' '}
+                                                    {dict.marketplace.profile.activationForm.timerMessage}{' '}
                                                     <Timer
                                                         className="inline-block w-9 font-bold"
                                                         endTime={120}
@@ -188,7 +187,7 @@ export function ActivationForm({
                                                         }
                                                         countDown
                                                     />{' '}
-                                                    دقیقه دیگر مجدد تلاش کنید.
+                                                    {dict.marketplace.profile.activationForm.minutes}
                                                 </p>
                                             )}
                                         </div>

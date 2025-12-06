@@ -28,9 +28,9 @@ export function Suggestion({ dict, lang, open, setOpen }) {
         useMultiSearch(debouncedSearch);
 
     const indexUids = {
-        tickers: 'نمادهای بورسی',
-        publishers: 'تریدرها',
-        cryptocurrencies: 'نمادهای ارزدیجیتالی',
+        tickers: 'Stock Symbols',
+        publishers: 'Traders',
+        cryptocurrencies: 'Cryptocurrency Symbols',
     };
     const sortedSuggestionItems = suggestionItems.sort((a, b) => {
         const scoreA = a.hits[0]?._rankingScore || 0;
@@ -71,7 +71,7 @@ export function Suggestion({ dict, lang, open, setOpen }) {
                         heading={
                             <div className="flex items-center gap-2">
                                 <HistoryIcon strokeWidth={1.5} />
-                                آخرین جستجوهای شما
+                                Your Recent Searches
                             </div>
                         }
                     >
@@ -203,7 +203,7 @@ export function Suggestion({ dict, lang, open, setOpen }) {
                                                                     null;
                                                                 currentTarget.src =
                                                                     item.indexUid ===
-                                                                    'publishers'
+                                                                        'publishers'
                                                                         ? `/img/sources/${hit.account_type}.png`
                                                                         : '/img/no-image.jpg';
                                                             }}
@@ -212,7 +212,7 @@ export function Suggestion({ dict, lang, open, setOpen }) {
                                                         />
                                                     </div>
                                                     {item.indexUid !==
-                                                    'publishers'
+                                                        'publishers'
                                                         ? `${hit.symbol_fa ?? hit.symbol}/${hit.name_fa}`
                                                         : hit.name}
                                                 </CommandItem>
@@ -225,7 +225,7 @@ export function Suggestion({ dict, lang, open, setOpen }) {
             </CommandList>
             {!isLoading && (
                 <div className="bg-blue-700 px-4 py-2.5 text-base text-white">
-                    مشاهده بیشتر نتایج با
+                    View more results with
                     <Badge
                         className="font-sans"
                         variant="no-color"

@@ -811,8 +811,7 @@
   },
   "yourInventory": "موجودی شما",
   "increase": "افزایش",
-  "retry": "لطفا مجدد تلاش کنید"
-  ,
+  "retry": "لطفا مجدد تلاش کنید",
   "admin": {
     "create_contract": "ایجاد قرارداد",
     "edit_contract": "ویرایش قرارداد",
@@ -827,5 +826,795 @@
     "cancel": "انصراف",
     "assign_broker": "اختصاص دادن به کارگزار",
     "add": "افزودن"
+  },
+  "marketplace": {
+    "common": {
+      "dashboard": "داشبورد",
+      "viewAll": "مشاهده همه",
+      "viewMore": "مشاهده بیشتر",
+      "edit": "ویرایش",
+      "save": "ذخیره",
+      "cancel": "لغو",
+      "delete": "حذف",
+      "add": "افزودن",
+      "create": "ایجاد",
+      "update": "بروزرسانی",
+      "search": "جستجو",
+      "filter": "فیلتر",
+      "reset": "بازنشانی",
+      "actions": "عملیات",
+      "status": "وضعیت",
+      "date": "تاریخ",
+      "total": "مجموع",
+      "amount": "مبلغ",
+      "price": "قیمت",
+      "quantity": "تعداد",
+      "name": "نام",
+      "email": "ایمیل",
+      "phone": "تلفن",
+      "loading": "در حال بارگذاری...",
+      "noResults": "نتیجه‌ای یافت نشد",
+      "noData": "داده‌ای موجود نیست",
+      "confirm": "تایید",
+      "close": "بستن",
+      "back": "بازگشت",
+      "next": "بعدی",
+      "previous": "قبلی",
+      "submit": "ثبت",
+      "pending": "در انتظار",
+      "confirmed": "تایید شده",
+      "shipped": "ارسال شده",
+      "delivered": "تحویل شده",
+      "cancelled": "لغو شده",
+      "active": "فعال",
+      "inactive": "غیرفعال",
+      "approved": "تایید شده",
+      "rejected": "رد شده",
+      "inStock": "موجود",
+      "outOfStock": "ناموجود",
+      "perGram": "/ گرم",
+      "gram": "گرم",
+      "hoursAgo": "ساعت پیش",
+      "daysAgo": "روز پیش",
+      "ordersWaiting": "سفارش در انتظار",
+      "applicationsPending": "درخواست در انتظار",
+      "activeUsers": "کاربر فعال"
+    },
+    "admin": {
+      "title": "داشبورد مدیریت",
+      "description": "پنل مدیریت بازار طلا و جواهر",
+      "welcomeMessage": "خوش آمدید! نگاهی کلی به بازار خود داشته باشید",
+      "totalOrders": "کل سفارشات",
+      "allTimeOrders": "سفارشات کل زمان",
+      "pendingOrders": "سفارشات در انتظار",
+      "awaitingAction": "در انتظار اقدام",
+      "totalRevenue": "کل درآمد",
+      "thisMonth": "این ماه",
+      "activeUsers": "کاربران فعال",
+      "registeredUsers": "کاربران ثبت نام شده",
+      "pendingKyc": "احراز هویت در انتظار",
+      "requiresReview": "نیاز به بررسی",
+      "recentActivity": "فعالیت‌های اخیر",
+      "newOrderReceived": "سفارش جدید دریافت شد",
+      "orderFrom": "سفارش #ORD-003 از شرکت طلا شرق",
+      "kycSubmitted": "احراز هویت ثبت شد",
+      "kycSubmittedDesc": "سارا چن مدارک احراز هویت را ارسال کرد",
+      "paymentReceived": "پرداخت دریافت شد",
+      "paymentReceivedDesc": "،300 از سفارش #ORD-008",
+      "newUserRegistered": "کاربر جدید ثبت نام کرد",
+      "newUserRegisteredDesc": "اما ویلسون به عنوان خرده فروش پیوست",
+      "quickActions": "دسترسی سریع",
+      "reviewPendingOrders": "بررسی سفارشات در انتظار",
+      "reviewKycRequests": "بررسی درخواست‌های احراز هویت",
+      "viewAuditLogs": "مشاهده لاگ‌های سیستم",
+      "monitorSystemActivity": "نظارت بر فعالیت سیستم",
+      "manageUsers": "مدیریت کاربران",
+      "usersKyc": "کاربران و احراز هویت",
+      "auditLogs": "لاگ‌های سیستم",
+      "allOrders": "همه سفارشات",
+      "usersKycPage": {
+        "title": "کاربران و احراز هویت",
+        "description": "مدیریت حساب‌های کاربری و احراز هویت",
+        "searchPlaceholder": "جستجوی کاربران...",
+        "tabs": {
+          "all": "همه کاربران",
+          "pending": "در انتظار احراز هویت",
+          "approved": "تایید شده"
+        },
+        "table": {
+          "name": "نام",
+          "email": "ایمیل",
+          "company": "شرکت",
+          "role": "نقش",
+          "kycStatus": "وضعیت احراز هویت",
+          "joined": "تاریخ عضویت",
+          "actions": "عملیات",
+          "submitted": "ثبت شده",
+          "approved": "تایید شده"
+        },
+        "status": {
+          "approved": "تایید شده",
+          "pendingReview": "در انتظار بررسی",
+          "rejected": "رد شده",
+          "notSubmitted": "ثبت نشده"
+        },
+        "dialog": {
+          "title": "جزئیات احراز هویت",
+          "description": "بررسی اطلاعات احراز هویت برای",
+          "companyInfo": "اطلاعات شرکت",
+          "companyName": "نام شرکت",
+          "notProvided": "ارائه نشده",
+          "bankingInfo": "اطلاعات بانکی",
+          "iban": "شماره شبا",
+          "swift": "کد سوییفت",
+          "documents": "مدارک",
+          "businessRegistration": "ثبت شرکت",
+          "uploadedOn": "بارگذاری شده در",
+          "idVerification": "تایید هویت",
+          "view": "مشاهده",
+          "noDocuments": "مدرکی بارگذاری نشده",
+          "status": "وضعیت",
+          "currentStatus": "وضعیت فعلی",
+          "approve": "تایید",
+          "reject": "رد کردن"
+        }
+      },
+      "ordersPage": {
+        "title": "سفارشات",
+        "description": "مدیریت سفارشات دریافتی از خریداران",
+        "searchPlaceholder": "جستجوی سفارشات...",
+        "tabs": {
+          "all": "همه سفارشات",
+          "pending": "در انتظار اقدام",
+          "active": "فعال",
+          "closed": "بسته شده"
+        },
+        "table": {
+          "orderId": "شماره سفارش",
+          "buyer": "خریدار",
+          "items": "آیتم‌ها",
+          "total": "مجموع",
+          "status": "وضعیت",
+          "date": "تاریخ",
+          "actions": "عملیات",
+          "noOrders": "سفارشی یافت نشد",
+          "itemsSuffix": "آیتم"
+        },
+        "status": {
+          "confirmed": "تایید شده",
+          "shipped": "ارسال شده",
+          "pendingSupplier": "در انتظار تامین کننده",
+          "closed": "بسته شده",
+          "cancelled": "لغو شده"
+        }
+      },
+      "auditLogsPage": {
+        "title": "لاگ‌های سیستم",
+        "description": "نظارت بر فعالیت سیستم و رویدادهای کاربر",
+        "searchPlaceholder": "جستجو بر اساس کاربر، IP یا دستگاه...",
+        "tabs": {
+          "all": "همه رویدادها",
+          "login": "ورود/خروج",
+          "kyc": "رویدادهای احراز هویت",
+          "orders": "سفارشات"
+        },
+        "table": {
+          "timestamp": "زمان",
+          "user": "کاربر",
+          "event": "رویداد",
+          "ipAddress": "آدرس IP",
+          "device": "دستگاه / مرورگر",
+          "noLogs": "لاگی یافت نشد"
+        },
+        "stats": {
+          "totalEvents": "کل رویدادها (۲۴ ساعت)",
+          "loginEvents": "رویدادهای ورود",
+          "kycEvents": "رویدادهای احراز هویت"
+        },
+        "events": {
+          "login": "ورود",
+          "logout": "خروج",
+          "orderCreated": "سفارش ایجاد شد",
+          "kycSubmitted": "احراز هویت ثبت شد",
+          "kycApproved": "احراز هویت تایید شد",
+          "kycRejected": "احراز هویت رد شد"
+        }
+      }
+    },
+    "buyer": {
+      "title": "داشبورد خریدار",
+      "welcomeBack": "خوش آمدید!",
+      "browseDescription": "کاتالوگ را مرور کنید و سفارشات خود را مدیریت کنید",
+      "browseCatalog": "مرور کاتالوگ",
+      "activeOrders": "سفارشات فعال",
+      "totalSpent": "مجموع هزینه",
+      "pendingDeliveries": "تحویل‌های در انتظار",
+      "savedItems": "آیتم‌های ذخیره شده",
+      "marketPrices": "قیمت‌های بازار",
+      "recentOrders": "سفارشات اخیر",
+      "featuredProducts": "محصولات ویژه",
+      "viewCatalog": "مشاهده کاتالوگ",
+      "pendingSupplier": "در انتظار تامین کننده",
+      "productCatalog": "کاتالوگ محصولات",
+      "myOrders": "سفارشات من",
+      "myCart": "سبد خرید من",
+      "myFavorites": "علاقه‌مندی‌های من",
+      "addToCart": "افزودن به سبد خرید",
+      "removeFromCart": "حذف از سبد خرید",
+      "checkout": "تسویه حساب",
+      "orderDetails": "جزئیات سفارش",
+      "orderTimeline": "زمان‌بندی سفارش",
+      "orderPlaced": "سفارش ثبت شد",
+      "orderConfirmed": "سفارش تایید شد",
+      "orderShipped": "سفارش ارسال شد",
+      "orderDelivered": "سفارش تحویل داده شد",
+      "trackOrder": "پیگیری سفارش",
+      "contactSupplier": "تماس با تامین کننده",
+      "emptyCart": "سبد خرید شما خالی است",
+      "noFavorites": "هنوز علاقه‌مندی ندارید",
+      "continueShopping": "ادامه خرید",
+      "catalogPage": {
+        "title": "کاتالوگ محصولات",
+        "description": "مرور طلا، نقره و جواهرات از تامین کنندگان تایید شده",
+        "filters": {
+          "title": "فیلترها",
+          "clearAll": "پاک کردن همه",
+          "search": "جستجو",
+          "searchPlaceholder": "جستجوی محصولات...",
+          "category": "دسته‌بندی",
+          "karat": "عیار",
+          "allKarats": "همه عیارها",
+          "priceRange": "محدوده قیمت (دلار)",
+          "weightRange": "وزن (گرم)",
+          "apply": "اعمال فیلترها",
+          "show": "نمایش فیلترها",
+          "hide": "مخفی کردن فیلترها"
+        },
+        "toolbar": {
+          "showing": "نمایش",
+          "products": "محصول",
+          "sortBy": "مرتب سازی:",
+          "sortOptions": {
+            "recommended": "پیشنهادی",
+            "priceLow": "قیمت: کم به زیاد",
+            "priceHigh": "قیمت: زیاد به کم",
+            "newest": "جدیدترین"
+          }
+        },
+        "noResults": {
+          "title": "محصولی یافت نشد",
+          "description": "فیلترهای خود را تغییر دهید"
+        },
+        "categories": {
+          "goldBar": "شمش طلا",
+          "goldCoin": "سکه طلا",
+          "jewelry": "جواهرات",
+          "necklace": "گردنبند",
+          "bracelet": "دستبند",
+          "earring": "گوشواره",
+          "ring": "انگشتر"
+        }
+      },
+      "productCard": {
+        "lowStock": "موجودی کم",
+        "inStock": "موجود",
+        "outOfStock": "ناموجود",
+        "adding": "در حال افزودن...",
+        "addToCart": "افزودن به سبد"
+      },
+      "ordersPage": {
+        "title": "سفارشات من",
+        "description": "پیگیری و مدیریت سفارشات شما",
+        "searchPlaceholder": "جستجو با شماره سفارش یا تامین کننده...",
+        "tabs": {
+          "all": "همه سفارشات",
+          "active": "فعال",
+          "completed": "تکمیل شده"
+        },
+        "noOrders": "سفارشی یافت نشد",
+        "table": {
+          "orderId": "شماره سفارش",
+          "date": "تاریخ",
+          "items": "آیتم‌ها",
+          "total": "مجموع",
+          "status": "وضعیت",
+          "actions": "عملیات"
+        },
+        "card": {
+          "supplier": "تامین کننده:",
+          "created": "تاریخ ایجاد:",
+          "itemsSuffix": "آیتم",
+          "viewDetails": "مشاهده جزئیات"
+        },
+        "status": {
+          "draft": "پیش نویس",
+          "submitted": "ثبت شده",
+          "pendingSupplier": "در انتظار تامین کننده",
+          "confirmed": "تایید شده",
+          "processing": "در حال پردازش",
+          "inProcessing": "در حال پردازش",
+          "ready": "آماده",
+          "shipped": "ارسال شده",
+          "delivered": "تحویل شده",
+          "closed": "بسته شده",
+          "cancelled": "لغو شده"
+        }
+      },
+      "orderDetailModal": {
+        "title": "سفارش",
+        "timeline": "زمان‌بندی سفارش",
+        "current": "فعلی",
+        "supplier": "تامین کننده",
+        "supplierId": "شناسه:",
+        "summary": "خلاصه سفارش",
+        "total": "مجموع:",
+        "created": "تاریخ ایجاد:",
+        "items": "آیتم‌های سفارش",
+        "qty": "تعداد:"
+      },
+      "orderDetailPage": {
+        "notFound": {
+          "title": "سفارش یافت نشد",
+          "description": "سفارشی که به دنبال آن هستید وجود ندارد",
+          "backToOrders": "بازگشت به سفارشات"
+        },
+        "backToOrders": "بازگشت به سفارشات",
+        "placedOn": "ثبت شده در",
+        "orderStatus": "وضعیت سفارش",
+        "orderItems": "آیتم‌های سفارش",
+        "table": {
+          "product": "محصول",
+          "specifications": "مشخصات",
+          "quantity": "تعداد",
+          "price": "قیمت",
+          "subtotal": "جمع جزء"
+        },
+        "summary": {
+          "subtotal": "جمع جزء",
+          "tax": "مالیات",
+          "shipping": "خرید",
+          "total": "مجموع"
+        },
+        "shippingAddress": "آدرس ارسال",
+        "actions": {
+          "cancelOrder": "لغو سفارش",
+          "contactSupplier": "تماس با تامین کننده",
+          "downloadInvoice": "دانلود فاکتور"
+        }
+      },
+      "cartPage": {
+        "title": "سبد خرید",
+        "itemsInCart": "آیتم در سبد خرید شما",
+        "continueShopping": "ادامه خرید",
+        "empty": {
+          "title": "سبد خرید شما خالی است",
+          "description": "برای شروع محصولات را از کاتالوگ اضافه کنید",
+          "browseCatalog": "مرور کاتالوگ"
+        },
+        "item": {
+          "each": "هر عدد",
+          "remove": "حذف"
+        },
+        "summary": {
+          "title": "خلاصه سفارش",
+          "subtotal": "جمع جزء",
+          "tax": "مالیات (8%)",
+          "shipping": "هزینه ارسال",
+          "free": "رایگان",
+          "freeShippingMsg": " شما واجد شرایط ارسال رایگان هستید!",
+          "total": "مجموع",
+          "checkout": "ادامه جهت تسویه حساب",
+          "secureCheckout": "پرداخت امن  شامل محافظت از خریدار"
+        }
+      },
+      "favoritesPage": {
+        "title": "علاقه‌مندی‌های من",
+        "savedItems": "آیتم ذخیره شده",
+        "browseCatalog": "مرور کاتالوگ",
+        "empty": {
+          "title": "لیست علاقه‌مندی‌ها خالی است",
+          "description": "شروع به افزودن محصولات به لیست علاقه‌مندی‌ها کنید",
+          "browseProducts": "مرور محصولات"
+        },
+        "item": {
+          "added": "افزوده شده",
+          "addToCart": "افزودن به سبد"
+        }
+      }
+    },
+    "supplier": {
+      "title": "داشبورد تامین کننده",
+      "welcomeMessage": "خوش آمدید! نگاهی کلی به پنل تامین کننده",
+      "activeProducts": "محصولات فعال",
+      "listedProducts": "محصولات لیست شده",
+      "pendingOrders": "سفارشات در انتظار",
+      "awaitingFulfillment": "در انتظار تکمیل",
+      "revenueMtd": "درآمد ماه جاری",
+      "monthToDate": "از ابتدای ماه",
+      "avgOrderValue": "میانگین ارزش سفارش",
+      "perTransaction": "در هر تراکنش",
+      "liveGoldPrice": "قیمت لحظه‌ای طلا",
+      "lastUpdated": "آخرین بروزرسانی",
+      "recentOrders": "سفارشات اخیر",
+      "noRecentOrders": "سفارش اخیری وجود ندارد",
+      "yourProducts": "محصولات شما",
+      "myProducts": "محصولات من",
+      "addProduct": "افزودن محصول",
+      "editProduct": "ویرایش محصول",
+      "deleteProduct": "حذف محصول",
+      "productName": "نام محصول",
+      "productDescription": "توضیحات محصول",
+      "productCategory": "دسته بندی",
+      "productWeight": "وزن",
+      "productKarat": "عیار",
+      "productPrice": "قیمت",
+      "productStock": "موجودی",
+      "pricingCalculator": "ماشین حساب قیمت",
+      "manageOrders": "مدیریت سفارشات",
+      "orderManagement": "مدیریت سفارش",
+      "confirmOrder": "تایید سفارش",
+      "shipOrder": "ارسال سفارش",
+      "viewOrder": "مشاهده سفارش",
+      "productsPage": {
+        "title": "محصولات من",
+        "description": "مدیریت لیست محصولات شما",
+        "addProduct": "افزودن محصول",
+        "searchPlaceholder": "جستجوی محصولات...",
+        "category": "دسته‌بندی",
+        "categories": {
+          "all": "همه دسته‌بندی‌ها",
+          "goldBar": "شمش طلا",
+          "goldCoin": "سکه طلا",
+          "jewelry": "جواهرات",
+          "necklace": "گردنبند",
+          "bracelet": "دستبند",
+          "earring": "گوشواره",
+          "ring": "انگشتر"
+        },
+        "noProducts": "محصولی یافت نشد",
+        "inStock": "موجود",
+        "edit": "ویرایش",
+        "status": {
+          "active": "فعال",
+          "inactive": "غیرفعال",
+          "draft": "پیش نویس"
+        }
+      },
+      "productFormDialog": {
+        "title": {
+          "edit": "ویرایش محصول",
+          "add": "افزودن محصول جدید"
+        },
+        "description": {
+          "edit": "بروزرسانی جزئیات محصول در زیر",
+          "add": "جزئیات محصول جدید خود را وارد کنید"
+        },
+        "fields": {
+          "name": {
+            "label": "نام محصول",
+            "placeholder": "مثلا: شمش طلا 24 عیار 100 گرم"
+          },
+          "category": "دسته‌بندی",
+          "karat": {
+            "label": "عیار",
+            "options": {
+              "18k": "18 عیار (75%)",
+              "22k": "22 عیار (91.6%)",
+              "24k": "24 عیار (100%)"
+            }
+          },
+          "weight": "وزن (گرم)",
+          "price": "قیمت (دلار)",
+          "stock": "موجودی",
+          "specifications": {
+            "label": "مشخصات",
+            "placeholder": "مثلا: شمش طلا 24 عیار 100 گرم"
+          },
+          "status": "وضعیت",
+          "image": {
+            "label": "تصویر محصول",
+            "clickToUpload": "برای آپلود تصویر کلیک کنید",
+            "s3Required": "(نیاز به اس ۳)"
+          }
+        },
+        "actions": {
+          "cancel": "لغو",
+          "update": "بروزرسانی محصول",
+          "add": "افزودن محصول"
+        }
+      },
+      "ordersPage": {
+        "title": "سفارشات",
+        "description": "مدیریت و پیگیری سفارشات تامین کننده",
+        "searchPlaceholder": "جستجوی سفارشات...",
+        "tabs": {
+          "all": "همه",
+          "new": "جدید",
+          "processing": "در حال پردازش",
+          "shipped": "ارسال شده",
+          "closed": "بسته شده"
+        },
+        "cardTitles": {
+          "all": "همه سفارشات",
+          "new": "سفارشات جدید",
+          "processing": "سفارشات در حال پردازش",
+          "shipped": "سفارشات ارسال شده",
+          "closed": "سفارشات بسته شده"
+        },
+        "noOrders": "سفارشی یافت نشد",
+        "table": {
+          "orderId": "شماره سفارش",
+          "buyer": "خریدار",
+          "items": "آیتم‌ها",
+          "total": "مجموع",
+          "date": "تاریخ",
+          "status": "وضعیت",
+          "actions": "عملیات"
+        },
+        "itemsSuffix": "آیتم",
+        "markShipped": "علامت‌گذاری به عنوان ارسال شده",
+        "status": {
+          "new": "جدید",
+          "processing": "در حال پردازش",
+          "shipped": "ارسال شده",
+          "completed": "تکمیل شده",
+          "cancelled": "لغو شده"
+        }
+      },
+      "pricingPage": {
+        "title": "قیمت‌گذاری",
+        "description": "مدیریت تنظیمات قیمت‌گذاری و ماشین حساب",
+        "liveGoldPrice": "قیمت لحظه‌ای طلا",
+        "perGram": "/ گرم",
+        "lastUpdated": "آخرین بروزرسانی:",
+        "configuration": {
+          "title": "تنظیمات قیمت‌گذاری",
+          "automaticPricing": "قیمت‌گذاری خودکار",
+          "automaticPricingDesc": "بروزرسانی قیمت‌ها بر اساس قیمت لحظه‌ای",
+          "markupPercentage": "درصد سود (%)",
+          "markupDesc": "اعمال شده روی تمام محصولات با قیمت‌گذاری خودکار",
+          "status": "وضعیت:",
+          "automatic": "خودکار",
+          "manualOverride": "تغییر دستی"
+        },
+        "calculator": {
+          "title": "ماشین حساب قیمت",
+          "weight": "وزن (گرم)",
+          "karat": "عیار",
+          "spotValue": "ارزش لحظه‌ای:",
+          "markup": "سود",
+          "finalPrice": "قیمت نهایی:"
+        },
+        "summary": {
+          "title": "خلاصه قیمت محصولات",
+          "table": {
+            "product": "محصول",
+            "karat": "عیار",
+            "weight": "وزن",
+            "baseCost": "هزینه پایه",
+            "markup": "سود",
+            "finalPrice": "قیمت نهایی",
+            "mode": "حالت"
+          },
+          "auto": "خودکار",
+          "manual": "دستی"
+        }
+      },
+      "contractTypes": {
+        "title": "قراردادهای من",
+        "loading": "در حال بارگذاری...",
+        "noItems": "موردی یافت نشد.",
+        "status": {
+          "active": "فعال",
+          "inactive": "غیرفعال"
+        },
+        "fields": {
+          "minInvestment": "حداقل سرمایه",
+          "maxInvestment": "حداکثر سرمایه",
+          "minDuration": "حداقل مدت (ماه)",
+          "maxDuration": "حداکثر مدت (ماه)",
+          "settlementTypes": "انواع تسویه",
+          "totalProfitShare": "مجموع سهم سود",
+          "guaranteeTypes": "انواع ضمانت",
+          "guaranteeName": "نام ضمانت",
+          "defaultProfitShare": "سهم سود پیش‌فرض",
+          "description": "توضیحات",
+          "profit": "سود",
+          "guaranteeType": "نوع ضمانت",
+          "profitShare": "سهم سود"
+        },
+        "actions": {
+          "edit": "ویرایش",
+          "deactivate": "غیرفعال کردن",
+          "activate": "فعال کردن",
+          "cancel": "لغو",
+          "continue": "ادامه",
+          "back": "بازگشت",
+          "save": "ذخیره",
+          "saving": "در حال ذخیره..."
+        },
+        "dialog": {
+          "editTitle": "ویرایش قرارداد",
+          "tabs": {
+            "basicInfo": "اطلاعات پایه",
+            "guaranteeManagement": "مدیریت ضمانت"
+          },
+          "fixedInfo": "اطلاعات ثابت:",
+          "title": "عنوان:",
+          "adminGuarantees": "ضمانت‌های مدیریت (فقط خواندنی)",
+          "noAdminGuarantees": "هیچ ضمانت مدیریتی وجود ندارد",
+          "availablePersonalGuarantees": "ضمانت‌های شخصی موجود",
+          "clickToAdd": "برای افزودن ضمانت شخصی کلیک کنید",
+          "noPersonalGuaranteesDefined": "هیچ ضمانت شخصی تعریف نشده است",
+          "createFirst": "ابتدا در مدیریت ضمانت، ضمانت جدید ایجاد کنید",
+          "selectedPersonalGuarantees": "ضمانت‌های شخصی انتخاب شده",
+          "selectedInfo": "اطلاعات ضمانت‌های شخصی انتخاب شده",
+          "noSelected": "هیچ ضمانت شخصی انتخاب نشده است",
+          "selectFromAvailable": "ضمانت را از بخش موجود انتخاب کنید",
+          "totalProfit": "مجموع سهم سود:"
+        },
+        "messages": {
+          "deactivated": "غیرفعال شد",
+          "activated": "فعال شد",
+          "error": "خطا",
+          "requiredInvestment": "حداقل و حداکثر سرمایه الزامی است",
+          "loginFirst": "لطفا ابتدا وارد شوید",
+          "editError": "خطا در ویرایش",
+          "updated": "بروزرسانی شد"
+        }
+      },
+      "guaranteeTypes": {
+        "title": "مدیریت انواع ضمانت من",
+        "fields": {
+          "title": "عنوان ضمانت *",
+          "placeholder": "مثلا: ملک، چک، سفته",
+          "profitShare": "سهم سود پیش‌فرض",
+          "description": "توضیحات (اختیاری)"
+        },
+        "actions": {
+          "cancel": "لغو",
+          "update": "بروزرسانی",
+          "saveNew": "ذخیره ضمانت جدید",
+          "deactivate": "غیرفعال کردن",
+          "activate": "فعال کردن"
+        },
+        "table": {
+          "title": "عنوان",
+          "profitShare": "سهم سود",
+          "description": "توضیحات",
+          "status": "وضعیت",
+          "actions": "عملیات",
+          "loading": "در حال بارگذاری...",
+          "noItems": "موردی یافت نشد",
+          "active": "فعال",
+          "inactive": "غیرفعال"
+        },
+        "messages": {
+          "fetchError": "خطا در دریافت لیست ضمانت‌ها",
+          "titleRequired": "عنوان ضمانت الزامی است",
+          "userError": "خطا: شناسایی کاربر امکان‌پذیر نیست",
+          "updateSuccess": "ضمانت با موفقیت بروزرسانی شد",
+          "addSuccess": "ضمانت جدید با موفقیت اضافه شد",
+          "saveError": "خطا در ذخیره ضمانت",
+          "deleteConfirm": "آیا مطمئن هستید که می‌خواهید این نوع ضمانت را حذف کنید؟",
+          "deleteSuccess": "نوع ضمانت با موفقیت حذف شد",
+          "deleteError": "خطا در حذف نوع ضمانت",
+          "statusChanged": "وضعیت تغییر کرد به",
+          "statusError": "خطا در تغییر وضعیت"
+        }
+      },
+      "memberList": {
+        "loading": "در حال بارگذاری...",
+        "noMembers": "هیچ عضوی ثبت نام نکرده است.",
+        "id": "شناسه"
+      }
+    },
+    "profile": {
+      "title": "پروفایل",
+      "myProfile": "پروفایل من",
+      "editProfile": "ویرایش پروفایل",
+      "personalInfo": "اطلاعات شخصی",
+      "accountSettings": "تنظیمات حساب",
+      "securitySettings": "تنظیمات امنیتی",
+      "changePassword": "تغییر رمز عبور",
+      "currentPassword": "رمز عبور فعلی",
+      "newPassword": "رمز عبور جدید",
+      "confirmPassword": "تکرار رمز عبور",
+      "updatePassword": "بروزرسانی رمز عبور",
+      "emailAddress": "آدرس ایمیل",
+      "verifyEmail": "تایید ایمیل",
+      "phoneNumber": "شماره تلفن",
+      "verifyPhone": "تایید تلفن",
+      "nationalCode": "کد ملی",
+      "fullName": "نام و نام خانوادگی",
+      "firstName": "نام",
+      "lastName": "نام خانوادگی",
+      "financialAccount": "حساب مالی",
+      "bankAccount": "حساب بانکی",
+      "plan": "طرح",
+      "planDays": "روزهای طرح",
+      "daysRemaining": "روز باقی مانده",
+      "activatePlan": "فعال سازی طرح",
+      "permission": "دسترسی",
+      "notifications": "اعلانات",
+      "saveChanges": "ذخیره تغییرات",
+      "profilePage": {
+        "defaultUser": "کاربر طلانو",
+        "editInfo": "ویرایش اطلاعات",
+        "roles": {
+          "admin": "ادمین",
+          "broker": "کارگزار",
+          "member": "عضو"
+        },
+        "brokerIdLoading": "در حال دریافت شناسه کارگزار...",
+        "brokerId": "شناسه کارگزار:",
+        "phoneNumber": "شماره تلفن:",
+        "noEmail": "ایمیل تنظیم نشده",
+        "nationalCode": "کد ملی:",
+        "noNationalCode": "کد ملی تنظیم نشده",
+        "verifyIdentity": "تایید هویت",
+        "password": "رمز عبور:",
+        "noPassword": "رمز عبور تنظیم نشده",
+        "changePassword": "تغییر رمز عبور",
+        "setPassword": "تنظیم رمز عبور",
+        "financialInfo": "اطلاعات مالی",
+        "newAccount": "حساب جدید",
+        "table": {
+          "row": "ردیف",
+          "shabaNumber": "شماره شبا",
+          "cardNumber": "شماره کارت",
+          "shabaStatus": "وضعیت شبا",
+          "cardStatus": "وضعیت کارت",
+          "mainCard": "کارت اصلی",
+          "edit": "ویرایش",
+          "fullName": "نام و نام خانوادگی",
+          "inviteDate": "تاریخ دعوت"
+        },
+        "referral": {
+          "code": "کد معرف:",
+          "income": "مبلغ درآمد",
+          "inviteesCount": "تعداد دعوت شده",
+          "person": "نفر",
+          "incomePerPerson": "درآمد به ازای هر نفر",
+          "toman": "تومان",
+          "total": "مجموع: معادل",
+          "invitees": "دعوت شدگان",
+          "emptyList": "لیست خالی است"
+        }
+      },
+      "nameEditForm": {
+        "firstName": "نام",
+        "lastName": "نام خانوادگی",
+        "firstNamePlaceholder": "نام خود را وارد کنید",
+        "lastNamePlaceholder": "نام خانوادگی خود را وارد کنید",
+        "save": "ذخیره"
+      },
+      "emailVerifyForm": {
+        "email": "ایمیل",
+        "emailPlaceholder": "ایمیل جدید خود را وارد کنید",
+        "confirmEmail": "تایید ایمیل",
+        "requiredError": "این فیلد الزامی است.",
+        "formatError": "لطفا یک فرمت ایمیل معتبر وارد کنید.",
+        "alreadyConfirmed": "ایمیل قبلا تایید شده است."
+      },
+      "activationForm": {
+        "verifyCode": "کد تایید",
+        "codeRequired": "کد تایید الزامی است.",
+        "codeInvalid": "کد وارد شده نادرست است.",
+        "codeInvalidToast": "کد وارد شده نامعتبر است.",
+        "sendError": "خطایی در ارسال کد رخ داد.",
+        "resendCode": "ارسال مجدد کد",
+        "timerMessage": "اگر کد را دریافت نکردید یا می‌خواهید شماره را تغییر دهید، می‌توانید مجددا تلاش کنید در",
+        "minutes": "دقیقه."
+      },
+      "nationalCodeForm": {
+        "nationalCode": "کد ملی",
+        "placeholder": "کد ملی خود را وارد کنید",
+        "confirm": "تایید کد ملی",
+        "requiredError": "این فیلد الزامی است.",
+        "formatError": "لطفا یک کد ملی معتبر وارد کنید.",
+        "error": "متاسفانه انجام نشد."
+      }
+    }
   }
 }

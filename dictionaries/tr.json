@@ -651,7 +651,7 @@
     },
     "n2": {
       "title": "Seçilen semboller sayfası nedir??",
-      "text": "Satın alınması en çekici borsa sembolleri veya dijital para birimleri\n                             Bugün (her iki saatte bir) sinyal sayfasında gösteriliyorlar.\n                             Bu semboller tüccarlar açısından alım veya satımı tavsiye ediyor\n                             Telgraflar var. Puanlama sembollerinde, rütbe ve performansta\n                             Yatırımcılar etkilendi \uD83D\uDE42"
+      "text": "Satın alınması en çekici borsa sembolleri veya dijital para birimleri\n                             Bugün (her iki saatte bir) sinyal sayfasında gösteriliyorlar.\n                             Bu semboller tüccarlar açısından alım veya satımı tavsiye ediyor\n                             Telgraflar var. Puanlama sembollerinde, rütbe ve performansta\n                             Yatırımcılar etkilendi 🙂"
     },
     "n3": {
       "title": "Abone olursam benim için hangi özellikler etkinleştirilecek?",
@@ -766,5 +766,795 @@
   },
   "aboutUsTitle": "Hakkımızda | Sahmeto",
   "increase": "Increase",
-  "retry": "Please try again"
+  "retry": "Please try again",
+  "marketplace": {
+    "common": {
+      "dashboard": "Kontrol Paneli",
+      "viewAll": "Tümünü Gör",
+      "viewMore": "Daha Fazla Gör",
+      "edit": "Düzenle",
+      "save": "Kaydet",
+      "cancel": "İptal",
+      "delete": "Sil",
+      "add": "Ekle",
+      "create": "Oluştur",
+      "update": "Güncelle",
+      "search": "Ara",
+      "filter": "Filtrele",
+      "reset": "Sıfırla",
+      "actions": "İşlemler",
+      "status": "Durum",
+      "date": "Tarih",
+      "total": "Toplam",
+      "amount": "Miktar",
+      "price": "Fiyat",
+      "quantity": "Adet",
+      "name": "İsim",
+      "email": "E-posta",
+      "phone": "Telefon",
+      "loading": "Yükleniyor...",
+      "noResults": "Sonuç bulunamadı",
+      "noData": "Veri mevcut değil",
+      "confirm": "Onayla",
+      "close": "Kapat",
+      "back": "Geri",
+      "next": "İleri",
+      "previous": "Önceki",
+      "submit": "Gönder",
+      "pending": "Beklemede",
+      "confirmed": "Onaylandı",
+      "shipped": "Gönderildi",
+      "delivered": "Teslim Edildi",
+      "cancelled": "İptal Edildi",
+      "active": "Aktif",
+      "inactive": "Pasif",
+      "approved": "Onaylandı",
+      "rejected": "Reddedildi",
+      "inStock": "Stokta",
+      "outOfStock": "Stokta Yok",
+      "perGram": "/ gram",
+      "gram": "g",
+      "hoursAgo": "saat önce",
+      "daysAgo": "gün önce",
+      "ordersWaiting": "sipariş bekliyor",
+      "applicationsPending": "başvuru bekliyor",
+      "activeUsers": "aktif kullanıcı"
+    },
+    "admin": {
+      "title": "Yönetici Paneli",
+      "description": "Altın ve mücevher pazaryeri yönetici paneli",
+      "welcomeMessage": "Tekrar hoş geldiniz! İşte pazaryerinize genel bakış",
+      "totalOrders": "Toplam Siparişler",
+      "allTimeOrders": "Tüm zamanların siparişleri",
+      "pendingOrders": "Bekleyen Siparişler",
+      "awaitingAction": "İşlem bekliyor",
+      "totalRevenue": "Toplam Gelir",
+      "thisMonth": "Bu ay",
+      "activeUsers": "Aktif Kullanıcılar",
+      "registeredUsers": "Kayıtlı kullanıcılar",
+      "pendingKyc": "Bekleyen KYC",
+      "requiresReview": "İnceleme gerekiyor",
+      "recentActivity": "Son Aktiviteler",
+      "newOrderReceived": "Yeni sipariş alındı",
+      "orderFrom": "Eastern Gold Ltd. den sipariş #ORD-003",
+      "kycSubmitted": "KYC gönderildi",
+      "kycSubmittedDesc": "Sarah Chen KYC belgelerini gönderdi",
+      "paymentReceived": "Ödeme alındı",
+      "paymentReceivedDesc": "Sipariş #ORD-008 için 52,300$",
+      "newUserRegistered": "Yeni kullanıcı kaydoldu",
+      "newUserRegisteredDesc": "Emma Wilson perakendeci olarak katıldı",
+      "quickActions": "Hızlı İşlemler",
+      "reviewPendingOrders": "Bekleyen Siparişleri İncele",
+      "reviewKycRequests": "KYC Başvurularını İncele",
+      "viewAuditLogs": "Denetim Günlüklerini Görüntüle",
+      "monitorSystemActivity": "Sistem aktivitesini izle",
+      "manageUsers": "Kullanıcıları Yönet",
+      "usersKyc": "Kullanıcılar ve KYC",
+      "auditLogs": "Denetim Günlükleri",
+      "allOrders": "Tüm Siparişler",
+      "usersKycPage": {
+        "title": "Kullanıcılar ve KYC",
+        "description": "Kullanıcı hesaplarını ve KYC doğrulamasını yönetin",
+        "searchPlaceholder": "Kullanıcı ara...",
+        "tabs": {
+          "all": "Tüm Kullanıcılar",
+          "pending": "Bekleyen KYC",
+          "approved": "Onaylananlar"
+        },
+        "table": {
+          "name": "İsim",
+          "email": "E-posta",
+          "company": "Şirket",
+          "role": "Rol",
+          "kycStatus": "KYC Durumu",
+          "joined": "Katılım",
+          "actions": "İşlemler",
+          "submitted": "Gönderildi",
+          "approved": "Onaylandı"
+        },
+        "status": {
+          "approved": "Onaylandı",
+          "pendingReview": "İnceleme Bekliyor",
+          "rejected": "Reddedildi",
+          "notSubmitted": "Gönderilmedi"
+        },
+        "dialog": {
+          "title": "KYC Detayları",
+          "description": "KYC bilgilerini incele:",
+          "companyInfo": "Şirket Bilgileri",
+          "companyName": "Şirket Adı",
+          "notProvided": "Belirtilmedi",
+          "bankingInfo": "Banka Bilgileri",
+          "iban": "IBAN",
+          "swift": "SWIFT Kodu",
+          "documents": "Belgeler",
+          "businessRegistration": "Ticari Sicil",
+          "uploadedOn": "Yüklenme tarihi",
+          "idVerification": "Kimlik Doğrulama",
+          "view": "Görüntüle",
+          "noDocuments": "Belge yüklenmedi",
+          "status": "Durum",
+          "currentStatus": "Mevcut Durum",
+          "approve": "Onayla",
+          "reject": "Reddet"
+        }
+      },
+      "ordersPage": {
+        "title": "Siparişler",
+        "description": "Alıcılardan gelen siparişleri yönetin",
+        "searchPlaceholder": "Sipariş ara...",
+        "tabs": {
+          "all": "Tüm Siparişler",
+          "pending": "İşlem Bekleyen",
+          "active": "Aktif",
+          "closed": "Kapalı"
+        },
+        "table": {
+          "orderId": "Sipariş No",
+          "buyer": "Alıcı",
+          "items": "Ürünler",
+          "total": "Toplam",
+          "status": "Durum",
+          "date": "Tarih",
+          "actions": "İşlemler",
+          "noOrders": "Sipariş bulunamadı",
+          "itemsSuffix": "ürün"
+        },
+        "status": {
+          "confirmed": "Onaylandı",
+          "shipped": "Kargolandı",
+          "pendingSupplier": "Tedarikçi Bekleniyor",
+          "closed": "Kapandı",
+          "cancelled": "İptal Edildi"
+        }
+      },
+      "auditLogsPage": {
+        "title": "Denetim Kayıtları",
+        "description": "Sistem aktivitesini ve kullanıcı olaylarını izleyin",
+        "searchPlaceholder": "Kullanıcı, IP veya cihaza göre ara...",
+        "tabs": {
+          "all": "Tüm Olaylar",
+          "login": "Giriş/Çıkış",
+          "kyc": "KYC Olayları",
+          "orders": "Siparişler"
+        },
+        "table": {
+          "timestamp": "Zaman Damgası",
+          "user": "Kullanıcı",
+          "event": "Olay",
+          "ipAddress": "IP Adresi",
+          "device": "Cihaz / Tarayıcı",
+          "noLogs": "Kayıt bulunamadı"
+        },
+        "stats": {
+          "totalEvents": "Toplam Olay (24s)",
+          "loginEvents": "Giriş Olayları",
+          "kycEvents": "KYC Olayları"
+        },
+        "events": {
+          "login": "Giriş",
+          "logout": "Çıkış",
+          "orderCreated": "Sipariş Oluşturuldu",
+          "kycSubmitted": "KYC Gönderildi",
+          "kycApproved": "KYC Onaylandı",
+          "kycRejected": "KYC Reddedildi"
+        }
+      }
+    },
+    "buyer": {
+      "title": "Alıcı Paneli",
+      "welcomeBack": "Tekrar hoş geldiniz!",
+      "browseDescription": "Kataloğa göz atın ve siparişlerinizi yönetin",
+      "browseCatalog": "Kataloğa Göz At",
+      "activeOrders": "Aktif Siparişler",
+      "totalSpent": "Toplam Harcama",
+      "pendingDeliveries": "Bekleyen Teslimatlar",
+      "savedItems": "Kaydedilen Ürünler",
+      "marketPrices": "Piyasa Fiyatları",
+      "recentOrders": "Son Siparişler",
+      "featuredProducts": "Öne Çıkan Ürünler",
+      "viewCatalog": "Kataloğu Görüntüle",
+      "pendingSupplier": "Tedarikçi Bekliyor",
+      "productCatalog": "Ürün Kataloğu",
+      "myOrders": "Siparişlerim",
+      "myCart": "Sepetim",
+      "myFavorites": "Favorilerim",
+      "addToCart": "Sepete Ekle",
+      "removeFromCart": "Sepetten Çıkar",
+      "checkout": "Ödeme Yap",
+      "orderDetails": "Sipariş Detayları",
+      "orderTimeline": "Sipariş Zaman Çizelgesi",
+      "orderPlaced": "Sipariş Verildi",
+      "orderConfirmed": "Sipariş Onaylandı",
+      "orderShipped": "Sipariş Gönderildi",
+      "orderDelivered": "Sipariş Teslim Edildi",
+      "trackOrder": "Siparişi Takip Et",
+      "contactSupplier": "Tedarikçiyle İletişime Geç",
+      "emptyCart": "Sepetiniz boş",
+      "noFavorites": "Henüz favori yok",
+      "continueShopping": "Alışverişe Devam Et",
+      "catalogPage": {
+        "title": "Ürün Kataloğu",
+        "description": "Onaylı tedarikçilerden altın, gümüş ve mücevherlere göz atın",
+        "filters": {
+          "title": "Filtreler",
+          "clearAll": "Tümünü Temizle",
+          "search": "Ara",
+          "searchPlaceholder": "Ürün ara...",
+          "category": "Kategori",
+          "karat": "Ayar",
+          "allKarats": "Tüm Ayarlar",
+          "priceRange": "Fiyat Aralığı (USD)",
+          "weightRange": "Ağırlık (gram)",
+          "apply": "Filtreleri Uygula",
+          "show": "Filtreleri Göster",
+          "hide": "Filtreleri Gizle"
+        },
+        "toolbar": {
+          "showing": "Gösteriliyor",
+          "products": "ürün",
+          "sortBy": "Sıralama:",
+          "sortOptions": {
+            "recommended": "Önerilen",
+            "priceLow": "Fiyat: Düşükten Yükseğe",
+            "priceHigh": "Fiyat: Yüksekten Düşüğe",
+            "newest": "En Yeni"
+          }
+        },
+        "noResults": {
+          "title": "Ürün bulunamadı",
+          "description": "Filtrelerinizi değiştirmeyi deneyin"
+        },
+        "categories": {
+          "goldBar": "Külçe Altın",
+          "goldCoin": "Altın Para",
+          "jewelry": "Mücevher",
+          "necklace": "Kolye",
+          "bracelet": "Bilezik",
+          "earring": "Küpe",
+          "ring": "Yüzük"
+        }
+      },
+      "productCard": {
+        "lowStock": "Düşük Stok",
+        "inStock": "stokta",
+        "outOfStock": "Stokta yok",
+        "adding": "Ekleniyor...",
+        "addToCart": "Sepete Ekle"
+      },
+      "ordersPage": {
+        "title": "Siparişlerim",
+        "description": "Siparişlerinizi takip edin ve yönetin",
+        "searchPlaceholder": "Sipariş No veya tedarikçi ile ara...",
+        "tabs": {
+          "all": "Tüm Siparişler",
+          "active": "Aktif",
+          "completed": "Tamamlanan"
+        },
+        "noOrders": "Sipariş bulunamadı",
+        "table": {
+          "orderId": "Sipariş No",
+          "date": "Tarih",
+          "items": "Ürünler",
+          "total": "Toplam",
+          "status": "Durum",
+          "actions": "İşlemler"
+        },
+        "card": {
+          "supplier": "Tedarikçi:",
+          "created": "Oluşturuldu:",
+          "itemsSuffix": "ürün",
+          "viewDetails": "Detayları Gör"
+        },
+        "status": {
+          "draft": "Taslak",
+          "submitted": "Gönderildi",
+          "pendingSupplier": "Tedarikçi Bekleniyor",
+          "confirmed": "Onaylandı",
+          "processing": "İşleniyor",
+          "inProcessing": "İşlemde",
+          "ready": "Hazır",
+          "shipped": "Kargolandı",
+          "delivered": "Teslim Edildi",
+          "closed": "Kapandı",
+          "cancelled": "İptal Edildi"
+        }
+      },
+      "orderDetailModal": {
+        "title": "Sipariş",
+        "timeline": "Sipariş Geçmişi",
+        "current": "Mevcut",
+        "supplier": "Tedarikçi",
+        "supplierId": "No:",
+        "summary": "Sipariş Özeti",
+        "total": "Toplam:",
+        "created": "Oluşturuldu:",
+        "items": "Sipariş Ürünleri",
+        "qty": "Adet:"
+      },
+      "orderDetailPage": {
+        "notFound": {
+          "title": "Sipariş bulunamadı",
+          "description": "Aradığınız sipariş mevcut değil",
+          "backToOrders": "Siparişlere Dön"
+        },
+        "backToOrders": "Siparişlere Dön",
+        "placedOn": "Sipariş Tarihi:",
+        "orderStatus": "Sipariş Durumu",
+        "orderItems": "Sipariş Ürünleri",
+        "table": {
+          "product": "Ürün",
+          "specifications": "Özellikler",
+          "quantity": "Adet",
+          "price": "Fiyat",
+          "subtotal": "Ara Toplam"
+        },
+        "summary": {
+          "subtotal": "Ara Toplam",
+          "tax": "Vergi",
+          "shipping": "Kargo",
+          "total": "Toplam"
+        },
+        "shippingAddress": "Teslimat Adresi",
+        "actions": {
+          "cancelOrder": "Siparişi İptal Et",
+          "contactSupplier": "Tedarikçi ile İletişime Geç",
+          "downloadInvoice": "Faturayı İndir"
+        }
+      },
+      "cartPage": {
+        "title": "Alışveriş Sepeti",
+        "itemsInCart": "ürün sepetinizde",
+        "continueShopping": "Alışverişe Devam Et",
+        "empty": {
+          "title": "Sepetiniz boş",
+          "description": "Başlamak için katalogdan ürün ekleyin",
+          "browseCatalog": "Kataloğa Göz At"
+        },
+        "item": {
+          "each": "adet",
+          "remove": "Kaldır"
+        },
+        "summary": {
+          "title": "Sipariş Özeti",
+          "subtotal": "Ara Toplam",
+          "tax": "Vergi (%8)",
+          "shipping": "Kargo",
+          "free": "ÜCRETSİZ",
+          "freeShippingMsg": " Ücretsiz kargo hakkı kazandınız!",
+          "total": "Toplam",
+          "checkout": "Ödemeye Geç",
+          "secureCheckout": "Güvenli ödeme  Alıcı koruması dahil"
+        }
+      },
+      "favoritesPage": {
+        "title": "Favorilerim",
+        "savedItems": "kayıtlı ürün",
+        "browseCatalog": "Kataloğa Göz At",
+        "empty": {
+          "title": "Henüz favori yok",
+          "description": "İstek listenize ürün eklemeye başlayın",
+          "browseProducts": "Ürünlere Göz At"
+        },
+        "item": {
+          "added": "Eklendi",
+          "addToCart": "Sepete Ekle"
+        }
+      }
+    },
+    "supplier": {
+      "title": "Tedarikçi Paneli",
+      "welcomeMessage": "Tekrar hoş geldiniz! İşte tedarikçi genel bakışınız",
+      "activeProducts": "Aktif Ürünler",
+      "listedProducts": "Listelenen ürünler",
+      "pendingOrders": "Bekleyen Siparişler",
+      "awaitingFulfillment": "Karşılanmayı bekliyor",
+      "revenueMtd": "Aylık Gelir",
+      "monthToDate": "Ay başından bu yana",
+      "avgOrderValue": "Ortalama Sipariş Değeri",
+      "perTransaction": "İşlem başına",
+      "liveGoldPrice": "Canlı Altın Fiyatı",
+      "lastUpdated": "Son güncelleme",
+      "recentOrders": "Son Siparişler",
+      "noRecentOrders": "Son sipariş yok",
+      "yourProducts": "Ürünleriniz",
+      "myProducts": "Ürünlerim",
+      "addProduct": "Ürün Ekle",
+      "editProduct": "Ürün Düzenle",
+      "deleteProduct": "Ürün Sil",
+      "productName": "Ürün Adı",
+      "productDescription": "Ürün Açıklaması",
+      "productCategory": "Kategori",
+      "productWeight": "Ağırlık",
+      "productKarat": "Ayar",
+      "productPrice": "Fiyat",
+      "productStock": "Stok",
+      "pricingCalculator": "Fiyat Hesaplayıcı",
+      "manageOrders": "Siparişleri Yönet",
+      "orderManagement": "Sipariş Yönetimi",
+      "confirmOrder": "Siparişi Onayla",
+      "shipOrder": "Siparişi Gönder",
+      "viewOrder": "Siparişi Görüntüle",
+      "productsPage": {
+        "title": "Ürünlerim",
+        "description": "Ürün listelerinizi yönetin",
+        "addProduct": "Ürün Ekle",
+        "searchPlaceholder": "Ürün ara...",
+        "category": "Kategori",
+        "categories": {
+          "all": "Tüm Kategoriler",
+          "goldBar": "Külçe Altın",
+          "goldCoin": "Altın Para",
+          "jewelry": "Mücevher",
+          "necklace": "Kolye",
+          "bracelet": "Bilezik",
+          "earring": "Küpe",
+          "ring": "Yüzük"
+        },
+        "noProducts": "Ürün bulunamadı",
+        "inStock": "stokta",
+        "edit": "Düzenle",
+        "status": {
+          "active": "Aktif",
+          "inactive": "Pasif",
+          "draft": "Taslak"
+        }
+      },
+      "productFormDialog": {
+        "title": {
+          "edit": "Ürünü Düzenle",
+          "add": "Yeni Ürün Ekle"
+        },
+        "description": {
+          "edit": "Aşağıdaki ürün detaylarını güncelleyin",
+          "add": "Yeni ürününüz için detayları doldurun"
+        },
+        "fields": {
+          "name": {
+            "label": "Ürün Adı",
+            "placeholder": "örn., 24K Külçe Altın 100g"
+          },
+          "category": "Kategori",
+          "karat": {
+            "label": "Ayar",
+            "options": {
+              "18k": "18K (%75 saf)",
+              "22k": "22K (%91.6 saf)",
+              "24k": "24K (%100 saf)"
+            }
+          },
+          "weight": "Ağırlık (gram)",
+          "price": "Fiyat (USD)",
+          "stock": "Stok",
+          "specifications": {
+            "label": "Özellikler",
+            "placeholder": "örn., Külçe Altın  24K  100gram"
+          },
+          "status": "Durum",
+          "image": {
+            "label": "Ürün Görseli",
+            "clickToUpload": "Görsel yüklemek için tıklayın",
+            "s3Required": "(S3 entegrasyonu gerekli)"
+          }
+        },
+        "actions": {
+          "cancel": "İptal",
+          "update": "Ürünü Güncelle",
+          "add": "Ürün Ekle"
+        }
+      },
+      "ordersPage": {
+        "title": "Siparişler",
+        "description": "Tedarikçi siparişlerinizi yönetin ve takip edin",
+        "searchPlaceholder": "Sipariş ara...",
+        "tabs": {
+          "all": "Tümü",
+          "new": "Yeni",
+          "processing": "İşleniyor",
+          "shipped": "Kargolandı",
+          "closed": "Kapalı"
+        },
+        "cardTitles": {
+          "all": "Tüm Siparişler",
+          "new": "Yeni Siparişler",
+          "processing": "İşlenen Siparişler",
+          "shipped": "Kargolanan Siparişler",
+          "closed": "Kapalı Siparişler"
+        },
+        "noOrders": "Sipariş bulunamadı",
+        "table": {
+          "orderId": "Sipariş No",
+          "buyer": "Alıcı",
+          "items": "Ürünler",
+          "total": "Toplam",
+          "date": "Tarih",
+          "status": "Durum",
+          "actions": "İşlemler"
+        },
+        "itemsSuffix": "ürün",
+        "markShipped": "Kargolandı Olarak İşaretle",
+        "status": {
+          "new": "Yeni",
+          "processing": "İşleniyor",
+          "shipped": "Kargolandı",
+          "completed": "Tamamlandı",
+          "cancelled": "İptal Edildi"
+        }
+      },
+      "pricingPage": {
+        "title": "Fiyatlandırma",
+        "description": "Fiyatlandırma yapılandırmanızı ve hesap makinenizi yönetin",
+        "liveGoldPrice": "Canlı Altın Fiyatı",
+        "perGram": "/ gram",
+        "lastUpdated": "Son güncelleme:",
+        "configuration": {
+          "title": "Fiyatlandırma Yapılandırması",
+          "automaticPricing": "Otomatik Fiyatlandırma",
+          "automaticPricingDesc": "Fiyatları spot fiyata göre güncelle",
+          "markupPercentage": "Kar Marjı Yüzdesi (%)",
+          "markupDesc": "Otomatik fiyatlandırma olan tüm ürünlere uygulanır",
+          "status": "Durum:",
+          "automatic": "Otomatik",
+          "manualOverride": "Manuel Geçersiz Kılma"
+        },
+        "calculator": {
+          "title": "Fiyat Hesaplayıcı",
+          "weight": "Ağırlık (gram)",
+          "karat": "Ayar",
+          "spotValue": "Spot Değer:",
+          "markup": "Kar Marjı",
+          "finalPrice": "Son Fiyat:"
+        },
+        "summary": {
+          "title": "Ürün Fiyat Özeti",
+          "table": {
+            "product": "Ürün",
+            "karat": "Ayar",
+            "weight": "Ağırlık",
+            "baseCost": "Taban Maliyet",
+            "markup": "Kar Marjı",
+            "finalPrice": "Son Fiyat",
+            "mode": "Mod"
+          },
+          "auto": "Oto",
+          "manual": "Manuel"
+        }
+      },
+      "contractTypes": {
+        "title": "Size atanan sözleşmeler",
+        "loading": "Yükleniyor...",
+        "noItems": "Öğe bulunamadı.",
+        "status": {
+          "active": "Aktif",
+          "inactive": "Pasif"
+        },
+        "fields": {
+          "minInvestment": "Min Yatırım",
+          "maxInvestment": "Maks Yatırım",
+          "minDuration": "Min Süre (ay)",
+          "maxDuration": "Maks Süre (ay)",
+          "settlementTypes": "Ödeme Türleri",
+          "totalProfitShare": "Toplam Kar Payı",
+          "guaranteeTypes": "Garanti Türleri",
+          "guaranteeName": "Garanti Adı",
+          "defaultProfitShare": "Varsayılan Kar Payı",
+          "description": "Açıklama",
+          "profit": "Kar",
+          "guaranteeType": "Garanti Türü",
+          "profitShare": "Kar Payı"
+        },
+        "actions": {
+          "edit": "Düzenle",
+          "deactivate": "Devre Dışı Bırak",
+          "activate": "Etkinleştir",
+          "cancel": "İptal",
+          "continue": "Devam Et",
+          "back": "Geri",
+          "save": "Kaydet",
+          "saving": "Kaydediliyor..."
+        },
+        "dialog": {
+          "editTitle": "Sözleşmeyi Düzenle",
+          "tabs": {
+            "basicInfo": "Temel Bilgiler",
+            "guaranteeManagement": "Garanti Yönetimi"
+          },
+          "fixedInfo": "Sabit Bilgiler:",
+          "title": "Başlık:",
+          "adminGuarantees": "Yönetici Garantileri (Salt Okunur)",
+          "noAdminGuarantees": "Yönetici garantisi yok",
+          "availablePersonalGuarantees": "Mevcut Kişisel Garantiler",
+          "clickToAdd": "Kişisel garanti eklemek için tıklayın",
+          "noPersonalGuaranteesDefined": "Tanımlanmış kişisel garanti yok",
+          "createFirst": "Önce Garanti Yönetimi'nde yeni garanti oluşturun",
+          "selectedPersonalGuarantees": "Seçilen Kişisel Garantiler",
+          "selectedInfo": "Seçilen kişisel garantilerin bilgileri",
+          "noSelected": "Kişisel garanti seçilmedi",
+          "selectFromAvailable": "Mevcut bölümden garanti seçin",
+          "totalProfit": "Toplam Kar Payı:"
+        },
+        "messages": {
+          "deactivated": "Devre dışı bırakıldı",
+          "activated": "Etkinleştirildi",
+          "error": "Hata",
+          "requiredInvestment": "Min ve maks yatırım gereklidir",
+          "loginFirst": "Lütfen önce giriş yapın",
+          "editError": "Düzenleme hatası",
+          "updated": "Güncellendi"
+        }
+      },
+      "guaranteeTypes": {
+        "title": "Garanti Türlerimi Yönet",
+        "fields": {
+          "title": "Garanti Başlığı *",
+          "placeholder": "örn., Mülk, Çek, Senet",
+          "profitShare": "Varsayılan Kar Payı",
+          "description": "Açıklama (İsteğe Bağlı)"
+        },
+        "actions": {
+          "cancel": "İptal",
+          "update": "Güncelle",
+          "saveNew": "Yeni Garanti Kaydet",
+          "deactivate": "Devre Dışı Bırak",
+          "activate": "Etkinleştir"
+        },
+        "table": {
+          "title": "Başlık",
+          "profitShare": "Kar Payı",
+          "description": "Açıklama",
+          "status": "Durum",
+          "actions": "İşlemler",
+          "loading": "Yükleniyor...",
+          "noItems": "Öğe bulunamadı",
+          "active": "Aktif",
+          "inactive": "Pasif"
+        },
+        "messages": {
+          "fetchError": "Garanti listesi alınırken hata oluştu",
+          "titleRequired": "Garanti başlığı gereklidir",
+          "userError": "Hata: Kullanıcı kimliği belirlenemedi",
+          "updateSuccess": "Garanti başarıyla güncellendi",
+          "addSuccess": "Yeni garanti başarıyla eklendi",
+          "saveError": "Garanti kaydedilirken hata oluştu",
+          "deleteConfirm": "Bu garanti türünü silmek istediğinizden emin misiniz?",
+          "deleteSuccess": "Garanti türü başarıyla silindi",
+          "deleteError": "Garanti türü silinirken hata oluştu",
+          "statusChanged": "Durum değiştirildi:",
+          "statusError": "Durum değiştirilirken hata oluştu"
+        }
+      },
+      "memberList": {
+        "loading": "Yükleniyor...",
+        "noMembers": "Kayıtlı üye yok.",
+        "id": "Kimlik"
+      }
+    },
+    "profile": {
+      "title": "Profil",
+      "myProfile": "Profilim",
+      "editProfile": "Profili Düzenle",
+      "personalInfo": "Kişisel Bilgiler",
+      "accountSettings": "Hesap Ayarları",
+      "securitySettings": "Güvenlik Ayarları",
+      "changePassword": "Şifre Değiştir",
+      "currentPassword": "Mevcut Şifre",
+      "newPassword": "Yeni Şifre",
+      "confirmPassword": "Şifreyi Onayla",
+      "updatePassword": "Şifreyi Güncelle",
+      "emailAddress": "E-posta Adresi",
+      "verifyEmail": "E-postayı Doğrula",
+      "phoneNumber": "Telefon Numarası",
+      "verifyPhone": "Telefonu Doğrula",
+      "nationalCode": "Ulusal Kimlik No",
+      "fullName": "Tam İsim",
+      "firstName": "Ad",
+      "lastName": "Soyad",
+      "financialAccount": "Finansal Hesap",
+      "bankAccount": "Banka Hesabı",
+      "plan": "Plan",
+      "planDays": "Plan Günleri",
+      "daysRemaining": "gün kaldı",
+      "activatePlan": "Planı Etkinleştir",
+      "permission": "İzin",
+      "notifications": "Bildirimler",
+      "saveChanges": "Değişiklikleri Kaydet",
+      "profilePage": {
+        "defaultUser": "Talanow Kullanıcısı",
+        "editInfo": "Bilgileri Düzenle",
+        "roles": {
+          "admin": "Yönetici",
+          "broker": "Komisyoncu",
+          "member": "Üye"
+        },
+        "brokerIdLoading": "Komisyoncu Kimliği alınıyor...",
+        "brokerId": "Komisyoncu Kimliği:",
+        "phoneNumber": "Telefon Numarası:",
+        "noEmail": "E-posta ayarlanmadı",
+        "nationalCode": "Ulusal Kod:",
+        "noNationalCode": "Ulusal Kod ayarlanmadı",
+        "verifyIdentity": "Kimliği Doğrula",
+        "password": "Şifre:",
+        "noPassword": "Şifre ayarlanmadı",
+        "changePassword": "Şifreyi Değiştir",
+        "setPassword": "Şifre Belirle",
+        "financialInfo": "Finansal Bilgiler",
+        "newAccount": "Yeni Hesap",
+        "table": {
+          "row": "Sıra",
+          "shabaNumber": "IBAN Numarası",
+          "cardNumber": "Kart Numarası",
+          "shabaStatus": "IBAN Durumu",
+          "cardStatus": "Kart Durumu",
+          "mainCard": "Ana Kart",
+          "edit": "Düzenle",
+          "fullName": "Ad Soyad",
+          "inviteDate": "Davet Tarihi"
+        },
+        "referral": {
+          "code": "Referans Kodu:",
+          "income": "Gelir Tutarı",
+          "inviteesCount": "Davetli Sayısı",
+          "person": "Kişi",
+          "incomePerPerson": "Kişi Başına Gelir",
+          "toman": "Tümen",
+          "total": "Toplam: Eşdeğer",
+          "invitees": "Davetliler",
+          "emptyList": "Liste boş"
+        }
+      },
+      "nameEditForm": {
+        "firstName": "Ad",
+        "lastName": "Soyad",
+        "firstNamePlaceholder": "Adınızı girin",
+        "lastNamePlaceholder": "Soyadınızı girin",
+        "save": "Kaydet"
+      },
+      "emailVerifyForm": {
+        "email": "E-posta",
+        "emailPlaceholder": "Yeni e-postanızı girin",
+        "confirmEmail": "E-postayı Onayla",
+        "requiredError": "Bu alan zorunludur.",
+        "formatError": "Lütfen geçerli bir e-posta formatı girin.",
+        "alreadyConfirmed": "E-posta zaten onaylandı."
+      },
+      "activationForm": {
+        "verifyCode": "Kodu Doğrula",
+        "codeRequired": "Doğrulama kodu gereklidir.",
+        "codeInvalid": "Girilen kod yanlış.",
+        "codeInvalidToast": "Girilen kod geçersiz.",
+        "sendError": "Kod gönderilirken bir hata oluştu.",
+        "resendCode": "Kodu Tekrar Gönder",
+        "timerMessage": "Kodu almadıysanız veya numarayı değiştirmek istiyorsanız, tekrar deneyebilirsiniz",
+        "minutes": "dakika içinde."
+      },
+      "nationalCodeForm": {
+        "nationalCode": "Ulusal Kod",
+        "placeholder": "Ulusal kodunuzu girin",
+        "confirm": "Ulusal Kodu Onayla",
+        "requiredError": "Bu alan zorunludur.",
+        "formatError": "Lütfen geçerli bir ulusal kod girin.",
+        "error": "Maalesef işlem yapılamadı."
+      }
+    }
+  }
 }

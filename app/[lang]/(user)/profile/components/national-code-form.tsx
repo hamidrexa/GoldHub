@@ -35,9 +35,9 @@ export function NationalCodeVerificationForm({ lang, dict, setOpen }: formProp) 
     const formSchema = z.object({
         national_code: z
             .string({
-                required_error: 'پر کردن این فیلد الزامی است.',
+                required_error: dict.marketplace.profile.nationalCodeForm.requiredError,
             })
-            .regex(/^\d{10}$/, 'لطفا شماره ملی را درست وارد کنید.')
+            .regex(/^\d{10}$/, dict.marketplace.profile.nationalCodeForm.formatError)
     });
     type formValue = z.infer<typeof formSchema>;
     const [loading, setLoading] = useState(false);
@@ -69,7 +69,7 @@ export function NationalCodeVerificationForm({ lang, dict, setOpen }: formProp) 
             document.activeElement?.blur();
             toast.info(
                 e?.error?.params[0] ||
-                'متاسفانه انجام نشده است.'
+                dict.marketplace.profile.nationalCodeForm.error
             );
         }
         setLoading(false);
@@ -84,11 +84,11 @@ export function NationalCodeVerificationForm({ lang, dict, setOpen }: formProp) 
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>شماره ملی</FormLabel>
+                                    <FormLabel>{dict.marketplace.profile.nationalCodeForm.nationalCode}</FormLabel>
                                     <FormControl>
                                         <Input
                                             className="w-full"
-                                            placeholder="شماره ملی خود را وارد کنید"
+                                            placeholder={dict.marketplace.profile.nationalCodeForm.placeholder}
                                             {...field}
                                         />
                                     </FormControl>
@@ -98,7 +98,7 @@ export function NationalCodeVerificationForm({ lang, dict, setOpen }: formProp) 
                             name="national_code"
                         />
                         <Button type="submit" className={cn('w-full')}>
-                            {loading ? <Spinner /> : 'تایید شماره ملی'}
+                            {loading ? <Spinner /> : dict.marketplace.profile.nationalCodeForm.confirm}
                         </Button>
                     </div>
                 </form>

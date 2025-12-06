@@ -65,12 +65,101 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
         useGlobalContext();
     const path = usePathname();
 
-    const isAdmin = !!user?.groups?.some((g) => g?.name === 'admin');
+    const isAdmin = path.includes('/admin');
+    const isSupplier = path.includes('/supplier');
+    const isBuyer = path.includes('/buyer');
     const isBroker = !!user?.groups?.some((g) => g?.name === 'broker');
+    const isInDashboard = isAdmin || isSupplier || isBuyer;
+
     const roleTitle = isAdmin ? 'مدیریت' : isBroker ? 'بروکر' : 'پروفایل';
     const roleHref = isAdmin ? '/admin' : isBroker ? '/broker' : '/profile';
 
-    const items = [
+    // Admin navigation items
+    const adminItems = [
+        {
+            key: 'dashboard',
+            title: 'Dashboard',
+            icon: <Icons.home />,
+            href: `/${lang}/admin/dashboard`
+        },
+        {
+            key: 'users',
+            title: 'Users',
+            icon: <Icons.category />,
+            href: `/${lang}/admin/users-kyc`
+        },
+        {
+            key: 'orders',
+            title: 'Orders',
+            icon: <Icons.fire />,
+            href: `/${lang}/admin/orders`
+        },
+        {
+            key: 'logs',
+            title: 'Logs',
+            icon: <Icons.graph />,
+            href: `/${lang}/admin/audit-logs`
+        }
+    ];
+
+    // Supplier navigation items
+    const supplierItems = [
+        {
+            key: 'dashboard',
+            title: 'Dashboard',
+            icon: <Icons.home />,
+            href: `/${lang}/supplier/dashboard`
+        },
+        {
+            key: 'products',
+            title: 'Products',
+            icon: <Icons.category />,
+            href: `/${lang}/supplier/products`
+        },
+        {
+            key: 'pricing',
+            title: 'Pricing',
+            icon: <Icons.graph />,
+            href: `/${lang}/supplier/pricing`
+        },
+        {
+            key: 'orders',
+            title: 'Orders',
+            icon: <Icons.fire />,
+            href: `/${lang}/supplier/orders`
+        }
+    ];
+
+    // Buyer navigation items
+    const buyerItems = [
+        {
+            key: 'dashboard',
+            title: 'Dashboard',
+            icon: <Icons.home />,
+            href: `/${lang}/buyer`
+        },
+        {
+            key: 'catalog',
+            title: 'Catalog',
+            icon: <Icons.category />,
+            href: `/${lang}/buyer/catalog`
+        },
+        {
+            key: 'orders',
+            title: 'Orders',
+            icon: <Icons.fire />,
+            href: `/${lang}/buyer/orders`
+        },
+        {
+            key: 'cart',
+            title: 'Cart',
+            icon: <Icons.graph />,
+            href: `/${lang}/buyer/cart`
+        }
+    ];
+
+    // Default/legacy items for non-dashboard pages
+    const defaultItems = [
         {
             key: 'home',
             title: 'خانه',
@@ -78,13 +167,13 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
             href: '/app'
         },
         {
-            key: 'home',
+            key: 'contracts',
             title: 'قرارداد',
             icon: <Icons.fire />,
             href: '/contracts'
         },
         {
-            key: 'home',
+            key: 'wallet',
             title: 'دارایی',
             icon: <Icons.graph />,
             href: '/wallet'
@@ -95,7 +184,10 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
             icon: <Icons.category />,
             href: roleHref
         }
-    ]
+    ];
+
+    // Select items based on current route
+    const items = isAdmin ? adminItems : isSupplier ? supplierItems : isBuyer ? buyerItems : defaultItems;
     useGoogleOneTapLogin({
         disabled:
             isUserLoading ||

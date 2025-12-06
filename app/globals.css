@@ -10,12 +10,12 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #8995a7;
+            background: #366B9E;
             border-radius: 100px;
         }
 
         ::-webkit-scrollbar-track {
-            background: #e8ecf1;
+            background: #E6EBF1;
             border-radius: 100px;
         }
     }
@@ -36,7 +36,7 @@
     }
 
     body {
-        background-color: #fff;
+        background-color: #F5F5F0;
     }
 
     .rendered-html a {
@@ -58,7 +58,7 @@
         height: 24px;
         border-radius: 50%;
         -webkit-appearance: none;
-        @apply bg-white border border-solid border-amber-900;
+        @apply bg-white border-2 border-solid border-[#F0A202];
     }
 
     .hidden-text span {
