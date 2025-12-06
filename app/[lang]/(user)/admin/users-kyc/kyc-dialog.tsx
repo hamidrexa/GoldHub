@@ -1,10 +1,11 @@
 'use client';
 
+import { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { CheckCircle, XCircle, Upload } from 'lucide-react';
-import { User } from '@/lib/mock-data';
+import { CheckCircle, XCircle, Upload, Loader2 } from 'lucide-react';
+import { setKycStatus, ApiKycStatus } from '@/lib/api-client';
 import {
     Dialog,
     DialogContent,
@@ -14,6 +15,19 @@ import {
 } from '@/components/ui/dialog';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useRouter } from 'next/navigation';
+
+interface User {
+    id: string;
+    name: string;
+    email: string;
+    role: 'admin' | 'supplier' | 'retailer';
+    kycStatus: 'pending' | 'approved' | 'rejected' | 'not_submitted';
+    companyName?: string;
+    joinedDate: string;
+    documentsUploaded: boolean;
+    iban?: string;
+    swift?: string;
+}
 
 interface KycDialogProps {
     user: User;
@@ -25,12 +39,43 @@ interface KycDialogProps {
 
 export function KycDialog({ user, dict, lang, activeTab, searchQuery }: KycDialogProps) {
     const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
     const handleClose = () => {
         const params = new URLSearchParams();
         params.set('tab', activeTab);
         if (searchQuery) params.set('q', searchQuery);
         router.push(`/${lang}/admin/users-kyc?${params.toString()}`);
+    };
+
+    const handleKycAction = async (action: 'approve' | 'reject') => {
+        setIsLoading(true);
+        setError(null);
+
+        try {
+            // Determine the appropriate KYC status based on user role and action
+            let newStatus: ApiKycStatus;
+            if (user.role === 'supplier') {
+                newStatus = action === 'approve' ? 'supplier_approved' : 'supplier_rejected';
+            } else {
+                newStatus = action === 'approve' ? 'buyer_approved' : 'buyer_rejected';
+            }
+
+            await setKycStatus({
+                user_id: parseInt(user.id),
+                new_status: newStatus,
+            });
+
+            // Refresh the page to show updated status
+            router.refresh();
+            handleClose();
+        } catch (err) {
+            console.error('Failed to update KYC status:', err);
+            setError(dict.marketplace.admin.usersKycPage.dialog.actionFailed || 'Failed to update KYC status');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const getKycBadge = (status: User['kycStatus']) => {
@@ -142,17 +187,37 @@ export function KycDialog({ user, dict, lang, activeTab, searchQuery }: KycDialo
                                 </div>
                                 {user.kycStatus === 'pending' && (
                                     <div className="flex gap-2">
-                                        <Button variant="default" className="bg-green-600 hover:bg-green-700">
-                                            <CheckCircle className="h-4 w-4 mr-2" />
+                                        <Button
+                                            variant="default"
+                                            className="bg-green-600 hover:bg-green-700"
+                                            onClick={() => handleKycAction('approve')}
+                                            disabled={isLoading}
+                                        >
+                                            {isLoading ? (
+                                                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                                            ) : (
+                                                <CheckCircle className="h-4 w-4 mr-2" />
+                                            )}
                                             {dict.marketplace.admin.usersKycPage.dialog.approve}
                                         </Button>
-                                        <Button variant="destructive">
-                                            <XCircle className="h-4 w-4 mr-2" />
+                                        <Button
+                                            variant="destructive"
+                                            onClick={() => handleKycAction('reject')}
+                                            disabled={isLoading}
+                                        >
+                                            {isLoading ? (
+                                                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                                            ) : (
+                                                <XCircle className="h-4 w-4 mr-2" />
+                                            )}
                                             {dict.marketplace.admin.usersKycPage.dialog.reject}
                                         </Button>
                                     </div>
                                 )}
                             </div>
+                            {error && (
+                                <p className="text-sm text-red-600 mt-2">{error}</p>
+                            )}
                         </CardContent>
                     </Card>
                 </div>

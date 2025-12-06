@@ -1,6 +1,7 @@
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
-import { mockProducts } from '@/lib/mock-data';
+import { getProducts, mapApiProductToUi } from '@/lib/api-client';
+import { mockProducts, Product } from '@/lib/mock-data';
 import { ProductsSearch } from './products-search';
 import { CategoryFilter } from './category-filter';
 import { ProductActions } from './product-actions';
@@ -11,13 +12,62 @@ interface PageProps {
     searchParams: { q?: string; category?: string };
 }
 
+// Convert API product to UI product format
+interface DisplayProduct {
+    id: string;
+    name: string;
+    category: string;
+    karat: '18K' | '22K' | '24K';
+    weight: number;
+    price: number;
+    stock: number;
+    image?: string;
+    status: 'active' | 'inactive' | 'draft';
+    createdDate: string;
+    specifications?: string;
+}
+
 export default async function SupplierProductsPage({ params: { lang }, searchParams }: PageProps) {
     const dict = await getDictionary(lang);
     const searchQuery = searchParams.q || '';
     const categoryFilter = searchParams.category || 'all';
 
+    // Fetch products from API, fallback to mock data
+    let products: DisplayProduct[] = [];
+    try {
+        const apiProducts = await getProducts();
+        products = apiProducts.map(product => ({
+            id: String(product.id),
+            name: product.title,
+            category: product.category?.toLowerCase().replace(' ', '_') || 'jewelry',
+            karat: `${product.karat}K` as '18K' | '22K' | '24K',
+            weight: product.weight,
+            price: product.price,
+            stock: product.inventory,
+            image: product.images?.[0],
+            status: 'active' as const,
+            createdDate: new Date().toISOString().split('T')[0],
+            specifications: product.details || `${product.category} · ${product.karat}K · ${product.weight}gram`,
+        }));
+    } catch (error) {
+        console.error('Failed to fetch products from API, using mock data:', error);
+        products = mockProducts.map(product => ({
+            id: product.id,
+            name: product.name,
+            category: product.category,
+            karat: product.karat,
+            weight: product.weight,
+            price: product.price,
+            stock: product.stock,
+            image: product.image,
+            status: product.status,
+            createdDate: product.createdDate,
+            specifications: product.specifications,
+        }));
+    }
+
     // Filter products server-side
-    let filteredProducts = [...mockProducts];
+    let filteredProducts = [...products];
 
     // Search filter
     if (searchQuery) {
@@ -39,7 +89,7 @@ export default async function SupplierProductsPage({ params: { lang }, searchPar
                     <h1 className="text-3xl font-bold tracking-tight">{dict.marketplace.supplier.productsPage.title}</h1>
                     <p className="text-muted-foreground">{dict.marketplace.supplier.productsPage.description}</p>
                 </div>
-                <ProductActions dict={dict} products={filteredProducts} />
+                <ProductActions dict={dict} products={filteredProducts as any} />
             </div>
 
             <div className="flex items-center gap-4">
@@ -57,7 +107,7 @@ export default async function SupplierProductsPage({ params: { lang }, searchPar
 
             {/* Products Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                <ProductsGrid dict={dict} products={filteredProducts} />
+                <ProductsGrid dict={dict} products={filteredProducts as any} />
             </div>
         </div>
     );

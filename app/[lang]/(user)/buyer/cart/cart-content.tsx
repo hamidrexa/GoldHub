@@ -4,9 +4,10 @@ import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { ShoppingBag } from 'lucide-react';
+import { ShoppingBag, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { CartItemControls } from './cart-item-controls';
+import { addToCart, removeFromCart, submitOrder } from '@/lib/api-client';
 
 interface CartItem {
     productId: string;
@@ -28,17 +29,58 @@ interface CartContentProps {
 
 export function CartContent({ initialItems, lang, dict }: CartContentProps) {
     const [cartItems, setCartItems] = useState(initialItems);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isCheckingOut, setIsCheckingOut] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
-    const handleQuantityChange = (productId: string, quantity: number) => {
+    const handleQuantityChange = async (productId: string, quantity: number) => {
+        // Optimistically update UI
         setCartItems(items =>
             items.map(item =>
                 item.productId === productId ? { ...item, quantity } : item
             )
         );
+
+        // Try to sync with API
+        try {
+            await addToCart({
+                product_id: parseInt(productId),
+                count: quantity,
+            });
+        } catch (err) {
+            console.error('Failed to update cart on server:', err);
+            // UI already updated, just log the error
+        }
     };
 
-    const handleRemove = (productId: string) => {
+    const handleRemove = async (productId: string) => {
+        // Optimistically update UI
         setCartItems(items => items.filter(item => item.productId !== productId));
+
+        // Try to sync with API
+        try {
+            await removeFromCart({
+                product_id: parseInt(productId),
+            });
+        } catch (err) {
+            console.error('Failed to remove item on server:', err);
+            // UI already updated, just log the error
+        }
+    };
+
+    const handleCheckout = async () => {
+        setIsCheckingOut(true);
+        setError(null);
+
+        try {
+            await submitOrder();
+            // Redirect to orders page on success
+            window.location.href = `/${lang}/buyer/orders`;
+        } catch (err) {
+            console.error('Failed to submit order:', err);
+            setError(dict.marketplace.buyer.cartPage.summary.checkoutFailed || 'Failed to submit order. Please try again.');
+            setIsCheckingOut(false);
+        }
     };
 
     const subtotal = cartItems.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
@@ -159,11 +201,25 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
                             <span>${total.toLocaleString()}</span>
                         </div>
 
-                        <Link href={`/${lang}/buyer/orders`}>
-                            <Button className="w-full" size="xl">
-                                {dict.marketplace.buyer.cartPage.summary.checkout}
-                            </Button>
-                        </Link>
+                        {error && (
+                            <p className="text-sm text-red-600">{error}</p>
+                        )}
+
+                        <Button
+                            className="w-full"
+                            size="xl"
+                            onClick={handleCheckout}
+                            disabled={isCheckingOut}
+                        >
+                            {isCheckingOut ? (
+                                <>
+                                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                                    Processing...
+                                </>
+                            ) : (
+                                dict.marketplace.buyer.cartPage.summary.checkout
+                            )}
+                        </Button>
 
                         <p className="text-xs text-center text-muted-foreground">
                             {dict.marketplace.buyer.cartPage.summary.secureCheckout}

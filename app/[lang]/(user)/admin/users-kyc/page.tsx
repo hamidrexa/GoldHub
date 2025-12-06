@@ -2,6 +2,7 @@ import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
 import { Badge } from '@/components/ui/badge';
 import { Eye } from 'lucide-react';
+import { getUsersList, mapApiUserToUi } from '@/lib/api-client';
 import { mockUsers, User } from '@/lib/mock-data';
 import {
     Table,
@@ -15,8 +16,22 @@ import Link from 'next/link';
 import { UsersKycSearch } from './users-kyc-search';
 import { KycDialog } from './kyc-dialog';
 
+// Define display user type for compatibility
+interface DisplayUser {
+    id: string;
+    name: string;
+    email: string;
+    role: 'admin' | 'supplier' | 'retailer';
+    kycStatus: 'pending' | 'approved' | 'rejected' | 'not_submitted';
+    companyName?: string;
+    joinedDate: string;
+    documentsUploaded: boolean;
+    iban?: string;
+    swift?: string;
+}
+
 // Server-side KYC badge component
-function KycBadge({ status, dict }: { status: User['kycStatus']; dict: any }) {
+function KycBadge({ status, dict }: { status: DisplayUser['kycStatus']; dict: any }) {
     const badges = {
         approved: { label: dict.marketplace.admin.usersKycPage.status.approved, className: 'bg-green-100 text-green-800 hover:bg-green-100' },
         pending: { label: dict.marketplace.admin.usersKycPage.status.pendingReview, className: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100' },
@@ -28,7 +43,7 @@ function KycBadge({ status, dict }: { status: User['kycStatus']; dict: any }) {
 }
 
 // Server-side role badge component
-function RoleBadge({ role }: { role: User['role'] }) {
+function RoleBadge({ role }: { role: DisplayUser['role'] }) {
     const colors = {
         admin: 'bg-red-100 text-red-800',
         supplier: 'bg-blue-100 text-blue-800',
@@ -48,8 +63,44 @@ export default async function UsersKycPage({ params: { lang }, searchParams }: P
     const searchQuery = searchParams.q || '';
     const selectedUserId = searchParams.user;
 
+    // Fetch users from API, fallback to mock data
+    let users: DisplayUser[] = [];
+    try {
+        const apiUsers = await getUsersList();
+        users = apiUsers.map(user => ({
+            id: String(user.id),
+            name: user.username,
+            email: user.email,
+            role: (user.role === 'buyer' ? 'retailer' : user.role) as DisplayUser['role'],
+            kycStatus: (() => {
+                if (!user.kyc_status) return 'not_submitted';
+                if (user.kyc_status.includes('approved')) return 'approved';
+                if (user.kyc_status.includes('rejected')) return 'rejected';
+                if (user.kyc_status.includes('requested')) return 'pending';
+                return 'not_submitted';
+            })(),
+            companyName: user.company_name,
+            joinedDate: user.joined_date,
+            documentsUploaded: !!user.kyc_status,
+        }));
+    } catch (error) {
+        console.error('Failed to fetch users from API, using mock data:', error);
+        users = mockUsers.map(user => ({
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+            kycStatus: user.kycStatus,
+            companyName: user.companyName,
+            joinedDate: user.joinedDate,
+            documentsUploaded: user.documentsUploaded,
+            iban: user.iban,
+            swift: user.swift,
+        }));
+    }
+
     // Filter users server-side
-    let filteredUsers = mockUsers.filter(user =>
+    let filteredUsers = users.filter(user =>
         user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
         (user.companyName && user.companyName.toLowerCase().includes(searchQuery.toLowerCase()))
@@ -62,8 +113,8 @@ export default async function UsersKycPage({ params: { lang }, searchParams }: P
         filteredUsers = filteredUsers.filter(u => u.kycStatus === 'approved');
     }
 
-    const pendingCount = mockUsers.filter(u => u.kycStatus === 'pending').length;
-    const selectedUser = selectedUserId ? mockUsers.find(u => u.id === selectedUserId) : null;
+    const pendingCount = users.filter(u => u.kycStatus === 'pending').length;
+    const selectedUser = selectedUserId ? users.find(u => u.id === selectedUserId) : null;
 
     const tabs = [
         { value: 'all', label: dict.marketplace.admin.usersKycPage.tabs.all },
@@ -167,7 +218,7 @@ export default async function UsersKycPage({ params: { lang }, searchParams }: P
             {/* KYC Dialog - client component for interactivity */}
             {selectedUser && (
                 <KycDialog
-                    user={selectedUser}
+                    user={selectedUser as any}
                     dict={dict}
                     lang={lang}
                     activeTab={activeTab}

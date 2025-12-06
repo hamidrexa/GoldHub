@@ -2,6 +2,7 @@ import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
 import { Badge } from '@/components/ui/badge';
 import { Eye, CheckCircle, XCircle } from 'lucide-react';
+import { getOrdersHistory, ApiOrderStatus, mapApiOrderToUi } from '@/lib/api-client';
 import { mockOrders, Order } from '@/lib/mock-data';
 import {
     Table,
@@ -14,16 +15,36 @@ import {
 import Link from 'next/link';
 import { OrdersSearch } from './orders-search';
 
+// Define order type compatible with both API and mock data
+interface DisplayOrder {
+    id: string;
+    buyer: string;
+    items: number;
+    total: number;
+    status: string;
+    date: string;
+}
+
 // Server-side status badge component
-function StatusBadge({ status, dict }: { status: Order['status']; dict: any }) {
-    const badges = {
-        confirmed: { label: dict.marketplace.admin.ordersPage.status.confirmed, className: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100' },
-        shipped: { label: dict.marketplace.admin.ordersPage.status.shipped, className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
-        pending_supplier: { label: dict.marketplace.admin.ordersPage.status.pendingSupplier, className: 'bg-orange-100 text-orange-800 hover:bg-orange-100' },
-        closed: { label: dict.marketplace.admin.ordersPage.status.closed, className: 'bg-green-100 text-green-800 hover:bg-green-100' },
-        cancelled: { label: dict.marketplace.admin.ordersPage.status.cancelled, className: 'bg-red-100 text-red-800 hover:bg-red-100' },
+function StatusBadge({ status, dict }: { status: string; dict: any }) {
+    const badges: Record<string, { label: string; className: string }> = {
+        // API status values
+        'Draft': { label: dict.marketplace.admin.ordersPage.status.draft || 'Draft', className: 'bg-gray-100 text-gray-800 hover:bg-gray-100' },
+        'Submitted': { label: dict.marketplace.admin.ordersPage.status.submitted || 'Submitted', className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
+        'Confirmed': { label: dict.marketplace.admin.ordersPage.status.confirmed, className: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100' },
+        'Paid': { label: dict.marketplace.admin.ordersPage.status.paid || 'Paid', className: 'bg-green-100 text-green-800 hover:bg-green-100' },
+        'Shipped': { label: dict.marketplace.admin.ordersPage.status.shipped, className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
+        'Delivered': { label: dict.marketplace.admin.ordersPage.status.delivered || 'Delivered', className: 'bg-green-100 text-green-800 hover:bg-green-100' },
+        'Rejected': { label: dict.marketplace.admin.ordersPage.status.rejected || 'Rejected', className: 'bg-red-100 text-red-800 hover:bg-red-100' },
+        'Cancelled': { label: dict.marketplace.admin.ordersPage.status.cancelled, className: 'bg-red-100 text-red-800 hover:bg-red-100' },
+        // Legacy status values (for mock data fallback)
+        'confirmed': { label: dict.marketplace.admin.ordersPage.status.confirmed, className: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100' },
+        'shipped': { label: dict.marketplace.admin.ordersPage.status.shipped, className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
+        'pending_supplier': { label: dict.marketplace.admin.ordersPage.status.pendingSupplier, className: 'bg-orange-100 text-orange-800 hover:bg-orange-100' },
+        'closed': { label: dict.marketplace.admin.ordersPage.status.closed, className: 'bg-green-100 text-green-800 hover:bg-green-100' },
+        'cancelled': { label: dict.marketplace.admin.ordersPage.status.cancelled, className: 'bg-red-100 text-red-800 hover:bg-red-100' },
     };
-    const config = badges[status];
+    const config = badges[status] || { label: status, className: 'bg-gray-100 text-gray-800 hover:bg-gray-100' };
     return <Badge variant="default" className={config.className}>{config.label}</Badge>;
 }
 
@@ -32,13 +53,58 @@ interface PageProps {
     searchParams: { tab?: string; q?: string };
 }
 
+// Helper to normalize status for filtering
+function normalizeStatus(status: string): string {
+    const statusMap: Record<string, string> = {
+        'Draft': 'pending',
+        'Submitted': 'pending',
+        'Confirmed': 'active',
+        'Paid': 'active',
+        'Shipped': 'active',
+        'Delivered': 'closed',
+        'Rejected': 'closed',
+        'Cancelled': 'closed',
+        // Legacy mappings
+        'pending_supplier': 'pending',
+        'confirmed': 'active',
+        'shipped': 'active',
+        'closed': 'closed',
+        'cancelled': 'closed',
+    };
+    return statusMap[status] || 'pending';
+}
+
 export default async function OrdersPage({ params: { lang }, searchParams }: PageProps) {
     const dict = await getDictionary(lang);
     const activeTab = searchParams.tab || 'all';
     const searchQuery = searchParams.q || '';
 
+    // Fetch orders from API, fallback to mock data on error
+    let orders: DisplayOrder[] = [];
+    try {
+        const apiOrders = await getOrdersHistory();
+        orders = apiOrders.map(order => ({
+            id: String(order.id),
+            buyer: order.buyer || 'Unknown',
+            items: order.items_count,
+            total: order.total,
+            status: order.status,
+            date: new Date(order.created_at).toLocaleDateString(),
+        }));
+    } catch (error) {
+        console.error('Failed to fetch orders from API, using mock data:', error);
+        orders = mockOrders.map(order => ({
+            id: order.id,
+            buyer: order.buyer,
+            items: order.items,
+            total: order.total,
+            status: order.status,
+            date: order.date,
+        }));
+    }
+
     // Filter orders server-side
-    let filteredOrders = [...mockOrders];
+    let filteredOrders = [...orders];
 
     // Filter by search
     if (searchQuery) {
@@ -50,15 +116,15 @@ export default async function OrdersPage({ params: { lang }, searchParams }: Pag
 
     // Filter by tab
     if (activeTab === 'pending') {
-        filteredOrders = filteredOrders.filter(order => order.status === 'pending_supplier');
+        filteredOrders = filteredOrders.filter(order => normalizeStatus(order.status) === 'pending');
     } else if (activeTab === 'active') {
-        filteredOrders = filteredOrders.filter(order => order.status === 'confirmed' || order.status === 'shipped');
+        filteredOrders = filteredOrders.filter(order => normalizeStatus(order.status) === 'active');
     } else if (activeTab === 'closed') {
-        filteredOrders = filteredOrders.filter(order => order.status === 'closed');
+        filteredOrders = filteredOrders.filter(order => normalizeStatus(order.status) === 'closed');
     }
 
-    const pendingCount = mockOrders.filter(o => o.status === 'pending_supplier').length;
-    const activeCount = mockOrders.filter(o => o.status === 'confirmed' || o.status === 'shipped').length;
+    const pendingCount = orders.filter(o => normalizeStatus(o.status) === 'pending').length;
+    const activeCount = orders.filter(o => normalizeStatus(o.status) === 'active').length;
 
     const tabs = [
         { value: 'all', label: dict.marketplace.admin.ordersPage.tabs.all },
@@ -134,7 +200,7 @@ export default async function OrdersPage({ params: { lang }, searchParams }: Pag
                                             >
                                                 <Eye className="h-4 w-4 text-gray-600" />
                                             </Link>
-                                            {order.status === 'pending_supplier' && (
+                                            {(order.status === 'pending_supplier' || order.status === 'Submitted') && (
                                                 <>
                                                     <button className="inline-flex items-center justify-center h-8 w-8 rounded-md hover:bg-gray-100">
                                                         <CheckCircle className="h-4 w-4 text-green-600" />
