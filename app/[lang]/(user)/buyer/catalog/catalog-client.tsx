@@ -23,9 +23,10 @@ type SortOption = 'recommended' | 'price_low' | 'price_high' | 'newest';
 
 interface CatalogClientProps {
     dict: any;
+    lang: string;
 }
 
-export default function CatalogClient({ dict }: CatalogClientProps) {
+export default function CatalogClient({ dict, lang }: CatalogClientProps) {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
     const [selectedKarat, setSelectedKarat] = useState<string>('all');

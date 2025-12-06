@@ -26,9 +26,10 @@ import {
 
 interface SupplierPricingClientProps {
     dict: any;
+    lang: string;
 }
 
-export default function SupplierPricingClient({ dict }: SupplierPricingClientProps) {
+export default function SupplierPricingClient({ dict, lang }: SupplierPricingClientProps) {
     const [config, setConfig] = useState(mockPricingConfig);
     const [calculatorWeight, setCalculatorWeight] = useState<number>(50);
     const [calculatorKarat, setCalculatorKarat] = useState<'18K' | '22K' | '24K'>('24K');

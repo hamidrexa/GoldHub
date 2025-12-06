@@ -17,9 +17,10 @@ import ProductFormDialog from '@/app/[lang]/(user)/supplier/components/product-f
 
 interface SupplierProductsClientProps {
     dict: any;
+    lang: string;
 }
 
-export default function SupplierProductsClient({ dict }: SupplierProductsClientProps) {
+export default function SupplierProductsClient({ dict, lang }: SupplierProductsClientProps) {
     const [searchQuery, setSearchQuery] = useState('');
     const [categoryFilter, setCategoryFilter] = useState<string>('all');
     const [dialogOpen, setDialogOpen] = useState(false);

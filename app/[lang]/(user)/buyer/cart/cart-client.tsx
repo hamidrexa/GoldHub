@@ -9,16 +9,14 @@ import { Trash2, Plus, Minus, ShoppingBag, ArrowLeft } from 'lucide-react';
 import { mockCartItems } from '@/lib/buyer-mock-data';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
 
 interface CartClientProps {
     dict: any;
+    lang: string;
 }
 
-export default function CartClient({ dict }: CartClientProps) {
+export default function CartClient({ dict, lang }: CartClientProps) {
     const [cartItems, setCartItems] = useState(mockCartItems);
-    const params = useParams();
-    const lang = params.lang || 'en';
 
     const updateQuantity = (productId: string, delta: number) => {
         setCartItems(items =>
