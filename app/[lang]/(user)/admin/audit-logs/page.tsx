@@ -1,6 +1,7 @@
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
 import { Badge } from '@/components/ui/badge';
+import { ListFilter, LogIn, Shield, ShoppingCart } from 'lucide-react';
 import { mockAuditLogs, AuditLog } from '@/lib/mock-data';
 import {
     Table,
@@ -10,7 +11,7 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
-import Link from 'next/link';
+import { ServerTabs, ServerTab } from '@/components/ui/server-tabs';
 import { AuditLogsSearch } from './audit-logs-search';
 
 // Server-side event badge component
@@ -65,11 +66,11 @@ export default async function AuditLogsPage({ params: { lang }, searchParams }: 
         l.event === 'kyc_submitted' || l.event === 'kyc_approved' || l.event === 'kyc_rejected'
     ).length;
 
-    const tabs = [
-        { value: 'all', label: dict.marketplace.admin.auditLogsPage.tabs.all },
-        { value: 'login', label: `${dict.marketplace.admin.auditLogsPage.tabs.login} (${loginCount})` },
-        { value: 'kyc', label: `${dict.marketplace.admin.auditLogsPage.tabs.kyc} (${kycCount})` },
-        { value: 'order_created', label: dict.marketplace.admin.auditLogsPage.tabs.orders },
+    const tabs: ServerTab[] = [
+        { value: 'all', label: dict.marketplace.admin.auditLogsPage.tabs.all, icon: ListFilter, href: `/${lang}/admin/audit-logs?tab=all${searchQuery ? `&q=${searchQuery}` : ''}` },
+        { value: 'login', label: `${dict.marketplace.admin.auditLogsPage.tabs.login} (${loginCount})`, icon: LogIn, href: `/${lang}/admin/audit-logs?tab=login${searchQuery ? `&q=${searchQuery}` : ''}` },
+        { value: 'kyc', label: `${dict.marketplace.admin.auditLogsPage.tabs.kyc} (${kycCount})`, icon: Shield, href: `/${lang}/admin/audit-logs?tab=kyc${searchQuery ? `&q=${searchQuery}` : ''}` },
+        { value: 'order_created', label: dict.marketplace.admin.auditLogsPage.tabs.orders, icon: ShoppingCart, href: `/${lang}/admin/audit-logs?tab=order_created${searchQuery ? `&q=${searchQuery}` : ''}` },
     ];
 
     return (
@@ -86,20 +87,7 @@ export default async function AuditLogsPage({ params: { lang }, searchParams }: 
             />
 
             {/* Server-side tabs using URL params */}
-            <div className="border-b w-full flex space-x-4">
-                {tabs.map((tab) => (
-                    <Link
-                        key={tab.value}
-                        href={`/${lang}/admin/audit-logs?tab=${tab.value}${searchQuery ? `&q=${searchQuery}` : ''}`}
-                        className={`px-4 py-3 border-b-2 transition-colors ${eventFilter === tab.value
-                            ? 'border-primary text-primary font-medium'
-                            : 'border-transparent text-muted-foreground hover:text-foreground'
-                            }`}
-                    >
-                        {tab.label}
-                    </Link>
-                ))}
-            </div>
+            <ServerTabs tabs={tabs} activeTab={eventFilter} />
 
             {/* Server-rendered table */}
             <div className="rounded-lg border bg-white">

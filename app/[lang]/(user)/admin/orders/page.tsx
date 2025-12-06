@@ -1,7 +1,7 @@
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
 import { Badge } from '@/components/ui/badge';
-import { Eye, CheckCircle, XCircle } from 'lucide-react';
+import { Eye, CheckCircle, XCircle, ListFilter, Clock, CheckCircle2, Archive } from 'lucide-react';
 import { mockOrders, Order } from '@/lib/mock-data';
 import {
     Table,
@@ -11,6 +11,7 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
+import { ServerTabs, ServerTab } from '@/components/ui/server-tabs';
 import Link from 'next/link';
 import { OrdersSearch } from './orders-search';
 
@@ -60,11 +61,11 @@ export default async function OrdersPage({ params: { lang }, searchParams }: Pag
     const pendingCount = mockOrders.filter(o => o.status === 'pending_supplier').length;
     const activeCount = mockOrders.filter(o => o.status === 'confirmed' || o.status === 'shipped').length;
 
-    const tabs = [
-        { value: 'all', label: dict.marketplace.admin.ordersPage.tabs.all },
-        { value: 'pending', label: `${dict.marketplace.admin.ordersPage.tabs.pending} (${pendingCount})` },
-        { value: 'active', label: `${dict.marketplace.admin.ordersPage.tabs.active} (${activeCount})` },
-        { value: 'closed', label: dict.marketplace.admin.ordersPage.tabs.closed },
+    const tabs: ServerTab[] = [
+        { value: 'all', label: dict.marketplace.admin.ordersPage.tabs.all, icon: ListFilter, href: `/${lang}/admin/orders?tab=all${searchQuery ? `&q=${searchQuery}` : ''}` },
+        { value: 'pending', label: `${dict.marketplace.admin.ordersPage.tabs.pending} (${pendingCount})`, icon: Clock, href: `/${lang}/admin/orders?tab=pending${searchQuery ? `&q=${searchQuery}` : ''}` },
+        { value: 'active', label: `${dict.marketplace.admin.ordersPage.tabs.active} (${activeCount})`, icon: CheckCircle2, href: `/${lang}/admin/orders?tab=active${searchQuery ? `&q=${searchQuery}` : ''}` },
+        { value: 'closed', label: dict.marketplace.admin.ordersPage.tabs.closed, icon: Archive, href: `/${lang}/admin/orders?tab=closed${searchQuery ? `&q=${searchQuery}` : ''}` },
     ];
 
     return (
@@ -81,20 +82,7 @@ export default async function OrdersPage({ params: { lang }, searchParams }: Pag
             />
 
             {/* Server-side tabs using URL params */}
-            <div className="border-b w-full flex space-x-4 overflow-x-auto">
-                {tabs.map((tab) => (
-                    <Link
-                        key={tab.value}
-                        href={`/${lang}/admin/orders?tab=${tab.value}${searchQuery ? `&q=${searchQuery}` : ''}`}
-                        className={`px-4 py-3 border-b-2 transition-colors whitespace-nowrap ${activeTab === tab.value
-                            ? 'border-primary text-primary font-medium'
-                            : 'border-transparent text-muted-foreground hover:text-foreground'
-                            }`}
-                    >
-                        {tab.label}
-                    </Link>
-                ))}
-            </div>
+            <ServerTabs tabs={tabs} activeTab={activeTab} />
 
             {/* Server-rendered table */}
             <div className="rounded-lg border bg-white overflow-x-auto">
