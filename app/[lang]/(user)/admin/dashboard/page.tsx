@@ -58,7 +58,7 @@ export default async function DashboardPage({ params: { lang } }) {
                 <p className="text-muted-foreground">{dict.marketplace.admin.welcomeMessage}</p>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5">
                 {statsCards.map((stat, index) => {
                     const Icon = stat.icon;
                     return (
@@ -82,8 +82,8 @@ export default async function DashboardPage({ params: { lang } }) {
                 })}
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-                <Card className="col-span-4">
+            <div className="grid gap-4 grid-cols-1 lg:grid-cols-7">
+                <Card className="col-span-full lg:col-span-4">
                     <CardHeader>
                         <CardTitle>{dict.marketplace.admin.recentActivity}</CardTitle>
                     </CardHeader>
@@ -121,7 +121,7 @@ export default async function DashboardPage({ params: { lang } }) {
                     </CardContent>
                 </Card>
 
-                <Card className="col-span-3">
+                <Card className="col-span-full lg:col-span-3">
                     <CardHeader>
                         <CardTitle>{dict.marketplace.admin.quickActions}</CardTitle>
                     </CardHeader>

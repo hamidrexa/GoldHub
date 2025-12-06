@@ -81,12 +81,12 @@ export default async function OrdersPage({ params: { lang }, searchParams }: Pag
             />
 
             {/* Server-side tabs using URL params */}
-            <div className="border-b w-full flex space-x-4">
+            <div className="border-b w-full flex space-x-4 overflow-x-auto">
                 {tabs.map((tab) => (
                     <Link
                         key={tab.value}
                         href={`/${lang}/admin/orders?tab=${tab.value}${searchQuery ? `&q=${searchQuery}` : ''}`}
-                        className={`px-4 py-3 border-b-2 transition-colors ${activeTab === tab.value
+                        className={`px-4 py-3 border-b-2 transition-colors whitespace-nowrap ${activeTab === tab.value
                             ? 'border-primary text-primary font-medium'
                             : 'border-transparent text-muted-foreground hover:text-foreground'
                             }`}
@@ -97,8 +97,8 @@ export default async function OrdersPage({ params: { lang }, searchParams }: Pag
             </div>
 
             {/* Server-rendered table */}
-            <div className="rounded-lg border bg-white">
-                <Table>
+            <div className="rounded-lg border bg-white overflow-x-auto">
+                <Table className="min-w-[700px]">
                     <TableHeader>
                         <TableRow className="hover:bg-transparent">
                             <TableHead className="font-semibold">{dict.marketplace.admin.ordersPage.table.orderId}</TableHead>

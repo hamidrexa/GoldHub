@@ -61,7 +61,7 @@ export default function BuyerDashboard({ dict }: BuyerDashboardProps) {
     return (
         <div className="space-y-6">
             {/* Header */}
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
                     <h1 className="text-3xl font-bold tracking-tight">{dict.marketplace.buyer.welcomeBack}</h1>
                     <p className="text-muted-foreground">{dict.marketplace.buyer.browseDescription}</p>
@@ -133,9 +133,9 @@ export default function BuyerDashboard({ dict }: BuyerDashboardProps) {
                 </Card>
             </div>
 
-            <div className="grid gap-6 lg:grid-cols-5">
+            <div className="grid gap-6 grid-cols-1 lg:grid-cols-5">
                 {/* Market Prices */}
-                <Card className="lg:col-span-2">
+                <Card className="col-span-full lg:col-span-2">
                     <CardHeader>
                         <CardTitle className="text-lg">{dict.marketplace.buyer.marketPrices}</CardTitle>
                     </CardHeader>
@@ -160,7 +160,7 @@ export default function BuyerDashboard({ dict }: BuyerDashboardProps) {
                 </Card>
 
                 {/* Recent Orders */}
-                <Card className="lg:col-span-3">
+                <Card className="col-span-full lg:col-span-3">
                     <CardHeader className="flex flex-row items-center justify-between">
                         <CardTitle className="text-lg">{dict.marketplace.buyer.recentOrders}</CardTitle>
                         <Link href={`/${lang}/buyer/orders`}>

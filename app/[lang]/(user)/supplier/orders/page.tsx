@@ -122,14 +122,14 @@ export default async function SupplierOrdersPage({ params: { lang }, searchParam
                 <CardHeader>
                     <CardTitle>{getCardTitle()}</CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="overflow-x-auto">
                     {filteredOrders.length === 0 ? (
                         <div className="text-center py-12">
                             <PackageIcon className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                             <p className="text-muted-foreground">{dict.marketplace.supplier.ordersPage.noOrders}</p>
                         </div>
                     ) : (
-                        <Table>
+                        <Table className="min-w-[700px]">
                             <TableHeader>
                                 <TableRow>
                                     <TableHead>{dict.marketplace.supplier.ordersPage.table.orderId}</TableHead>

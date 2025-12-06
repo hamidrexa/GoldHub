@@ -115,7 +115,7 @@ export default async function BuyerOrdersPage({ params: { lang }, searchParams }
             </div>
 
             {/* Search and View Toggle */}
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
                 <OrdersSearch
                     placeholder={dict.marketplace.buyer.ordersPage.searchPlaceholder}
                     defaultValue={searchQuery}
@@ -124,12 +124,12 @@ export default async function BuyerOrdersPage({ params: { lang }, searchParams }
             </div>
 
             {/* Server-side tabs using URL params */}
-            <div className="border-b w-full flex space-x-4">
+            <div className="border-b w-full flex space-x-4 overflow-x-auto">
                 {tabs.map((tab) => (
                     <Link
                         key={tab.value}
                         href={`/${lang}/buyer/orders?tab=${tab.value}${searchQuery ? `&q=${searchQuery}` : ''}${viewMode !== 'grid' ? `&view=${viewMode}` : ''}`}
-                        className={`px-4 py-3 border-b-2 transition-colors ${activeTab === tab.value
+                        className={`px-4 py-3 border-b-2 transition-colors whitespace-nowrap ${activeTab === tab.value
                             ? 'border-primary text-primary font-medium'
                             : 'border-transparent text-muted-foreground hover:text-foreground'
                             }`}
@@ -151,8 +151,8 @@ export default async function BuyerOrdersPage({ params: { lang }, searchParams }
                 <div className="space-y-4">
                     {filteredOrders.map((order) => (
                         <Card key={order.id} className="hover:shadow-md transition-shadow">
-                            <CardContent className="p-6">
-                                <div className="flex items-start justify-between gap-4">
+                            <CardContent className="p-4 sm:p-6">
+                                <div className="flex flex-col sm:flex-row items-start sm:justify-between gap-4">
                                     {/* Left Section: Order Info */}
                                     <div className="flex-1 space-y-3">
                                         {/* Order ID and Status */}
