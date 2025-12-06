@@ -27,7 +27,6 @@ interface ContextProps {
         username: string;
         national_code: string;
         national_code_confirmed:boolean;
-        pushe_notification_id: string;
         unread_message_count: number;
         email_confirmed: boolean;
         trader_page_status: string;

@@ -52,25 +52,6 @@ export function Providers({ children }) {
         else toast.dismiss();
     }, [networkState.online]);
     useEffect(() => {
-        function installPushe() {
-            setTimeout(async () => {
-                if (typeof window.Pushe === 'undefined') return;
-                window.Pushe.init('mg637q91w1l8xm7g');
-                if (
-                    user?.pushe_notification_id ===
-                    (await window.Pushe.getDeviceId())
-                )
-                    window.Pushe.subscribe({
-                        showDialog: false,
-                        showBell: false,
-                        icon: 'https://talanow.ir/img/logo.png',
-                    });
-            }, 0);
-        }
-
-        installPushe();
-    }, [user]);
-    useEffect(() => {
         var _mtm = (window._mtm = window._mtm || []);
         _mtm.push({
             'mtm.startTime': new Date().getTime(),
