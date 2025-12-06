@@ -3,7 +3,7 @@ import { Locale } from '@/i18n-config';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Eye, Package } from 'lucide-react';
+import { Eye, Package, ListFilter, Play, CheckCircle } from 'lucide-react';
 import { mockBuyerOrders } from '@/lib/buyer-mock-data';
 import { OrderDetail, OrderStatus } from '@/lib/mock-data';
 import {
@@ -15,6 +15,7 @@ import {
     TableRow,
 } from '@/components/ui/table';
 import Link from 'next/link';
+import { ServerTabs, ServerTab } from '@/components/ui/server-tabs';
 import { OrdersSearch } from './orders-search';
 import { ViewToggle } from './orders-view-toggle';
 
@@ -100,10 +101,10 @@ export default async function BuyerOrdersPage({ params: { lang }, searchParams }
         completed: mockBuyerOrders.filter(o => ['delivered', 'closed'].includes(o.status)).length,
     };
 
-    const tabs = [
-        { value: 'all', label: `${dict.marketplace.buyer.ordersPage.tabs.all} (${statusCounts.all})` },
-        { value: 'active', label: `${dict.marketplace.buyer.ordersPage.tabs.active} (${statusCounts.active})` },
-        { value: 'completed', label: `${dict.marketplace.buyer.ordersPage.tabs.completed} (${statusCounts.completed})` },
+    const tabs: ServerTab[] = [
+        { value: 'all', label: `${dict.marketplace.buyer.ordersPage.tabs.all} (${statusCounts.all})`, icon: ListFilter, href: `/${lang}/buyer/orders?tab=all${searchQuery ? `&q=${searchQuery}` : ''}${viewMode !== 'grid' ? `&view=${viewMode}` : ''}` },
+        { value: 'active', label: `${dict.marketplace.buyer.ordersPage.tabs.active} (${statusCounts.active})`, icon: Play, href: `/${lang}/buyer/orders?tab=active${searchQuery ? `&q=${searchQuery}` : ''}${viewMode !== 'grid' ? `&view=${viewMode}` : ''}` },
+        { value: 'completed', label: `${dict.marketplace.buyer.ordersPage.tabs.completed} (${statusCounts.completed})`, icon: CheckCircle, href: `/${lang}/buyer/orders?tab=completed${searchQuery ? `&q=${searchQuery}` : ''}${viewMode !== 'grid' ? `&view=${viewMode}` : ''}` },
     ];
 
     return (
@@ -124,20 +125,7 @@ export default async function BuyerOrdersPage({ params: { lang }, searchParams }
             </div>
 
             {/* Server-side tabs using URL params */}
-            <div className="border-b w-full flex space-x-4 overflow-x-auto">
-                {tabs.map((tab) => (
-                    <Link
-                        key={tab.value}
-                        href={`/${lang}/buyer/orders?tab=${tab.value}${searchQuery ? `&q=${searchQuery}` : ''}${viewMode !== 'grid' ? `&view=${viewMode}` : ''}`}
-                        className={`px-4 py-3 border-b-2 transition-colors whitespace-nowrap ${activeTab === tab.value
-                            ? 'border-primary text-primary font-medium'
-                            : 'border-transparent text-muted-foreground hover:text-foreground'
-                            }`}
-                    >
-                        {tab.label}
-                    </Link>
-                ))}
-            </div>
+            <ServerTabs tabs={tabs} activeTab={activeTab} />
 
             {/* Orders Content */}
             {filteredOrders.length === 0 ? (

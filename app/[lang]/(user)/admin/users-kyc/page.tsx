@@ -1,7 +1,7 @@
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
 import { Badge } from '@/components/ui/badge';
-import { Eye } from 'lucide-react';
+import { Eye, Users, Clock, CheckCircle } from 'lucide-react';
 import { mockUsers, User } from '@/lib/mock-data';
 import {
     Table,
@@ -12,6 +12,7 @@ import {
     TableRow,
 } from '@/components/ui/table';
 import Link from 'next/link';
+import { ServerTabs, ServerTab } from '@/components/ui/server-tabs';
 import { UsersKycSearch } from './users-kyc-search';
 import { KycDialog } from './kyc-dialog';
 
@@ -65,10 +66,10 @@ export default async function UsersKycPage({ params: { lang }, searchParams }: P
     const pendingCount = mockUsers.filter(u => u.kycStatus === 'pending').length;
     const selectedUser = selectedUserId ? mockUsers.find(u => u.id === selectedUserId) : null;
 
-    const tabs = [
-        { value: 'all', label: dict.marketplace.admin.usersKycPage.tabs.all },
-        { value: 'pending', label: `${dict.marketplace.admin.usersKycPage.tabs.pending} (${pendingCount})` },
-        { value: 'approved', label: dict.marketplace.admin.usersKycPage.tabs.approved },
+    const tabs: ServerTab[] = [
+        { value: 'all', label: dict.marketplace.admin.usersKycPage.tabs.all, icon: Users, href: `/${lang}/admin/users-kyc?tab=all${searchQuery ? `&q=${searchQuery}` : ''}` },
+        { value: 'pending', label: `${dict.marketplace.admin.usersKycPage.tabs.pending} (${pendingCount})`, icon: Clock, href: `/${lang}/admin/users-kyc?tab=pending${searchQuery ? `&q=${searchQuery}` : ''}` },
+        { value: 'approved', label: dict.marketplace.admin.usersKycPage.tabs.approved, icon: CheckCircle, href: `/${lang}/admin/users-kyc?tab=approved${searchQuery ? `&q=${searchQuery}` : ''}` },
     ];
 
     // Determine table headers based on active tab
@@ -90,20 +91,7 @@ export default async function UsersKycPage({ params: { lang }, searchParams }: P
             />
 
             {/* Server-side tabs using URL params */}
-            <div className="border-b w-full flex space-x-4 overflow-x-auto">
-                {tabs.map((tab) => (
-                    <Link
-                        key={tab.value}
-                        href={`/${lang}/admin/users-kyc?tab=${tab.value}${searchQuery ? `&q=${searchQuery}` : ''}`}
-                        className={`px-4 py-3 border-b-2 transition-colors whitespace-nowrap ${activeTab === tab.value
-                            ? 'border-primary text-primary font-medium'
-                            : 'border-transparent text-muted-foreground hover:text-foreground'
-                            }`}
-                    >
-                        {tab.label}
-                    </Link>
-                ))}
-            </div>
+            <ServerTabs tabs={tabs} activeTab={activeTab} />
 
             {/* Server-rendered table */}
             <div className="rounded-lg border bg-white overflow-x-auto">
