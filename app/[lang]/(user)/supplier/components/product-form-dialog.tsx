@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Dialog,
     DialogContent,
@@ -25,8 +25,8 @@ import { Upload } from 'lucide-react';
 interface ProductFormDialogProps {
     open: boolean;
     onOpenChange: (open: boolean) => void;
-    product?: Product | null;
-    onSave?: (product: Partial<Product>) => void;
+    product?: any | null;
+    onSave?: (product) => void;
     dict: any;
 }
 
@@ -38,20 +38,73 @@ export default function ProductFormDialog({
     dict,
 }: ProductFormDialogProps) {
     const [formData, setFormData] = useState<Partial<Product>>({
-        name: product?.name || '',
-        category: product?.category || 'gold_bar',
-        karat: product?.karat || '24K',
-        weight: product?.weight || 0,
-        price: product?.price || 0,
-        stock: product?.stock || 0,
-        status: product?.status || 'active',
-        specifications: product?.specifications || '',
+        name: "",
+        category: "gold_bar",
+        karat: "18K",
+        weight: 0,
+        price: 0,
+        stock: 0,
+        status: "active",
+        specifications: "",
+        image: "",
     });
 
+    useEffect(() => {
+        if (product) {
+            setFormData({
+                name: product.title ?? "",
+                category: mapCategory(product.category),
+                karat: product.karat ?? null,
+                weight: parseFloat(product.weight) ?? 0,
+                price: parseFloat(product.price) ?? 0,
+                stock: product.inventory ?? 0,
+                status: product.status ?? "active",
+                specifications: product.details ?? "",
+                image: product.images?.[0]?.image ?? "",
+            });
+        }
+    }, [product]);
+
     const handleSave = () => {
-        onSave?.(formData);
+        const payload = mapFormToApi(formData, product?.id);
+        onSave?.(payload);
         onOpenChange(false);
     };
+
+    const formatKarat = (karat: string): number | null => {
+        if (!karat) return null;
+        const match = karat.match(/\d+/);
+        return match ? parseInt(match[0]) : null;
+    };
+
+
+    function mapFormToApi(formData, id?: number) {
+        return {
+            id,
+            title: formData.name,
+            category: formData.category,
+            karat: formatKarat(formData.karat),
+            weight: formData.weight,
+            price: formData.price,
+            inventory: formData.stock,
+            details: formData.specifications,
+            image: formData.image,
+            status: formData.status,
+        };
+    }
+
+    function mapCategory(apiCategory: string) {
+        const mapping: any = {
+            Gold: "gold_bar",
+            Coin: "gold_coin",
+            Jewelry: "jewelry",
+            Ring: "ring",
+            Bracelet: "bracelet",
+            Necklace: "necklace",
+            Earring: "earring",
+        };
+        return mapping[apiCategory] || "gold_bar";
+    }
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>

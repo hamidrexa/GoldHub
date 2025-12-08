@@ -107,7 +107,7 @@ export default async function SupplierProductsPage({ params: { lang }, searchPar
 
             {/* Products Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                <ProductsGrid dict={dict} products={filteredProducts as any} />
+                <ProductsGrid dict={dict} />
             </div>
         </div>
     );
