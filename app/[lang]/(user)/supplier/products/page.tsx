@@ -84,7 +84,7 @@ export default async function SupplierProductsPage({ params: { lang }, searchPar
 
     return (
         <div className="space-y-6">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
                     <h1 className="text-3xl font-bold tracking-tight">{dict.marketplace.supplier.productsPage.title}</h1>
                     <p className="text-muted-foreground">{dict.marketplace.supplier.productsPage.description}</p>
@@ -92,7 +92,7 @@ export default async function SupplierProductsPage({ params: { lang }, searchPar
                 <ProductActions dict={dict} products={filteredProducts as any} />
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                 <ProductsSearch
                     placeholder={dict.marketplace.supplier.productsPage.searchPlaceholder}
                     defaultValue={searchQuery}
