@@ -71,7 +71,7 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
             <div className="lg:col-span-2 space-y-4">
                 {cartItems.map((item) => (
                     <Card key={item.productId}>
-                        <CardContent className="p-6">
+                        <CardContent className="p-4 sm:p-6">
                             <div className="flex gap-4">
                                 {/* Product Image */}
                                 <div className="w-24 h-24 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -88,7 +88,7 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
 
                                 {/* Product Details */}
                                 <div className="flex-1 min-w-0">
-                                    <div className="flex justify-between gap-4">
+                                    <div className="flex flex-col sm:flex-row sm:justify-between gap-2 sm:gap-4">
                                         <div className="flex-1">
                                             <h3 className="font-semibold">{item.product.name}</h3>
                                             <p className="text-sm text-muted-foreground mt-1">
@@ -100,7 +100,7 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
                                         </div>
 
                                         {/* Price */}
-                                        <div className="text-right">
+                                        <div className="text-left sm:text-right mt-2 sm:mt-0">
                                             <p className="text-lg font-bold">
                                                 ${(item.product.price * item.quantity).toLocaleString()}
                                             </p>
