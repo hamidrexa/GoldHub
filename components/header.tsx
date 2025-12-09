@@ -87,8 +87,8 @@ export function Header({ dict, lang, googleLogin = true }) {
             } catch (e) {
                 toast.error(
                     e?.error?.params?.detail ||
-                        e?.error?.messages?.error?.[0] ||
-                        e?.error?.params?.non_field_errors?.[0]
+                    e?.error?.messages?.error?.[0] ||
+                    e?.error?.params?.non_field_errors?.[0]
                 );
             }
         },
@@ -181,53 +181,34 @@ export function Header({ dict, lang, googleLogin = true }) {
                                         </div>
                                     </div>
                                 )}
-                                <div className="mt-14 flex flex-col items-start gap-8 text-xl font-black">
-                                    <Link
-                                        href={`${dict.navMenuItems[0].href}`}
-                                        className="flex items-center justify-center gap-3"
-                                    >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="24"
-                                            height="24"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            className="lucide lucide-arrow-right-left-icon lucide-arrow-right-left"
+                                <div className="mt-8 flex flex-col items-start gap-4 text-lg font-medium">
+                                    {/* Dynamic Role-Based Menu Items */}
+                                    {(path.includes('/buyer') ? [
+                                        { title: 'Dashboard', href: `${getLinksLang(lang)}/buyer` },
+                                        { title: 'Catalog', href: `${getLinksLang(lang)}/buyer/catalog` },
+                                        { title: 'My Orders', href: `${getLinksLang(lang)}/buyer/orders` },
+                                        { title: 'Cart', href: `${getLinksLang(lang)}/buyer/cart` },
+                                        { title: 'Favorites', href: `${getLinksLang(lang)}/buyer/favorites` },
+                                    ] : path.includes('/supplier') ? [
+                                        { title: 'Dashboard', href: `${getLinksLang(lang)}/supplier/dashboard` },
+                                        { title: 'My Products', href: `${getLinksLang(lang)}/supplier/products` },
+                                        { title: 'Pricing', href: `${getLinksLang(lang)}/supplier/pricing` },
+                                        { title: 'Orders', href: `${getLinksLang(lang)}/supplier/orders` },
+                                    ] : path.includes('/admin') ? [
+                                        { title: 'Dashboard', href: `${getLinksLang(lang)}/admin` },
+                                        { title: 'Users & KYC', href: `${getLinksLang(lang)}/admin/users-kyc` },
+                                        { title: 'Audit Logs', href: `${getLinksLang(lang)}/admin/audit-logs` },
+                                        { title: 'All Orders', href: `${getLinksLang(lang)}/admin/orders` },
+                                    ] : dict.navMenuItems).map((item: any, idx: number) => (
+                                        <Link
+                                            key={idx}
+                                            href={item.href}
+                                            className="flex items-center gap-3 hover:text-violet-900 transition-colors"
+                                            onClick={() => setOpen(false)}
                                         >
-                                            <path d="m16 3 4 4-4 4" />
-                                            <path d="M20 7H4" />
-                                            <path d="m8 21-4-4 4-4" />
-                                            <path d="M4 17h16" />
-                                        </svg>
-                                        {dict.navMenuItems[0].title}
-                                    </Link>
-                                    <Link
-                                        href={`${dict.navMenuItems[1].href}`}
-                                        className="flex items-center justify-center gap-3"
-                                    >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="24"
-                                            height="24"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            className="lucide lucide-file-pen-line"
-                                        >
-                                            <path d="m18 5-2.414-2.414A2 2 0 0 0 14.172 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2" />
-                                            <path d="M21.378 12.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" />
-                                            <path d="M8 18h1" />
-                                        </svg>
-                                        {dict.navMenuItems[1].title}
-                                    </Link>
-                                    <div className="relative inline-block w-48"></div>
+                                            {item.title}
+                                        </Link>
+                                    ))}
                                 </div>
                             </div>
                             <div>
