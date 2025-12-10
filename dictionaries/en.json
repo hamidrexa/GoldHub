@@ -1001,6 +1001,7 @@
         "table": {
           "timestamp": "Timestamp",
           "user": "User",
+          "roles": "Roles",
           "event": "Event",
           "ipAddress": "IP Address",
           "device": "Device / Browser",

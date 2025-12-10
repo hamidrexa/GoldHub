@@ -5,7 +5,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { CheckCircle, XCircle, Upload, Loader2 } from 'lucide-react';
-import { setKycStatus, ApiKycStatus } from '@/lib/api-client';
 import {
     Dialog,
     DialogContent,
@@ -15,6 +14,7 @@ import {
 } from '@/components/ui/dialog';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useRouter } from 'next/navigation';
+import { setKycStatus } from '@/app/[lang]/(user)/admin/services/set-kyc-status';
 
 interface User {
     id: string;
@@ -30,19 +30,23 @@ interface User {
 }
 
 interface KycDialogProps {
-    user: User;
+    user: any;
     dict: any;
     lang: string;
     activeTab: string;
     searchQuery: string;
+    onClose: () => void;
 }
 
-export function KycDialog({ user, dict, lang, activeTab, searchQuery }: KycDialogProps) {
+export function KycDialog({ user, dict, lang, activeTab, searchQuery,onClose }: KycDialogProps) {
     const router = useRouter();
+    const [open, setOpen] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    console.log(user);
 
     const handleClose = () => {
+        setOpen(false)
         const params = new URLSearchParams();
         params.set('tab', activeTab);
         if (searchQuery) params.set('q', searchQuery);
@@ -54,25 +58,28 @@ export function KycDialog({ user, dict, lang, activeTab, searchQuery }: KycDialo
         setError(null);
 
         try {
-            // Determine the appropriate KYC status based on user role and action
-            let newStatus: ApiKycStatus;
-            if (user.role === 'supplier') {
-                newStatus = action === 'approve' ? 'supplier_approved' : 'supplier_rejected';
-            } else {
-                newStatus = action === 'approve' ? 'buyer_approved' : 'buyer_rejected';
+            const primaryRole = user.roles?.[0]?.role;
+
+            if (!primaryRole) {
+                throw new Error("User role not found");
             }
 
+            const new_status =
+                action === "approve"
+                    ? `${primaryRole}_approved`
+                    : `${primaryRole}_rejected`;
+
             await setKycStatus({
-                user_id: parseInt(user.id),
-                new_status: newStatus,
+                user_id: Number(user.id),
+                new_status,
             });
 
-            // Refresh the page to show updated status
-            router.refresh();
             handleClose();
-        } catch (err) {
-            console.error('Failed to update KYC status:', err);
-            setError(dict.marketplace.admin.usersKycPage.dialog.actionFailed || 'Failed to update KYC status');
+            router.refresh();
+
+        } catch (e) {
+            console.error("KYC update failed:", e);
+            setError("Failed to update KYC status");
         } finally {
             setIsLoading(false);
         }
@@ -89,17 +96,23 @@ export function KycDialog({ user, dict, lang, activeTab, searchQuery }: KycDialo
         return <Badge variant="default" className={config.className}>{config.label}</Badge>;
     };
 
-    const getRoleBadge = (role: User['role']) => {
+    const getRoleBadge = (user) => {
+        const roleObj = user.roles?.[0];
+        const role = roleObj?.role || 'unknown';
+
         const colors = {
             admin: 'bg-red-100 text-red-800',
             supplier: 'bg-blue-100 text-blue-800',
             retailer: 'bg-purple-100 text-purple-800',
+            buyer: 'bg-purple-100 text-purple-800',
         };
+
         return <Badge variant="default" className={`${colors[role]} hover:${colors[role]}`}>{role.charAt(0).toUpperCase() + role.slice(1)}</Badge>;
     };
 
+
     return (
-        <Dialog open={true} onOpenChange={handleClose}>
+        <Dialog open={true} onOpenChange={onClose}>
             <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
                 <DialogHeader>
                     <DialogTitle>{dict.marketplace.admin.usersKycPage.dialog.title} - {user.name}</DialogTitle>
@@ -120,7 +133,7 @@ export function KycDialog({ user, dict, lang, activeTab, searchQuery }: KycDialo
                             </div>
                             <div>
                                 <Label className="text-sm text-muted-foreground">{dict.marketplace.admin.usersKycPage.table.role}</Label>
-                                <div className="mt-1">{getRoleBadge(user.role)}</div>
+                                <div className="mt-1">{getRoleBadge(user)}</div>
                             </div>
                         </CardContent>
                     </Card>

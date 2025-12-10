@@ -29,6 +29,17 @@ interface ProductFormDialogProps {
     onSave?: (product) => void;
     dict: any;
 }
+interface ProductFormData {
+    name: string;
+    category: Product['category'];
+    karat: Product['karat'] | string;
+    weight: string;
+    price: string;
+    stock: number;
+    status: Product['status'];
+    specifications: string;
+    images: string | File;
+}
 
 export default function ProductFormDialog({
     open,
@@ -37,16 +48,17 @@ export default function ProductFormDialog({
     onSave,
     dict,
 }: ProductFormDialogProps) {
-    const [formData, setFormData] = useState<Partial<Product>>({
+    const fileInputRef = React.useRef<HTMLInputElement>(null);
+    const [formData, setFormData] = useState<ProductFormData>({
         name: "",
         category: "gold_bar",
         karat: "18K",
-        weight: 0,
-        price: 0,
+        weight: "",
+        price: "",
         stock: 0,
         status: "active",
         specifications: "",
-        image: "",
+        images: "",
     });
 
     useEffect(() => {
@@ -54,19 +66,20 @@ export default function ProductFormDialog({
             setFormData({
                 name: product.title ?? "",
                 category: mapCategory(product.category),
-                karat: product.karat ?? null,
-                weight: parseFloat(product.weight) ?? 0,
-                price: parseFloat(product.price) ?? 0,
+                karat: product.karat ? `${product.karat}K` : "",
+                weight: product.weight?.toString() ?? "",
+                price: product.price?.toString() ?? "",
                 stock: product.inventory ?? 0,
                 status: product.status ?? "active",
                 specifications: product.details ?? "",
-                image: product.images?.[0]?.image ?? "",
+                images: product.images?.[0]?.image ?? "",
             });
         }
     }, [product]);
 
     const handleSave = () => {
         const payload = mapFormToApi(formData, product?.id);
+        console.log(payload);
         onSave?.(payload);
         onOpenChange(false);
     };
@@ -79,18 +92,23 @@ export default function ProductFormDialog({
 
 
     function mapFormToApi(formData, id?: number) {
-        return {
-            id,
-            title: formData.name,
-            category: formData.category,
-            karat: formatKarat(formData.karat),
-            weight: formData.weight,
-            price: formData.price,
-            inventory: formData.stock,
-            details: formData.specifications,
-            image: formData.image,
-            status: formData.status,
-        };
+        const fd = new FormData();
+
+        if (id) fd.append("id", id.toString());
+        fd.append("title", formData.name);
+        fd.append("category", formData.category);
+        fd.append("karat", String(formatKarat(formData.karat)));
+        fd.append("weight", formData.weight);
+        fd.append("price", formData.price);
+        fd.append("inventory", formData.stock);
+        fd.append("details", formData.specifications);
+        fd.append("status", formData.status);
+
+        if (formData.images instanceof File) {
+            fd.append("images", formData.images);
+        }
+
+        return fd;
     }
 
     function mapCategory(apiCategory: string) {
@@ -129,7 +147,8 @@ export default function ProductFormDialog({
 
                     <div className="grid grid-cols-2 gap-4">
                         <div className="grid gap-2">
-                            <Label htmlFor="category">{dict.marketplace.supplier.productFormDialog.fields.category}</Label>
+                            <Label
+                                htmlFor="category">{dict.marketplace.supplier.productFormDialog.fields.category}</Label>
                             <Select
                                 value={formData.category}
                                 onValueChange={(value: Product['category']) =>
@@ -140,19 +159,27 @@ export default function ProductFormDialog({
                                     <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="gold_bar">{dict.marketplace.supplier.productsPage.categories.goldBar}</SelectItem>
-                                    <SelectItem value="gold_coin">{dict.marketplace.supplier.productsPage.categories.goldCoin}</SelectItem>
-                                    <SelectItem value="jewelry">{dict.marketplace.supplier.productsPage.categories.jewelry}</SelectItem>
-                                    <SelectItem value="necklace">{dict.marketplace.supplier.productsPage.categories.necklace}</SelectItem>
-                                    <SelectItem value="bracelet">{dict.marketplace.supplier.productsPage.categories.bracelet}</SelectItem>
-                                    <SelectItem value="earring">{dict.marketplace.supplier.productsPage.categories.earring}</SelectItem>
-                                    <SelectItem value="ring">{dict.marketplace.supplier.productsPage.categories.ring}</SelectItem>
+                                    <SelectItem
+                                        value="gold_bar">{dict.marketplace.supplier.productsPage.categories.goldBar}</SelectItem>
+                                    <SelectItem
+                                        value="gold_coin">{dict.marketplace.supplier.productsPage.categories.goldCoin}</SelectItem>
+                                    <SelectItem
+                                        value="jewelry">{dict.marketplace.supplier.productsPage.categories.jewelry}</SelectItem>
+                                    <SelectItem
+                                        value="necklace">{dict.marketplace.supplier.productsPage.categories.necklace}</SelectItem>
+                                    <SelectItem
+                                        value="bracelet">{dict.marketplace.supplier.productsPage.categories.bracelet}</SelectItem>
+                                    <SelectItem
+                                        value="earring">{dict.marketplace.supplier.productsPage.categories.earring}</SelectItem>
+                                    <SelectItem
+                                        value="ring">{dict.marketplace.supplier.productsPage.categories.ring}</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
 
                         <div className="grid gap-2">
-                            <Label htmlFor="karat">{dict.marketplace.supplier.productFormDialog.fields.karat.label}</Label>
+                            <Label
+                                htmlFor="karat">{dict.marketplace.supplier.productFormDialog.fields.karat.label}</Label>
                             <Select
                                 value={formData.karat}
                                 onValueChange={(value: Product['karat']) =>
@@ -163,9 +190,12 @@ export default function ProductFormDialog({
                                     <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="18K">{dict.marketplace.supplier.productFormDialog.fields.karat.options['18k']}</SelectItem>
-                                    <SelectItem value="22K">{dict.marketplace.supplier.productFormDialog.fields.karat.options['22k']}</SelectItem>
-                                    <SelectItem value="24K">{dict.marketplace.supplier.productFormDialog.fields.karat.options['24k']}</SelectItem>
+                                    <SelectItem
+                                        value="18K">{dict.marketplace.supplier.productFormDialog.fields.karat.options['18k']}</SelectItem>
+                                    <SelectItem
+                                        value="22K">{dict.marketplace.supplier.productFormDialog.fields.karat.options['22k']}</SelectItem>
+                                    <SelectItem
+                                        value="24K">{dict.marketplace.supplier.productFormDialog.fields.karat.options['24k']}</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
@@ -176,12 +206,9 @@ export default function ProductFormDialog({
                             <Label htmlFor="weight">{dict.marketplace.supplier.productFormDialog.fields.weight}</Label>
                             <Input
                                 id="weight"
-                                type="number"
                                 value={formData.weight}
-                                onChange={(e) =>
-                                    setFormData({ ...formData, weight: parseFloat(e.target.value) || 0 })
-                                }
-                                step="0.1"
+                                onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
+                                inputMode="decimal"
                             />
                         </div>
 
@@ -189,12 +216,9 @@ export default function ProductFormDialog({
                             <Label htmlFor="price">{dict.marketplace.supplier.productFormDialog.fields.price}</Label>
                             <Input
                                 id="price"
-                                type="number"
                                 value={formData.price}
-                                onChange={(e) =>
-                                    setFormData({ ...formData, price: parseFloat(e.target.value) || 0 })
-                                }
-                                step="0.01"
+                                onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                                inputMode="decimal"
                             />
                         </div>
 
@@ -212,7 +236,8 @@ export default function ProductFormDialog({
                     </div>
 
                     <div className="grid gap-2">
-                        <Label htmlFor="specifications">{dict.marketplace.supplier.productFormDialog.fields.specifications.label}</Label>
+                        <Label
+                            htmlFor="specifications">{dict.marketplace.supplier.productFormDialog.fields.specifications.label}</Label>
                         <Input
                             id="specifications"
                             value={formData.specifications}
@@ -233,25 +258,37 @@ export default function ProductFormDialog({
                                 <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectItem value="active">{dict.marketplace.supplier.productsPage.status.active}</SelectItem>
-                                <SelectItem value="inactive">{dict.marketplace.supplier.productsPage.status.inactive}</SelectItem>
-                                <SelectItem value="draft">{dict.marketplace.supplier.productsPage.status.draft}</SelectItem>
+                                <SelectItem
+                                    value="active">{dict.marketplace.supplier.productsPage.status.active}</SelectItem>
+                                <SelectItem
+                                    value="inactive">{dict.marketplace.supplier.productsPage.status.inactive}</SelectItem>
+                                <SelectItem
+                                    value="draft">{dict.marketplace.supplier.productsPage.status.draft}</SelectItem>
                             </SelectContent>
                         </Select>
                     </div>
 
-                    <div className="grid gap-2">
-                        <Label htmlFor="image">{dict.marketplace.supplier.productFormDialog.fields.image.label}</Label>
-                        <div className="border-2 border-dashed rounded-lg p-6 text-center hover:bg-muted/50 transition-colors cursor-pointer">
-                            <Upload className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
-                            <p className="text-sm text-muted-foreground">
-                                {dict.marketplace.supplier.productFormDialog.fields.image.clickToUpload}
-                            </p>
-                            <p className="text-xs text-muted-foreground mt-1">
-                                {dict.marketplace.supplier.productFormDialog.fields.image.s3Required}
-                            </p>
-                        </div>
+                    <div
+                        onClick={() => fileInputRef.current?.click()}
+                        className="border-2 border-dashed rounded-lg p-6 text-center hover:bg-muted/50 transition-colors cursor-pointer"
+                    >
+                        <Upload className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
+                        <p className="text-sm text-muted-foreground">
+                            {dict.marketplace.supplier.productFormDialog.fields.image.clickToUpload}
+                        </p>
                     </div>
+
+                    <input
+                        type="file"
+                        ref={fileInputRef}
+                        className="hidden"
+                        accept="image/*"
+                        onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (!file) return;
+                            setFormData({ ...formData, images: file });
+                        }}
+                    />
                 </div>
 
                 <DialogFooter>

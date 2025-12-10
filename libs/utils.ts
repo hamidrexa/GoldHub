@@ -32,8 +32,10 @@ export const fetcher = async (params: FetcherParams) => {
         ? `${params.absoluteUrl}?${queryString}`
         : `${process.env.NEXT_PUBLIC_API_URL}${params.url}?${queryString}`;
 
+    const isFormData = params.body instanceof FormData;
+
     const headers: Record<string, string> = {
-        'Content-Type': 'application/json',
+        ...(isFormData ? {} : { 'Content-Type': 'application/json' }),
         ...params.headers,
         ...(Cookies.get('token') &&
             (!params.absoluteUrl || params.sendToken) && {
@@ -45,7 +47,7 @@ export const fetcher = async (params: FetcherParams) => {
     const res = await fetch(url, {
         method: params.method ?? 'GET',
         headers,
-        ...(params.body && { body: JSON.stringify(params.body) }),
+        body: params.body ? (isFormData ? params.body : JSON.stringify(params.body)) : undefined,
     });
 
     if (!res.ok) {
