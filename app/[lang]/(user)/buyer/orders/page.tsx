@@ -195,43 +195,45 @@ export default async function BuyerOrdersPage({ params: { lang }, searchParams }
                     ))}
                 </div>
             ) : (
-                <Card>
-                    <CardContent className="p-0">
-                        <Table>
-                            <TableHeader>
-                                <TableRow>
-                                    <TableHead>{dict.marketplace.buyer.ordersPage.table.orderId}</TableHead>
-                                    <TableHead>{dict.marketplace.buyer.ordersPage.table.date}</TableHead>
-                                    <TableHead>{dict.marketplace.buyer.ordersPage.table.items}</TableHead>
-                                    <TableHead>{dict.marketplace.buyer.ordersPage.table.total}</TableHead>
-                                    <TableHead>{dict.marketplace.buyer.ordersPage.table.status}</TableHead>
-                                    <TableHead className="text-right">{dict.marketplace.buyer.ordersPage.table.actions}</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {filteredOrders.map((order) => (
-                                    <TableRow key={order.id}>
-                                        <TableCell className="font-medium">{order.id}</TableCell>
-                                        <TableCell>{order.date}</TableCell>
-                                        <TableCell>{order.items} {dict.marketplace.buyer.ordersPage.card.itemsSuffix}</TableCell>
-                                        <TableCell className="font-semibold">
-                                            ${order.total.toLocaleString()}
-                                        </TableCell>
-                                        <TableCell><StatusBadge status={order.status} dict={dict} /></TableCell>
-                                        <TableCell className="text-right">
-                                            <Link href={`/${lang}/buyer/orders/${order.id}`}>
-                                                <Button size="sm" variant="ghost">
-                                                    <Eye className="h-4 w-4 mr-2" />
-                                                    {dict.marketplace.buyer.ordersPage.card.viewDetails}
-                                                </Button>
-                                            </Link>
-                                        </TableCell>
+                <div className="border rounded-lg shadow-sm bg-card">
+                    <div>
+                        <div className="w-full overflow-x-auto max-w-[calc(100vw-3rem)]">
+                            <Table className="min-w-[600px]">
+                                <TableHeader>
+                                    <TableRow>
+                                        <TableHead className="sticky left-0 z-20 bg-card shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">{dict.marketplace.buyer.ordersPage.table.orderId}</TableHead>
+                                        <TableHead>{dict.marketplace.buyer.ordersPage.table.date}</TableHead>
+                                        <TableHead>{dict.marketplace.buyer.ordersPage.table.items}</TableHead>
+                                        <TableHead>{dict.marketplace.buyer.ordersPage.table.total}</TableHead>
+                                        <TableHead>{dict.marketplace.buyer.ordersPage.table.status}</TableHead>
+                                        <TableHead className="text-right">{dict.marketplace.buyer.ordersPage.table.actions}</TableHead>
                                     </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </CardContent>
-                </Card>
+                                </TableHeader>
+                                <TableBody>
+                                    {filteredOrders.map((order) => (
+                                        <TableRow key={order.id}>
+                                            <TableCell className="font-medium sticky left-0 z-10 bg-card shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">{order.id}</TableCell>
+                                            <TableCell>{order.date}</TableCell>
+                                            <TableCell>{order.items} {dict.marketplace.buyer.ordersPage.card.itemsSuffix}</TableCell>
+                                            <TableCell className="font-semibold">
+                                                ${order.total.toLocaleString()}
+                                            </TableCell>
+                                            <TableCell><StatusBadge status={order.status} dict={dict} /></TableCell>
+                                            <TableCell className="text-right">
+                                                <Link href={`/${lang}/buyer/orders/${order.id}`}>
+                                                    <Button size="sm" variant="ghost">
+                                                        <Eye className="h-4 w-4 mr-2" />
+                                                        {dict.marketplace.buyer.ordersPage.card.viewDetails}
+                                                    </Button>
+                                                </Link>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </div>
+                    </div>
+                </div>
             )}
         </div>
     );
