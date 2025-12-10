@@ -4,7 +4,7 @@ import { Locale } from '@/i18n-config';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Search, Eye } from 'lucide-react';
+import { Search, Eye, Package } from 'lucide-react';
 import { mockBuyerOrders } from '@/lib/buyer-mock-data';
 import { OrderDetail, OrderStatus } from '@/lib/mock-data';
 import {
