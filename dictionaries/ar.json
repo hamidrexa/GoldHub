@@ -905,9 +905,11 @@
         "searchPlaceholder": "البحث في الطلبات...",
         "tabs": {
           "all": "جميع الطلبات",
-          "pending": "بانتظار إجراء",
-          "active": "نشطة",
-          "closed": "مغلقة"
+          "pending": "قيد الانتظار",
+          "processing": "قيد المعالجة",
+          "shipped": "تم الشحن",
+          "delivered": "تم التسليم",
+          "cancelled": "تم الإلغاء"
         },
         "table": {
           "orderId": "رقم الطلب",
@@ -1048,8 +1050,11 @@
         "searchPlaceholder": "البحث برقم الطلب أو المورد...",
         "tabs": {
           "all": "جميع الطلبات",
-          "active": "نشطة",
-          "completed": "مكتملة"
+          "pending": "قيد الانتظار",
+          "processing": "قيد المعالجة",
+          "shipped": "تم الشحن",
+          "delivered": "تم التسليم",
+          "cancelled": "تم الإلغاء"
         },
         "noOrders": "لا توجد طلبات",
         "table": {
@@ -1268,11 +1273,12 @@
         "description": "إدارة وتتبع طلبات المورد الخاصة بك",
         "searchPlaceholder": "البحث عن الطلبات...",
         "tabs": {
-          "all": "الكل",
-          "new": "جديد",
+          "all": "جميع الطلبات",
+          "pending": "قيد الانتظار",
           "processing": "قيد المعالجة",
           "shipped": "تم الشحن",
-          "closed": "مغلق"
+          "delivered": "تم التسليم",
+          "cancelled": "تم الإلغاء"
         },
         "cardTitles": {
           "all": "جميع الطلبات",

@@ -905,9 +905,11 @@
         "searchPlaceholder": "Sipariş ara...",
         "tabs": {
           "all": "Tüm Siparişler",
-          "pending": "İşlem Bekleyen",
-          "active": "Aktif",
-          "closed": "Kapalı"
+          "pending": "Beklemede",
+          "processing": "İşleniyor",
+          "shipped": "Gönderildi",
+          "delivered": "Teslim Edildi",
+          "cancelled": "İptal Edildi"
         },
         "table": {
           "orderId": "Sipariş No",
@@ -1048,8 +1050,11 @@
         "searchPlaceholder": "Sipariş No veya tedarikçi ile ara...",
         "tabs": {
           "all": "Tüm Siparişler",
-          "active": "Aktif",
-          "completed": "Tamamlanan"
+          "pending": "Beklemede",
+          "processing": "İşleniyor",
+          "shipped": "Gönderildi",
+          "delivered": "Teslim Edildi",
+          "cancelled": "İptal Edildi"
         },
         "noOrders": "Sipariş bulunamadı",
         "table": {
@@ -1268,11 +1273,12 @@
         "description": "Tedarikçi siparişlerinizi yönetin ve takip edin",
         "searchPlaceholder": "Sipariş ara...",
         "tabs": {
-          "all": "Tümü",
-          "new": "Yeni",
+          "all": "Tüm Siparişler",
+          "pending": "Beklemede",
           "processing": "İşleniyor",
-          "shipped": "Kargolandı",
-          "closed": "Kapalı"
+          "shipped": "Gönderildi",
+          "delivered": "Teslim Edildi",
+          "cancelled": "İptal Edildi"
         },
         "cardTitles": {
           "all": "Tüm Siparişler",

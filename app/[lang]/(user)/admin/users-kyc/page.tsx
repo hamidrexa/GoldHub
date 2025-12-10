@@ -1,7 +1,7 @@
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
 import { Badge } from '@/components/ui/badge';
-import { Eye, Users, Clock, CheckCircle } from 'lucide-react';
+import { Eye } from 'lucide-react';
 import { mockUsers, User } from '@/lib/mock-data';
 import {
     Table,
@@ -12,7 +12,7 @@ import {
     TableRow,
 } from '@/components/ui/table';
 import Link from 'next/link';
-import { ServerTabs, ServerTab } from '@/components/ui/server-tabs';
+import { URLTabs } from '@/components/ui/url-tabs';
 import { UsersKycSearch } from './users-kyc-search';
 import { KycDialog } from './kyc-dialog';
 
@@ -66,11 +66,7 @@ export default async function UsersKycPage({ params: { lang }, searchParams }: P
     const pendingCount = mockUsers.filter(u => u.kycStatus === 'pending').length;
     const selectedUser = selectedUserId ? mockUsers.find(u => u.id === selectedUserId) : null;
 
-    const tabs: ServerTab[] = [
-        { value: 'all', label: dict.marketplace.admin.usersKycPage.tabs.all, icon: Users, href: `/${lang}/admin/users-kyc?tab=all${searchQuery ? `&q=${searchQuery}` : ''}` },
-        { value: 'pending', label: `${dict.marketplace.admin.usersKycPage.tabs.pending} (${pendingCount})`, icon: Clock, href: `/${lang}/admin/users-kyc?tab=pending${searchQuery ? `&q=${searchQuery}` : ''}` },
-        { value: 'approved', label: dict.marketplace.admin.usersKycPage.tabs.approved, icon: CheckCircle, href: `/${lang}/admin/users-kyc?tab=approved${searchQuery ? `&q=${searchQuery}` : ''}` },
-    ];
+
 
     // Determine table headers based on active tab
     const showSubmittedColumn = activeTab === 'pending';
@@ -90,8 +86,12 @@ export default async function UsersKycPage({ params: { lang }, searchParams }: P
                 defaultValue={searchQuery}
             />
 
-            {/* Server-side tabs using URL params */}
-            <ServerTabs tabs={tabs} activeTab={activeTab} />
+            {/* Client-side tabs wrapper */}
+            <URLTabs tabs={[
+                { value: 'all', label: dict.marketplace.admin.usersKycPage.tabs.all },
+                { value: 'pending', label: dict.marketplace.admin.usersKycPage.tabs.pending },
+                { value: 'approved', label: dict.marketplace.admin.usersKycPage.tabs.approved },
+            ]} defaultValue={activeTab} />
 
             {/* Server-rendered table */}
             <div className="rounded-lg border bg-white overflow-x-auto">

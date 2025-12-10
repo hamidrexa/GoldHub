@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { OrdersSearch } from './orders-search';
-import { OrderTabs } from './order-tabs';
+import { URLTabs } from '@/components/ui/url-tabs';
 
 interface PageProps {
     params: { lang: Locale };
@@ -71,10 +71,11 @@ export default async function SupplierOrdersPage({ params: { lang }, searchParam
 
     const tabs = [
         { value: 'all', label: dict.marketplace.supplier.ordersPage.tabs.all },
-        { value: 'pending_supplier', label: dict.marketplace.supplier.ordersPage.tabs.new },
+        { value: 'pending', label: dict.marketplace.supplier.ordersPage.tabs.pending },
         { value: 'confirmed', label: dict.marketplace.supplier.ordersPage.tabs.processing },
         { value: 'shipped', label: dict.marketplace.supplier.ordersPage.tabs.shipped },
-        { value: 'closed', label: dict.marketplace.supplier.ordersPage.tabs.closed },
+        { value: 'delivered', label: dict.marketplace.supplier.ordersPage.tabs.delivered },
+        { value: 'cancelled', label: dict.marketplace.supplier.ordersPage.tabs.cancelled },
     ];
 
     // Get card title based on active tab
@@ -102,7 +103,7 @@ export default async function SupplierOrdersPage({ params: { lang }, searchParam
             />
 
             {/* Client-side tabs wrapper */}
-            <OrderTabs tabs={tabs} defaultValue={activeTab} />
+            <URLTabs tabs={tabs} defaultValue={activeTab} />
 
             {/* Orders Table */}
             <div className="border rounded-lg shadow-sm bg-card">

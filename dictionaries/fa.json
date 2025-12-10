@@ -964,10 +964,12 @@
         "description": "مدیریت سفارشات دریافتی از خریداران",
         "searchPlaceholder": "جستجوی سفارشات...",
         "tabs": {
-          "all": "همه سفارشات",
-          "pending": "در انتظار اقدام",
-          "active": "فعال",
-          "closed": "بسته شده"
+          "all": "همه سفارش‌ها",
+          "pending": "در انتظار",
+          "processing": "در حال پردازش",
+          "shipped": "ارسال‌شده",
+          "delivered": "تحویل‌شده",
+          "cancelled": "لغوشده"
         },
         "table": {
           "orderId": "شماره سفارش",
@@ -1107,9 +1109,12 @@
         "description": "پیگیری و مدیریت سفارشات شما",
         "searchPlaceholder": "جستجو با شماره سفارش یا تامین کننده...",
         "tabs": {
-          "all": "همه سفارشات",
-          "active": "فعال",
-          "completed": "تکمیل شده"
+          "all": "همه سفارش‌ها",
+          "pending": "در انتظار",
+          "processing": "در حال پردازش",
+          "shipped": "ارسال‌شده",
+          "delivered": "تحویل‌شده",
+          "cancelled": "لغوشده"
         },
         "noOrders": "سفارشی یافت نشد",
         "table": {
@@ -1328,11 +1333,12 @@
         "description": "مدیریت و پیگیری سفارشات تامین کننده",
         "searchPlaceholder": "جستجوی سفارشات...",
         "tabs": {
-          "all": "همه",
-          "new": "جدید",
+          "all": "همه سفارش‌ها",
+          "pending": "در انتظار",
           "processing": "در حال پردازش",
-          "shipped": "ارسال شده",
-          "closed": "بسته شده"
+          "shipped": "ارسال‌شده",
+          "delivered": "تحویل‌شده",
+          "cancelled": "لغوشده"
         },
         "cardTitles": {
           "all": "همه سفارشات",

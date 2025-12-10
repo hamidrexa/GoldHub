@@ -1,7 +1,7 @@
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
 import { Badge } from '@/components/ui/badge';
-import { Eye, CheckCircle, XCircle, ListFilter, Clock, CheckCircle2, Archive } from 'lucide-react';
+import { Eye, CheckCircle, XCircle } from 'lucide-react';
 import { mockOrders, Order } from '@/lib/mock-data';
 import {
     Table,
@@ -11,7 +11,7 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
-import { ServerTabs, ServerTab } from '@/components/ui/server-tabs';
+import { URLTabs } from '@/components/ui/url-tabs';
 import Link from 'next/link';
 import { OrdersSearch } from './orders-search';
 
@@ -61,12 +61,7 @@ export default async function OrdersPage({ params: { lang }, searchParams }: Pag
     const pendingCount = mockOrders.filter(o => o.status === 'pending_supplier').length;
     const activeCount = mockOrders.filter(o => o.status === 'confirmed' || o.status === 'shipped').length;
 
-    const tabs: ServerTab[] = [
-        { value: 'all', label: dict.marketplace.admin.ordersPage.tabs.all, icon: ListFilter, href: `/${lang}/admin/orders?tab=all${searchQuery ? `&q=${searchQuery}` : ''}` },
-        { value: 'pending', label: `${dict.marketplace.admin.ordersPage.tabs.pending} (${pendingCount})`, icon: Clock, href: `/${lang}/admin/orders?tab=pending${searchQuery ? `&q=${searchQuery}` : ''}` },
-        { value: 'active', label: `${dict.marketplace.admin.ordersPage.tabs.active} (${activeCount})`, icon: CheckCircle2, href: `/${lang}/admin/orders?tab=active${searchQuery ? `&q=${searchQuery}` : ''}` },
-        { value: 'closed', label: dict.marketplace.admin.ordersPage.tabs.closed, icon: Archive, href: `/${lang}/admin/orders?tab=closed${searchQuery ? `&q=${searchQuery}` : ''}` },
-    ];
+
 
     return (
         <div className="space-y-6">
@@ -81,8 +76,13 @@ export default async function OrdersPage({ params: { lang }, searchParams }: Pag
                 defaultValue={searchQuery}
             />
 
-            {/* Server-side tabs using URL params */}
-            <ServerTabs tabs={tabs} activeTab={activeTab} />
+            {/* Client-side tabs wrapper */}
+            <URLTabs tabs={[
+                { value: 'all', label: dict.marketplace.admin.ordersPage.tabs.all },
+                { value: 'pending', label: dict.marketplace.admin.ordersPage.tabs.pending },
+                { value: 'shipped', label: dict.marketplace.admin.ordersPage.tabs.shipped },
+                { value: 'delivered', label: dict.marketplace.admin.ordersPage.tabs.delivered },
+            ]} defaultValue={activeTab} />
 
             {/* Server-rendered table */}
             <div className="rounded-lg border bg-white overflow-x-auto">
