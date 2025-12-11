@@ -1058,11 +1058,14 @@
         "searchPlaceholder": "البحث برقم الطلب أو المورد...",
         "tabs": {
           "all": "جميع الطلبات",
-          "pending": "قيد الانتظار",
-          "processing": "قيد المعالجة",
-          "shipped": "تم الشحن",
-          "delivered": "تم التسليم",
-          "cancelled": "تم الإلغاء"
+          "draft": "مسودة",
+          "submitted": "مُسجَّل",
+          "confirmed": "مؤكَّد",
+          "paid": "مدفوع",
+          "shipped": "مشحون",
+          "delivered": "مُسلَّم",
+          "rejected": "مرفوض",
+          "cancelled": "ملغى"
         },
         "noOrders": "لا توجد طلبات",
         "table": {
@@ -1282,11 +1285,14 @@
         "searchPlaceholder": "البحث عن الطلبات...",
         "tabs": {
           "all": "جميع الطلبات",
-          "pending": "قيد الانتظار",
-          "processing": "قيد المعالجة",
-          "shipped": "تم الشحن",
-          "delivered": "تم التسليم",
-          "cancelled": "تم الإلغاء"
+          "draft": "مسودة",
+          "submitted": "مُسجَّل",
+          "confirmed": "مؤكَّد",
+          "paid": "مدفوع",
+          "shipped": "مشحون",
+          "delivered": "مُسلَّم",
+          "rejected": "مرفوض",
+          "cancelled": "ملغى"
         },
         "cardTitles": {
           "all": "جميع الطلبات",
@@ -1312,10 +1318,13 @@
         "itemsSuffix": "عناصر",
         "markShipped": "تحديد كتم الشحن",
         "status": {
-          "new": "جديد",
-          "processing": "قيد المعالجة",
-          "shipped": "تم الشحن",
-          "completed": "مكتمل",
+          "draft": "مسودة",
+          "submitted": "مُسجَّل",
+          "confirmed": "مؤكَّد",
+          "paid": "مدفوع",
+          "shipped": "مشحون",
+          "delivered": "مُسلَّم",
+          "rejected": "مرفوض",
           "cancelled": "ملغى"
         }
       },

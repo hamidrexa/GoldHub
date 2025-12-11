@@ -1112,11 +1112,14 @@
         "searchPlaceholder": "جستجو با شماره سفارش یا تامین کننده...",
         "tabs": {
           "all": "همه سفارش‌ها",
-          "pending": "در انتظار",
-          "processing": "در حال پردازش",
-          "shipped": "ارسال‌شده",
-          "delivered": "تحویل‌شده",
-          "cancelled": "لغوشده"
+          "draft": "پیش نویس",
+          "submitted": "ثبت شده",
+          "confirmed": "تایید شده",
+          "paid": "پرداخت شده",
+          "shipped": "ارسال شده",
+          "delivered": "تحویل شده",
+          "rejected": "رد شده",
+          "cancelled": "لغو شده"
         },
         "noOrders": "سفارشی یافت نشد",
         "table": {
@@ -1136,14 +1139,11 @@
         "status": {
           "draft": "پیش نویس",
           "submitted": "ثبت شده",
-          "pendingSupplier": "در انتظار تامین کننده",
           "confirmed": "تایید شده",
-          "processing": "در حال پردازش",
-          "inProcessing": "در حال پردازش",
-          "ready": "آماده",
+          "paid": "پرداخت شده",
           "shipped": "ارسال شده",
           "delivered": "تحویل شده",
-          "closed": "بسته شده",
+          "rejected": "رد شده",
           "cancelled": "لغو شده"
         }
       },
@@ -1336,11 +1336,14 @@
         "searchPlaceholder": "جستجوی سفارشات...",
         "tabs": {
           "all": "همه سفارش‌ها",
-          "pending": "در انتظار",
-          "processing": "در حال پردازش",
-          "shipped": "ارسال‌شده",
-          "delivered": "تحویل‌شده",
-          "cancelled": "لغوشده"
+          "draft": "پیش نویس",
+          "submitted": "ثبت شده",
+          "confirmed": "تایید شده",
+          "paid": "پرداخت شده",
+          "shipped": "ارسال شده",
+          "delivered": "تحویل شده",
+          "rejected": "رد شده",
+          "cancelled": "لغو شده"
         },
         "cardTitles": {
           "all": "همه سفارشات",
@@ -1366,10 +1369,13 @@
         "itemsSuffix": "آیتم",
         "markShipped": "علامت‌گذاری به عنوان ارسال شده",
         "status": {
-          "new": "جدید",
-          "processing": "در حال پردازش",
+          "draft": "پیش نویس",
+          "submitted": "ثبت شده",
+          "confirmed": "تایید شده",
+          "paid": "پرداخت شده",
           "shipped": "ارسال شده",
-          "completed": "تکمیل شده",
+          "delivered": "تحویل شده",
+          "rejected": "رد شده",
           "cancelled": "لغو شده"
         }
       },

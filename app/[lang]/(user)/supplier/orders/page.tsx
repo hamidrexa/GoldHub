@@ -35,14 +35,14 @@ interface PageProps {
 // Server-side status badge
 function StatusBadge({ status, dict }: { status: string; dict: any }) {
     const badges: Record<string, { label: string; className: string }> = {
-        'Draft': { label: dict.marketplace.supplier.ordersPage.status.draft || 'Draft', className: 'bg-gray-100 text-gray-800 hover:bg-gray-100' },
-        'Submitted': { label: dict.marketplace.supplier.ordersPage.status.submitted || 'Submitted', className: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100' },
-        'Confirmed': { label: dict.marketplace.supplier.ordersPage.status.confirmed || 'Confirmed', className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
-        'Paid': { label: dict.marketplace.supplier.ordersPage.status.paid || 'Paid', className: 'bg-green-100 text-green-800 hover:bg-green-100' },
-        'Shipped': { label: dict.marketplace.supplier.ordersPage.status.shipped || 'Shipped', className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
-        'Delivered': { label: dict.marketplace.supplier.ordersPage.status.delivered || 'Delivered', className: 'bg-green-100 text-green-800 hover:bg-green-100' },
-        'Rejected': { label: dict.marketplace.supplier.ordersPage.status.rejected || 'Rejected', className: 'bg-red-100 text-red-800 hover:bg-red-100' },
-        'Cancelled': { label: dict.marketplace.supplier.ordersPage.status.cancelled || 'Cancelled', className: 'bg-red-100 text-red-800 hover:bg-red-100' },
+        'Draft': { label: dict.marketplace.supplier.ordersPage.status.draft, className: 'bg-gray-100 text-gray-800 hover:bg-gray-100' },
+        'Submitted': { label: dict.marketplace.supplier.ordersPage.status.submitted, className: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100' },
+        'Confirmed': { label: dict.marketplace.supplier.ordersPage.status.confirmed, className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
+        'Paid': { label: dict.marketplace.supplier.ordersPage.status.paid, className: 'bg-green-100 text-green-800 hover:bg-green-100' },
+        'Shipped': { label: dict.marketplace.supplier.ordersPage.status.shipped, className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
+        'Delivered': { label: dict.marketplace.supplier.ordersPage.status.delivered, className: 'bg-green-100 text-green-800 hover:bg-green-100' },
+        'Rejected': { label: dict.marketplace.supplier.ordersPage.status.rejected, className: 'bg-red-100 text-red-800 hover:bg-red-100' },
+        'Cancelled': { label: dict.marketplace.supplier.ordersPage.status.cancelled, className: 'bg-red-100 text-red-800 hover:bg-red-100' },
     };
     const config = badges[status] || { label: status, className: 'bg-gray-100 text-gray-800 hover:bg-gray-100' };
     return <Badge variant="default" className={config.className}>{config.label}</Badge>;
@@ -142,10 +142,14 @@ export default async function SupplierOrdersPage({ params: { lang }, searchParam
     // Get card title based on active tab
     const getCardTitle = () => {
         switch (activeTab) {
-            case 'pending_supplier': return dict.marketplace.supplier.ordersPage.cardTitles.new;
-            case 'confirmed': return dict.marketplace.supplier.ordersPage.cardTitles.processing;
+            case 'draft': return dict.marketplace.supplier.ordersPage.cardTitles.draft;
+            case 'submitted': return dict.marketplace.supplier.ordersPage.cardTitles.submitted;
+            case 'confirmed': return dict.marketplace.supplier.ordersPage.cardTitles.confirmed;
+            case 'paid': return dict.marketplace.supplier.ordersPage.cardTitles.paid;
             case 'shipped': return dict.marketplace.supplier.ordersPage.cardTitles.shipped;
-            case 'closed': return dict.marketplace.supplier.ordersPage.cardTitles.closed;
+            case 'delivered': return dict.marketplace.supplier.ordersPage.cardTitles.delivered;
+            case 'rejected': return dict.marketplace.supplier.ordersPage.cardTitles.rejected;
+            case 'cancelled': return dict.marketplace.supplier.ordersPage.cardTitles.cancelled;
             default: return dict.marketplace.supplier.ordersPage.cardTitles.all;
         }
     };

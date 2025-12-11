@@ -1103,10 +1103,13 @@
         "searchPlaceholder": "Search by order ID or supplier...",
         "tabs": {
           "all": "All Orders",
-          "pending": "Pending",
-          "processing": "Processing",
+          "draft": "Draft",
+          "submitted": "Submitted",
+          "confirmed": "Confirmed",
+          "paid": "Paid",
           "shipped": "Shipped",
           "delivered": "Delivered",
+          "rejected": "Rejected",
           "cancelled": "Cancelled"
         },
         "noOrders": "No orders found",
@@ -1127,14 +1130,11 @@
         "status": {
           "draft": "Draft",
           "submitted": "Submitted",
-          "pendingSupplier": "Pending Supplier",
           "confirmed": "Confirmed",
-          "processing": "Processing",
-          "inProcessing": "In Processing",
-          "ready": "Ready",
+          "paid": "Paid",
           "shipped": "Shipped",
           "delivered": "Delivered",
-          "closed": "Closed",
+          "rejected": "Rejected",
           "cancelled": "Cancelled"
         }
       },
@@ -1327,10 +1327,13 @@
         "searchPlaceholder": "Search orders...",
         "tabs": {
           "all": "All Orders",
-          "pending": "Pending",
-          "processing": "Processing",
+          "draft": "Draft",
+          "submitted": "Submitted",
+          "confirmed": "Confirmed",
+          "paid": "Paid",
           "shipped": "Shipped",
           "delivered": "Delivered",
+          "rejected": "Rejected",
           "cancelled": "Cancelled"
         },
         "cardTitles": {
@@ -1357,10 +1360,13 @@
         "itemsSuffix": "items",
         "markShipped": "Mark Shipped",
         "status": {
-          "new": "New",
-          "processing": "Processing",
+          "draft": "Draft",
+          "submitted": "Submitted",
+          "confirmed": "Confirmed",
+          "paid": "Paid",
           "shipped": "Shipped",
-          "completed": "Completed",
+          "delivered": "Delivered",
+          "rejected": "Rejected",
           "cancelled": "Cancelled"
         }
       },
