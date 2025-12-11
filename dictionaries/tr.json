@@ -1562,5 +1562,63 @@
         "error": "Maalesef işlem yapılamadı."
       }
     }
+  },
+  "aboutPage": {
+    "title": "Mirası Modern Ticaretle Buluşturuyoruz",
+    "subtitle": "Altın ve Mücevherat için Güvenilir B2B Pazaryeri",
+    "mission": {
+      "title": "Misyonumuz",
+      "description": "GoldHub, geleneksel el işçiliği ile modern dijital ticaret arasındaki boşluğu dolduruyor. Tedarikçilerin küresel bir pazara ulaşmasını ve perakendecilerin otantik, yüksek kaliteli ürünleri güvenle tedarik etmesini sağlıyoruz."
+    },
+    "values": {
+      "authenticity": {
+        "title": "Otantiklik",
+        "description": "Listelenen her ürün kalite ve menşei açısından doğrulanır."
+      },
+      "security": {
+        "title": "Güvenlik",
+        "description": "Son teknoloji şifreleme ve güvenli emanet ödemeleri."
+      },
+      "speed": {
+        "title": "Hız",
+        "description": "Zamanında teslimat sağlayan hızlı lojistik ağı."
+      }
+    },
+    "stats": {
+      "suppliers": "Aktif Tedarikçiler",
+      "products": "Benzersiz Ürünler",
+      "retailers": "Güvenilir Perakendeciler"
+    },
+    "cta": {
+      "supplier": "Tedarikçi Olarak Katıl",
+      "retailer": "Perakendeci Olarak Katıl"
+    }
+  },
+  "privacyPage": {
+    "title": "Gizlilik Politikası",
+    "lastUpdated": "Son Güncelleme",
+    "intro": "GoldHub'da gizliliğinizi ciddiye alıyoruz. Bu politika, kişisel bilgilerinizi nasıl topladığımızı, kullandığımızı ve koruduğumuzu ana hatlarıyla belirtir.",
+    "sections": {
+      "collection": {
+        "title": "Topladığımız Bilgiler",
+        "content": "Hesap oluşturduğunuzda, işlem yaptığınızda veya müşteri hizmetleriyle iletişime geçtiğinizde doğrudan bize sağladığınız bilgileri topluyoruz."
+      },
+      "usage": {
+        "title": "Bilgilerinizi Nasıl Kullanıyoruz",
+        "content": "Bilgilerinizi işlemleri kolaylaştırmak, platformumuzu geliştirmek, size güncellemeler göndermek ve pazar yerimizin güvenliğini sağlamak için kullanıyoruz."
+      },
+      "sharing": {
+        "title": "Bilgi Paylaşımı",
+        "content": "Kişisel verilerinizi satmıyoruz. Bilgileri yalnızca gerektiğinde güvenilir üçüncü taraf hizmet sağlayıcılarla (ör. ödeme işlemcileri, lojistik ortakları) paylaşabiliriz."
+      },
+      "security": {
+        "title": "Veri Güvenliği",
+        "content": "Verilerinizi korumak için endüstri standardı güvenlik önlemleri uyguluyoruz. Ancak, internet üzerinden hiçbir iletim yöntemi %100 güvenli değildir."
+      },
+      "rights": {
+        "title": "Haklarınız",
+        "content": "Kişisel bilgilerinize erişme, bunları düzeltme veya silme hakkına sahipsiniz. Bu hakları kullanmak için destek ekibimizle iletişime geçin."
+      }
+    }
   }
 }

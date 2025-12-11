@@ -74,7 +74,7 @@ export default async function AuthenticationPage({ params: { lang } }) {
                 <div className="mt-20 flex h-full flex-col justify-between md:mt-0 md:p-8">
                     <div className="hidden md:block" />
                     <div className="relative mx-auto flex w-80 flex-col justify-center space-y-6 sm:w-[350px]">
-                        {lang === 'fa' ? (
+                        {lang === 'en' ? (
                             <PhoneAuth dict={dict} lang={lang} />
                         ) : (
                             <>

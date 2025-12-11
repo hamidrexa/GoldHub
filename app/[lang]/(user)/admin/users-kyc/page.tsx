@@ -16,6 +16,7 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
+import { KycDialog } from './kyc-dialog';
 // Define display user type for compatibility
 interface DisplayUser {
     id: string;
@@ -196,6 +197,77 @@ export default async function UsersKycPage({
                 { value: 'approved', label: dict.marketplace.admin.usersKycPage.tabs.approved },
             ]} defaultValue={activeTab} />
 
+            {/* Server-rendered table */}
+            <div className="border rounded-lg shadow-sm bg-card">
+                <div className="w-full overflow-x-auto max-w-[calc(100vw-3rem)]">
+                    <Table className="min-w-[700px]">
+                        <TableHeader>
+                            <TableRow className="hover:bg-transparent">
+                                <TableHead className="font-semibold sticky left-0 z-20 bg-card shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">{dict.marketplace.admin.usersKycPage.table.name}</TableHead>
+                                <TableHead className="font-semibold">{dict.marketplace.admin.usersKycPage.table.email}</TableHead>
+                                <TableHead className="font-semibold">{dict.marketplace.admin.usersKycPage.table.company}</TableHead>
+                                <TableHead className="font-semibold">{dict.marketplace.admin.usersKycPage.table.role}</TableHead>
+                                {showKycStatusColumn && (
+                                    <TableHead className="font-semibold">{dict.marketplace.admin.usersKycPage.table.kycStatus}</TableHead>
+                                )}
+                                {showSubmittedColumn && (
+                                    <TableHead className="font-semibold">{dict.marketplace.admin.usersKycPage.table.submitted}</TableHead>
+                                )}
+                                {showApprovedColumn && (
+                                    <TableHead className="font-semibold">{dict.marketplace.admin.usersKycPage.table.approved}</TableHead>
+                                )}
+                                {!showSubmittedColumn && !showApprovedColumn && (
+                                    <TableHead className="font-semibold">{dict.marketplace.admin.usersKycPage.table.joined}</TableHead>
+                                )}
+                                <TableHead className="font-semibold text-right">{dict.marketplace.admin.usersKycPage.table.actions}</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {filteredUsers.length === 0 ? (
+                                <TableRow>
+                                    <TableCell colSpan={7} className="text-center py-8 text-muted-foreground">
+                                        No users found
+                                    </TableCell>
+                                </TableRow>
+                            ) : (
+                                filteredUsers.map((user) => (
+                                    <TableRow key={user.id} className="hover:bg-gray-50">
+                                        <TableCell className="font-medium sticky left-0 z-10 bg-card shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">{user.name}</TableCell>
+                                        <TableCell>{user.email}</TableCell>
+                                        <TableCell>{user.companyName || '-'}</TableCell>
+                                        <TableCell><RoleBadge role={user.role} /></TableCell>
+                                        {showKycStatusColumn && (
+                                            <TableCell><KycBadge status={user.kycStatus} dict={dict} /></TableCell>
+                                        )}
+                                        <TableCell>{new Date(user.joinedDate).toLocaleDateString()}</TableCell>
+                                        <TableCell>
+                                            <div className="flex items-center justify-end gap-2">
+                                                <Link
+                                                    href={`/${lang}/admin/users-kyc?tab=${activeTab}${searchQuery ? `&q=${searchQuery}` : ''}&user=${user.id}`}
+                                                    className="inline-flex items-center justify-center h-8 w-8 rounded-md hover:bg-gray-100"
+                                                >
+                                                    <Eye className="h-4 w-4 text-gray-600" />
+                                                </Link>
+                                            </div>
+                                        </TableCell>
+                                    </TableRow>
+                                ))
+                            )}
+                        </TableBody>
+                    </Table>
+                </div>
+            </div>
+
+            {/* KYC Dialog - client component for interactivity */}
+            {selectedUser && (
+                <KycDialog
+                    user={selectedUser}
+                    dict={dict}
+                    lang={lang}
+                    activeTab={activeTab}
+                    searchQuery={searchQuery}
+                />
+            )}
             <UsersKycTable
                 dict={dict}
                 searchQuery={searchQuery}
