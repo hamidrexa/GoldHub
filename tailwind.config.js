@@ -29,8 +29,8 @@ module.exports = {
                 500: '#FEC925',
                 600: '#F31616',
                 700: '#2830C9',
-                800: '#FFBE00',
-                900: '#7C2D12',
+                800: '#F0A202',
+                900: '#061324',
             },
             slate: {
                 50: '#E1E2FA',
@@ -300,7 +300,7 @@ module.exports = {
 
                 // Sidebar Colors
                 sidebar: {
-                    bg: '#1A1A1A',
+                    bg: '#061324',
                     active: '#2A2A2A',
                 },
 

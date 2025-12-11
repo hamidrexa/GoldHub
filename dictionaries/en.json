@@ -1622,5 +1622,63 @@
         "error": "Unfortunately, it was not done."
       }
     }
+  },
+  "aboutPage": {
+    "title": "Connecting Heritage with Modern Commerce",
+    "subtitle": "Trusted B2B Marketplace for Gold & Jewelry",
+    "mission": {
+      "title": "Our Mission",
+      "description": "GoldHub bridges the gap between traditional craftsmanship and modern digital commerce. We empower suppliers to reach a global market and retailers to source authentic, high-quality products with confidence."
+    },
+    "values": {
+      "authenticity": {
+        "title": "Authenticity",
+        "description": "Every item listed is verified for quality and origin."
+      },
+      "security": {
+        "title": "Security",
+        "description": "State-of-the-art encryption and secure escrow payments."
+      },
+      "speed": {
+        "title": "Speed",
+        "description": "Fast logistics network ensuring timely delivery."
+      }
+    },
+    "stats": {
+      "suppliers": "Active Suppliers",
+      "products": "Unique Products",
+      "retailers": "Trusted Retailers"
+    },
+    "cta": {
+      "supplier": "Join as Supplier",
+      "retailer": "Join as Retailer"
+    }
+  },
+  "privacyPage": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last Updated",
+    "intro": "At GoldHub, we take your privacy seriously. This policy outlines how we collect, use, and protect your personal information.",
+    "sections": {
+      "collection": {
+        "title": "Information We Collect",
+        "content": "We collect information you provide directly to us, such as when you create an account, make a transaction, or contact customer support."
+      },
+      "usage": {
+        "title": "How We Use Your Information",
+        "content": "We use your information to facilitate transactions, improve our platform, send you updates, and ensure the security of our marketplace."
+      },
+      "sharing": {
+        "title": "Information Sharing",
+        "content": "We do not sell your personal data. We may share information with trusted third-party service providers (e.g., payment processors, logistics partners) only as necessary."
+      },
+      "security": {
+        "title": "Data Security",
+        "content": "We implement industry-standard security measures to protect your data. However, no method of transmission over the internet is 100% secure."
+      },
+      "rights": {
+        "title": "Your Rights",
+        "content": "You have the right to access, correct, or delete your personal information. Contact our support team to exercise these rights."
+      }
+    }
   }
 }

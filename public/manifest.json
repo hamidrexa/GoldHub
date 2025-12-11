@@ -1,12 +1,12 @@
 {
   "id": "/?app=true",
-  "name": "طلانو",
-  "description": "تحلیل سیگنال های خرید و فروش ارز دیجیتال و سهام با استفاده از هوش مصنوعی، معرفی بهترین های بازار بورس و ارز دیجیتال برای سرمایه گذاری، اطلاع رسانی لحظه ای سیگنال های خرید بیت کوین و سایر ارزهای دیجیتال",
-  "short_name": "Sahmeto",
+  "name": "GoldHub",
+  "description": "GoldHub is the ultimate marketplace for gold and exquisite artifacts.",
+  "short_name": "GoldHub",
   "lang": "fa",
   "dir": "rtl",
   "categories": [
-    "crypto",
+    "Gold",
     "finance"
   ],
   "theme_color": "#fff",
@@ -15,7 +15,7 @@
   "orientation": "portrait",
   "scope": "/",
   "start_url": "/?app=true",
-  "android_package_name": "com.sahmeto.sahmeto",
+  "android_package_name": "com.goldhub.goldhub",
   "related_applications": [],
   "prefer_related_applications": true,
   "display_override": [
@@ -27,10 +27,10 @@
   "features": [],
   "shortcuts": [
     {
-      "name": "سیگنال‌ها",
-      "short_name": "سیگنال",
-      "description": "دسترسی سریع صفحه سیگنال‌ها",
-      "url": "/signals",
+      "name": "About",
+      "short_name": "About",
+      "description": "About GoldHub",
+      "url": "/about",
       "icons": [
         {
           "src": "/icons/signal.png",

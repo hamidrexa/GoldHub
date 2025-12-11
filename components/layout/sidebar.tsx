@@ -137,9 +137,9 @@ export function Sidebar({ dict, lang }: SidebarProps) {
             {/* Logo and User Profile Section at Top */}
             <div className="px-6 mb-6">
                 <div className="flex items-center gap-2 font-bold text-xl text-white mb-6">
-                    <div className="bg-gold-600 rounded-lg p-2">
-                        <Icons.logo className="h-5 w-5 fill-black" />
-                    </div>
+                    {/* <div className="bg-gold-600 rounded-lg p-2"> */}
+                    <Icons.logoDark className="h-5 w-5 fill-black" />
+                    {/* </div> */}
                     <span>GoldTrade</span>
                 </div>
 

@@ -7,9 +7,9 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: '/system/health-check',
         },
-        host: 'https://talanow.ir',
+        host: 'https://goldhub.com',
         sitemap: [
-            'https://talanow.ir/sitemap.xml',
+            'https://goldhub.com/sitemap.xml',
         ],
     };
 }
