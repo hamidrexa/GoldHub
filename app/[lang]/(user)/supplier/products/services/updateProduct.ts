@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 
 export function updateProduct({ body, product_id }) {
     return fetcher({
-        url: `/api/v1/gold_artifacts/product_update/${product_id}/`,
+        url: `/v1/gold_artifacts/product_update/${product_id}/`,
         body,
         headers: {
             'Content-Type': 'application/json',

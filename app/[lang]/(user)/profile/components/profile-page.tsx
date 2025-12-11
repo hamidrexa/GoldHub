@@ -13,7 +13,7 @@ import { getPlans } from '@/app/[lang]/(user)/profile/services/getPlans';
 import { supabase } from '@/services/supabase';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { EditIcon, FileClock } from 'lucide-react';
+import { EditIcon, FileClock, Loader2 } from 'lucide-react';
 import Cookies from 'js-cookie';
 import { googleLogout } from '@react-oauth/google';
 import {
@@ -62,13 +62,25 @@ export function ProfilePage({ dict, lang }) {
         useState(false);
     const [userPlans, setUserPlans] = useState(null);
     const { data, isLoading: cartIsloding, mutate } = useCart();
-    const [memberBrokerId, setMemberBrokerId] = useState<string | null>(null);
-    const [isMemberBrokerLoading, setIsMemberBrokerLoading] = useState(false);
+    const [isRequestingRole, setIsRequestingRole] = useState(false);
     const userGroups = user?.groups ?? [];
     const hasAdmin = userGroups.some((g) => g?.name === 'admin');
-    const hasBroker = userGroups.some((g) => g?.name === 'broker');
-    const hasExplicitMember = userGroups.some((g) => g?.name === 'member');
-    const hasMember = !!user && (userGroups.length === 0 || hasExplicitMember || (!hasAdmin && !hasBroker));
+    
+    // Determine current user role from groups
+    const getUserRole = () => {
+        if (hasAdmin) return 'admin';
+        const supplierGroup = userGroups.find((g) => g?.name?.includes('supplier'));
+        if (supplierGroup) return supplierGroup.name; // supplier_approved, supplier_requested
+        const buyerGroup = userGroups.find((g) => g?.name?.includes('buyer'));
+        if (buyerGroup) return buyerGroup.name; // buyer_approved, buyer_requested
+        return 'buyer_requested'; // default for new users
+    };
+    const currentRole = getUserRole();
+    const canRequestSupplier = currentRole === 'buyer_approved';
+    const isSupplierRequested = currentRole === 'supplier_requested';
+    const isSupplierApproved = currentRole === 'supplier_approved';
+    const isBuyerApproved = currentRole === 'buyer_approved';
+    const isBuyerRequested = currentRole === 'buyer_requested';
 
     const [userTransactions, setUserTransactions] = useState(null);
     const completePercentage = useMemo(() => {
@@ -136,40 +148,7 @@ export function ProfilePage({ dict, lang }) {
         setUserTransactions(transactions?.transactions);
     }, [transactions]);
 
-    useEffect(() => {
-        let active = true;
 
-        async function fetchMemberBroker() {
-            if (!user?.id) return;
-
-            setIsMemberBrokerLoading(true);
-            const { data, error } = await supabase
-                .from('talanow_broker_member_link')
-                .select('broker_id')
-                .eq('member_id', user.id)
-                .maybeSingle();
-
-            if (!active) return;
-
-            if (error) {
-                setMemberBrokerId(null);
-            } else {
-                setMemberBrokerId(data?.broker_id ?? null);
-            }
-            setIsMemberBrokerLoading(false);
-        }
-
-        if (hasMember && user?.id) {
-            fetchMemberBroker();
-        } else {
-            setMemberBrokerId(null);
-            setIsMemberBrokerLoading(false);
-        }
-
-        return () => {
-            active = false;
-        };
-    }, [hasMember, user?.id]);
 
     const transactionStatus = {
         'Cancel by user': (
@@ -182,6 +161,34 @@ export function ProfilePage({ dict, lang }) {
                 {dict.transactionStatus.success}
             </span>
         ),
+    };
+
+    const requestSupplierRole = async () => {
+        try {
+            setIsRequestingRole(true);
+            const token = Cookies.get('token');
+            const response = await fetch(
+                `${process.env.NEXT_PUBLIC_API_URL_}/v1/gold_artifacts/request_new_role`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({ new_role: 'supplier' }),
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error('Failed to request supplier role');
+            }
+
+            toast.success(dict.marketplace?.profile?.profilePage?.roleRequestSent);
+        } catch (error) {
+            toast.error(dict.marketplace?.profile?.profilePage?.roleRequestError);
+        } finally {
+            setIsRequestingRole(false);
+        }
     };
 
     const logout = () => {
@@ -202,7 +209,7 @@ export function ProfilePage({ dict, lang }) {
             <div className="jumbotron">
                 {/* {!isMobile && <ProductsNavigator dict={dict} lang={lang} />} */}
                 <div className="w-full text-black">
-                    {completePercentage && completePercentage < 100 && (
+                    {/* {completePercentage && completePercentage < 100 && (
                         // @ts-ignore
                         <LinearProgress
                             progress={completePercentage}
@@ -215,7 +222,7 @@ export function ProfilePage({ dict, lang }) {
                                 </span>
                             )}
                         />
-                    )}
+                    )} */}
                     <div className="flex items-center gap-3">
                         <Image
                             height={60}
@@ -254,33 +261,53 @@ export function ProfilePage({ dict, lang }) {
                                     </DialogContent>
                                 </Dialog>
                             </div>
-                            {(hasAdmin || hasBroker || hasMember) && (
-                                <div className="flex flex-wrap items-center gap-2 text-sm">
-                                    {hasAdmin && (
-                                        <Badge variant="secondary" size="sm">
-                                            {dict.marketplace.profile.profilePage.roles.admin}
-                                        </Badge>
-                                    )}
-                                    {hasBroker && (
-                                        <Badge variant="success" size="sm">
-                                            {dict.marketplace.profile.profilePage.roles.broker}
-                                        </Badge>
-                                    )}
-                                    {hasMember && (
-                                        <>
-                                            <Badge variant="light" size="sm">
-                                                {dict.marketplace.profile.profilePage.roles.member}
-                                            </Badge>
-                                            <Badge variant="outline-blue" size="sm">
-                                                {isMemberBrokerLoading
-                                                    ? dict.marketplace.profile.profilePage.brokerIdLoading
-                                                    : `${dict.marketplace.profile.profilePage.brokerId} ${memberBrokerId ?? '—'}`}
-                                            </Badge>
-                                        </>
-                                    )}
-                                </div>
-                            )}
+
                         </div>
+                    </div>
+                    {/* Current Role Section */}
+                    <div className="space-y-3 mt-6">
+                        <div className="flex items-center justify-between rounded-md bg-gray-300/60 p-4">
+                            <div className="flex flex-col gap-1">
+                                <div className="text-base font-semibold">
+                                    {dict.marketplace?.profile?.profilePage?.currentRole}
+                                </div>
+                                <div className="text-sm text-gray-600">
+                                    {currentRole === 'admin' && dict.marketplace?.profile?.profilePage?.roles?.admin}
+                                    {currentRole === 'buyer_approved' && dict.marketplace?.profile?.profilePage?.roles?.buyer_approved}
+                                    {currentRole === 'buyer_requested' && dict.marketplace?.profile?.profilePage?.roles?.buyer_requested}
+                                    {currentRole === 'supplier_approved' && dict.marketplace?.profile?.profilePage?.roles?.supplier_approved}
+                                    {currentRole === 'supplier_requested' && dict.marketplace?.profile?.profilePage?.roles?.supplier_requested}
+                                </div>
+                            </div>
+                        </div>
+                                                
+                        {/* Request Supplier Role - Only for Approved Buyers */}
+                        {(isBuyerRequested || isBuyerApproved) && (
+                            <div className="space-y-2 rounded-md bg-blue-50 p-4 border border-blue-200">
+                                <div className="text-sm font-medium text-blue-900">
+                                    {dict.marketplace?.profile?.profilePage?.becomeSupplier}
+                                </div>
+                                <p className="text-xs text-blue-800">
+                                    {dict.marketplace?.profile?.profilePage?.becomeSupplierDesc}
+                                </p>
+                                <Button
+                                    onClick={requestSupplierRole}
+                                    disabled={isRequestingRole}
+                                    className="w-full mt-2"
+                                    size="sm"
+                                >
+                                    {isRequestingRole ? (
+                                        <>
+                                            <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                                            {dict.marketplace?.profile?.profilePage?.requesting}
+                                        </>
+                                    ) : (
+                                        dict.marketplace?.profile?.profilePage?.requestSupplier
+                                    )}
+                                </Button>
+                            </div>
+                        )}
+
                     </div>
                     <div className="flex flex-col-reverse items-start justify-start gap-6 md:flex-row lg:mt-6 lg:w-full">
                         <div className="w-full space-y-7">

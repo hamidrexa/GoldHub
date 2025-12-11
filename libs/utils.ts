@@ -30,7 +30,7 @@ export const fetcher = async (params: FetcherParams) => {
     const queryString = new URLSearchParams(params.params || {}).toString();
     const url = params.absoluteUrl
         ? `${params.absoluteUrl}?${queryString}`
-        : `${process.env.NEXT_PUBLIC_API_URL}${params.url}?${queryString}`;
+        : `${process.env.NEXT_PUBLIC_API_URL_}${params.url}?${queryString}`;
 
     const isFormData = params.body instanceof FormData;
 

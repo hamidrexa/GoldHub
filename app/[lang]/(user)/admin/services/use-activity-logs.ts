@@ -3,7 +3,7 @@ import useSWR from "swr";
 
 export function useActivityLogs() {
     const { data, error, isLoading } = useSWR({
-        url: `/api/v1/gold_artifacts/users_activity`,
+        url: `/v1/gold_artifacts/users_activity`,
         params: {
             page_size : 20,
         },

@@ -9,7 +9,7 @@ import Cookies from 'js-cookie';
 
 // API Base URL - uses NEXT_PUBLIC_API_URL from .env
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
-const API_PATH = '/api/v1/gold_artifacts';
+const API_PATH = '/v1/gold_artifacts';
 
 // Toggle to use mock data instead of API
 export const USE_MOCK_DATA = process.env.NEXT_PUBLIC_USE_MOCK_DATA === 'true';
