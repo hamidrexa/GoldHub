@@ -38,6 +38,7 @@ export function CatalogContent({
 }: CatalogContentProps) {
     const [showFilters, setShowFilters] = useState(true);
     const {products:list = [],isLoading} = useProductList("")
+    const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
     if (isLoading) {
         return (
@@ -46,7 +47,6 @@ export function CatalogContent({
             </div>
         );
     }
-    const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
     return (
         <div className="flex flex-col md:flex-row gap-6">
