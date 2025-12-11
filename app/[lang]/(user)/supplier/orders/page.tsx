@@ -35,23 +35,16 @@ interface PageProps {
 // Server-side status badge
 function StatusBadge({ status, dict }: { status: string; dict: any }) {
     const badges: Record<string, { label: string; className: string }> = {
-        // API status values
         'Draft': { label: dict.marketplace.supplier.ordersPage.status.draft || 'Draft', className: 'bg-gray-100 text-gray-800 hover:bg-gray-100' },
-        'Submitted': { label: dict.marketplace.supplier.ordersPage.status.new, className: 'bg-[#FEF3C7] text-[#92400E] hover:bg-[#FEF3C7]' },
-        'Confirmed': { label: dict.marketplace.supplier.ordersPage.status.processing, className: 'bg-[#DBEAFE] text-[#1E40AF] hover:bg-[#DBEAFE]' },
-        'Paid': { label: dict.marketplace.supplier.ordersPage.status.paid || 'Paid', className: 'bg-[#D1FAE5] text-[#065F46] hover:bg-[#D1FAE5]' },
-        'Shipped': { label: dict.marketplace.supplier.ordersPage.status.shipped, className: 'bg-[#DBEAFE] text-[#1E40AF] hover:bg-[#DBEAFE]' },
-        'Delivered': { label: dict.marketplace.supplier.ordersPage.status.completed, className: 'bg-[#D1FAE5] text-[#065F46] hover:bg-[#D1FAE5]' },
+        'Submitted': { label: dict.marketplace.supplier.ordersPage.status.submitted || 'Submitted', className: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100' },
+        'Confirmed': { label: dict.marketplace.supplier.ordersPage.status.confirmed || 'Confirmed', className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
+        'Paid': { label: dict.marketplace.supplier.ordersPage.status.paid || 'Paid', className: 'bg-green-100 text-green-800 hover:bg-green-100' },
+        'Shipped': { label: dict.marketplace.supplier.ordersPage.status.shipped || 'Shipped', className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
+        'Delivered': { label: dict.marketplace.supplier.ordersPage.status.delivered || 'Delivered', className: 'bg-green-100 text-green-800 hover:bg-green-100' },
         'Rejected': { label: dict.marketplace.supplier.ordersPage.status.rejected || 'Rejected', className: 'bg-red-100 text-red-800 hover:bg-red-100' },
-        'Cancelled': { label: dict.marketplace.supplier.ordersPage.status.cancelled, className: 'bg-red-100 text-red-800 hover:bg-red-100' },
-        // Legacy status values (for mock data fallback)
-        'pending_supplier': { label: dict.marketplace.supplier.ordersPage.status.new, className: 'bg-[#FEF3C7] text-[#92400E] hover:bg-[#FEF3C7]' },
-        'confirmed': { label: dict.marketplace.supplier.ordersPage.status.processing, className: 'bg-[#DBEAFE] text-[#1E40AF] hover:bg-[#DBEAFE]' },
-        'shipped': { label: dict.marketplace.supplier.ordersPage.status.shipped, className: 'bg-[#DBEAFE] text-[#1E40AF] hover:bg-[#DBEAFE]' },
-        'completed': { label: dict.marketplace.supplier.ordersPage.status.completed, className: 'bg-[#D1FAE5] text-[#065F46] hover:bg-[#D1FAE5]' },
-        'cancelled': { label: dict.marketplace.supplier.ordersPage.status.cancelled, className: 'bg-red-100 text-red-800 hover:bg-red-100' },
+        'Cancelled': { label: dict.marketplace.supplier.ordersPage.status.cancelled || 'Cancelled', className: 'bg-red-100 text-red-800 hover:bg-red-100' },
     };
-    const config = badges[status] || badges['Submitted'];
+    const config = badges[status] || { label: status, className: 'bg-gray-100 text-gray-800 hover:bg-gray-100' };
     return <Badge variant="default" className={config.className}>{config.label}</Badge>;
 }
 
@@ -136,11 +129,14 @@ export default async function SupplierOrdersPage({ params: { lang }, searchParam
 
     const tabs = [
         { value: 'all', label: dict.marketplace.supplier.ordersPage.tabs.all },
-        { value: 'pending', label: dict.marketplace.supplier.ordersPage.tabs.pending },
-        { value: 'confirmed', label: dict.marketplace.supplier.ordersPage.tabs.processing },
-        { value: 'shipped', label: dict.marketplace.supplier.ordersPage.tabs.shipped },
-        { value: 'delivered', label: dict.marketplace.supplier.ordersPage.tabs.delivered },
-        { value: 'cancelled', label: dict.marketplace.supplier.ordersPage.tabs.cancelled },
+        { value: 'Draft', label: dict.marketplace.supplier.ordersPage.tabs.draft },
+        { value: 'Submitted', label: dict.marketplace.supplier.ordersPage.tabs.submitted },
+        { value: 'Confirmed', label: dict.marketplace.supplier.ordersPage.tabs.confirmed },
+        { value: 'Paid', label: dict.marketplace.supplier.ordersPage.tabs.paid },
+        { value: 'Shipped', label: dict.marketplace.supplier.ordersPage.tabs.shipped },
+        { value: 'Delivered', label: dict.marketplace.supplier.ordersPage.tabs.delivered },
+        { value: 'Rejected', label: dict.marketplace.supplier.ordersPage.tabs.rejected },
+        { value: 'Cancelled', label: dict.marketplace.supplier.ordersPage.tabs.cancelled },
     ];
 
     // Get card title based on active tab

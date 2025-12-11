@@ -60,15 +60,8 @@
   "buyRecommendation": "{component} تریدر از {component}، نماد {assetSymbol} را توصیه به خرید کرده اند.",
   "price": "قیمت",
   "products": "محصولات",
-  "afzoone": {
-    "title": "دانلود افزونه",
-    "href": "https://chrome.google.com/webstore/detail/%D8%A7%D9%81%D8%B2%D9%88%D9%86%D9%87-%D8%A8%D9%88%D8%B1%D8%B3-%D8%B3%D9%87%D9%85%D8%AA%D9%88-sahmeto/mnnkkdhkjbcnjljenmicbmlojmnpmaaf?hl=en",
-    "rel": "nofollow",
-    "description": ""
-  },
   "more": "بیشتر",
   "loginRegister": "ورود/ثبت\u200Cنام",
-  "profile": "پروفایل",
   "navMenuItems": [
     {
       "title": "قرارداد",
@@ -965,11 +958,14 @@
         "searchPlaceholder": "جستجوی سفارشات...",
         "tabs": {
           "all": "همه سفارش‌ها",
-          "pending": "در انتظار",
-          "processing": "در حال پردازش",
-          "shipped": "ارسال‌شده",
-          "delivered": "تحویل‌شده",
-          "cancelled": "لغوشده"
+          "draft": "پیش نویس",
+          "submitted": "ثبت شده",
+          "confirmed": "تایید شده",
+          "paid": "پرداخت شده",
+          "shipped": "ارسال شده",
+          "delivered": "تحویل شده",
+          "rejected": "رد شده",
+          "cancelled": "لغو شده"
         },
         "table": {
           "orderId": "شماره سفارش",
@@ -980,13 +976,19 @@
           "date": "تاریخ",
           "actions": "عملیات",
           "noOrders": "سفارشی یافت نشد",
-          "itemsSuffix": "آیتم"
-        },
-        "status": {
-          "confirmed": "تایید شده",
-          "shipped": "ارسال شده",
+          "itemsSuffix": "آیتم",
           "pendingSupplier": "در انتظار تامین کننده",
           "closed": "بسته شده",
+          "cancelled": "لغو شده"
+        },
+        "status": {
+          "draft": "پیش نویس",
+          "submitted": "ثبت شده",
+          "confirmed": "تایید شده",
+          "paid": "پرداخت شده",
+          "shipped": "ارسال شده",
+          "delivered": "تحویل شده",
+          "rejected": "رد شده",
           "cancelled": "لغو شده"
         }
       },
@@ -1342,10 +1344,14 @@
         },
         "cardTitles": {
           "all": "همه سفارشات",
-          "new": "سفارشات جدید",
-          "processing": "سفارشات در حال پردازش",
+          "draft": "سفارشات پیش نویس",
+          "submitted": "سفارشات ثبت شده",
+          "confirmed": "سفارشات تایید شده",
+          "paid": "سفارشات پرداخت شده",
           "shipped": "سفارشات ارسال شده",
-          "closed": "سفارشات بسته شده"
+          "delivered": "سفارشات تحویل شده",
+          "rejected": "سفارشات رد شده",
+          "cancelled": "سفارشات لغو شده"
         },
         "noOrders": "سفارشی یافت نشد",
         "table": {

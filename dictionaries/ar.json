@@ -60,7 +60,6 @@
   "products": "المنتجات",
   "more": "اكثر",
   "loginRegister": "تسجيل الدخول/التسجيل",
-  "profile": "الملف الشخصي",
   "navMenuItems": [
     {
       "title": "الحل التنظيمي",
@@ -905,29 +904,38 @@
         "searchPlaceholder": "البحث في الطلبات...",
         "tabs": {
           "all": "جميع الطلبات",
-          "pending": "قيد الانتظار",
-          "processing": "قيد المعالجة",
-          "shipped": "تم الشحن",
-          "delivered": "تم التسليم",
-          "cancelled": "تم الإلغاء"
+          "draft": "مسودة",
+          "submitted": "مُسجَّل",
+          "confirmed": "مؤكَّد",
+          "paid": "مدفوع",
+          "shipped": "مشحون",
+          "delivered": "مُسلَّم",
+          "rejected": "مرفوض",
+          "cancelled": "ملغى"
         },
         "table": {
           "orderId": "رقم الطلب",
           "buyer": "المشتري",
           "items": "العناصر",
-          "total": "المجموع",
+          "total": "الإجمالي",
           "status": "الحالة",
           "date": "التاريخ",
           "actions": "الإجراءات",
           "noOrders": "لا توجد طلبات",
-          "itemsSuffix": "عناصر"
+          "itemsSuffix": "عنصر",
+          "pendingSupplier": "في انتظار المورّد",
+          "closed": "مغلق",
+          "cancelled": "ملغى"
         },
         "status": {
-          "confirmed": "مؤكد",
-          "shipped": "تم الشحن",
-          "pendingSupplier": "بانتظار المورد",
-          "closed": "مغلق",
-          "cancelled": "ملغي"
+          "draft": "مسودة",
+          "submitted": "مُسجَّل",
+          "confirmed": "مؤكَّد",
+          "paid": "مدفوع",
+          "shipped": "مشحون",
+          "delivered": "مُسلَّم",
+          "rejected": "مرفوض",
+          "cancelled": "ملغى"
         }
       },
       "auditLogsPage": {
@@ -1282,10 +1290,14 @@
         },
         "cardTitles": {
           "all": "جميع الطلبات",
-          "new": "طلبات جديدة",
-          "processing": "طلبات قيد المعالجة",
-          "shipped": "طلبات تم شحنها",
-          "closed": "طلبات مغلقة"
+          "draft": "طلبات المسودة",
+          "submitted": "الطلبات المسجَّلة",
+          "confirmed": "الطلبات المؤكَّدة",
+          "paid": "الطلبات المدفوعة",
+          "shipped": "الطلبات المشحونة",
+          "delivered": "الطلبات المُسلَّمة",
+          "rejected": "الطلبات المرفوضة",
+          "cancelled": "الطلبات الملغاة"
         },
         "noOrders": "لم يتم العثور على طلبات",
         "table": {
