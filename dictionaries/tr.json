@@ -60,7 +60,6 @@
   "products": "Ürünler",
   "more": "daha fazla",
   "loginRegister": "Giriş/Kayıt Ol",
-  "profile": "Profil",
   "navMenuItems": [
     {
       "title": "Organizasyonel çözüm",
@@ -905,14 +904,17 @@
         "searchPlaceholder": "Sipariş ara...",
         "tabs": {
           "all": "Tüm Siparişler",
-          "pending": "Beklemede",
-          "processing": "İşleniyor",
+          "draft": "Taslak",
+          "submitted": "Gönderildi",
+          "confirmed": "Onaylandı",
+          "paid": "Ödendi",
           "shipped": "Gönderildi",
           "delivered": "Teslim Edildi",
+          "rejected": "Reddedildi",
           "cancelled": "İptal Edildi"
         },
         "table": {
-          "orderId": "Sipariş No",
+          "orderId": "Sipariş Numarası",
           "buyer": "Alıcı",
           "items": "Ürünler",
           "total": "Toplam",
@@ -920,13 +922,19 @@
           "date": "Tarih",
           "actions": "İşlemler",
           "noOrders": "Sipariş bulunamadı",
-          "itemsSuffix": "ürün"
+          "itemsSuffix": "Ürün",
+          "pendingSupplier": "Tedarikçi Bekleniyor",
+          "closed": "Kapatıldı",
+          "cancelled": "İptal Edildi"
         },
         "status": {
+          "draft": "Taslak",
+          "submitted": "Gönderildi",
           "confirmed": "Onaylandı",
-          "shipped": "Kargolandı",
-          "pendingSupplier": "Tedarikçi Bekleniyor",
-          "closed": "Kapandı",
+          "paid": "Ödendi",
+          "shipped": "Gönderildi",
+          "delivered": "Teslim Edildi",
+          "rejected": "Reddedildi",
           "cancelled": "İptal Edildi"
         }
       },
@@ -1050,10 +1058,13 @@
         "searchPlaceholder": "Sipariş No veya tedarikçi ile ara...",
         "tabs": {
           "all": "Tüm Siparişler",
-          "pending": "Beklemede",
-          "processing": "İşleniyor",
+          "draft": "Taslak",
+          "submitted": "Gönderildi",
+          "confirmed": "Onaylandı",
+          "paid": "Ödendi",
           "shipped": "Gönderildi",
           "delivered": "Teslim Edildi",
+          "rejected": "Reddedildi",
           "cancelled": "İptal Edildi"
         },
         "noOrders": "Sipariş bulunamadı",
@@ -1074,14 +1085,11 @@
         "status": {
           "draft": "Taslak",
           "submitted": "Gönderildi",
-          "pendingSupplier": "Tedarikçi Bekleniyor",
           "confirmed": "Onaylandı",
-          "processing": "İşleniyor",
-          "inProcessing": "İşlemde",
-          "ready": "Hazır",
-          "shipped": "Kargolandı",
+          "paid": "Ödendi",
+          "shipped": "Gönderildi",
           "delivered": "Teslim Edildi",
-          "closed": "Kapandı",
+          "rejected": "Reddedildi",
           "cancelled": "İptal Edildi"
         }
       },
@@ -1274,18 +1282,25 @@
         "searchPlaceholder": "Sipariş ara...",
         "tabs": {
           "all": "Tüm Siparişler",
-          "pending": "Beklemede",
-          "processing": "İşleniyor",
+          "draft": "Taslak",
+          "submitted": "Gönderildi",
+          "confirmed": "Onaylandı",
+          "paid": "Ödendi",
           "shipped": "Gönderildi",
           "delivered": "Teslim Edildi",
+          "rejected": "Reddedildi",
           "cancelled": "İptal Edildi"
         },
         "cardTitles": {
           "all": "Tüm Siparişler",
-          "new": "Yeni Siparişler",
-          "processing": "İşlenen Siparişler",
-          "shipped": "Kargolanan Siparişler",
-          "closed": "Kapalı Siparişler"
+          "draft": "Taslak Siparişler",
+          "submitted": "Gönderilen Siparişler",
+          "confirmed": "Onaylanan Siparişler",
+          "paid": "Ödenen Siparişler",
+          "shipped": "Gönderilen Siparişler",
+          "delivered": "Teslim Edilen Siparişler",
+          "rejected": "Reddedilen Siparişler",
+          "cancelled": "İptal Edilen Siparişler"
         },
         "noOrders": "Sipariş bulunamadı",
         "table": {
@@ -1300,10 +1315,13 @@
         "itemsSuffix": "ürün",
         "markShipped": "Kargolandı Olarak İşaretle",
         "status": {
-          "new": "Yeni",
-          "processing": "İşleniyor",
-          "shipped": "Kargolandı",
-          "completed": "Tamamlandı",
+          "draft": "Taslak",
+          "submitted": "Gönderildi",
+          "confirmed": "Onaylandı",
+          "paid": "Ödendi",
+          "shipped": "Gönderildi",
+          "delivered": "Teslim Edildi",
+          "rejected": "Reddedildi",
           "cancelled": "İptal Edildi"
         }
       },

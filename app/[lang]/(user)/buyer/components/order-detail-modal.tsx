@@ -22,15 +22,21 @@ interface OrderDetailModalProps {
 export default function OrderDetailModal({ order, open, onClose, dict }: OrderDetailModalProps) {
     const getStatusLabel = (status: OrderStatus): string => {
         const labels = {
+            Draft: dict.marketplace.buyer.ordersPage.status.draft,
+            Submitted: dict.marketplace.buyer.ordersPage.status.submitted,
+            Confirmed: dict.marketplace.buyer.ordersPage.status.confirmed,
+            Paid: dict.marketplace.buyer.ordersPage.status.paid,
+            Shipped: dict.marketplace.buyer.ordersPage.status.shipped,
+            Delivered: dict.marketplace.buyer.ordersPage.status.delivered,
+            Rejected: dict.marketplace.buyer.ordersPage.status.rejected,
+            Cancelled: dict.marketplace.buyer.ordersPage.status.cancelled,
             draft: dict.marketplace.buyer.ordersPage.status.draft,
             submitted: dict.marketplace.buyer.ordersPage.status.submitted,
-            pending_supplier: dict.marketplace.buyer.ordersPage.status.pendingSupplier,
             confirmed: dict.marketplace.buyer.ordersPage.status.confirmed,
-            in_processing: dict.marketplace.buyer.ordersPage.status.inProcessing,
-            ready: dict.marketplace.buyer.ordersPage.status.ready,
+            paid: dict.marketplace.buyer.ordersPage.status.paid,
             shipped: dict.marketplace.buyer.ordersPage.status.shipped,
             delivered: dict.marketplace.buyer.ordersPage.status.delivered,
-            closed: dict.marketplace.buyer.ordersPage.status.closed,
+            rejected: dict.marketplace.buyer.ordersPage.status.rejected,
             cancelled: dict.marketplace.buyer.ordersPage.status.cancelled,
         };
         return labels[status] || status;

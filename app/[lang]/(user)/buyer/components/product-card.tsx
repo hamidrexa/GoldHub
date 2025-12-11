@@ -8,9 +8,10 @@ import { Heart, ShoppingCart, Image as ImageIcon } from 'lucide-react';
 import { Product } from '@/lib/mock-data';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { addToCart } from '@/app/[lang]/(user)/buyer/services/add-to-cart';
 
 interface ProductCardProps {
-    product: Product;
+    product: any;
     dict: any;
 }
 
@@ -22,12 +23,23 @@ export default function ProductCard({ product, dict }: ProductCardProps) {
 
     const handleAddToCart = async (e: React.MouseEvent) => {
         e.preventDefault();
+        e.stopPropagation();
+
+        if (isAddingToCart) return;
         setIsAddingToCart(true);
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 500));
-        setIsAddingToCart(false);
-        // TODO: Add to cart context
+
+        try {
+            await addToCart({
+                product_id: product.id,
+                count: 1,
+            });
+        } catch (error) {
+            console.error("Add to cart failed:", error);
+        } finally {
+            setIsAddingToCart(false);
+        }
     };
+
 
     const handleToggleFavorite = (e: React.MouseEvent) => {
         e.preventDefault();
@@ -49,10 +61,10 @@ export default function ProductCard({ product, dict }: ProductCardProps) {
                                 className={`h-4 w-4 ${isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-600'}`}
                             />
                         </button>
-                        {product.image ? (
+                        {product.images ? (
                             <img
-                                src={product.image}
-                                alt={product.name}
+                                src={product.images[0]?.image}
+                                alt={product.title}
                                 className="w-full h-full object-cover"
                             />
                         ) : (
@@ -64,9 +76,9 @@ export default function ProductCard({ product, dict }: ProductCardProps) {
                     <div className="space-y-2">
                         <div className="flex items-start justify-between gap-2">
                             <h3 className="font-semibold text-sm line-clamp-2 group-hover:text-primary transition-colors">
-                                {product.name}
+                                {product.title}
                             </h3>
-                            {product.stock < 10 && product.stock > 0 && (
+                            {product.inventory < 10 && product.inventory > 0 && (
                                 <Badge variant="outline-blue" className="text-xs whitespace-nowrap">
                                     {dict.marketplace.buyer.productCard.lowStock}
                                 </Badge>
@@ -74,14 +86,14 @@ export default function ProductCard({ product, dict }: ProductCardProps) {
                         </div>
 
                         <p className="text-xs text-muted-foreground">
-                            {product.specifications || `${product.karat} · ${product.weight}g`}
+                            {product.details || `${product.karat} · ${product.weight}g`}
                         </p>
 
                         <div className="flex items-center justify-between pt-2">
                             <div>
                                 <p className="text-xl font-bold">${product.price.toLocaleString()}</p>
                                 <p className="text-xs text-muted-foreground">
-                                    {product.stock > 0 ? `${product.stock} ${dict.marketplace.buyer.productCard.inStock}` : dict.marketplace.buyer.productCard.outOfStock}
+                                    {product.inventory > 0 ? `${product.inventory} ${dict.marketplace.buyer.productCard.inStock}` : dict.marketplace.buyer.productCard.outOfStock}
                                 </p>
                             </div>
                         </div>
@@ -92,7 +104,7 @@ export default function ProductCard({ product, dict }: ProductCardProps) {
                     <Button
                         className="w-full"
                         onClick={handleAddToCart}
-                        disabled={product.stock === 0 || isAddingToCart}
+                        disabled={product.inventory === 0 || isAddingToCart}
                     >
                         {isAddingToCart ? (
                             <>{dict.marketplace.buyer.productCard.adding}</>

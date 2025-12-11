@@ -60,15 +60,8 @@
   "buyRecommendation": "{component} traders out of {component} have recommended {assetSymbol} symbol for purchase.",
   "price": "Price",
   "products": "Products",
-  "afzoone": {
-    "title": "Download Extension",
-    "href": "https://chrome.google.com/webstore/detail/%D8%A7%D9%81%D8%B2%D9%88%D9%86%D9%87-%D8%A8%D9%88%D8%B1%D8%B3-%D8%B3%D9%87%D9%85%D8%AA%D9%88-sahmeto/mnnkkdhkjbcnjljenmicbmlojmnpmaaf?hl=en",
-    "rel": "nofollow",
-    "description": ""
-  },
   "more": "More",
   "loginRegister": "Login/Register",
-  "profile": "Profile",
   "navMenuItems": [
     {
       "title": "Terms",
@@ -955,10 +948,13 @@
         "searchPlaceholder": "Search orders...",
         "tabs": {
           "all": "All Orders",
-          "pending": "Pending",
-          "processing": "Processing",
+          "draft": "Draft",
+          "submitted": "Submitted",
+          "confirmed": "Confirmed",
+          "paid": "Paid",
           "shipped": "Shipped",
           "delivered": "Delivered",
+          "rejected": "Rejected",
           "cancelled": "Cancelled"
         },
         "table": {
@@ -970,13 +966,19 @@
           "date": "Date",
           "actions": "Actions",
           "noOrders": "No orders found",
-          "itemsSuffix": "items"
+          "itemsSuffix": "items",
+          "pendingSupplier": "Awaiting Supplier",
+          "closed": "Closed",
+          "cancelled": "Cancelled"
         },
         "status": {
+          "draft": "Draft",
+          "submitted": "Submitted",
           "confirmed": "Confirmed",
+          "paid": "Paid",
           "shipped": "Shipped",
-          "pendingSupplier": "Pending Supplier",
-          "closed": "Closed",
+          "delivered": "Delivered",
+          "rejected": "Rejected",
           "cancelled": "Cancelled"
         }
       },
@@ -993,6 +995,7 @@
         "table": {
           "timestamp": "Timestamp",
           "user": "User",
+          "roles": "Roles",
           "event": "Event",
           "ipAddress": "IP Address",
           "device": "Device / Browser",
@@ -1100,10 +1103,13 @@
         "searchPlaceholder": "Search by order ID or supplier...",
         "tabs": {
           "all": "All Orders",
-          "pending": "Pending",
-          "processing": "Processing",
+          "draft": "Draft",
+          "submitted": "Submitted",
+          "confirmed": "Confirmed",
+          "paid": "Paid",
           "shipped": "Shipped",
           "delivered": "Delivered",
+          "rejected": "Rejected",
           "cancelled": "Cancelled"
         },
         "noOrders": "No orders found",
@@ -1124,14 +1130,11 @@
         "status": {
           "draft": "Draft",
           "submitted": "Submitted",
-          "pendingSupplier": "Pending Supplier",
           "confirmed": "Confirmed",
-          "processing": "Processing",
-          "inProcessing": "In Processing",
-          "ready": "Ready",
+          "paid": "Paid",
           "shipped": "Shipped",
           "delivered": "Delivered",
-          "closed": "Closed",
+          "rejected": "Rejected",
           "cancelled": "Cancelled"
         }
       },
@@ -1324,18 +1327,25 @@
         "searchPlaceholder": "Search orders...",
         "tabs": {
           "all": "All Orders",
-          "pending": "Pending",
-          "processing": "Processing",
+          "draft": "Draft",
+          "submitted": "Submitted",
+          "confirmed": "Confirmed",
+          "paid": "Paid",
           "shipped": "Shipped",
           "delivered": "Delivered",
+          "rejected": "Rejected",
           "cancelled": "Cancelled"
         },
         "cardTitles": {
           "all": "All Orders",
-          "new": "New Orders",
-          "processing": "Processing Orders",
+          "draft": "Draft Orders",
+          "submitted": "Submitted Orders",
+          "confirmed": "Confirmed Orders",
+          "paid": "Paid Orders",
           "shipped": "Shipped Orders",
-          "closed": "Closed Orders"
+          "delivered": "Delivered Orders",
+          "rejected": "Rejected Orders",
+          "cancelled": "Cancelled Orders"
         },
         "noOrders": "No orders found",
         "table": {
@@ -1350,10 +1360,13 @@
         "itemsSuffix": "items",
         "markShipped": "Mark Shipped",
         "status": {
-          "new": "New",
-          "processing": "Processing",
+          "draft": "Draft",
+          "submitted": "Submitted",
+          "confirmed": "Confirmed",
+          "paid": "Paid",
           "shipped": "Shipped",
-          "completed": "Completed",
+          "delivered": "Delivered",
+          "rejected": "Rejected",
           "cancelled": "Cancelled"
         }
       },

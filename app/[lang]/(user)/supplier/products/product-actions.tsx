@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Plus, Pencil, Trash2 } from 'lucide-react';
 import { Product } from '@/lib/mock-data';
 import ProductFormDialog from '@/app/[lang]/(user)/supplier/components/product-form-dialog';
+import { updateProduct } from '@/app/[lang]/(user)/supplier/products/services/updateProduct';
+import { addProduct } from '@/app/[lang]/(user)/supplier/products/services/addProduct';
 
 interface ProductActionsProps {
     dict: any;
@@ -34,15 +36,17 @@ export function ProductActions({ dict, products }: ProductActionsProps) {
                 <Plus className="h-4 w-4 mr-2" />
                 {dict.marketplace.supplier.productsPage.addProduct}
             </Button>
-
             <ProductFormDialog
                 open={dialogOpen}
                 onOpenChange={setDialogOpen}
                 product={selectedProduct}
-                onSave={(product) => {
-                    console.log('Product saved:', product);
-                }}
                 dict={dict}
+                onSave={async (apiBody) => {
+                    await addProduct({
+                        body: apiBody,
+                        product_id: apiBody.id,
+                    });
+                }}
             />
         </>
     );

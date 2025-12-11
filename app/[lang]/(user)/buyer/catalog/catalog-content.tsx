@@ -6,6 +6,7 @@ import { Product } from '@/lib/mock-data';
 import ProductCard from '../components/product-card';
 import { CatalogFilters } from './catalog-filters';
 import { CatalogToolbar } from './catalog-toolbar';
+import { useProductList } from '@/app/[lang]/(user)/supplier/products/services/useProductList';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 interface CatalogContentProps {
@@ -36,7 +37,16 @@ export function CatalogContent({
     initialMaxWeight = 200,
 }: CatalogContentProps) {
     const [showFilters, setShowFilters] = useState(true);
+    const {products:list = [],isLoading} = useProductList("")
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+
+    if (isLoading) {
+        return (
+            <div className="col-span-full text-center py-12">
+                <p className="text-muted-foreground">Loading...</p>
+            </div>
+        );
+    }
 
     return (
         <div className="flex flex-col md:flex-row gap-6">
@@ -84,7 +94,7 @@ export function CatalogContent({
                 />
 
                 {/* Product Grid */}
-                {products.length === 0 ? (
+                {list.length === 0 ? (
                     <Card className="p-12">
                         <div className="text-center">
                             <p className="text-lg text-muted-foreground">{dict.marketplace.buyer.catalogPage.noResults.title}</p>
@@ -95,7 +105,7 @@ export function CatalogContent({
                     </Card>
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {products.map((product) => (
+                        {list.map((product) => (
                             <ProductCard key={product.id} product={product} dict={dict} />
                         ))}
                     </div>

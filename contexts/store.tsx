@@ -42,6 +42,7 @@ interface ContextProps {
             telegram: boolean;
         };
         is_superuser: boolean;
+        role: string;
         active_plan: {
             plan: {
                 name: string;
