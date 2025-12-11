@@ -1,4 +1,4 @@
-# Tala (طلانو)
+# GoldHub
 
 A comprehensive Next.js-based investment platform for gold trading and broker management. Tala enables brokers to create investment contracts, manage members, and provide a secure investment experience.
 

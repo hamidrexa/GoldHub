@@ -15,7 +15,7 @@ const TabsList = React.forwardRef<
         ref={ref}
         className={
             cn(
-                'inline-flex h-10 items-center justify-center rounded-md bg-neutral-100 p-1 text-slate-900',
+                'inline-flex h-10 items-center justify-start rounded-md bg-neutral-100 p-1 text-slate-900 overflow-x-auto flex-nowrap max-w-full scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-neutral-300',
                 className
             )
         }

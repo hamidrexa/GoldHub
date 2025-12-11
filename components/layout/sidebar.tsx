@@ -160,7 +160,7 @@ export function Sidebar({ dict, lang }: SidebarProps) {
                 )}
             </div>
 
-            <Separator className="bg-gray-800 mb-4" />
+            <Separator className="bg-gold-200/15 mb-4" />
 
             {/* Navigation Menu */}
             <ScrollArea className="flex-1 px-4">
@@ -176,8 +176,8 @@ export function Sidebar({ dict, lang }: SidebarProps) {
                                 className={cn(
                                     "flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-all duration-200",
                                     isActive
-                                        ? "bg-gray-700 text-white"
-                                        : "text-gray-400 hover:text-white hover:bg-gray-800"
+                                        ? "bg-gold-200/15 text-white"
+                                        : "text-gray-400 hover:text-white hover:bg-gray-800/30"
                                 )}
                             >
                                 {item.icon}
@@ -187,6 +187,8 @@ export function Sidebar({ dict, lang }: SidebarProps) {
                     })}
                 </nav>
             </ScrollArea>
+
+            <Separator className="bg-gold-200/15 mb-4" />
 
             {/* Settings and Logout at Bottom */}
             <div className="px-4 py-4 space-y-1">
