@@ -14,8 +14,8 @@ import {
     TableRow,
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 import { OrdersSearch } from './orders-search';
+import { URLTabs } from '@/components/ui/url-tabs';
 
 // Define display order type for compatibility
 interface DisplayOrder {
@@ -135,11 +135,12 @@ export default async function SupplierOrdersPage({ params: { lang }, searchParam
     };
 
     const tabs = [
-        { value: 'all', label: `${dict.marketplace.supplier.ordersPage.tabs.all} (${statusCounts.all})` },
-        { value: 'pending_supplier', label: `${dict.marketplace.supplier.ordersPage.tabs.new} (${statusCounts.pending_supplier})` },
-        { value: 'confirmed', label: `${dict.marketplace.supplier.ordersPage.tabs.processing} (${statusCounts.confirmed})` },
-        { value: 'shipped', label: `${dict.marketplace.supplier.ordersPage.tabs.shipped} (${statusCounts.shipped})` },
-        { value: 'closed', label: `${dict.marketplace.supplier.ordersPage.tabs.closed} (${statusCounts.closed})` },
+        { value: 'all', label: dict.marketplace.supplier.ordersPage.tabs.all },
+        { value: 'pending', label: dict.marketplace.supplier.ordersPage.tabs.pending },
+        { value: 'confirmed', label: dict.marketplace.supplier.ordersPage.tabs.processing },
+        { value: 'shipped', label: dict.marketplace.supplier.ordersPage.tabs.shipped },
+        { value: 'delivered', label: dict.marketplace.supplier.ordersPage.tabs.delivered },
+        { value: 'cancelled', label: dict.marketplace.supplier.ordersPage.tabs.cancelled },
     ];
 
     // Get card title based on active tab
@@ -166,76 +167,65 @@ export default async function SupplierOrdersPage({ params: { lang }, searchParam
                 defaultValue={searchQuery}
             />
 
-            {/* Server-side tabs using URL params */}
-            <div className="border-b w-full flex space-x-4 overflow-x-auto">
-                {tabs.map((tab) => (
-                    <Link
-                        key={tab.value}
-                        href={`/${lang}/supplier/orders?tab=${tab.value}${searchQuery ? `&q=${searchQuery}` : ''}`}
-                        className={`px-4 py-3 border-b-2 transition-colors whitespace-nowrap ${activeTab === tab.value
-                            ? 'border-primary text-primary font-medium'
-                            : 'border-transparent text-muted-foreground hover:text-foreground'
-                            }`}
-                    >
-                        {tab.label}
-                    </Link>
-                ))}
-            </div>
+            {/* Client-side tabs wrapper */}
+            <URLTabs tabs={tabs} defaultValue={activeTab} />
 
             {/* Orders Table */}
-            <Card>
-                <CardHeader>
-                    <CardTitle>{getCardTitle()}</CardTitle>
-                </CardHeader>
-                <CardContent className="overflow-x-auto">
+            <div className="border rounded-lg shadow-sm bg-card">
+                <div className="px-6 py-4 border-b">
+                    <h3 className="text-2xl font-semibold leading-none tracking-tight">{getCardTitle()}</h3>
+                </div>
+                <div>
                     {filteredOrders.length === 0 ? (
                         <div className="text-center py-12">
                             <PackageIcon className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                             <p className="text-muted-foreground">{dict.marketplace.supplier.ordersPage.noOrders}</p>
                         </div>
                     ) : (
-                        <Table className="min-w-[700px]">
-                            <TableHeader>
-                                <TableRow>
-                                    <TableHead>{dict.marketplace.supplier.ordersPage.table.orderId}</TableHead>
-                                    <TableHead>{dict.marketplace.supplier.ordersPage.table.buyer}</TableHead>
-                                    <TableHead>{dict.marketplace.supplier.ordersPage.table.items}</TableHead>
-                                    <TableHead>{dict.marketplace.supplier.ordersPage.table.total}</TableHead>
-                                    <TableHead>{dict.marketplace.supplier.ordersPage.table.date}</TableHead>
-                                    <TableHead>{dict.marketplace.supplier.ordersPage.table.status}</TableHead>
-                                    <TableHead className="text-right">{dict.marketplace.supplier.ordersPage.table.actions}</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {filteredOrders.map((order) => (
-                                    <TableRow key={order.id}>
-                                        <TableCell className="font-medium">{order.id}</TableCell>
-                                        <TableCell>{order.buyer}</TableCell>
-                                        <TableCell>{order.items} {dict.marketplace.supplier.ordersPage.itemsSuffix}</TableCell>
-                                        <TableCell className="font-semibold">
-                                            ${order.total.toLocaleString()}
-                                        </TableCell>
-                                        <TableCell>{order.date}</TableCell>
-                                        <TableCell><StatusBadge status={order.status} dict={dict} /></TableCell>
-                                        <TableCell className="text-right">
-                                            <div className="flex justify-end gap-2">
-                                                {(order.status === 'confirmed' || order.status === 'Confirmed' || order.status === 'Paid') && (
-                                                    <Button size="sm" variant="outline">
-                                                        {dict.marketplace.supplier.ordersPage.markShipped}
-                                                    </Button>
-                                                )}
-                                                <Button size="sm" variant="ghost">
-                                                    <Eye className="h-4 w-4" />
-                                                </Button>
-                                            </div>
-                                        </TableCell>
+                        <div className="w-full overflow-x-auto max-w-[calc(100vw-3rem)]">
+                            <Table className="min-w-[700px]">
+                                <TableHeader>
+                                    <TableRow>
+                                        <TableHead className="sticky left-0 z-20 bg-card shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">{dict.marketplace.supplier.ordersPage.table.orderId}</TableHead>
+                                        <TableHead>{dict.marketplace.supplier.ordersPage.table.buyer}</TableHead>
+                                        <TableHead>{dict.marketplace.supplier.ordersPage.table.items}</TableHead>
+                                        <TableHead>{dict.marketplace.supplier.ordersPage.table.total}</TableHead>
+                                        <TableHead>{dict.marketplace.supplier.ordersPage.table.date}</TableHead>
+                                        <TableHead>{dict.marketplace.supplier.ordersPage.table.status}</TableHead>
+                                        <TableHead className="text-right">{dict.marketplace.supplier.ordersPage.table.actions}</TableHead>
                                     </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
+                                </TableHeader>
+                                <TableBody>
+                                    {filteredOrders.map((order) => (
+                                        <TableRow key={order.id}>
+                                            <TableCell className="font-medium sticky left-0 z-10 bg-card shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">{order.id}</TableCell>
+                                            <TableCell>{order.buyer}</TableCell>
+                                            <TableCell>{order.items} {dict.marketplace.supplier.ordersPage.itemsSuffix}</TableCell>
+                                            <TableCell className="font-semibold">
+                                                ${order.total.toLocaleString()}
+                                            </TableCell>
+                                            <TableCell>{order.date}</TableCell>
+                                            <TableCell><StatusBadge status={order.status} dict={dict} /></TableCell>
+                                            <TableCell className="text-right">
+                                                <div className="flex justify-end gap-2">
+                                                    {(order.status === 'confirmed' || order.status === 'Confirmed' || order.status === 'Paid') && (
+                                                        <Button size="sm" variant="outline">
+                                                            {dict.marketplace.supplier.ordersPage.markShipped}
+                                                        </Button>
+                                                    )}
+                                                    <Button size="sm" variant="ghost">
+                                                        <Eye className="h-4 w-4" />
+                                                    </Button>
+                                                </div>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </div>
                     )}
-                </CardContent>
-            </Card>
+                </div>
+            </div>
         </div>
     );
 }

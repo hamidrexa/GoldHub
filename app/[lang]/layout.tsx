@@ -156,11 +156,6 @@ export default async function RootLayout({
                     </Providers>
                 </GlobalContextProvider>
                 <GoogleTagManager gtmId="GTM-558BXMSS" />
-                <Script
-                    id="pushe"
-                    strategy="beforeInteractive"
-                    src="https://static.pushe.co/pusheweb.js"
-                />
                 <script
                     id="company"
                     type="application/ld+json"

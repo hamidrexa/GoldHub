@@ -1,6 +1,7 @@
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
 import { Badge } from '@/components/ui/badge';
+import { Search } from 'lucide-react';
 import { mockAuditLogs, AuditLog } from '@/lib/mock-data';
 import {
     Table,
@@ -10,7 +11,7 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
-import Link from 'next/link';
+import { URLTabs } from '@/components/ui/url-tabs';
 import { AuditLogsSearch } from './audit-logs-search';
 import { ActivityLogsTable } from '@/app/[lang]/(user)/admin/components/activity-logs-table';
 
@@ -66,12 +67,6 @@ export default async function AuditLogsPage({ params: { lang }, searchParams }: 
         l.event === 'kyc_submitted' || l.event === 'kyc_approved' || l.event === 'kyc_rejected'
     ).length;
 
-    const tabs = [
-        { value: 'all', label: dict.marketplace.admin.auditLogsPage.tabs.all },
-        { value: 'login', label: `${dict.marketplace.admin.auditLogsPage.tabs.login} (${loginCount})` },
-        { value: 'kyc', label: `${dict.marketplace.admin.auditLogsPage.tabs.kyc} (${kycCount})` },
-        { value: 'order_created', label: dict.marketplace.admin.auditLogsPage.tabs.orders },
-    ];
 
     return (
         <div className="space-y-6">
@@ -86,21 +81,13 @@ export default async function AuditLogsPage({ params: { lang }, searchParams }: 
                 defaultValue={searchQuery}
             />
 
-            {/* Server-side tabs using URL params */}
-            <div className="border-b w-full flex space-x-4">
-                {tabs.map((tab) => (
-                    <Link
-                        key={tab.value}
-                        href={`/${lang}/admin/audit-logs?tab=${tab.value}${searchQuery ? `&q=${searchQuery}` : ''}`}
-                        className={`px-4 py-3 border-b-2 transition-colors ${eventFilter === tab.value
-                            ? 'border-primary text-primary font-medium'
-                            : 'border-transparent text-muted-foreground hover:text-foreground'
-                            }`}
-                    >
-                        {tab.label}
-                    </Link>
-                ))}
-            </div>
+            {/* Client-side tabs wrapper */}
+            <URLTabs tabs={[
+                { value: 'all', label: dict.marketplace.admin.auditLogsPage.tabs.all },
+                { value: 'login', label: dict.marketplace.admin.auditLogsPage.tabs.login },
+                { value: 'order_created', label: dict.marketplace.admin.auditLogsPage.tabs.orders },
+                { value: 'kyc', label: dict.marketplace.admin.auditLogsPage.tabs.kyc },
+            ]} defaultValue={eventFilter} />
 
             {/* Server-rendered table */}
             <ActivityLogsTable searchQuery={searchQuery} eventFilter={eventFilter} dict={dict} />

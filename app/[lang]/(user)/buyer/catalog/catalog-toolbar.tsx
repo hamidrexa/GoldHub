@@ -19,6 +19,7 @@ interface CatalogToolbarProps {
     currentSort: string;
     showFilters: boolean;
     onToggleFilters: () => void;
+    onOpenMobileFilters?: () => void;
 }
 
 export function CatalogToolbar({
@@ -27,7 +28,8 @@ export function CatalogToolbar({
     productCount,
     currentSort,
     showFilters,
-    onToggleFilters
+    onToggleFilters,
+    ...props
 }: CatalogToolbarProps) {
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -45,11 +47,15 @@ export function CatalogToolbar({
     return (
         <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-                <Button variant="outline" size="sm" onClick={onToggleFilters}>
+                <Button variant="outline" size="sm" className="hidden md:flex" onClick={onToggleFilters}>
                     <SlidersHorizontal className="h-4 w-4 mr-2" />
                     {showFilters ? dict.marketplace.buyer.catalogPage.filters.hide : dict.marketplace.buyer.catalogPage.filters.show}
                 </Button>
-                <p className="text-sm text-muted-foreground">
+                <Button variant="outline" size="sm" className="md:hidden" onClick={props.onOpenMobileFilters}>
+                    <SlidersHorizontal className="h-4 w-4 mr-2" />
+                    {dict.marketplace.buyer.catalogPage.filters.filters || 'Filters'}
+                </Button>
+                <p className="text-sm text-muted-foreground hidden sm:block">
                     {dict.marketplace.buyer.catalogPage.toolbar.showing} {productCount} {dict.marketplace.buyer.catalogPage.toolbar.products}
                 </p>
             </div>

@@ -102,7 +102,7 @@ export function CatalogFilters({
     };
 
     return (
-        <Card className="w-80 h-fit sticky top-6">
+        <Card className="h-fit">
             <CardContent className="p-6 space-y-6">
                 <div className="flex items-center justify-between">
                     <h3 className="font-semibold">{dict.marketplace.buyer.catalogPage.filters.title}</h3>

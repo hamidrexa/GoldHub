@@ -83,7 +83,7 @@ export function UsersKycTable({ dict, searchQuery = '', activeTab = 'all' }: Use
                             <TableHead className="font-semibold">{dict.marketplace.admin.usersKycPage.table.name}</TableHead>
                             <TableHead className="font-semibold">{dict.marketplace.admin.usersKycPage.table.email}</TableHead>
                             <TableHead className="font-semibold">{dict.marketplace.admin.usersKycPage.table.company}</TableHead>
-                            <TableHead className="font-semibold">{dict.marketplace.admin.usersKycPage.table.roles}</TableHead>
+                            <TableHead className="font-semibold">{dict.marketplace.admin.usersKycPage.table.role}</TableHead>
                             <TableHead className="font-semibold">{dict.marketplace.admin.usersKycPage.table.kycStatus}</TableHead>
                             <TableHead className="font-semibold text-right">{dict.marketplace.admin.usersKycPage.table.actions}</TableHead>
                         </TableRow>

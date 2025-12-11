@@ -59,13 +59,13 @@ export default async function CartPage({ params: { lang } }: PageProps) {
     return (
         <div className="space-y-6">
             {/* Header */}
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                     <h1 className="text-3xl font-bold tracking-tight">{dict.marketplace.buyer.cartPage.title}</h1>
                     <p className="text-muted-foreground">{cartItems.length} {dict.marketplace.buyer.cartPage.itemsInCart}</p>
                 </div>
                 <Link href={`/${lang}/buyer/catalog`}>
-                    <Button variant="outline">
+                    <Button variant="outline" className="w-full sm:w-auto">
                         <ArrowLeft className="h-4 w-4 mr-2" />
                         {dict.marketplace.buyer.cartPage.continueShopping}
                     </Button>

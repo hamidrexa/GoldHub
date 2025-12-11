@@ -5,9 +5,17 @@ import { Eye } from 'lucide-react';
 import { getUsersList, mapApiUserToUi } from '@/lib/api-client';
 import { mockUsers, User } from '@/lib/mock-data';
 import Link from 'next/link';
+import { URLTabs } from '@/components/ui/url-tabs';
 import { UsersKycSearch } from './users-kyc-search';
 import { UsersKycTable } from '@/app/[lang]/(user)/admin/components/user-kyc-tables';
-
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from '@/components/ui/table';
 // Define display user type for compatibility
 interface DisplayUser {
     id: string;
@@ -153,14 +161,8 @@ export default async function UsersKycPage({
 
     const tabs = [
         { value: 'all', label: dict.marketplace.admin.usersKycPage.tabs.all },
-        {
-            value: 'pending',
-            label: `${dict.marketplace.admin.usersKycPage.tabs.pending} (${pendingCount})`,
-        },
-        {
-            value: 'approved',
-            label: dict.marketplace.admin.usersKycPage.tabs.approved,
-        },
+        { value: 'pending', label: `${dict.marketplace.admin.usersKycPage.tabs.pending} (${pendingCount})` },
+        { value: 'approved', label: dict.marketplace.admin.usersKycPage.tabs.approved },
     ];
 
     // Determine table headers based on active tab
@@ -187,22 +189,13 @@ export default async function UsersKycPage({
                 defaultValue={searchQuery}
             />
 
-            {/* Server-side tabs using URL params */}
-            <div className="flex w-full space-x-4 overflow-x-auto border-b">
-                {tabs.map((tab) => (
-                    <Link
-                        key={tab.value}
-                        href={`/${lang}/admin/users-kyc?tab=${tab.value}${searchQuery ? `&q=${searchQuery}` : ''}`}
-                        className={`whitespace-nowrap border-b-2 px-4 py-3 transition-colors ${
-                            activeTab === tab.value
-                                ? 'border-primary text-primary font-medium'
-                                : 'text-muted-foreground hover:text-foreground border-transparent'
-                        }`}
-                    >
-                        {tab.label}
-                    </Link>
-                ))}
-            </div>
+            {/* Client-side tabs wrapper */}
+            <URLTabs tabs={[
+                { value: 'all', label: dict.marketplace.admin.usersKycPage.tabs.all },
+                { value: 'pending', label: dict.marketplace.admin.usersKycPage.tabs.pending },
+                { value: 'approved', label: dict.marketplace.admin.usersKycPage.tabs.approved },
+            ]} defaultValue={activeTab} />
+
             <UsersKycTable
                 dict={dict}
                 searchQuery={searchQuery}

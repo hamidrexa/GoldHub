@@ -12,6 +12,7 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
+import { URLTabs } from '@/components/ui/url-tabs';
 import Link from 'next/link';
 import { OrdersSearch } from './orders-search';
 
@@ -126,12 +127,7 @@ export default async function OrdersPage({ params: { lang }, searchParams }: Pag
     const pendingCount = orders.filter(o => normalizeStatus(o.status) === 'pending').length;
     const activeCount = orders.filter(o => normalizeStatus(o.status) === 'active').length;
 
-    const tabs = [
-        { value: 'all', label: dict.marketplace.admin.ordersPage.tabs.all },
-        { value: 'pending', label: `${dict.marketplace.admin.ordersPage.tabs.pending} (${pendingCount})` },
-        { value: 'active', label: `${dict.marketplace.admin.ordersPage.tabs.active} (${activeCount})` },
-        { value: 'closed', label: dict.marketplace.admin.ordersPage.tabs.closed },
-    ];
+
 
     return (
         <div className="space-y-6">
@@ -146,21 +142,13 @@ export default async function OrdersPage({ params: { lang }, searchParams }: Pag
                 defaultValue={searchQuery}
             />
 
-            {/* Server-side tabs using URL params */}
-            <div className="border-b w-full flex space-x-4 overflow-x-auto">
-                {tabs.map((tab) => (
-                    <Link
-                        key={tab.value}
-                        href={`/${lang}/admin/orders?tab=${tab.value}${searchQuery ? `&q=${searchQuery}` : ''}`}
-                        className={`px-4 py-3 border-b-2 transition-colors whitespace-nowrap ${activeTab === tab.value
-                            ? 'border-primary text-primary font-medium'
-                            : 'border-transparent text-muted-foreground hover:text-foreground'
-                            }`}
-                    >
-                        {tab.label}
-                    </Link>
-                ))}
-            </div>
+            {/* Client-side tabs wrapper */}
+            <URLTabs tabs={[
+                { value: 'all', label: dict.marketplace.admin.ordersPage.tabs.all },
+                { value: 'pending', label: dict.marketplace.admin.ordersPage.tabs.pending },
+                { value: 'shipped', label: dict.marketplace.admin.ordersPage.tabs.shipped },
+                { value: 'delivered', label: dict.marketplace.admin.ordersPage.tabs.delivered },
+            ]} defaultValue={activeTab} />
 
             {/* Server-rendered table */}
             <div className="rounded-lg border bg-white overflow-x-auto">
