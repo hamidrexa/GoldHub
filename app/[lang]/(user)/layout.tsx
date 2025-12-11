@@ -4,7 +4,7 @@ import { getDictionary } from '@/get-dictionary';
 import { DashboardLayout } from '@/components/layout/dashboard-layout';
 
 export const metadata = {
-    title: 'پیدا نشد | طلانو',
+    title: 'پیدا نشد | GoldHub',
 };
 
 export default async function UserLayout({

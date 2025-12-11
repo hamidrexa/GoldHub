@@ -1,7 +1,7 @@
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
 import { Badge } from '@/components/ui/badge';
-import { Eye, CheckCircle, XCircle, ListFilter, Clock, CheckCircle2, Archive } from 'lucide-react';
+import { Eye, CheckCircle, XCircle } from 'lucide-react';
 import { mockOrders, Order } from '@/lib/mock-data';
 import {
     Table,
@@ -11,7 +11,7 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
-import { ServerTabs, ServerTab } from '@/components/ui/server-tabs';
+import { URLTabs } from '@/components/ui/url-tabs';
 import Link from 'next/link';
 import { OrdersSearch } from './orders-search';
 
@@ -32,6 +32,7 @@ interface PageProps {
     params: { lang: Locale };
     searchParams: { tab?: string; q?: string };
 }
+
 
 export default async function OrdersPage({ params: { lang }, searchParams }: PageProps) {
     const dict = await getDictionary(lang);
@@ -61,15 +62,9 @@ export default async function OrdersPage({ params: { lang }, searchParams }: Pag
     const pendingCount = mockOrders.filter(o => o.status === 'pending_supplier').length;
     const activeCount = mockOrders.filter(o => o.status === 'confirmed' || o.status === 'shipped').length;
 
-    const tabs: ServerTab[] = [
-        { value: 'all', label: dict.marketplace.admin.ordersPage.tabs.all, icon: ListFilter, href: `/${lang}/admin/orders?tab=all${searchQuery ? `&q=${searchQuery}` : ''}` },
-        { value: 'pending', label: `${dict.marketplace.admin.ordersPage.tabs.pending} (${pendingCount})`, icon: Clock, href: `/${lang}/admin/orders?tab=pending${searchQuery ? `&q=${searchQuery}` : ''}` },
-        { value: 'active', label: `${dict.marketplace.admin.ordersPage.tabs.active} (${activeCount})`, icon: CheckCircle2, href: `/${lang}/admin/orders?tab=active${searchQuery ? `&q=${searchQuery}` : ''}` },
-        { value: 'closed', label: dict.marketplace.admin.ordersPage.tabs.closed, icon: Archive, href: `/${lang}/admin/orders?tab=closed${searchQuery ? `&q=${searchQuery}` : ''}` },
-    ];
-
+    // Fix: prevent horizontal scroll on the whole page
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 max-w-full overflow-x-hidden">
             <div>
                 <h1 className="text-3xl font-bold tracking-tight">{dict.marketplace.admin.ordersPage.title}</h1>
                 <p className="text-muted-foreground">{dict.marketplace.admin.ordersPage.description}</p>
@@ -81,64 +76,71 @@ export default async function OrdersPage({ params: { lang }, searchParams }: Pag
                 defaultValue={searchQuery}
             />
 
-            {/* Server-side tabs using URL params */}
-            <ServerTabs tabs={tabs} activeTab={activeTab} />
+            {/* Client-side tabs wrapper */}
+            <URLTabs tabs={[
+                { value: 'all', label: dict.marketplace.admin.ordersPage.tabs.all },
+                { value: 'pending', label: dict.marketplace.admin.ordersPage.tabs.pending },
+                { value: 'shipped', label: dict.marketplace.admin.ordersPage.tabs.shipped },
+                { value: 'delivered', label: dict.marketplace.admin.ordersPage.tabs.delivered },
+            ]} defaultValue={activeTab} />
 
             {/* Server-rendered table */}
-            <div className="rounded-lg border bg-white overflow-x-auto">
-                <Table className="min-w-[700px]">
-                    <TableHeader>
-                        <TableRow className="hover:bg-transparent">
-                            <TableHead className="font-semibold">{dict.marketplace.admin.ordersPage.table.orderId}</TableHead>
-                            <TableHead className="font-semibold">{dict.marketplace.admin.ordersPage.table.buyer}</TableHead>
-                            <TableHead className="font-semibold">{dict.marketplace.admin.ordersPage.table.items}</TableHead>
-                            <TableHead className="font-semibold">{dict.marketplace.admin.ordersPage.table.total}</TableHead>
-                            <TableHead className="font-semibold">{dict.marketplace.admin.ordersPage.table.status}</TableHead>
-                            <TableHead className="font-semibold">{dict.marketplace.admin.ordersPage.table.date}</TableHead>
-                            <TableHead className="font-semibold text-right">{dict.marketplace.admin.ordersPage.table.actions}</TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        {filteredOrders.length === 0 ? (
-                            <TableRow>
-                                <TableCell colSpan={7} className="text-center py-8 text-muted-foreground">
-                                    {dict.marketplace.admin.ordersPage.table.noOrders}
-                                </TableCell>
+            <div className="border rounded-lg shadow-sm bg-card">
+                <div className="w-full overflow-x-auto max-w-[calc(100vw-3rem)]">
+                    <Table className="min-w-[700px]">
+                        <TableHeader>
+                            <TableRow className="hover:bg-transparent">
+                                <TableHead className="font-semibold sticky left-0 z-20 bg-card shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">{dict.marketplace.admin.ordersPage.table.orderId}</TableHead>
+                                <TableHead className="font-semibold">{dict.marketplace.admin.ordersPage.table.buyer}</TableHead>
+                                <TableHead className="font-semibold">{dict.marketplace.admin.ordersPage.table.items}</TableHead>
+                                <TableHead className="font-semibold">{dict.marketplace.admin.ordersPage.table.total}</TableHead>
+                                <TableHead className="font-semibold">{dict.marketplace.admin.ordersPage.table.status}</TableHead>
+                                <TableHead className="font-semibold">{dict.marketplace.admin.ordersPage.table.date}</TableHead>
+                                <TableHead className="font-semibold text-right">{dict.marketplace.admin.ordersPage.table.actions}</TableHead>
                             </TableRow>
-                        ) : (
-                            filteredOrders.map((order) => (
-                                <TableRow key={order.id} className="hover:bg-gray-50">
-                                    <TableCell className="font-medium">{order.id}</TableCell>
-                                    <TableCell>{order.buyer}</TableCell>
-                                    <TableCell>{order.items} {dict.marketplace.admin.ordersPage.table.itemsSuffix}</TableCell>
-                                    <TableCell>${order.total.toLocaleString()}</TableCell>
-                                    <TableCell><StatusBadge status={order.status} dict={dict} /></TableCell>
-                                    <TableCell>{order.date}</TableCell>
-                                    <TableCell>
-                                        <div className="flex items-center justify-end gap-2">
-                                            <Link
-                                                href={`/${lang}/admin/orders/${order.id}`}
-                                                className="inline-flex items-center justify-center h-8 w-8 rounded-md hover:bg-gray-100"
-                                            >
-                                                <Eye className="h-4 w-4 text-gray-600" />
-                                            </Link>
-                                            {order.status === 'pending_supplier' && (
-                                                <>
-                                                    <button className="inline-flex items-center justify-center h-8 w-8 rounded-md hover:bg-gray-100">
-                                                        <CheckCircle className="h-4 w-4 text-green-600" />
-                                                    </button>
-                                                    <button className="inline-flex items-center justify-center h-8 w-8 rounded-md hover:bg-gray-100">
-                                                        <XCircle className="h-4 w-4 text-red-600" />
-                                                    </button>
-                                                </>
-                                            )}
-                                        </div>
+                        </TableHeader>
+                        <TableBody>
+                            {filteredOrders.length === 0 ? (
+                                <TableRow>
+                                    <TableCell colSpan={7} className="text-center py-8 text-muted-foreground">
+                                        {dict.marketplace.admin.ordersPage.table.noOrders}
                                     </TableCell>
                                 </TableRow>
-                            ))
-                        )}
-                    </TableBody>
-                </Table>
+                            ) : (
+                                filteredOrders.map((order) => (
+                                    <TableRow key={order.id} className="hover:bg-gray-50">
+                                        <TableCell className="font-medium sticky left-0 z-10 bg-card shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">{order.id}</TableCell>
+                                        <TableCell>{order.buyer}</TableCell>
+                                        <TableCell>{order.items} {dict.marketplace.admin.ordersPage.table.itemsSuffix}</TableCell>
+                                        <TableCell>${order.total.toLocaleString()}</TableCell>
+                                        <TableCell><StatusBadge status={order.status} dict={dict} /></TableCell>
+                                        <TableCell>{order.date}</TableCell>
+                                        <TableCell>
+                                            <div className="flex items-center justify-end gap-2">
+                                                <Link
+                                                    href={`/${lang}/admin/orders/${order.id}`}
+                                                    className="inline-flex items-center justify-center h-8 w-8 rounded-md hover:bg-gray-100"
+                                                >
+                                                    <Eye className="h-4 w-4 text-gray-600" />
+                                                </Link>
+                                                {order.status === 'pending_supplier' && (
+                                                    <>
+                                                        <button className="inline-flex items-center justify-center h-8 w-8 rounded-md hover:bg-gray-100">
+                                                            <CheckCircle className="h-4 w-4 text-green-600" />
+                                                        </button>
+                                                        <button className="inline-flex items-center justify-center h-8 w-8 rounded-md hover:bg-gray-100">
+                                                            <XCircle className="h-4 w-4 text-red-600" />
+                                                        </button>
+                                                    </>
+                                                )}
+                                            </div>
+                                        </TableCell>
+                                    </TableRow>
+                                ))
+                            )}
+                        </TableBody>
+                    </Table>
+                </div>
             </div>
         </div>
     );

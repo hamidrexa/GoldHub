@@ -4,7 +4,7 @@ import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
 
 type Props = {
-    params: { id: string; lang: Locale };
+    params: { lang: Locale };
     searchParams: { [key: string]: string | string[] | undefined };
 };
 
@@ -13,8 +13,10 @@ export async function generateMetadata(
     parent?: ResolvingMetadata
 ): Promise<Metadata> {
     const dict = await getDictionary(lang);
-    const seoTitle = dict.aboutUsTitle;
-    const seoDescription = '';
+    const seoTitle = dict.aboutUsTitle || dict.aboutPage?.title || 'GoldHub';
+    const seoDescription =
+        dict.aboutPage?.mission?.description ||
+        'GoldHub bridges the gap between traditional craftsmanship and modern digital commerce.';
 
     return {
         title: seoTitle,
@@ -29,135 +31,88 @@ export async function generateMetadata(
     };
 }
 
-export default function AboutUs() {
+export default async function AboutUs({ params: { lang } }: Props) {
+    const dict = await getDictionary(lang);
+    const aboutDict = dict.aboutPage;
+
+    const valueEntries = Object.entries(aboutDict?.values ?? {});
+    const statsEntries = Object.entries(aboutDict?.stats ?? {});
+    const ctaEntries = Object.entries(aboutDict?.cta ?? {});
+
     return (
-        <div className="mx-6 my-16 max-w-7xl md:mx-auto ">
-            <div className="flex flex-col items-center justify-center">
-                <div className="flex w-full flex-col items-center justify-between gap-12 md:flex-row md:items-start">
-                    <div>
-                        <div className="max-w-sm">
-                            <h2 className="text-2xl font-black">
-                                طلانو برای سرمایه گذاران در بورس :
-                            </h2>
-                            <h6 className="text-base font-normal">
-                                افراد برای سرمایه گذاری در بورس یا وقت کافی برای
-                                جمع آوری اطلاعات ندارند یا دانش کافی جهت تحلیل
-                                بورس را ندارند.
-                            </h6>
-                        </div>
-                    </div>
-                    <div>
-                        <div className="max-w-lg">
-                            <h2 className="text-2xl font-black">
-                                طلانو برای تریدرها در بورس :
-                            </h2>
-                            <h6 className="text-base font-normal">
-                                تریدرها برای سود کردن بیشتر نیاز دارند همه
-                                اطلاعات بازار را به موقع داشته باشند ولی قادر
-                                دنبال کردن همه کانال ها نیستند و معیاری برای
-                                سنجش کانال ها هم ندارند.
-                            </h6>
-                        </div>
-                    </div>
-                </div>
-                <h4 className="relative z-10 my-24 text-center text-2xl leading-10 md:px-36">
-                    طلانو کمک میکند تا هر آنچه نیاز است از اطلاعات بورسی و شبکه
-                    اجتماعی برای انتخاب سهم خوب، خرید و فروش و زمان خوب معامله
-                    را در اختیار مخاطبان قرار دهد.
-                    <span className="absolute left-0 right-0 top-36 -z-10 text-center text-[350px] text-neutral-100">
-                        ‘‘
-                    </span>
-                </h4>
-            </div>
-            <img
-                className="w-full"
-                alt="about"
-                src="/img/HeroBackground.webp"
-            />
-            <div className="my-12 flex flex-col items-center justify-center gap-3 text-center">
+        <div className="flex flex-col items-center justify-center bg-white text-neutral-800">
+            <div className="relative w-full">
+                <div className="absolute inset-0 z-10 bg-black/50" />
                 <img
-                    className="w-7 object-contain"
-                    src="/img/sahmeto_send.png"
-                    alt="طلانو چه میکند"
+                    className="h-[400px] w-full object-cover md:h-[500px]"
+                    alt="GoldHub hero background"
+                    src="/img/HeroAbout.png"
                 />
-                <div className="flex w-full items-center text-center text-[30px] font-black leading-[40px] tracking-[-0.6px] text-neutral-800">
-                    <div className="flex-1 border-b border-neutral-100"></div>
-                    <h4 className="mx-[20px] max-w-[550px] text-3xl font-black">
-                        طلانو چه میکند
-                    </h4>
-                    <div className="flex-1 border-b border-neutral-100"></div>
+                <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-4 px-6 text-center text-white">
+                    <p className="text-base font-semibold uppercase tracking-[0.3em] md:text-lg">
+                        {aboutDict?.subtitle}
+                    </p>
+                    <h1 className="max-w-3xl text-4xl font-black leading-tight shadow-black drop-shadow-lg md:text-6xl">
+                        {aboutDict?.title}
+                    </h1>
+                    <p className="max-w-2xl text-lg font-medium leading-8 drop-shadow-md md:text-xl">
+                        {aboutDict?.mission?.description}
+                    </p>
                 </div>
             </div>
-            <div className="mx-12 flex flex-col items-center justify-between md:flex-row md:items-start">
-                <div className="flex justify-center">
-                    <div className="group relative flex h-[277px] w-[358px] flex-col items-center justify-center p-[51px_65px_57px_66px] text-center transition-all duration-300 hover:bg-white hover:shadow-2xl">
-                        <h5 className="max-w-[200px] text-[25px] font-black leading-[1.32] tracking-[-0.5px] text-neutral-800 sm:max-w-fit">
-                            جمع آوری پیام های مربوط به بورس
-                        </h5>
-                        <p className="mt-[17px] max-w-[230px] text-[16px] text-base font-medium leading-7 tracking-[-0.48px] text-neutral-200 sm:max-w-fit">
-                            معامله‌­گران بازار بورس بر اساس استراتژی معاملاتی
-                            خود می‌توانند تکنیکالیست یا بنیادی‌کار باشند؛
-                        </p>
-                        <div className="absolute left-[33%] top-0 hidden h-[6px] w-[150px] bg-neutral-300 group-hover:block"></div>
+
+            <div className="mx-6 my-16 flex max-w-6xl flex-col gap-12 md:mx-auto lg:my-24">
+                <section className="flex flex-col items-center gap-6 text-center">
+                    <span className="rounded-full bg-amber-50 px-4 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-amber-700">
+                        {aboutDict?.mission?.title}
+                    </span>
+                    <p className="max-w-3xl text-lg leading-8 text-neutral-700">
+                        {aboutDict?.mission?.description}
+                    </p>
+                </section>
+
+                <section className="grid grid-cols-1 gap-8 md:grid-cols-3">
+                    {valueEntries.map(([key, value]) => (
+                        <div
+                            key={key}
+                            className="group flex flex-col gap-4 rounded-2xl border border-neutral-100 bg-white p-8 text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+                        >
+                            <div className="flex h-16 w-16 items-center justify-center self-center rounded-full bg-amber-50 text-amber-500">
+                                <span className="text-2xl font-bold">✦</span>
+                            </div>
+                            <h3 className="text-xl font-black text-neutral-900">{value.title}</h3>
+                            <p className="text-base leading-7 text-neutral-500">{value.description}</p>
+                        </div>
+                    ))}
+                </section>
+
+                <section className="grid grid-cols-1 gap-6 rounded-3xl bg-neutral-50 p-8 md:grid-cols-3">
+                    {statsEntries.map(([key, label]) => (
+                        <div
+                            key={key}
+                            className="flex flex-col items-center gap-2 rounded-2xl border border-neutral-100 bg-white p-6 text-center shadow-sm"
+                        >
+                            <span className="text-2xl font-black text-amber-500">•</span>
+                            <p className="text-lg font-semibold text-neutral-800">{label}</p>
+                        </div>
+                    ))}
+                </section>
+
+                <section className="flex flex-col items-center gap-4 text-center">
+                    <p className="text-sm uppercase tracking-[0.3em] text-neutral-500">{aboutDict?.subtitle}</p>
+                    <h2 className="text-3xl font-black text-neutral-900 md:text-4xl">{aboutDict?.title}</h2>
+                    <div className="mt-6 flex flex-wrap justify-center gap-4">
+                        {ctaEntries.map(([key, label]) => (
+                            <button
+                                key={key}
+                                className="rounded-full border border-neutral-900 px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-neutral-900 transition-colors hover:bg-neutral-900 hover:text-white"
+                            >
+                                {label}
+                            </button>
+                        ))}
                     </div>
-                </div>
-                <div className="flex justify-center">
-                    <div className="group relative flex h-[277px] w-[358px] flex-col items-center justify-center p-[51px_65px_57px_66px] text-center transition-all duration-300 hover:bg-white hover:shadow-2xl">
-                        <h5 className="max-w-[200px] text-[25px] font-black leading-[1.32] tracking-[-0.5px] text-neutral-800 sm:max-w-fit">
-                            شخص کردن سیگنال خرید و فروش
-                        </h5>
-                        <p className="mt-[17px] max-w-[230px] text-[16px] text-base font-medium leading-7 tracking-[-0.48px] text-neutral-200 sm:max-w-fit">
-                            معامله‌­گران بازار بورس بر اساس استراتژی معاملاتی
-                            خود می‌توانند تکنیکالیست یا بنیادی‌کار باشند؛
-                        </p>
-                        <div className="absolute left-[33%] top-0 hidden h-[6px] w-[150px] bg-neutral-300 group-hover:block"></div>
-                    </div>
-                </div>
-                <div>
-                    <div className="group relative flex h-[277px] w-[358px] flex-col items-center justify-center p-[51px_65px_57px_66px] text-center transition-all duration-300 hover:bg-white hover:shadow-2xl">
-                        <h5 className="max-w-[200px] text-[25px] font-black leading-[1.32] tracking-[-0.5px] text-neutral-800 sm:max-w-fit">
-                            رتبه بندی و امتیازدهی به کانال ها
-                        </h5>
-                        <p className="mt-[17px] max-w-[230px] text-[16px] text-base font-medium leading-7 tracking-[-0.48px] text-neutral-200 sm:max-w-fit">
-                            معامله‌­گران بازار بورس بر اساس استراتژی معاملاتی
-                            خود می‌توانند تکنیکالیست یا بنیادی‌کار باشند؛
-                        </p>
-                        <div className="absolute left-[33%] top-0 hidden h-[6px] w-[150px] bg-neutral-300 group-hover:block"></div>
-                    </div>
-                </div>
+                </section>
             </div>
-            <section className="relative mt-20 flex w-full flex-col items-center gap-12">
-                <div className="flex w-full items-center text-center text-[30px] font-black leading-[40px] tracking-[-0.6px] text-neutral-800">
-                    <div className="flex-1 border-b border-neutral-100"></div>
-                    <h4 className="mx-[20px] max-w-[550px] text-3xl font-black leading-relaxed">
-                        شرکت هوش مالی بینا با برند طلانو فعالیت دارد و از هسته
-                        های زیر تشکیل شده است:
-                    </h4>
-                    <div className="flex-1 border-b border-neutral-100"></div>
-                </div>
-                {/*<div className="flex items-center justify-center">*/}
-                {/*    <div>*/}
-                {/*<span>تیم متخصصان بازار سرمایه</span>*/}
-                {/*    </div>*/}
-                {/*    <div>*/}
-                {/*        <span>تیم هوش مصنوعی</span>*/}
-                {/*    </div>*/}
-                {/*    <div>*/}
-                {/*        <span>تیم نرم افزار</span>*/}
-                {/*    </div>*/}
-                {/*    <div>*/}
-                {/*        <span>تیم توسعه کسب و کار</span>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
-                <ul className="flex w-full list-disc flex-col items-center justify-center gap-16 marker:text-2xl marker:text-neutral-300 md:flex-row">
-                    <li className="text-xl font-black">
-                        تیم متخصصان بازار سرمایه
-                    </li>
-                    <li className="text-xl font-black">تیم هوش مصنوعی</li>
-                    <li className="text-xl font-black">تیم نرم افزار</li>
-                    <li className="text-xl font-black">تیم توسعه کسب و کار</li>
-                </ul>
-            </section>
         </div>
     );
 }

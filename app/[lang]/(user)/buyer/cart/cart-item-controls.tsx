@@ -35,7 +35,7 @@ export function CartItemControls({
     };
 
     return (
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             <div className="flex items-center border rounded-lg">
                 <Button
                     variant="ghost"

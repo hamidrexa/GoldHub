@@ -1,7 +1,7 @@
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
 import { Badge } from '@/components/ui/badge';
-import { ListFilter, LogIn, Shield, ShoppingCart } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { mockAuditLogs, AuditLog } from '@/lib/mock-data';
 import {
     Table,
@@ -11,7 +11,7 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
-import { ServerTabs, ServerTab } from '@/components/ui/server-tabs';
+import { URLTabs } from '@/components/ui/url-tabs';
 import { AuditLogsSearch } from './audit-logs-search';
 
 // Server-side event badge component
@@ -66,12 +66,6 @@ export default async function AuditLogsPage({ params: { lang }, searchParams }: 
         l.event === 'kyc_submitted' || l.event === 'kyc_approved' || l.event === 'kyc_rejected'
     ).length;
 
-    const tabs: ServerTab[] = [
-        { value: 'all', label: dict.marketplace.admin.auditLogsPage.tabs.all, icon: ListFilter, href: `/${lang}/admin/audit-logs?tab=all${searchQuery ? `&q=${searchQuery}` : ''}` },
-        { value: 'login', label: `${dict.marketplace.admin.auditLogsPage.tabs.login} (${loginCount})`, icon: LogIn, href: `/${lang}/admin/audit-logs?tab=login${searchQuery ? `&q=${searchQuery}` : ''}` },
-        { value: 'kyc', label: `${dict.marketplace.admin.auditLogsPage.tabs.kyc} (${kycCount})`, icon: Shield, href: `/${lang}/admin/audit-logs?tab=kyc${searchQuery ? `&q=${searchQuery}` : ''}` },
-        { value: 'order_created', label: dict.marketplace.admin.auditLogsPage.tabs.orders, icon: ShoppingCart, href: `/${lang}/admin/audit-logs?tab=order_created${searchQuery ? `&q=${searchQuery}` : ''}` },
-    ];
 
     return (
         <div className="space-y-6">
@@ -86,41 +80,48 @@ export default async function AuditLogsPage({ params: { lang }, searchParams }: 
                 defaultValue={searchQuery}
             />
 
-            {/* Server-side tabs using URL params */}
-            <ServerTabs tabs={tabs} activeTab={eventFilter} />
+            {/* Client-side tabs wrapper */}
+            <URLTabs tabs={[
+                { value: 'all', label: dict.marketplace.admin.auditLogsPage.tabs.all },
+                { value: 'login', label: dict.marketplace.admin.auditLogsPage.tabs.login },
+                { value: 'order_created', label: dict.marketplace.admin.auditLogsPage.tabs.orders },
+                { value: 'kyc', label: dict.marketplace.admin.auditLogsPage.tabs.kyc },
+            ]} defaultValue={eventFilter} />
 
             {/* Server-rendered table */}
-            <div className="rounded-lg border bg-white">
-                <Table>
-                    <TableHeader>
-                        <TableRow className="hover:bg-transparent">
-                            <TableHead className="font-semibold">{dict.marketplace.admin.auditLogsPage.table.timestamp}</TableHead>
-                            <TableHead className="font-semibold">{dict.marketplace.admin.auditLogsPage.table.user}</TableHead>
-                            <TableHead className="font-semibold">{dict.marketplace.admin.auditLogsPage.table.event}</TableHead>
-                            <TableHead className="font-semibold">{dict.marketplace.admin.auditLogsPage.table.ipAddress}</TableHead>
-                            <TableHead className="font-semibold">{dict.marketplace.admin.auditLogsPage.table.device}</TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        {filteredLogs.length === 0 ? (
-                            <TableRow>
-                                <TableCell colSpan={5} className="text-center py-8 text-muted-foreground">
-                                    {dict.marketplace.admin.auditLogsPage.table.noLogs}
-                                </TableCell>
+            <div className="border rounded-lg shadow-sm bg-card">
+                <div className="w-full overflow-x-auto max-w-[calc(100vw-3rem)]">
+                    <Table className="min-w-[700px]">
+                        <TableHeader>
+                            <TableRow className="hover:bg-transparent">
+                                <TableHead className="font-semibold sticky left-0 z-20 bg-card shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">{dict.marketplace.admin.auditLogsPage.table.timestamp}</TableHead>
+                                <TableHead className="font-semibold">{dict.marketplace.admin.auditLogsPage.table.user}</TableHead>
+                                <TableHead className="font-semibold">{dict.marketplace.admin.auditLogsPage.table.event}</TableHead>
+                                <TableHead className="font-semibold">{dict.marketplace.admin.auditLogsPage.table.ipAddress}</TableHead>
+                                <TableHead className="font-semibold">{dict.marketplace.admin.auditLogsPage.table.device}</TableHead>
                             </TableRow>
-                        ) : (
-                            filteredLogs.map((log) => (
-                                <TableRow key={log.id} className="hover:bg-gray-50">
-                                    <TableCell className="font-medium font-mono text-sm">{log.timestamp}</TableCell>
-                                    <TableCell>{log.user}</TableCell>
-                                    <TableCell><EventBadge event={log.event} dict={dict} /></TableCell>
-                                    <TableCell className="font-mono text-sm">{log.ipAddress}</TableCell>
-                                    <TableCell className="text-sm text-muted-foreground">{log.device}</TableCell>
+                        </TableHeader>
+                        <TableBody>
+                            {filteredLogs.length === 0 ? (
+                                <TableRow>
+                                    <TableCell colSpan={5} className="text-center py-8 text-muted-foreground">
+                                        {dict.marketplace.admin.auditLogsPage.table.noLogs}
+                                    </TableCell>
                                 </TableRow>
-                            ))
-                        )}
-                    </TableBody>
-                </Table>
+                            ) : (
+                                filteredLogs.map((log) => (
+                                    <TableRow key={log.id} className="hover:bg-gray-50">
+                                        <TableCell className="font-medium font-mono text-sm sticky left-0 z-10 bg-card shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">{log.timestamp}</TableCell>
+                                        <TableCell>{log.user}</TableCell>
+                                        <TableCell><EventBadge event={log.event} dict={dict} /></TableCell>
+                                        <TableCell className="font-mono text-sm">{log.ipAddress}</TableCell>
+                                        <TableCell className="text-sm text-muted-foreground">{log.device}</TableCell>
+                                    </TableRow>
+                                ))
+                            )}
+                        </TableBody>
+                    </Table>
+                </div>
             </div>
 
             {/* Stats cards - fully server-rendered */}

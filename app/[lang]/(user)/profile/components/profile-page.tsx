@@ -171,40 +171,6 @@ export function ProfilePage({ dict, lang }) {
         };
     }, [hasMember, user?.id]);
 
-    const setPusheId = async (reset?: any) => {
-        if (user.pushe_notification_id && !reset) return;
-
-        const id = reset ? null : await window.Pushe.getDeviceId();
-        try {
-            const { pushe_notification_id } = await updateUser({
-                pushe_notification_id: id,
-                email: user.email,
-            });
-            setUser({ ...user, pushe_notification_id });
-        } catch (e) {
-            toast.error(dict.notifNotActive);
-        }
-    };
-    const installPushNotification = async () => {
-        setIsGetReadyPushNotification(true);
-        window.Pushe.subscribe({
-            showDialog: false,
-            showBell: false,
-            icon: 'https://talanow.ir/img/logo.png',
-        });
-        window.Pushe.addEventListener(
-            window.Pushe.EVENTS.SUBSCRIPTION_CHANGE,
-            async ({ isSubscribed, state }) => {
-                if (isSubscribed && state === 'granted') await setPusheId();
-                if (state === 'denied') toast.error(dict.activeBrowserNotif);
-                setIsGetReadyPushNotification(false);
-            }
-        );
-        if (Notification.permission === 'granted') {
-            await setPusheId();
-            setIsGetReadyPushNotification(false);
-        }
-    };
     const transactionStatus = {
         'Cancel by user': (
             <span className="text-red-500">

@@ -1,9 +1,10 @@
+
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Eye, Package, ListFilter, Play, CheckCircle } from 'lucide-react';
+import { Search, Eye, Package } from 'lucide-react';
 import { mockBuyerOrders } from '@/lib/buyer-mock-data';
 import { OrderDetail, OrderStatus } from '@/lib/mock-data';
 import {
@@ -15,7 +16,7 @@ import {
     TableRow,
 } from '@/components/ui/table';
 import Link from 'next/link';
-import { ServerTabs, ServerTab } from '@/components/ui/server-tabs';
+import { URLTabs } from '@/components/ui/url-tabs';
 import { OrdersSearch } from './orders-search';
 import { ViewToggle } from './orders-view-toggle';
 
@@ -101,12 +102,6 @@ export default async function BuyerOrdersPage({ params: { lang }, searchParams }
         completed: mockBuyerOrders.filter(o => ['delivered', 'closed'].includes(o.status)).length,
     };
 
-    const tabs: ServerTab[] = [
-        { value: 'all', label: `${dict.marketplace.buyer.ordersPage.tabs.all} (${statusCounts.all})`, icon: ListFilter, href: `/${lang}/buyer/orders?tab=all${searchQuery ? `&q=${searchQuery}` : ''}${viewMode !== 'grid' ? `&view=${viewMode}` : ''}` },
-        { value: 'active', label: `${dict.marketplace.buyer.ordersPage.tabs.active} (${statusCounts.active})`, icon: Play, href: `/${lang}/buyer/orders?tab=active${searchQuery ? `&q=${searchQuery}` : ''}${viewMode !== 'grid' ? `&view=${viewMode}` : ''}` },
-        { value: 'completed', label: `${dict.marketplace.buyer.ordersPage.tabs.completed} (${statusCounts.completed})`, icon: CheckCircle, href: `/${lang}/buyer/orders?tab=completed${searchQuery ? `&q=${searchQuery}` : ''}${viewMode !== 'grid' ? `&view=${viewMode}` : ''}` },
-    ];
-
     return (
         <div className="space-y-6">
             {/* Header */}
@@ -124,8 +119,15 @@ export default async function BuyerOrdersPage({ params: { lang }, searchParams }
                 <ViewToggle currentView={viewMode} />
             </div>
 
-            {/* Server-side tabs using URL params */}
-            <ServerTabs tabs={tabs} activeTab={activeTab} />
+            {/* Client-side tabs wrapper */}
+            <URLTabs tabs={[
+                { value: 'all', label: dict.marketplace.buyer.ordersPage.tabs.all },
+                { value: 'pending', label: dict.marketplace.buyer.ordersPage.tabs.pending },
+                { value: 'processing', label: dict.marketplace.buyer.ordersPage.tabs.processing },
+                { value: 'shipped', label: dict.marketplace.buyer.ordersPage.tabs.shipped },
+                { value: 'delivered', label: dict.marketplace.buyer.ordersPage.tabs.delivered },
+                { value: 'cancelled', label: dict.marketplace.buyer.ordersPage.tabs.cancelled },
+            ]} defaultValue={activeTab} />
 
             {/* Orders Content */}
             {filteredOrders.length === 0 ? (
@@ -161,7 +163,7 @@ export default async function BuyerOrdersPage({ params: { lang }, searchParams }
                                                 <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
                                                     <div
                                                         className="h-full bg-gold-600 transition-all duration-300"
-                                                        style={{ width: `${getProgressPercentage(order)}%` }}
+                                                        style={{ width: `${getProgressPercentage(order)}% ` }}
                                                     />
                                                 </div>
                                             </div>
@@ -182,7 +184,7 @@ export default async function BuyerOrdersPage({ params: { lang }, searchParams }
                                             </p>
                                         </div>
 
-                                        <Link href={`/${lang}/buyer/orders/${order.id}`}>
+                                        <Link href={`/ ${lang} /buyer/orders / ${order.id} `}>
                                             <Button variant="outline" size="sm">
                                                 <Eye className="h-4 w-4 mr-2" />
                                                 {dict.marketplace.buyer.ordersPage.card.viewDetails}
@@ -195,43 +197,45 @@ export default async function BuyerOrdersPage({ params: { lang }, searchParams }
                     ))}
                 </div>
             ) : (
-                <Card>
-                    <CardContent className="p-0">
-                        <Table>
-                            <TableHeader>
-                                <TableRow>
-                                    <TableHead>{dict.marketplace.buyer.ordersPage.table.orderId}</TableHead>
-                                    <TableHead>{dict.marketplace.buyer.ordersPage.table.date}</TableHead>
-                                    <TableHead>{dict.marketplace.buyer.ordersPage.table.items}</TableHead>
-                                    <TableHead>{dict.marketplace.buyer.ordersPage.table.total}</TableHead>
-                                    <TableHead>{dict.marketplace.buyer.ordersPage.table.status}</TableHead>
-                                    <TableHead className="text-right">{dict.marketplace.buyer.ordersPage.table.actions}</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {filteredOrders.map((order) => (
-                                    <TableRow key={order.id}>
-                                        <TableCell className="font-medium">{order.id}</TableCell>
-                                        <TableCell>{order.date}</TableCell>
-                                        <TableCell>{order.items} {dict.marketplace.buyer.ordersPage.card.itemsSuffix}</TableCell>
-                                        <TableCell className="font-semibold">
-                                            ${order.total.toLocaleString()}
-                                        </TableCell>
-                                        <TableCell><StatusBadge status={order.status} dict={dict} /></TableCell>
-                                        <TableCell className="text-right">
-                                            <Link href={`/${lang}/buyer/orders/${order.id}`}>
-                                                <Button size="sm" variant="ghost">
-                                                    <Eye className="h-4 w-4 mr-2" />
-                                                    {dict.marketplace.buyer.ordersPage.card.viewDetails}
-                                                </Button>
-                                            </Link>
-                                        </TableCell>
+                <div className="border rounded-lg shadow-sm bg-card">
+                    <div>
+                        <div className="w-full overflow-x-auto max-w-[calc(100vw-3rem)]">
+                            <Table className="min-w-[600px]">
+                                <TableHeader>
+                                    <TableRow>
+                                        <TableHead className="sticky left-0 z-20 bg-card shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">{dict.marketplace.buyer.ordersPage.table.orderId}</TableHead>
+                                        <TableHead>{dict.marketplace.buyer.ordersPage.table.date}</TableHead>
+                                        <TableHead>{dict.marketplace.buyer.ordersPage.table.items}</TableHead>
+                                        <TableHead>{dict.marketplace.buyer.ordersPage.table.total}</TableHead>
+                                        <TableHead>{dict.marketplace.buyer.ordersPage.table.status}</TableHead>
+                                        <TableHead className="text-right">{dict.marketplace.buyer.ordersPage.table.actions}</TableHead>
                                     </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </CardContent>
-                </Card>
+                                </TableHeader>
+                                <TableBody>
+                                    {filteredOrders.map((order) => (
+                                        <TableRow key={order.id}>
+                                            <TableCell className="font-medium sticky left-0 z-10 bg-card shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">{order.id}</TableCell>
+                                            <TableCell>{order.date}</TableCell>
+                                            <TableCell>{order.items} {dict.marketplace.buyer.ordersPage.card.itemsSuffix}</TableCell>
+                                            <TableCell className="font-semibold">
+                                                ${order.total.toLocaleString()}
+                                            </TableCell>
+                                            <TableCell><StatusBadge status={order.status} dict={dict} /></TableCell>
+                                            <TableCell className="text-right">
+                                                <Link href={`/ ${lang} /buyer/orders / ${order.id} `}>
+                                                    <Button size="sm" variant="ghost">
+                                                        <Eye className="h-4 w-4 mr-2" />
+                                                        {dict.marketplace.buyer.ordersPage.card.viewDetails}
+                                                    </Button>
+                                                </Link>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </div>
+                    </div>
+                </div>
             )}
         </div>
     );

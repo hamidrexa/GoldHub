@@ -59,8 +59,8 @@ export const metadata: Metadata = {
     metadataBase: new URL('https://talanow.ir'),
     ...(process.env.NEXT_PUBLIC_ENVIRONMENT === 'BETA' &&
         process.env.NODE_ENV === 'production' && {
-            manifest: '/manifest.json',
-        }),
+        manifest: '/manifest.json',
+    }),
     icons: [
         {
             rel: 'apple-touch-icon',
@@ -88,23 +88,23 @@ export const metadata: Metadata = {
     appleWebApp: {
         capable: true,
         statusBarStyle: 'default',
-        title: 'طلانو',
+        title: 'GoldHub',
     },
-    applicationName: 'طلانو',
+    applicationName: 'GoldHub',
     openGraph: {
-        siteName: 'طلانو',
-        title: 'طلانو | بهترین های بازار ارز دیجیتال و بورس در یک نگاه',
+        siteName: 'GoldHub',
+        title: 'GoldHub | بهترین های بازار ارز دیجیتال و بورس در یک نگاه',
         description:
             'تحلیل سیگنال های خرید و فروش ارز دیجیتال و سهام با استفاده از هوش مصنوعی، معرفی بهترین های بازار بورس و ارز دیجیتال برای سرمایه گذاری، اطلاع رسانی لحظه ای سیگنال های خرید بیت کوین و سایر ارزهای دیجیتال',
         type: 'website',
-        images: ['https://talanow.ir/img/talanow.png'],
+        images: ['https://goldhub.com/img/goldhub.png'],
     },
     twitter: {
-        card : 'summary',
-        title: 'طلانو | بهترین های بازار ارز دیجیتال و بورس در یک نگاه',
+        card: 'summary',
+        title: 'GoldHub | بهترین های بازار ارز دیجیتال و بورس در یک نگاه',
         description:
             'تحلیل سیگنال های خرید و فروش ارز دیجیتال و سهام با استفاده از هوش مصنوعی، معرفی بهترین های بازار بورس و ارز دیجیتال برای سرمایه گذاری، اطلاع رسانی لحظه ای سیگنال های خرید بیت کوین و سایر ارزهای دیجیتال',
-        images: ['https://talanow.ir/img/talanow.png'],
+        images: ['https://goldhub.com/img/goldhub.png'],
     },
     description:
         'تحلیل سیگنال های خرید و فروش ارز دیجیتال و سهام با استفاده از هوش مصنوعی، معرفی بهترین های بازار بورس و ارز دیجیتال برای سرمایه گذاری، اطلاع رسانی لحظه ای سیگنال های خرید بیت کوین و سایر ارزهای دیجیتال',
@@ -156,11 +156,6 @@ export default async function RootLayout({
                     </Providers>
                 </GlobalContextProvider>
                 <GoogleTagManager gtmId="GTM-558BXMSS" />
-                <Script
-                    id="pushe"
-                    strategy="beforeInteractive"
-                    src="https://static.pushe.co/pusheweb.js"
-                />
                 <script
                     id="company"
                     type="application/ld+json"
@@ -169,7 +164,7 @@ export default async function RootLayout({
                             '@context': 'https://schema.org',
                             '@type': 'Organization',
                             '@id': `${websiteUrl}#identity`,
-                            alternateName: 'طلانو',
+                            alternateName: 'GoldHub',
                             email: 'info@talanow.ir',
                             image: `${websiteUrl}/img/logo.png`,
                             description:
@@ -182,20 +177,20 @@ export default async function RootLayout({
                             disambiguatingDescription:
                                 'سرمایه گذاری آسان طلا',
                             keywords: ['خرید', 'بازار', 'طلا'],
-                            legalName: 'فن‌آوری هوشمند طلانو',
+                            legalName: 'GoldHub',
                             logo: `${websiteUrl}/img/logo.png`,
                             sameAs: [
-                                'https://twitter.com/Talanowir',
-                                'https://t.me/Talanowir',
-                                'https://www.linkedin.com/company/Talanowir',
-                                'https://www.instagram.com/Talanowir',
-                                'https://Talanow.ir',
+                                // 'https://twitter.com/Talanowir',
+                                // 'https://t.me/Talanowir',
+                                // 'https://www.linkedin.com/company/Talanowir',
+                                // 'https://www.instagram.com/Talanowir',
+                                // 'https://Talanow.ir',
                             ],
                             slogan: 'سرمایه گذاری آسان طلا',
                             telephone: '02191304925',
-                            url: 'https://talanow.ir/',
-                            name: 'talanow.ir | طلانو',
-                            mainEntityOfPage: 'https://talanow.ir/',
+                            url: 'https://GoldHub.com/',
+                            name: 'GoldHub.com | GoldHub',
+                            mainEntityOfPage: 'https://GoldHub.com/',
                             address: {
                                 '@type': 'PostalAddress',
                                 streetAddress:

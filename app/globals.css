@@ -3,11 +3,13 @@
 @tailwind utilities;
 
 @layer utilities {
+
     /* Hide scrollbar for horizontal scroll containers */
     .scrollbar-hide {
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
+
     .scrollbar-hide::-webkit-scrollbar {
         display: none;
     }
@@ -43,8 +45,7 @@
         @apply mx-auto mt-5 flex w-full max-w-7xl gap-12 p-2.5 pb-20 md:px-4 md:py-10;
     }
 
-    .dark {
-    }
+    .dark {}
 
     body {
         background-color: #F5F5F0;
@@ -96,7 +97,7 @@ html {
 }
 
 .rc-slider-mark-text {
-    color: #84859C !important;
+    color: #F0A202 !important;
     white-space: nowrap !important;
 }
 
@@ -124,6 +125,7 @@ html {
     0% {
         transform: translateX(-100%);
     }
+
     100% {
         transform: translateX(100%);
     }
