@@ -7,7 +7,10 @@ import { Separator } from '@/components/ui/separator';
 import { ShoppingBag, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { CartItemControls } from './cart-item-controls';
-import { addToCart, removeFromCart, submitOrder } from '@/lib/api-client';
+import { submitOrder } from '@/lib/api-client';
+import { useCardDetails } from '@/app/[lang]/(user)/buyer/services/cart-details';
+import { addToCart } from '@/app/[lang]/(user)/buyer/services/add-to-cart';
+import { removeFromCart } from '@/app/[lang]/(user)/buyer/services/remove-from-cart';
 
 interface CartItem {
     productId: string;
@@ -32,6 +35,7 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
     const [isLoading, setIsLoading] = useState(false);
     const [isCheckingOut, setIsCheckingOut] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const {details,isLoading:cardLoading} = useCardDetails()
 
     const handleQuantityChange = async (productId: string, quantity: number) => {
         // Optimistically update UI
@@ -54,17 +58,14 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
     };
 
     const handleRemove = async (productId: string) => {
-        // Optimistically update UI
         setCartItems(items => items.filter(item => item.productId !== productId));
 
-        // Try to sync with API
         try {
             await removeFromCart({
                 product_id: parseInt(productId),
             });
         } catch (err) {
             console.error('Failed to remove item on server:', err);
-            // UI already updated, just log the error
         }
     };
 
@@ -88,7 +89,15 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
     const shipping = subtotal > 5000 ? 0 : 50;
     const total = subtotal + tax + shipping;
 
-    if (cartItems.length === 0) {
+    if (cardLoading) {
+        return (
+            <div className="col-span-full text-center py-12">
+                <p className="text-muted-foreground">Loading...</p>
+            </div>
+        );
+    }
+
+    if (details.items.length === 0) {
         return (
             <Card className="p-12">
                 <div className="text-center space-y-4">
@@ -111,16 +120,16 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
         <div className="grid lg:grid-cols-3 gap-6">
             {/* Cart Items */}
             <div className="lg:col-span-2 space-y-4">
-                {cartItems.map((item) => (
-                    <Card key={item.productId}>
+                {details.items.map((item) => (
+                    <Card key={item.product.id}>
                         <CardContent className="p-4 sm:p-6">
                             <div className="flex gap-4">
                                 {/* Product Image */}
                                 <div className="w-24 h-24 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                    {item.product.image ? (
+                                    {item.product.images ? (
                                         <img
-                                            src={item.product.image}
-                                            alt={item.product.name}
+                                            src={item.product.images[0]?.image}
+                                            alt={item.product.title}
                                             className="w-full h-full object-cover rounded-lg"
                                         />
                                     ) : (
@@ -132,9 +141,9 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
                                 <div className="flex-1 min-w-0">
                                     <div className="flex flex-col sm:flex-row sm:justify-between gap-2 sm:gap-4">
                                         <div className="flex-1">
-                                            <h3 className="font-semibold">{item.product.name}</h3>
+                                            <h3 className="font-semibold">{item.product.title}</h3>
                                             <p className="text-sm text-muted-foreground mt-1">
-                                                {item.product.specifications}
+                                                {item.product.details}
                                             </p>
                                             <p className="text-sm text-muted-foreground mt-1">
                                                 ${item.product.price.toLocaleString()} {dict.marketplace.buyer.cartPage.item.each}
@@ -144,7 +153,7 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
                                         {/* Price */}
                                         <div className="text-left sm:text-right mt-2 sm:mt-0">
                                             <p className="text-lg font-bold">
-                                                ${(item.product.price * item.quantity).toLocaleString()}
+                                                ${(item.product.price * item.count).toLocaleString()}
                                             </p>
                                         </div>
                                     </div>
@@ -152,9 +161,9 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
                                     {/* Quantity Controls */}
                                     <div className="mt-4">
                                         <CartItemControls
-                                            productId={item.productId}
-                                            initialQuantity={item.quantity}
-                                            maxStock={item.product.stock}
+                                            productId={item.product.id}
+                                            initialQuantity={item.count}
+                                            maxStock={item.product.inventory}
                                             dict={dict}
                                             onQuantityChange={handleQuantityChange}
                                             onRemove={handleRemove}
