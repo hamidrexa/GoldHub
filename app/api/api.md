@@ -31,7 +31,7 @@ Base URLs:
 
 ## POST add product
 
-POST /api/v1/gold_artifacts/product_create
+POST /v1/gold_artifacts/product_create
 
 > Body Parameters
 
@@ -79,7 +79,7 @@ inventory: 0
 
 ## PATCH update product
 
-PATCH /api/v1/gold_artifacts/product_update/{product_id}/
+PATCH /v1/gold_artifacts/product_update/{product_id}/
 
 > Body Parameters
 
@@ -126,7 +126,7 @@ inventory: 0
 
 ## POST add image to product
 
-POST /api/v1/gold_artifacts/product_add_image/{product_id}/
+POST /v1/gold_artifacts/product_add_image/{product_id}/
 
 > Body Parameters
 
@@ -161,7 +161,7 @@ images: ""
 
 ## DELETE delete image from product
 
-DELETE /api/v1/gold_artifacts/product_delete_image/{image_id}/
+DELETE /v1/gold_artifacts/product_delete_image/{image_id}/
 
 > Body Parameters
 
@@ -195,7 +195,7 @@ DELETE /api/v1/gold_artifacts/product_delete_image/{image_id}/
 
 ## GET list products
 
-GET /api/v1/gold_artifacts/products_list
+GET /v1/gold_artifacts/products_list
 
 ### Params
 
@@ -228,7 +228,7 @@ GET /api/v1/gold_artifacts/products_list
 
 ## GET cart details
 
-GET /api/v1/gold_artifacts/cart_detail
+GET /v1/gold_artifacts/cart_detail
 
 > Response Examples
 
@@ -248,7 +248,7 @@ GET /api/v1/gold_artifacts/cart_detail
 
 ## POST add product to cart
 
-POST /api/v1/gold_artifacts/add_to_cart
+POST /v1/gold_artifacts/add_to_cart
 
 > Body Parameters
 
@@ -284,7 +284,7 @@ count: 1
 
 ## POST remove product from cart
 
-POST /api/v1/gold_artifacts/remove_from_cart
+POST /v1/gold_artifacts/remove_from_cart
 
 > Body Parameters
 
@@ -318,7 +318,7 @@ product_id: 0
 
 ## POST submit order
 
-POST /api/v1/gold_artifacts/submit_order
+POST /v1/gold_artifacts/submit_order
 
 > Body Parameters
 
@@ -351,7 +351,7 @@ POST /api/v1/gold_artifacts/submit_order
 
 ## POST update order status
 
-POST /api/v1/gold_artifacts/update_order_status
+POST /v1/gold_artifacts/update_order_status
 
 > Body Parameters
 
@@ -387,7 +387,7 @@ status: ""
 
 ## GET orders history
 
-GET /api/v1/gold_artifacts/orders_history
+GET /v1/gold_artifacts/orders_history
 
 > Response Examples
 
@@ -407,7 +407,7 @@ GET /api/v1/gold_artifacts/orders_history
 
 ## GET sells history
 
-GET /api/v1/gold_artifacts/sells_history
+GET /v1/gold_artifacts/sells_history
 
 > Response Examples
 
@@ -427,7 +427,7 @@ GET /api/v1/gold_artifacts/sells_history
 
 ## POST pay order
 
-POST /api/v1/gold_artifacts/pay_order/{order_id}/
+POST /v1/gold_artifacts/pay_order/{order_id}/
 
 ### Params
 
@@ -453,7 +453,7 @@ POST /api/v1/gold_artifacts/pay_order/{order_id}/
 
 ## GET users list
 
-GET /api/v1/gold_artifacts/users_list
+GET /v1/gold_artifacts/users_list
 
 > Response Examples
 
@@ -473,7 +473,7 @@ GET /api/v1/gold_artifacts/users_list
 
 ## POST set kyc status
 
-POST /api/v1/gold_artifacts/set_KYC_status
+POST /v1/gold_artifacts/set_KYC_status
 
 > Body Parameters
 

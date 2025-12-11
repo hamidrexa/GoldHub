@@ -11,7 +11,6 @@ import {
 interface ContextProps {
     user: {
         id: number | string;
-        groups?: { id: number | string; name: string }[];
         trader: {
             id: number | string;
             primary_username: string;
@@ -42,7 +41,7 @@ interface ContextProps {
             telegram: boolean;
         };
         is_superuser: boolean;
-        role: string;
+        groups?: { id: number | string; name: string }[];
         active_plan: {
             plan: {
                 name: string;

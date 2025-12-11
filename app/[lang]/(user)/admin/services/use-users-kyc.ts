@@ -3,7 +3,7 @@ import useSWR from "swr";
 
 export function useUsersKYCData() {
     const { data, error, isLoading } = useSWR({
-        url: `/api/v1/gold_artifacts/users_data`,
+        url: `/v1/gold_artifacts/users_data`,
         params: {
             page_size : 20,
         },

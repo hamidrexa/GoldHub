@@ -1505,11 +1505,32 @@
       "profilePage": {
         "defaultUser": "Talanow Kullanıcısı",
         "editInfo": "Bilgileri Düzenle",
+
         "roles": {
           "admin": "Yönetici",
           "broker": "Komisyoncu",
-          "member": "Üye"
+          "member": "Üye",
+
+          "buyer_requested": "Alıcı (Onay Bekliyor)",
+          "buyer_approved": "Onaylı Alıcı",
+          "supplier_requested": "Tedarikçi (Onay Bekliyor)",
+          "supplier_approved": "Onaylı Tedarikçi"
         },
+        "currentRole": "Mevcut Rol",
+        "buyerPending": "Alıcı Hesabı Beklemede",
+        "buyerPendingDesc": "Alıcı hesabınız yönetici onayını bekliyor. Lütfen KYC doğrulamanızı tamamlayın.",
+        "buyerApproved": "Alıcı Hesabı Onaylandı",
+        "buyerApprovedDesc": "Alıcı hesabınız onaylandı. Artık alışveriş yapabilir ve tedarikçi olmak için başvurabilirsiniz.",
+        "becomeSupplier": "Tedarikçi Ol",
+        "becomeSupplierDesc": "Tedarikçi olmak için erişim talep edin. Yönetici ekibimiz başvurunuzu ve işletme bilgilerinizi inceleyecektir.",
+        "requesting": "İstek Gönderiliyor...",
+        "requestSupplier": "Tedarikçi Rolü Talep Et",
+        "supplierRequestPending": "Tedarikçi Başvurusu Beklemede",
+        "supplierRequestPendingDesc": "Tedarikçi olma talebiniz yönetici ekibi tarafından inceleniyor. Bu süreç birkaç iş günü sürebilir.",
+        "supplierApproved": "Tedarikçi Hesabı Onaylandı",
+        "supplierApprovedDesc": "Tedarikçi hesabınız onaylandı. Artık ürün listeleyebilir ve satışa başlayabilirsiniz.",
+        "roleRequestSent": "Tedarikçi rolü talebi başarıyla gönderildi",
+        "roleRequestError": "Tedarikçi rolü talebi gönderilemedi",
         "brokerIdLoading": "Komisyoncu Kimliği alınıyor...",
         "brokerId": "Komisyoncu Kimliği:",
         "phoneNumber": "Telefon Numarası:",
