@@ -34,7 +34,7 @@ import { emailVerification } from '@/app/[lang]/(user)/profile/services/emailVer
 import { PasswordChangeForm } from '@/app/[lang]/(user)/profile/components/change-password-form';
 import { PhoneSubmitForm } from '@/app/[lang]/(user)/profile/components/phone-submit-form';
 import { useTransactions } from '@/app/[lang]/(user)/profile/services/useTransactions';
-import { cn, currency, fetcher, roundNumber } from '@/libs/utils';
+import { cn, currency, roundNumber } from '@/libs/utils';
 import { NationalCodeVerificationForm } from './national-code-form';
 import { Box, BoxContent, BoxTitle } from '@/components/box';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -42,10 +42,8 @@ import { Icons } from '@/components/ui/icons';
 import { FinantialAccount } from './finantial-account';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
-import type { BadgeProps } from '@/components/ui/badge';
 import { CopyButton } from '@/components/copy-button';
 import { useCart } from '../services/getCart';
-import { parseUserRole, type UserBaseRole, type UserRoleStatus } from '@/libs/role-utils';
 
 dayjs.extend(utc);
 
@@ -66,31 +64,11 @@ export function ProfilePage({ dict, lang }) {
     const { data, isLoading: cartIsloding, mutate } = useCart();
     const [memberBrokerId, setMemberBrokerId] = useState<string | null>(null);
     const [isMemberBrokerLoading, setIsMemberBrokerLoading] = useState(false);
-    const [isRequestingSupplier, setIsRequestingSupplier] = useState(false);
     const userGroups = user?.groups ?? [];
     const hasAdmin = userGroups.some((g) => g?.name === 'admin');
     const hasBroker = userGroups.some((g) => g?.name === 'broker');
     const hasExplicitMember = userGroups.some((g) => g?.name === 'member');
     const hasMember = !!user && (userGroups.length === 0 || hasExplicitMember || (!hasAdmin && !hasBroker));
-    const parsedUserRole = useMemo(
-        () => parseUserRole(user?.role, user?.is_superuser),
-        [user?.role, user?.is_superuser]
-    );
-    const roleBadgeVariants: Record<UserBaseRole, BadgeProps['variant']> = {
-        buyer: 'light',
-        supplier: 'success',
-        admin: 'secondary',
-    };
-    const statusBadgeVariants: Record<UserRoleStatus, BadgeProps['variant']> = {
-        pending: 'warning',
-        approved: 'success',
-        active: 'success',
-        rejected: 'destructive',
-        unknown: 'default',
-    };
-    const canRequestSupplier =
-        parsedUserRole.baseRole !== 'supplier' &&
-        parsedUserRole.status !== 'pending';
 
     const [userTransactions, setUserTransactions] = useState(null);
     const completePercentage = useMemo(() => {
@@ -212,34 +190,6 @@ export function ProfilePage({ dict, lang }) {
         location.href = `/login`;
         googleLogout();
     };
-    const handleRequestSupplierRole = async () => {
-        if (!canRequestSupplier) return;
-        setIsRequestingSupplier(true);
-        try {
-            await fetcher({
-                url: '/api/v1/gold_artifacts/request_new_role',
-                method: 'POST',
-                body: { new_role: 'supplier' },
-            });
-            toast.success(
-                dict.marketplace.profile.profilePage.roleInfo.requestSuccess
-            );
-            setUser((prevUser) =>
-                prevUser
-                    ? {
-                        ...prevUser,
-                        role: 'supplier_requested',
-                    }
-                    : prevUser
-            );
-        } catch (error) {
-            toast.error(
-                dict.marketplace.profile.profilePage.roleInfo.requestError
-            );
-        } finally {
-            setIsRequestingSupplier(false);
-        }
-    };
 
     if (!user)
         return (
@@ -332,110 +282,44 @@ export function ProfilePage({ dict, lang }) {
                             )}
                         </div>
                     </div>
-                    <div className="mt-6 grid gap-4">
-                        <div className="rounded-2xl border border-neutral-200/70 bg-white/80 p-5 shadow-sm">
-                            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                                <div>
-                                    <p className="text-sm text-neutral-500">
-                                        {
-                                            dict.marketplace.profile.profilePage.roleInfo.currentRole
-                                        }
-                                    </p>
-                                    <div className="mt-3 flex flex-wrap items-center gap-2">
-                                        <Badge
-                                            variant={
-                                                roleBadgeVariants[
-                                                    parsedUserRole.baseRole
-                                                ]
-                                            }
-                                            size="sm"
-                                        >
-                                            {
-                                                dict.marketplace.profile.profilePage.roles[
-                                                    parsedUserRole.baseRole
-                                                ]
-                                            }
-                                        </Badge>
-                                        <Badge
-                                            variant={
-                                                statusBadgeVariants[
-                                                    parsedUserRole.status
-                                                ]
-                                            }
-                                            size="sm"
-                                        >
-                                            {
-                                                dict.marketplace.profile.profilePage.roleInfo.statusLabels[
-                                                    parsedUserRole.status
-                                                ] ?? parsedUserRole.status
-                                            }
-                                        </Badge>
-                                    </div>
-                                </div>
-                                <p className="text-sm text-neutral-600">
-                                    {
-                                        dict.marketplace.profile.profilePage.roleInfo
-                                            .description
-                                    }
-                                </p>
-                            </div>
-                            <div className="mt-4 flex flex-col gap-2 border-t border-dashed border-neutral-200 pt-4 md:flex-row md:items-center md:justify-between">
-                                <p className="text-sm text-neutral-500">
-                                    {
-                                        dict.marketplace.profile.profilePage.roleInfo
-                                            .requestHelper
-                                    }
-                                </p>
-                                <Button
-                                    variant="info"
-                                    disabled={!canRequestSupplier || isRequestingSupplier}
-                                    onClick={handleRequestSupplierRole}
-                                >
-                                    {isRequestingSupplier
-                                        ? dict.marketplace.profile.profilePage.roleInfo.requesting
-                                        : canRequestSupplier
-                                            ? dict.marketplace.profile.profilePage.roleInfo.requestSupplierCta
-                                            : dict.marketplace.profile.profilePage.roleInfo.requestDisabled}
-                                </Button>
-                            </div>
-                        </div>
-                    </div>
                     <div className="flex flex-col-reverse items-start justify-start gap-6 md:flex-row lg:mt-6 lg:w-full">
                         <div className="w-full space-y-7">
-                            <div className="space-y-2">
-                                <div className="flex items-center justify-between">
-                                    <div className="text-base">
-                                        {dict.marketplace.profile.profilePage.phoneNumber}
+                            {lang === 'fa' && (
+                                <div className="space-y-2">
+                                    <div className="flex items-center justify-between">
+                                        <div className="text-base">
+                                            {dict.marketplace.profile.profilePage.phoneNumber}
+                                        </div>
+                                        {/*// @ts-ignore*/}
+                                        <StatusBadge
+                                            dict={dict}
+                                            status={
+                                                user &&
+                                                    user.phone_number_confirmed
+                                                    ? 'confirmed'
+                                                    : 'notConfirmed'
+                                            }
+                                        />
                                     </div>
-                                    {/*// @ts-ignore*/}
-                                    <StatusBadge
-                                        dict={dict}
-                                        status={
-                                            user &&
-                                                user.phone_number_confirmed
-                                                ? 'confirmed'
-                                                : 'notConfirmed'
-                                        }
-                                    />
+                                    <div className="flex h-14 items-center justify-between rounded-md bg-gray-300/60 p-1.5 text-base font-black ltr:pl-5 rtl:pr-5">
+                                        <span>{user.phone_number}</span>
+                                        <Dialog
+                                            open={
+                                                !user?.phone_number_confirmed &&
+                                                PhoneModalOpen
+                                            }
+                                        >
+                                            <DialogContent className="h-48 max-w-xl">
+                                                <PhoneSubmitForm
+                                                    setOpen={setPhoneModalOpen}
+                                                    lang={lang}
+                                                    dict={dict}
+                                                />
+                                            </DialogContent>
+                                        </Dialog>
+                                    </div>
                                 </div>
-                                <div className="flex h-14 items-center justify-between rounded-md bg-gray-300/60 p-1.5 text-base font-black ltr:pl-5 rtl:pr-5">
-                                    <span>{user.phone_number}</span>
-                                    <Dialog
-                                        open={
-                                            !user?.phone_number_confirmed &&
-                                            PhoneModalOpen
-                                        }
-                                    >
-                                        <DialogContent className="h-48 max-w-xl">
-                                            <PhoneSubmitForm
-                                                setOpen={setPhoneModalOpen}
-                                                lang={lang}
-                                                dict={dict}
-                                            />
-                                        </DialogContent>
-                                    </Dialog>
-                                </div>
-                            </div>
+                            )}
                             <div className="space-y-2">
                                 <div className="flex items-center justify-between">
                                     <div className="text-base">
@@ -463,7 +347,9 @@ export function ProfilePage({ dict, lang }) {
                                             {user.signup_type !== 'google' && (
                                                 <Button
                                                     onClick={() => {
-                                                        setEmailDialogOpen(true);
+                                                        setEmailDialogOpen(
+                                                            true
+                                                        );
                                                     }}
                                                     variant="info"
                                                 >
@@ -521,7 +407,8 @@ export function ProfilePage({ dict, lang }) {
                                         status={
                                             user.national_code_confirmed
                                                 ? 'confirmed'
-                                                : 'notConfirmed'
+                                                :
+                                                'notConfirmed'
                                         }
                                     />
                                 </div>
@@ -537,7 +424,9 @@ export function ProfilePage({ dict, lang }) {
                                             {(!user.national_code || !user.national_code_confirmed) && (
                                                 <Button
                                                     onClick={() => {
-                                                        setNationalCodeDialogOpen(true);
+                                                        setNationalCodeDialogOpen(
+                                                            true
+                                                        );
                                                     }}
                                                     variant="info"
                                                 >
@@ -580,7 +469,9 @@ export function ProfilePage({ dict, lang }) {
                                                 <Button
                                                     variant="info"
                                                     onClick={async () => {
-                                                        setPasswordDialogOpen(true);
+                                                        setPasswordDialogOpen(
+                                                            true
+                                                        );
                                                     }}
                                                 >
                                                     {user.has_password
@@ -592,7 +483,9 @@ export function ProfilePage({ dict, lang }) {
                                                 <PasswordChangeForm
                                                     dict={dict}
                                                     lang={lang}
-                                                    setOpen={setPasswordDialogOpen}
+                                                    setOpen={
+                                                        setPasswordDialogOpen
+                                                    }
                                                 />
                                             </DialogContent>
                                         </Dialog>
@@ -600,38 +493,40 @@ export function ProfilePage({ dict, lang }) {
                                 </div>
                             )}
                             <Box className="pt-[50px]">
-                                <Box className="flex flex-row justify-between w-full ">
+                                <Box className='flex flex-row justify-between w-full '>
                                     <BoxTitle>
                                         <FileClock />
                                         {dict.marketplace.profile.profilePage.financialInfo}
                                     </BoxTitle>
-                                    {(!data[0]?.cart_number && !data[0]?.shaba_number) && (
-                                        <Dialog
-                                            open={finantialAccountOpen}
-                                            onOpenChange={setFinantialAccountOpen}
-                                        >
-                                            <DialogTrigger asChild>
-                                                <Button
-                                                    variant="info"
-                                                    onClick={async () => {
-                                                        setFinantialAccountOpen(true);
-                                                    }}
-                                                >
-                                                    {dict.marketplace.profile.profilePage.newAccount}
-                                                    <Icons.plus stroke="#fff" />
-                                                </Button>
-                                            </DialogTrigger>
-                                            <DialogContent className="max-w-xl">
-                                                <FinantialAccount
-                                                    dict={dict}
-                                                    lang={lang}
-                                                    isEdit={false}
-                                                    setOpen={setFinantialAccountOpen}
-                                                    submit={mutate}
-                                                />
-                                            </DialogContent>
-                                        </Dialog>
-                                    )}
+                                    {(!data[0]?.cart_number && !data[0]?.shaba_number) && <Dialog
+                                        open={finantialAccountOpen}
+                                        onOpenChange={setFinantialAccountOpen}
+                                    >
+                                        <DialogTrigger asChild>
+                                            <Button
+                                                variant="info"
+                                                onClick={async () => {
+                                                    setFinantialAccountOpen(
+                                                        true
+                                                    );
+                                                }}
+                                            >
+                                                {dict.marketplace.profile.profilePage.newAccount}
+                                                <Icons.plus stroke='#fff' />
+                                            </Button>
+                                        </DialogTrigger>
+                                        <DialogContent className="max-w-xl">
+                                            <FinantialAccount
+                                                dict={dict}
+                                                lang={lang}
+                                                isEdit={false}
+                                                setOpen={
+                                                    setFinantialAccountOpen
+                                                }
+                                                submit={mutate}
+                                            />
+                                        </DialogContent>
+                                    </Dialog>}
                                 </Box>
                                 <BoxContent className="max-w-none">
                                     <Table className="rounded-md border bg-white">
