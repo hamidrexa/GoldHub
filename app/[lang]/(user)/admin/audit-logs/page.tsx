@@ -91,40 +91,6 @@ export default async function AuditLogsPage({ params: { lang }, searchParams }: 
 
             {/* Server-rendered table */}
             <ActivityLogsTable searchQuery={searchQuery} eventFilter={eventFilter} dict={dict} />
-            <div className="border rounded-lg shadow-sm bg-card">
-                <div className="w-full overflow-x-auto max-w-[calc(100vw-3rem)]">
-                    <Table className="min-w-[700px]">
-                        <TableHeader>
-                            <TableRow className="hover:bg-transparent">
-                                <TableHead className="font-semibold sticky left-0 z-20 bg-card shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">{dict.marketplace.admin.auditLogsPage.table.timestamp}</TableHead>
-                                <TableHead className="font-semibold">{dict.marketplace.admin.auditLogsPage.table.user}</TableHead>
-                                <TableHead className="font-semibold">{dict.marketplace.admin.auditLogsPage.table.event}</TableHead>
-                                <TableHead className="font-semibold">{dict.marketplace.admin.auditLogsPage.table.ipAddress}</TableHead>
-                                <TableHead className="font-semibold">{dict.marketplace.admin.auditLogsPage.table.device}</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {filteredLogs.length === 0 ? (
-                                <TableRow>
-                                    <TableCell colSpan={5} className="text-center py-8 text-muted-foreground">
-                                        {dict.marketplace.admin.auditLogsPage.table.noLogs}
-                                    </TableCell>
-                                </TableRow>
-                            ) : (
-                                filteredLogs.map((log) => (
-                                    <TableRow key={log.id} className="hover:bg-gray-50">
-                                        <TableCell className="font-medium font-mono text-sm sticky left-0 z-10 bg-card shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">{log.timestamp}</TableCell>
-                                        <TableCell>{log.user}</TableCell>
-                                        <TableCell><EventBadge event={log.event} dict={dict} /></TableCell>
-                                        <TableCell className="font-mono text-sm">{log.ipAddress}</TableCell>
-                                        <TableCell className="text-sm text-muted-foreground">{log.device}</TableCell>
-                                    </TableRow>
-                                ))
-                            )}
-                        </TableBody>
-                    </Table>
-                </div>
-            </div>
 
             {/* Stats cards - fully server-rendered */}
             <div className="grid gap-4 md:grid-cols-3">
