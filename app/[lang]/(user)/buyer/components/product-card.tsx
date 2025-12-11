@@ -8,6 +8,7 @@ import { Heart, ShoppingCart, Image as ImageIcon } from 'lucide-react';
 import { Product } from '@/lib/mock-data';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { addToCart } from '@/app/[lang]/(user)/buyer/services/add-to-cart';
 
 interface ProductCardProps {
     product: any;
@@ -22,12 +23,23 @@ export default function ProductCard({ product, dict }: ProductCardProps) {
 
     const handleAddToCart = async (e: React.MouseEvent) => {
         e.preventDefault();
+        e.stopPropagation();
+
+        if (isAddingToCart) return;
         setIsAddingToCart(true);
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 500));
-        setIsAddingToCart(false);
-        // TODO: Add to cart context
+
+        try {
+            await addToCart({
+                product_id: product.id,
+                count: 1,
+            });
+        } catch (error) {
+            console.error("Add to cart failed:", error);
+        } finally {
+            setIsAddingToCart(false);
+        }
     };
+
 
     const handleToggleFavorite = (e: React.MouseEvent) => {
         e.preventDefault();

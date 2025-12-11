@@ -24,6 +24,26 @@ export const Icons = {
             </defs>
         </svg>
     ),
+    logoLight: (props: IconProps) => (
+        <img
+            src="/img/logo-light.png"
+            alt="GoldHub Logo"
+            width={45}
+            height={45}
+            // className={props.className}
+            style={{ width: props.width, height: props.height }}
+        />
+    ),
+    logoDark: (props: IconProps) => (
+        <img
+            src="/img/logo-dark.png"
+            alt="GoldHub Logo"
+            width={45}
+            height={45}
+            // className={props.className}
+            style={{ width: props.width, height: props.height }}
+        />
+    ),
     question: (props: IconProps) => (
         <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" {...props}>
             <circle cx="12" cy="12" r="10" stroke="#1C274C" stroke-width="1.5" />

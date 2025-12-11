@@ -16,6 +16,7 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
+import { KycDialog } from './kyc-dialog';
 // Define display user type for compatibility
 interface DisplayUser {
     id: string;
@@ -197,6 +198,7 @@ export default async function UsersKycPage({
             ]} defaultValue={activeTab} />
 
             <UsersKycTable
+                lang={lang}
                 dict={dict}
                 searchQuery={searchQuery}
                 activeTab={activeTab}

@@ -96,7 +96,7 @@ export function Phone({
             // @ts-ignore
             document.activeElement?.blur();
             toast.error(
-                e?.error?.params[0]||
+                e?.error?.params[0] ||
                 e?.error?.params?.detail ||
                 e?.error?.messages?.error?.[0] ||
                 e?.error?.params?.non_field_errors?.[0] ||
@@ -182,7 +182,7 @@ export function Phone({
                     </div>
                     <Google lang={lang} dict={dict} />
                     {/*<p className="px-8 text-center text-sm">*/}
-                    {/*    با ثبت‌نام در طلانو، شما{' '}*/}
+                    {/*    با ثبت‌نام در GoldHub، شما{' '}*/}
                     {/*    <Link*/}
                     {/*        href={`${getLinksLang(lang)}/privacy`}*/}
                     {/*        className="hover:text-primary underline underline-offset-4"*/}
