@@ -71,16 +71,6 @@
   "profile": "Profile",
   "navMenuItems": [
     {
-      "title": "Contract",
-      "href": "/contracts",
-      "description": ""
-    },
-    {
-      "title": "Assets",
-      "href": "/wallet",
-      "description": ""
-    },
-    {
       "title": "Terms",
       "href": "/privacy",
       "description": ""
