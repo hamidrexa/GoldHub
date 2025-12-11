@@ -42,14 +42,14 @@ interface DisplayOrder {
 function StatusBadge({ status, dict }: { status: string; dict: any }) {
     const badges: Record<string, { label: string; className: string }> = {
         // API status values
-        'Draft': { label: dict.marketplace.buyer.ordersPage.status.draft, className: 'bg-status-draft-bg text-status-draft-text hover:bg-status-draft-bg' },
-        'Submitted': { label: dict.marketplace.buyer.ordersPage.status.submitted, className: 'bg-status-shipped-bg text-status-shipped-text hover:bg-status-shipped-bg' },
-        'Confirmed': { label: dict.marketplace.buyer.ordersPage.status.confirmed, className: 'bg-status-confirmed-bg text-status-confirmed-text hover:bg-status-confirmed-bg' },
-        'Paid': { label: dict.marketplace.buyer.ordersPage.status.paid || 'Paid', className: 'bg-status-confirmed-bg text-status-confirmed-text hover:bg-status-confirmed-bg' },
-        'Shipped': { label: dict.marketplace.buyer.ordersPage.status.shipped, className: 'bg-status-shipped-bg text-status-shipped-text hover:bg-status-shipped-bg' },
-        'Delivered': { label: dict.marketplace.buyer.ordersPage.status.delivered, className: 'bg-status-delivered-bg text-status-delivered-text hover:bg-status-delivered-bg' },
-        'Rejected': { label: dict.marketplace.buyer.ordersPage.status.rejected || 'Rejected', className: 'bg-red-100 text-red-800 hover:bg-red-100' },
-        'Cancelled': { label: dict.marketplace.buyer.ordersPage.status.cancelled, className: 'bg-red-100 text-red-800 hover:bg-red-100' },
+            'Draft': { label: dict.marketplace.buyer.ordersPage.status.draft, className: 'bg-status-draft-bg text-status-draft-text hover:bg-status-draft-bg' },
+            'Submitted': { label: dict.marketplace.buyer.ordersPage.status.submitted, className: 'bg-status-shipped-bg text-status-shipped-text hover:bg-status-shipped-bg' },
+            'Confirmed': { label: dict.marketplace.buyer.ordersPage.status.confirmed, className: 'bg-status-confirmed-bg text-status-confirmed-text hover:bg-status-confirmed-bg' },
+            'Paid': { label: dict.marketplace.buyer.ordersPage.status.paid, className: 'bg-status-confirmed-bg text-status-confirmed-text hover:bg-status-confirmed-bg' },
+            'Shipped': { label: dict.marketplace.buyer.ordersPage.status.shipped, className: 'bg-status-shipped-bg text-status-shipped-text hover:bg-status-shipped-bg' },
+            'Delivered': { label: dict.marketplace.buyer.ordersPage.status.delivered, className: 'bg-status-delivered-bg text-status-delivered-text hover:bg-status-delivered-bg' },
+            'Rejected': { label: dict.marketplace.buyer.ordersPage.status.rejected, className: 'bg-red-100 text-red-800 hover:bg-red-100' },
+            'Cancelled': { label: dict.marketplace.buyer.ordersPage.status.cancelled, className: 'bg-red-100 text-red-800 hover:bg-red-100' },
         // Legacy status values
         'draft': { label: dict.marketplace.buyer.ordersPage.status.draft, className: 'bg-status-draft-bg text-status-draft-text hover:bg-status-draft-bg' },
         'submitted': { label: dict.marketplace.buyer.ordersPage.status.submitted, className: 'bg-status-shipped-bg text-status-shipped-text hover:bg-status-shipped-bg' },
@@ -62,7 +62,7 @@ function StatusBadge({ status, dict }: { status: string; dict: any }) {
         'closed': { label: dict.marketplace.buyer.ordersPage.status.closed, className: 'bg-status-draft-bg text-status-draft-text hover:bg-status-draft-bg' },
         'cancelled': { label: dict.marketplace.buyer.ordersPage.status.cancelled, className: 'bg-red-100 text-red-800 hover:bg-red-100' },
     };
-    const config = badges[status] || badges['Draft'];
+        const config = badges[status] || { label: status, className: 'bg-status-draft-bg text-status-draft-text hover:bg-status-draft-bg' };
     return <Badge variant="default" className={config.className}>{config.label}</Badge>;
 }
 
@@ -73,10 +73,10 @@ function getStatusLabel(status: string, dict: any): string {
         'Draft': dict.marketplace.buyer.ordersPage.status.draft,
         'Submitted': dict.marketplace.buyer.ordersPage.status.submitted,
         'Confirmed': dict.marketplace.buyer.ordersPage.status.confirmed,
-        'Paid': dict.marketplace.buyer.ordersPage.status.paid || 'Paid',
+            'Paid': dict.marketplace.buyer.ordersPage.status.paid,
         'Shipped': dict.marketplace.buyer.ordersPage.status.shipped,
         'Delivered': dict.marketplace.buyer.ordersPage.status.delivered,
-        'Rejected': dict.marketplace.buyer.ordersPage.status.rejected || 'Rejected',
+            'Rejected': dict.marketplace.buyer.ordersPage.status.rejected,
         'Cancelled': dict.marketplace.buyer.ordersPage.status.cancelled,
         // Legacy values
         'draft': dict.marketplace.buyer.ordersPage.status.draft,
@@ -208,11 +208,14 @@ export default async function BuyerOrdersPage({ params: { lang }, searchParams }
             {/* Client-side tabs wrapper */}
             <URLTabs tabs={[
                 { value: 'all', label: dict.marketplace.buyer.ordersPage.tabs.all },
-                { value: 'pending', label: dict.marketplace.buyer.ordersPage.tabs.pending },
-                { value: 'processing', label: dict.marketplace.buyer.ordersPage.tabs.processing },
-                { value: 'shipped', label: dict.marketplace.buyer.ordersPage.tabs.shipped },
-                { value: 'delivered', label: dict.marketplace.buyer.ordersPage.tabs.delivered },
-                { value: 'cancelled', label: dict.marketplace.buyer.ordersPage.tabs.cancelled },
+                { value: 'Draft', label: dict.marketplace.buyer.ordersPage.tabs.draft },
+                { value: 'Submitted', label: dict.marketplace.buyer.ordersPage.tabs.submitted },
+                { value: 'Confirmed', label: dict.marketplace.buyer.ordersPage.tabs.confirmed },
+                { value: 'Paid', label: dict.marketplace.buyer.ordersPage.tabs.paid },
+                { value: 'Shipped', label: dict.marketplace.buyer.ordersPage.tabs.shipped },
+                { value: 'Delivered', label: dict.marketplace.buyer.ordersPage.tabs.delivered },
+                { value: 'Rejected', label: dict.marketplace.buyer.ordersPage.tabs.rejected },
+                { value: 'Cancelled', label: dict.marketplace.buyer.ordersPage.tabs.cancelled },
             ]} defaultValue={activeTab} />
 
             {/* Orders Content */}

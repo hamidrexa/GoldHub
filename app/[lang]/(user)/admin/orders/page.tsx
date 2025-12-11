@@ -30,14 +30,14 @@ interface DisplayOrder {
 function StatusBadge({ status, dict }: { status: string; dict: any }) {
     const badges: Record<string, { label: string; className: string }> = {
         // API status values
-        'Draft': { label: dict.marketplace.admin.ordersPage.status.draft || 'Draft', className: 'bg-gray-100 text-gray-800 hover:bg-gray-100' },
-        'Submitted': { label: dict.marketplace.admin.ordersPage.status.submitted || 'Submitted', className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
-        'Confirmed': { label: dict.marketplace.admin.ordersPage.status.confirmed, className: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100' },
-        'Paid': { label: dict.marketplace.admin.ordersPage.status.paid || 'Paid', className: 'bg-green-100 text-green-800 hover:bg-green-100' },
-        'Shipped': { label: dict.marketplace.admin.ordersPage.status.shipped, className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
-        'Delivered': { label: dict.marketplace.admin.ordersPage.status.delivered || 'Delivered', className: 'bg-green-100 text-green-800 hover:bg-green-100' },
-        'Rejected': { label: dict.marketplace.admin.ordersPage.status.rejected || 'Rejected', className: 'bg-red-100 text-red-800 hover:bg-red-100' },
-        'Cancelled': { label: dict.marketplace.admin.ordersPage.status.cancelled, className: 'bg-red-100 text-red-800 hover:bg-red-100' },
+            'Draft': { label: dict.marketplace.admin.ordersPage.status.draft, className: 'bg-gray-100 text-gray-800 hover:bg-gray-100' },
+            'Submitted': { label: dict.marketplace.admin.ordersPage.status.submitted, className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
+            'Confirmed': { label: dict.marketplace.admin.ordersPage.status.confirmed, className: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100' },
+            'Paid': { label: dict.marketplace.admin.ordersPage.status.paid, className: 'bg-green-100 text-green-800 hover:bg-green-100' },
+            'Shipped': { label: dict.marketplace.admin.ordersPage.status.shipped, className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
+            'Delivered': { label: dict.marketplace.admin.ordersPage.status.delivered, className: 'bg-green-100 text-green-800 hover:bg-green-100' },
+            'Rejected': { label: dict.marketplace.admin.ordersPage.status.rejected, className: 'bg-red-100 text-red-800 hover:bg-red-100' },
+            'Cancelled': { label: dict.marketplace.admin.ordersPage.status.cancelled, className: 'bg-red-100 text-red-800 hover:bg-red-100' },
         // Legacy status values (for mock data fallback)
         'confirmed': { label: dict.marketplace.admin.ordersPage.status.confirmed, className: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100' },
         'shipped': { label: dict.marketplace.admin.ordersPage.status.shipped, className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
@@ -55,6 +55,25 @@ interface PageProps {
 }
 
 // Helper to normalize status for filtering
+// Helper to get status label for display
+function getStatusLabel(status: string, dict: any): string {
+    const labels: Record<string, string> = {
+        'Draft': dict.marketplace.admin.ordersPage.status.draft,
+        'Submitted': dict.marketplace.admin.ordersPage.status.submitted,
+        'Confirmed': dict.marketplace.admin.ordersPage.status.confirmed,
+        'Paid': dict.marketplace.admin.ordersPage.status.paid,
+        'Shipped': dict.marketplace.admin.ordersPage.status.shipped,
+        'Delivered': dict.marketplace.admin.ordersPage.status.delivered,
+        'Rejected': dict.marketplace.admin.ordersPage.status.rejected,
+        'Cancelled': dict.marketplace.admin.ordersPage.status.cancelled,
+        'confirmed': dict.marketplace.admin.ordersPage.status.confirmed,
+        'shipped': dict.marketplace.admin.ordersPage.status.shipped,
+        'pending_supplier': dict.marketplace.admin.ordersPage.status.pendingSupplier,
+        'closed': dict.marketplace.admin.ordersPage.status.closed,
+        'cancelled': dict.marketplace.admin.ordersPage.status.cancelled,
+    };
+    return labels[status] || status;
+}
 function normalizeStatus(status: string): string {
     const statusMap: Record<string, string> = {
         'Draft': 'pending',
@@ -144,9 +163,14 @@ export default async function OrdersPage({ params: { lang }, searchParams }: Pag
             {/* Client-side tabs wrapper */}
             <URLTabs tabs={[
                 { value: 'all', label: dict.marketplace.admin.ordersPage.tabs.all },
-                { value: 'pending', label: dict.marketplace.admin.ordersPage.tabs.pending },
-                { value: 'shipped', label: dict.marketplace.admin.ordersPage.tabs.shipped },
-                { value: 'delivered', label: dict.marketplace.admin.ordersPage.tabs.delivered },
+                { value: 'Draft', label: dict.marketplace.admin.ordersPage.tabs.draft },
+                { value: 'Submitted', label: dict.marketplace.admin.ordersPage.tabs.submitted },
+                { value: 'Confirmed', label: dict.marketplace.admin.ordersPage.tabs.confirmed },
+                { value: 'Paid', label: dict.marketplace.admin.ordersPage.tabs.paid },
+                { value: 'Shipped', label: dict.marketplace.admin.ordersPage.tabs.shipped },
+                { value: 'Delivered', label: dict.marketplace.admin.ordersPage.tabs.delivered },
+                { value: 'Rejected', label: dict.marketplace.admin.ordersPage.tabs.rejected },
+                { value: 'Cancelled', label: dict.marketplace.admin.ordersPage.tabs.cancelled },
             ]} defaultValue={activeTab} />
 
             {/* Server-rendered table */}

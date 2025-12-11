@@ -16,10 +16,14 @@ interface PageProps {
 // Server-side status badge component
 function StatusBadge({ status, dict }: { status: string; dict: any }) {
     const badges: Record<string, { label: string; className: string }> = {
-        pending_supplier: { label: dict.marketplace.buyer.pendingSupplier, className: 'bg-status-pending-bg text-status-pending-text' },
-        confirmed: { label: dict.marketplace.common.confirmed, className: 'bg-status-confirmed-bg text-status-confirmed-text' },
-        shipped: { label: dict.marketplace.common.shipped, className: 'bg-status-shipped-bg text-status-shipped-text' },
-        delivered: { label: dict.marketplace.common.delivered, className: 'bg-status-delivered-bg text-status-delivered-text' },
+        'Draft': { label: dict.marketplace.buyer.ordersPage.status.draft, className: 'bg-status-draft-bg text-status-draft-text' },
+        'Submitted': { label: dict.marketplace.buyer.ordersPage.status.submitted, className: 'bg-status-shipped-bg text-status-shipped-text' },
+        'Confirmed': { label: dict.marketplace.buyer.ordersPage.status.confirmed, className: 'bg-status-confirmed-bg text-status-confirmed-text' },
+        'Paid': { label: dict.marketplace.buyer.ordersPage.status.paid, className: 'bg-status-confirmed-bg text-status-confirmed-text' },
+        'Shipped': { label: dict.marketplace.buyer.ordersPage.status.shipped, className: 'bg-status-shipped-bg text-status-shipped-text' },
+        'Delivered': { label: dict.marketplace.buyer.ordersPage.status.delivered, className: 'bg-status-delivered-bg text-status-delivered-text' },
+        'Rejected': { label: dict.marketplace.buyer.ordersPage.status.rejected, className: 'bg-red-100 text-red-800' },
+        'Cancelled': { label: dict.marketplace.buyer.ordersPage.status.cancelled, className: 'bg-red-100 text-red-800' },
     };
     const config = badges[status] || { label: status, className: 'bg-gray-100 text-gray-800' };
     return <Badge className={config.className}>{config.label}</Badge>;
