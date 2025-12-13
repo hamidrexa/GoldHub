@@ -28,7 +28,6 @@ export function OrderSection({dict,lang,activeTab,searchQuery,viewMode}) {
         }
         return result;
     }, [history, activeTab, searchQuery]);
-    console.log(filteredHistory);
 
     function StatusBadge({ status, dict }: { status: string; dict: any }) {
         const badges: Record<string, { label: string; className: string }> = {
