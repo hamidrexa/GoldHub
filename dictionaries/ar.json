@@ -767,6 +767,25 @@
   "increase": "يزيد",
   "retry": "يرجى المحاولة مرة أخرى",
   "marketplace": {
+    "navigation": {
+      "dashboard": "لوحة التحكم",
+      "home": "الرئيسية",
+      "products": "المنتجات",
+      "catalog": "الكاتالوج",
+      "orders": "الطلبات",
+      "cart": "عربة التسوق",
+      "favorites": "المفضلة",
+      "pricing": "التسعير",
+      "users": "المستخدمون",
+      "usersKyc": "المستخدمون و KYC",
+      "logs": "السجلات",
+      "auditLogs": "سجلات التدقيق",
+      "allOrders": "جميع الطلبات",
+      "myProducts": "منتجاتي",
+      "myOrders": "طلباتي",
+      "profile": "الملف الشخصي",
+      "logout": "تسجيل الخروج"
+    },
     "common": {
       "dashboard": "لوحة التحكم",
       "viewAll": "عرض الكل",

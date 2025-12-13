@@ -78,25 +78,25 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
     const adminItems = [
         {
             key: 'dashboard',
-            title: 'Dashboard',
+            title: dict.marketplace?.navigation?.dashboard || 'Dashboard',
             icon: <Icons.home />,
             href: `/${lang}/admin/dashboard`
         },
         {
             key: 'users',
-            title: 'Users',
+            title: dict.marketplace?.navigation?.usersKyc || 'Users & KYC',
             icon: <Icons.category />,
             href: `/${lang}/admin/users-kyc`
         },
         {
             key: 'orders',
-            title: 'Orders',
+            title: dict.marketplace?.navigation?.allOrders || 'Orders',
             icon: <Icons.fire />,
             href: `/${lang}/admin/orders`
         },
         {
             key: 'logs',
-            title: 'Logs',
+            title: dict.marketplace?.navigation?.auditLogs || 'Audit Logs',
             icon: <Icons.graph />,
             href: `/${lang}/admin/audit-logs`
         }
@@ -106,25 +106,25 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
     const supplierItems = [
         {
             key: 'dashboard',
-            title: 'Dashboard',
+            title: dict.marketplace?.navigation?.dashboard || 'Dashboard',
             icon: <Icons.home />,
             href: `/${lang}/supplier/dashboard`
         },
         {
             key: 'products',
-            title: 'Products',
+            title: dict.marketplace?.navigation?.myProducts || 'Products',
             icon: <Icons.category />,
             href: `/${lang}/supplier/products`
         },
         {
             key: 'pricing',
-            title: 'Pricing',
+            title: dict.marketplace?.navigation?.pricing || 'Pricing',
             icon: <Icons.graph />,
             href: `/${lang}/supplier/pricing`
         },
         {
             key: 'orders',
-            title: 'Orders',
+            title: dict.marketplace?.navigation?.orders || 'Orders',
             icon: <Icons.fire />,
             href: `/${lang}/supplier/orders`
         }
@@ -134,25 +134,25 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
     const buyerItems = [
         {
             key: 'dashboard',
-            title: 'Dashboard',
+            title: dict.marketplace?.navigation?.dashboard || 'Dashboard',
             icon: <Icons.home />,
             href: `/${lang}/buyer`
         },
         {
             key: 'catalog',
-            title: 'Catalog',
+            title: dict.marketplace?.navigation?.catalog || 'Catalog',
             icon: <Icons.category />,
             href: `/${lang}/buyer/catalog`
         },
         {
             key: 'orders',
-            title: 'Orders',
+            title: dict.marketplace?.navigation?.myOrders || 'Orders',
             icon: <Icons.fire />,
             href: `/${lang}/buyer/orders`
         },
         {
             key: 'cart',
-            title: 'Cart',
+            title: dict.marketplace?.navigation?.cart || 'Cart',
             icon: <Icons.graph />,
             href: `/${lang}/buyer/cart`
         }
@@ -162,26 +162,20 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
     const defaultItems = [
         {
             key: 'home',
-            title: 'خانه',
+            title: dict.marketplace?.navigation?.home || 'Home',
             icon: <Icons.home />,
             href: '/app'
         },
         {
-            key: 'contracts',
-            title: 'قرارداد',
+            key: 'products',
+            title: dict.marketplace?.navigation?.products || 'Products',
             icon: <Icons.fire />,
-            href: '/contracts'
+            href: '/Products'
         },
         {
-            key: 'wallet',
-            title: 'دارایی',
-            icon: <Icons.graph />,
-            href: '/wallet'
-        },
-        {
-            key: 'role',
-            title: roleTitle,
-            icon: <Icons.category />,
+            key: 'profile',
+            title: dict.marketplace?.navigation?.profile || 'Profile',
+            icon: <Icons.users />,
             href: roleHref
         }
     ];

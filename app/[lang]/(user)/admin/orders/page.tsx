@@ -29,7 +29,7 @@ export async function generateMetadata(
 }
 import { Badge } from '@/components/ui/badge';
 import { Eye, CheckCircle, XCircle } from 'lucide-react';
-import { getOrdersHistory, ApiOrderStatus, mapApiOrderToUi } from '@/lib/api-client';
+import { getOrdersHistory } from '@/lib/api-client';
 import { mockOrders, Order } from '@/lib/mock-data';
 import {
     Table,

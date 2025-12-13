@@ -38,25 +38,25 @@ export function Sidebar({ dict, lang }: SidebarProps) {
 
     const adminNavItems = [
         {
-            title: 'Dashboard',
+            title: dict.marketplace?.navigation?.dashboard || 'Dashboard',
             href: `${getLinksLang(lang)}/admin`,
             icon: <Home className="h-5 w-5" />,
             show: true,
         },
         {
-            title: 'Users & KYC',
+            title: dict.marketplace?.navigation?.usersKyc || 'Users & KYC',
             href: `${getLinksLang(lang)}/admin/users-kyc`,
             icon: <User className="h-5 w-5" />,
             show: true,
         },
         {
-            title: 'Audit Logs',
+            title: dict.marketplace?.navigation?.auditLogs || 'Audit Logs',
             href: `${getLinksLang(lang)}/admin/audit-logs`,
             icon: <FileText className="h-5 w-5" />,
             show: true,
         },
         {
-            title: 'All Orders',
+            title: dict.marketplace?.navigation?.allOrders || 'All Orders',
             href: `${getLinksLang(lang)}/admin/orders`,
             icon: <FileText className="h-5 w-5" />,
             show: true,
@@ -65,25 +65,25 @@ export function Sidebar({ dict, lang }: SidebarProps) {
 
     const supplierNavItems = [
         {
-            title: 'Dashboard',
+            title: dict.marketplace?.navigation?.dashboard || 'Dashboard',
             href: `${getLinksLang(lang)}/supplier/dashboard`,
             icon: <BarChart3 className="h-5 w-5" />,
             show: true,
         },
         {
-            title: 'My Products',
+            title: dict.marketplace?.navigation?.myProducts || 'My Products',
             href: `${getLinksLang(lang)}/supplier/products`,
             icon: <Package className="h-5 w-5" />,
             show: true,
         },
         {
-            title: 'Pricing',
+            title: dict.marketplace?.navigation?.pricing || 'Pricing',
             href: `${getLinksLang(lang)}/supplier/pricing`,
             icon: <DollarSign className="h-5 w-5" />,
             show: true,
         },
         {
-            title: 'Orders',
+            title: dict.marketplace?.navigation?.orders || 'Orders',
             href: `${getLinksLang(lang)}/supplier/orders`,
             icon: <ShoppingBag className="h-5 w-5" />,
             show: true,
@@ -92,31 +92,31 @@ export function Sidebar({ dict, lang }: SidebarProps) {
 
     const buyerNavItems = [
         {
-            title: 'Dashboard',
+            title: dict.marketplace?.navigation?.dashboard || 'Dashboard',
             href: `${getLinksLang(lang)}/buyer`,
             icon: <Home className="h-5 w-5" />,
             show: true,
         },
         {
-            title: 'Catalog',
+            title: dict.marketplace?.navigation?.catalog || 'Catalog',
             href: `${getLinksLang(lang)}/buyer/catalog`,
             icon: <Store className="h-5 w-5" />,
             show: true,
         },
         {
-            title: 'My Orders',
+            title: dict.marketplace?.navigation?.myOrders || 'My Orders',
             href: `${getLinksLang(lang)}/buyer/orders`,
             icon: <ShoppingBag className="h-5 w-5" />,
             show: true,
         },
         {
-            title: 'Cart',
+            title: dict.marketplace?.navigation?.cart || 'Cart',
             href: `${getLinksLang(lang)}/buyer/cart`,
             icon: <ShoppingCart className="h-5 w-5" />,
             show: true,
         },
         {
-            title: 'Favorites',
+            title: dict.marketplace?.navigation?.favorites || 'Favorites',
             href: `${getLinksLang(lang)}/buyer/favorites`,
             icon: <Heart className="h-5 w-5" />,
             show: true,
@@ -189,7 +189,7 @@ export function Sidebar({ dict, lang }: SidebarProps) {
                             className="w-full flex items-center justify-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-gray-400 hover:text-white hover:bg-gray-800 transition-all duration-200"
                         >
                             <LogOut className="h-5 w-5" />
-                            Logout
+                            {dict.marketplace?.navigation?.logout || 'Logout'}
                         </button>
                     </div>
                 ) : (

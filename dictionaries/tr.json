@@ -767,6 +767,25 @@
   "increase": "Increase",
   "retry": "Please try again",
   "marketplace": {
+    "navigation": {
+      "dashboard": "Panel",
+      "home": "Ana Sayfa",
+      "products": "Ürünler",
+      "catalog": "Katalog",
+      "orders": "Siparişler",
+      "cart": "Sepet",
+      "favorites": "Favoriler",
+      "pricing": "Fiyatlandırma",
+      "users": "Kullanıcılar",
+      "usersKyc": "Kullanıcılar ve KYC",
+      "logs": "Loglar",
+      "auditLogs": "Denetim Logları",
+      "allOrders": "Tüm Siparişler",
+      "myProducts": "Ürünlerim",
+      "myOrders": "Siparişlerim",
+      "profile": "Profil",
+      "logout": "Çıkış"
+    },
     "common": {
       "dashboard": "Kontrol Paneli",
       "viewAll": "Tümünü Gör",

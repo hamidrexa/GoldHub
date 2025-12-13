@@ -29,7 +29,7 @@ export async function generateMetadata(
 }
 import { Badge } from '@/components/ui/badge';
 import { Eye } from 'lucide-react';
-import { getUsersList, mapApiUserToUi } from '@/lib/api-client';
+import { getUsersList } from '@/lib/api-client';
 import { mockUsers, User } from '@/lib/mock-data';
 import Link from 'next/link';
 import { URLTabs } from '@/components/ui/url-tabs';

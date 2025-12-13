@@ -821,6 +821,25 @@
     "add": "افزودن"
   },
   "marketplace": {
+    "navigation": {
+      "dashboard": "داشبورد",
+      "home": "خانه",
+      "products": "محصولات",
+      "catalog": "کاتالوگ",
+      "orders": "سفارشات",
+      "cart": "سبد خرید",
+      "favorites": "علاقه‌مندی‌ها",
+      "pricing": "قیمت‌گذاری",
+      "users": "کاربران",
+      "usersKyc": "کاربران و KYC",
+      "logs": "لاگ‌ها",
+      "auditLogs": "لاگ‌های حسابرسی",
+      "allOrders": "همه سفارشات",
+      "myProducts": "محصولات من",
+      "myOrders": "سفارشات من",
+      "profile": "پروفایل",
+      "logout": "خروج"
+    },
     "common": {
       "dashboard": "داشبورد",
       "viewAll": "مشاهده همه",
