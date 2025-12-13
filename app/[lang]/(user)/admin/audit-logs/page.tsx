@@ -16,10 +16,10 @@ export async function generateMetadata(
     const seoDescription = dict.marketplace.admin.auditLogsPage.description || 'Review and monitor all system and user activities.';
 
     return {
-        title: `${seoTitle} | GoldHub`,
+        title: `${seoTitle}`,
         description: seoDescription,
         openGraph: {
-            title: `${seoTitle} | GoldHub`,
+            title: `${seoTitle}`,
             description: seoDescription,
         },
         alternates: {

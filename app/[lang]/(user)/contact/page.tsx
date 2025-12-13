@@ -20,14 +20,14 @@ export async function generateMetadata(
     parent?: ResolvingMetadata
 ): Promise<Metadata> {
     const dict = await getDictionary(lang);
-    const seoTitle = dict.contactUs || 'Contact Us';
+    const seoTitle = dict.contactUs;
     const seoDescription = `Get in touch with GoldHub for any inquiries. Find our contact details, including address, phone, and email.`;
 
     return {
-        title: `${seoTitle} | GoldHub`,
+        title: `${seoTitle}`,
         description: seoDescription,
         openGraph: {
-            title: `${seoTitle} | GoldHub`,
+            title: `${seoTitle}`,
             description: seoDescription,
         },
         alternates: {

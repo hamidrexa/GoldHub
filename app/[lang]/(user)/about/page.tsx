@@ -19,10 +19,10 @@ export async function generateMetadata(
         'Learn more about GoldHub, our mission, values, and the team dedicated to bridging the gap between traditional craftsmanship and modern digital commerce.';
 
     return {
-        title: `${seoTitle} | GoldHub`,
+        title: `${seoTitle}`,
         description: seoDescription,
         openGraph: {
-            title: `${seoTitle} | GoldHub`,
+            title: `${seoTitle}`,
             description: seoDescription,
         },
         alternates: {

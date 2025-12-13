@@ -11,10 +11,10 @@ export async function generateMetadata(
     const seoDescription = 'Review items in your GoldHub shopping cart and proceed to checkout.';
 
     return {
-        title: `${seoTitle} | GoldHub`,
+        title: `${seoTitle}`,
         description: seoDescription,
         openGraph: {
-            title: `${seoTitle} | GoldHub`,
+            title: `${seoTitle}`,
             description: seoDescription,
         },
         alternates: {

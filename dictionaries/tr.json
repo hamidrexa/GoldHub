@@ -1,5 +1,5 @@
 {
-  "sahmeto": "GoldHub",
+  "appName": "GoldHub",
   "tel": "telegram",
   "linkedin": "linkedin",
   "instagram": "instagram",
@@ -1505,12 +1505,10 @@
       "profilePage": {
         "defaultUser": "Talanow Kullanıcısı",
         "editInfo": "Bilgileri Düzenle",
-
         "roles": {
           "admin": "Yönetici",
           "broker": "Komisyoncu",
           "member": "Üye",
-
           "buyer_requested": "Alıcı (Onay Bekliyor)",
           "buyer_approved": "Onaylı Alıcı",
           "supplier_requested": "Tedarikçi (Onay Bekliyor)",
@@ -1658,6 +1656,73 @@
         "title": "Haklarınız",
         "content": "Kişisel bilgilerinize erişme, bunları düzeltme veya silme hakkına sahipsiniz. Bu hakları kullanmak için destek ekibimizle iletişime geçin."
       }
+    }
+  },
+  "homepage": {
+    "hero": {
+      "tagline": "Güvenilir Toptan Altın Ticareti",
+      "title": "Altın ve Altın Ürünleri Sipariş Etmenin Akıllı Yolu",
+      "description": "Doğrulanmış tedarikçilerden toptan altın ve altın ürünleri sipariş edin. Şeffaf fiyatlandırma ve güvenli işlemler.",
+      "ctaPrimary": "Toptan Sipariş Oluştur",
+      "ctaSecondary": "Daha Fazla Bilgi",
+      "trust": {
+        "license": "Resmi Birlik Lisansı",
+        "users": "+10.000 Aktif Tüccar"
+      }
+    },
+    "liveTicker": {
+      "gold18": "18 Ayar Altın",
+      "coin": "Altın Sikke",
+      "dollar": "Dolar"
+    },
+    "features": {
+      "title": "Neden GoldHub?",
+      "subtitle": "Toptan altın ticaretini hızlı ve şeffaf hale getiriyoruz.",
+      "items": {
+        "noFees": {
+          "title": "Şeffaf Ücretler",
+          "description": "Tüm ücretler önceden bellidir, gizli maliyet yoktur."
+        },
+        "microSavings": {
+          "title": "Esnek Sipariş Miktarları",
+          "description": "İhtiyacınıza göre miligram hassasiyetinde altın siparişi verebilirsiniz."
+        },
+        "secure": {
+          "title": "Güvenli ve Yasal",
+          "description": "Tüm işlemler yasal olup yüksek güvenlik standartlarıyla korunur."
+        }
+      }
+    },
+    "faq": {
+      "title": "Sıkça Sorulan Sorular",
+      "subtitle": "Merak edilen soruların cevapları",
+      "items": {
+        "whatIs": {
+          "q": "GoldHub nedir?",
+          "a": "GoldHub, perakendeciler ile doğrulanmış tedarikçileri buluşturan bir B2B toptan altın ticaret platformudur."
+        },
+        "fees": {
+          "q": "İşlem ücretleri nelerdir?",
+          "a": "Tüm işlem ücretleri sipariş onayından önce açıkça gösterilir."
+        },
+        "pricing": {
+          "q": "Altın fiyatları nasıl belirlenir?",
+          "a": "Fiyatlar gerçek piyasa işlemlerine ve yüksek hacimli ticaret verilerine dayanır."
+        },
+        "attributes": {
+          "q": "Eritilmiş altının özellikleri nelerdir?",
+          "a": "Eritilmiş altın, kuyumculuk ve toptan ticarette hammadde olarak kullanılır."
+        },
+        "karat": {
+          "q": "18 ayar altın ne anlama gelir?",
+          "a": "18 ayar altın %75 saf altın içerir ve ticari kullanım için uygundur."
+        }
+      }
+    },
+    "cta": {
+      "title": "Hemen Ticarete Başlayın",
+      "description": "Bir dakikadan kısa sürede kayıt olun ve tedarikçilere erişin.",
+      "button": "Ücretsiz Kayıt"
     }
   }
 }

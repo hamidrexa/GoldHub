@@ -16,10 +16,10 @@ export async function generateMetadata(
     const seoDescription = dict.marketplace.buyer.browseDescription || 'Access your buyer dashboard on GoldHub.';
 
     return {
-        title: `${seoTitle} | GoldHub`,
+        title: `${seoTitle}`,
         description: seoDescription,
         openGraph: {
-            title: `${seoTitle} | GoldHub`,
+            title: `${seoTitle}`,
             description: seoDescription,
         },
         alternates: {

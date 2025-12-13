@@ -19,10 +19,10 @@ export async function generateMetadata(
         'Read the GoldHub privacy policy to understand how we collect, use, and protect your personal information.';
 
     return {
-        title: `${seoTitle} | GoldHub`,
+        title: `${seoTitle}`,
         description: seoDescription,
         openGraph: {
-            title: `${seoTitle} | GoldHub`,
+            title: `${seoTitle}`,
             description: seoDescription,
         },
         alternates: {

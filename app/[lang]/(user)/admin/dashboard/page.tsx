@@ -20,10 +20,10 @@ export async function generateMetadata(
     const seoDescription = dict.marketplace.admin.welcomeMessage || 'Monitor key metrics, review recent activities, and manage your GoldHub marketplace.';
 
     return {
-        title: `${seoTitle} | GoldHub`,
+        title: `${seoTitle}`,
         description: seoDescription,
         openGraph: {
-            title: `${seoTitle} | GoldHub`,
+            title: `${seoTitle}`,
             description: seoDescription,
         },
         alternates: {

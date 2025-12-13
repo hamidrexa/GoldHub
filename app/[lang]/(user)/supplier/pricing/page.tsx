@@ -11,10 +11,10 @@ export async function generateMetadata(
     const seoDescription = dict.marketplace.supplier.pricingPage.description || 'Manage your product pricing based on live gold spot prices on GoldHub.';
 
     return {
-        title: `${seoTitle} | GoldHub`,
+        title: `${seoTitle}`,
         description: seoDescription,
         openGraph: {
-            title: `${seoTitle} | GoldHub`,
+            title: `${seoTitle}`,
             description: seoDescription,
         },
         alternates: {

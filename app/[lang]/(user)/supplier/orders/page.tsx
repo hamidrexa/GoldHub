@@ -11,10 +11,10 @@ export async function generateMetadata(
     const seoDescription = dict.marketplace.supplier.ordersPage.description || 'View and manage your incoming orders on GoldHub.';
 
     return {
-        title: `${seoTitle} | GoldHub`,
+        title: `${seoTitle}`,
         description: seoDescription,
         openGraph: {
-            title: `${seoTitle} | GoldHub`,
+            title: `${seoTitle}`,
             description: seoDescription,
         },
         alternates: {

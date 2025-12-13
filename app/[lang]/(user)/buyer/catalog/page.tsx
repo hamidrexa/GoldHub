@@ -11,10 +11,10 @@ export async function generateMetadata(
     const seoDescription = dict.marketplace.buyer.catalogPage.description || 'Browse our extensive catalog of fine jewelry and gold products.';
 
     return {
-        title: `${seoTitle} | GoldHub`,
+        title: `${seoTitle}`,
         description: seoDescription,
         openGraph: {
-            title: `${seoTitle} | GoldHub`,
+            title: `${seoTitle}`,
             description: seoDescription,
         },
         alternates: {

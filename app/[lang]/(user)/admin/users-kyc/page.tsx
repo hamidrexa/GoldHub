@@ -16,10 +16,10 @@ export async function generateMetadata(
     const seoDescription = dict.marketplace.admin.usersKycPage.description || 'Review and manage user KYC submissions to ensure compliance and security.';
 
     return {
-        title: `${seoTitle} | GoldHub`,
+        title: `${seoTitle}`,
         description: seoDescription,
         openGraph: {
-            title: `${seoTitle} | GoldHub`,
+            title: `${seoTitle}`,
             description: seoDescription,
         },
         alternates: {

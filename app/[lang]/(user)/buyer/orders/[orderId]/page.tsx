@@ -17,10 +17,10 @@ export async function generateMetadata(
         : dict.marketplace.buyer.orderDetailPage.notFound.description;
 
     return {
-        title: `${seoTitle} | GoldHub`,
+        title: `${seoTitle}`,
         description: seoDescription,
         openGraph: {
-            title: `${seoTitle} | GoldHub`,
+            title: `${seoTitle}`,
             description: seoDescription,
         },
         alternates: {

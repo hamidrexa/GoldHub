@@ -20,15 +20,14 @@ export async function generateMetadata(
     const seoTitle = isSuccess
         ? dict.transactionStatus.success
         : dict.transactionStatus.cancel;
-    const seoDescription = `View the receipt for your transaction on GoldHub. Status: ${
-        isSuccess ? 'Successful' : 'Failed'
-    }.`;
+    const seoDescription = `View the receipt for your transaction on GoldHub. Status: ${isSuccess ? 'Successful' : 'Failed'
+        }.`;
 
     return {
-        title: `${seoTitle} | GoldHub`,
+        title: `${seoTitle}`,
         description: seoDescription,
         openGraph: {
-            title: `${seoTitle} | GoldHub`,
+            title: `${seoTitle}`,
             description: seoDescription,
         },
         alternates: {
@@ -61,8 +60,8 @@ export default function ReceiptPage({ params: { planId, lang } }: PageProps) {
                 <h1 className="text-2xl font-bold">
                     {isSuccess
                         ? parseInt(planId) === 43 ||
-                          parseInt(planId) === 44 ||
-                          parseInt(planId) === 76
+                            parseInt(planId) === 44 ||
+                            parseInt(planId) === 76
                             ? 'تراکنش با موفقیت انجام شد، تا دقایقی دیگر سفارش شما تکمیل می شود.'
                             : `طی ۲۴ساعت، طرح ${PlanType[planId]} شما فعال می شود`
                         : 'پرداخت شما ناموفق بود.'}

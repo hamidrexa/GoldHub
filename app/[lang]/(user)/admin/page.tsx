@@ -12,10 +12,10 @@ export async function generateMetadata({ params: { lang } }: Props, parent?: Res
     const seoTitle = dict.marketplace.admin.title || 'Admin';
     const seoDescription = dict.marketplace.admin.description || 'Admin section for GoldHub marketplace.';
     return {
-        title: `${seoTitle} | GoldHub`,
+        title: `${seoTitle}`,
         description: seoDescription,
         openGraph: {
-            title: `${seoTitle} | GoldHub`,
+            title: `${seoTitle}`,
             description: seoDescription,
         },
         alternates: {

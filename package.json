@@ -1,6 +1,6 @@
 {
-  "name": "tala",
-  "version": "1.0.0",
+  "name": "goldhub",
+  "version": "0.10.0",
   "private": true,
   "engines": {
     "node": "^20.9.0"

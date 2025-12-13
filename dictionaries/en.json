@@ -1,9 +1,9 @@
 {
+  "appName": "GoldHub",
   "tel": "Telegram",
   "linkedin": "LinkedIn",
   "instagram": "Instagram",
   "twitter": "Twitter",
-  "sahmeto": "GoldHub",
   "contactPageTitleSeo": "Contact Us | GoldHub",
   "location": "Address",
   "title": "GoldHub",
@@ -63,6 +63,16 @@
   "more": "More",
   "loginRegister": "Login/Register",
   "navMenuItems": [
+    {
+      "title": "Platform",
+      "href": "/app",
+      "description": ""
+    },
+    {
+      "title": "Product",
+      "href": "/buyer/catalog",
+      "description": ""
+    },
     {
       "title": "Terms",
       "href": "/privacy",
@@ -1699,6 +1709,73 @@
         "title": "Your Rights",
         "content": "You have the right to access, correct, or delete your personal information. Contact our support team to exercise these rights."
       }
+    }
+  },
+  "homepage": {
+    "hero": {
+      "tagline": "Trusted Wholesale Gold Trading",
+      "title": "The Smart Way to Order Gold & Gold Artifacts",
+      "description": "Place wholesale orders for gold and gold artifacts directly from verified suppliers. Transparent pricing, secure transactions, and fast order management.",
+      "ctaPrimary": "Create Wholesale Order",
+      "ctaSecondary": "More Info",
+      "trust": {
+        "license": "Official Union License",
+        "users": "+10,000 Active Traders"
+      }
+    },
+    "liveTicker": {
+      "gold18": "18k Gold",
+      "coin": "Gold Coin",
+      "dollar": "Dollar"
+    },
+    "features": {
+      "title": "Why GoldHub?",
+      "subtitle": "We simplify wholesale gold trading with transparent pricing and fast operations.",
+      "items": {
+        "noFees": {
+          "title": "Transparent Fees",
+          "description": "All fees are clearly defined with no hidden costs. Designed for fair and efficient gold trade."
+        },
+        "microSavings": {
+          "title": "Flexible Order Quantities",
+          "description": "Order gold in precise weights, down to milligram-level accuracy, based on your business needs."
+        },
+        "secure": {
+          "title": "Secure & Regulated",
+          "description": "All trades are legal, supervised, and protected with industry-grade security standards."
+        }
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Answers to common questions",
+      "items": {
+        "whatIs": {
+          "q": "What is GoldHub?",
+          "a": "GoldHub is a B2B platform for wholesale gold trading, connecting retailers with verified suppliers to place and manage gold and gold artifact orders."
+        },
+        "fees": {
+          "q": "What are the trading fees on GoldHub?",
+          "a": "GoldHub charges a transparent transaction fee applied to wholesale gold trades. All fees are visible before order confirmation."
+        },
+        "pricing": {
+          "q": "How are gold prices determined on GoldHub?",
+          "a": "Prices are based on real market transactions and high-volume trading data from the Tehran Grand Bazaar."
+        },
+        "attributes": {
+          "q": "What are the characteristics of melted gold?",
+          "a": "Melted gold is refined from bars, scrap, or second-hand gold and graded by purity. It is widely used as a raw material in jewelry manufacturing and wholesale trade."
+        },
+        "karat": {
+          "q": "What does 18k gold mean?",
+          "a": "18k gold contains 75% pure gold and 25% alloy metals, offering durability and suitability for commercial gold trading."
+        }
+      }
+    },
+    "cta": {
+      "title": "Start Trading Today",
+      "description": "Registration takes less than one minute. Access verified suppliers and manage wholesale gold orders with ease.",
+      "button": "Free Registration"
     }
   }
 }

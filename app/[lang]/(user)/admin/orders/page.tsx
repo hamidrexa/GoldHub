@@ -16,10 +16,10 @@ export async function generateMetadata(
     const seoDescription = dict.marketplace.admin.ordersPage.description || 'View, track, and manage all customer orders in the GoldHub marketplace.';
 
     return {
-        title: `${seoTitle} | GoldHub`,
+        title: `${seoTitle}`,
         description: seoDescription,
         openGraph: {
-            title: `${seoTitle} | GoldHub`,
+            title: `${seoTitle}`,
             description: seoDescription,
         },
         alternates: {
@@ -57,14 +57,14 @@ interface DisplayOrder {
 function StatusBadge({ status, dict }: { status: string; dict: any }) {
     const badges: Record<string, { label: string; className: string }> = {
         // API status values
-            'Draft': { label: dict.marketplace.admin.ordersPage.status.draft, className: 'bg-gray-100 text-gray-800 hover:bg-gray-100' },
-            'Submitted': { label: dict.marketplace.admin.ordersPage.status.submitted, className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
-            'Confirmed': { label: dict.marketplace.admin.ordersPage.status.confirmed, className: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100' },
-            'Paid': { label: dict.marketplace.admin.ordersPage.status.paid, className: 'bg-green-100 text-green-800 hover:bg-green-100' },
-            'Shipped': { label: dict.marketplace.admin.ordersPage.status.shipped, className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
-            'Delivered': { label: dict.marketplace.admin.ordersPage.status.delivered, className: 'bg-green-100 text-green-800 hover:bg-green-100' },
-            'Rejected': { label: dict.marketplace.admin.ordersPage.status.rejected, className: 'bg-red-100 text-red-800 hover:bg-red-100' },
-            'Cancelled': { label: dict.marketplace.admin.ordersPage.status.cancelled, className: 'bg-red-100 text-red-800 hover:bg-red-100' },
+        'Draft': { label: dict.marketplace.admin.ordersPage.status.draft, className: 'bg-gray-100 text-gray-800 hover:bg-gray-100' },
+        'Submitted': { label: dict.marketplace.admin.ordersPage.status.submitted, className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
+        'Confirmed': { label: dict.marketplace.admin.ordersPage.status.confirmed, className: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100' },
+        'Paid': { label: dict.marketplace.admin.ordersPage.status.paid, className: 'bg-green-100 text-green-800 hover:bg-green-100' },
+        'Shipped': { label: dict.marketplace.admin.ordersPage.status.shipped, className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
+        'Delivered': { label: dict.marketplace.admin.ordersPage.status.delivered, className: 'bg-green-100 text-green-800 hover:bg-green-100' },
+        'Rejected': { label: dict.marketplace.admin.ordersPage.status.rejected, className: 'bg-red-100 text-red-800 hover:bg-red-100' },
+        'Cancelled': { label: dict.marketplace.admin.ordersPage.status.cancelled, className: 'bg-red-100 text-red-800 hover:bg-red-100' },
         // Legacy status values (for mock data fallback)
         'confirmed': { label: dict.marketplace.admin.ordersPage.status.confirmed, className: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100' },
         'shipped': { label: dict.marketplace.admin.ordersPage.status.shipped, className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
