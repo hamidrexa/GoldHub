@@ -27,7 +27,6 @@ type PasswordFormValue = z.infer<typeof passwordFormSchema>;
 const defaultValues: Partial<PasswordFormValue> = {};
 
 export function Password({ userId, setStep, dict, redirectUrl }) {
-    const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [isLoadingForgotPassword, setIsLoadingForgotPassword] =

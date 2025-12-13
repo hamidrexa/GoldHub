@@ -24,14 +24,11 @@ export async function generateMetadata(
 ): Promise<Metadata> {
     const dict = await getDictionary(lang);
     const seoTitle = dict.loginPageSeoTitle;
-    const seoDescription = dict.loginPageSeoDescription;
 
     return {
         title: `${seoTitle}`,
-        description: seoDescription,
         openGraph: {
             title: `${seoTitle}`,
-            description: seoDescription,
         },
         alternates: {
             canonical: '',
