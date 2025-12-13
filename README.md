@@ -754,21 +754,70 @@ All trademarks, service marks, and trade names are the property of GoldHub Compa
 
 ---
 
-## 📞 Support
+## 📞 Support & Contact
 
-For support and questions:
+### Technical Support
 - **Email**: support@goldhub.com
-- **Website**: [https://goldhub.com](https://goldhub.com)
+- **Response Time**: 24-48 business hours
+- **Support Hours**: Sunday - Thursday, 9:00 AM - 5:00 PM (GMT+3:30)
+
+### Business Inquiries
+- **Email**: business@goldhub.com
+- **Partnerships**: partnerships@goldhub.com
+- **Sales**: sales@goldhub.com
+
+### Physical Address
+**GoldHub Headquarters**
+Tehran, Amirabrad, North Kargar
+University of Tehran Technical Faculty Building
+Nextra Coworking Space, No. 1450
+
+### Social Media
+- **LinkedIn**: [GoldHub Company](https://linkedin.com/company/goldhub)
+- **Twitter**: [@GoldHub](https://twitter.com/goldhub)
+- **Instagram**: [@GoldHub](https://instagram.com/goldhub)
+
+### Emergency Support
+For critical system issues affecting business operations:
+- **Phone**: +98 21 1234 5678 (Business Hours)
+- **Emergency Email**: emergency@goldhub.com
 
 ---
 
 ## 🙏 Acknowledgments
 
-- **Next.js Team** - For the amazing framework
-- **Vercel** - For hosting and deployment
-- **Shadcn** - For the beautiful UI components
-- **Radix UI** - For accessible primitives
+We extend our gratitude to the open-source community and technology partners who have contributed to the success of GoldHub:
+
+### Technology & Frameworks
+- **Next.js Team** - For the amazing React framework
+- **Vercel** - For hosting and deployment infrastructure
+- **React Team** - For the powerful UI library
+- **TypeScript Team** - For type safety and developer experience
+
+### Design & UI Libraries
+- **Shadcn** - For the beautiful and accessible component library
+- **Radix UI** - For the unstyled, accessible primitives
+- **TailwindCSS** - For the utility-first CSS framework
+- **Framer Motion** - For smooth animations and interactions
+
+### Development Tools
+- **ESLint** - For code quality and consistency
+- **Prettier** - For code formatting
+- **Sentry** - For error tracking and monitoring
+- **GrowthBook** - For feature flags and A/B testing
+
+### Special Thanks
 - **All Contributors** - For making this project possible
+- **Beta Testers** - For valuable feedback and suggestions
+- **GoldHub Team** - For dedication and hard work
+
+---
+
+<div align="center">
+  <strong>Built with ❤️ by the GoldHub Team</strong>
+  <br />
+  <sub>Version 0.10.0 | Last Updated: December 2025</sub>
+</div>
 
 ---
 

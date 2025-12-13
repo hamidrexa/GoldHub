@@ -21,7 +21,7 @@ export async function middleware(request: NextRequest) {
     const search = request.nextUrl.search;
 
     // List of protected route prefixes
-    const protectedRoutes = ['/app', '/admin', '/supplier'];
+    const protectedRoutes = ['/admin', '/supplier'];
     // Check if the current path is protected and not the catalog page
     const isProtected = protectedRoutes.some((route) =>
         pathname.startsWith(route)
