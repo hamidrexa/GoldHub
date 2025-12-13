@@ -58,9 +58,11 @@ interface ContextProps {
     setIsReadingMode: Dispatch<SetStateAction<boolean>>;
     breadcrumbTitle: string;
     setBreadcrumbTitle: Dispatch<SetStateAction<string>>;
+    role: string;
 }
 
 const GlobalContext = createContext<ContextProps>({
+    role: null,
     user: null,
     setUser: (): string => null,
     isUserLoading: true,
@@ -71,11 +73,39 @@ const GlobalContext = createContext<ContextProps>({
     setBreadcrumbTitle: () => null,
 });
 
+import { useEffect } from 'react';
+
 export const GlobalContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [isUserLoading, setIsUserLoading] = useState(true);
     const [isReadingMode, setIsReadingMode] = useState(false);
     const [breadcrumbTitle, setBreadcrumbTitle] = useState(null);
+    const [role, setRole] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (user) {
+            const userGroups = user.groups ?? [];
+            const hasAdmin = userGroups.some((g) => g?.name === 'admin');
+
+            if (hasAdmin) {
+                setRole('admin');
+                return;
+            }
+            const supplierGroup = userGroups.find((g) =>
+                g?.name?.includes('supplier')
+            );
+            if (supplierGroup) {
+                setRole(supplierGroup.name);
+                return;
+            }
+            const buyerGroup = userGroups.find((g) => g?.name?.includes('buyer'));
+            if (buyerGroup) {
+                setRole(buyerGroup.name);
+                return;
+            }
+            setRole('buyer_requested'); // default for new users
+        }
+    }, [user]);
 
     return (
         <GlobalContext.Provider
@@ -88,6 +118,7 @@ export const GlobalContextProvider = ({ children }) => {
                 setIsReadingMode,
                 breadcrumbTitle,
                 setBreadcrumbTitle,
+                role,
             }}
         >
             {children}

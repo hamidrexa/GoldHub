@@ -275,7 +275,7 @@ export function Header({ dict, lang, googleLogin = true }) {
                     className="flex items-center gap-2.5 text-lg font-black text-white"
                     href={`${getLinksLang(lang)}/`}
                 >
-                    <Icons.logoLight className="h-7 w-24 cursor-pointer md:h-9 md:w-32" />
+                    <Icons.logoDark className="h-7 w-24 cursor-pointer md:h-9 md:w-32" />
                     GoldHub
                 </Link>
                 <hr className="hidden h-6 w-px bg-navy-800 md:flex ltr:ml-3 rtl:mr-3" />

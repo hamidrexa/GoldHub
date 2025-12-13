@@ -15,7 +15,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { token } from '@/app/[lang]/(auth)/login/services/token';
 import Cookies from 'js-cookie';
-import { useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
 import { ChevronRight, EyeIcon, EyeOff } from 'lucide-react';
 
@@ -37,8 +36,7 @@ export function Password({ userId, setStep, dict, redirectUrl }) {
         resolver: zodResolver(passwordFormSchema),
         defaultValues,
     });
-    const searchParams = useSearchParams();
-
+    
     const onSubmit = async ({ password }: PasswordFormValue) => {
         setIsLoading(true);
         try {
@@ -48,8 +46,7 @@ export function Password({ userId, setStep, dict, redirectUrl }) {
             });
             Cookies.set('token', access, { expires: 7 });
             Cookies.set('token-refresh', refresh, { expires: 365 });
-            window.location.href =
-                redirectUrl || searchParams.get('url') || '/';
+            window.location.href = redirectUrl || '/';
         } catch (e) {
             window.focus();
             // @ts-ignore

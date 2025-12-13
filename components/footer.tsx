@@ -126,7 +126,7 @@ export function Footer({ dict, lang }) {
                                 dir="ltr"
                                 className="flex flex-col gap-4 text-sm font-medium"
                             >
-                                <a href="/contact">تماس با ما</a>
+                                <a href="/contact">{dict.footer.contactUs}</a>
                                 <a
                                     href="tel:+9821-91304925"
                                     dir="ltr"
@@ -138,7 +138,7 @@ export function Footer({ dict, lang }) {
                                         className="text-[rgba(0,_0,_0,_.4)] drop-shadow-[0px_0px_1px_rgba(0,_0,_0,_.1)]"
                                     />
                                     <div className="text-base">
-                                        ۰۲۱-۹۱۳۰۴۹۲۵
+                                        {dict.footer.phone}
                                     </div>
                                 </a>
                                 <a
@@ -151,7 +151,7 @@ export function Footer({ dict, lang }) {
                                         fill="#FFBE00"
                                         className="text-[rgba(0,_0,_0,_.4)] drop-shadow-[0px_0px_1px_rgba(0,_0,_0,_.1)]"
                                     />
-                                    <div>info@talanow.ir</div>
+                                    <div>{dict.footer.email}</div>
                                 </a>
                             </div>
                         </div>
@@ -267,12 +267,7 @@ export function Footer({ dict, lang }) {
                     <div className="mx-auto px-24 w-3/4 text-white">
                         {lang === 'fa' && (
                             <p className="max-w-9/10 mx-auto text-justify">
-                                <Link href={`${getLinksLang(lang)}/`}>
-                                    {dict.appName}
-                                </Link>{' '}
-                                امکان خرید و فروش طلای آب شده 18 عیار رو برای کاربران خود فراهم میکنه. با طلانو میتونید
-                                با حداقل سرمایه 100 هزار تومان پس انداز طلایی برای خودتون بسازید. طلانو خرید طلا رو بدون
-                                اجرت و با حداقل کارمزد براتون انجام میده. واحد خرید و فروش در طلانو، گرم طلای ۱۸ عیاره.
+                                {dict.footer.description}
                             </p>
                         )}
                         <p className="shadow-4xl mt-4 rounded-tl-lg rounded-tr-lg bg-navy-800 px-8 py-4 text-center text-sm text-white">
@@ -298,7 +293,7 @@ export function Footer({ dict, lang }) {
                         dir="ltr"
                         className="flex flex-col gap-4 text-sm font-medium"
                     >
-                        <a href="/contact">تماس با ما</a>
+                        <a href="/contact">{dict.footer.contactUs}</a>
                         <a
                             href="tel:+9821-91304925"
                             dir="ltr"
@@ -309,7 +304,7 @@ export function Footer({ dict, lang }) {
                                 fill="#FFBE00"
                                 className="text-[rgba(0,_0,_0,_.4)] drop-shadow-[0px_0px_1px_rgba(0,_0,_0,_.1)]"
                             />
-                            <div className="text-base">۰۲۱-۹۱۳۰۴۹۲۵</div>
+                            <div className="text-base">{dict.footer.phone}</div>
                         </a>
                         <a
                             href="mailto:info@talanow.ir"
@@ -488,16 +483,16 @@ export function Footer({ dict, lang }) {
                     {/*<div className=" mx-auto my-8 h-[1px] w-[90%] bg-neutral-50" />*/}
                     <div className="flex items-center justify-evenly bg-transparent">
                         <a className="text-base text-white" href="/about">
-                            درباره ما
+                            {dict.footer.aboutUs}
                         </a>
                         <a
                             className="text-base text-white"
                             href="/contact"
                         >
-                            تماس با ما
+                            {dict.footer.contactUs}
                         </a>
                         <a className="text-base text-white" href="/privacy">
-                            قوانین
+                            {dict.footer.rules}
                         </a>
                     </div>
                     <p className="shadow-6xl mt-10 rounded-tl-lg rounded-tr-lg bg-navy-800 px-8 py-4 text-center text-sm text-white">

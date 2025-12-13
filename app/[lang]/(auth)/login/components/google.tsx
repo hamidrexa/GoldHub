@@ -5,21 +5,16 @@ import { toast } from 'sonner';
 import * as React from 'react';
 import { loginWithGoogle } from '@/app/[lang]/(auth)/login/services/loginWithGoogle';
 import Cookies from 'js-cookie';
-import { useSearchParams } from 'next/navigation';
 import { getLinksLang } from '@/libs/utils';
 
-export function Google({ lang, dict }) {
-    const searchParams = useSearchParams();
-    const redirectUrl = searchParams.get('url') || '/';
+export function Google({ lang, dict, redirectUrl }) {
 
     const login = async (credential: string) => {
         try {
             const { data, status } = await loginWithGoogle(lang, credential);
             Cookies.set('token', data.access, { expires: 7 });
             Cookies.set('token-refresh', data.refresh, { expires: 365 });
-            if (status === 201)
-                window.location.href = `${getLinksLang(lang)}/profile`;
-            else window.location.href = redirectUrl;
+            window.location.href = redirectUrl || `${getLinksLang(lang)}/profile`;
         } catch (e) {
             toast.error(
                 e?.error?.params[0]||

@@ -39,12 +39,13 @@ export async function generateMetadata(
     };
 }
 
-export default async function AuthenticationPage({ params: { lang } }) {
+export default async function AuthenticationPage({ params: { lang }, searchParams }) {
     const dict = await getDictionary(lang);
     const token = cookies().get('token')?.value;
+    const redirectUrl = searchParams.redirect as string || `${getLinksLang(lang)}/profile`;
 
     if (token) {
-        return redirect(`${getLinksLang(lang)}/profile`);
+        return redirect(redirectUrl);
     }
 
     return (
@@ -78,7 +79,7 @@ export default async function AuthenticationPage({ params: { lang } }) {
                     <div className="hidden md:block" />
                     <div className="relative mx-auto flex w-80 flex-col justify-center space-y-6 sm:w-[350px]">
                         {lang === 'en' ? (
-                            <PhoneAuth dict={dict} lang={lang} />
+                            <PhoneAuth dict={dict} lang={lang} redirectUrl={redirectUrl} />
                         ) : (
                             <>
                                 <div className="flex flex-col space-y-2 text-center">
@@ -89,7 +90,7 @@ export default async function AuthenticationPage({ params: { lang } }) {
                                         {dict.loginHelper}
                                     </p>
                                 </div>
-                                <Google lang={lang} dict={dict} />
+                                <Google lang={lang} dict={dict} redirectUrl={redirectUrl} />
                             </>
                         )}
                     </div>
