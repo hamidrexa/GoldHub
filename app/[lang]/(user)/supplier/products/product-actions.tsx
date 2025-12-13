@@ -44,7 +44,6 @@ export function ProductActions({ dict, products }: ProductActionsProps) {
                 onSave={async (apiBody) => {
                     await addProduct({
                         body: apiBody,
-                        product_id: apiBody.id,
                     });
                 }}
             />

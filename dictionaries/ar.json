@@ -62,34 +62,33 @@
   "loginRegister": "تسجيل الدخول/التسجيل",
   "navMenuItems": [
     {
-      "title": "الحل التنظيمي",
-      "href": "/organization",
+      "title": "المشتري",
+      "href": "/buyer",
       "description": ""
     },
     {
-      "title": "تنزيل ملحق کروم",
-      "href": "https://chrome.google.com/webstore/detail/%D8%A7%D9%81%D8%B2%D9%88%D9%86%D9%87-%D8%A8%D9%88%D8%B1%D8%B3-%D8%B3%D9%87%D9%85%D8%AA%D9%88-sahmeto/mnnkkdhkjbcnjljenmicbmlojmnpmaaf?hl=en",
-      "rel": "nofollow",
+      "title": "المورّد",
+      "href": "/supplier",
       "description": ""
     },
     {
-      "title": "مساعدة GoldHub",
-      "href": "https://help.sahmeto.com",
+      "title": "المنتجات",
+      "href": "/buyer/catalog",
       "description": ""
     },
     {
-      "title": "الشروط و الأحكام",
+      "title": "الشروط والأحكام",
       "href": "/privacy",
       "description": ""
     },
     {
-      "title": "نبذة عنا",
+      "title": "من نحن",
       "href": "/about",
       "description": ""
     },
     {
       "title": "اتصل بنا",
-      "href": "/ar/contact",
+      "href": "/contact",
       "description": ""
     }
   ],
@@ -767,6 +766,25 @@
   "increase": "يزيد",
   "retry": "يرجى المحاولة مرة أخرى",
   "marketplace": {
+    "navigation": {
+      "dashboard": "لوحة التحكم",
+      "home": "الرئيسية",
+      "products": "المنتجات",
+      "catalog": "الكاتالوج",
+      "orders": "الطلبات",
+      "cart": "عربة التسوق",
+      "favorites": "المفضلة",
+      "pricing": "التسعير",
+      "users": "المستخدمون",
+      "usersKyc": "المستخدمون و KYC",
+      "logs": "السجلات",
+      "auditLogs": "سجلات التدقيق",
+      "allOrders": "جميع الطلبات",
+      "myProducts": "منتجاتي",
+      "myOrders": "طلباتي",
+      "profile": "الملف الشخصي",
+      "logout": "تسجيل الخروج"
+    },
     "common": {
       "dashboard": "لوحة التحكم",
       "viewAll": "عرض الكل",
@@ -1603,6 +1621,31 @@
         "error": "للأسف لم يتم ذلك."
       }
     }
+  },
+  "auth": {
+    "phoneNumber": "رقم الهاتف",
+    "phoneNumberPlaceholder": "رقم الهاتف المحمول",
+    "phoneRequired": "لا يمكن أن يكون رقم الهاتف فارغًا.",
+    "phoneInvalid": "رقم الهاتف المُدخل غير صحيح.",
+    "back": "رجوع",
+    "otpTitle": "رمز التحقق لمرة واحدة",
+    "otpExpired": "انتهت صلاحية الرمز المُرسل. يرجى الحصول على رمز جديد.",
+    "otpDescription": "يرجى إدخال الرمز المكون من 4 أرقام المُرسل إلى {phone}.",
+    "otpResend": "إعادة إرسال الرمز",
+    "otpTimer": "إذا لم تستلم الرمز أو رغبت في تغيير الرقم، يمكنك المحاولة مرة أخرى خلال",
+    "otpMinutes": "دقائق.",
+    "or": "أو",
+    "loginWithPassword": "تسجيل الدخول باستخدام كلمة المرور",
+    "passwordTitle": "كلمة المرور",
+    "passwordDescription": "أدخل كلمة المرور لتسجيل الدخول إلى {phone}.",
+    "passwordPlaceholder": "كلمة المرور",
+    "passwordRequired": "لا يمكن أن تكون كلمة المرور فارغة.",
+    "loginWithOtp": "تسجيل الدخول باستخدام رمز SMS",
+    "completeInfoTitle": "إكمال المعلومات",
+    "emailPlaceholder": "البريد الإلكتروني (اختياري)",
+    "emailInvalid": "البريد الإلكتروني المُدخل غير صحيح",
+    "passwordMandatory": "كلمة المرور (إلزامية)",
+    "register": "إنشاء حساب"
   },
   "aboutPage": {
     "title": "ربط التراث بالتجارة الحديثة",

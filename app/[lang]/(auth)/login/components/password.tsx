@@ -18,12 +18,12 @@ import Cookies from 'js-cookie';
 import { toast } from 'sonner';
 import { ChevronRight, EyeIcon, EyeOff } from 'lucide-react';
 
-const passwordFormSchema = z.object({
+const passwordFormSchema = (dict: any) => z.object({
     password: z.string({
-        required_error: 'رمز عبور نمی تواند خالی باشد.',
+        required_error: dict.auth.passwordRequired,
     }),
 });
-type PasswordFormValue = z.infer<typeof passwordFormSchema>;
+type PasswordFormValue = z.infer<ReturnType<typeof passwordFormSchema>>;
 const defaultValues: Partial<PasswordFormValue> = {};
 
 export function Password({ userId, setStep, dict, redirectUrl }) {
@@ -32,10 +32,10 @@ export function Password({ userId, setStep, dict, redirectUrl }) {
     const [isLoadingForgotPassword, setIsLoadingForgotPassword] =
         useState(false);
     const form = useForm<PasswordFormValue>({
-        resolver: zodResolver(passwordFormSchema),
+        resolver: zodResolver(passwordFormSchema(dict)),
         defaultValues,
     });
-    
+
     const onSubmit = async ({ password }: PasswordFormValue) => {
         setIsLoading(true);
         try {
@@ -51,7 +51,7 @@ export function Password({ userId, setStep, dict, redirectUrl }) {
             // @ts-ignore
             document.activeElement?.blur();
             toast.error(
-                e?.error?.params[0]||
+                e?.error?.params[0] ||
                 e?.error?.params?.detail ||
                 e?.error?.messages?.error?.[0] ||
                 e?.error?.params?.non_field_errors?.[0] ||
@@ -118,15 +118,14 @@ export function Password({ userId, setStep, dict, redirectUrl }) {
                 onClick={() => setStep('phone')}
             >
                 <ChevronRight strokeWidth={1.25} />
-                بازگشت
+                {dict.auth.back}
             </Button>
             <div className="flex flex-col space-y-2 text-center">
                 <h1 className="text-2xl font-semibold tracking-tight">
-                    رمز عبور
+                    {dict.auth.passwordTitle}
                 </h1>
                 <p className="text-sm">
-                    رمز عبور خود را جهت ورود به {userId?.enteredValue} وارد
-                    کنید.
+                    {dict.auth.passwordDescription.replace('{phone}', userId?.enteredValue)}
                 </p>
             </div>
             <div className="grid gap-6">
@@ -145,7 +144,7 @@ export function Password({ userId, setStep, dict, redirectUrl }) {
                                             <Input
                                                 dir="rtl"
                                                 className="w-full"
-                                                placeholder="رمز عبور"
+                                                placeholder={dict.auth.passwordPlaceholder}
                                                 type={
                                                     showPassword
                                                         ? 'text'
@@ -190,7 +189,7 @@ export function Password({ userId, setStep, dict, redirectUrl }) {
                         <span className="w-full border-t" />
                     </div>
                     <div className="relative flex justify-center text-xs uppercase">
-                        <span className="text-muted-foreground px-2">یا</span>
+                        <span className="text-muted-foreground px-2">{dict.auth.or}</span>
                     </div>
                 </div>
                 <button
@@ -201,7 +200,7 @@ export function Password({ userId, setStep, dict, redirectUrl }) {
                     {isLoadingForgotPassword ? (
                         <Icons.spinner className="h-5 w-5 animate-spin" />
                     ) : (
-                        'ورود با رمز پیامکی'
+                        dict.auth.loginWithOtp
                     )}
                 </button>
             </div>

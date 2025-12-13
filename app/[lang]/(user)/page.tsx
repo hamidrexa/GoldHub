@@ -107,9 +107,9 @@ export default async function HomePage({ params: { lang } }: PageProps) {
             <section className="w-full -mt-10 px-4 z-20 container mx-auto mb-20">
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                     {[
-                        { title: home.liveTicker.gold18, price: '۳,۳۵۰,۰۰۰', change: '+۱.۲٪', icon: Coins, color: 'text-yellow-500' },
-                        { title: home.liveTicker.coin, price: '۳۹,۸۰۰,۰۰۰', change: '+۰.۵٪', icon: TrendingUp, color: 'text-green-500' },
-                        { title: home.liveTicker.dollar, price: '۶۲,۵۰۰', change: '-۰.۱٪', icon: Calculator, color: 'text-gray-400' },
+                        { title: home.liveTicker.gold18, price: '$4,317.20', change: '+1.2٪', icon: Coins, color: 'text-yellow-500' },
+                        // { title: home.liveTicker.coin, price: '۳۹,۸۰۰,۰۰۰', change: '+۰.۵٪', icon: TrendingUp, color: 'text-green-500' },
+                        // { title: home.liveTicker.dollar, price: '۶۲,۵۰۰', change: '-۰.۱٪', icon: Calculator, color: 'text-gray-400' },
                     ].map((item, i) => (
                         <Card key={i} className="border-none shadow-xl bg-white/95 backdrop-blur">
                             <CardContent className="flex items-center justify-between p-6">

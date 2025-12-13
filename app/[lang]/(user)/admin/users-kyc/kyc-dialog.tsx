@@ -43,7 +43,6 @@ export function KycDialog({ user, dict, lang, activeTab, searchQuery,onClose }: 
     const [open, setOpen] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    console.log(user);
 
     const handleClose = () => {
         setOpen(false)

@@ -62,23 +62,22 @@
   "loginRegister": "Giriş/Kayıt Ol",
   "navMenuItems": [
     {
-      "title": "Organizasyonel çözüm",
-      "href": "/organization",
+      "title": "Alıcı",
+      "href": "/buyer",
       "description": ""
     },
     {
-      "title": "Eklentiyi indir",
-      "href": "https://chrome.google.com/webstore/detail/%D8%A7%D9%81%D8%B2%D9%88%D9%86%D9%87-%D8%A8%D9%88%D8%B1%D8%B3-%D8%B3%D9%87%D9%85%D8%AA%D9%88-sahmeto/mnnkkdhkjbcnjljenmicbmlojmnpmaaf?hl=en",
-      "rel": "nofollow",
+      "title": "Tedarikçi",
+      "href": "/supplier",
       "description": ""
     },
     {
-      "title": "GoldHub Rehberi",
-      "href": "https://help.GoldHub.com",
+      "title": "Ürünler",
+      "href": "/buyer/catalog",
       "description": ""
     },
     {
-      "title": "Kurallar",
+      "title": "Şartlar",
       "href": "/privacy",
       "description": ""
     },
@@ -88,8 +87,8 @@
       "description": ""
     },
     {
-      "title": "Bama'yı ara",
-      "href": "/tr/contact",
+      "title": "Bize Ulaşın",
+      "href": "/contact",
       "description": ""
     }
   ],
@@ -767,6 +766,25 @@
   "increase": "Increase",
   "retry": "Please try again",
   "marketplace": {
+    "navigation": {
+      "dashboard": "Panel",
+      "home": "Ana Sayfa",
+      "products": "Ürünler",
+      "catalog": "Katalog",
+      "orders": "Siparişler",
+      "cart": "Sepet",
+      "favorites": "Favoriler",
+      "pricing": "Fiyatlandırma",
+      "users": "Kullanıcılar",
+      "usersKyc": "Kullanıcılar ve KYC",
+      "logs": "Loglar",
+      "auditLogs": "Denetim Logları",
+      "allOrders": "Tüm Siparişler",
+      "myProducts": "Ürünlerim",
+      "myOrders": "Siparişlerim",
+      "profile": "Profil",
+      "logout": "Çıkış"
+    },
     "common": {
       "dashboard": "Kontrol Paneli",
       "viewAll": "Tümünü Gör",
@@ -1600,6 +1618,31 @@
         "error": "Maalesef işlem yapılamadı."
       }
     }
+  },
+  "auth": {
+    "phoneNumber": "Telefon Numarası",
+    "phoneNumberPlaceholder": "Cep telefonu numarası",
+    "phoneRequired": "Telefon numarası boş olamaz.",
+    "phoneInvalid": "Girilen telefon numarası hatalıdır.",
+    "back": "Geri",
+    "otpTitle": "Tek Kullanımlık Şifre",
+    "otpExpired": "Gönderilen kodun süresi doldu. Lütfen yeni bir kod alın.",
+    "otpDescription": "{phone} numarasına gönderilen 4 haneli kodu giriniz.",
+    "otpResend": "Kodu Tekrar Gönder",
+    "otpTimer": "Kodu almadıysanız veya numarayı değiştirmek istiyorsanız, tekrar deneyebilirsiniz:",
+    "otpMinutes": "dakika.",
+    "or": "Veya",
+    "loginWithPassword": "Şifre ile Giriş",
+    "passwordTitle": "Şifre",
+    "passwordDescription": "{phone} için giriş yapmak üzere şifrenizi girin.",
+    "passwordPlaceholder": "Şifre",
+    "passwordRequired": "Şifre boş olamaz.",
+    "loginWithOtp": "SMS Kodu ile Giriş",
+    "completeInfoTitle": "Bilgileri Tamamla",
+    "emailPlaceholder": "E-posta (isteğe bağlı)",
+    "emailInvalid": "Girilen e-posta hatalıdır",
+    "passwordMandatory": "Şifre (zorunlu)",
+    "register": "Kayıt Ol"
   },
   "aboutPage": {
     "title": "Mirası Modern Ticaretle Buluşturuyoruz",

@@ -6,7 +6,6 @@ export function updateProduct({ body, product_id }) {
         url: `/v1/gold_artifacts/product_update/${product_id}/`,
         body,
         headers: {
-            'Content-Type': 'application/json',
             Authorization: `Bearer ${Cookies.get('token')}`,
         },
         method: 'PATCH',

@@ -17,25 +17,25 @@ import { PasswordSecurityCheck } from '@/app/[lang]/(auth)/login/components/pass
 import { toast } from 'sonner';
 import { useSearchParams } from 'next/navigation';
 
-const completeInfoFormSchema = z.object({
+const completeInfoFormSchema = (dict: any) => z.object({
     email: z
         .union([
             z.literal(''),
-            z.string().email({ message: 'ایمیل وارد شده صحیح نیست' }),
+            z.string().email({ message: dict.auth.emailInvalid }),
         ])
         .optional(),
     password: z.string({
-        required_error: 'رمز عبور نمی تواند خالی باشد',
+        required_error: dict.auth.passwordRequired,
     }),
 });
-type CompleteInfoFormValue = z.infer<typeof completeInfoFormSchema>;
+type CompleteInfoFormValue = z.infer<ReturnType<typeof completeInfoFormSchema>>;
 const defaultValues: Partial<CompleteInfoFormValue> = {};
 
 export function CompleteInfo({ userId, setStep, dict, lang, redirectUrl }) {
     const [isLoading, setIsLoading] = useState(false);
     const [password, setPassword] = useState(null);
     const form = useForm<CompleteInfoFormValue>({
-        resolver: zodResolver(completeInfoFormSchema),
+        resolver: zodResolver(completeInfoFormSchema(dict)),
         defaultValues,
     });
     const searchParams = useSearchParams();
@@ -53,7 +53,7 @@ export function CompleteInfo({ userId, setStep, dict, lang, redirectUrl }) {
             // @ts-ignore
             document.activeElement?.blur();
             toast.error(
-                e?.error?.params[0]||
+                e?.error?.params[0] ||
                 e?.error?.params?.detail ||
                 e?.error?.messages?.error?.[0] ||
                 e?.error?.params?.non_field_errors?.[0] ||
@@ -68,7 +68,7 @@ export function CompleteInfo({ userId, setStep, dict, lang, redirectUrl }) {
         <>
             <div className="flex flex-col space-y-2 text-center">
                 <h1 className="text-2xl font-semibold tracking-tight">
-                    تکمیل اطلاعات
+                    {dict.auth.completeInfoTitle}
                 </h1>
             </div>
             <div className="grid gap-6">
@@ -87,7 +87,7 @@ export function CompleteInfo({ userId, setStep, dict, lang, redirectUrl }) {
                                         <Input
                                             dir="ltr"
                                             className="w-full tracking-wider"
-                                            placeholder="ایمیل (اختیاری)"
+                                            placeholder={dict.auth.emailPlaceholder}
                                             type="email"
                                             autoComplete="off"
                                             autoCorrect="off"
@@ -107,7 +107,7 @@ export function CompleteInfo({ userId, setStep, dict, lang, redirectUrl }) {
                                         <Input
                                             dir="ltr"
                                             className="w-full"
-                                            placeholder="رمز عبور (اجباری)"
+                                            placeholder={dict.auth.passwordMandatory}
                                             type="password"
                                             autoComplete="off"
                                             autoCorrect="off"
@@ -134,7 +134,7 @@ export function CompleteInfo({ userId, setStep, dict, lang, redirectUrl }) {
                             {isLoading && (
                                 <Icons.spinner className="h-5 w-5 animate-spin" />
                             )}
-                            ثبت نام
+                            {dict.auth.register}
                         </Button>
                     </form>
                 </Form>

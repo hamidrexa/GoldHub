@@ -16,7 +16,7 @@ export function Otp({ userId, isNewUser, setStep, dict, redirectUrl }) {
     const [isLoadingOtpRetry, setIsLoadingOtpRetry] = useState(false);
     const [isCounterEnd, setIsCounterEnd] = useState(false);
     const [otp, setOTP] = useState(null);
-        useReadOTP((otp) => {
+    useReadOTP((otp) => {
         setOTP(otp);
         if (otp?.length === 4) getToken(Number(otp));
     });
@@ -38,7 +38,7 @@ export function Otp({ userId, isNewUser, setStep, dict, redirectUrl }) {
             // @ts-ignore
             document.activeElement?.blur();
             toast.error(
-                e?.error?.params[0]||
+                e?.error?.params[0] ||
                 e?.error?.params?.detail ||
                 e?.error?.messages?.error?.[0] ||
                 e?.error?.params?.non_field_errors?.[0] ||
@@ -76,16 +76,16 @@ export function Otp({ userId, isNewUser, setStep, dict, redirectUrl }) {
                 onClick={() => setStep('phone')}
             >
                 <ChevronRight strokeWidth={1.25} />
-                بازگشت
+                {dict.auth.back}
             </Button>
             <div className="flex flex-col space-y-2 text-center">
                 <h1 className="text-2xl font-semibold tracking-tight">
-                    کد یکبار مصرف
+                    {dict.auth.otpTitle}
                 </h1>
                 <p className="text-sm">
                     {isCounterEnd
-                        ? 'کد ارسال شده منقضی شده است. لطفا کد جدید دریافت کنید.'
-                        : ` جهت ورود لطفا کد ۴ رقمی ارسال شده به ${userId.enteredValue} را وارد کنید.`}
+                        ? dict.auth.otpExpired
+                        : dict.auth.otpDescription.replace('{phone}', userId.enteredValue)}
                 </p>
             </div>
             {/*<InputOTP*/}
@@ -144,18 +144,18 @@ export function Otp({ userId, isNewUser, setStep, dict, redirectUrl }) {
                             height={20}
                         />
                     )}
-                    دریافت مجدد کد
+                    {dict.auth.otpResend}
                 </Button>
             ) : (
                 <p className="text-center text-sm">
-                    در صورت عدم دریافت کد یا تغییر شماره می‌توانید تا{' '}
+                    {dict.auth.otpTimer}{' '}
                     <Timer
                         className="inline-block w-9 font-bold"
                         endTime={120}
                         onEnd={() => setIsCounterEnd(true)}
                         countDown
                     />{' '}
-                    دقیقه دیگر مجدد تلاش کنید.
+                    {dict.auth.otpMinutes}
                 </p>
             )}
             <div className="relative">
@@ -163,14 +163,14 @@ export function Otp({ userId, isNewUser, setStep, dict, redirectUrl }) {
                     <span className="w-full border-t" />
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                    <span className="text-muted-foreground px-2">یا</span>
+                    <span className="text-muted-foreground px-2">{dict.auth.or}</span>
                 </div>
             </div>
             <button
                 className="flex cursor-pointer items-center justify-center gap-2 text-center text-sm font-medium underline underline-offset-2"
                 onClick={() => setStep('password')}
             >
-                ورود با رمز عبور
+                {dict.auth.loginWithPassword}
             </button>
         </>
     );

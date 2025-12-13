@@ -64,17 +64,22 @@
   "loginRegister": "ورود/ثبت\u200Cنام",
   "navMenuItems": [
     {
-      "title": "قرارداد",
-      "href": "/contracts",
+      "title": "خریدار",
+      "href": "/buyer",
       "description": ""
     },
     {
-      "title": "دارایی",
-      "href": "/wallet",
+      "title": "تامین‌کننده",
+      "href": "/supplier",
       "description": ""
     },
     {
-      "title": "قوانین",
+      "title": "محصولات",
+      "href": "/buyer/catalog",
+      "description": ""
+    },
+    {
+      "title": "قوانین و مقررات",
       "href": "/privacy",
       "description": ""
     },
@@ -84,7 +89,7 @@
       "description": ""
     },
     {
-      "title": "تماس باما",
+      "title": "تماس با ما",
       "href": "/contact",
       "description": ""
     }
@@ -821,6 +826,25 @@
     "add": "افزودن"
   },
   "marketplace": {
+    "navigation": {
+      "dashboard": "داشبورد",
+      "home": "خانه",
+      "products": "محصولات",
+      "catalog": "کاتالوگ",
+      "orders": "سفارشات",
+      "cart": "سبد خرید",
+      "favorites": "علاقه‌مندی‌ها",
+      "pricing": "قیمت‌گذاری",
+      "users": "کاربران",
+      "usersKyc": "کاربران و KYC",
+      "logs": "لاگ‌ها",
+      "auditLogs": "لاگ‌های حسابرسی",
+      "allOrders": "همه سفارشات",
+      "myProducts": "محصولات من",
+      "myOrders": "سفارشات من",
+      "profile": "پروفایل",
+      "logout": "خروج"
+    },
     "common": {
       "dashboard": "داشبورد",
       "viewAll": "مشاهده همه",
@@ -1652,6 +1676,31 @@
         "error": "متاسفانه انجام نشد."
       }
     }
+  },
+  "auth": {
+    "phoneNumber": "شماره تلفن",
+    "phoneNumberPlaceholder": "شماره تلفن همراه",
+    "phoneRequired": "شماره تلفن نمی‌تواند خالی باشد.",
+    "phoneInvalid": "شماره تلفن وارد شده نادرست است.",
+    "back": "بازگشت",
+    "otpTitle": "رمز یک‌بار مصرف",
+    "otpExpired": "کد ارسال‌شده منقضی شده است. لطفاً کد جدید دریافت کنید.",
+    "otpDescription": "لطفاً کد ۴ رقمی ارسال‌شده به {phone} را وارد کنید.",
+    "otpResend": "ارسال مجدد کد",
+    "otpTimer": "اگر کد را دریافت نکرده‌اید یا می‌خواهید شماره را تغییر دهید، می‌توانید دوباره تلاش کنید تا",
+    "otpMinutes": "دقیقه.",
+    "or": "یا",
+    "loginWithPassword": "ورود با رمز عبور",
+    "passwordTitle": "رمز عبور",
+    "passwordDescription": "برای ورود به {phone} رمز عبور خود را وارد کنید.",
+    "passwordPlaceholder": "رمز عبور",
+    "passwordRequired": "رمز عبور نمی‌تواند خالی باشد.",
+    "loginWithOtp": "ورود با کد پیامکی",
+    "completeInfoTitle": "تکمیل اطلاعات",
+    "emailPlaceholder": "ایمیل (اختیاری)",
+    "emailInvalid": "ایمیل وارد شده نادرست است",
+    "passwordMandatory": "رمز عبور (الزامی)",
+    "register": "ثبت‌نام"
   },
   "aboutPage": {
     "title": "پیوند میراث با تجارت مدرن",

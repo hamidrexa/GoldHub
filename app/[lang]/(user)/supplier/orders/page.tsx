@@ -22,9 +22,8 @@ export async function generateMetadata(
         },
     };
 }
-import { getSellsHistory, updateOrderStatus, ApiOrderStatus } from '@/lib/api-client';
+import { getSellsHistory} from '@/lib/api-client';
 import { mockOrders, Order } from '@/lib/mock-data';
-import { Badge } from '@/components/ui/badge';
 import { OrdersSearch } from './orders-search';
 import { URLTabs } from '@/components/ui/url-tabs';
 import { OrdersTable } from '@/app/[lang]/(user)/supplier/components/orders-table';

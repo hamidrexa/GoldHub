@@ -34,16 +34,16 @@ interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
     redirectUrl?: string;
 }
 
-const accountFormSchema = z.object({
+const accountFormSchema = (dict: any) => z.object({
     ID: z
         .string({
-            required_error: 'تلفن همراه نمی تواند خالی باشد.',
+            required_error: dict.auth.phoneRequired,
         })
         .regex(/(^0?9[0-9]{9}$)|(^\u06F0\u06F9[\u06F0-\u06F9]{9})$/, {
-            message: 'تلفن همراه وارد شده صحیح نیست.',
+            message: dict.auth.phoneInvalid,
         }),
 });
-type AccountFormValues = z.infer<typeof accountFormSchema>;
+type AccountFormValues = z.infer<ReturnType<typeof accountFormSchema>>;
 const defaultValues: Partial<AccountFormValues> = {};
 
 export function Phone({
@@ -59,7 +59,7 @@ export function Phone({
     const [isLoading, setIsLoading] = useState(false);
     const searchParam = useSearchParams();
     const form = useForm<AccountFormValues>({
-        resolver: zodResolver(accountFormSchema),
+        resolver: zodResolver(accountFormSchema(dict)),
         defaultValues,
     });
     const phone = searchParam.get('phone');
@@ -138,7 +138,7 @@ export function Phone({
                                     <FormControl>
                                         <Input
                                             className="w-full tracking-wider rtl:placeholder:text-left"
-                                            placeholder="شماره تلفن همراه"
+                                            placeholder={dict.auth.phoneNumberPlaceholder}
                                             type="tel"
                                             autoComplete="username"
                                             autoFocus

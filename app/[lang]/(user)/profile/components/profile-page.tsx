@@ -64,23 +64,34 @@ export function ProfilePage({ dict, lang }) {
     const { data, isLoading: cartIsloding, mutate } = useCart();
     const [isRequestingRole, setIsRequestingRole] = useState(false);
     const userGroups = user?.groups ?? [];
-    const hasAdmin = userGroups.some((g) => g?.name === 'admin');
+    const roleNames = userGroups.map((g) => g?.name || '');
+    const hasAdmin = roleNames.includes('admin');
+    const hasSupplierRequested = roleNames.some((name) =>
+        name?.includes('supplier_requested')
+    );
+    const hasSupplierApproved = roleNames.includes('supplier_approved');
+    const hasBuyerRequested = roleNames.includes('buyer_requested');
+    const hasBuyerApproved = roleNames.includes('buyer_approved');
     
     // Determine current user role from groups
     const getUserRole = () => {
         if (hasAdmin) return 'admin';
-        const supplierGroup = userGroups.find((g) => g?.name?.includes('supplier'));
+        const supplierGroup = userGroups.find((g) =>
+            g?.name?.includes('supplier')
+        );
         if (supplierGroup) return supplierGroup.name; // supplier_approved, supplier_requested
         const buyerGroup = userGroups.find((g) => g?.name?.includes('buyer'));
         if (buyerGroup) return buyerGroup.name; // buyer_approved, buyer_requested
         return 'buyer_requested'; // default for new users
     };
     const currentRole = getUserRole();
-    const canRequestSupplier = currentRole === 'buyer_approved';
-    const isSupplierRequested = currentRole === 'supplier_requested';
-    const isSupplierApproved = currentRole === 'supplier_approved';
-    const isBuyerApproved = currentRole === 'buyer_approved';
-    const isBuyerRequested = currentRole === 'buyer_requested';
+    const canRequestSupplier = hasBuyerRequested || hasBuyerApproved;
+    const canRequestBuyer = hasSupplierApproved || hasSupplierRequested;
+    const isSupplierRequested = hasSupplierRequested;
+    const isSupplierApproved = hasSupplierApproved;
+    const isBuyerApproved = hasBuyerApproved;
+    const isBuyerRequested = hasBuyerRequested;
+    const hasBothRoles = isSupplierApproved && isBuyerApproved;
 
     const [userTransactions, setUserTransactions] = useState(null);
     const completePercentage = useMemo(() => {
@@ -191,6 +202,34 @@ export function ProfilePage({ dict, lang }) {
         }
     };
 
+    const requestBuyerRole = async () => {
+        try {
+            setIsRequestingRole(true);
+            const token = Cookies.get('token');
+            const response = await fetch(
+                `${process.env.NEXT_PUBLIC_API_URL_}/v1/gold_artifacts/request_new_role`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({ new_role: 'buyer' }),
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error('Failed to request buyer role');
+            }
+
+            toast.success(dict.marketplace?.profile?.profilePage?.roleRequestSent);
+        } catch (error) {
+            toast.error(dict.marketplace?.profile?.profilePage?.roleRequestError);
+        } finally {
+            setIsRequestingRole(false);
+        }
+    };
+
     const logout = () => {
         Cookies.remove('token');
         Cookies.remove('token-refresh');
@@ -271,12 +310,17 @@ export function ProfilePage({ dict, lang }) {
                                 <div className="text-base font-semibold">
                                     {dict.marketplace?.profile?.profilePage?.currentRole}
                                 </div>
-                                <div className="text-sm text-gray-600">
-                                    {currentRole === 'admin' && dict.marketplace?.profile?.profilePage?.roles?.admin}
-                                    {currentRole === 'buyer_approved' && dict.marketplace?.profile?.profilePage?.roles?.buyer_approved}
-                                    {currentRole === 'buyer_requested' && dict.marketplace?.profile?.profilePage?.roles?.buyer_requested}
-                                    {currentRole === 'supplier_approved' && dict.marketplace?.profile?.profilePage?.roles?.supplier_approved}
-                                    {currentRole === 'supplier_requested' && dict.marketplace?.profile?.profilePage?.roles?.supplier_requested}
+                                <div className="flex flex-wrap gap-1">
+                                    {user.groups?.map((group, index) => (
+                                        <span key={index} className="text-sm text-gray-600 px-2 py-1 bg-gray-900 rounded">
+                                            {group.name === 'admin' && dict.marketplace?.profile?.profilePage?.roles?.admin}
+                                            {group.name === 'buyer_approved' && dict.marketplace?.profile?.profilePage?.roles?.buyer_approved}
+                                            {group.name === 'buyer_requested' && dict.marketplace?.profile?.profilePage?.roles?.buyer_requested}
+                                            {group.name === 'supplier_approved' && dict.marketplace?.profile?.profilePage?.roles?.supplier_approved}
+                                            {group.name === 'supplier_requested' && dict.marketplace?.profile?.profilePage?.roles?.supplier_requested}
+                                            {!dict.marketplace?.profile?.profilePage?.roles?.[group.name] && group.name.charAt(0).toUpperCase() + group.name.slice(1)}
+                                        </span>
+                                    ))}
                                 </div>
                             </div>
                         </div>
@@ -308,10 +352,36 @@ export function ProfilePage({ dict, lang }) {
                             </div>
                         )}
 
+                        {/* Request Buyer Role - Suppliers (requested/approved) can request buyer approval */}
+                        {(isBuyerRequested) && (
+                            <div className="space-y-2 rounded-md bg-blue-50 p-4 border border-blue-200">
+                                <div className="text-sm font-medium text-blue-900">
+                                    {dict.marketplace?.profile?.profilePage?.becomeBuyer || "Become a Buyer"}
+                                </div>
+                                <p className="text-xs text-blue-800">
+                                    {dict.marketplace?.profile?.profilePage?.becomeBuyerDesc || "Request buyer role to purchase products"}
+                                </p>
+                                <Button
+                                    onClick={requestBuyerRole}
+                                    disabled={isRequestingRole}
+                                    className="w-full mt-2"
+                                    size="sm"                                >
+                                    {isRequestingRole ? (
+                                        <>
+                                            <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                                            {dict.marketplace?.profile?.profilePage?.requesting}
+                                        </>
+                                    ) : (
+                                        dict.marketplace?.profile?.profilePage?.requestBuyer || "Request Buyer Role"
+                                    )}
+                                </Button>
+                            </div>
+                        )}
+
                     </div>
                     <div className="flex flex-col-reverse items-start justify-start gap-6 md:flex-row lg:mt-6 lg:w-full">
                         <div className="w-full space-y-7">
-                            {lang === 'fa' && (
+                            {true && ( //lang === 'fa'
                                 <div className="space-y-2">
                                     <div className="flex items-center justify-between">
                                         <div className="text-base">

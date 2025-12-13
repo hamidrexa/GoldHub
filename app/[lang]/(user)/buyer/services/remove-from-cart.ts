@@ -1,4 +1,5 @@
 import { fetcher } from '@/libs/utils';
+import Cookies from 'js-cookie';
 
 export function removeFromCart(body) {
     return fetcher({
@@ -6,7 +7,7 @@ export function removeFromCart(body) {
         body,
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_MY_TOKEN}`,
+            Authorization: `Bearer ${Cookies.get('token')}`,
         },
         method: 'POST',
     });
