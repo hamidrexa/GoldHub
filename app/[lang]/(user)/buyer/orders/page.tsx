@@ -1,4 +1,3 @@
-
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
 import { Metadata, ResolvingMetadata } from 'next';
@@ -29,7 +28,6 @@ import { Badge } from '@/components/ui/badge';
 import { Search, Eye, Package } from 'lucide-react';
 import { getOrdersHistory, ApiOrderStatus } from '@/lib/api-client';
 import { mockBuyerOrders } from '@/lib/buyer-mock-data';
-import { OrderDetail, OrderStatus } from '@/lib/mock-data';
 import {
     Table,
     TableBody,
@@ -42,6 +40,7 @@ import Link from 'next/link';
 import { URLTabs } from '@/components/ui/url-tabs';
 import { OrdersSearch } from './orders-search';
 import { ViewToggle } from './orders-view-toggle';
+import { OrderSection } from '@/app/[lang]/(user)/buyer/components/order-section';
 
 interface PageProps {
     params: { lang: Locale };
@@ -239,115 +238,9 @@ export default async function BuyerOrdersPage({ params: { lang }, searchParams }
                 { value: 'Rejected', label: dict.marketplace.buyer.ordersPage.tabs.rejected },
                 { value: 'Cancelled', label: dict.marketplace.buyer.ordersPage.tabs.cancelled },
             ]} defaultValue={activeTab} />
+            <OrderSection dict={dict} viewMode={viewMode} searchQuery={searchQuery} lang={lang} activeTab={activeTab}/>
 
             {/* Orders Content */}
-            {filteredOrders.length === 0 ? (
-                <Card className="p-12">
-                    <div className="text-center">
-                        <Package className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                        <p className="text-muted-foreground">{dict.marketplace.buyer.ordersPage.noOrders}</p>
-                    </div>
-                </Card>
-            ) : viewMode === 'grid' ? (
-                <div className="space-y-4">
-                    {filteredOrders.map((order) => (
-                        <Card key={order.id} className="hover:shadow-md transition-shadow">
-                            <CardContent className="p-4 sm:p-6">
-                                <div className="flex flex-col sm:flex-row items-start sm:justify-between gap-4">
-                                    {/* Left Section: Order Info */}
-                                    <div className="flex-1 space-y-3">
-                                        {/* Order ID and Status */}
-                                        <div className="flex items-center gap-2">
-                                            <h3 className="font-semibold text-lg">{order.id}</h3>
-                                            <StatusBadge status={order.status} dict={dict} />
-                                        </div>
-
-                                        {/* Supplier and Date */}
-                                        <div className="text-sm text-muted-foreground space-y-1">
-                                            <p>{dict.marketplace.buyer.ordersPage.card.supplier} {order.orderItems[0]?.product.name.includes('Premium') ? 'Premium Gold Co.' : 'Luxury Jewelers Inc.'}</p>
-                                            <p>{dict.marketplace.buyer.ordersPage.card.created} {order.date}</p>
-                                        </div>
-
-                                        {/* Timeline Progress */}
-                                        <div className="space-y-2">
-                                            <div className="flex items-center gap-2">
-                                                <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
-                                                    <div
-                                                        className="h-full bg-gold-600 transition-all duration-300"
-                                                        style={{ width: `${getProgressPercentage(order)}% ` }}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <p className="text-sm text-muted-foreground">
-                                                {getStatusLabel(order.status, dict)}
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    {/* Right Section: Price and Action */}
-                                    <div className="text-right space-y-3">
-                                        <div>
-                                            <p className="text-2xl font-bold text-gold-600">
-                                                ${order.total.toLocaleString()}
-                                            </p>
-                                            <p className="text-sm text-muted-foreground">
-                                                {order.items} {dict.marketplace.buyer.ordersPage.card.itemsSuffix}
-                                            </p>
-                                        </div>
-
-                                        <Link href={`/ ${lang} /buyer/orders / ${order.id} `}>
-                                            <Button variant="outline" size="sm">
-                                                <Eye className="h-4 w-4 mr-2" />
-                                                {dict.marketplace.buyer.ordersPage.card.viewDetails}
-                                            </Button>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </CardContent>
-                        </Card>
-                    ))}
-                </div>
-            ) : (
-                <div className="border rounded-lg shadow-sm bg-card">
-                    <div>
-                        <div className="w-full overflow-x-auto max-w-[calc(100vw-3rem)]">
-                            <Table className="min-w-[600px]">
-                                <TableHeader>
-                                    <TableRow>
-                                        <TableHead className="sticky left-0 z-20 bg-card shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">{dict.marketplace.buyer.ordersPage.table.orderId}</TableHead>
-                                        <TableHead>{dict.marketplace.buyer.ordersPage.table.date}</TableHead>
-                                        <TableHead>{dict.marketplace.buyer.ordersPage.table.items}</TableHead>
-                                        <TableHead>{dict.marketplace.buyer.ordersPage.table.total}</TableHead>
-                                        <TableHead>{dict.marketplace.buyer.ordersPage.table.status}</TableHead>
-                                        <TableHead className="text-right">{dict.marketplace.buyer.ordersPage.table.actions}</TableHead>
-                                    </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                    {filteredOrders.map((order) => (
-                                        <TableRow key={order.id}>
-                                            <TableCell className="font-medium sticky left-0 z-10 bg-card shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">{order.id}</TableCell>
-                                            <TableCell>{order.date}</TableCell>
-                                            <TableCell>{order.items} {dict.marketplace.buyer.ordersPage.card.itemsSuffix}</TableCell>
-                                            <TableCell className="font-semibold">
-                                                ${order.total.toLocaleString()}
-                                            </TableCell>
-                                            <TableCell><StatusBadge status={order.status} dict={dict} /></TableCell>
-                                            <TableCell className="text-right">
-                                                <Link href={`/ ${lang} /buyer/orders / ${order.id} `}>
-                                                    <Button size="sm" variant="ghost">
-                                                        <Eye className="h-4 w-4 mr-2" />
-                                                        {dict.marketplace.buyer.ordersPage.card.viewDetails}
-                                                    </Button>
-                                                </Link>
-                                            </TableCell>
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
 }
