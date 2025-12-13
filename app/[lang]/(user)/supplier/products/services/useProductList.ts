@@ -17,12 +17,10 @@ export function useProductList(supplierId?: string, filters?: ProductListFilters
     // Build params object, only including defined values
     const params: Record<string, any> = {
         page_size: 30,
+        supplier: supplierId,
+        is_bookmarked: isBookMarked,
     };
 
-    // Add supplierId if provided
-    if (supplierId) {
-        params.supplier = supplierId;
-    }
 
     // Add filter params if provided
     if (filters) {
@@ -39,11 +37,7 @@ export function useProductList(supplierId?: string, filters?: ProductListFilters
 
     const { data, error, isLoading } = useSWR({
         url: `/v1/gold_artifacts/products_list`,
-        params: {
-            page_size : 30,
-            supplier: supplierId,
-            is_bookmarked: isBookMarked,
-        },
+        params
     });
 
     return {
