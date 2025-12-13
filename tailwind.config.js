@@ -266,15 +266,15 @@ module.exports = {
             colors: {
                 // Core Brand Colors - Navy Blue (Primary)
                 navy: {
-                    50: '#E8EEF3',  // Lightest - subtle backgrounds
-                    100: '#C5D4E1', // Very light - hover states
-                    200: '#9EB8CD', // Light - borders
-                    300: '#779BB9', // Medium-light
-                    400: '#5985AA', // Medium
-                    500: '#3C6F9B', // Medium-dark
-                    600: '#2D5A7E', // Dark
-                    700: '#1E4461', // Very dark
-                    800: '#0F2F44', // Almost black
+                    50: '#E8EEF3',
+                    100: '#C5D4E1',
+                    200: '#9EB8CD',
+                    300: '#779BB9',
+                    400: '#5985AA',
+                    500: '#3C6F9B',
+                    600: '#2D5A7E',
+                    700: '#1E4461',
+                    800: '#0F2F44',
                     900: '#061324', // Your primary deep navy
                 },
 
