@@ -89,7 +89,7 @@ export default async function SupplierDashboardPage({ params: { lang } }: PagePr
                 <Link href={`/${lang}/supplier/products`}>
                     <Button className="bg-gold-600 hover:bg-gold-700 text-black">
                         <Package className="h-4 w-4 mr-2" />
-                        {dict.marketplace.supplier.manageProducts || 'Manage Products'}
+                        {dict.marketplace.supplier.browseCatalog || 'Browse Catalog'}
                     </Button>
                 </Link>
             </div>

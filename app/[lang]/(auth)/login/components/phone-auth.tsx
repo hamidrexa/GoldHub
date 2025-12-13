@@ -37,6 +37,7 @@ export function PhoneAuth({
                     setUserId={setUserId}
                     setIsNewUser={setIsNewUser}
                     texts={texts}
+                    redirectUrl={redirectUrl}
                 />
             )}
             {step === 'password' && (

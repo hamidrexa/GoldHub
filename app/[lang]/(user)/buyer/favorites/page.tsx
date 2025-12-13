@@ -7,8 +7,8 @@ export async function generateMetadata(
     parent?: ResolvingMetadata
 ): Promise<Metadata> {
     const dict = await getDictionary(lang);
-    const seoTitle = dict.marketplace.buyer.favoritesPage.title || 'Your Favorites';
-    const seoDescription = dict.marketplace.buyer.favoritesPage.description || 'View and manage your saved items and favorites on GoldHub.';
+    const seoTitle = dict.marketplace?.buyer?.favoritesPage?.title || 'Your Favorites';
+    const seoDescription = dict.marketplace?.buyer?.favoritesPage?.empty?.description || 'View and manage your saved items and favorites on GoldHub.';
 
     return {
         title: `${seoTitle}`,
