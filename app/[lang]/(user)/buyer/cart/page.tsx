@@ -1,5 +1,27 @@
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
+import { Metadata, ResolvingMetadata } from 'next';
+
+export async function generateMetadata(
+    { params: { lang } }: PageProps,
+    parent?: ResolvingMetadata
+): Promise<Metadata> {
+    const dict = await getDictionary(lang);
+    const seoTitle = dict.marketplace.buyer.cartPage.title || 'Your Shopping Cart';
+    const seoDescription = 'Review items in your GoldHub shopping cart and proceed to checkout.';
+
+    return {
+        title: `${seoTitle} | GoldHub`,
+        description: seoDescription,
+        openGraph: {
+            title: `${seoTitle} | GoldHub`,
+            description: seoDescription,
+        },
+        alternates: {
+            canonical: `/${lang}/buyer/cart`,
+        },
+    };
+}
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { getCartDetails } from '@/lib/api-client';

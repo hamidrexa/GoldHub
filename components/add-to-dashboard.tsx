@@ -142,7 +142,7 @@ export function AddToDashboard({
     ) : (
         <div className="flex items-center justify-between gap-2.5 self-stretch py-0">
             <div className="flex items-center justify-start gap-3.5 font-extrabold">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-300">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-400">
                     <svg
                         width="18"
                         height="18"

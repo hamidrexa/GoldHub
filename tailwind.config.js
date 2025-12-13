@@ -20,18 +20,18 @@ module.exports = {
             white: '#fff',
             black: '#000',
             neutral: {
-                50: '#F8F9FA',
-                150: 'rgba(225, 226, 250, 0.20)',
-                100: '#E2E6E9',
-                200: '#84859C',
-                300: '#10EDC5',
-                400: '#07BB61',
-                500: '#FEC925',
-                600: '#F31616',
-                700: '#2830C9',
-                800: '#F0A202',
-                900: '#061324',
-            },
+                50:  "#F8F9FA",
+                100: "#E2E6E9",
+                200: "#e5e5e5",
+                300: "#d4d4d4",
+                400: "#a3a3a3",
+                500: "#737373",
+                600: "#525252",
+                700: "#404040",
+                800: "#262626",
+                900: "#171717",
+                950: "#0a0a0a",
+                },
             slate: {
                 50: '#E1E2FA',
                 100: '#DEDFF9',
@@ -266,16 +266,16 @@ module.exports = {
             colors: {
                 // Core Brand Colors - Navy Blue (Primary)
                 navy: {
-                    50: '#E6EBF1',
-                    100: '#C2D1E0',
-                    200: '#9AB4CD',
-                    300: '#7297BA',
-                    400: '#5481AC',
-                    500: '#366B9E',
-                    600: '#2F5C88',
-                    700: '#264A6D',
-                    800: '#1D3952',
-                    900: '#102E50', // Primary navy
+                    50: '#E8EEF3',  // Lightest - subtle backgrounds
+                    100: '#C5D4E1', // Very light - hover states
+                    200: '#9EB8CD', // Light - borders
+                    300: '#779BB9', // Medium-light
+                    400: '#5985AA', // Medium
+                    500: '#3C6F9B', // Medium-dark
+                    600: '#2D5A7E', // Dark
+                    700: '#1E4461', // Very dark
+                    800: '#0F2F44', // Almost black
+                    900: '#061324', // Your primary deep navy
                 },
 
                 // Gold (Accent)

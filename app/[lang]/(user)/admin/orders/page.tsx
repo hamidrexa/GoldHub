@@ -1,5 +1,32 @@
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
+import { Metadata, ResolvingMetadata } from 'next';
+
+type Props = {
+    params: { lang: Locale };
+    searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+    { params: { lang } }: Props,
+    parent?: ResolvingMetadata
+): Promise<Metadata> {
+    const dict = await getDictionary(lang);
+    const seoTitle = dict.marketplace.admin.ordersPage.title || 'Manage Orders';
+    const seoDescription = dict.marketplace.admin.ordersPage.description || 'View, track, and manage all customer orders in the GoldHub marketplace.';
+
+    return {
+        title: `${seoTitle} | GoldHub`,
+        description: seoDescription,
+        openGraph: {
+            title: `${seoTitle} | GoldHub`,
+            description: seoDescription,
+        },
+        alternates: {
+            canonical: `/${lang}/admin/orders`,
+        },
+    };
+}
 import { Badge } from '@/components/ui/badge';
 import { Eye, CheckCircle, XCircle } from 'lucide-react';
 import { getOrdersHistory, ApiOrderStatus, mapApiOrderToUi } from '@/lib/api-client';

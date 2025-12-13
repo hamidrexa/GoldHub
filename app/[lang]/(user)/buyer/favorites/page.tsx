@@ -1,5 +1,27 @@
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
+import { Metadata, ResolvingMetadata } from 'next';
+
+export async function generateMetadata(
+    { params: { lang } }: PageProps,
+    parent?: ResolvingMetadata
+): Promise<Metadata> {
+    const dict = await getDictionary(lang);
+    const seoTitle = dict.marketplace.buyer.favoritesPage.title || 'Your Favorites';
+    const seoDescription = dict.marketplace.buyer.favoritesPage.description || 'View and manage your saved items and favorites on GoldHub.';
+
+    return {
+        title: `${seoTitle} | GoldHub`,
+        description: seoDescription,
+        openGraph: {
+            title: `${seoTitle} | GoldHub`,
+            description: seoDescription,
+        },
+        alternates: {
+            canonical: `/${lang}/buyer/favorites`,
+        },
+    };
+}
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Heart, ShoppingCart, ArrowLeft, Package as PackageIcon } from 'lucide-react';

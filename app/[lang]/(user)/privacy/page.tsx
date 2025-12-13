@@ -13,20 +13,20 @@ export async function generateMetadata(
     parent?: ResolvingMetadata
 ): Promise<Metadata> {
     const dict = await getDictionary(lang);
-    const title = dict.privacyPage?.title || dict.rules || 'Privacy Policy';
-    const description =
+    const seoTitle = dict.privacyPage?.title || dict.rules || 'Privacy Policy';
+    const seoDescription =
         dict.privacyPage?.intro ||
-        'GoldHub outlines how we collect, use, and protect your personal information.';
+        'Read the GoldHub privacy policy to understand how we collect, use, and protect your personal information.';
 
     return {
-        title,
-        description,
+        title: `${seoTitle} | GoldHub`,
+        description: seoDescription,
         openGraph: {
-            title,
-            description,
+            title: `${seoTitle} | GoldHub`,
+            description: seoDescription,
         },
         alternates: {
-            canonical: '',
+            canonical: `/${lang}/privacy`,
         },
     };
 }
@@ -38,7 +38,7 @@ export default async function PrivacyPage({ params: { lang } }: Props) {
 
     return (
         <div className="mx-auto my-12 flex max-w-4xl flex-col gap-8 px-6 text-neutral-800 md:px-0">
-            <header className="border-b border-neutral-200 pb-6 text-center md:text-left">
+            <header className="border-b border-slate-300 pb-6 text-center md:text-left">
                 <p className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-600">
                     {privacy?.title}
                 </p>

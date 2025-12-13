@@ -9,7 +9,7 @@ interface PercentageDisplayProps {
 }
 
 const Buy = ({ dict }) => (
-    <div className="text-sm font-bold text-neutral-400">{dict.buy}</div>
+    <div className="text-sm font-bold text-green-600">{dict.buy}</div>
 );
 
 const Sell = ({ dict }) => (
@@ -33,8 +33,8 @@ export function PercentageDisplay({
         >
             <Buy dict={dict} />
             <div className="relative mx-4 h-full w-full bg-slate-50">
-                <span className="absolute right-0 h-full w-1 bg-neutral-400 shadow-[2px_0px_7px_0px_rgba(7,_187,_97,_1)]" />
-                <span className="absolute bottom-0 left-1/2 top-0 inline-block h-full w-px -translate-x-1/2 border-l border-dashed border-l-neutral-200" />
+                <span className="absolute right-0 h-full w-1 bg-green-600 shadow-[2px_0px_7px_0px_rgba(7,_187,_97,_1)]" />
+                <span className="absolute bottom-0 left-1/2 top-0 inline-block h-full w-px -translate-x-1/2 border-l border-dashed border-l-slate-300" />
                 <span className="absolute left-0 h-full w-1 bg-neutral-600 shadow-[-2px_0px_7px_0px_rgba(243,_22,_22,_1)]" />
                 <svg
                     className={cn('absolute right-0 mx-auto transition-all', {

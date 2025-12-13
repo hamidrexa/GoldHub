@@ -1,5 +1,5 @@
 import { ChevronDown } from 'lucide-react';
-import { Metadata } from 'next';
+import { Metadata, ResolvingMetadata } from 'next';
 import { getDictionary } from '@/get-dictionary';
 import {
     Accordion,
@@ -10,19 +10,34 @@ import {
 import React from 'react';
 import { LinkBox } from '@/components/link-box';
 import { Icons } from '@/components/ui/icons';
+import { Locale } from '@/i18n-config';
 
-export const metadata: Metadata = {
-    title: 'طلانو | خرید و فروش طلای آب شده آنلاین بدون اجرت',
-    description:
-        'طلانو، بستر امن خرید و فروش طلای آب شده آنلاین، بدون مالیات و اجرت، با ارائه فاکتور رسمی تضمینی و گارانتی اصالت با قیمت لحظه‌ای و به‌روز طلای آب شده',
-    openGraph: {
-        title: 'طلانو | خرید و فروش طلای آب شده آنلاین بدون اجرت',
-        description:
-            'طلانو، بستر امن خرید و فروش طلای آب شده آنلاین، بدون مالیات و اجرت، با ارائه فاکتور رسمی تضمینی و گارانتی اصالت با قیمت لحظه‌ای و به‌روز طلای آب شده',
-    },
-};
+interface PageProps {
+    params: { lang: Locale };
+}
 
-export default async function HomePage({ params: { lang } }) {
+export async function generateMetadata(
+    { params: { lang } }: PageProps,
+    parent?: ResolvingMetadata
+): Promise<Metadata> {
+    const dict = await getDictionary(lang);
+    const seoTitle = dict.homePageSeoTitle || 'GoldHub';
+    const seoDescription = dict.homePageDescription || 'The secure platform for buying and selling gold online.';
+
+    return {
+        title: seoTitle,
+        description: seoDescription,
+        openGraph: {
+            title: seoTitle,
+            description: seoDescription,
+        },
+        alternates: {
+            canonical: `/${lang}`,
+        },
+    };
+}
+
+export default async function HomePage({ params: { lang } }: PageProps) {
     const dict = await getDictionary(lang);
 
     return (

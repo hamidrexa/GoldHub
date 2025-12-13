@@ -127,12 +127,12 @@ export function Footer({ dict, lang }) {
     return (
         <footer>
             <div className="hidden md:block">
-                <div className="rounded-tl-lg rounded-tr-lg bg-neutral-100 pb-14 pt-8">
+                <div className="rounded-tl-lg rounded-tr-lg bg-gray-50 pb-14 pt-8">
                     <div className="mx-auto flex max-w-[1525px] flex-col gap-10 px-14">
                         <BreadcrumbComponent />
                         <div className="flex justify-between">
                             <Link
-                                className="flex items-center gap-2.5 text-lg font-black text-neutral-800"
+                                className="flex items-center gap-2.5 text-lg font-black text-navy-900"
                                 href={`${getLinksLang(lang)}/`}
                             >
                                 <Icons.logo />
@@ -205,7 +205,7 @@ export function Footer({ dict, lang }) {
                         </div>
                     </div>
                 </div>
-                <div className="-mt-6 rounded-tl-lg rounded-tr-lg bg-neutral-200 pb-14 pt-8">
+                <div className="-mt-6 rounded-tl-lg rounded-tr-lg bg-gray-100 pb-14 pt-8">
                     <div
                         className="grid w-full grid-cols-3 place-items-center gap-3 sm:p-4 md:mx-auto md:max-w-4xl lg:grid-cols-6 lg:p-0">
                         <div className="h-24 w-24 rounded-lg bg-white p-4 lg:h-28 lg:w-28">
@@ -278,7 +278,7 @@ export function Footer({ dict, lang }) {
                         </div> */}
                     </div>
                 </div>
-                <div className="-mt-6 space-y-6 rounded-tl-lg rounded-tr-lg bg-neutral-700 pb-0 pt-8">
+                <div className="-mt-6 space-y-6 rounded-tl-lg rounded-tr-lg bg-navy-900 pb-0 pt-8">
                     {/*<div className="flex flex-col items-center gap-6">*/}
                     {/*    <div className="flex items-center gap-10">*/}
                     {/*        <a href="https://t.me/sahmetocom" target="_blank">*/}
@@ -323,19 +323,19 @@ export function Footer({ dict, lang }) {
                                  اجرت و با حداقل کارمزد براتون انجام میده. واحد خرید و فروش در طلانو، گرم طلای ۱۸ عیاره.
                             </p>
                         )}
-                        <p className="shadow-4xl mt-4 rounded-tl-lg rounded-tr-lg bg-neutral-800 px-8 py-4 text-center text-sm text-black">
+                        <p className="shadow-4xl mt-4 rounded-tl-lg rounded-tr-lg bg-navy-800 px-8 py-4 text-center text-sm text-white">
                             {dict.copyright}
                         </p>
                     </div>
                 </div>
             </div>
             {/*mobile footer*/}
-            <div className="shadow-4xl rounded-tl-lg rounded-tr-lg bg-neutral-100 md:hidden">
+            <div className="shadow-4xl rounded-tl-lg rounded-tr-lg bg-gray-50 md:hidden">
                 <div className="flex items-center justify-between p-8">
                     <div className="flex flex-col gap-6 md:gap-2">
                         <BreadcrumbComponent />
                         <Link
-                            className="flex items-center gap-2.5 text-lg font-black text-neutral-800"
+                            className="flex items-center gap-2.5 text-lg font-black text-navy-900"
                             href={`${getLinksLang(lang)}/`}
                         >
                             <Icons.logo />
@@ -499,7 +499,7 @@ export function Footer({ dict, lang }) {
                 {/*        </ul>*/}
                 {/*    </div>*/}
                 {/*</div>*/}
-                <div className="mt-3 flex w-full flex-col justify-center gap-2 rounded-t-xl bg-neutral-700 pt-8">
+                <div className="mt-3 flex w-full flex-col justify-center gap-2 rounded-t-xl bg-navy-900 pt-8">
                     {/*<div className="flex flex-col items-center gap-6">*/}
                     {/*    <a*/}
                     {/*        href="https://www.instagram.com/sahmeto_com"*/}
@@ -548,7 +548,7 @@ export function Footer({ dict, lang }) {
                             قوانین
                         </a>
                     </div>
-                    <p className="shadow-6xl mt-10 rounded-tl-lg rounded-tr-lg bg-neutral-800 px-8 py-4 text-center text-sm text-black">
+                    <p className="shadow-6xl mt-10 rounded-tl-lg rounded-tr-lg bg-navy-800 px-8 py-4 text-center text-sm text-white">
                         {dict.copyright}
                     </p>
                 </div>

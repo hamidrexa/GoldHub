@@ -134,30 +134,12 @@ export function Sidebar({ dict, lang }: SidebarProps) {
 
     const SidebarContent = () => (
         <div className="flex h-full flex-col py-6 bg-sidebar-bg text-white">
-            {/* Logo and User Profile Section at Top */}
+            {/* Logo Section at Top */}
             <div className="px-6 mb-6">
                 <div className="flex items-center gap-2 font-bold text-xl text-white mb-6">
-                    {/* <div className="bg-gold-600 rounded-lg p-2"> */}
                     <Icons.logoDark className="h-5 w-5 fill-black" />
-                    {/* </div> */}
                     <span>GoldTrade</span>
                 </div>
-
-                {user && (
-                    <div className="space-y-1">
-                        <p className="text-sm font-medium text-white">
-                            {user.first_name || 'robohamid'}
-                        </p>
-                        <p className="text-xs text-gray-400 truncate">
-                            {user.email || 'robohamid@gmail.com'}
-                        </p>
-                        <div className="mt-2">
-                            <span className={`inline-block px-3 py-1 text-xs font-medium text-white rounded ${isBuyer ? 'bg-emerald-500' : isSupplier ? 'bg-gold-600' : 'bg-navy-900'}`}>
-                                {isBuyer ? 'Buyer' : isSupplier ? 'Supplier' : 'Administrator'}
-                            </span>
-                        </div>
-                    </div>
-                )}
             </div>
 
             <Separator className="bg-gold-200/15 mb-4" />
@@ -190,22 +172,34 @@ export function Sidebar({ dict, lang }: SidebarProps) {
 
             <Separator className="bg-gold-200/15 mb-4" />
 
-            {/* Settings and Logout at Bottom */}
-            <div className="px-4 py-4 space-y-1">
-                <Link
-                    href={`${getLinksLang(lang)}/settings`}
-                    className="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-gray-400 hover:text-white hover:bg-gray-800 transition-all duration-200"
-                >
-                    <Settings className="h-5 w-5" />
-                    Settings
-                </Link>
-                <button
-                    onClick={logout}
-                    className="w-full flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-gray-400 hover:text-white hover:bg-gray-800 transition-all duration-200"
-                >
-                    <LogOut className="h-5 w-5" />
-                    Logout
-                </button>
+            {/* User Info / Login Section at Bottom */}
+            <div className="px-4 py-4 space-y-4">
+                {user ? (
+                    <div className="space-y-3">
+                        <div className="space-y-1">
+                            <p className="text-sm font-medium text-white">
+                                {user.first_name || 'robohamid'}
+                            </p>
+                            <p className="text-xs text-gray-400 truncate">
+                                {user.email || 'robohamid@gmail.com'}
+                            </p>
+                        </div>
+                        <button
+                            onClick={logout}
+                            className="w-full flex items-center justify-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-gray-400 hover:text-white hover:bg-gray-800 transition-all duration-200"
+                        >
+                            <LogOut className="h-5 w-5" />
+                            Logout
+                        </button>
+                    </div>
+                ) : (
+                    <Link
+                        href={`${getLinksLang(lang)}/login?url=${pathname}`}
+                        className="flex h-12 items-center justify-center rounded-md border border-transparent bg-neutral-800 px-10 font-medium text-white hover:bg-neutral-700"
+                    >
+                        {dict.loginRegister}
+                    </Link>
+                )}
             </div>
         </div>
     );

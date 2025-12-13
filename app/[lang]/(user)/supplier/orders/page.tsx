@@ -1,5 +1,27 @@
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
+import { Metadata, ResolvingMetadata } from 'next';
+
+export async function generateMetadata(
+    { params: { lang } }: PageProps,
+    parent?: ResolvingMetadata
+): Promise<Metadata> {
+    const dict = await getDictionary(lang);
+    const seoTitle = dict.marketplace.supplier.ordersPage.title || 'Your Orders';
+    const seoDescription = dict.marketplace.supplier.ordersPage.description || 'View and manage your incoming orders on GoldHub.';
+
+    return {
+        title: `${seoTitle} | GoldHub`,
+        description: seoDescription,
+        openGraph: {
+            title: `${seoTitle} | GoldHub`,
+            description: seoDescription,
+        },
+        alternates: {
+            canonical: `/${lang}/supplier/orders`,
+        },
+    };
+}
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Eye, Package as PackageIcon } from 'lucide-react';
 import { getSellsHistory, updateOrderStatus, ApiOrderStatus } from '@/lib/api-client';

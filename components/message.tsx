@@ -354,7 +354,7 @@ export function Message({
                             </svg>
                             {dict.translatedFrom}:{' '}
                             {Countries[message.message_language]}
-                            <span className="h-4 border-r-2 border-r-neutral-200" />
+                            <span className="h-4 border-r-2 border-r-slate-300" />
                             <div
                                 className="cursor-pointer underline underline-offset-2"
                                 onClick={() => setShowTranslate(!showTranslate)}

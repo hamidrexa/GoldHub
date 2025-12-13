@@ -9,40 +9,34 @@ import {
     TwitterLogoIcon,
 } from '@radix-ui/react-icons';
 
-type Props = {
-    params: { id: string; lang: Locale };
-    searchParams: { [key: string]: string | string[] | undefined };
-};
-
 type PageProps = {
     params: {
-        id: string;
         lang: Locale;
     };
 };
 
 export async function generateMetadata(
-    { params: { lang } }: Props,
+    { params: { lang } }: PageProps,
     parent?: ResolvingMetadata
 ): Promise<Metadata> {
     const dict = await getDictionary(lang);
-    const seoTitle = dict.contactPageTitleSeo;
-    const seoDescription = '';
+    const seoTitle = dict.contactUs || 'Contact Us';
+    const seoDescription = `Get in touch with GoldHub for any inquiries. Find our contact details, including address, phone, and email.`;
 
     return {
-        title: seoTitle,
+        title: `${seoTitle} | GoldHub`,
         description: seoDescription,
         openGraph: {
-            title: seoTitle,
+            title: `${seoTitle} | GoldHub`,
             description: seoDescription,
         },
         alternates: {
-            canonical: '',
+            canonical: `/${lang}/contact`,
         },
     };
 }
 
-export default async function ContactPage({ params: { id, lang } }: PageProps) {
+export default async function ContactPage({ params: { lang } }: PageProps) {
     const dict = await getDictionary(lang);
 
     return (

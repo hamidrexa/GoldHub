@@ -1,7 +1,8 @@
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
+import { Metadata, ResolvingMetadata } from 'next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Package, ShoppingCart, DollarSign, TrendingUp, TrendingDown } from 'lucide-react';
+import { Package, ShoppingCart, DollarSign, TrendingUp, TrendingDown, ArrowRight } from 'lucide-react';
 import { mockSupplierStats, mockOrders, mockProducts } from '@/lib/mock-data';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
@@ -9,6 +10,27 @@ import { Button } from '@/components/ui/button';
 
 interface PageProps {
     params: { lang: Locale };
+}
+
+export async function generateMetadata(
+    { params: { lang } }: PageProps,
+    parent?: ResolvingMetadata
+): Promise<Metadata> {
+    const dict = await getDictionary(lang);
+    const seoTitle = dict.marketplace.common.dashboard || 'Supplier Dashboard';
+    const seoDescription = dict.marketplace.supplier.welcomeMessage || 'Manage your products, orders, and view sales analytics on the GoldHub supplier dashboard.';
+
+    return {
+        title: `${seoTitle} | GoldHub`,
+        description: seoDescription,
+        openGraph: {
+            title: `${seoTitle} | GoldHub`,
+            description: seoDescription,
+        },
+        alternates: {
+            canonical: `/${lang}/supplier/dashboard`,
+        },
+    };
 }
 
 export default async function SupplierDashboardPage({ params: { lang } }: PageProps) {
@@ -58,9 +80,18 @@ export default async function SupplierDashboardPage({ params: { lang } }: PagePr
 
     return (
         <div className="space-y-6">
-            <div>
-                <h1 className="text-3xl font-bold tracking-tight">{dict.marketplace.common.dashboard}</h1>
-                <p className="text-muted-foreground">{dict.marketplace.supplier.welcomeMessage}</p>
+            {/* Header */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                    <h1 className="text-3xl font-bold tracking-tight">{dict.marketplace.common.dashboard}</h1>
+                    <p className="text-muted-foreground">{dict.marketplace.supplier.welcomeMessage}</p>
+                </div>
+                <Link href={`/${lang}/supplier/products`}>
+                    <Button className="bg-gold-600 hover:bg-gold-700 text-black">
+                        <Package className="h-4 w-4 mr-2" />
+                        {dict.marketplace.supplier.manageProducts || 'Manage Products'}
+                    </Button>
+                </Link>
             </div>
 
             {/* Stats Grid */}
@@ -69,19 +100,17 @@ export default async function SupplierDashboardPage({ params: { lang } }: PagePr
                     const Icon = stat.icon;
                     return (
                         <Card key={index} className="hover:shadow-lg transition-shadow">
-                            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                <CardTitle className="text-sm font-medium text-muted-foreground">
-                                    {stat.title}
-                                </CardTitle>
-                                <div className={`p-2 rounded-lg ${stat.bgColor}`}>
-                                    <Icon className={`h-4 w-4 ${stat.color}`} />
+                            <CardContent className="p-6">
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <p className="text-sm font-medium text-muted-foreground">{stat.title}</p>
+                                        <p className="text-3xl font-bold mt-2">{stat.value}</p>
+                                        <p className="text-xs text-muted-foreground mt-1">{stat.description}</p>
+                                    </div>
+                                    <div className={`h-12 w-12 rounded-full flex items-center justify-center ${stat.bgColor}`}>
+                                        <Icon className={`h-6 w-6 ${stat.color}`} />
+                                    </div>
                                 </div>
-                            </CardHeader>
-                            <CardContent>
-                                <div className="text-2xl font-bold">{stat.value}</div>
-                                <p className="text-xs text-muted-foreground mt-1">
-                                    {stat.description}
-                                </p>
                             </CardContent>
                         </Card>
                     );
@@ -117,71 +146,71 @@ export default async function SupplierDashboardPage({ params: { lang } }: PagePr
                 </CardContent>
             </Card>
 
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
                 {/* Recent Orders */}
                 <Card>
-                    <CardHeader>
-                        <div className="flex items-center justify-between">
-                            <CardTitle>{dict.marketplace.supplier.recentOrders}</CardTitle>
-                            <Link href={`/${lang}/supplier/orders`}>
-                                <Button variant="link" size="sm">{dict.marketplace.common.viewAll}</Button>
-                            </Link>
-                        </div>
+                    <CardHeader className="flex flex-row items-center justify-between">
+                        <CardTitle className="text-lg">{dict.marketplace.supplier.recentOrders}</CardTitle>
+                        <Link href={`/${lang}/supplier/orders`}>
+                            <Button variant="ghost" size="sm">
+                                {dict.marketplace.common.viewAll}
+                                <ArrowRight className="h-4 w-4 ml-1" />
+                            </Button>
+                        </Link>
                     </CardHeader>
-                    <CardContent>
-                        <div className="space-y-4">
-                            {recentOrders.length === 0 ? (
-                                <p className="text-sm text-muted-foreground text-center py-4">{dict.marketplace.supplier.noRecentOrders}</p>
-                            ) : (
-                                recentOrders.map((order) => (
-                                    <div key={order.id} className="flex items-center justify-between border-b pb-3 last:border-0">
-                                        <div>
-                                            <p className="font-medium text-sm">{order.id}</p>
-                                            <p className="text-xs text-muted-foreground">{order.buyer}</p>
-                                        </div>
-                                        <div className="text-right">
-                                            <p className="font-medium text-sm">${order.total.toLocaleString()}</p>
-                                            <Badge variant="outline-blue" className="text-xs">
+                    <CardContent className="space-y-3">
+                        {recentOrders.length === 0 ? (
+                            <p className="text-sm text-muted-foreground text-center py-6">{dict.marketplace.supplier.noRecentOrders}</p>
+                        ) : (
+                            recentOrders.map((order) => (
+                                <div key={order.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                                    <div className="flex-1">
+                                        <div className="flex items-center gap-2 mb-1">
+                                            <p className="font-semibold text-sm">{order.id}</p>
+                                            <Badge className="text-xs bg-gold-100 text-gold-800">
                                                 {order.status === 'pending_supplier' ? dict.marketplace.common.pending : dict.marketplace.common.confirmed}
                                             </Badge>
                                         </div>
+                                        <p className="text-xs text-muted-foreground">{order.buyer}</p>
                                     </div>
-                                ))
-                            )}
-                        </div>
+                                    <div className="text-right">
+                                        <p className="font-bold text-sm">${order.total.toLocaleString()}</p>
+                                    </div>
+                                </div>
+                            ))
+                        )}
                     </CardContent>
                 </Card>
 
                 {/* Your Products */}
                 <Card>
-                    <CardHeader>
-                        <div className="flex items-center justify-between">
-                            <CardTitle>{dict.marketplace.supplier.yourProducts}</CardTitle>
-                            <Link href={`/${lang}/supplier/products`}>
-                                <Button variant="link" size="sm">{dict.marketplace.common.viewAll}</Button>
-                            </Link>
-                        </div>
+                    <CardHeader className="flex flex-row items-center justify-between">
+                        <CardTitle className="text-lg">{dict.marketplace.supplier.yourProducts}</CardTitle>
+                        <Link href={`/${lang}/supplier/products`}>
+                            <Button variant="ghost" size="sm">
+                                {dict.marketplace.common.viewAll}
+                                <ArrowRight className="h-4 w-4 ml-1" />
+                            </Button>
+                        </Link>
                     </CardHeader>
-                    <CardContent>
-                        <div className="space-y-4">
-                            {topProducts.map((product) => (
-                                <div key={product.id} className="flex items-center justify-between border-b pb-3 last:border-0">
-                                    <div className="flex items-center gap-3">
-                                        <div className="h-10 w-10 bg-gray-100 rounded flex items-center justify-center">
-                                            <Package className="h-5 w-5 text-gray-400" />
-                                        </div>
-                                        <div>
-                                            <p className="font-medium text-sm">{product.name}</p>
-                                            <p className="text-xs text-muted-foreground">{product.karat} · {product.weight}g</p>
-                                        </div>
+                    <CardContent className="space-y-3">
+                        {topProducts.map((product) => (
+                            <div key={product.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                                <div className="flex items-center gap-3 flex-1">
+                                    <div className="h-10 w-10 bg-gold-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <Package className="h-5 w-5 text-gold-600" />
                                     </div>
-                                    <div className="text-right">
-                                        <p className="font-medium text-sm">${product.price.toLocaleString()}</p>
-                                        <p className="text-xs text-muted-foreground">{product.stock} in stock</p>
+                                    <div>
+                                        <p className="font-semibold text-sm line-clamp-1">{product.name}</p>
+                                        <p className="text-xs text-muted-foreground">{product.karat} · {product.weight}g</p>
                                     </div>
                                 </div>
-                            ))}
-                        </div>
+                                <div className="text-right">
+                                    <p className="font-bold text-sm">${product.price.toLocaleString()}</p>
+                                    <p className="text-xs text-muted-foreground">{product.stock} {dict.marketplace.common.inStock || 'in stock'}</p>
+                                </div>
+                            </div>
+                        ))}
                     </CardContent>
                 </Card>
             </div>

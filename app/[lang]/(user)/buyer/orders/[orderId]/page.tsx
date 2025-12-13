@@ -1,5 +1,33 @@
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
+import { Metadata, ResolvingMetadata } from 'next';
+
+export async function generateMetadata(
+    { params: { lang, orderId } }: PageProps,
+    parent?: ResolvingMetadata
+): Promise<Metadata> {
+    const dict = await getDictionary(lang);
+    const order = mockBuyerOrders.find(o => o.id === orderId);
+
+    const seoTitle = order
+        ? `${dict.marketplace.buyer.orderDetailModal.title} ${order.id}`
+        : dict.marketplace.buyer.orderDetailPage.notFound.title;
+    const seoDescription = order
+        ? `View details for order ${order.id}, placed on ${order.date}.`
+        : dict.marketplace.buyer.orderDetailPage.notFound.description;
+
+    return {
+        title: `${seoTitle} | GoldHub`,
+        description: seoDescription,
+        openGraph: {
+            title: `${seoTitle} | GoldHub`,
+            description: seoDescription,
+        },
+        alternates: {
+            canonical: `/${lang}/buyer/orders/${orderId}`,
+        },
+    };
+}
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';

@@ -9,7 +9,7 @@ export default function MessageCount() {
     return isLoading ? (
         <Skeleton className="mx-1 inline-block h-8 w-16" />
     ) : (
-        <span className="mx-1 flex min-w-16 items-center justify-center text-2xl text-neutral-400">
+        <span className="mx-1 flex min-w-16 items-center justify-center text-2xl text-green-600">
             <CountUp
                 easingFn={(
                     t: number,

@@ -1,13 +1,41 @@
 import { TicketIcon } from 'lucide-react';
-import { Metadata } from 'next';
+import { Metadata, ResolvingMetadata } from 'next';
 import { cn, getLinksLang } from '@/libs/utils';
 import { buttonVariants } from '@/components/ui/button';
 import Link from 'next/link';
+import { getDictionary } from '@/get-dictionary';
+import { Locale } from '@/i18n-config';
 
-export const metadata: Metadata = {
-    title: 'رسید خرید | طلانو',
-    description: '',
-};
+interface PageProps {
+    params: { planId: string; lang: Locale };
+}
+
+export async function generateMetadata(
+    { params: { lang, planId } }: PageProps,
+    parent?: ResolvingMetadata
+): Promise<Metadata> {
+    const dict = await getDictionary(lang);
+    const isSuccess = parseInt(planId) !== 0;
+
+    const seoTitle = isSuccess
+        ? dict.transactionStatus.success
+        : dict.transactionStatus.cancel;
+    const seoDescription = `View the receipt for your transaction on GoldHub. Status: ${
+        isSuccess ? 'Successful' : 'Failed'
+    }.`;
+
+    return {
+        title: `${seoTitle} | GoldHub`,
+        description: seoDescription,
+        openGraph: {
+            title: `${seoTitle} | GoldHub`,
+            description: seoDescription,
+        },
+        alternates: {
+            canonical: `/${lang}/receipt/${planId}`,
+        },
+    };
+}
 
 const PlanType = {
     1: 'طلایی',
@@ -18,7 +46,7 @@ const PlanType = {
     6: 'هدیه',
 };
 
-export default function ReceiptPage({ params: { planId, lang } }) {
+export default function ReceiptPage({ params: { planId, lang } }: PageProps) {
     const isSuccess = parseInt(planId) !== 0;
 
     return (

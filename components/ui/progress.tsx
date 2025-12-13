@@ -7,12 +7,12 @@ import { cn } from '@/libs/utils';
 import { cva, VariantProps } from 'class-variance-authority';
 
 const progressIndicatorVariants = cva(
-    'bg-neutral-300 h-full w-full flex-1 transition-all rounded-full',
+    'bg-emerald-400 h-full w-full flex-1 transition-all rounded-full',
     {
         variants: {
             variant: {
-                default: 'bg-neutral-300',
-                secondary: 'bg-neutral-200',
+                default: 'bg-emerald-400',
+                secondary: 'bg-slate-300',
                 warning: 'bg-neutral-500/75',
                 destructive: 'bg-neutral-600',
             },

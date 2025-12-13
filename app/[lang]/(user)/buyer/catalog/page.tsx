@@ -1,5 +1,27 @@
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
+import { Metadata, ResolvingMetadata } from 'next';
+
+export async function generateMetadata(
+    { params: { lang } }: PageProps,
+    parent?: ResolvingMetadata
+): Promise<Metadata> {
+    const dict = await getDictionary(lang);
+    const seoTitle = dict.marketplace.buyer.catalogPage.title || 'Product Catalog';
+    const seoDescription = dict.marketplace.buyer.catalogPage.description || 'Browse our extensive catalog of fine jewelry and gold products.';
+
+    return {
+        title: `${seoTitle} | GoldHub`,
+        description: seoDescription,
+        openGraph: {
+            title: `${seoTitle} | GoldHub`,
+            description: seoDescription,
+        },
+        alternates: {
+            canonical: `/${lang}/buyer/catalog`,
+        },
+    };
+}
 import { getProducts } from '@/lib/api-client';
 import { mockProducts, Product } from '@/lib/mock-data';
 import { CatalogContent } from './catalog-content';

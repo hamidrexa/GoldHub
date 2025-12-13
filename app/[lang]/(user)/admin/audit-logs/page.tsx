@@ -1,5 +1,32 @@
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
+import { Metadata, ResolvingMetadata } from 'next';
+
+type Props = {
+    params: { lang: Locale };
+    searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+    { params: { lang } }: Props,
+    parent?: ResolvingMetadata
+): Promise<Metadata> {
+    const dict = await getDictionary(lang);
+    const seoTitle = dict.marketplace.admin.auditLogsPage.title || 'Audit Logs';
+    const seoDescription = dict.marketplace.admin.auditLogsPage.description || 'Review and monitor all system and user activities.';
+
+    return {
+        title: `${seoTitle} | GoldHub`,
+        description: seoDescription,
+        openGraph: {
+            title: `${seoTitle} | GoldHub`,
+            description: seoDescription,
+        },
+        alternates: {
+            canonical: `/${lang}/admin/audit-logs`,
+        },
+    };
+}
 import { Badge } from '@/components/ui/badge';
 import { Search } from 'lucide-react';
 import { mockAuditLogs, AuditLog } from '@/lib/mock-data';

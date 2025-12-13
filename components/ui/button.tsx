@@ -21,7 +21,7 @@ const buttonVariants = cva(
                     'border border-neutral-700 text-neutral-700 bg-slate-50/40',
                 ghost: 'bg-transparent text-neutral-800 hover:bg-blue-100',
                 link: 'bg-transparent text-neutral-800 hover:underline',
-                success: 'bg-neutral-400 text-white hover:bg-green-700',
+                success: 'bg-green-600 text-white hover:bg-green-700',
             },
             size: {
                 default: 'h-10 px-5 text-sm',

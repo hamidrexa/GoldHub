@@ -88,7 +88,7 @@ export function MessageCompact({
                     getStringRoa(signal.value, {
                         colors: {
                             loss: 'border-neutral-600',
-                            profit: 'border-neutral-300',
+                            profit: 'border-emerald-400',
                             neutral: '',
                         },
                     })
