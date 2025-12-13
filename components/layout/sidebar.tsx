@@ -184,17 +184,20 @@ export function Sidebar({ dict, lang }: SidebarProps) {
                             <p className="text-xs text-gray-400 truncate">
                                 {user.email || 'test@gmail.com'}
                             </p>
-                            <div className="mt-1">
-                                <Badge 
-                                    variant={
-                                        role === 'admin' ? 'destructive' : 
-                                        role?.includes('supplier') ? 'secondary' : 'default'
-                                    }
-                                    size="sm"
-                                    className="text-xs"
-                                >
-                                    {role?.charAt(0).toUpperCase() + role?.slice(1) || 'User'}
-                                </Badge>
+                            <div className="mt-1 flex flex-wrap gap-1">
+                                {user.groups?.map((group, index) => (
+                                    <Badge 
+                                        key={index}
+                                        variant={
+                                            group.name === 'admin' ? 'destructive' : 
+                                            group.name.includes('supplier') ? 'secondary' : 'default'
+                                        }
+                                        size="sm"
+                                        className="text-xs"
+                                    >
+                                        {group.name.charAt(0).toUpperCase() + group.name.slice(1)}
+                                    </Badge>
+                                ))}
                             </div>
                         </div>
                         <Link
