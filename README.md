@@ -1,582 +1,561 @@
-# GoldHub
+# GoldHub 🏆
 
-A comprehensive Next.js-based investment platform for gold trading and broker management. Tala enables brokers to create investment contracts, manage members, and provide a secure investment experience.
+**GoldHub** is a modern, full-featured B2B marketplace platform built with Next.js 14, designed to connect gold and jewelry suppliers with retailers. The platform provides a comprehensive ecosystem for managing products, orders, pricing, and user authentication with multi-role support.
+
+[![Next.js](https://img.shields.io/badge/Next.js-14.2-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
+[![React](https://img.shields.io/badge/React-18.2-61DAFB?style=flat-square&logo=react)](https://reactjs.org/)
+
+---
 
 ## 📋 Table of Contents
 
-- [Overview](#overview)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [User Roles](#user-roles)
-- [Database Schema](#database-schema)
-- [API Integration](#api-integration)
-- [Deployment](#deployment)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [User Roles](#-user-roles)
+- [Internationalization](#-internationalization)
+- [API Integration](#-api-integration)
+- [Design System](#-design-system)
+- [Scripts](#-scripts)
+- [Environment Variables](#-environment-variables)
+- [Deployment](#-deployment)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-## 🎯 Overview
-
-Tala is a multi-language investment platform that connects brokers with investors. The platform allows:
-- **Brokers** to create and manage investment contracts
-- **Admins** to oversee all brokers and contract types
-- **Public users** to view broker profiles and available investment opportunities
-- **Members** to participate in investment contracts through their assigned brokers
+---
 
 ## ✨ Features
 
-### 🏢 Admin Panel (`/admin`)
+### 🔐 Authentication & Authorization
+- **Multi-provider authentication**: Phone number, password, and Google OAuth
+- **Role-based access control**: Admin, Supplier, and Buyer roles
+- **KYC verification system**: Complete user verification workflow
+- **Session management**: Secure cookie-based authentication with Bearer tokens
 
-The admin panel provides comprehensive management capabilities:
+### 👥 Multi-Role Dashboard System
 
-- **Broker Management**
-  - View and manage all registered brokers
-  - Toggle broker status (active/inactive)
-  - Create public marketing pages for brokers
-  - Monitor broker activity and assignments
+#### **Admin Dashboard**
+- **User & KYC Management**: Review and approve/reject user KYC requests
+- **Order Management**: Monitor all platform orders with advanced filtering
+- **Audit Logs**: Track all user activities and system events
+- **Analytics Dashboard**: Real-time statistics and insights
+- **User Administration**: Manage user roles and permissions
 
-- **Contract Type Management**
-  - Create and configure investment contract types
-  - Define contract parameters:
-    - Investment amount range (min/max)
-    - Duration (months)
-    - Select from available guarantee types with "افزودن تضمین" (Add Guarantee) button
-    - Customize profit share percentage for each selected guarantee type
-    - Settlement types (آبشده, کیف داریک, ریالی, مصنوع و سکه)
-    - Automatic profit share calculation based on selected guarantees
-  - Two-level form workflow:
-    - **Level 1**: Basic information (name, description, investment range, duration)
-    - **Level 2**: Guarantee types selection and profit share configuration
-  - Assign contract types to specific brokers
-  - Activate/deactivate contract types
+#### **Supplier Dashboard**
+- **Product Management**: Create, update, and delete gold/jewelry products
+- **Inventory Tracking**: Real-time inventory management
+- **Order Fulfillment**: Process and track supplier orders
+- **Pricing Configuration**: Dynamic pricing based on gold karat and weight
+- **Sales Analytics**: Revenue tracking and performance metrics
 
-- **Guarantee Type Management** (`مدیریت تضامین`)
-  - Create and manage guarantee types (e.g., ملک, چک)
-  - Set default profit share percentages for each guarantee type
-  - Add descriptions and additional details for each guarantee type
-  - Track owner of each guarantee type (admin who created it)
-  - View usage statistics of each guarantee type
-  - Edit existing guarantee types
-  - Delete unused guarantee types
+#### **Buyer Dashboard**
+- **Product Catalog**: Browse and search gold/jewelry products
+- **Shopping Cart**: Add products with quantity management
+- **Order History**: Track order status and delivery
+- **Favorites**: Save products for later
+- **Order Details**: View detailed order information with timeline
 
-- **System Overview**
-  - Dashboard with key metrics
-  - Broker performance statistics
-  - Contract analytics
-  - Guarantee type utilization reports
+### 🛍️ E-Commerce Features
+- **Advanced Product Filtering**: Filter by category, karat, weight, price range, and supplier
+- **Shopping Cart System**: Add/remove products with real-time cart updates
+- **Order Management**: Complete order lifecycle from creation to delivery
+- **Product Images**: Multi-image upload and gallery support
+- **Responsive Product Cards**: Grid and list view options
 
-### 👔 Broker Panel (`/broker`)
+### 🌍 Internationalization (i18n)
+- **Multi-language support**: English and Persian (Farsi)
+- **RTL/LTR layout support**: Automatic direction switching
+- **Localized content**: Complete translation coverage
+- **Language switcher**: Easy language selection in UI
 
-Brokers have access to:
+### 🎨 Modern UI/UX
+- **Shadcn/UI Components**: Beautiful, accessible component library
+- **Radix UI Primitives**: Unstyled, accessible components
+- **Responsive Design**: Mobile-first approach with tablet and desktop optimization
+- **Dark Mode Support**: Theme switching capability
+- **Custom Color Palette**: Navy blue and gold brand colors
+- **Smooth Animations**: Framer Motion for fluid interactions
+- **Loading States**: Skeleton loaders and progress indicators
 
-- **Contract Type Management**
-  - View assigned contract types with comprehensive details
-  - Edit contract parameters in a two-level form:
-    - **Level 1 - Basic Information**: Description, min/max investment amounts, min/max duration months
-    - **Level 2 - Guarantee Management**: 
-      - View admin-defined guarantees (read-only) with their profit shares
-      - Add custom guarantees specific to this contract type
-      - Edit or delete custom guarantees
-      - Automatic profit share calculation from all guarantees (both admin and broker-defined)
-  - View readonly fields: Name, settlement types (cannot be modified)
-  - Cannot modify: name, admin-defined guarantees, settlement types
-  - Broker-added guarantees are stored as guarantee types owned by the broker
+### 📊 Data Visualization
+- **Charts & Graphs**: Recharts integration for analytics
+- **Real-time Updates**: Live data with SWR
+- **Performance Metrics**: Visual representation of key metrics
+- **Order Timeline**: Visual order status tracking
 
-- **Guarantee Type Management** (`مدیریت تضامین`)
-  - Create and manage their own guarantee types
-  - Each guarantee type is owned by the broker who created it
-  - Set profit share percentages for each guarantee type
-  - Add descriptions and details
-  - Edit or delete their guarantee types
-  - View active guarantee types in a table format
-  - Toggle guarantee type status (active/inactive)
-  - Private management - brokers only see their own guarantee types
+### 🔔 Notifications & Alerts
+- **Toast Notifications**: React Toastify for user feedback
+- **Browser Notifications**: Push notification support
+- **Alert System**: Custom alert components for important messages
 
-- **Member Management**
-  - View all assigned members
-  - Track member contracts
-  - Monitor member activity
+---
 
-- **Dashboard**
-  - Summary statistics
-  - Active contracts overview
-  - Member count and engagement
-  - Multiple management sections: Contract Types, Guarantee Types, Members
+## 🛠️ Tech Stack
 
-### 🌐 Public Broker Pages (`/[username]`)
+### **Core Framework**
+- **[Next.js 14.2](https://nextjs.org/)** - React framework with App Router
+- **[React 18.2](https://reactjs.org/)** - UI library
+- **[TypeScript 5.3](https://www.typescriptlang.org/)** - Type safety
 
-Each broker gets a unique public marketing page designed for maximum conversion:
+### **Styling & UI**
+- **[TailwindCSS 3.4](https://tailwindcss.com/)** - Utility-first CSS framework
+- **[Shadcn/UI](https://ui.shadcn.com/)** - Re-usable component library
+- **[Radix UI](https://www.radix-ui.com/)** - Unstyled, accessible components
+- **[Framer Motion](https://www.framer.com/motion/)** - Animation library
+- **[Lucide React](https://lucide.dev/)** - Icon library
 
-- **URL Format**: `NEXT_PUBLIC_WEBSITE_URL/[broker-username]` // example: talanow.ir/9120000001
-- **Features**:
-  - **Professional broker profile display** with gradient designs and modern UI
-  - **Broker contact information** and credentials
-  - **Active contract types display** - Only shows contract types with `status='active'`
-  - **Individual CTAs per contract type** - Each contract has its own "Start Contract" button
-  - **Automatic broker referral tracking** - Saves broker ID in cookie (30 days) for attribution
-  - **Smart member registration flow**:
-    - Non-authenticated users → Redirected to login/signup
-    - After authentication → Automatically linked to broker as member
-    - Existing members of other brokers → Cannot join new broker (restriction enforced)
-  - **In-page contract creation**:
-    - Modal dialog for contract details
-    - Real-time validation (min/max investment, duration)
-    - Profit calculator preview
-    - Contract saved to `talanow_contracts` table with status='pending'
-  - **Trust indicators** - Security, guaranteed profit, professional support badges
-  - **No authentication required for viewing**
-  - **Mobile-responsive design** with hover effects and animations
+### **State Management & Data Fetching**
+- **[SWR](https://swr.vercel.app/)** - React Hooks for data fetching
+- **[React Hook Form](https://react-hook-form.com/)** - Form state management
+- **[Zod](https://zod.dev/)** - Schema validation
 
-### 📊 Contract System
+### **Authentication & Security**
+- **[@react-oauth/google](https://www.npmjs.com/package/@react-oauth/google)** - Google OAuth integration
+- **[js-cookie](https://github.com/js-cookie/js-cookie)** - Cookie management
 
-- Multiple contract types with flexible parameters
-- Support for various guarantee types with customizable profit shares
-- Multiple settlement options
-- Configurable profit sharing per guarantee type
-- Duration-based contracts (1-12 months)
-- Status tracking (active, pending, completed)
+### **Internationalization**
+- **[@formatjs/intl-localematcher](https://formatjs.io/)** - Locale matching
+- **[negotiator](https://github.com/jshttp/negotiator)** - Content negotiation
+- **Custom dictionary system** - JSON-based translations
 
-#### Admin Workflow for Contract Type Management
+### **Data Visualization**
+- **[Recharts](https://recharts.org/)** - Composable charting library
+- **[@tanstack/react-table](https://tanstack.com/table/v8)** - Headless table library
 
-1. **Setup Guarantee Types** (`مدیریت تضامین` - Admin Version):
-   - Admin creates system-level guarantee types (e.g., "ملک", "چک") with default profit share percentages
-   - Each guarantee type is owned by the admin who created it
-   - Guarantee types are marked as 'active' and can be edited/deleted
-   - Admin can view all guarantee types from all users (admin view shows owner)
+### **Development Tools**
+- **[ESLint](https://eslint.org/)** - Code linting
+- **[Prettier](https://prettier.io/)** - Code formatting
+- **[@sentry/nextjs](https://sentry.io/)** - Error tracking
+- **[GrowthBook](https://www.growthbook.io/)** - Feature flags & A/B testing
 
-2. **Broker Guarantee Types** (`مدیریت تضامین` - Broker Version):
-   - Brokers can create their own guarantee types for use in their contracts
-   - Broker guarantee types are owned by the broker (owner = broker.id)
-   - Brokers only see and manage their own guarantee types
-   - Both admin and broker guarantee types can be used in contracts
+### **Additional Libraries**
+- **[dayjs](https://day.js.org/)** - Date manipulation
+- **[jalaliday](https://github.com/alibaba-aero/jalaliday)** - Persian calendar support
+- **[react-toastify](https://fkhadra.github.io/react-toastify/)** - Toast notifications
+- **[swiper](https://swiperjs.com/)** - Touch slider
+- **[embla-carousel-react](https://www.embla-carousel.com/)** - Carousel component
+- **[react-photo-view](https://github.com/MinJieLiu/react-photo-view)** - Image viewer
+- **[sharp](https://sharp.pixelplumbing.com/)** - Image optimization
 
-3. **Create Contract Types**:
-   - Admin creates contract type with basic info (name, description, investment range, duration)
-   - In step 2, admin adds guarantee types by clicking "افزودن تضمین" (Add Guarantee)
-   - Can select from both admin-created and broker-created guarantee types
-   - Each selected guarantee type can have its profit share customized for this specific contract
-   - Total profit share is automatically calculated
-
-4. **Assign to Brokers**:
-   - Admin assigns created contract types to specific brokers
-   - Only one broker can be assigned per contract type at a time
-   - Assignment can be changed or removed as needed
-
-#### Broker Workflow for Contract Customization
-
-When a broker edits an assigned contract type, they follow a two-level form:
-
-1. **Level 1 - Basic Information** (editable fields):
-   - Description
-   - Min/max investment amounts
-   - Min/max duration months
-   - Read-only fields: Name, Settlement types
-
-2. **Level 2 - Guarantee Management**:
-   - **Admin Guarantees Section** (read-only):
-     - View all guarantees defined by admin for this contract
-     - Display names, descriptions, and profit share percentages
-     - Cannot edit or delete
-   - **Broker Guarantees Selection** (select from pre-defined):
-     - Shows all guarantee types created by this broker from their "مدیریت تضامین" section
-     - Only displays active guarantees (status must be 'active' in "مدیریت تضامین")
-     - Click on a guarantee card to add it to this contract
-     - Selected guarantees highlighted with checkmark and green border
-   - **Selected Broker Guarantees Section** (management):
-     - Display all currently selected guarantees with names, descriptions, profit shares
-     - Remove guarantee by clicking trash icon
-   - **Total Profit Share** (auto-calculated):
-     - Sum of all profit shares from both admin and broker guarantees
-     - Updated in real-time as guarantees are added/removed
-
-3. **Submission**:
-   - All changes saved to database: contract parameters, guarantee list, profit share
-   - Guarantees are already pre-defined in "مدیریت تضامین" section - only the selection (guarantee IDs) is updated
-   - Contract type updated with new guarantee IDs array and total profit share
-
-**Important Note on Guarantee Visibility:**
-- Broker guarantees are only visible in the Level 2 form if:
-  1. They were created in the broker's "مدیریت تضامین" section (owner = broker ID)
-  2. They have status = 'active' in the guarantee management section
-- If a guarantee doesn't appear in the "تضامین شخصی دسترس پذیر" section, check that it's marked as active in "مدیریت تضامین"
-
-### 🔗 Broker Referral & Member Linking System
-
-The platform implements a sophisticated broker attribution and member management system:
-
-#### Broker Cookie Tracking
-- When a user visits a broker's public page, their `broker_id` is saved in a cookie (`tala_broker_ref`)
-- Cookie expires after 30 days
-- Persists across sessions and page navigations
-- Used for attribution when user signs up later
-
-#### Member-Broker Relationship
-- **One-to-One Relationship**: Each member can only belong to ONE broker
-- **Automatic Linking**: When a user clicks "Start Contract" on a broker's page:
-  1. If not authenticated → Redirect to login with return URL
-  2. After login → Check if user is already a member of another broker
-  3. If not a member → Automatically link user to broker in `talanow_broker_member_link`
-  4. If already a member of another broker → Show error, prevent linking
-- **Database Table**: `talanow_broker_member_link`
-  - `member_id`: User ID (TEXT)
-  - `broker_id`: Broker ID (TEXT)
-  - Enforces one broker per member
-
-#### Contract Creation Flow
-1. User clicks CTA on contract type card
-2. System checks authentication status
-3. System checks/creates broker membership
-4. Opens contract creation dialog
-5. User fills contract details (amount, duration, settlement, guarantee)
-6. Real-time validation against contract type constraints
-7. Contract saved to `talanow_contracts` with `status='pending'`
-8. Broker receives notification to approve contract
-
-## 🛠 Tech Stack
-
-### Frontend
-- **Framework**: Next.js 14.2.4 (App Router)
-- **Language**: TypeScript 5.3.3
-- **Styling**: Tailwind CSS 3.4.1
-- **UI Components**: 
-  - Radix UI primitives
-  - shadcn/ui components
-  - Lucide React icons
-- **State Management**: React Context API
-- **Forms**: React Hook Form + Zod validation
-- **Data Fetching**: SWR
-- **Animations**: Framer Motion
-
-### Backend & Services
-- **Database**: Supabase (PostgreSQL)
-- **Authentication**: Custom auth system
-- **API**: External REST API integration
-- **Monitoring**: Sentry
-- **Analytics**: GrowthBook
-
-### Development Tools
-- **Package Manager**: Yarn 1.22.22
-- **Node Version**: 20.9.0
-- **Linting**: ESLint + Prettier
-- **Deployment**: Docker + GitLab CI
+---
 
 ## 📁 Project Structure
 
 ```
-tala/
-├── app/
-│   └── [lang]/              # Internationalization support
-│       └── (user)/          # Authenticated user routes
-│           ├── [username]/  # Public broker pages
-│           │   ├── components/
-│           │   │   └── broker-public-page.tsx
-│           │   └── page.tsx
-│           ├── admin/       # Admin panel
-│           │   ├── components/
-│           │   │   ├── admin-overview.tsx
-│           │   │   ├── broker-list.tsx
-│           │   │   ├── contract-types.tsx
-│           │   │   └── guard.tsx
-│           │   └── page.tsx
-│           └── broker/      # Broker panel
-│               ├── components/
-│               │   ├── contract-types.tsx
-│               │   ├── member-list.tsx
-│               │   └── guard.tsx
-│               └── page.tsx
-├── components/              # Shared UI components
-│   └── ui/                 # Reusable UI primitives
-├── services/               # External service integrations
-│   └── supabase.ts        # Supabase client & queries
-├── contexts/              # React contexts
-├── dictionaries/          # i18n translations
-├── libs/                  # Utility libraries
-└── public/               # Static assets
-
+GoldHub/
+├── app/                          # Next.js App Router
+│   ├── [lang]/                   # Internationalized routes
+│   │   ├── (auth)/              # Authentication routes
+│   │   │   └── login/           # Login page with components
+│   │   │       ├── components/  # Phone, Password, Complete Info
+│   │   │       └── page.tsx
+│   │   └── (user)/              # Protected user routes
+│   │       ├── admin/           # Admin dashboard
+│   │       │   ├── dashboard/   # Admin overview
+│   │       │   ├── orders/      # All orders management
+│   │       │   ├── users-kyc/   # KYC verification
+│   │       │   └── audit-logs/  # Activity tracking
+│   │       ├── supplier/        # Supplier dashboard
+│   │       │   ├── dashboard/   # Supplier overview
+│   │       │   ├── products/    # Product management
+│   │       │   ├── orders/      # Supplier orders
+│   │       │   └── pricing/     # Pricing configuration
+│   │       ├── buyer/           # Buyer dashboard
+│   │       │   ├── dashboard/   # Buyer overview
+│   │       │   ├── catalog/     # Product browsing
+│   │       │   ├── cart/        # Shopping cart
+│   │       │   ├── orders/      # Order history
+│   │       │   └── favorites/   # Saved products
+│   │       ├── profile/         # User profile management
+│   │       ├── about/           # About page
+│   │       ├── privacy/         # Privacy policy
+│   │       └── contact/         # Contact page
+│   ├── api/                     # API documentation
+│   │   └── api.md              # API endpoints reference
+│   ├── globals.css             # Global styles
+│   └── layout.tsx              # Root layout
+├── components/                  # Reusable components
+│   ├── ui/                     # Shadcn UI components (51 components)
+│   ├── layout/                 # Layout components
+│   ├── magicui/                # Magic UI components
+│   ├── header.tsx              # Main header
+│   ├── footer.tsx              # Main footer
+│   └── ...                     # Other shared components
+├── dictionaries/               # i18n translations
+│   ├── en.json                # English translations
+│   ├── fa.json                # Persian translations
+│   └── ...
+├── lib/                        # Utility libraries
+│   ├── mock-data.ts           # Mock data for development
+│   └── buyer-mock-data.ts     # Buyer-specific mock data
+├── services/                   # API service layer
+├── contexts/                   # React contexts
+├── constants/                  # App constants
+├── public/                     # Static assets
+│   ├── img/                   # Images
+│   └── fonts/                 # Custom fonts
+├── tailwind.config.js         # Tailwind configuration
+├── next.config.js             # Next.js configuration
+├── tsconfig.json              # TypeScript configuration
+├── package.json               # Dependencies
+└── README.md                  # This file
 ```
+
+---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js 20.9.0
-- Yarn 1.22.22
-- Supabase account
+- **Node.js**: v20.9.0 or higher
+- **npm** or **yarn**: Package manager
+- **Git**: Version control
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd tala
+   git clone https://github.com/yourusername/GoldHub.git
+   cd GoldHub
    ```
 
 2. **Install dependencies**
    ```bash
+   npm install
+   # or
    yarn install
    ```
 
 3. **Set up environment variables**
+   
+   Create a `.env.local` file in the root directory:
+   ```env
+   NEXT_PUBLIC_API_URL=your_api_url
+   NEXT_PUBLIC_WEBSITE_URL=http://localhost:3000
+   NEXT_PUBLIC_ENVIRONMENT=development
+   USE_MOCK_DATA=true
+   ```
 
 4. **Run the development server**
    ```bash
+   npm run dev
+   # or
    yarn dev
    ```
 
-5. **Open the application**
+5. **Open your browser**
    
    Navigate to [http://localhost:3000](http://localhost:3000)
 
-### Build for Production
+### Building for Production
 
 ```bash
-yarn build
-yarn start
+npm run build
+npm run start
 ```
-
-## 👥 User Roles
-
-### 1. Admin
-- Full system access
-- Manage all brokers
-- Create and assign contract types
-- System-wide analytics
-
-### 2. Broker
-- Manage assigned members
-- View and edit assigned contract types
-- Access to broker dashboard
-- Public profile page
-
-### 3. Member
-- View available contracts
-- Create investment contracts
-- Track personal investments
-- Linked to specific broker
-
-### 4. Public User
-- View broker public pages
-- Browse available contract types
-- No authentication required
-
-## 🗄 Database Schema
-
-### Core Tables (Supabase)
-the supabase is rls disabled. and no require RLS policies.
-
-#### 1. about contact:
-
-##### `talanow_guarantee_types`
-```sql
-CREATE TABLE talanow_guarantee_types (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name TEXT NOT NULL,
-    profit_share NUMERIC DEFAULT 0,
-    description TEXT,
-    owner TEXT NOT NULL, -- user id of admin who created the guarantee type
-    status TEXT NOT NULL DEFAULT 'active',
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
-);
-```
-
-##### `talanow_contract_types`
-```sql
-CREATE TABLE talanow_contract_types (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name TEXT NOT NULL,
-    description TEXT,
-    min_investment NUMERIC,
-    max_investment NUMERIC,
-    guarantee_type_ids UUID[] NOT NULL DEFAULT '{}',
-    min_duration_months INTEGER NOT NULL,
-    max_duration_months INTEGER NOT NULL,
-    settlement_type TEXT[] NOT NULL DEFAULT '{}',
-    profit_share NUMERIC,
-    status TEXT NOT NULL DEFAULT 'inactive',
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
-);
-```
-
-##### `talanow_contracts`
-```sql
-CREATE TABLE talanow_contracts (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id TEXT NOT NULL,
-    broker_id TEXT NOT NULL,
-    contract_type_id UUID NOT NULL REFERENCES talanow_contract_types(id) ON DELETE RESTRICT,
-    amount_rls BIGINT NOT NULL,
-    guarantee_type_ids UUID[] NOT NULL DEFAULT '{}',
-    duration_months INTEGER NOT NULL,
-    settlement_type TEXT NOT NULL,
-    status TEXT NOT NULL,
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
-);
-```
-
-#### 2. about broker:
-
-##### `talanow_brokers`
-```sql
-CREATE TABLE IF NOT EXISTS talanow_brokers (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    broker_id TEXT UNIQUE NOT NULL,
-    username TEXT NOT NULL,
-    first_name TEXT,
-    last_name TEXT,
-    nickname TEXT,
-    email TEXT,
-    phone_number TEXT,
-    status TEXT NOT NULL DEFAULT 'inactive',
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
-);
-```
-
-##### `talanow_broker_contract_types_link`
-```sql
-CREATE TABLE talanow_broker_contract_types_link (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    broker_id TEXT NOT NULL,
-    contract_type_id UUID NOT NULL REFERENCES talanow_contract_types(id) ON DELETE CASCADE,
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
-);
-```
-
-##### `talanow_broker_member_link`
-```sql
-CREATE TABLE IF NOT EXISTS talanow_broker_member_link (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  member_id TEXT NOT NULL,
-  broker_id TEXT NOT NULL,
-  created_at TIMESTAMPTZ DEFAULT NOW(),
-  updated_at TIMESTAMPTZ DEFAULT NOW()
-);
-```
-
-### Key Service Functions
-
-The `services/supabase.ts` file provides the following functions:
-
-#### Broker Functions
-- `getBrokers()` - Fetch all brokers
-- `getBrokerMembers(brokerId)` - Get members for a broker
-- `getBrokerSummary(brokerId)` - Get broker statistics
-- `getContractTypesForBroker(brokerId)` - Get assigned contract types
-- `getBrokerContractsSummary(brokerId)` - Get contract analytics
-- `getBrokerByUsername(username)` - Find broker by username
-- `getBrokerMembershipForUser(memberId)` - Get broker membership for a user
-- `linkMemberToBroker(memberId, brokerId)` - Link a member to a broker
-
-#### Contract Type Functions
-- `createContractType(data)` - Create new contract type
-- `updateContractType(id, data)` - Update contract type
-- `deactivateContractType(id)` - Deactivate contract type
-- `createContract(data)` - Create new contract
-- `getContractsForUser(userId)` - Get user contracts
-
-#### Guarantee Type Functions
-- `getGuaranteeTypes()` - Fetch all active guarantee types
-- `getGuaranteeTypesForAdmin(userId)` - Fetch guarantee types created by specific admin
-- `createGuaranteeType(data)` - Create new guarantee type with owner field
-- `updateGuaranteeType(id, updates)` - Update guarantee type
-- `deleteGuaranteeType(id)` - Delete guarantee type
-
-## 🔌 API Integration
-
-### External API Endpoint
-
-**Primary Broker List**
-```
-GET /v1/users/group_users?group_name=broker
-```
-
-Response:
-```json
-[
-  {
-    "id": 3164,
-    "username": "9120000001",
-    "email": "broker@talanow.com",
-    "first_name": "بروکر",
-    "last_name": "1",
-    "phone_number": "9120000001",
-        "groups": [
-            {
-                "id": 1,
-                "name": "broker"
-            }
-        ],
-  }
-]
-```
-
-### Authentication
-- Uses cookie-based authentication
-- Token stored in `token` cookie
-- Authorization header: `Bearer <token>`
-
-## 🚢 Deployment
-
-### Docker
-
-Build and run with Docker:
-
-```bash
-docker build -t tala .
-docker run -p 3000:3000 tala
-```
-
-### GitLab CI/CD
-
-The project includes a `.gitlab-ci.yml` configuration for automated deployment.
-
-### Environment Variables
-
-Required production environment variables:
-- `NEXT_PUBLIC_WEBSITE_URL`
-- `NEXT_PUBLIC_API_URL` // for connect to back-end api not supabase
-
-## 📝 Development Guidelines
-
-### Code Style
-- TypeScript strict mode enabled
-- ESLint + Prettier for code formatting
-- Tailwind CSS for styling
-- Component-driven architecture
-
-### Internationalization
-- Persian (fa) as primary language
-- Multi-language support via `[lang]` route segment
-- Dictionary-based translations
-
-### Security
-- Server-side authentication checks
-- Role-based access control (Guards)
-- Secure API communication
-- Environment variable protection
-
-## 🔮 Future Enhancements
-
-- Broker statistics on public pages (active contracts, members)
-- Testimonials section for brokers
-- Custom broker bio/description
-- Social media integration
-- Analytics tracking for page views
-- Advanced filtering for contract types
-- Real-time notifications
-- Mobile app development
-
-## 📄 License
-
-Private and proprietary.
-
-## 🤝 Contributing
-
-This is a private project. Contact the development team for contribution guidelines.
 
 ---
 
-**Built with ❤️ for the Gold investment platform**
+## 👤 User Roles
+
+### **Admin**
+- Full platform access
+- User management and KYC approval
+- Order oversight across all suppliers and buyers
+- Audit log access
+- System configuration
+
+### **Supplier**
+- Product catalog management
+- Inventory control
+- Order fulfillment
+- Pricing configuration
+- Sales analytics
+
+### **Buyer (Retailer)**
+- Product browsing and search
+- Shopping cart management
+- Order placement and tracking
+- Favorites management
+- Profile management
+
+---
+
+## 🌐 Internationalization
+
+GoldHub supports multiple languages with automatic locale detection:
+
+### Supported Languages
+- **English (en)**: Default language
+- **Persian (fa)**: Full RTL support with Jalali calendar
+
+### Language Structure
+```typescript
+// dictionaries/en.json
+{
+  "appName": "GoldHub",
+  "login": "Login",
+  "dashboard": "Dashboard",
+  // ... 1800+ translation keys
+}
+```
+
+### Usage in Components
+```typescript
+import { getDictionary } from '@/get-dictionary';
+
+export default async function Page({ params: { lang } }) {
+  const dict = await getDictionary(lang);
+  return <h1>{dict.appName}</h1>;
+}
+```
+
+### URL Structure
+- English: `/en/dashboard`
+- Persian: `/fa/dashboard`
+
+---
+
+## 🔌 API Integration
+
+### API Base URL
+Configure via environment variable:
+```env
+NEXT_PUBLIC_API_URL=https://api.goldhub.com
+```
+
+### Authentication
+All API requests use Bearer token authentication:
+```typescript
+headers: {
+  'Authorization': `Bearer ${token}`,
+  'Content-Type': 'application/json'
+}
+```
+
+### Key Endpoints
+
+#### **Products**
+- `GET /v1/gold_artifacts/products_list` - List products with filters
+- `POST /v1/gold_artifacts/product_create` - Create product
+- `PATCH /v1/gold_artifacts/product_update/{id}` - Update product
+- `POST /v1/gold_artifacts/product_add_image/{id}` - Add product image
+- `DELETE /v1/gold_artifacts/product_delete_image/{id}` - Delete image
+
+#### **Cart & Orders**
+- `GET /v1/gold_artifacts/cart_detail` - Get cart details
+- `POST /v1/gold_artifacts/add_to_cart` - Add to cart
+- `POST /v1/gold_artifacts/remove_from_cart` - Remove from cart
+- `POST /v1/gold_artifacts/submit_order` - Submit order
+- `POST /v1/gold_artifacts/pay_order/{id}` - Pay for order
+- `GET /v1/gold_artifacts/orders_history` - Order history
+- `GET /v1/gold_artifacts/sells_history` - Sales history
+- `POST /v1/gold_artifacts/update_order_status` - Update order status
+
+#### **Admin**
+- `GET /v1/gold_artifacts/users_list` - List all users
+- `POST /v1/gold_artifacts/set_KYC_status` - Update KYC status
+
+### Mock Data Mode
+Toggle between real API and mock data:
+```env
+USE_MOCK_DATA=true  # Use mock data
+USE_MOCK_DATA=false # Use real API
+```
+
+---
+
+## 🎨 Design System
+
+### Color Palette
+
+#### **Primary Colors**
+- **Navy Blue**: `#061324` (Primary brand color)
+- **Gold**: `#F0A202` (Accent color)
+
+#### **Background Colors**
+- **Light Background**: `#F5F5F0`
+- **Card Background**: `#FFFFFF`
+- **Sidebar**: `#061324`
+
+#### **Status Colors**
+- **Confirmed**: Yellow (`#FEF3C7` bg, `#92400E` text)
+- **Shipped**: Blue (`#DBEAFE` bg, `#1E40AF` text)
+- **Delivered**: Green (`#D1FAE5` bg, `#065F46` text)
+- **Pending**: Yellow (`#FEF3C7` bg, `#92400E` text)
+- **Draft**: Gray (`#F3F4F6` bg, `#4B5563` text)
+
+### Typography
+- **Font Family**: System fonts with fallbacks
+- **Headings**: Bold, navy blue
+- **Body**: Regular weight, dark gray
+
+### Components
+All UI components are built with:
+- **Shadcn/UI**: 51+ pre-built components
+- **Radix UI**: Accessible primitives
+- **Custom variants**: Tailored to brand colors
+
+### Responsive Breakpoints
+```javascript
+screens: {
+  'sm': '640px',
+  'md': '768px',
+  'lg': '1024px',
+  'xl': '1280px',
+  '2xl': '1400px',
+}
+```
+
+---
+
+## 📜 Scripts
+
+```json
+{
+  "dev": "next dev",           // Start development server
+  "build": "next build",       // Build for production
+  "start": "next start",       // Start production server
+  "lint": "next lint"          // Run ESLint
+}
+```
+
+### Development Workflow
+```bash
+# Start development
+npm run dev
+
+# Build and test production build
+npm run build
+npm run start
+
+# Lint code
+npm run lint
+```
+
+---
+
+## 🔐 Environment Variables
+
+### Required Variables
+```env
+# API Configuration
+NEXT_PUBLIC_API_URL=https://api.goldhub.com
+
+# Website URL
+NEXT_PUBLIC_WEBSITE_URL=https://goldhub.com
+
+# Environment
+NEXT_PUBLIC_ENVIRONMENT=production
+
+# Feature Flags
+USE_MOCK_DATA=false
+```
+
+### Optional Variables
+```env
+# Sentry (Error Tracking)
+SENTRY_DSN=your_sentry_dsn
+SENTRY_ORG=sahmeto
+SENTRY_PROJECT=front
+
+# Google OAuth
+NEXT_PUBLIC_GOOGLE_CLIENT_ID=your_google_client_id
+
+# GrowthBook (Feature Flags)
+NEXT_PUBLIC_GROWTHBOOK_API_KEY=your_growthbook_key
+```
+
+---
+
+## 🚢 Deployment
+
+### Docker Deployment
+
+1. **Build Docker image**
+   ```bash
+   docker build -t goldhub .
+   ```
+
+2. **Run container**
+   ```bash
+   docker run -p 3000:3000 goldhub
+   ```
+
+### Vercel Deployment
+
+1. **Install Vercel CLI**
+   ```bash
+   npm i -g vercel
+   ```
+
+2. **Deploy**
+   ```bash
+   vercel --prod
+   ```
+
+### GitLab CI/CD
+The project includes `.gitlab-ci.yml` for automated deployments.
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please follow these steps:
+
+1. **Fork the repository**
+2. **Create a feature branch**
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
+3. **Commit your changes**
+   ```bash
+   git commit -m 'Add amazing feature'
+   ```
+4. **Push to the branch**
+   ```bash
+   git push origin feature/amazing-feature
+   ```
+5. **Open a Pull Request**
+
+### Code Style
+- Follow TypeScript best practices
+- Use Prettier for formatting
+- Follow ESLint rules
+- Write meaningful commit messages
+
+---
+
+## 📄 License
+
+This project is proprietary software. All rights reserved for GoldHub Company.
+
+---
+
+## 📞 Support
+
+For support and questions:
+- **Email**: support@goldhub.com
+- **Website**: [https://goldhub.com](https://goldhub.com)
+- **Address**: Tehran, Amirabrad, North Kargar, University of Tehran Technical Faculty Building, Nextra Coworking Space, No. 1450
+
+---
+
+## 🙏 Acknowledgments
+
+- **Next.js Team** - For the amazing framework
+- **Vercel** - For hosting and deployment
+- **Shadcn** - For the beautiful UI components
+- **Radix UI** - For accessible primitives
+- **All Contributors** - For making this project possible
+
+---
+
+<div align="center">
+  <strong>Built with ❤️ by the GoldHub Team</strong>
+  <br />
+  <sub>Version 0.10.0</sub>
+</div>
