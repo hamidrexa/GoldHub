@@ -1,16 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Card } from '@/components/ui/card';
 import { Product } from '@/lib/mock-data';
 import ProductCard from '../components/product-card';
 import { CatalogFilters } from './catalog-filters';
 import { CatalogToolbar } from './catalog-toolbar';
-import { useProductList } from '@/app/[lang]/(user)/supplier/products/services/useProductList';
+import { useProductList, ProductListFilters } from '@/app/[lang]/(user)/supplier/products/services/useProductList';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 interface CatalogContentProps {
-    products: Product[];
     dict: any;
     lang: string;
     currentSort: string;
@@ -24,7 +23,6 @@ interface CatalogContentProps {
 }
 
 export function CatalogContent({
-    products,
     dict,
     lang,
     currentSort,
@@ -37,8 +35,52 @@ export function CatalogContent({
     initialMaxWeight = 200,
 }: CatalogContentProps) {
     const [showFilters, setShowFilters] = useState(true);
-    const {products:list = [],isLoading} = useProductList("")
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+
+    // Build filters object from initial props
+    const filters = useMemo<ProductListFilters>(() => {
+        const filterObj: ProductListFilters = {};
+
+        // Add search query (title filter)
+        if (initialSearch) {
+            filterObj.title = initialSearch;
+        }
+
+        // Add category filter (use first category if multiple selected)
+        // Note: API accepts single category, but UI allows multiple - we'll use the first one
+        if (initialCategories.length > 0) {
+            filterObj.category = initialCategories[0];
+        }
+
+        // Add karat filter
+        if (initialKarat && initialKarat !== 'all') {
+            // Convert karat string like "24K" to number 24
+            const karatNumber = parseInt(initialKarat.replace('K', ''));
+            if (!isNaN(karatNumber)) {
+                filterObj.karat = karatNumber;
+            }
+        }
+
+        // Add price range filters
+        if (initialMinPrice > 0) {
+            filterObj.min_price = initialMinPrice;
+        }
+        if (initialMaxPrice < 10000) {
+            filterObj.max_price = initialMaxPrice;
+        }
+
+        // Add weight range filters
+        if (initialMinWeight > 0) {
+            filterObj.min_weight = initialMinWeight;
+        }
+        if (initialMaxWeight < 200) {
+            filterObj.max_weight = initialMaxWeight;
+        }
+
+        return filterObj;
+    }, [initialSearch, initialCategories, initialKarat, initialMinPrice, initialMaxPrice, initialMinWeight, initialMaxWeight]);
+
+    const { products: list = [], isLoading } = useProductList(undefined, filters);
 
     if (isLoading) {
         return (
@@ -86,7 +128,7 @@ export function CatalogContent({
                 <CatalogToolbar
                     dict={dict}
                     lang={lang}
-                    productCount={products.length}
+                    productCount={list.length}
                     currentSort={currentSort}
                     showFilters={showFilters}
                     onToggleFilters={() => setShowFilters(!showFilters)}

@@ -68,11 +68,7 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
     const isAdmin = path.includes('/admin');
     const isSupplier = path.includes('/supplier');
     const isBuyer = path.includes('/buyer');
-    const isBroker = !!user?.groups?.some((g) => g?.name === 'broker');
     const isInDashboard = isAdmin || isSupplier || isBuyer;
-
-    const roleTitle = isAdmin ? 'مدیریت' : isBroker ? 'بروکر' : 'پروفایل';
-    const roleHref = isAdmin ? '/admin' : isBroker ? '/broker' : '/profile';
 
     // Admin navigation items
     const adminItems = [
@@ -164,19 +160,19 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
             key: 'home',
             title: dict.marketplace?.navigation?.home || 'Home',
             icon: <Icons.home />,
-            href: '/app'
+            href: `/${lang}/`
         },
         {
             key: 'products',
             title: dict.marketplace?.navigation?.products || 'Products',
             icon: <Icons.fire />,
-            href: '/Products'
+            href: `/${lang}/buyer/catalog`
         },
         {
             key: 'profile',
             title: dict.marketplace?.navigation?.profile || 'Profile',
             icon: <Icons.users />,
-            href: roleHref
+            href: `/${lang}/profile`
         }
     ];
 
