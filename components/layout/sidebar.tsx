@@ -201,7 +201,7 @@ export function Sidebar({ dict, lang }: SidebarProps) {
                             </div>
                         </div>
                         <Link
-                            href={`${getLinksLang(lang)}/${isAdmin ? 'admin' : isSupplier ? 'supplier' : 'buyer'}/profile`}
+                            href={`${getLinksLang(lang)}/profile`}
                             className="flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium bg-gold-600 text-black hover:bg-gold-600/90 transition-all duration-200"
                         >
                             <User className="h-4 w-4" />
