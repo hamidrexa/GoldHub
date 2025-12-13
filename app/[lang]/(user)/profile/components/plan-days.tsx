@@ -34,7 +34,7 @@ export function PlanDays({
             {progress && (
                 <div className="h-3 overflow-hidden rounded-full bg-gray-800">
                     <div
-                        className="h-3 rounded-full !bg-neutral-300 transition-all"
+                        className="h-3 rounded-full !bg-emerald-400 transition-all"
                         style={{ width: `${width}%` }}
                     />
                 </div>

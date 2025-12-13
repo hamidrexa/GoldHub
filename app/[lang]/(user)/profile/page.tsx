@@ -16,12 +16,18 @@ export async function generateMetadata(
     parent?: ResolvingMetadata
 ): Promise<Metadata> {
     const dict = await getDictionary(params.lang);
-    const seoTitle = dict.marketplace.profile.title;
+    const seoTitle = dict.marketplace.profile.title || 'Your Profile';
+    const seoDescription = 'Manage your profile, view your information, and track your activity on GoldHub.';
 
     return {
-        title: seoTitle,
+        title: `${seoTitle}`,
+        description: seoDescription,
+        openGraph: {
+            title: `${seoTitle}`,
+            description: seoDescription,
+        },
         alternates: {
-            canonical: `https://talanow.ir${params.lang !== 'fa' ? `/${params.lang}` : ''}/profile`,
+            canonical: `/${params.lang}/profile`,
         },
     };
 }

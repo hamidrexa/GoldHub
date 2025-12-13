@@ -9,7 +9,7 @@ const buttonVariants = cva(
     {
         variants: {
             variant: {
-                default: 'bg-neutral-800 text-black hover:bg-neutral-800/50',
+                default: 'bg-gold-600 text-black hover:bg-gold-600/50',
                 'default-outline':
                     'bg-transparent border border-neutral-800 text-neutral-800 hover:bg-neutral-800 hover:text-white',
                 secondary: 'bg-teal-200 text-neutral-800 hover:bg-teal-300',
@@ -21,7 +21,7 @@ const buttonVariants = cva(
                     'border border-neutral-700 text-neutral-700 bg-slate-50/40',
                 ghost: 'bg-transparent text-neutral-800 hover:bg-blue-100',
                 link: 'bg-transparent text-neutral-800 hover:underline',
-                success: 'bg-neutral-400 text-white hover:bg-green-700',
+                success: 'bg-green-600 text-white hover:bg-green-700',
             },
             size: {
                 default: 'h-10 px-5 text-sm',

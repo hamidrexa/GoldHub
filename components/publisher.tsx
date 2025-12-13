@@ -43,7 +43,7 @@ export function Publisher({
         else if (powerOfAnalytics >= 3.8) return 'bg-lime-500/20 text-lime-500';
         else if (powerOfAnalytics >= 3.2)
             return 'bg-yellow-500/20 text-yellow-500';
-        else return 'bg-neutral-200/20 text-neutral-200';
+        else return 'bg-slate-300/20 text-slate-300';
     };
 
     return (

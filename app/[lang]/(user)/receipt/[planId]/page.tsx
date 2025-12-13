@@ -1,13 +1,40 @@
 import { TicketIcon } from 'lucide-react';
-import { Metadata } from 'next';
+import { Metadata, ResolvingMetadata } from 'next';
 import { cn, getLinksLang } from '@/libs/utils';
 import { buttonVariants } from '@/components/ui/button';
 import Link from 'next/link';
+import { getDictionary } from '@/get-dictionary';
+import { Locale } from '@/i18n-config';
 
-export const metadata: Metadata = {
-    title: 'رسید خرید | طلانو',
-    description: '',
-};
+interface PageProps {
+    params: { planId: string; lang: Locale };
+}
+
+export async function generateMetadata(
+    { params: { lang, planId } }: PageProps,
+    parent?: ResolvingMetadata
+): Promise<Metadata> {
+    const dict = await getDictionary(lang);
+    const isSuccess = parseInt(planId) !== 0;
+
+    const seoTitle = isSuccess
+        ? dict.transactionStatus.success
+        : dict.transactionStatus.cancel;
+    const seoDescription = `View the receipt for your transaction on GoldHub. Status: ${isSuccess ? 'Successful' : 'Failed'
+        }.`;
+
+    return {
+        title: `${seoTitle}`,
+        description: seoDescription,
+        openGraph: {
+            title: `${seoTitle}`,
+            description: seoDescription,
+        },
+        alternates: {
+            canonical: `/${lang}/receipt/${planId}`,
+        },
+    };
+}
 
 const PlanType = {
     1: 'طلایی',
@@ -18,7 +45,7 @@ const PlanType = {
     6: 'هدیه',
 };
 
-export default function ReceiptPage({ params: { planId, lang } }) {
+export default function ReceiptPage({ params: { planId, lang } }: PageProps) {
     const isSuccess = parseInt(planId) !== 0;
 
     return (
@@ -33,8 +60,8 @@ export default function ReceiptPage({ params: { planId, lang } }) {
                 <h1 className="text-2xl font-bold">
                     {isSuccess
                         ? parseInt(planId) === 43 ||
-                          parseInt(planId) === 44 ||
-                          parseInt(planId) === 76
+                            parseInt(planId) === 44 ||
+                            parseInt(planId) === 76
                             ? 'تراکنش با موفقیت انجام شد، تا دقایقی دیگر سفارش شما تکمیل می شود.'
                             : `طی ۲۴ساعت، طرح ${PlanType[planId]} شما فعال می شود`
                         : 'پرداخت شما ناموفق بود.'}

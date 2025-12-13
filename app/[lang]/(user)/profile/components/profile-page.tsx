@@ -730,7 +730,7 @@ export function ProfilePage({ dict, lang }) {
                                                     </div>
                                                     <div className="flex flex-col items-end justify-start gap-3">
                                                         <div className="flex flex-row items-center justify-center gap-2">
-                                                            <div className="whitespace-nowrap text-base font-black text-neutral-200">
+                                                            <div className="whitespace-nowrap text-base font-black text-slate-300">
                                                                 درآمد به ازای هر فرد
                                                             </div>
                                                             <div className="flex h-[20px] w-[20px] rounded bg-[#84859C]" />
@@ -753,7 +753,7 @@ export function ProfilePage({ dict, lang }) {
                                                     </div>
                                                 </div>
                                                 <div className='flex w-full justify-center py-2'>
-                                                    <text className="whitespace-nowrap text-base text-neutral-200 ">
+                                                    <text className="whitespace-nowrap text-base text-slate-300 ">
                                                         مجموع: معادل{' '}
                                                         {currency(
                                                             150000,

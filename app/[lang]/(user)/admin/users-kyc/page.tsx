@@ -1,5 +1,32 @@
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
+import { Metadata, ResolvingMetadata } from 'next';
+
+type Props = {
+    params: { lang: Locale };
+    searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+    { params: { lang } }: Props,
+    parent?: ResolvingMetadata
+): Promise<Metadata> {
+    const dict = await getDictionary(lang);
+    const seoTitle = dict.marketplace.admin.usersKycPage.title || 'User KYC Management';
+    const seoDescription = dict.marketplace.admin.usersKycPage.description || 'Review and manage user KYC submissions to ensure compliance and security.';
+
+    return {
+        title: `${seoTitle}`,
+        description: seoDescription,
+        openGraph: {
+            title: `${seoTitle}`,
+            description: seoDescription,
+        },
+        alternates: {
+            canonical: `/${lang}/admin/users-kyc`,
+        },
+    };
+}
 import { Badge } from '@/components/ui/badge';
 import { Eye } from 'lucide-react';
 import { getUsersList, mapApiUserToUi } from '@/lib/api-client';

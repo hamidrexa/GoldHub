@@ -139,8 +139,8 @@ export default function PublishSecondForm({
                                     className={cn(
                                         'w-fit',
                                         user?.trader_page_status !== 'active'
-                                            ? 'bg-neutral-200 text-white'
-                                            : 'bg-neutral-300 text-neutral-800'
+                                            ? 'bg-slate-300 text-white'
+                                            : 'bg-emerald-400 text-neutral-800'
                                     )}
                                 >
                                     {user?.trader_page_status !== 'active'

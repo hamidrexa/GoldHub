@@ -1,12 +1,12 @@
 {
+  "appName": "GoldHub",
   "tel": "Telegram",
   "linkedin": "LinkedIn",
   "instagram": "Instagram",
   "twitter": "Twitter",
-  "sahmeto": "Talano",
-  "contactPageTitleSeo": "Contact Us | Talano",
+  "contactPageTitleSeo": "Contact Us | GoldHub",
   "location": "Address",
-  "title": "Talano",
+  "title": "GoldHub",
   "buy": "Buy",
   "address": "Tehran, Amirabrad, North Kargar, University of Tehran Technical Faculty Building, Nextra Coworking Space, No. 1450",
   "email": "Email",
@@ -15,14 +15,14 @@
   "sell": "Sell",
   "neutral": "Neutral",
   "socialNetworks": "Social Networks",
-  "sahmetoProducts": "Talano Products",
+  "sahmetoProducts": "GoldHub Products",
   "selectedIcons": "Featured Symbol",
   "notification": "Alert",
   "feed": "Following",
   "dashboard": "Watchlist",
   "bestTraders": "Top Traders",
   "search": "Search",
-  "sahmetoUser": "Talano User",
+  "sahmetoUser": "GoldHub User",
   "edit": "Edit",
   "planFinished": "Your plan has ended",
   "loginToAccount": "Login to Account",
@@ -39,19 +39,19 @@
   "lastWeekTraderSignals2": "In last week's trader messages, there are {component} signals about {assetSymbol},",
   "whatIsAssetAnalysisDiagram": "What is the {assetSymbol} symbol analysis chart?",
   "whatIsAssetAnalysisDiagramInfo": "What does stock chart analysis show?",
-  "whatIsAssetAnalysisDiagramDescription": "Talano collects all analyst messages from social networks such as Telegram channels, Rahavard and Sahamyab websites, and based on AI algorithms identifies the number of buy and sell signals for each stock, and finally shows the summary of social network analysts' opinions in the form of this chart.",
+  "whatIsAssetAnalysisDiagramDescription": "GoldHub collects all analyst messages from social networks such as Telegram channels, Rahavard and Sahamyab websites, and based on AI algorithms identifies the number of buy and sell signals for each stock, and finally shows the summary of social network analysts' opinions in the form of this chart.",
   "whatIsAssetAnalysisDiagramTitle2": "How does this chart's needle determine stock buy and sell timing?",
   "whatIsAssetAnalysisDiagramDescription2": "If the chart needle points to buy, it means from the analysts' perspective it's time to buy this stock, and if it points to sell, it means you should consider selling and taking profit. If the needle is in the neutral zone, the stock is volatile and it's not the right time to buy or sell yet.",
   "signalsTab": "{assetSymbol} Signals",
   "tradersTab": "{assetSymbol} Traders",
   "traderAssetPriceAnalysis": "Traders' Opinion on {assetSymbol} Price",
   "traderAssetAnalysis": "Traders' Opinion on {assetSymbol}",
-  "faqTitle": "Help | Talano",
+  "faqTitle": "Help | GoldHub",
   "faqQuestion1": "What does stock chart analysis show?",
-  "faqAnswer1": "Talano collects all analyst messages from social networks such as Telegram channels, Rahavard and Sahamyab websites, and based on AI algorithms identifies the number of buy and sell signals for each stock, and finally shows the summary of social network analysts' opinions in the form of this chart.",
+  "faqAnswer1": "GoldHub collects all analyst messages from social networks such as Telegram channels, Rahavard and Sahamyab websites, and based on AI algorithms identifies the number of buy and sell signals for each stock, and finally shows the summary of social network analysts' opinions in the form of this chart.",
   "faqQuestion2": "How does this chart's needle determine stock buy and sell timing?",
   "faqAnswer2": "If the chart needle points to buy, it means from the analysts' perspective it's time to buy this stock, and if it points to sell, it means you should consider selling and taking profit. If the needle is in the neutral zone, the stock is volatile and it's not the right time to buy or sell yet.",
-  "breadcrumbTitle": "Breadcrumb | Talano",
+  "breadcrumbTitle": "Breadcrumb | GoldHub",
   "priceChartTitle": "{assetSymbol} Price Chart and {assetSymbol} Signal Trends",
   "priceAdjustedChartTitle": "{assetSymbol} Price Chart and {assetSymbol} Signal Trends",
   "profitTarget": "Nearest Profit Target",
@@ -63,6 +63,16 @@
   "more": "More",
   "loginRegister": "Login/Register",
   "navMenuItems": [
+    {
+      "title": "Platform",
+      "href": "/app",
+      "description": ""
+    },
+    {
+      "title": "Product",
+      "href": "/buyer/catalog",
+      "description": ""
+    },
     {
       "title": "Terms",
       "href": "/privacy",
@@ -162,11 +172,11 @@
       "logo": "/img/messages-source/tse.svg"
     },
     "bot": {
-      "title": "Talano Bot",
+      "title": "GoldHub Bot",
       "logo": "/img/messages-source/bot.svg"
     },
     "sahmeto": {
-      "title": "Talano",
+      "title": "GoldHub",
       "logo": "/img/messages-source/sahmeto.svg"
     },
     "wallet": {
@@ -192,7 +202,7 @@
   "assetInfo": "{component} {assetSymbol} price from {component} perspective",
   "profitLossTarget": "Profit and Loss Target",
   "trader": "Trader",
-  "commentsOfUsersAboutSymbol": "{component} Talano users' opinions about {symbol} symbol",
+  "commentsOfUsersAboutSymbol": "{component} GoldHub users' opinions about {symbol} symbol",
   "usersCanCommentJustOnceInDay": "Each user can only submit comments {component} per day.",
   "once": "once",
   "users": "Users",
@@ -200,14 +210,14 @@
   "whatSymbolBetterThanSymbol": "Which symbol is better to buy than {symbol}?",
   "cryptoMarket": "Cryptocurrency Market",
   "investment": "Investment",
-  "buySahmetoStock": "Buy Talano Shares",
+  "buySahmetoStock": "Buy GoldHub Shares",
   "soon": "Coming Soon",
-  "sahmetoWorld": "Talano World",
+  "sahmetoWorld": "GoldHub World",
   "reportProblem": "Report Problem and Feedback",
   "joinUs": "Collaboration Invitation",
-  "developWithSahmeto": "Develop with Talano (APIs)",
-  "investOnSahmeto": "Invest in Talano",
-  "copyright": "All rights reserved for Talano Company 1403",
+  "developWithSahmeto": "Develop with GoldHub (APIs)",
+  "investOnSahmeto": "Invest in GoldHub",
+  "copyright": "All rights reserved for GoldHub Company 1403",
   "fundraising": "Capital Raising",
   "bests": "Top Traders",
   "assetRecommendation": "{assetSymbol} symbol is {component}.",
@@ -279,9 +289,9 @@
   "minuteAgo": "minute ago",
   "fundamentalAnalysis": "Fundamental Analysis",
   "capitalIncreaseCalendar": "Capital Increase Calendar",
-  "assetPageTitle1": "{symbolName} | Latest Analysis on Talano",
-  "assetPageTitle2": "{symbolName} | Latest Trader Analysis on Talano",
-  "assetPageDescription": "When is the right time to buy {symbolName}? What did which analyst say? All {symbolName} stock signals at a glance, {name} | Talano",
+  "assetPageTitle1": "{symbolName} | Latest Analysis on GoldHub",
+  "assetPageTitle2": "{symbolName} | Latest Trader Analysis on GoldHub",
+  "assetPageDescription": "When is the right time to buy {symbolName}? What did which analyst say? All {symbolName} stock signals at a glance, {name} | GoldHub",
   "assetPageDescription2": "Buy and sell signals and {name} predictions | Real-time {name} price chart | {name} analysis based on social networks and news | {name} technical analysis | {name} fundamental analysis | {name} price | {symbolName}",
   "lastUpdate": "Last Update",
   "todaySignalCount": "Today's {symbol} message count",
@@ -298,8 +308,8 @@
   "amongNTopTraders": "Among top {rank} traders",
   "traderPowerOfAnalytics": "Trader Success Rate",
   "investmentOpportunityProfile": "Investment Opportunity Details",
-  "messagePageSeoDescription": "Analysis and updated news of {symbol} symbol by trader {publisherName} on Talano, Trader rank on Talano: {publisherRank}, Analysis of stock and cryptocurrency symbols by top traders in the stock and cryptocurrency markets.",
-  "messagePageSeoDescription2": "Analysis of {symbol} symbol by trader {publisherName} on Talano, Trader rank on Talano: {publisherRank}, Analysis of stock and cryptocurrency symbols by top market traders.",
+  "messagePageSeoDescription": "Analysis and updated news of {symbol} symbol by trader {publisherName} on GoldHub, Trader rank on GoldHub: {publisherRank}, Analysis of stock and cryptocurrency symbols by top traders in the stock and cryptocurrency markets.",
+  "messagePageSeoDescription2": "Analysis of {symbol} symbol by trader {publisherName} on GoldHub, Trader rank on GoldHub: {publisherRank}, Analysis of stock and cryptocurrency symbols by top market traders.",
   "todayNews": "Today's News",
   "emptyFeed": "You have no following",
   "buySignals": "Traders' Buy Signals",
@@ -366,14 +376,14 @@
     ]
   },
   "noData": "No Data",
-  "leaderboardPageTitleSeo": "Top Cryptocurrency and Stock Market Traders | Talano",
+  "leaderboardPageTitleSeo": "Top Cryptocurrency and Stock Market Traders | GoldHub",
   "leaderboardPageDescriptionSeo": "Best stock channels, best cryptocurrency and Bitcoin channels, cryptocurrency traders and stock market traders",
   "feedPageH1": "Get inspired by top traders",
   "groupPageH1": "Gold",
   "messages": "Messages",
   "myTraders": "My Traders",
   "myAssets": "Watchlist",
-  "feedPageTitleSeo": "Following | Talano",
+  "feedPageTitleSeo": "Following | GoldHub",
   "attractivenessBuySell": "Buy/Sell Attractiveness",
   "risk": "Risk",
   "hour": "Hour",
@@ -412,9 +422,9 @@
   "assetMostProfit": "Who made the most profit from {symbol}?",
   "monthProfit": "1-month profit:",
   "tradesPriceComment": "Traders' opinion on price",
-  "newestAnalysis": "{symbolName} | Latest analysis on Talano",
-  "newestTradersAnalysis": "{symbolName} | Latest trader analysis on Talano",
-  "commonQuestion": "| Talano When is the right time to buy {symbolName}? What did which analyst say? All {symbolName} stock signals at a glance, {symbolName}",
+  "newestAnalysis": "{symbolName} | Latest analysis on GoldHub",
+  "newestTradersAnalysis": "{symbolName} | Latest trader analysis on GoldHub",
+  "commonQuestion": "| GoldHub When is the right time to buy {symbolName}? What did which analyst say? All {symbolName} stock signals at a glance, {symbolName}",
   "mainResults": "Main-results-of-buy-and-sell-signals-for-{symbolName}-stock",
   "timeSlice": "Time Period",
   "possibleDamage": "Potential Loss",
@@ -454,7 +464,7 @@
   "top100TraderCompare": "Comparison with Top 100 Traders",
   "year": "Year",
   "Authentication": "By authenticating as the owner",
-  "blueTick": "Get Talano blue tick",
+  "blueTick": "Get GoldHub blue tick",
   "openPrice": "Entry Price",
   "closePrice": "Exit Price",
   "openTime": "Entry Time",
@@ -502,13 +512,13 @@
     "180": "Six Months",
     "360": "One Year"
   },
-  "loginPageSeoTitle": "Login | Talano",
-  "loginStaticUser": "Ehsan Akbarzadeh",
-  "loginStaticUserComment": "This month with Talano I was able to make 20% profit from Shapaksa, thank you.",
+  "loginPageSeoTitle": "Login | GoldHub",
+  "loginStaticUser": "Ehsan",
+  "loginStaticUserComment": "This month with GoldHub I was able to make 20% profit from GoldHub, thank you.",
   "loginWithGoogle": "Login with Google",
   "orContinueWith": "Or continue with",
   "loginHelper": "To login/register, please enter your mobile number.",
-  "pricingPageTitle": "Purchase Subscription | Talano",
+  "pricingPageTitle": "Purchase Subscription | GoldHub",
   "issueReport": "Report Problem",
   "portfolioIsEmpty": "Trader's portfolio is currently empty.",
   "buyHistoryIsEmpty": "Trader has no purchase history",
@@ -519,7 +529,7 @@
   "withSuccess": "successfully",
   "doFollowing": "To complete the process, please do the following",
   "setTelegramDescription": "Put the following phrase in the Description section of your Telegram channel:",
-  "ownerShipWillCheck": "Talano bot will read your channel information within the next 24 hours and ownership transfer will be done automatically.",
+  "ownerShipWillCheck": "GoldHub bot will read your channel information within the next 24 hours and ownership transfer will be done automatically.",
   "presentProfit": "Current Profit",
   "viewpointSubmitted": "Your feedback has been submitted.",
   "unboundedAccess": "Unlimited access to the best of cryptocurrency and stock markets",
@@ -545,10 +555,10 @@
   "codeConfirm": "Confirm Code",
   "confirm": "Confirmed",
   "payTransfer": "Transferring to payment gateway",
-  "privacyPageTitle": "Terms and Conditions | Talano",
+  "privacyPageTitle": "Terms and Conditions | GoldHub",
   "accountChoose": "Choose your plan",
-  "gift": "Talano Gift",
-  "useAllFree": "Use all Talano features for free",
+  "gift": "GoldHub Gift",
+  "useAllFree": "Use all GoldHub features for free",
   "weekFree": "7 days free",
   "startNow": "Start now",
   "services": {
@@ -567,39 +577,39 @@
   },
   "QA": {
     "n1": {
-      "title": "What is Talano and what does it do?",
-      "text": "Talano analyzes signals from 34,000 stock and cryptocurrency traders every day and introduces you to the top traders in financial markets so you can follow them and have more profitable trades using these people's analysis!"
+      "title": "What is GoldHub and what does it do?",
+      "text": "GoldHub analyzes signals from 34,000 stock and cryptocurrency traders every day and introduces you to the top traders in financial markets so you can follow them and have more profitable trades using these people's analysis!"
     },
     "n2": {
       "title": "How can I find top traders with the highest rank?",
-      "text": "Top traders are listed on the relevant page and you can see each trader's rank next to them. Also, if you search for your trader's name on Talano, you can enter that person's dedicated page and see that trader's track record with all details."
+      "text": "Top traders are listed on the relevant page and you can see each trader's rank next to them. Also, if you search for your trader's name on GoldHub, you can enter that person's dedicated page and see that trader's track record with all details."
     },
     "n3": {
-      "title": "How are Talano featured symbols generated?",
+      "title": "How are GoldHub featured symbols generated?",
       "text": "Top traders are listed on the relevant page and featured symbols are suggested based on the summary of top traders' signals. These are symbols that top-ranked individuals have issued the most buy signals for in recent days."
     },
     "n4": {
-      "title": "Is there a fee to use Talano?",
-      "text": "Part of Talano's services is free for all users. But if you want to use the featured symbols section or want to be informed in time of top traders' latest decisions about your stocks, you need to have Talano subscription."
+      "title": "Is there a fee to use GoldHub?",
+      "text": "Part of GoldHub's services is free for all users. But if you want to use the featured symbols section or want to be informed in time of top traders' latest decisions about your stocks, you need to have GoldHub subscription."
     },
     "n5": {
-      "title": "How can I test Talano product before purchasing subscription?",
-      "text": "Talano has provided a free gift plan for all users so you can test the product before purchasing and if our product is valuable to you, proceed with purchase."
+      "title": "How can I test GoldHub product before purchasing subscription?",
+      "text": "GoldHub has provided a free gift plan for all users so you can test the product before purchasing and if our product is valuable to you, proceed with purchase."
     },
     "n6": {
       "title": "How do I receive the gift plan?",
-      "text": "No extra work is needed to use Talano gift subscription. To use Talano gift, just register on Talano website and we'll activate the Talano gift for you right away."
+      "text": "No extra work is needed to use GoldHub gift subscription. To use GoldHub gift, just register on GoldHub website and we'll activate the GoldHub gift for you right away."
     },
     "n7": {
       "title": "Is there a difference between bronze, silver and gold plans?",
-      "text": "All Talano plans are similar in terms of features and their only difference is in usage duration. Of course, we've considered special discounts for those who purchase silver and gold plans!"
+      "text": "All GoldHub plans are similar in terms of features and their only difference is in usage duration. Of course, we've considered special discounts for those who purchase silver and gold plans!"
     },
     "n8": {
       "title": "Can I cancel my membership whenever I want?",
-      "text": "There's no option to cancel membership in Talano mid-plan. But you can change your plan up or down for your future purchases."
+      "text": "There's no option to cancel membership in GoldHub mid-plan. But you can change your plan up or down for your future purchases."
     },
     "n9": {
-      "title": "Can I use a discount code to join Talano?",
+      "title": "Can I use a discount code to join GoldHub?",
       "text": "We do have discount codes. If you'd like to use a discount code, contact our support to get a discount code. Just enter the discount code you received from us or anywhere else in the relevant section and"
     },
     "n10": {
@@ -607,12 +617,12 @@
       "text": "There's usually no exact time to buy and sell a stock. But on the featured symbols page, we try to introduce symbols that top traders are paying attention to so you can select them. We also inform you of stock status changes from buy to sell according to top traders' signals. Note that if you've received suitable profit (for example above 20 percent) from a stock, it's better to cash out part of it."
     },
     "n11": {
-      "title": "Can I trust Talano signals?",
-      "text": "Talano generates its signals using algorithms based on collective intelligence and we ourselves use these signals for buying and selling. For more confidence, you can follow Talano signals for a while and after ensuring performance, proceed with buying and selling based on them. It should be noted that these signals are only analysis and the consequences of buying and selling and decisions are your own responsibility."
+      "title": "Can I trust GoldHub signals?",
+      "text": "GoldHub generates its signals using algorithms based on collective intelligence and we ourselves use these signals for buying and selling. For more confidence, you can follow GoldHub signals for a while and after ensuring performance, proceed with buying and selling based on them. It should be noted that these signals are only analysis and the consequences of buying and selling and decisions are your own responsibility."
     },
     "n12": {
-      "title": "Does Talano give buy or sell alerts?",
-      "text": "On each stock's page, there's an option to activate the alert system. If you activate the alert system for each stock, you can receive Talano alerts for buying and selling."
+      "title": "Does GoldHub give buy or sell alerts?",
+      "text": "On each stock's page, there's an option to activate the alert system. If you activate the alert system for each stock, you can receive GoldHub alerts for buying and selling."
     }
   },
   "questionAsk": "Q&A",
@@ -642,9 +652,9 @@
   "tickerTop": "Top Stocks",
   "CQA": {
     "n1": {
-      "title": "What exactly does Talano do?",
+      "title": "What exactly does GoldHub do?",
       "text": {
-        "name": "Talano",
+        "name": "GoldHub",
         "first": "1- Ranks social media traders like Telegram, Rahavard, TradingView, etc. and introduces you to the best stock and cryptocurrency market traders.",
         "second": "2- Instantly notifies you of the best stocks and cryptocurrencies that top traders recommend."
       }
@@ -661,16 +671,16 @@
         "third": "3- Create custom watchlist and receive instant alerts from followed symbols and traders"
       },
       "n4": {
-        "title": "What does Talano NOT do?",
-        "text": "Talano has no responsibility for signals that traders give and only collects traders' opinions and doesn't provide additional analysis itself."
+        "title": "What does GoldHub NOT do?",
+        "text": "GoldHub has no responsibility for signals that traders give and only collects traders' opinions and doesn't provide additional analysis itself."
       }
     }
   },
-  "homePageSeoTitle": "Talano | Market's best cryptocurrency and stock market at a glance",
+  "homePageSeoTitle": "GoldHub | Market's best cryptocurrency and stock market at a glance",
   "homePageDescription": "Analysis of cryptocurrency and stock buy and sell signals using artificial intelligence, introducing the best of stock and cryptocurrency markets for investment, instant notification of Bitcoin buy signals and other cryptocurrencies",
-  "signalsPageTitle": "Today's cryptocurrency and stock signals | Talano",
+  "signalsPageTitle": "Today's cryptocurrency and stock signals | GoldHub",
   "signalsPageDescription": "Cryptocurrencies and stocks of interest to traders today, buy and sell recommendation signals, Bitcoin signal, buy Bitcoin, Bitcoin analysis, Telegram signal",
-  "publisherPageTitle": "Trader analysis on Talano",
+  "publisherPageTitle": "Trader analysis on GoldHub",
   "confirmedType": {
     "confirmed": "Confirmed",
     "pend": "Pending confirmation",
@@ -713,7 +723,7 @@
   },
   "profileComplete": {
     "title": "Complete Profile",
-    "text": "To fully use Talano features such as {component}, please complete your profile",
+    "text": "To fully use GoldHub features such as {component}, please complete your profile",
     "notif": "Alert capability"
   },
   "status": "Status",
@@ -730,25 +740,25 @@
     "disable": "Disable",
     "pend": "Waiting for access"
   },
-  "notifMessage": "This alert is sent through the browser. So after pressing the enable button, press the Allow button in the browser message. By activating app alert, Talano alerts will appear instantly on your mobile or computer device.",
+  "notifMessage": "This alert is sent through the browser. So after pressing the enable button, press the Allow button in the browser message. By activating app alert, GoldHub alerts will appear instantly on your mobile or computer device.",
   "telegramDescription": "To receive {component}, place the following phrase in the Description section of your Telegram channel",
   "ownerShip": "Ownership",
   "transactionHistory": "Transaction History",
   "descriptions": "Descriptions",
-  "traderPage": "Trader page on Talano",
+  "traderPage": "Trader page on GoldHub",
   "retrySub": "Renew plan",
   "retryText": "By renewing the plan, it will be added to your current subscription.",
   "publish": "Submit Analysis",
   "new": "New",
   "traderLoginModal": {
     "title": "Login/register required to view this trader",
-    "description": "By registering on Talano, use all features free for 7 days.",
+    "description": "By registering on GoldHub, use all features free for 7 days.",
     "button": "Activate 7 days free",
     "inputLabel": "Quick registration"
   },
   "bestTickerPerformance": "Top stock traders performance",
   "bestCryptoPerformance": "Top cryptocurrency traders performance",
-  "profitSimulate": "If you had traded 6 months ago based on Talano top traders' buy and sell signals, you would have achieved {component} percent return. List of top traders 6 months ago:",
+  "profitSimulate": "If you had traded 6 months ago based on GoldHub top traders' buy and sell signals, you would have achieved {component} percent return. List of top traders 6 months ago:",
   "top10SixMonthPer": "Last 6 months return (top traders)",
   "planNeed": {
     "following": "Following {component} requires subscription",
@@ -784,7 +794,7 @@
     "notifications": "Alerts",
     "feeds": "Following"
   },
-  "aboutUsTitle": "About Us | Talano",
+  "aboutUsTitle": "About Us | GoldHub",
   "totalInventory": "Total Balance",
   "toman": "Toman",
   "countingUnit": {
@@ -1237,6 +1247,7 @@
       "noRecentOrders": "No recent orders",
       "yourProducts": "Your Products",
       "myProducts": "My Products",
+      "browseCatalog": "Browse Catalog",
       "addProduct": "Add Product",
       "editProduct": "Edit Product",
       "deleteProduct": "Delete Product",
@@ -1700,5 +1711,80 @@
         "content": "You have the right to access, correct, or delete your personal information. Contact our support team to exercise these rights."
       }
     }
+  },
+  "homepage": {
+    "hero": {
+      "tagline": "Trusted Wholesale Gold Trading",
+      "title": "The Smart Way to Order Gold & Gold Artifacts",
+      "description": "Place wholesale orders for gold and gold artifacts directly from verified suppliers. Transparent pricing, secure transactions, and fast order management.",
+      "ctaPrimary": "Create Wholesale Order",
+      "ctaSecondary": "More Info",
+      "trust": {
+        "license": "Official Union License",
+        "users": "+10,000 Active Traders"
+      }
+    },
+    "liveTicker": {
+      "gold18": "18k Gold",
+      "coin": "Gold Coin",
+      "dollar": "Dollar"
+    },
+    "features": {
+      "title": "Why GoldHub?",
+      "subtitle": "We simplify wholesale gold trading with transparent pricing and fast operations.",
+      "items": {
+        "noFees": {
+          "title": "Transparent Fees",
+          "description": "All fees are clearly defined with no hidden costs. Designed for fair and efficient gold trade."
+        },
+        "microSavings": {
+          "title": "Flexible Order Quantities",
+          "description": "Order gold in precise weights, down to milligram-level accuracy, based on your business needs."
+        },
+        "secure": {
+          "title": "Secure & Regulated",
+          "description": "All trades are legal, supervised, and protected with industry-grade security standards."
+        }
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Answers to common questions",
+      "items": {
+        "whatIs": {
+          "q": "What is GoldHub?",
+          "a": "GoldHub is a B2B platform for wholesale gold trading, connecting retailers with verified suppliers to place and manage gold and gold artifact orders."
+        },
+        "fees": {
+          "q": "What are the trading fees on GoldHub?",
+          "a": "GoldHub charges a transparent transaction fee applied to wholesale gold trades. All fees are visible before order confirmation."
+        },
+        "pricing": {
+          "q": "How are gold prices determined on GoldHub?",
+          "a": "Prices are based on real market transactions and high-volume trading data from the Tehran Grand Bazaar."
+        },
+        "attributes": {
+          "q": "What are the characteristics of melted gold?",
+          "a": "Melted gold is refined from bars, scrap, or second-hand gold and graded by purity. It is widely used as a raw material in jewelry manufacturing and wholesale trade."
+        },
+        "karat": {
+          "q": "What does 18k gold mean?",
+          "a": "18k gold contains 75% pure gold and 25% alloy metals, offering durability and suitability for commercial gold trading."
+        }
+      }
+    },
+    "cta": {
+      "title": "Start Trading Today",
+      "description": "Registration takes less than one minute. Access verified suppliers and manage wholesale gold orders with ease.",
+      "button": "Free Registration"
+    }
+  },
+  "footer": {
+    "contactUs": "Contact Us",
+    "phone": "021-91304925",
+    "email": "info@talanow.ir",
+    "aboutUs": "About Us",
+    "rules": "Terms",
+    "description": "GoldHub provides users with the ability to buy and sell refined 18-karat gold. With GoldHub, you can build gold savings with a minimum investment of 100,000 Tomans. GoldHub conducts gold purchases without commission and with minimal fees for you. The trading unit at GoldHub is one gram of 18-karat gold."
   }
 }

@@ -73,7 +73,7 @@ export function Gauge({ percentage, loading, dict }) {
                                 className={cn(
                                     'absolute -top-6 left-8 z-10',
                                     percentage > -30 && percentage < 30
-                                        ? 'text-neutral-200'
+                                        ? 'text-slate-300'
                                         : 'text-gray-700'
                                 )}
                             >

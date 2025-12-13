@@ -59,34 +59,18 @@ export function Footer({ dict, lang }) {
                             href="/"
                             className="text-xs font-medium capitalize"
                         >
-                            طلانو
+                            {dict.appName}
                         </BreadcrumbLink>
                     </BreadcrumbItem>
                     {pathNames?.length !== 0 && <BreadcrumbSeparator />}
                     {pathNames?.slice(0, 2).map((item, index, array) => {
                         const breadcrumbTitles = {
-                            leaderboard: 'برترین تریدر‌ها',
-                            finocaht: 'ربات طلانو',
-                            'copy-trade': 'کپی ترید',
-                            coins: 'ارزدیجیتال',
-                            ticker: 'بورس',
-                            signals: 'سیگنال‌ها',
-                            feed: 'دنبال شده‌ها',
-                            search: 'جستجو',
-                            notifications: 'هشدار‌ها',
-                            pricing: 'خرید اشتراک',
-                            about: 'درباره‌ما',
-                            receipt: 'رسید',
-                            contact: 'تماس‌با‌ما',
-                            privacy: 'قوانین',
-                            organization: 'راهکار سازمانی',
-                            changelog: 'تغییرات',
-                            profile: 'حساب کاربری',
-                            publisher: 'تریدر',
-                            swap: 'خرید آسان',
-                            wallet: 'کیف پول',
-                            invest: 'خرید آسان',
-                            copytrade: 'کپی ترید',
+                            notifications: 'notifications',
+                            about: 'about',
+                            receipt: 'receipt',
+                            contact: 'contact',
+                            privacy: 'privacy',
+                            profile: 'profile',
                         };
                         const isLast = index === array.length - 1;
                         const href =
@@ -127,54 +111,22 @@ export function Footer({ dict, lang }) {
     return (
         <footer>
             <div className="hidden md:block">
-                <div className="rounded-tl-lg rounded-tr-lg bg-neutral-100 pb-14 pt-8">
+                <div className="rounded-tl-lg rounded-tr-lg bg-gray-50 pb-14 pt-8">
                     <div className="mx-auto flex max-w-[1525px] flex-col gap-10 px-14">
                         <BreadcrumbComponent />
                         <div className="flex justify-between">
                             <Link
-                                className="flex items-center gap-2.5 text-lg font-black text-neutral-800"
+                                className="flex items-center gap-2.5 text-lg font-black text-navy-900"
                                 href={`${getLinksLang(lang)}/`}
                             >
                                 <Icons.logo />
-                                طلانو
+                                {dict.appName}
                             </Link>
-                            <div className="invisible flex flex-col gap-6">
-                                <div>
-                                    <strong>نسل جدید</strong> اپ ویندوز
-                                </div>
-                                <a
-                                    dir="ltr"
-                                    className={cn(
-                                        buttonVariants({
-                                            variant: 'secondary',
-                                        }),
-                                        'flex justify-between gap-4 border border-neutral-800 px-4 shadow-[0px_0px_50px_10px_rgba(16,_237,_197,_.8)]',
-                                    )}
-                                >
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        className="lucide lucide-download"
-                                    >
-                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                                        <polyline points="7 10 12 15 17 10" />
-                                        <line x1="12" x2="12" y1="15" y2="3" />
-                                    </svg>
-                                    <div className="text-base">نصب سریع</div>
-                                </a>
-                            </div>
                             <div
                                 dir="ltr"
                                 className="flex flex-col gap-4 text-sm font-medium"
                             >
-                                <a href="/contact">تماس با ما</a>
+                                <a href="/contact">{dict.footer.contactUs}</a>
                                 <a
                                     href="tel:+9821-91304925"
                                     dir="ltr"
@@ -186,7 +138,7 @@ export function Footer({ dict, lang }) {
                                         className="text-[rgba(0,_0,_0,_.4)] drop-shadow-[0px_0px_1px_rgba(0,_0,_0,_.1)]"
                                     />
                                     <div className="text-base">
-                                        ۰۲۱-۹۱۳۰۴۹۲۵
+                                        {dict.footer.phone}
                                     </div>
                                 </a>
                                 <a
@@ -199,13 +151,13 @@ export function Footer({ dict, lang }) {
                                         fill="#FFBE00"
                                         className="text-[rgba(0,_0,_0,_.4)] drop-shadow-[0px_0px_1px_rgba(0,_0,_0,_.1)]"
                                     />
-                                    <div>info@talanow.ir</div>
+                                    <div>{dict.footer.email}</div>
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="-mt-6 rounded-tl-lg rounded-tr-lg bg-neutral-200 pb-14 pt-8">
+                <div className="-mt-6 rounded-tl-lg rounded-tr-lg bg-gray-100 pb-14 pt-8">
                     <div
                         className="grid w-full grid-cols-3 place-items-center gap-3 sm:p-4 md:mx-auto md:max-w-4xl lg:grid-cols-6 lg:p-0">
                         <div className="h-24 w-24 rounded-lg bg-white p-4 lg:h-28 lg:w-28">
@@ -278,7 +230,7 @@ export function Footer({ dict, lang }) {
                         </div> */}
                     </div>
                 </div>
-                <div className="-mt-6 space-y-6 rounded-tl-lg rounded-tr-lg bg-neutral-700 pb-0 pt-8">
+                <div className="-mt-6 space-y-6 rounded-tl-lg rounded-tr-lg bg-navy-900 pb-0 pt-8">
                     {/*<div className="flex flex-col items-center gap-6">*/}
                     {/*    <div className="flex items-center gap-10">*/}
                     {/*        <a href="https://t.me/sahmetocom" target="_blank">*/}
@@ -315,38 +267,33 @@ export function Footer({ dict, lang }) {
                     <div className="mx-auto px-24 w-3/4 text-white">
                         {lang === 'fa' && (
                             <p className="max-w-9/10 mx-auto text-justify">
-                                <Link href={`${getLinksLang(lang)}/`}>
-                                    سامانه طلانو
-                                </Link>{' '}
-                                امکان خرید و فروش طلای آب شده 18 عیار رو برای کاربران خود فراهم میکنه. با طلانو میتونید
-                                با حداقل سرمایه 100 هزار تومان پس انداز طلایی برای خودتون بسازید. طلانو خرید طلا رو بدون
-                                 اجرت و با حداقل کارمزد براتون انجام میده. واحد خرید و فروش در طلانو، گرم طلای ۱۸ عیاره.
+                                {dict.footer.description}
                             </p>
                         )}
-                        <p className="shadow-4xl mt-4 rounded-tl-lg rounded-tr-lg bg-neutral-800 px-8 py-4 text-center text-sm text-black">
+                        <p className="shadow-4xl mt-4 rounded-tl-lg rounded-tr-lg bg-navy-800 px-8 py-4 text-center text-sm text-white">
                             {dict.copyright}
                         </p>
                     </div>
                 </div>
             </div>
             {/*mobile footer*/}
-            <div className="shadow-4xl rounded-tl-lg rounded-tr-lg bg-neutral-100 md:hidden">
+            <div className="shadow-4xl rounded-tl-lg rounded-tr-lg bg-gray-50 md:hidden">
                 <div className="flex items-center justify-between p-8">
                     <div className="flex flex-col gap-6 md:gap-2">
                         <BreadcrumbComponent />
                         <Link
-                            className="flex items-center gap-2.5 text-lg font-black text-neutral-800"
+                            className="flex items-center gap-2.5 text-lg font-black text-navy-900"
                             href={`${getLinksLang(lang)}/`}
                         >
                             <Icons.logo />
-                            طلانو
+                            {dict.appName}
                         </Link>
                     </div>
                     <div
                         dir="ltr"
                         className="flex flex-col gap-4 text-sm font-medium"
                     >
-                        <a href="/contact">تماس با ما</a>
+                        <a href="/contact">{dict.footer.contactUs}</a>
                         <a
                             href="tel:+9821-91304925"
                             dir="ltr"
@@ -357,7 +304,7 @@ export function Footer({ dict, lang }) {
                                 fill="#FFBE00"
                                 className="text-[rgba(0,_0,_0,_.4)] drop-shadow-[0px_0px_1px_rgba(0,_0,_0,_.1)]"
                             />
-                            <div className="text-base">۰۲۱-۹۱۳۰۴۹۲۵</div>
+                            <div className="text-base">{dict.footer.phone}</div>
                         </a>
                         <a
                             href="mailto:info@talanow.ir"
@@ -499,7 +446,7 @@ export function Footer({ dict, lang }) {
                 {/*        </ul>*/}
                 {/*    </div>*/}
                 {/*</div>*/}
-                <div className="mt-3 flex w-full flex-col justify-center gap-2 rounded-t-xl bg-neutral-700 pt-8">
+                <div className="mt-3 flex w-full flex-col justify-center gap-2 rounded-t-xl bg-navy-900 pt-8">
                     {/*<div className="flex flex-col items-center gap-6">*/}
                     {/*    <a*/}
                     {/*        href="https://www.instagram.com/sahmeto_com"*/}
@@ -536,19 +483,19 @@ export function Footer({ dict, lang }) {
                     {/*<div className=" mx-auto my-8 h-[1px] w-[90%] bg-neutral-50" />*/}
                     <div className="flex items-center justify-evenly bg-transparent">
                         <a className="text-base text-white" href="/about">
-                            درباره ما
+                            {dict.footer.aboutUs}
                         </a>
                         <a
                             className="text-base text-white"
                             href="/contact"
                         >
-                            تماس با ما
+                            {dict.footer.contactUs}
                         </a>
                         <a className="text-base text-white" href="/privacy">
-                            قوانین
+                            {dict.footer.rules}
                         </a>
                     </div>
-                    <p className="shadow-6xl mt-10 rounded-tl-lg rounded-tr-lg bg-neutral-800 px-8 py-4 text-center text-sm text-black">
+                    <p className="shadow-6xl mt-10 rounded-tl-lg rounded-tr-lg bg-navy-800 px-8 py-4 text-center text-sm text-white">
                         {dict.copyright}
                     </p>
                 </div>

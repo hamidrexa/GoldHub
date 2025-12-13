@@ -3,9 +3,28 @@ import { Locale } from '@/i18n-config';
 import { getDictionary } from '@/get-dictionary';
 import { DashboardLayout } from '@/components/layout/dashboard-layout';
 
-export const metadata = {
-    title: 'پیدا نشد | GoldHub',
-};
+import { Metadata, ResolvingMetadata } from 'next';
+
+export async function generateMetadata(
+    { params: { lang } }: { params: { lang: Locale } },
+    parent?: ResolvingMetadata
+): Promise<Metadata> {
+    const dict = await getDictionary(lang);
+    const seoTitle = dict.title || 'GoldHub';
+    const seoDescription = dict.homePageDescription || 'The secure platform for buying and selling gold online.';
+
+    return {
+        title: {
+            default: seoTitle,
+            template: `%s | ${seoTitle}`,
+        },
+        description: seoDescription,
+        openGraph: {
+            title: seoTitle,
+            description: seoDescription,
+        },
+    };
+}
 
 export default async function UserLayout({
     children,

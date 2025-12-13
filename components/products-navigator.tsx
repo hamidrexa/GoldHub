@@ -54,7 +54,7 @@ export function ProductsNavigator({ dict, lang }) {
                         'relative flex w-full flex-col items-center gap-1.5 whitespace-nowrap text-base',
                         item.url === pathname ||
                             `${getLinksLang(lang)}${item.url}` === pathname
-                            ? 'font-bold text-neutral-800 before:absolute before:top-0 before:h-full before:w-0.5 before:rounded-full before:bg-neutral-300 ltr:before:-left-2 rtl:before:-right-2'
+                            ? 'font-bold text-neutral-800 before:absolute before:top-0 before:h-full before:w-0.5 before:rounded-full before:bg-emerald-400 ltr:before:-left-2 rtl:before:-right-2'
                             : 'font-medium text-gray-800'
                     )}
                     href={`${getLinksLang(lang)}${item.url}`}

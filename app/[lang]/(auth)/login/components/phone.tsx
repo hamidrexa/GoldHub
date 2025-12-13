@@ -31,6 +31,7 @@ interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
     setIsNewUser: React.Dispatch<React.SetStateAction<boolean>>;
     texts: any;
     showGoogle?: boolean;
+    redirectUrl?: string;
 }
 
 const accountFormSchema = z.object({
@@ -53,6 +54,7 @@ export function Phone({
     setIsNewUser,
     texts = {},
     showGoogle = true,
+    redirectUrl,
 }: UserAuthFormProps) {
     const [isLoading, setIsLoading] = useState(false);
     const searchParam = useSearchParams();
@@ -180,7 +182,7 @@ export function Phone({
                             </span>
                         </div>
                     </div>
-                    <Google lang={lang} dict={dict} />
+                    <Google lang={lang} dict={dict} redirectUrl={redirectUrl} />
                     {/*<p className="px-8 text-center text-sm">*/}
                     {/*    با ثبت‌نام در GoldHub، شما{' '}*/}
                     {/*    <Link*/}

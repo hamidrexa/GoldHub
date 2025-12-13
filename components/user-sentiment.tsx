@@ -107,7 +107,7 @@ export function UserSentiment({
                     <div className="flex items-center gap-6">
                         <button
                             onClick={() => onSubmit('B')}
-                            className="flex h-[55px] items-center justify-center gap-2 rounded-full border-2 border-solid border-neutral-400 bg-neutral-400/5 px-5 text-neutral-400"
+                            className="flex h-[55px] items-center justify-center gap-2 rounded-full border-2 border-solid border-green-600 bg-green-600/5 px-5 text-green-600"
                         >
                             <svg
                                 width="19"
@@ -179,7 +179,7 @@ export function UserSentiment({
                             <div className="flex w-52 items-center overflow-hidden rounded-lg">
                                 {sentiment.result.buy > 0 && (
                                     <div
-                                        className="flex h-10 items-center justify-center bg-neutral-400 text-white"
+                                        className="flex h-10 items-center justify-center bg-green-600 text-white"
                                         style={{
                                             width: `${sentiment.result.buy}%`,
                                         }}
@@ -239,7 +239,7 @@ export function UserSentiment({
                             <div className="flex w-52 items-center overflow-hidden rounded-lg">
                                 {sentiment.result.buy > 0 && (
                                     <div
-                                        className="flex h-10 items-center justify-center bg-neutral-400 text-white"
+                                        className="flex h-10 items-center justify-center bg-green-600 text-white"
                                         style={{
                                             width: `${sentiment.result.buy}%`,
                                         }}

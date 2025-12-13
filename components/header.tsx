@@ -134,10 +134,8 @@ export function Header({ dict, lang, googleLogin = true }) {
     return (
         <header
             className={cn(
-                'sticky top-0 z-[60] grid h-16 grid-cols-3 items-center justify-between px-6 text-sm text-black transition-transform md:flex md:h-[90px] md:px-14',
-                path === '/'
-                    ? 'bg-violet-900 text-white'
-                    : 'bg-white text-black',
+                'sticky top-0 z-[60] grid h-16 grid-cols-3 items-center justify-between px-6 text-sm transition-transform md:flex md:h-[90px] md:px-14',
+                'bg-navy-900 text-white',
                 isReadingMode
                     ? '-translate-y-full md:translate-y-0'
                     : 'translate-y-0'
@@ -150,7 +148,7 @@ export function Header({ dict, lang, googleLogin = true }) {
                             className="md:hidden"
                             strokeWidth={1.5}
                             opacity={1}
-                            color={path === '/' ? '#fff' : '#000'}
+                            color="#fff"
                         />
                     </SheetTrigger>
                     <SheetContent side={isRtl(lang) ? 'right' : 'left'}>
@@ -274,13 +272,13 @@ export function Header({ dict, lang, googleLogin = true }) {
             </div>
             <div className="flex items-center justify-center gap-5">
                 <Link
-                    className="flex items-center gap-2.5 text-lg font-black text-neutral-800"
+                    className="flex items-center gap-2.5 text-lg font-black text-white"
                     href={`${getLinksLang(lang)}/`}
                 >
-                    <Icons.logoLight className="h-7 w-24 cursor-pointer md:h-9 md:w-32" />
+                    <Icons.logoDark className="h-7 w-24 cursor-pointer md:h-9 md:w-32" />
                     GoldHub
                 </Link>
-                <hr className="hidden h-6 w-px bg-neutral-100 md:flex ltr:ml-3 rtl:mr-3" />
+                <hr className="hidden h-6 w-px bg-navy-800 md:flex ltr:ml-3 rtl:mr-3" />
                 <NavigationMenu
                     className="hidden md:block"
                     dir={getDirection(lang)}

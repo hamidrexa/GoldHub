@@ -4,7 +4,6 @@ import { Timer } from '@/components/timer';
 import Cookies from 'js-cookie';
 import { toast } from 'sonner';
 import { useReadOTP } from 'react-read-otp';
-import { useSearchParams } from 'next/navigation';
 import { ChevronRight, RotateCw } from 'lucide-react';
 import { forgetPassword } from '@/app/[lang]/(auth)/login/services/forgetPassword';
 import OtpInput from 'react-otp-input';
@@ -17,8 +16,7 @@ export function Otp({ userId, isNewUser, setStep, dict, redirectUrl }) {
     const [isLoadingOtpRetry, setIsLoadingOtpRetry] = useState(false);
     const [isCounterEnd, setIsCounterEnd] = useState(false);
     const [otp, setOTP] = useState(null);
-    const searchParams = useSearchParams();
-    useReadOTP((otp) => {
+        useReadOTP((otp) => {
         setOTP(otp);
         if (otp?.length === 4) getToken(Number(otp));
     });
@@ -34,8 +32,7 @@ export function Otp({ userId, isNewUser, setStep, dict, redirectUrl }) {
             Cookies.set('token-refresh', token.refresh, { expires: 365 });
             if (isNewUser) setStep('complete-info');
             else
-                window.location.href =
-                    redirectUrl || searchParams.get('url') || '/';
+                window.location.href = redirectUrl || '/';
         } catch (e) {
             window.focus();
             // @ts-ignore

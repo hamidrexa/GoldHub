@@ -13,20 +13,20 @@ export async function generateMetadata(
     parent?: ResolvingMetadata
 ): Promise<Metadata> {
     const dict = await getDictionary(lang);
-    const seoTitle = dict.aboutUsTitle || dict.aboutPage?.title || 'GoldHub';
+    const seoTitle = dict.aboutUsTitle || dict.aboutPage?.title || 'About Us';
     const seoDescription =
         dict.aboutPage?.mission?.description ||
-        'GoldHub bridges the gap between traditional craftsmanship and modern digital commerce.';
+        'Learn more about GoldHub, our mission, values, and the team dedicated to bridging the gap between traditional craftsmanship and modern digital commerce.';
 
     return {
-        title: seoTitle,
+        title: `${seoTitle}`,
         description: seoDescription,
         openGraph: {
-            title: seoTitle,
+            title: `${seoTitle}`,
             description: seoDescription,
         },
         alternates: {
-            canonical: '',
+            canonical: `/${lang}/about`,
         },
     };
 }

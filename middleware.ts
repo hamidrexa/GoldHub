@@ -16,8 +16,21 @@ function getLocale(request: NextRequest): string | undefined {
 }
 
 export async function middleware(request: NextRequest) {
+    const token = request.cookies.get('token');
     const pathname = request.nextUrl.pathname;
     const search = request.nextUrl.search;
+
+    const protectedRoutes = ['/app', '/admin', '/supplier', '/buyer'];
+    const isProtected = protectedRoutes.some((route) =>
+        pathname.includes(route)
+    );
+
+    if (isProtected && !token) {
+        const locale = getLocale(request);
+        const loginUrl = new URL(`/${locale}/login`, request.url);
+        loginUrl.searchParams.set('redirect', pathname + search);
+        return NextResponse.redirect(loginUrl);
+    }
 
     const pathnameIsMissingLocale = i18n.locales.every(
         (locale) =>
