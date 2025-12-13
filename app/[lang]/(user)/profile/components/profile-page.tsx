@@ -72,7 +72,7 @@ export function ProfilePage({ dict, lang }) {
     const hasSupplierApproved = roleNames.includes('supplier_approved');
     const hasBuyerRequested = roleNames.includes('buyer_requested');
     const hasBuyerApproved = roleNames.includes('buyer_approved');
-    
+
     // Determine current user role from groups
     const getUserRole = () => {
         if (hasAdmin) return 'admin';
@@ -324,9 +324,9 @@ export function ProfilePage({ dict, lang }) {
                                 </div>
                             </div>
                         </div>
-                                                
+
                         {/* Request Supplier Role - Only for Approved Buyers */}
-                        {(isBuyerRequested || isBuyerApproved) && (
+                        {(isBuyerRequested) && (
                             <div className="space-y-2 rounded-md bg-blue-50 p-4 border border-blue-200">
                                 <div className="text-sm font-medium text-blue-900">
                                     {dict.marketplace?.profile?.profilePage?.becomeSupplier}
