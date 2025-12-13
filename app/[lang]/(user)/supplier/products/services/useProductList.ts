@@ -13,7 +13,7 @@ export interface ProductListFilters {
     is_bookmarked?: boolean;
 }
 
-export function useProductList(supplierId?: string, filters?: ProductListFilters) {
+export function useProductList(supplierId?: string, filters?: ProductListFilters,isBookMarked=false) {
     // Build params object, only including defined values
     const params: Record<string, any> = {
         page_size: 30,
@@ -39,7 +39,11 @@ export function useProductList(supplierId?: string, filters?: ProductListFilters
 
     const { data, error, isLoading } = useSWR({
         url: `/v1/gold_artifacts/products_list`,
-        params,
+        params: {
+            page_size : 30,
+            supplier: supplierId,
+            is_bookmarked: isBookMarked,
+        },
     });
 
     return {

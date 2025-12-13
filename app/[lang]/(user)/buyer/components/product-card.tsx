@@ -9,6 +9,8 @@ import { Product } from '@/lib/mock-data';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { addToCart } from '@/app/[lang]/(user)/buyer/services/add-to-cart';
+import { likeProduct } from '@/app/[lang]/(user)/buyer/services/like-product';
+import { unlikeProduct } from '@/app/[lang]/(user)/buyer/services/unlike-product';
 
 interface ProductCardProps {
     product: any;
@@ -16,7 +18,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, dict }: ProductCardProps) {
-    const [isFavorite, setIsFavorite] = useState(false);
+    const [isFavorite, setIsFavorite] = useState(!!product?.bookmarked_by_user);
     const [isAddingToCart, setIsAddingToCart] = useState(false);
     const params = useParams();
     const lang = params.lang || 'en';
@@ -40,12 +42,29 @@ export default function ProductCard({ product, dict }: ProductCardProps) {
         }
     };
 
-
-    const handleToggleFavorite = (e: React.MouseEvent) => {
+    const handleToggleFavorite = async (e: React.MouseEvent) => {
         e.preventDefault();
-        setIsFavorite(!isFavorite);
-        // TODO: Add to wishlist
+
+        const next = !isFavorite;
+        setIsFavorite(next); // optimistic update
+
+        try {
+            if (next) {
+                await likeProduct({
+                    object_id: product.id,
+                    title:'product',
+                    content_type: 132,
+                });
+            } else {
+                await unlikeProduct(product?.bookmarked_by_user?.id);
+            }
+        } catch (error) {
+            // rollback on failure
+            setIsFavorite(!next);
+            console.error("Bookmark toggle failed:", error);
+        }
     };
+
 
     return (
         <Link href={`/${lang}/buyer/catalog/${product.id}`}>

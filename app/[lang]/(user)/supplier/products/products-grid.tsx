@@ -9,6 +9,7 @@ import ProductFormDialog from '@/app/[lang]/(user)/supplier/components/product-f
 import { useProductList } from '@/app/[lang]/(user)/supplier/products/services/useProductList';
 import { updateProduct } from '@/app/[lang]/(user)/supplier/products/services/updateProduct';
 import { roundNumber } from '@/libs/utils';
+import { useGlobalContext } from '@/contexts/store';
 
 interface ProductsGridProps {
     dict: any;
@@ -16,10 +17,10 @@ interface ProductsGridProps {
 
 export function ProductsGrid({ dict }: ProductsGridProps) {
     const [dialogOpen, setDialogOpen] = useState(false);
+    const {user} = useGlobalContext()
     const [selectedProduct, setSelectedProduct] = useState(null);
 
-    // ⬅️ حالا فقط از SWR می‌گیری
-    const { products: list = [], isLoading } = useProductList("");
+    const { products: list = [], isLoading } = useProductList(user?.username);
 
     const getStatusBadge = (status: Product['status']) => {
         const badges = {
