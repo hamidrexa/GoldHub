@@ -43,7 +43,6 @@ export const fetcher = async (params: FetcherParams) => {
         }),
         ...(params.lang && { language: params.lang }),
     };
-
     const res = await fetch(url, {
         method: params.method ?? 'GET',
         headers,

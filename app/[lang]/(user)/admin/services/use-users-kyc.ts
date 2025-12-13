@@ -1,5 +1,6 @@
 'use client';
 import useSWR from "swr";
+import Cookies from 'js-cookie';
 
 export function useUsersKYCData() {
     const { data, error, isLoading } = useSWR({
@@ -8,7 +9,7 @@ export function useUsersKYCData() {
             page_size : 20,
         },
         headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_MY_TOKEN}`,
+            Authorization: `Bearer ${Cookies.get('token')}`,
         }
     });
 

@@ -135,7 +135,7 @@ export function ProductsGrid({ dict }: ProductsGridProps) {
                 onSave={async (apiBody) => {
                     await updateProduct({
                         body: apiBody,
-                        product_id: apiBody.id,
+                        product_id: selectedProduct?.id,
                     });
                 }}
             />

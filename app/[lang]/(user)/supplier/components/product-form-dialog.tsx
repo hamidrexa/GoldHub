@@ -79,7 +79,6 @@ export default function ProductFormDialog({
 
     const handleSave = () => {
         const payload = mapFormToApi(formData, product?.id);
-        console.log(payload);
         onSave?.(payload);
         onOpenChange(false);
     };

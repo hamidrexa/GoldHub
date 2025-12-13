@@ -7,10 +7,11 @@ import { Separator } from '@/components/ui/separator';
 import { ShoppingBag, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { CartItemControls } from './cart-item-controls';
-import { submitOrder } from '@/lib/api-client';
+
 import { useCardDetails } from '@/app/[lang]/(user)/buyer/services/cart-details';
 import { addToCart } from '@/app/[lang]/(user)/buyer/services/add-to-cart';
 import { removeFromCart } from '@/app/[lang]/(user)/buyer/services/remove-from-cart';
+import { submitOrder } from '@/app/[lang]/(user)/buyer/services/submit-order';
 
 interface CartItem {
     productId: string;
@@ -84,7 +85,7 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
         }
     };
 
-    const subtotal = cartItems.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
+    const subtotal = details?.items?.reduce((sum, item) => sum + (item.product.price * item.count), 0);
     const tax = subtotal * 0.08;
     const shipping = subtotal > 5000 ? 0 : 50;
     const total = subtotal + tax + shipping;

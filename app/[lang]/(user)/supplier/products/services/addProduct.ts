@@ -1,11 +1,12 @@
 import { fetcher } from '@/libs/utils';
+import Cookies from 'js-cookie';
 
-export function addProduct({ body, product_id }) {
+export function addProduct({ body }) {
     return fetcher({
         url: `/v1/gold_artifacts/product_create`,
         body,
         headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_MY_TOKEN}`,
+            Authorization: `Bearer ${Cookies.get('token')}`,
         },
         method: 'POST',
     });
