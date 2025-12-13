@@ -1614,6 +1614,31 @@
       }
     }
   },
+  "auth": {
+    "phoneNumber": "Telefon Numarası",
+    "phoneNumberPlaceholder": "Cep telefonu numarası",
+    "phoneRequired": "Telefon numarası boş olamaz.",
+    "phoneInvalid": "Girilen telefon numarası hatalıdır.",
+    "back": "Geri",
+    "otpTitle": "Tek Kullanımlık Şifre",
+    "otpExpired": "Gönderilen kodun süresi doldu. Lütfen yeni bir kod alın.",
+    "otpDescription": "{phone} numarasına gönderilen 4 haneli kodu giriniz.",
+    "otpResend": "Kodu Tekrar Gönder",
+    "otpTimer": "Kodu almadıysanız veya numarayı değiştirmek istiyorsanız, tekrar deneyebilirsiniz:",
+    "otpMinutes": "dakika.",
+    "or": "Veya",
+    "loginWithPassword": "Şifre ile Giriş",
+    "passwordTitle": "Şifre",
+    "passwordDescription": "{phone} için giriş yapmak üzere şifrenizi girin.",
+    "passwordPlaceholder": "Şifre",
+    "passwordRequired": "Şifre boş olamaz.",
+    "loginWithOtp": "SMS Kodu ile Giriş",
+    "completeInfoTitle": "Bilgileri Tamamla",
+    "emailPlaceholder": "E-posta (isteğe bağlı)",
+    "emailInvalid": "Girilen e-posta hatalıdır",
+    "passwordMandatory": "Şifre (zorunlu)",
+    "register": "Kayıt Ol"
+  },
   "aboutPage": {
     "title": "Mirası Modern Ticaretle Buluşturuyoruz",
     "subtitle": "Altın ve Mücevherat için Güvenilir B2B Pazaryeri",

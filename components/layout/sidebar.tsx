@@ -10,6 +10,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Icons } from '@/components/ui/icons';
 import { useGlobalContext } from '@/contexts/store';
 import { MenuIcon, Home, User, Settings, LogOut, Wallet, FileText, HelpCircle, Phone, Info, Shield, Package, DollarSign, ShoppingBag, BarChart3, ShoppingCart, Heart, Store } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 import Cookies from 'js-cookie';
 import { googleLogout } from '@react-oauth/google';
 import { Separator } from '@/components/ui/separator';
@@ -21,7 +22,7 @@ interface SidebarProps {
 
 export function Sidebar({ dict, lang }: SidebarProps) {
     const pathname = usePathname();
-    const { user } = useGlobalContext();
+    const { user, role } = useGlobalContext();
     const [open, setOpen] = useState(false);
 
     const logout = () => {
@@ -136,10 +137,10 @@ export function Sidebar({ dict, lang }: SidebarProps) {
         <div className="flex h-full flex-col py-6 bg-sidebar-bg text-white">
             {/* Logo Section at Top */}
             <div className="px-6 mb-6">
-                <div className="flex items-center gap-2 font-bold text-xl text-white mb-6">
+                <Link href={`${getLinksLang(lang)}/`} className="flex items-center gap-2 font-bold text-xl text-white mb-6">
                     <Icons.logoDark className="h-5 w-5 fill-black" />
-                    <span>GoldTrade</span>
-                </div>
+                    <span>{dict.appName}</span>
+                </Link>
             </div>
 
             <Separator className="bg-gold-200/15 mb-4" />
@@ -178,24 +179,36 @@ export function Sidebar({ dict, lang }: SidebarProps) {
                     <div className="space-y-3">
                         <div className="space-y-1">
                             <p className="text-sm font-medium text-white">
-                                {user.first_name || 'robohamid'}
+                                {user.first_name || 'test'} {user.last_name || 'test'}
                             </p>
                             <p className="text-xs text-gray-400 truncate">
-                                {user.email || 'robohamid@gmail.com'}
+                                {user.email || 'test@gmail.com'}
                             </p>
+                            <div className="mt-1">
+                                <Badge 
+                                    variant={
+                                        role === 'admin' ? 'destructive' : 
+                                        role?.includes('supplier') ? 'secondary' : 'default'
+                                    }
+                                    size="sm"
+                                    className="text-xs"
+                                >
+                                    {role?.charAt(0).toUpperCase() + role?.slice(1) || 'User'}
+                                </Badge>
+                            </div>
                         </div>
-                        <button
-                            onClick={logout}
-                            className="w-full flex items-center justify-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-gray-400 hover:text-white hover:bg-gray-800 transition-all duration-200"
+                        <Link
+                            href={`${getLinksLang(lang)}/${isAdmin ? 'admin' : isSupplier ? 'supplier' : 'buyer'}/profile`}
+                            className="flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium bg-gold-600 text-black hover:bg-gold-600/90 transition-all duration-200"
                         >
-                            <LogOut className="h-5 w-5" />
-                            {dict.marketplace?.navigation?.logout || 'Logout'}
-                        </button>
+                            <User className="h-4 w-4" />
+                            {dict.marketplace?.navigation?.profile || 'Profile'}
+                        </Link>
                     </div>
                 ) : (
                     <Link
                         href={`${getLinksLang(lang)}/login?url=${pathname}`}
-                        className="flex h-12 items-center justify-center rounded-md border border-transparent bg-neutral-800 px-10 font-medium text-white hover:bg-neutral-700"
+                        className="flex h-12 items-center justify-center rounded-md border border-transparent bg-gold-600 px-10 font-medium text-white hover:bg-neutral-700"
                     >
                         {dict.loginRegister}
                     </Link>

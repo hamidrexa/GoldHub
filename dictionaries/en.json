@@ -1673,6 +1673,31 @@
       }
     }
   },
+  "auth": {
+    "phoneNumber": "Phone Number",
+    "phoneNumberPlaceholder": "Mobile phone number",
+    "phoneRequired": "Phone number cannot be empty.",
+    "phoneInvalid": "The phone number entered is incorrect.",
+    "back": "Back",
+    "otpTitle": "One-Time Password",
+    "otpExpired": "The sent code has expired. Please get a new code.",
+    "otpDescription": "Please enter the 4-digit code sent to {phone}.",
+    "otpResend": "Resend Code",
+    "otpTimer": "If you did not receive the code or want to change the number, you can try again in",
+    "otpMinutes": "minutes.",
+    "or": "Or",
+    "loginWithPassword": "Login with Password",
+    "passwordTitle": "Password",
+    "passwordDescription": "Enter your password to login to {phone}.",
+    "passwordPlaceholder": "Password",
+    "passwordRequired": "Password cannot be empty.",
+    "loginWithOtp": "Login with SMS Code",
+    "completeInfoTitle": "Complete Information",
+    "emailPlaceholder": "Email (optional)",
+    "emailInvalid": "The email entered is incorrect",
+    "passwordMandatory": "Password (required)",
+    "register": "Register"
+  },
   "aboutPage": {
     "title": "Connecting Heritage with Modern Commerce",
     "subtitle": "Trusted B2B Marketplace for Gold & Jewelry",

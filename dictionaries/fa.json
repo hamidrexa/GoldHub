@@ -1672,6 +1672,31 @@
       }
     }
   },
+  "auth": {
+    "phoneNumber": "شماره تلفن",
+    "phoneNumberPlaceholder": "شماره تلفن همراه",
+    "phoneRequired": "شماره تلفن نمی‌تواند خالی باشد.",
+    "phoneInvalid": "شماره تلفن وارد شده نادرست است.",
+    "back": "بازگشت",
+    "otpTitle": "رمز یک‌بار مصرف",
+    "otpExpired": "کد ارسال‌شده منقضی شده است. لطفاً کد جدید دریافت کنید.",
+    "otpDescription": "لطفاً کد ۴ رقمی ارسال‌شده به {phone} را وارد کنید.",
+    "otpResend": "ارسال مجدد کد",
+    "otpTimer": "اگر کد را دریافت نکرده‌اید یا می‌خواهید شماره را تغییر دهید، می‌توانید دوباره تلاش کنید تا",
+    "otpMinutes": "دقیقه.",
+    "or": "یا",
+    "loginWithPassword": "ورود با رمز عبور",
+    "passwordTitle": "رمز عبور",
+    "passwordDescription": "برای ورود به {phone} رمز عبور خود را وارد کنید.",
+    "passwordPlaceholder": "رمز عبور",
+    "passwordRequired": "رمز عبور نمی‌تواند خالی باشد.",
+    "loginWithOtp": "ورود با کد پیامکی",
+    "completeInfoTitle": "تکمیل اطلاعات",
+    "emailPlaceholder": "ایمیل (اختیاری)",
+    "emailInvalid": "ایمیل وارد شده نادرست است",
+    "passwordMandatory": "رمز عبور (الزامی)",
+    "register": "ثبت‌نام"
+  },
   "aboutPage": {
     "title": "پیوند میراث با تجارت مدرن",
     "subtitle": "بازار مورد اعتماد B2B برای طلا و جواهرات",

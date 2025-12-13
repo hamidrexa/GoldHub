@@ -1617,6 +1617,31 @@
       }
     }
   },
+  "auth": {
+    "phoneNumber": "رقم الهاتف",
+    "phoneNumberPlaceholder": "رقم الهاتف المحمول",
+    "phoneRequired": "لا يمكن أن يكون رقم الهاتف فارغًا.",
+    "phoneInvalid": "رقم الهاتف المُدخل غير صحيح.",
+    "back": "رجوع",
+    "otpTitle": "رمز التحقق لمرة واحدة",
+    "otpExpired": "انتهت صلاحية الرمز المُرسل. يرجى الحصول على رمز جديد.",
+    "otpDescription": "يرجى إدخال الرمز المكون من 4 أرقام المُرسل إلى {phone}.",
+    "otpResend": "إعادة إرسال الرمز",
+    "otpTimer": "إذا لم تستلم الرمز أو رغبت في تغيير الرقم، يمكنك المحاولة مرة أخرى خلال",
+    "otpMinutes": "دقائق.",
+    "or": "أو",
+    "loginWithPassword": "تسجيل الدخول باستخدام كلمة المرور",
+    "passwordTitle": "كلمة المرور",
+    "passwordDescription": "أدخل كلمة المرور لتسجيل الدخول إلى {phone}.",
+    "passwordPlaceholder": "كلمة المرور",
+    "passwordRequired": "لا يمكن أن تكون كلمة المرور فارغة.",
+    "loginWithOtp": "تسجيل الدخول باستخدام رمز SMS",
+    "completeInfoTitle": "إكمال المعلومات",
+    "emailPlaceholder": "البريد الإلكتروني (اختياري)",
+    "emailInvalid": "البريد الإلكتروني المُدخل غير صحيح",
+    "passwordMandatory": "كلمة المرور (إلزامية)",
+    "register": "إنشاء حساب"
+  },
   "aboutPage": {
     "title": "ربط التراث بالتجارة الحديثة",
     "subtitle": "سوق B2B الموثوق للذهب والمجوهرات",

@@ -20,10 +20,12 @@ export async function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
     const search = request.nextUrl.search;
 
-    const protectedRoutes = ['/app', '/admin', '/supplier', '/buyer'];
+    // List of protected route prefixes
+    const protectedRoutes = ['/app', '/admin', '/supplier'];
+    // Check if the current path is protected and not the catalog page
     const isProtected = protectedRoutes.some((route) =>
-        pathname.includes(route)
-    );
+        pathname.startsWith(route)
+    ) || (pathname.startsWith('/buyer') && !pathname.startsWith('/buyer/catalog'));
 
     if (isProtected && !token) {
         const locale = getLocale(request);
