@@ -62,8 +62,13 @@
   "loginRegister": "تسجيل الدخول/التسجيل",
   "navMenuItems": [
     {
-      "title": "المنصة",
-      "href": "/app",
+      "title": "المشتري",
+      "href": "/buyer",
+      "description": ""
+    },
+    {
+      "title": "المورّد",
+      "href": "/supplier",
       "description": ""
     },
     {

@@ -64,8 +64,13 @@
   "loginRegister": "Login/Register",
   "navMenuItems": [
     {
-      "title": "Platform",
-      "href": "/app",
+      "title": "Buyer",
+      "href": "/buyer",
+      "description": ""
+    },
+    {
+      "title": "Supplier",
+      "href": "/supplier",
       "description": ""
     },
     {

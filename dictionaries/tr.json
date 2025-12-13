@@ -62,8 +62,13 @@
   "loginRegister": "Giriş/Kayıt Ol",
   "navMenuItems": [
     {
-      "title": "Platform",
-      "href": "/app",
+      "title": "Alıcı",
+      "href": "/buyer",
+      "description": ""
+    },
+    {
+      "title": "Tedarikçi",
+      "href": "/supplier",
       "description": ""
     },
     {

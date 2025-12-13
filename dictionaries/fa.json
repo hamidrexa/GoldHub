@@ -64,8 +64,13 @@
   "loginRegister": "ورود/ثبت\u200Cنام",
   "navMenuItems": [
     {
-      "title": "پلتفرم",
-      "href": "/app",
+      "title": "خریدار",
+      "href": "/buyer",
+      "description": ""
+    },
+    {
+      "title": "تامین‌کننده",
+      "href": "/supplier",
       "description": ""
     },
     {

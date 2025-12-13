@@ -6,12 +6,15 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
 [![React](https://img.shields.io/badge/React-18.2-61DAFB?style=flat-square&logo=react)](https://reactjs.org/)
+[![License](https://img.shields.io/badge/License-Proprietary-red?style=flat-square)](#license)
 
 ---
 
 ## 📋 Table of Contents
 
-- [Features](#-features)
+- [Overview](#-overview)
+- [Key Features](#-key-features)
+- [Architecture](#-architecture)
 - [Tech Stack](#-tech-stack)
 - [Project Structure](#-project-structure)
 - [Getting Started](#-getting-started)
@@ -27,73 +30,91 @@
 
 ---
 
-## ✨ Features
+## 🎯 Overview
 
-### 🔐 Authentication & Authorization
-- **Multi-provider authentication**: Phone number, password, and Google OAuth
-- **Role-based access control**: Admin, Supplier, and Buyer roles
-- **KYC verification system**: Complete user verification workflow
-- **Session management**: Secure cookie-based authentication with Bearer tokens
+GoldHub is a comprehensive B2B marketplace platform specifically designed for the gold and jewelry industry. It serves as a bridge between suppliers and retailers, providing a seamless digital experience for product discovery, ordering, and management.
 
-### 👥 Multi-Role Dashboard System
+### Platform Architecture
 
-#### **Admin Dashboard**
-- **User & KYC Management**: Review and approve/reject user KYC requests
-- **Order Management**: Monitor all platform orders with advanced filtering
-- **Audit Logs**: Track all user activities and system events
-- **Analytics Dashboard**: Real-time statistics and insights
-- **User Administration**: Manage user roles and permissions
-
-#### **Supplier Dashboard**
-- **Product Management**: Create, update, and delete gold/jewelry products
-- **Inventory Tracking**: Real-time inventory management
-- **Order Fulfillment**: Process and track supplier orders
-- **Pricing Configuration**: Dynamic pricing based on gold karat and weight
-- **Sales Analytics**: Revenue tracking and performance metrics
-
-#### **Buyer Dashboard**
-- **Product Catalog**: Browse and search gold/jewelry products
-- **Shopping Cart**: Add products with quantity management
-- **Order History**: Track order status and delivery
-- **Favorites**: Save products for later
-- **Order Details**: View detailed order information with timeline
-
-### 🛍️ E-Commerce Features
-- **Advanced Product Filtering**: Filter by category, karat, weight, price range, and supplier
-- **Shopping Cart System**: Add/remove products with real-time cart updates
-- **Order Management**: Complete order lifecycle from creation to delivery
-- **Product Images**: Multi-image upload and gallery support
-- **Responsive Product Cards**: Grid and list view options
-
-### 🌍 Internationalization (i18n)
-- **Multi-language support**: English and Persian (Farsi)
-- **RTL/LTR layout support**: Automatic direction switching
-- **Localized content**: Complete translation coverage
-- **Language switcher**: Easy language selection in UI
-
-### 🎨 Modern UI/UX
-- **Shadcn/UI Components**: Beautiful, accessible component library
-- **Radix UI Primitives**: Unstyled, accessible components
-- **Responsive Design**: Mobile-first approach with tablet and desktop optimization
-- **Dark Mode Support**: Theme switching capability
-- **Custom Color Palette**: Navy blue and gold brand colors
-- **Smooth Animations**: Framer Motion for fluid interactions
-- **Loading States**: Skeleton loaders and progress indicators
-
-### 📊 Data Visualization
-- **Charts & Graphs**: Recharts integration for analytics
-- **Real-time Updates**: Live data with SWR
-- **Performance Metrics**: Visual representation of key metrics
-- **Order Timeline**: Visual order status tracking
-
-### 🔔 Notifications & Alerts
-- **Toast Notifications**: React Toastify for user feedback
-- **Browser Notifications**: Push notification support
-- **Alert System**: Custom alert components for important messages
+- **Frontend**: Next.js 14 with App Router for optimal performance and SEO
+- **Authentication**: Multi-provider authentication with role-based access control
+- **Internationalization**: Multi-language support with RTL/LTR switching
+- **UI/UX**: Modern, responsive design with dark mode support
+- **Data Visualization**: Advanced charts and analytics for business insights
+- **E-commerce**: Complete shopping cart and order management system
 
 ---
 
-## 🛠️ Tech Stack
+## 🔑 Key Features
+
+### Multi-Role User System
+- **Admin**: Full platform management with oversight capabilities
+- **Supplier**: Product management, inventory tracking, and order fulfillment
+- **Buyer**: Product browsing, cart management, and order tracking
+
+### E-Commerce Capabilities
+- Advanced product filtering and search
+- Real-time shopping cart management
+- Complete order lifecycle management
+- Multi-image product galleries
+- Responsive product presentation
+
+### Business Intelligence
+- Sales analytics and performance metrics
+- Order timeline visualization
+- Real-time inventory tracking
+- Dynamic pricing configuration
+
+### User Experience
+- Mobile-first responsive design
+- Dark/light theme support
+- Multi-language interface (English & Persian)
+- Intuitive navigation and user flows
+
+---
+
+## ✨ Core Features
+
+### 🔐 Authentication & Security
+- Multi-provider authentication (Phone, Password, Google OAuth)
+- Role-based access control (Admin, Supplier, Buyer)
+- KYC verification system for user validation
+- Secure session management with Bearer tokens
+
+### 👥 Role-Based Dashboards
+- **Admin**: User management, order oversight, analytics, audit logs
+- **Supplier**: Product catalog, inventory, order fulfillment, pricing
+- **Buyer**: Product browsing, shopping cart, order tracking, favorites
+
+### 🛍️ E-Commerce Platform
+- Advanced product filtering and search capabilities
+- Real-time shopping cart management
+- Complete order lifecycle management
+- Multi-image product galleries
+- Responsive grid and list views
+
+### 🌍 Internationalization
+- Multi-language support (English & Persian)
+- RTL/LTR automatic layout switching
+- Complete translation coverage (1800+ keys)
+- Dynamic language selection
+
+### 🎨 Modern Design System
+- Built with Shadcn/UI and Radix UI components
+- Mobile-first responsive design
+- Dark/light theme support
+- Custom navy blue and gold color palette
+- Smooth animations with Framer Motion
+
+### 📊 Business Intelligence
+- Recharts integration for data visualization
+- Real-time analytics dashboard
+- Order timeline tracking
+- Sales performance metrics
+
+---
+
+## 🛠️ Technology Stack
 
 ### **Core Framework**
 - **[Next.js 14.2](https://nextjs.org/)** - React framework with App Router
@@ -149,60 +170,45 @@ GoldHub/
 ├── app/                          # Next.js App Router
 │   ├── [lang]/                   # Internationalized routes
 │   │   ├── (auth)/              # Authentication routes
-│   │   │   └── login/           # Login page with components
-│   │   │       ├── components/  # Phone, Password, Complete Info
-│   │   │       └── page.tsx
+│   │   │   └── login/           # Login with phone/password/Google OAuth
 │   │   └── (user)/              # Protected user routes
 │   │       ├── admin/           # Admin dashboard
-│   │       │   ├── dashboard/   # Admin overview
-│   │       │   ├── orders/      # All orders management
-│   │       │   ├── users-kyc/   # KYC verification
-│   │       │   └── audit-logs/  # Activity tracking
-│   │       ├── supplier/        # Supplier dashboard
-│   │       │   ├── dashboard/   # Supplier overview
-│   │       │   ├── products/    # Product management
-│   │       │   ├── orders/      # Supplier orders
-│   │       │   └── pricing/     # Pricing configuration
+│   │       ├── supplier/        # Supplier dashboard  
 │   │       ├── buyer/           # Buyer dashboard
-│   │       │   ├── dashboard/   # Buyer overview
-│   │       │   ├── catalog/     # Product browsing
-│   │       │   ├── cart/        # Shopping cart
-│   │       │   ├── orders/      # Order history
-│   │       │   └── favorites/   # Saved products
-│   │       ├── profile/         # User profile management
+│   │       ├── profile/         # User profile
 │   │       ├── about/           # About page
 │   │       ├── privacy/         # Privacy policy
 │   │       └── contact/         # Contact page
-│   ├── api/                     # API documentation
-│   │   └── api.md              # API endpoints reference
+│   ├── api/                     # API routes
 │   ├── globals.css             # Global styles
 │   └── layout.tsx              # Root layout
 ├── components/                  # Reusable components
-│   ├── ui/                     # Shadcn UI components (51 components)
-│   ├── layout/                 # Layout components
-│   ├── magicui/                # Magic UI components
-│   ├── header.tsx              # Main header
-│   ├── footer.tsx              # Main footer
-│   └── ...                     # Other shared components
+│   ├── ui/                     # Shadcn UI components (51+ components)
+│   ├── layout/                 # Layout components (header, sidebar, footer)
+│   └── ...                     # Business logic components
 ├── dictionaries/               # i18n translations
-│   ├── en.json                # English translations
-│   ├── fa.json                # Persian translations
+│   ├── en.json                # English (1800+ keys)
+│   ├── fa.json                # Persian (RTL support)
 │   └── ...
-├── lib/                        # Utility libraries
-│   ├── mock-data.ts           # Mock data for development
-│   └── buyer-mock-data.ts     # Buyer-specific mock data
+├── lib/                        # Utilities & helpers
 ├── services/                   # API service layer
-├── contexts/                   # React contexts
+├── contexts/                   # React contexts (global state)
 ├── constants/                  # App constants
 ├── public/                     # Static assets
-│   ├── img/                   # Images
-│   └── fonts/                 # Custom fonts
 ├── tailwind.config.js         # Tailwind configuration
 ├── next.config.js             # Next.js configuration
 ├── tsconfig.json              # TypeScript configuration
 ├── package.json               # Dependencies
 └── README.md                  # This file
 ```
+
+### Key Architecture Patterns
+- **App Router**: Next.js 14 app directory structure
+- **Internationalization**: Dynamic routing with `[lang]` prefix
+- **Role-based Layouts**: Separate dashboard areas for each user type
+- **Component Library**: Centralized UI components with Shadcn/UI
+- **Service Layer**: API abstraction for data fetching
+- **Context Management**: Global state for user authentication and preferences
 
 ---
 
@@ -214,7 +220,7 @@ GoldHub/
 - **npm** or **yarn**: Package manager
 - **Git**: Version control
 
-### Installation
+### Development Setup
 
 1. **Clone the repository**
    ```bash
@@ -229,81 +235,112 @@ GoldHub/
    yarn install
    ```
 
-3. **Set up environment variables**
+3. **Environment Configuration**
    
    Create a `.env.local` file in the root directory:
    ```env
+   # API Configuration
    NEXT_PUBLIC_API_URL=your_api_url
+   
+   # Website Configuration  
    NEXT_PUBLIC_WEBSITE_URL=http://localhost:3000
    NEXT_PUBLIC_ENVIRONMENT=development
-   USE_MOCK_DATA=true
+   
+   # Feature Flags
+   USE_MOCK_DATA=true  # Enable mock data for development
+   
+   # Optional: Google OAuth
+   NEXT_PUBLIC_GOOGLE_CLIENT_ID=your_google_client_id
+   
+   # Optional: Sentry Error Tracking
+   SENTRY_DSN=your_sentry_dsn
    ```
 
-4. **Run the development server**
+4. **Start Development Server**
    ```bash
    npm run dev
    # or
    yarn dev
    ```
 
-5. **Open your browser**
+5. **Access the Application**
    
-   Navigate to [http://localhost:3000](http://localhost:3000)
+   Open your browser and navigate to [http://localhost:3000](http://localhost:3000)
 
-### Building for Production
+### Available Scripts
 
 ```bash
-npm run build
-npm run start
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Start production server
+npm run lint         # Run ESLint
 ```
+
+### Development Features
+
+- **Mock Data Mode**: Toggle between real API and mock data
+- **Hot Reloading**: Instant updates during development
+- **TypeScript**: Full type safety and IntelliSense
+- **ESLint**: Code quality and consistency
+- **Prettier**: Code formatting
 
 ---
 
-## 👤 User Roles
+## 👤 User Roles & Permissions
 
-### **Admin**
-- Full platform access
-- User management and KYC approval
-- Order oversight across all suppliers and buyers
-- Audit log access
-- System configuration
+### **Administrator**
+- Complete platform oversight and management
+- User registration and KYC verification approval
+- Order monitoring across all suppliers and buyers
+- System configuration and audit log access
+- Analytics and reporting dashboard
 
 ### **Supplier**
-- Product catalog management
-- Inventory control
-- Order fulfillment
-- Pricing configuration
-- Sales analytics
+- Product catalog creation and management
+- Real-time inventory tracking and control
+- Order processing and fulfillment workflow
+- Dynamic pricing configuration based on market conditions
+- Sales performance analytics and reporting
 
 ### **Buyer (Retailer)**
-- Product browsing and search
-- Shopping cart management
-- Order placement and tracking
-- Favorites management
-- Profile management
+- Product discovery and advanced search capabilities
+- Shopping cart management and checkout process
+- Order placement and real-time tracking
+- Product favorites and wishlist management
+- Order history and detailed order information
 
 ---
 
 ## 🌐 Internationalization
 
-GoldHub supports multiple languages with automatic locale detection:
+GoldHub supports comprehensive internationalization with automatic locale detection and dynamic content adaptation.
 
 ### Supported Languages
-- **English (en)**: Default language
-- **Persian (fa)**: Full RTL support with Jalali calendar
+- **English (en)**: Primary language with full feature coverage
+- **Persian (fa)**: Complete RTL support with Jalali calendar integration
+- **Turkish (tr)**: Additional language support
+- **Arabic (ar)**: Extended Middle Eastern market coverage
 
-### Language Structure
+### Translation System
 ```typescript
-// dictionaries/en.json
+// dictionaries/en.json - 1800+ translation keys
 {
   "appName": "GoldHub",
-  "login": "Login",
-  "dashboard": "Dashboard",
-  // ... 1800+ translation keys
+  "navigation": {
+    "dashboard": "Dashboard",
+    "products": "Products",
+    "orders": "Orders",
+    "profile": "Profile"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout"
+  }
 }
 ```
 
-### Usage in Components
+### Implementation
 ```typescript
 import { getDictionary } from '@/get-dictionary';
 
@@ -315,19 +352,28 @@ export default async function Page({ params: { lang } }) {
 
 ### URL Structure
 - English: `/en/dashboard`
-- Persian: `/fa/dashboard`
+- Persian: `/fa/dashboard` 
+- Turkish: `/tr/dashboard`
+- Arabic: `/ar/dashboard`
+
+### Features
+- **Automatic Direction Detection**: RTL/LTR switching based on language
+- **Localized Content**: Complete UI translation coverage
+- **Date Localization**: Localized date formats and calendars
+- **Currency Support**: Region-specific currency formatting
+- **SEO Optimization**: Language-specific meta tags and URLs
 
 ---
 
 ## 🔌 API Integration
 
-### API Base URL
-Configure via environment variable:
+### API Configuration
+Base URL configured via environment variable:
 ```env
 NEXT_PUBLIC_API_URL=https://api.goldhub.com
 ```
 
-### Authentication
+### Authentication System
 All API requests use Bearer token authentication:
 ```typescript
 headers: {
@@ -336,202 +382,375 @@ headers: {
 }
 ```
 
-### Key Endpoints
+### API Endpoints
 
-#### **Products**
-- `GET /v1/gold_artifacts/products_list` - List products with filters
-- `POST /v1/gold_artifacts/product_create` - Create product
-- `PATCH /v1/gold_artifacts/product_update/{id}` - Update product
-- `POST /v1/gold_artifacts/product_add_image/{id}` - Add product image
-- `DELETE /v1/gold_artifacts/product_delete_image/{id}` - Delete image
+#### **Product Management**
+- `GET /v1/gold_artifacts/products_list` - List products with advanced filtering
+- `POST /v1/gold_artifacts/product_create` - Create new product
+- `PATCH /v1/gold_artifacts/product_update/{id}` - Update existing product
+- `POST /v1/gold_artifacts/product_add_image/{id}` - Upload product images
+- `DELETE /v1/gold_artifacts/product_delete_image/{id}` - Remove product images
 
-#### **Cart & Orders**
-- `GET /v1/gold_artifacts/cart_detail` - Get cart details
-- `POST /v1/gold_artifacts/add_to_cart` - Add to cart
-- `POST /v1/gold_artifacts/remove_from_cart` - Remove from cart
-- `POST /v1/gold_artifacts/submit_order` - Submit order
-- `POST /v1/gold_artifacts/pay_order/{id}` - Pay for order
-- `GET /v1/gold_artifacts/orders_history` - Order history
-- `GET /v1/gold_artifacts/sells_history` - Sales history
+#### **E-Commerce Operations**
+- `GET /v1/gold_artifacts/cart_detail` - Retrieve shopping cart contents
+- `POST /v1/gold_artifacts/add_to_cart` - Add items to cart
+- `POST /v1/gold_artifacts/remove_from_cart` - Remove items from cart
+- `POST /v1/gold_artifacts/submit_order` - Create new order
+- `POST /v1/gold_artifacts/pay_order/{id}` - Process payment for order
+- `GET /v1/gold_artifacts/orders_history` - User order history
+- `GET /v1/gold_artifacts/sells_history` - Supplier sales history
 - `POST /v1/gold_artifacts/update_order_status` - Update order status
 
-#### **Admin**
-- `GET /v1/gold_artifacts/users_list` - List all users
-- `POST /v1/gold_artifacts/set_KYC_status` - Update KYC status
+#### **Administrative Functions**
+- `GET /v1/gold_artifacts/users_list` - List all platform users
+- `POST /v1/gold_artifacts/set_KYC_status` - Update user verification status
+- `GET /v1/gold_artifacts/audit_logs` - Retrieve system activity logs
 
-### Mock Data Mode
-Toggle between real API and mock data:
-```env
-USE_MOCK_DATA=true  # Use mock data
-USE_MOCK_DATA=false # Use real API
-```
+### Development Features
+- **Mock Data Mode**: Toggle between real API and mock data for development
+- **Error Handling**: Comprehensive error handling with user-friendly messages
+- **Request Interceptors**: Automatic token refresh and retry logic
+- **Response Caching**: SWR integration for efficient data fetching
+- **Type Safety**: Full TypeScript support for API responses
 
 ---
 
-## 🎨 Design System
+## 🎨 Design System & UI
+
+### Brand Identity
+- **Primary Color**: Navy Blue (`#061324`) - Professional and trustworthy
+- **Accent Color**: Gold (`#F0A202`) - Premium and luxurious
+- **Secondary Colors**: Grays and whites for clean, modern aesthetics
 
 ### Color Palette
 
 #### **Primary Colors**
-- **Navy Blue**: `#061324` (Primary brand color)
-- **Gold**: `#F0A202` (Accent color)
+- **Navy Blue**: `#061324` (Main brand color)
+- **Gold**: `#F0A202` (Accent and highlights)
+- **White**: `#FFFFFF` (Background and cards)
 
 #### **Background Colors**
-- **Light Background**: `#F5F5F0`
-- **Card Background**: `#FFFFFF`
-- **Sidebar**: `#061324`
+- **Light Background**: `#F5F5F0` (Page background)
+- **Card Background**: `#FFFFFF` (Content cards)
+- **Sidebar**: `#061324` (Navigation area)
 
-#### **Status Colors**
-- **Confirmed**: Yellow (`#FEF3C7` bg, `#92400E` text)
-- **Shipped**: Blue (`#DBEAFE` bg, `#1E40AF` text)
-- **Delivered**: Green (`#D1FAE5` bg, `#065F46` text)
-- **Pending**: Yellow (`#FEF3C7` bg, `#92400E` text)
-- **Draft**: Gray (`#F3F4F6` bg, `#4B5563` text)
+#### **Status & Semantic Colors**
+- **Success**: Green (`#10B981`) - Delivered, Completed
+- **Warning**: Yellow (`#F59E0B`) - Pending, Processing
+- **Error**: Red (`#EF4444`) - Failed, Cancelled
+- **Info**: Blue (`#3B82F6`) - Shipped, In Transit
 
-### Typography
-- **Font Family**: System fonts with fallbacks
-- **Headings**: Bold, navy blue
-- **Body**: Regular weight, dark gray
+### Typography System
+- **Font Family**: Nunito (English) + Yekan (Persian) with system fallbacks
+- **Headings**: Bold weight, navy blue
+- **Body Text**: Regular weight, dark gray (`#374151`)
+- **Small Text**: Regular weight, medium gray (`#6B7280`)
 
-### Components
-All UI components are built with:
-- **Shadcn/UI**: 51+ pre-built components
-- **Radix UI**: Accessible primitives
-- **Custom variants**: Tailored to brand colors
+### Component Library
+Built with modern, accessible components:
+- **Shadcn/UI**: 51+ pre-styled components
+- **Radix UI**: Unstyled, accessible primitives
+- **Custom Variants**: Brand-tailored color schemes
+- **Dark Mode**: Complete dark/light theme support
 
-### Responsive Breakpoints
+### Responsive Design
 ```javascript
+// Tailwind breakpoints
 screens: {
-  'sm': '640px',
-  'md': '768px',
-  'lg': '1024px',
-  'xl': '1280px',
-  '2xl': '1400px',
+  'sm': '640px',    // Mobile phones
+  'md': '768px',    // Tablets
+  'lg': '1024px',   // Small laptops
+  'xl': '1280px',   // Desktops
+  '2xl': '1400px',  // Large screens
 }
 ```
 
+### Design Principles
+- **Accessibility**: WCAG 2.1 compliant with keyboard navigation
+- **Consistency**: Unified design language across all components
+- **Performance**: Optimized for fast loading and smooth interactions
+- **Responsiveness**: Mobile-first approach with progressive enhancement
+
 ---
 
-## 📜 Scripts
+## 📜 Available Scripts
 
+### Development Commands
 ```json
 {
-  "dev": "next dev",           // Start development server
-  "build": "next build",       // Build for production
+  "dev": "next dev",           // Start development server with hot reload
+  "build": "next build",       // Build for production optimization
   "start": "next start",       // Start production server
-  "lint": "next lint"          // Run ESLint
+  "lint": "next lint",         // Run ESLint for code quality
+  "lint:fix": "next lint --fix" // Auto-fix linting issues
 }
 ```
 
 ### Development Workflow
 ```bash
-# Start development
-npm run dev
+# Development cycle
+npm run dev                    # Start development server
+npm run lint                   # Check code quality
+npm run build                  # Create production build
+npm run start                  # Start production server
 
-# Build and test production build
-npm run build
-npm run start
-
-# Lint code
-npm run lint
+# Code quality
+npm run lint                   # Run ESLint
+npm run lint:fix               # Auto-fix issues
 ```
+
+### Build Optimization
+- **Automatic Code Splitting**: Next.js optimizes bundle size
+- **Image Optimization**: Sharp integration for fast loading
+- **Font Optimization**: Custom font loading with performance
+- **Static Generation**: Pre-render pages for better SEO
+- **Server-side Rendering**: Dynamic content with fast performance
 
 ---
 
-## 🔐 Environment Variables
+## � Environment Configuration
 
 ### Required Variables
+Create a `.env.local` file in the project root:
+
 ```env
-# API Configuration
+# Core Configuration
 NEXT_PUBLIC_API_URL=https://api.goldhub.com
-
-# Website URL
 NEXT_PUBLIC_WEBSITE_URL=https://goldhub.com
-
-# Environment
 NEXT_PUBLIC_ENVIRONMENT=production
 
-# Feature Flags
-USE_MOCK_DATA=false
+# Development Settings
+USE_MOCK_DATA=false           # Disable for production
 ```
 
 ### Optional Variables
+
+#### **Error Tracking & Monitoring**
 ```env
-# Sentry (Error Tracking)
+# Sentry Configuration
 SENTRY_DSN=your_sentry_dsn
 SENTRY_ORG=sahmeto
-SENTRY_PROJECT=front
-
-# Google OAuth
-NEXT_PUBLIC_GOOGLE_CLIENT_ID=your_google_client_id
-
-# GrowthBook (Feature Flags)
-NEXT_PUBLIC_GROWTHBOOK_API_KEY=your_growthbook_key
+SENTRY_PROJECT=goldhub-frontend
 ```
+
+#### **Authentication**
+```env
+# Google OAuth Integration
+NEXT_PUBLIC_GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+```
+
+#### **Feature Flags & Analytics**
+```env
+# GrowthBook Configuration
+NEXT_PUBLIC_GROWTHBOOK_API_KEY=your_growthbook_api_key
+GROWTHBOOK_CLIENT_SIDE_ID=your_client_side_id
+```
+
+#### **Development Tools**
+```env
+# Development-specific settings
+NODE_ENV=development
+NEXT_PUBLIC_DEBUG=false
+```
+
+### Security Notes
+- Never commit `.env.local` to version control
+- Use environment-specific files (`.env.development`, `.env.production`)
+- Store sensitive values in secure secret management systems
+- Use proper CORS configuration for API endpoints
 
 ---
 
-## 🚢 Deployment
+## � Deployment Options
 
-### Docker Deployment
+### Production Deployment
 
-1. **Build Docker image**
-   ```bash
-   docker build -t goldhub .
-   ```
-
-2. **Run container**
-   ```bash
-   docker run -p 3000:3000 goldhub
-   ```
-
-### Vercel Deployment
-
+#### **Vercel (Recommended)**
 1. **Install Vercel CLI**
    ```bash
    npm i -g vercel
    ```
 
-2. **Deploy**
+2. **Deploy to Production**
    ```bash
    vercel --prod
    ```
 
-### GitLab CI/CD
-The project includes `.gitlab-ci.yml` for automated deployments.
+3. **Environment Setup**
+   - Configure environment variables in Vercel dashboard
+   - Set up custom domain and SSL certificates
+   - Configure build and deployment settings
+
+#### **Docker Containerization**
+1. **Build Docker Image**
+   ```bash
+   docker build -t goldhub:latest .
+   ```
+
+2. **Run Container**
+   ```bash
+   docker run -p 3000:3000 --env-file .env.local goldhub:latest
+   ```
+
+3. **Docker Compose**
+   ```yaml
+   version: '3.8'
+   services:
+     goldhub:
+       build: .
+       ports:
+         - "3000:3000"
+       environment:
+         - NEXT_PUBLIC_API_URL=${API_URL}
+         - NEXT_PUBLIC_WEBSITE_URL=${WEBSITE_URL}
+   ```
+
+#### **Traditional Server Deployment**
+1. **Build Application**
+   ```bash
+   npm run build
+   ```
+
+2. **Start Production Server**
+   ```bash
+   npm start
+   ```
+
+3. **Configure Reverse Proxy (Nginx)**
+   ```nginx
+   server {
+       listen 80;
+       server_name your-domain.com;
+       
+       location / {
+           proxy_pass http://localhost:3000;
+           proxy_http_version 1.1;
+           proxy_set_header Upgrade $http_upgrade;
+           proxy_set_header Connection 'upgrade';
+           proxy_set_header Host $host;
+           proxy_cache_bypass $http_upgrade;
+       }
+   }
+   ```
+
+### CI/CD Integration
+- **GitHub Actions**: Automated testing and deployment
+- **GitLab CI/CD**: Container-based deployment pipeline
+- **Jenkins**: Traditional CI/CD server integration
+
+### Performance Optimization
+- **CDN Integration**: Static asset caching and delivery
+- **Image Optimization**: Automatic image resizing and compression
+- **Caching Strategy**: Browser and server-side caching
+- **Monitoring**: Real-time performance monitoring and alerts
 
 ---
 
-## 🤝 Contributing
+## 🤝 Contributing Guidelines
 
-We welcome contributions! Please follow these steps:
+We welcome contributions from the community! Please follow these guidelines:
 
-1. **Fork the repository**
-2. **Create a feature branch**
+### Development Process
+
+1. **Fork the Repository**
+   ```bash
+   git clone https://github.com/yourusername/GoldHub.git
+   cd GoldHub
+   ```
+
+2. **Create Feature Branch**
    ```bash
    git checkout -b feature/amazing-feature
    ```
-3. **Commit your changes**
+
+3. **Set Up Development Environment**
    ```bash
-   git commit -m 'Add amazing feature'
+   npm install
+   cp .env.example .env.local
+   # Configure your environment variables
+   npm run dev
    ```
-4. **Push to the branch**
+
+4. **Make Changes**
+   - Follow TypeScript best practices
+   - Write clean, maintainable code
+   - Add appropriate comments for complex logic
+   - Ensure all tests pass
+
+5. **Test Your Changes**
    ```bash
+   npm run lint        # Check code quality
+   npm run build       # Verify production build
+   ```
+
+6. **Commit and Push**
+   ```bash
+   git add .
+   git commit -m 'feat: Add amazing feature'
    git push origin feature/amazing-feature
    ```
-5. **Open a Pull Request**
 
-### Code Style
-- Follow TypeScript best practices
-- Use Prettier for formatting
-- Follow ESLint rules
-- Write meaningful commit messages
+7. **Open Pull Request**
+   - Provide clear description of changes
+   - Link to related issues
+   - Include screenshots if UI changes
+   - Ensure all CI checks pass
+
+### Code Standards
+
+#### **TypeScript Guidelines**
+- Use strict TypeScript configuration
+- Define proper interfaces and types
+- Avoid `any` type - use specific types
+- Use generics for reusable components
+
+#### **Code Style**
+- Follow ESLint configuration
+- Use Prettier for consistent formatting
+- Use meaningful variable and function names
+- Write descriptive commit messages
+
+#### **Component Guidelines**
+- Use functional components with hooks
+- Implement proper error boundaries
+- Add accessibility attributes
+- Write JSDoc comments for complex functions
+
+#### **Testing**
+- Write unit tests for utilities
+- Test critical business logic
+- Use Jest and React Testing Library
+- Aim for high test coverage
+
+### Pull Request Process
+1. PR title should follow conventional commits format
+2. Include detailed description of changes
+3. Link to related GitHub issues
+4. Ensure all automated checks pass
+5. Respond to code review comments promptly
+6. Keep PR focused on single feature/fix
 
 ---
 
 ## 📄 License
 
-This project is proprietary software. All rights reserved for GoldHub Company.
+This project is proprietary software. All rights reserved exclusively for GoldHub Company.
+
+### License Terms
+- **Commercial Use**: Requires explicit written permission from GoldHub
+- **Modification**: Not permitted without authorization
+- **Distribution**: Prohibited without proper licensing
+- **Warranty**: Provided "as-is" without guarantees
+- **Liability**: Users assume all risks associated with usage
+
+### Contact for Licensing
+For commercial licensing inquiries, please contact:
+- **Email**: licensing@goldhub.com
+- **Business Development**: business@goldhub.com
+
+### Intellectual Property
+All trademarks, service marks, and trade names are the property of GoldHub Company.
 
 ---
 
@@ -540,7 +759,6 @@ This project is proprietary software. All rights reserved for GoldHub Company.
 For support and questions:
 - **Email**: support@goldhub.com
 - **Website**: [https://goldhub.com](https://goldhub.com)
-- **Address**: Tehran, Amirabrad, North Kargar, University of Tehran Technical Faculty Building, Nextra Coworking Space, No. 1450
 
 ---
 
