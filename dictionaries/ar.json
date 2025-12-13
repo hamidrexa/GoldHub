@@ -62,34 +62,28 @@
   "loginRegister": "تسجيل الدخول/التسجيل",
   "navMenuItems": [
     {
-      "title": "الحل التنظيمي",
-      "href": "/organization",
+      "title": "المنصة",
+      "href": "/app",
       "description": ""
     },
     {
-      "title": "تنزيل ملحق کروم",
-      "href": "https://chrome.google.com/webstore/detail/%D8%A7%D9%81%D8%B2%D9%88%D9%86%D9%87-%D8%A8%D9%88%D8%B1%D8%B3-%D8%B3%D9%87%D9%85%D8%AA%D9%88-sahmeto/mnnkkdhkjbcnjljenmicbmlojmnpmaaf?hl=en",
-      "rel": "nofollow",
+      "title": "المنتجات",
+      "href": "/buyer/catalog",
       "description": ""
     },
     {
-      "title": "مساعدة GoldHub",
-      "href": "https://help.sahmeto.com",
-      "description": ""
-    },
-    {
-      "title": "الشروط و الأحكام",
+      "title": "الشروط والأحكام",
       "href": "/privacy",
       "description": ""
     },
     {
-      "title": "نبذة عنا",
+      "title": "من نحن",
       "href": "/about",
       "description": ""
     },
     {
       "title": "اتصل بنا",
-      "href": "/ar/contact",
+      "href": "/contact",
       "description": ""
     }
   ],

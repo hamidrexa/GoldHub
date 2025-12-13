@@ -64,17 +64,17 @@
   "loginRegister": "ورود/ثبت\u200Cنام",
   "navMenuItems": [
     {
-      "title": "قرارداد",
-      "href": "/contracts",
+      "title": "پلتفرم",
+      "href": "/app",
       "description": ""
     },
     {
-      "title": "دارایی",
-      "href": "/wallet",
+      "title": "محصولات",
+      "href": "/buyer/catalog",
       "description": ""
     },
     {
-      "title": "قوانین",
+      "title": "قوانین و مقررات",
       "href": "/privacy",
       "description": ""
     },
@@ -84,7 +84,7 @@
       "description": ""
     },
     {
-      "title": "تماس باما",
+      "title": "تماس با ما",
       "href": "/contact",
       "description": ""
     }

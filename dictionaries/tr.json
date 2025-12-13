@@ -62,23 +62,17 @@
   "loginRegister": "Giriş/Kayıt Ol",
   "navMenuItems": [
     {
-      "title": "Organizasyonel çözüm",
-      "href": "/organization",
+      "title": "Platform",
+      "href": "/app",
       "description": ""
     },
     {
-      "title": "Eklentiyi indir",
-      "href": "https://chrome.google.com/webstore/detail/%D8%A7%D9%81%D8%B2%D9%88%D9%86%D9%87-%D8%A8%D9%88%D8%B1%D8%B3-%D8%B3%D9%87%D9%85%D8%AA%D9%88-sahmeto/mnnkkdhkjbcnjljenmicbmlojmnpmaaf?hl=en",
-      "rel": "nofollow",
+      "title": "Ürünler",
+      "href": "/buyer/catalog",
       "description": ""
     },
     {
-      "title": "GoldHub Rehberi",
-      "href": "https://help.GoldHub.com",
-      "description": ""
-    },
-    {
-      "title": "Kurallar",
+      "title": "Şartlar",
       "href": "/privacy",
       "description": ""
     },
@@ -88,8 +82,8 @@
       "description": ""
     },
     {
-      "title": "Bama'yı ara",
-      "href": "/tr/contact",
+      "title": "Bize Ulaşın",
+      "href": "/contact",
       "description": ""
     }
   ],
