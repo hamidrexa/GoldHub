@@ -352,22 +352,20 @@ export function ProfilePage({ dict, lang }) {
                             </div>
                         )}
 
-                        {/* Request Buyer Role - Only for Approved Suppliers */}
-                        {(isSupplierApproved && !isBuyerApproved && !isBuyerRequested) && (
-                            <div className="space-y-2 rounded-md bg-green-50 p-4 border border-green-200">
-                                <div className="text-sm font-medium text-green-900">
+                        {/* Request Buyer Role - Suppliers (requested/approved) can request buyer approval */}
+                        {(isBuyerRequested) && (
+                            <div className="space-y-2 rounded-md bg-blue-50 p-4 border border-blue-200">
+                                <div className="text-sm font-medium text-blue-900">
                                     {dict.marketplace?.profile?.profilePage?.becomeBuyer || "Become a Buyer"}
                                 </div>
-                                <p className="text-xs text-green-800">
+                                <p className="text-xs text-blue-800">
                                     {dict.marketplace?.profile?.profilePage?.becomeBuyerDesc || "Request buyer role to purchase products"}
                                 </p>
                                 <Button
                                     onClick={requestBuyerRole}
                                     disabled={isRequestingRole}
                                     className="w-full mt-2"
-                                    size="sm"
-                                    variant="secondary"
-                                >
+                                    size="sm"                                >
                                     {isRequestingRole ? (
                                         <>
                                             <Loader2 className="h-4 w-4 mr-2 animate-spin" />
