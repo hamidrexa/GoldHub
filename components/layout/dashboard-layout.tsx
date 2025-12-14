@@ -22,11 +22,28 @@ export function DashboardLayout({ children, dict, lang }: DashboardLayoutProps) 
     // We can check if it matches `/${lang}` or just `/` if lang is missing (though middleware handles that).
     const isHomePage = pathname === `/${lang}` || pathname === '/' || pathname === `/${lang}/`;
 
+    // Check if we should show sidebar (only for admin, supplier, and buyer routes)
+    const shouldShowSidebar = pathname.includes('/admin') || pathname.includes('/supplier') || pathname.includes('/buyer');
+
     if (isHomePage) {
         return (
             <>
                 <Header dict={dict} lang={lang} />
                 {children}
+                <MobileMenu dict={dict} lang={lang} />
+                <Footer dict={dict} lang={lang} />
+            </>
+        );
+    }
+
+    // For profile and other non-dashboard pages, show header instead of sidebar
+    if (!shouldShowSidebar) {
+        return (
+            <>
+                <Header dict={dict} lang={lang} />
+                <main className="flex-1 overflow-y-auto p-4 md:p-6 bg-gradient-to-br from-gray-50 via-white to-gray-100 min-h-screen">
+                    {children}
+                </main>
                 <MobileMenu dict={dict} lang={lang} />
                 <Footer dict={dict} lang={lang} />
             </>

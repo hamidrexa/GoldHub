@@ -64,16 +64,6 @@
   "loginRegister": "Login/Register",
   "navMenuItems": [
     {
-      "title": "Buyer",
-      "href": "/buyer",
-      "description": ""
-    },
-    {
-      "title": "Supplier",
-      "href": "/supplier",
-      "description": ""
-    },
-    {
       "title": "Products",
       "href": "/buyer/catalog",
       "description": ""

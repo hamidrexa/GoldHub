@@ -124,7 +124,16 @@ export function Sidebar({ dict, lang }: SidebarProps) {
         },
     ];
 
-    const navItems = isBuyer ? buyerNavItems : isSupplier ? supplierNavItems : adminNavItems;
+    const defaultNavItems = [
+        {
+            title: dict.marketplace?.navigation?.catalog || 'Products',
+            href: `${getLinksLang(lang)}/buyer/catalog`,
+            icon: <Store className="h-5 w-5" />,
+            show: true,
+        }
+    ];
+
+    const navItems = isBuyer ? buyerNavItems : isSupplier ? supplierNavItems : isAdmin ? adminNavItems : defaultNavItems;
 
     const footerLinks = [
         { title: dict.help, href: 'https://help.sahmeto.com', icon: <HelpCircle className="h-4 w-4" /> },
@@ -141,6 +150,33 @@ export function Sidebar({ dict, lang }: SidebarProps) {
                     <Icons.logoDark className="h-5 w-5 fill-black" />
                     <span>{dict.appName}</span>
                 </Link>
+                {/* Switch Role Buttons */}
+                <div className="flex flex-col gap-2">
+                    {user?.groups?.some((g: any) => g.name === 'admin') && !pathname.includes('/admin') && (
+                        <Link href={`${getLinksLang(lang)}/admin`}>
+                            <Button variant="outline" className="w-full justify-start gap-2 border-gold-600 bg-transparent text-white hover:bg-gold-600 hover:text-black">
+                                <Shield className="h-4 w-4" />
+                                {dict.switchToAdmin || 'Switch to Admin'}
+                            </Button>
+                        </Link>
+                    )}
+                    {user?.groups?.some((g: any) => g.name === 'supplier_approved') && !pathname.includes('/supplier') && (
+                        <Link href={`${getLinksLang(lang)}/supplier/dashboard`}>
+                            <Button variant="outline" className="w-full justify-start gap-2 border-gold-600 bg-transparent text-white hover:bg-gold-600 hover:text-black">
+                                <Store className="h-4 w-4" />
+                                {dict.switchToSupplier || 'Switch to Supplier'}
+                            </Button>
+                        </Link>
+                    )}
+                    {user?.groups?.some((g: any) => g.name === 'buyer_approved') && !pathname.includes('/buyer') && (
+                        <Link href={`${getLinksLang(lang)}/buyer/dashboard`}>
+                            <Button variant="outline" className="w-full justify-start gap-2 border-gold-600 bg-transparent text-white hover:bg-gold-600 hover:text-black">
+                                <Store className="h-4 w-4" />
+                                {dict.switchToBuyer || 'Switch to Buyer'}
+                            </Button>
+                        </Link>
+                    )}
+                </div>
             </div>
 
             <Separator className="bg-gold-200/15 mb-4" />
@@ -186,11 +222,11 @@ export function Sidebar({ dict, lang }: SidebarProps) {
                             </p>
                             <div className="mt-1 flex flex-wrap gap-1">
                                 {user.groups?.map((group, index) => (
-                                    <Badge 
+                                    <Badge
                                         key={index}
                                         variant={
-                                            group.name === 'admin' ? 'destructive' : 
-                                            group.name.includes('supplier') ? 'secondary' : 'default'
+                                            group.name === 'admin' ? 'destructive' :
+                                                group.name.includes('supplier') ? 'secondary' : 'default'
                                         }
                                         size="sm"
                                         className="text-xs"

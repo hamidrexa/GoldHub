@@ -15,6 +15,8 @@ import {
     LinkedinIcon,
     MenuIcon,
     TwitterIcon,
+    Shield,
+    Store,
 } from 'lucide-react';
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import Cookies from 'js-cookie';
@@ -27,6 +29,7 @@ import { googleLogout, useGoogleOneTapLogin } from '@react-oauth/google';
 import { toast } from 'sonner';
 import { loginWithGoogle } from '@/app/[lang]/(auth)/login/services/loginWithGoogle';
 import { Icons } from '@/components/ui/icons';
+import { Button } from '@/components/ui/button';
 
 const ListItem = React.forwardRef<
     React.ElementRef<'a'>,
@@ -180,6 +183,32 @@ export function Header({ dict, lang, googleLogin = true }) {
                                         </div>
                                     </div>
                                 )}
+                                <div className="mt-4 flex flex-col gap-2">
+                                    {user?.groups?.some((g: any) => g.name === 'admin') && !path.includes('/admin') && (
+                                        <Link href={`${getLinksLang(lang)}/admin`}>
+                                            <Button variant="outline" className="w-full justify-start gap-2 border-gold-600 bg-transparent text-black hover:bg-gold-600 hover:text-white">
+                                                <Shield className="h-4 w-4" />
+                                                {dict.switchToAdmin || 'Switch to Admin'}
+                                            </Button>
+                                        </Link>
+                                    )}
+                                    {user?.groups?.some((g: any) => g.name === 'supplier_approved') && !path.includes('/supplier') && (
+                                        <Link href={`${getLinksLang(lang)}/supplier/dashboard`}>
+                                            <Button variant="outline" className="w-full justify-start gap-2 border-gold-600 bg-transparent text-black hover:bg-gold-600 hover:text-white">
+                                                <Store className="h-4 w-4" />
+                                                {dict.switchToSupplier || 'Switch to Supplier'}
+                                            </Button>
+                                        </Link>
+                                    )}
+                                    {user?.groups?.some((g: any) => g.name === 'buyer_approved') && !path.includes('/buyer') && (
+                                        <Link href={`${getLinksLang(lang)}/buyer/dashboard`}>
+                                            <Button variant="outline" className="w-full justify-start gap-2 border-gold-600 bg-transparent text-black hover:bg-gold-600 hover:text-white">
+                                                <Store className="h-4 w-4" />
+                                                {dict.switchToBuyer || 'Switch to Buyer'}
+                                            </Button>
+                                        </Link>
+                                    )}
+                                </div>
                                 <div className="mt-8 flex flex-col items-start gap-4 text-lg font-medium">
                                     {/* Dynamic Role-Based Menu Items */}
                                     {(path.includes('/buyer') ? [
