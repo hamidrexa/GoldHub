@@ -85,13 +85,8 @@ export function ProfilePage({ dict, lang }) {
         return 'buyer_requested'; // default for new users
     };
     const currentRole = getUserRole();
-    const canRequestSupplier = hasBuyerRequested || hasBuyerApproved;
-    const canRequestBuyer = hasSupplierApproved || hasSupplierRequested;
     const isSupplierRequested = hasSupplierRequested;
-    const isSupplierApproved = hasSupplierApproved;
-    const isBuyerApproved = hasBuyerApproved;
     const isBuyerRequested = hasBuyerRequested;
-    const hasBothRoles = isSupplierApproved && isBuyerApproved;
 
     const [userTransactions, setUserTransactions] = useState(null);
     const completePercentage = useMemo(() => {
@@ -304,7 +299,7 @@ export function ProfilePage({ dict, lang }) {
                         </div>
                     </div>
                     {/* Current Role Section */}
-                    <div className="space-y-3 mt-6">
+                    <div className="space-y-3 mt-6 w-full">
                         <div className="flex items-center justify-between rounded-md bg-gray-300/60 p-4">
                             <div className="flex flex-col gap-1">
                                 <div className="text-base font-semibold">
@@ -325,8 +320,8 @@ export function ProfilePage({ dict, lang }) {
                             </div>
                         </div>
 
-                        {/* Request Supplier Role - Only for Approved Buyers */}
-                        {(isBuyerRequested) && (
+                        {/* Request Suppliers Approval */}
+                        {(isSupplierRequested) && (
                             <div className="space-y-2 rounded-md bg-blue-50 p-4 border border-blue-200">
                                 <div className="text-sm font-medium text-blue-900">
                                     {dict.marketplace?.profile?.profilePage?.becomeSupplier}
@@ -352,7 +347,7 @@ export function ProfilePage({ dict, lang }) {
                             </div>
                         )}
 
-                        {/* Request Buyer Role - Suppliers (requested/approved) can request buyer approval */}
+                        {/* Request Buyer Approval */}
                         {(isBuyerRequested) && (
                             <div className="space-y-2 rounded-md bg-blue-50 p-4 border border-blue-200">
                                 <div className="text-sm font-medium text-blue-900">
@@ -372,7 +367,7 @@ export function ProfilePage({ dict, lang }) {
                                             {dict.marketplace?.profile?.profilePage?.requesting}
                                         </>
                                     ) : (
-                                        dict.marketplace?.profile?.profilePage?.requestBuyer || "Request Buyer Role"
+                                        dict.marketplace?.profile?.profilePage?.requestBuyer
                                     )}
                                 </Button>
                             </div>

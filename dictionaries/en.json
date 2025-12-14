@@ -1600,6 +1600,7 @@
         "becomeSupplier": "Become a Supplier",
         "becomeSupplierDesc": "Request access to become a supplier. Our admin team will review your request and your business information.",
         "requesting": "Requesting...",
+        "requestBuyer": "Request Buyer Role",
         "requestSupplier": "Request Supplier Role",
         "supplierRequestPending": "Supplier Request Pending",
         "supplierRequestPendingDesc": "Your request to become a supplier is under review by our admin team. This process may take a few business days.",

@@ -16,7 +16,7 @@ import {
     MenuIcon,
     TwitterIcon,
 } from 'lucide-react';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import Cookies from 'js-cookie';
 import { useGlobalContext } from '@/contexts/store';
 import { getProfile } from '@/services/getProfile';
@@ -152,6 +152,7 @@ export function Header({ dict, lang, googleLogin = true }) {
                         />
                     </SheetTrigger>
                     <SheetContent side={isRtl(lang) ? 'right' : 'left'}>
+                        <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
                         <div className="flex h-full flex-col justify-between pt-10">
                             <div>
                                 {user ? (
@@ -270,9 +271,9 @@ export function Header({ dict, lang, googleLogin = true }) {
                     </SheetContent>
                 </Sheet>
             </div>
-            <div className="flex items-center justify-center gap-5">
+            <div className="flex items-center justify-center gap-1">
                 <Link
-                    className="flex items-center gap-2.5 text-lg font-black text-white"
+                    className="flex items-center  text-lg font-black text-white"
                     href={`${getLinksLang(lang)}/`}
                 >
                     <Icons.logoDark className="h-7 w-24 cursor-pointer md:h-9 md:w-32" />
@@ -360,7 +361,7 @@ export function Header({ dict, lang, googleLogin = true }) {
                         legacyBehavior
                         passHref
                     >
-                        <a className="flex items-center rounded-md bg-neutral-800 px-3 py-2 font-medium text-black">
+                        <a className="flex items-center rounded-md bg-gold-600 px-3 py-2 font-medium text-black">
                             {dict.loginRegister}
                         </a>
                     </Link>
@@ -420,7 +421,7 @@ export function Header({ dict, lang, googleLogin = true }) {
                 ) : (
                     <Link
                         href={`${getLinksLang(lang)}/login?url=${path}`}
-                        className="flex h-12 items-center justify-center rounded-md border border-transparent bg-neutral-800 px-10 font-medium text-black"
+                        className="flex h-12 items-center justify-center rounded-md border border-transparent bg-gold-600 px-10 font-medium text-black"
                     >
                         {dict.loginRegister}
                     </Link>
