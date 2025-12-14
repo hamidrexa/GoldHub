@@ -70,7 +70,7 @@ export function RoleGuard({ children, requiredRole, fallbackPath = '/profile' }:
             <div className="flex h-[calc(100vh-64px)] w-full items-center justify-center md:h-[calc(100vh-90px)]">
                 <div className="text-center">
                     <h2 className="text-2xl font-bold mb-4">Access Denied</h2>
-                    <p className="text-gray-600 mb-4">You don't have permission to access this page.</p>
+                    <p className="text-gray-600 mb-4">You do not have permission to access this page.</p>
                     <p className="text-sm text-gray-500">Redirecting to profile...</p>
                 </div>
             </div>
