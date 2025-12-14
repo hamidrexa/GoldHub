@@ -1544,6 +1544,7 @@
         "becomeSupplier": "كن مورداً",
         "becomeSupplierDesc": "اطلب الوصول لتصبح مورداً. سيقوم فريق الإدارة بمراجعة طلبك ومعلومات عملك.",
         "requesting": "جاري الإرسال...",
+        "requestBuyer": "طلب دور المشتري",
         "requestSupplier": "طلب دور المورد",
         "supplierRequestPending": "طلب المورد قيد المراجعة",
         "supplierRequestPendingDesc": "طلبك لتصبح مورداً قيد المراجعة من قبل فريق الإدارة. قد تستغرق العملية عدة أيام عمل.",

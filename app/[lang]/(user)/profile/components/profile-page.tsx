@@ -85,13 +85,8 @@ export function ProfilePage({ dict, lang }) {
         return 'buyer_requested'; // default for new users
     };
     const currentRole = getUserRole();
-    const canRequestSupplier = hasBuyerRequested || hasBuyerApproved;
-    const canRequestBuyer = hasSupplierApproved || hasSupplierRequested;
     const isSupplierRequested = hasSupplierRequested;
-    const isSupplierApproved = hasSupplierApproved;
-    const isBuyerApproved = hasBuyerApproved;
     const isBuyerRequested = hasBuyerRequested;
-    const hasBothRoles = isSupplierApproved && isBuyerApproved;
 
     const [userTransactions, setUserTransactions] = useState(null);
     const completePercentage = useMemo(() => {
@@ -304,7 +299,7 @@ export function ProfilePage({ dict, lang }) {
                         </div>
                     </div>
                     {/* Current Role Section */}
-                    <div className="space-y-3 mt-6">
+                    <div className="space-y-3 mt-6 w-full">
                         <div className="flex items-center justify-between rounded-md bg-gray-300/60 p-4">
                             <div className="flex flex-col gap-1">
                                 <div className="text-base font-semibold">
@@ -325,8 +320,8 @@ export function ProfilePage({ dict, lang }) {
                             </div>
                         </div>
 
-                        {/* Request Supplier Role - Only for Approved Buyers */}
-                        {(isBuyerRequested) && (
+                        {/* Request Suppliers Approval */}
+                        {(isSupplierRequested) && (
                             <div className="space-y-2 rounded-md bg-blue-50 p-4 border border-blue-200">
                                 <div className="text-sm font-medium text-blue-900">
                                     {dict.marketplace?.profile?.profilePage?.becomeSupplier}
@@ -352,7 +347,7 @@ export function ProfilePage({ dict, lang }) {
                             </div>
                         )}
 
-                        {/* Request Buyer Role - Suppliers (requested/approved) can request buyer approval */}
+                        {/* Request Buyer Approval */}
                         {(isBuyerRequested) && (
                             <div className="space-y-2 rounded-md bg-blue-50 p-4 border border-blue-200">
                                 <div className="text-sm font-medium text-blue-900">
@@ -372,7 +367,7 @@ export function ProfilePage({ dict, lang }) {
                                             {dict.marketplace?.profile?.profilePage?.requesting}
                                         </>
                                     ) : (
-                                        dict.marketplace?.profile?.profilePage?.requestBuyer || "Request Buyer Role"
+                                        dict.marketplace?.profile?.profilePage?.requestBuyer
                                     )}
                                 </Button>
                             </div>
@@ -589,161 +584,7 @@ export function ProfilePage({ dict, lang }) {
                                     </div>
                                 </div>
                             )}
-                            <Box className="pt-[50px]">
-                                <Box className='flex flex-row justify-between w-full '>
-                                    <BoxTitle>
-                                        <FileClock />
-                                        {dict.marketplace.profile.profilePage.financialInfo}
-                                    </BoxTitle>
-                                    {(!data[0]?.cart_number && !data[0]?.shaba_number) && <Dialog
-                                        open={finantialAccountOpen}
-                                        onOpenChange={setFinantialAccountOpen}
-                                    >
-                                        <DialogTrigger asChild>
-                                            <Button
-                                                variant="info"
-                                                onClick={async () => {
-                                                    setFinantialAccountOpen(
-                                                        true
-                                                    );
-                                                }}
-                                            >
-                                                {dict.marketplace.profile.profilePage.newAccount}
-                                                <Icons.plus stroke='#fff' />
-                                            </Button>
-                                        </DialogTrigger>
-                                        <DialogContent className="max-w-xl">
-                                            <FinantialAccount
-                                                dict={dict}
-                                                lang={lang}
-                                                isEdit={false}
-                                                setOpen={
-                                                    setFinantialAccountOpen
-                                                }
-                                                submit={mutate}
-                                            />
-                                        </DialogContent>
-                                    </Dialog>}
-                                </Box>
-                                <BoxContent className="max-w-none">
-                                    <Table className="rounded-md border bg-white">
-                                        <TableHeader>
-                                            <TableRow>
-                                                <TableHead>{dict.marketplace.profile.profilePage.table.row}</TableHead>
-                                                <TableHead>{dict.marketplace.profile.profilePage.table.shabaNumber}</TableHead>
-                                                <TableHead>{dict.marketplace.profile.profilePage.table.cardNumber}</TableHead>
-                                                <TableHead>{dict.marketplace.profile.profilePage.table.shabaStatus}</TableHead>
-                                                <TableHead>{dict.marketplace.profile.profilePage.table.cardStatus}</TableHead>
-                                                <TableHead >{dict.marketplace.profile.profilePage.table.mainCard}</TableHead>
-                                                <TableHead align='left' >{dict.marketplace.profile.profilePage.table.edit}</TableHead>
-                                            </TableRow>
-                                        </TableHeader>
-                                        <TableBody>
-                                            {data ? (
-                                                cartIsloding ? (
-                                                    <TableRow>
-                                                        <TableCell
-                                                            colSpan={10}
-                                                            align="center"
-                                                        >
-                                                            <Spinner
-                                                                height={25}
-                                                                width={25}
-                                                                className="mt-2"
-                                                            />
-                                                        </TableCell>
-                                                    </TableRow>
-                                                ) : (
-                                                    data?.map((cart, index) => (
-                                                        (cart.shaba_number || cart.cart_number) && <TableRow
-                                                            key={cart.id}
-                                                            className="whitespace-nowrap"
-                                                        >
-                                                            <TableCell>
-                                                                {index + 1}
-                                                            </TableCell>
-                                                            <TableCell>
-                                                                {cart?.shaba_number}
-                                                            </TableCell>
-                                                            <TableCell>
-                                                                {cart?.cart_number}
-                                                            </TableCell>
-                                                            <TableCell>
-                                                                {/*// @ts-ignore*/}
-                                                                {<StatusBadge
-                                                                    dict={dict}
-                                                                    status={
-                                                                        cart.shaba_number_confirmed
-                                                                            ? 'confirmed'
-                                                                            :
-                                                                            'notConfirmed'
-                                                                    }
-                                                                />}
-                                                            </TableCell>
-                                                            <TableCell>
-                                                                {/*// @ts-ignore*/}
-                                                                {<StatusBadge
-                                                                    dict={dict}
-                                                                    status={
-                                                                        cart.cart_number_confirmed
-                                                                            ? 'confirmed'
-                                                                            :
-                                                                            'notConfirmed'
-                                                                    }
-                                                                />}
-                                                            </TableCell>
-                                                            <TableCell>
-                                                                {cart.is_default ? <Icons.tick stroke='green' /> : ''}
-                                                            </TableCell>
-                                                            <TableCell className='w-[40px]'>
-                                                                <Dialog
-                                                                    open={finantialAccountOpen}
-                                                                    onOpenChange={setFinantialAccountOpen}
-                                                                >
-                                                                    <DialogTrigger asChild>
-                                                                        <Button
-                                                                            onClick={async () => {
-                                                                                setFinantialAccountOpen(
-                                                                                    true
-                                                                                );
-                                                                            }}
-                                                                        >
-                                                                            {dict.marketplace.profile.profilePage.table.edit}
-                                                                        </Button>
-                                                                    </DialogTrigger>
-                                                                    <DialogContent className="max-w-xl">
-                                                                        <FinantialAccount
-                                                                            dict={dict}
-                                                                            lang={lang}
-                                                                            isEdit={true}
-                                                                            cartData={cart}
-                                                                            submit={mutate}
-                                                                            setOpen={setFinantialAccountOpen}
-                                                                        />
-                                                                    </DialogContent>
-                                                                </Dialog>
-                                                            </TableCell>
-                                                        </TableRow>
-                                                    ))
-                                                )
-                                            ) : (
-                                                <TableRow>
-                                                    <TableCell
-                                                        colSpan={10}
-                                                        align="center"
-                                                    >
-                                                        <Spinner
-                                                            height={25}
-                                                            width={25}
-                                                            className="mt-2"
-                                                        />
-                                                    </TableCell>
-                                                </TableRow>
-                                            )}
-                                        </TableBody>
-                                    </Table>
-                                </BoxContent>
-                            </Box>
+
                             {/* <Box className='flex justify-center w-full'>
                                 <div
                                     className={

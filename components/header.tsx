@@ -15,8 +15,10 @@ import {
     LinkedinIcon,
     MenuIcon,
     TwitterIcon,
+    Shield,
+    Store,
 } from 'lucide-react';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import Cookies from 'js-cookie';
 import { useGlobalContext } from '@/contexts/store';
 import { getProfile } from '@/services/getProfile';
@@ -27,6 +29,7 @@ import { googleLogout, useGoogleOneTapLogin } from '@react-oauth/google';
 import { toast } from 'sonner';
 import { loginWithGoogle } from '@/app/[lang]/(auth)/login/services/loginWithGoogle';
 import { Icons } from '@/components/ui/icons';
+import { Button } from '@/components/ui/button';
 
 const ListItem = React.forwardRef<
     React.ElementRef<'a'>,
@@ -152,6 +155,7 @@ export function Header({ dict, lang, googleLogin = true }) {
                         />
                     </SheetTrigger>
                     <SheetContent side={isRtl(lang) ? 'right' : 'left'}>
+                        <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
                         <div className="flex h-full flex-col justify-between pt-10">
                             <div>
                                 {user ? (
@@ -179,6 +183,32 @@ export function Header({ dict, lang, googleLogin = true }) {
                                         </div>
                                     </div>
                                 )}
+                                <div className="mt-4 flex flex-col gap-2">
+                                    {user?.groups?.some((g: any) => g.name === 'admin') && !path.includes('/admin') && (
+                                        <Link href={`${getLinksLang(lang)}/admin`}>
+                                            <Button variant="outline" className="w-full justify-start gap-2 border-gold-600 bg-transparent text-black hover:bg-gold-600 hover:text-white">
+                                                <Shield className="h-4 w-4" />
+                                                {dict.switchToAdmin || 'Switch to Admin'}
+                                            </Button>
+                                        </Link>
+                                    )}
+                                    {user?.groups?.some((g: any) => g.name === 'supplier_approved') && !path.includes('/supplier') && (
+                                        <Link href={`${getLinksLang(lang)}/supplier/dashboard`}>
+                                            <Button variant="outline" className="w-full justify-start gap-2 border-gold-600 bg-transparent text-black hover:bg-gold-600 hover:text-white">
+                                                <Store className="h-4 w-4" />
+                                                {dict.switchToSupplier || 'Switch to Supplier'}
+                                            </Button>
+                                        </Link>
+                                    )}
+                                    {user?.groups?.some((g: any) => g.name === 'buyer_approved') && !path.includes('/buyer') && (
+                                        <Link href={`${getLinksLang(lang)}/buyer/dashboard`}>
+                                            <Button variant="outline" className="w-full justify-start gap-2 border-gold-600 bg-transparent text-black hover:bg-gold-600 hover:text-white">
+                                                <Store className="h-4 w-4" />
+                                                {dict.switchToBuyer || 'Switch to Buyer'}
+                                            </Button>
+                                        </Link>
+                                    )}
+                                </div>
                                 <div className="mt-8 flex flex-col items-start gap-4 text-lg font-medium">
                                     {/* Dynamic Role-Based Menu Items */}
                                     {(path.includes('/buyer') ? [
@@ -270,15 +300,15 @@ export function Header({ dict, lang, googleLogin = true }) {
                     </SheetContent>
                 </Sheet>
             </div>
-            <div className="flex items-center justify-center gap-5">
+            <div className="flex items-center justify-center gap-1">
                 <Link
-                    className="flex items-center gap-2.5 text-lg font-black text-white"
+                    className="flex items-center  text-lg font-black text-white"
                     href={`${getLinksLang(lang)}/`}
                 >
                     <Icons.logoDark className="h-7 w-24 cursor-pointer md:h-9 md:w-32" />
                     GoldHub
                 </Link>
-                <hr className="hidden h-6 w-px bg-navy-800 md:flex ltr:ml-3 rtl:mr-3" />
+                <hr className="hidden h-7 w-px bg-navy-700 md:flex ltr:ml-3 rtl:mr-3" />
                 <NavigationMenu
                     className="hidden md:block"
                     dir={getDirection(lang)}
@@ -360,7 +390,7 @@ export function Header({ dict, lang, googleLogin = true }) {
                         legacyBehavior
                         passHref
                     >
-                        <a className="flex items-center rounded-md bg-neutral-800 px-3 py-2 font-medium text-black">
+                        <a className="flex items-center rounded-md bg-gold-600 px-3 py-2 font-medium text-black">
                             {dict.loginRegister}
                         </a>
                     </Link>
@@ -420,7 +450,7 @@ export function Header({ dict, lang, googleLogin = true }) {
                 ) : (
                     <Link
                         href={`${getLinksLang(lang)}/login?url=${path}`}
-                        className="flex h-12 items-center justify-center rounded-md border border-transparent bg-neutral-800 px-10 font-medium text-black"
+                        className="flex h-12 items-center justify-center rounded-md border border-transparent bg-gold-600 px-10 font-medium text-black"
                     >
                         {dict.loginRegister}
                     </Link>

@@ -157,27 +157,29 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
     // Default/legacy items for non-dashboard pages
     const defaultItems = [
         {
-            key: 'home',
-            title: dict.marketplace?.navigation?.home || 'Home',
-            icon: <Icons.home />,
-            href: `/${lang}/`
-        },
-        {
             key: 'products',
             title: dict.marketplace?.navigation?.products || 'Products',
             icon: <Icons.fire />,
             href: `/${lang}/buyer/catalog`
         },
         {
-            key: 'profile',
-            title: dict.marketplace?.navigation?.profile || 'Profile',
-            icon: <Icons.users />,
-            href: `/${lang}/profile`
+            key: 'cart',
+            title: dict.marketplace?.navigation?.cart || 'Cart',
+            icon: <Icons.buyer />,
+            href: `/${lang}/buyer/cart`
+        },
+        {
+            key: 'favorites',
+            title: dict.marketplace?.navigation?.favorites || 'Favorites',
+            icon: <Icons.popular />,
+            href: `/${lang}/buyer/favorites`
         }
     ];
 
     // Select items based on current route
-    const items = isAdmin ? adminItems : isSupplier ? supplierItems : isBuyer ? buyerItems : defaultItems;
+    // const items = isAdmin ? adminItems : isSupplier ? supplierItems : isBuyer ? buyerItems : defaultItems;
+    const items = defaultItems;
+
     useGoogleOneTapLogin({
         disabled:
             isUserLoading ||

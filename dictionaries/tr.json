@@ -1541,6 +1541,7 @@
         "becomeSupplier": "Tedarikçi Ol",
         "becomeSupplierDesc": "Tedarikçi olmak için erişim talep edin. Yönetici ekibimiz başvurunuzu ve işletme bilgilerinizi inceleyecektir.",
         "requesting": "İstek Gönderiliyor...",
+        "requestBuyer": "Alıcı Rolü Talep Et",
         "requestSupplier": "Tedarikçi Rolü Talep Et",
         "supplierRequestPending": "Tedarikçi Başvurusu Beklemede",
         "supplierRequestPendingDesc": "Tedarikçi olma talebiniz yönetici ekibi tarafından inceleniyor. Bu süreç birkaç iş günü sürebilir.",
