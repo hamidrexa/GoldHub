@@ -308,7 +308,7 @@ export function Header({ dict, lang, googleLogin = true }) {
                     <Icons.logoDark className="h-7 w-24 cursor-pointer md:h-9 md:w-32" />
                     GoldHub
                 </Link>
-                <hr className="hidden h-6 w-px bg-navy-800 md:flex ltr:ml-3 rtl:mr-3" />
+                <hr className="hidden h-7 w-px bg-navy-700 md:flex ltr:ml-3 rtl:mr-3" />
                 <NavigationMenu
                     className="hidden md:block"
                     dir={getDirection(lang)}
