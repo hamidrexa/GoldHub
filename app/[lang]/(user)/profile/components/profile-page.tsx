@@ -321,7 +321,7 @@ export function ProfilePage({ dict, lang }) {
                         </div>
 
                         {/* Request Suppliers Approval */}
-                        {(isSupplierRequested) && (
+                        {(!hasSupplierRequested && !hasSupplierApproved) && (
                             <div className="space-y-2 rounded-md bg-blue-50 p-4 border border-blue-200">
                                 <div className="text-sm font-medium text-blue-900">
                                     {dict.marketplace?.profile?.profilePage?.becomeSupplier}
