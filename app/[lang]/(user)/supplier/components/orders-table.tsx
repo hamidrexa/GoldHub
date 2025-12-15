@@ -251,7 +251,7 @@ export function OrdersTable({ dict, lang, activeTab, searchQuery }) {
 
             {selectedOrder && (
                 <OrderDialog
-                    user={selectedOrder}
+                    order={selectedOrder}
                     dict={dict}
                     lang={lang}
                     activeTab={activeTab}
