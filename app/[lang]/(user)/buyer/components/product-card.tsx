@@ -45,11 +45,10 @@ export default function ProductCard({ product, dict }: ProductCardProps) {
     const handleToggleFavorite = async (e: React.MouseEvent) => {
         e.preventDefault();
 
-        const next = !isFavorite;
-        setIsFavorite(next); // optimistic update
+        setIsFavorite(!isFavorite); // optimistic update
 
         try {
-            if (next) {
+            if (isFavorite) {
                 await likeProduct({
                     object_id: product.id,
                     title:'product',
@@ -60,7 +59,7 @@ export default function ProductCard({ product, dict }: ProductCardProps) {
             }
         } catch (error) {
             // rollback on failure
-            setIsFavorite(!next);
+            setIsFavorite(!isFavorite);
             console.error("Bookmark toggle failed:", error);
         }
     };
