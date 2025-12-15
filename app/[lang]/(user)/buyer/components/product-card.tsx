@@ -19,6 +19,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, dict }: ProductCardProps) {
     const [isFavorite, setIsFavorite] = useState(!!product?.bookmarked_by_user);
+    const [bookmarkId, setBookMarkId] = useState(product?.bookmarked_by_user?.id);
     const [isAddingToCart, setIsAddingToCart] = useState(false);
     const params = useParams();
     const lang = params.lang || 'en';
@@ -45,18 +46,20 @@ export default function ProductCard({ product, dict }: ProductCardProps) {
     const handleToggleFavorite = async (e: React.MouseEvent) => {
         e.preventDefault();
 
-        setIsFavorite(!isFavorite); // optimistic update
 
         try {
-            if (isFavorite) {
-                await likeProduct({
+            if (!isFavorite) {
+                let res
+                res = await likeProduct({
                     object_id: product.id,
                     title:'product',
                     content_type: 132,
                 });
+                setBookMarkId(res.id)
             } else {
-                await unlikeProduct(product?.bookmarked_by_user?.id);
+                await unlikeProduct(bookmarkId);
             }
+            setIsFavorite(!isFavorite); // optimistic update
         } catch (error) {
             // rollback on failure
             setIsFavorite(!isFavorite);
