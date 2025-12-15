@@ -67,7 +67,7 @@ export default function ProductCard({ product, dict }: ProductCardProps) {
 
 
     return (
-        <Link href={`/${lang}/buyer/catalog/${product.id}`}>
+        <div>
             <Card className="group hover:shadow-lg transition-all duration-200 cursor-pointer h-full flex flex-col">
                 <CardContent className="p-4 flex-1">
                     {/* Image */}
@@ -136,6 +136,6 @@ export default function ProductCard({ product, dict }: ProductCardProps) {
                     </Button>
                 </CardFooter>
             </Card>
-        </Link>
+        </div>
     );
 }
