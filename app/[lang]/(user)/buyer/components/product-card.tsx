@@ -19,6 +19,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, dict }: ProductCardProps) {
     const [isFavorite, setIsFavorite] = useState(!!product?.bookmarked_by_user);
+    const [bookmarkId, setBookMarkId] = useState(product?.bookmarked_by_user?.id);
     const [isAddingToCart, setIsAddingToCart] = useState(false);
     const params = useParams();
     const lang = params.lang || 'en';
@@ -45,29 +46,30 @@ export default function ProductCard({ product, dict }: ProductCardProps) {
     const handleToggleFavorite = async (e: React.MouseEvent) => {
         e.preventDefault();
 
-        const next = !isFavorite;
-        setIsFavorite(next); // optimistic update
 
         try {
-            if (next) {
-                await likeProduct({
+            if (!isFavorite) {
+                let res
+                res = await likeProduct({
                     object_id: product.id,
                     title:'product',
                     content_type: 132,
                 });
+                setBookMarkId(res.id)
             } else {
-                await unlikeProduct(product?.bookmarked_by_user?.id);
+                await unlikeProduct(bookmarkId);
             }
+            setIsFavorite(!isFavorite); // optimistic update
         } catch (error) {
             // rollback on failure
-            setIsFavorite(!next);
+            setIsFavorite(!isFavorite);
             console.error("Bookmark toggle failed:", error);
         }
     };
 
 
     return (
-        <Link href={`/${lang}/buyer/catalog/${product.id}`}>
+        <div>
             <Card className="group hover:shadow-lg transition-all duration-200 cursor-pointer h-full flex flex-col">
                 <CardContent className="p-4 flex-1">
                     {/* Image */}
@@ -136,6 +138,6 @@ export default function ProductCard({ product, dict }: ProductCardProps) {
                     </Button>
                 </CardFooter>
             </Card>
-        </Link>
+        </div>
     );
 }
