@@ -45,6 +45,7 @@ import { mockBuyerOrders } from '@/lib/buyer-mock-data';
 import { OrderStatus } from '@/lib/mock-data';
 import Link from 'next/link';
 import OrderTimeline from '../../components/order-timeline';
+import { getOrdersHistory } from '@/app/[lang]/(user)/buyer/services/getOrderHistory';
 
 interface PageProps {
     params: { lang: Locale; orderId: string };
@@ -71,6 +72,8 @@ function StatusBadge({ status, dict }: { status: OrderStatus; dict: any }) {
 export default async function OrderDetailPage({ params: { lang, orderId } }: PageProps) {
     const dict = await getDictionary(lang);
     const order = mockBuyerOrders.find(o => o.id === orderId);
+    const data = await getOrdersHistory(orderId);
+    console.log(data.results[0]);
 
     if (!order) {
         return (

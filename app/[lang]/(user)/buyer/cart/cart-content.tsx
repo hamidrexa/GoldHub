@@ -36,7 +36,7 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
     const [isLoading, setIsLoading] = useState(false);
     const [isCheckingOut, setIsCheckingOut] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const {details,isLoading:cardLoading} = useCardDetails()
+    const {details,isLoading:cardLoading,mutate} = useCardDetails()
 
     const handleQuantityChange = async (productId: string, quantity: number) => {
         // Optimistically update UI
@@ -52,6 +52,7 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
                 product_id: parseInt(productId),
                 count: quantity,
             });
+            await mutate();
         } catch (err) {
             console.error('Failed to update cart on server:', err);
             // UI already updated, just log the error
@@ -62,9 +63,10 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
         setCartItems(items => items.filter(item => item.productId !== productId));
 
         try {
-            await removeFromCart({
+             await removeFromCart({
                 product_id: parseInt(productId),
             });
+            await mutate();
         } catch (err) {
             console.error('Failed to remove item on server:', err);
         }

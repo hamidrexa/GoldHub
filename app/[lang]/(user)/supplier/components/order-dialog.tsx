@@ -103,123 +103,253 @@ export function OrderDialog({ order, dict, lang, activeTab, searchQuery,onClose 
 
     return (
         <Dialog open={true} onOpenChange={onClose}>
-            <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+            <DialogContent className="max-h-[80vh] max-w-2xl overflow-y-auto">
                 <DialogHeader>
-                    <DialogTitle>{dict.marketplace.supplier.ordersPage.dialog.title} - {order.name}</DialogTitle>
+                    <DialogTitle>
+                        {dict.marketplace.supplier.ordersPage.dialog.title} -{' '}
+                        {order.name}
+                    </DialogTitle>
                     <DialogDescription>
-                        {dict.marketplace.supplier.ordersPage.dialog.description} {order.companyName}
+                        {
+                            dict.marketplace.supplier.ordersPage.dialog
+                                .description
+                        }{' '}
+                        {order.companyName}
                     </DialogDescription>
                 </DialogHeader>
 
                 <div className="space-y-6">
                     <Card>
                         <CardHeader>
-                            <CardTitle className="text-base">{dict.marketplace.supplier.ordersPage.dialog.companyInfo}</CardTitle>
+                            <CardTitle className="text-base">
+                                {
+                                    dict.marketplace.supplier.ordersPage.dialog
+                                        .companyInfo
+                                }
+                            </CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
+                            {order.items.length !== 0 && (
+                                <div>
+                                    <Label className="text-muted-foreground text-sm">
+                                        {
+                                            dict.marketplace.supplier.ordersPage
+                                                .dialog.companyName
+                                        }
+                                    </Label>
+                                    <p className="font-medium">
+                                        {order.items[0].product.supplier
+                                            .username ||
+                                            dict.marketplace.supplier.ordersPage
+                                                .dialog.notProvided}
+                                    </p>
+                                </div>
+                            )}
                             <div>
-                                <Label className="text-sm text-muted-foreground">{dict.marketplace.supplier.ordersPage.dialog.companyName}</Label>
-                                <p className="font-medium">{order.items[0].product.supplier.username || dict.marketplace.supplier.ordersPage.dialog.notProvided}</p>
-                            </div>
-                            <div>
-                                <Label className="text-sm text-muted-foreground">{dict.marketplace.supplier.ordersPage.table.role}</Label>
-                                <div className="mt-1">{getRoleBadge(order)}</div>
+                                <Label className="text-muted-foreground text-sm">
+                                    {
+                                        dict.marketplace.supplier.ordersPage
+                                            .table.role
+                                    }
+                                </Label>
+                                <div className="mt-1">
+                                    {getRoleBadge(order)}
+                                </div>
                             </div>
                         </CardContent>
                     </Card>
 
                     <Card>
                         <CardHeader>
-                            <CardTitle className="text-base">{dict.marketplace.supplier.ordersPage.dialog.bankingInfo}</CardTitle>
+                            <CardTitle className="text-base">
+                                {
+                                    dict.marketplace.supplier.ordersPage.dialog
+                                        .bankingInfo
+                                }
+                            </CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
                             <div>
-                                <Label className="text-sm text-muted-foreground">{dict.marketplace.supplier.ordersPage.dialog.iban}</Label>
-                                <p className="font-medium font-mono">{order.iban || dict.marketplace.supplier.ordersPage.dialog.notProvided}</p>
+                                <Label className="text-muted-foreground text-sm">
+                                    {
+                                        dict.marketplace.supplier.ordersPage
+                                            .dialog.iban
+                                    }
+                                </Label>
+                                <p className="font-mono font-medium">
+                                    {order.iban ||
+                                        dict.marketplace.supplier.ordersPage
+                                            .dialog.notProvided}
+                                </p>
                             </div>
                             <div>
-                                <Label className="text-sm text-muted-foreground">{dict.marketplace.supplier.ordersPage.dialog.swift}</Label>
-                                <p className="font-medium font-mono">{order.swift || dict.marketplace.supplier.ordersPage.dialog.notProvided}</p>
+                                <Label className="text-muted-foreground text-sm">
+                                    {
+                                        dict.marketplace.supplier.ordersPage
+                                            .dialog.swift
+                                    }
+                                </Label>
+                                <p className="font-mono font-medium">
+                                    {order.swift ||
+                                        dict.marketplace.supplier.ordersPage
+                                            .dialog.notProvided}
+                                </p>
                             </div>
                         </CardContent>
                     </Card>
 
                     <Card>
                         <CardHeader>
-                            <CardTitle className="text-base">{dict.marketplace.supplier.ordersPage.dialog.documents}</CardTitle>
+                            <CardTitle className="text-base">
+                                {
+                                    dict.marketplace.supplier.ordersPage.dialog
+                                        .documents
+                                }
+                            </CardTitle>
                         </CardHeader>
                         <CardContent>
                             {order.documentsUploaded ? (
                                 <div className="space-y-2">
-                                    <div className="flex items-center justify-between p-3 border rounded-lg">
+                                    <div className="flex items-center justify-between rounded-lg border p-3">
                                         <div className="flex items-center gap-3">
                                             <Upload className="h-5 w-5 text-blue-600" />
                                             <div>
-                                                <p className="font-medium text-sm">{dict.marketplace.supplier.ordersPage.dialog.businessRegistration}</p>
-                                                <p className="text-xs text-muted-foreground">{dict.marketplace.supplier.ordersPage.dialog.uploadedOn} {new Date(order.joinedDate).toLocaleDateString()}</p>
+                                                <p className="text-sm font-medium">
+                                                    {
+                                                        dict.marketplace
+                                                            .supplier.ordersPage
+                                                            .dialog
+                                                            .businessRegistration
+                                                    }
+                                                </p>
+                                                <p className="text-muted-foreground text-xs">
+                                                    {
+                                                        dict.marketplace
+                                                            .supplier.ordersPage
+                                                            .dialog.uploadedOn
+                                                    }{' '}
+                                                    {new Date(
+                                                        order.joinedDate
+                                                    ).toLocaleDateString()}
+                                                </p>
                                             </div>
                                         </div>
-                                        <Button variant="outline" size="sm">{dict.marketplace.supplier.ordersPage.dialog.view}</Button>
+                                        <Button variant="outline" size="sm">
+                                            {
+                                                dict.marketplace.supplier
+                                                    .ordersPage.dialog.view
+                                            }
+                                        </Button>
                                     </div>
-                                    <div className="flex items-center justify-between p-3 border rounded-lg">
+                                    <div className="flex items-center justify-between rounded-lg border p-3">
                                         <div className="flex items-center gap-3">
                                             <Upload className="h-5 w-5 text-blue-600" />
                                             <div>
-                                                <p className="font-medium text-sm">{dict.marketplace.supplier.ordersPage.dialog.idVerification}</p>
-                                                <p className="text-xs text-muted-foreground">{dict.marketplace.supplier.ordersPage.dialog.uploadedOn} {new Date(order.joinedDate).toLocaleDateString()}</p>
+                                                <p className="text-sm font-medium">
+                                                    {
+                                                        dict.marketplace
+                                                            .supplier.ordersPage
+                                                            .dialog
+                                                            .idVerification
+                                                    }
+                                                </p>
+                                                <p className="text-muted-foreground text-xs">
+                                                    {
+                                                        dict.marketplace
+                                                            .supplier.ordersPage
+                                                            .dialog.uploadedOn
+                                                    }{' '}
+                                                    {new Date(
+                                                        order.joinedDate
+                                                    ).toLocaleDateString()}
+                                                </p>
                                             </div>
                                         </div>
-                                        <Button variant="outline" size="sm">{dict.marketplace.supplier.ordersPage.dialog.view}</Button>
+                                        <Button variant="outline" size="sm">
+                                            {
+                                                dict.marketplace.supplier
+                                                    .ordersPage.dialog.view
+                                            }
+                                        </Button>
                                     </div>
                                 </div>
                             ) : (
-                                <p className="text-sm text-muted-foreground">{dict.marketplace.supplier.ordersPage.dialog.noDocuments}</p>
+                                <p className="text-muted-foreground text-sm">
+                                    {
+                                        dict.marketplace.supplier.ordersPage
+                                            .dialog.noDocuments
+                                    }
+                                </p>
                             )}
                         </CardContent>
                     </Card>
 
                     <Card>
                         <CardHeader>
-                            <CardTitle className="text-base">{dict.marketplace.supplier.ordersPage.dialog.status}</CardTitle>
+                            <CardTitle className="text-base">
+                                {
+                                    dict.marketplace.supplier.ordersPage.dialog
+                                        .status
+                                }
+                            </CardTitle>
                         </CardHeader>
                         <CardContent>
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <Label className="text-sm text-muted-foreground">{dict.marketplace.supplier.ordersPage.dialog.currentStatus}</Label>
-                                    <div className="mt-1">{getKycBadge(order.status)}</div>
+                                    <Label className="text-muted-foreground text-sm">
+                                        {
+                                            dict.marketplace.supplier.ordersPage
+                                                .dialog.currentStatus
+                                        }
+                                    </Label>
+                                    <div className="mt-1">
+                                        {getKycBadge(order.status)}
+                                    </div>
                                 </div>
                                 {order.status === 'Submitted' && (
                                     <div className="flex gap-2">
                                         <Button
                                             variant="default"
                                             className="bg-green-600 hover:bg-green-700"
-                                            onClick={() => handleKycAction('Confirmed')}
+                                            onClick={() =>
+                                                handleKycAction('Confirmed')
+                                            }
                                             disabled={isLoading}
                                         >
                                             {isLoading ? (
-                                                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                             ) : (
-                                                <CheckCircle className="h-4 w-4 mr-2" />
+                                                <CheckCircle className="mr-2 h-4 w-4" />
                                             )}
-                                            {dict.marketplace.supplier.ordersPage.dialog.approve}
+                                            {
+                                                dict.marketplace.supplier
+                                                    .ordersPage.dialog.approve
+                                            }
                                         </Button>
                                         <Button
                                             variant="destructive"
-                                            onClick={() => handleKycAction('Rejected')}
+                                            onClick={() =>
+                                                handleKycAction('Rejected')
+                                            }
                                             disabled={isLoading}
                                         >
                                             {isLoading ? (
-                                                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                             ) : (
-                                                <XCircle className="h-4 w-4 mr-2" />
+                                                <XCircle className="mr-2 h-4 w-4" />
                                             )}
-                                            {dict.marketplace.supplier.ordersPage.dialog.reject}
+                                            {
+                                                dict.marketplace.supplier
+                                                    .ordersPage.dialog.reject
+                                            }
                                         </Button>
                                     </div>
                                 )}
                             </div>
                             {error && (
-                                <p className="text-sm text-red-600 mt-2">{error}</p>
+                                <p className="mt-2 text-sm text-red-600">
+                                    {error}
+                                </p>
                             )}
                         </CardContent>
                     </Card>

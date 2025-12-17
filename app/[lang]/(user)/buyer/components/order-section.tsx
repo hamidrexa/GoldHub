@@ -172,7 +172,7 @@ export function OrderSection({dict,lang,activeTab,searchQuery,viewMode}) {
                                             </p>
                                         </div>
 
-                                        <Link href={`/ ${lang} /buyer/orders / ${order.id} `}>
+                                        <Link href={`/${lang}/buyer/orders/${order.id}`}>
                                             <Button variant="outline" size="sm">
                                                 <Eye className="h-4 w-4 mr-2" />
                                                 {dict.marketplace.buyer.ordersPage.card.viewDetails}
@@ -210,7 +210,7 @@ export function OrderSection({dict,lang,activeTab,searchQuery,viewMode}) {
                                             </TableCell>
                                             <TableCell><StatusBadge status={order.status} dict={dict} /></TableCell>
                                             <TableCell className="text-right">
-                                                <Link href={`/ ${lang} /buyer/orders / ${order.id} `}>
+                                                <Link href={`/${lang}/buyer/orders/${order.id}`}>
                                                     <Button size="sm" variant="ghost">
                                                         <Eye className="h-4 w-4 mr-2" />
                                                         {dict.marketplace.buyer.ordersPage.card.viewDetails}

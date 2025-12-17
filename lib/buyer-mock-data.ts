@@ -31,7 +31,7 @@ export const mockWishlist: WishlistItem[] = [
 
 export const mockBuyerOrders: OrderDetail[] = [
     {
-        id: 'ORD-B001',
+        id: '2',
         buyer: 'John Smith',
         items: 2,
         total: 16325,
