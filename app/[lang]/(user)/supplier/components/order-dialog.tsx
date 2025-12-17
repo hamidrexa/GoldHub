@@ -37,20 +37,21 @@ interface OrderDialogProps {
     activeTab: string;
     searchQuery: string;
     onClose: () => void;
+    mutate?:any
 }
 
-export function OrderDialog({ order, dict, lang, activeTab, searchQuery,onClose }: OrderDialogProps) {
+export function OrderDialog({ order, dict, lang, activeTab, searchQuery,onClose,mutate=null }: OrderDialogProps) {
     const router = useRouter();
-    const [open, setOpen] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    const handleClose = () => {
-        setOpen(false)
+    const handleClose = async () => {
         const params = new URLSearchParams();
         params.set('tab', activeTab);
         if (searchQuery) params.set('q', searchQuery);
         router.push(`/${lang}/supplier/orders?${params.toString()}`);
+        !!mutate && await mutate();
+        onClose();
     };
 
     const handleKycAction = async (action: 'Confirmed' | 'Rejected') => {
@@ -102,7 +103,7 @@ export function OrderDialog({ order, dict, lang, activeTab, searchQuery,onClose 
 
 
     return (
-        <Dialog open={true} onOpenChange={onClose}>
+        <Dialog open onOpenChange={onClose}>
             <DialogContent className="max-h-[80vh] max-w-2xl overflow-y-auto">
                 <DialogHeader>
                     <DialogTitle>
