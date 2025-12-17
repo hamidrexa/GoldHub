@@ -13,7 +13,7 @@ import {
     DialogTitle,
 } from '@/components/ui/dialog';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { setKycStatus } from '@/app/[lang]/(user)/admin/services/set-kyc-status';
 import { updateOrderStatus } from '@/app/[lang]/(user)/supplier/services/update-order-status';
 
@@ -42,6 +42,7 @@ interface OrderDialogProps {
 
 export function OrderDialog({ order, dict, lang, activeTab, searchQuery,onClose,mutate=null }: OrderDialogProps) {
     const router = useRouter();
+    const path = usePathname();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -83,7 +84,7 @@ export function OrderDialog({ order, dict, lang, activeTab, searchQuery,onClose,
             rejected: { label: dict.marketplace.admin.usersKycPage.status.rejected, className: 'bg-red-100 text-red-800 hover:bg-red-100' },
             not_submitted: { label: dict.marketplace.admin.usersKycPage.status.notSubmitted, className: 'bg-gray-100 text-gray-800 hover:bg-gray-100' },
         };
-        const config = badges[status];
+        const config = badges[status] || { label: status, className: 'bg-status-draft-bg text-status-draft-text hover:bg-status-draft-bg' };
         return <Badge variant="default" className={config.className}>{config.label}</Badge>;
     };
 
@@ -307,7 +308,7 @@ export function OrderDialog({ order, dict, lang, activeTab, searchQuery,onClose,
                                         {getKycBadge(order.status)}
                                     </div>
                                 </div>
-                                {order.status === 'Submitted' && (
+                                {order.status === 'Submitted' && path.includes('/supplier') &&(
                                     <div className="flex gap-2">
                                         <Button
                                             variant="default"

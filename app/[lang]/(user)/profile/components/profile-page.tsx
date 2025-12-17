@@ -44,6 +44,7 @@ import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { CopyButton } from '@/components/copy-button';
 import { useCart } from '../services/getCart';
+import { Logout } from '@/app/[lang]/(user)/profile/services/logout';
 
 dayjs.extend(utc);
 
@@ -226,6 +227,7 @@ export function ProfilePage({ dict, lang }) {
     };
 
     const logout = () => {
+        Logout(user.id);
         Cookies.remove('token');
         Cookies.remove('token-refresh');
         location.href = `/login`;
