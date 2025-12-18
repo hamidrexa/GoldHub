@@ -12,6 +12,7 @@ import { useCardDetails } from '@/app/[lang]/(user)/buyer/services/cart-details'
 import { addToCart } from '@/app/[lang]/(user)/buyer/services/add-to-cart';
 import { removeFromCart } from '@/app/[lang]/(user)/buyer/services/remove-from-cart';
 import { submitOrder } from '@/app/[lang]/(user)/buyer/services/submit-order';
+import { toast } from 'sonner';
 
 interface CartItem {
     productId: string;
@@ -81,8 +82,9 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
             // Redirect to orders page on success
             window.location.href = `/${lang}/buyer/orders`;
         } catch (err) {
+            toast.error(err.error?.detail);
             console.error('Failed to submit order:', err);
-            setError(dict.marketplace.buyer.cartPage.summary.checkoutFailed || 'Failed to submit order. Please try again.');
+            setError(err.error?.detail ?? 'Failed to submit order. Please try again.');
             setIsCheckingOut(false);
         }
     };
