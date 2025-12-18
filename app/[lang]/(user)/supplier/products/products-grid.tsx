@@ -21,7 +21,7 @@ export function ProductsGrid({ dict }: ProductsGridProps) {
     const {user} = useGlobalContext()
     const [selectedProduct, setSelectedProduct] = useState(null);
 
-    const { products: list = [], isLoading} = useProductList(user?.username);
+    const { products: list = [], isLoading,mutate} = useProductList(user?.username);
 
     const getStatusBadge = (status: Product['status']) => {
         const badges = {
@@ -76,6 +76,7 @@ export function ProductsGrid({ dict }: ProductsGridProps) {
                                     onClick={async (e) => {
                                         e.stopPropagation();
                                         await deleteImage(product.images[0].id);
+                                        mutate();
                                     }}
                                     className="absolute right-2 top-2 rounded-full bg-black/60 p-1 text-white hover:bg-red-600 transition"
                                 >
@@ -152,6 +153,7 @@ export function ProductsGrid({ dict }: ProductsGridProps) {
                         body: apiBody,
                         product_id: selectedProduct?.id,
                     });
+                    mutate();
                     return res;
                 }}
             />
