@@ -70,7 +70,7 @@ export function UsersKycTable({
     showSubmittedColumn = false,
     showApprovedColumn = false,
 }: UsersKycTableProps) {
-    const { users, isLoading, error } = useUsersKYCData();
+    const { users, isLoading, error,mutate } = useUsersKYCData();
     const [selectedUser, setSelectedUser] = React.useState<any>(null);
 
     if (isLoading) return <p className="py-8 text-center">Loading...</p>;
@@ -269,8 +269,9 @@ export function UsersKycTable({
             </div>
 
             {/* KYC Dialog */}
-            {selectedUser && (
+            {!!selectedUser && (
                 <KycDialog
+                    mutate={mutate}
                     user={selectedUser}
                     dict={dict}
                     lang={lang}

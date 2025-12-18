@@ -21,12 +21,13 @@ import {
 } from '@/components/ui/select';
 import { Product } from '@/lib/mock-data';
 import { Upload } from 'lucide-react';
+import { addImage } from '@/app/[lang]/(user)/supplier/services/add-image';
 
 interface ProductFormDialogProps {
     open: boolean;
     onOpenChange: (open: boolean) => void;
     product?: any | null;
-    onSave?: (product) => void;
+    onSave?: (product: FormData) => Promise<any>;
     dict: any;
 }
 interface ProductFormData {
@@ -77,11 +78,17 @@ export default function ProductFormDialog({
         }
     }, [product]);
 
-    const handleSave = () => {
+    const handleSave = async () => {
         const payload = mapFormToApi(formData, product?.id);
-        onSave?.(payload);
+        const savedProduct = await onSave?.(payload);
+
+        if (formData.images instanceof File && savedProduct?.id) {
+            await addImage(savedProduct.id, formData.images);
+        }
         onOpenChange(false);
     };
+
+
 
     const formatKarat = (karat: string): number | null => {
         if (!karat) return null;

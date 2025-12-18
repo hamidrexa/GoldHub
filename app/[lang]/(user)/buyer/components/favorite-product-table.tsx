@@ -6,12 +6,17 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { useProductList } from '@/app/[lang]/(user)/supplier/products/services/useProductList';
 import React from 'react';
+import { unlikeProduct } from '@/app/[lang]/(user)/buyer/services/unlike-product';
 
 export function FavouriteProductTable({ dict, lang }) {
     const { products: favouriteList = [], isLoading, error } =
         useProductList("", undefined, true);
 
     const wishlistItems = [...favouriteList];
+
+    const handleUnfollow = async (item:any) => {
+        await unlikeProduct(item.bookmarked_by_user.id);
+    }
 
     if (isLoading) return <p className="py-8 text-center">Loading...</p>;
 
@@ -97,7 +102,7 @@ export function FavouriteProductTable({ dict, lang }) {
                                         .addToCart
                                 }
                             </Button>
-                            <Button variant="outline" size="sm">
+                            <Button onClick={()=>{handleUnfollow(item)}} variant="outline" size="sm">
                                 <Heart className="h-4 w-4 fill-red-500 text-red-500" />
                             </Button>
                         </div>

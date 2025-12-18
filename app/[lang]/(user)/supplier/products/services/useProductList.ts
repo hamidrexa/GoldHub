@@ -35,7 +35,7 @@ export function useProductList(supplierId?: string, filters?: ProductListFilters
         if (filters.is_bookmarked !== undefined) params.is_bookmarked = filters.is_bookmarked;
     }
 
-    const { data, error, isLoading } = useSWR({
+    const { data, error, isLoading} = useSWR({
         url: `/v1/gold_artifacts/products_list`,
         params
     });

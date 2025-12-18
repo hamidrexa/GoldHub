@@ -10,6 +10,7 @@ import { useProductList } from '@/app/[lang]/(user)/supplier/products/services/u
 import { updateProduct } from '@/app/[lang]/(user)/supplier/products/services/updateProduct';
 import { roundNumber } from '@/libs/utils';
 import { useGlobalContext } from '@/contexts/store';
+import { deleteImage } from '@/app/[lang]/(user)/supplier/services/delete-image';
 
 interface ProductsGridProps {
     dict: any;
@@ -20,7 +21,7 @@ export function ProductsGrid({ dict }: ProductsGridProps) {
     const {user} = useGlobalContext()
     const [selectedProduct, setSelectedProduct] = useState(null);
 
-    const { products: list = [], isLoading } = useProductList(user?.username);
+    const { products: list = [], isLoading} = useProductList(user?.username);
 
     const getStatusBadge = (status: Product['status']) => {
         const badges = {
@@ -61,13 +62,26 @@ export function ProductsGrid({ dict }: ProductsGridProps) {
                     className="overflow-hidden rounded-lg border bg-white transition-shadow hover:shadow-lg"
                 >
                     {/* Product Image */}
-                    <div className="flex aspect-square items-center justify-center border-b bg-gray-100">
-                        {product.images ? (
-                            <img
-                                src={product.images[0]?.image}
-                                alt={product.title}
-                                className="h-full w-full object-cover"
-                            />
+                    <div className="relative flex aspect-square items-center justify-center border-b bg-gray-100">
+                        {product.images?.length ? (
+                            <>
+                                <img
+                                    src={product.images[0].image}
+                                    alt={product.title}
+                                    className="h-full w-full object-cover"
+                                />
+
+                                {/* Delete Image Button */}
+                                <button
+                                    onClick={async (e) => {
+                                        e.stopPropagation();
+                                        await deleteImage(product.images[0].id);
+                                    }}
+                                    className="absolute right-2 top-2 rounded-full bg-black/60 p-1 text-white hover:bg-red-600 transition"
+                                >
+                                    <Trash2 className="h-4 w-4" />
+                                </button>
+                            </>
                         ) : (
                             <ImageIcon className="h-16 w-16 text-gray-400" />
                         )}
@@ -90,7 +104,7 @@ export function ProductsGrid({ dict }: ProductsGridProps) {
                                     ${product.price?.toLocaleString()}
                                 </p>
                                 <p className="text-muted-foreground text-xs">
-                                    {roundNumber(product.weight,2)}{' '}
+                                    {roundNumber(product.weight, 2)}{' '}
                                     grams
                                 </p>
                                 <p className="text-muted-foreground text-xs">
@@ -134,10 +148,11 @@ export function ProductsGrid({ dict }: ProductsGridProps) {
                 product={selectedProduct}
                 dict={dict}
                 onSave={async (apiBody) => {
-                    await updateProduct({
+                    const res = await updateProduct({
                         body: apiBody,
                         product_id: selectedProduct?.id,
                     });
+                    return res;
                 }}
             />
         </>

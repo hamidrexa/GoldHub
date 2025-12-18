@@ -43,18 +43,6 @@ import { AuditLogsSearch } from './audit-logs-search';
 import { ActivityLogsTable } from '@/app/[lang]/(user)/admin/components/activity-logs-table';
 
 // Server-side event badge component
-function EventBadge({ event, dict }: { event: AuditLog['event']; dict: any }) {
-    const badges = {
-        login: { label: dict.marketplace.admin.auditLogsPage.events.login, className: 'bg-green-100 text-green-800 hover:bg-green-100' },
-        logout: { label: dict.marketplace.admin.auditLogsPage.events.logout, className: 'bg-gray-100 text-gray-800 hover:bg-gray-100' },
-        order_created: { label: dict.marketplace.admin.auditLogsPage.events.orderCreated, className: 'bg-blue-100 text-blue-800 hover:bg-blue-100' },
-        kyc_submitted: { label: dict.marketplace.admin.auditLogsPage.events.kycSubmitted, className: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100' },
-        kyc_approved: { label: dict.marketplace.admin.auditLogsPage.events.kycApproved, className: 'bg-green-100 text-green-800 hover:bg-green-100' },
-        kyc_rejected: { label: dict.marketplace.admin.auditLogsPage.events.kycRejected, className: 'bg-red-100 text-red-800 hover:bg-red-100' },
-    };
-    const config = badges[event];
-    return <Badge variant="default" className={config.className}>{config.label}</Badge>;
-}
 
 interface PageProps {
     params: { lang: Locale };

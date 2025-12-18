@@ -36,20 +36,20 @@ interface KycDialogProps {
     activeTab: string;
     searchQuery: string;
     onClose: () => void;
+    mutate?:any;
 }
 
-export function KycDialog({ user, dict, lang, activeTab, searchQuery,onClose }: KycDialogProps) {
+export function KycDialog({ user, dict, lang, activeTab, searchQuery,onClose,mutate = null }: KycDialogProps) {
     const router = useRouter();
-    const [open, setOpen] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
     const handleClose = () => {
-        setOpen(false)
         const params = new URLSearchParams();
         params.set('tab', activeTab);
         if (searchQuery) params.set('q', searchQuery);
         router.push(`/${lang}/admin/users-kyc?${params.toString()}`);
+        onClose();
     };
 
     const handleKycAction = async (action: 'approve' | 'reject') => {
@@ -73,8 +73,8 @@ export function KycDialog({ user, dict, lang, activeTab, searchQuery,onClose }: 
                 new_status,
             });
 
+            !!mutate &&  await mutate();
             handleClose();
-            router.refresh();
 
         } catch (e) {
             console.error("KYC update failed:", e);
@@ -111,7 +111,7 @@ export function KycDialog({ user, dict, lang, activeTab, searchQuery,onClose }: 
 
 
     return (
-        <Dialog open={true} onOpenChange={onClose}>
+        <Dialog open onOpenChange={onClose}>
             <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
                 <DialogHeader>
                     <DialogTitle>{dict.marketplace.admin.usersKycPage.dialog.title} - {user.name}</DialogTitle>

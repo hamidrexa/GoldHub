@@ -18,7 +18,7 @@ import { OrderDialog } from '@/app/[lang]/(user)/supplier/components/order-dialo
 
 export function OrdersTable({ dict, lang, activeTab, searchQuery }) {
     const [selectedOrder, setSelectedOrder] = React.useState<any>(null);
-    const { history = [], isLoading, error } = useOrdersHistory();
+    const { history = [], isLoading, error,mutate } = useOrdersHistory();
     const filteredHistory = React.useMemo(() => {
         let result = history;
         if (activeTab && activeTab !== 'all') {
@@ -251,6 +251,7 @@ export function OrdersTable({ dict, lang, activeTab, searchQuery }) {
 
             {selectedOrder && (
                 <OrderDialog
+                    mutate={mutate}
                     order={selectedOrder}
                     dict={dict}
                     lang={lang}

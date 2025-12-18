@@ -42,9 +42,8 @@ export function ProductActions({ dict, products }: ProductActionsProps) {
                 product={selectedProduct}
                 dict={dict}
                 onSave={async (apiBody) => {
-                    await addProduct({
-                        body: apiBody,
-                    });
+                    const res = await addProduct({ body: apiBody });
+                    return res;
                 }}
             />
         </>

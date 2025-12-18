@@ -276,7 +276,7 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
                                 <div
                                     className={cn(
                                         {
-                                            'stroke-white fill-white': isActive, // Set active icon colors
+                                            'stroke-white fill-white text-white': isActive, // Set active icon colors
                                             'stroke-[#0C0E3C] fill-[#0C0E3C]': !isActive, // Set inactive icon colors
                                         }
                                     )}

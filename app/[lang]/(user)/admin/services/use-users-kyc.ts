@@ -3,7 +3,7 @@ import useSWR from "swr";
 import Cookies from 'js-cookie';
 
 export function useUsersKYCData() {
-    const { data, error, isLoading } = useSWR({
+    const { data, error, isLoading,mutate } = useSWR({
         url: `/v1/gold_artifacts/users_data`,
         params: {
             page_size : 20,
@@ -17,5 +17,6 @@ export function useUsersKYCData() {
         users: data?.results || [],
         isLoading,
         error,
+        mutate,
     };
 }
