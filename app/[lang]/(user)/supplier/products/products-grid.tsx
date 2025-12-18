@@ -4,10 +4,21 @@ import { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Pencil, Trash2, Image as ImageIcon } from 'lucide-react';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 import { Product } from '@/lib/mock-data';
 import ProductFormDialog from '@/app/[lang]/(user)/supplier/components/product-form-dialog';
 import { useProductList } from '@/app/[lang]/(user)/supplier/products/services/useProductList';
 import { updateProduct } from '@/app/[lang]/(user)/supplier/products/services/updateProduct';
+import { deleteProduct } from '@/app/[lang]/(user)/supplier/products/services/deleteProduct';
 import { roundNumber } from '@/libs/utils';
 import { useGlobalContext } from '@/contexts/store';
 import { deleteImage } from '@/app/[lang]/(user)/supplier/services/delete-image';
@@ -18,10 +29,13 @@ interface ProductsGridProps {
 
 export function ProductsGrid({ dict }: ProductsGridProps) {
     const [dialogOpen, setDialogOpen] = useState(false);
-    const {user} = useGlobalContext()
+    const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+    const [productToDelete, setProductToDelete] = useState<any>(null);
+    const [isDeleting, setIsDeleting] = useState(false);
+    const { user } = useGlobalContext()
     const [selectedProduct, setSelectedProduct] = useState(null);
 
-    const { products: list = [], isLoading,mutate} = useProductList(user?.username);
+    const { products: list = [], isLoading, mutate } = useProductList(user?.username);
 
     const getStatusBadge = (status: Product['status']) => {
         const badges = {
@@ -33,9 +47,31 @@ export function ProductsGrid({ dict }: ProductsGridProps) {
         return <Badge variant="default" className={config.className}>{config.label}</Badge>;
     };
 
-    const handleEditProduct = (product:any) => {
+    const handleEditProduct = (product: any) => {
         setSelectedProduct(product);
         setDialogOpen(true);
+    };
+
+    const handleDeleteClick = (product: any) => {
+        setProductToDelete(product);
+        setDeleteDialogOpen(true);
+    };
+
+    const handleConfirmDelete = async () => {
+        if (!productToDelete) return;
+        
+        try {
+            setIsDeleting(true);
+            await deleteProduct({ product_id: productToDelete.id });
+            mutate();
+            setDeleteDialogOpen(false);
+            setProductToDelete(null);
+        } catch (error) {
+            console.error('Failed to delete product:', error);
+            // Optionally show error toast here
+        } finally {
+            setIsDeleting(false);
+        }
     };
 
     if (isLoading) {
@@ -131,10 +167,10 @@ export function ProductsGrid({ dict }: ProductsGridProps) {
                                 {dict.marketplace.supplier.productsPage.edit}
                             </Button>
                             <Button
-                                disabled
                                 variant="outline"
                                 size="sm"
                                 className="text-red-600 hover:bg-red-50 hover:text-red-700"
+                                onClick={() => handleDeleteClick(product)}
                             >
                                 <Trash2 className="h-3 w-3" />
                             </Button>
@@ -157,6 +193,27 @@ export function ProductsGrid({ dict }: ProductsGridProps) {
                     return res;
                 }}
             />
+
+            <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            This action cannot be undone. The product &quot;{productToDelete?.title}&quot; will be permanently deleted.
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction
+                            onClick={handleConfirmDelete}
+                            disabled={isDeleting}
+                            className="bg-red-600 hover:bg-red-700"
+                        >
+                            {isDeleting ? 'Deleting...' : 'Delete'}
+                        </AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
         </>
     );
 }

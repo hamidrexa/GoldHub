@@ -8,6 +8,8 @@ import { CatalogFilters } from './catalog-filters';
 import { CatalogToolbar } from './catalog-toolbar';
 import { useProductList, ProductListFilters } from '@/app/[lang]/(user)/supplier/products/services/useProductList';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import ProductDetailDialog from '../components/product-detail-dialog';
+
 
 interface CatalogContentProps {
     dict: any;
@@ -36,6 +38,14 @@ export function CatalogContent({
 }: CatalogContentProps) {
     const [showFilters, setShowFilters] = useState(true);
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState<any>(null);
+    const [isDetailDialogOpen, setIsDetailDialogOpen] = useState(false);
+
+    const handleViewDetails = (product: any) => {
+        setSelectedProduct(product);
+        setIsDetailDialogOpen(true);
+    };
+
 
     // Build filters object from initial props
     const filters = useMemo<ProductListFilters>(() => {
@@ -148,11 +158,25 @@ export function CatalogContent({
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {list.map((product) => (
-                            <ProductCard key={product.id} product={product} dict={dict} />
+                            <ProductCard
+                                key={product.id}
+                                product={product}
+                                dict={dict}
+                                onViewDetails={() => handleViewDetails(product)}
+                            />
                         ))}
                     </div>
+
                 )}
             </div>
+
+            <ProductDetailDialog
+                open={isDetailDialogOpen}
+                onOpenChange={setIsDetailDialogOpen}
+                product={selectedProduct}
+                dict={dict}
+            />
         </div>
+
     );
 }
