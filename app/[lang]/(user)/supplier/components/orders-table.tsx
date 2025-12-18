@@ -249,7 +249,7 @@ export function OrdersTable({ dict, lang, activeTab, searchQuery }) {
                 )}
             </div>
 
-            {selectedOrder && (
+            {!!selectedOrder && (
                 <OrderDialog
                     mutate={mutate}
                     order={selectedOrder}
