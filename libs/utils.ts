@@ -59,8 +59,10 @@ export const fetcher = async (params: FetcherParams) => {
     }
 
     return params.status
-        ? { data: await res.json(), status: res.status }
-        : res.json();
+        ? { data: res.status !== 204 ? await res.json() : null, status: res.status }
+        : res.status !== 204
+            ? res.json()
+            : null;
 };
 
 export function getDirection(lang: string) {
