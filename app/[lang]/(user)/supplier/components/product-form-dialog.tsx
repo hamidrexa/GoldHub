@@ -389,15 +389,15 @@ export default function ProductFormDialog({
             <AlertDialog open={indexToDelete !== null} onOpenChange={(open) => !open && setIndexToDelete(null)}>
                 <AlertDialogContent>
                     <AlertDialogHeader>
-                        <AlertDialogTitle>{dict.common.confirm}</AlertDialogTitle>
+                        <AlertDialogTitle>{'Confirm'}</AlertDialogTitle>
                         <AlertDialogDescription>
                             Are you sure you want to delete this image? This action cannot be undone.
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                        <AlertDialogCancel>{dict.common.cancel}</AlertDialogCancel>
+                        <AlertDialogCancel>{'Cancel'}</AlertDialogCancel>
                         <AlertDialogAction onClick={handleDeleteImage} className="bg-red-600 hover:bg-red-700">
-                            {dict.common.delete}
+                            {'Delete'}
                         </AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>
