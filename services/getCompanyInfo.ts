@@ -75,7 +75,7 @@ export async function updateCompanyInfo(data: CompanyInfo): Promise<CompanyInfo>
         if (data.currency) formData.append('currency', data.currency);
         if (data.user_id) formData.append('user_id', data.user_id.toString());
 
-        const response = await fetch(`${API_BASE_URL}/api/v1/gold_artifacts/user_company_update`, {
+        const response = await fetch(`${API_BASE_URL}/v1/gold_artifacts/user_company_update`, {
             method: 'PATCH',
             headers: {
                 'Authorization': `Bearer ${token}`,

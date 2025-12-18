@@ -28,6 +28,8 @@ export default function ProductDetailDialog({
 }: ProductDetailDialogProps) {
     const [activeImageIndex, setActiveImageIndex] = useState(0);
     const [isAddingToCart, setIsAddingToCart] = useState(false);
+    const [isFavorite, setIsFavorite] = useState(!!product?.bookmarked_by_user);
+    const [bookmarkId, setBookMarkId] = useState(product?.bookmarked_by_user?.id);
     const params = useParams();
     const lang = params.lang || 'en';
 
@@ -58,12 +60,6 @@ export default function ProductDetailDialog({
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 pb-2">
                     <h2 className="text-xl font-bold text-gray-900">{product.title}</h2>
-                    <button
-                        onClick={() => onOpenChange(false)}
-                        className="text-gray-400 hover:text-gray-600 transition-colors"
-                    >
-                        <X className="h-5 w-5" />
-                    </button>
                 </div>
 
                 <div className="flex flex-col md:flex-row p-6 pt-2 gap-8 h-full max-h-[85vh] overflow-y-auto">
@@ -169,7 +165,7 @@ export default function ProductDetailDialog({
                                 variant="outline"
                                 className="w-[52px] h-[52px] p-0 border-gray-200 rounded-lg flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-gray-50"
                             >
-                                <Heart className="h-5 w-5" />
+                                <Heart className={`h-5 w-5 ${isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-600'}`}/>
                             </Button>
                         </div>
                     </div>

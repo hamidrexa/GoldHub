@@ -46,6 +46,7 @@ export default function ProductCard({ product, dict, onViewDetails }: ProductCar
 
     const handleToggleFavorite = async (e: React.MouseEvent) => {
         e.preventDefault();
+        e.stopPropagation();
         try {
             if (!isFavorite) {
                 let res

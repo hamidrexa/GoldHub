@@ -15,6 +15,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '@/components/ui/dialog';
+import { useUsersKYCData } from '@/app/[lang]/(user)/admin/services/use-users-kyc';
 
 interface CompanyInfoSectionProps {
     dict: any;
@@ -27,6 +28,8 @@ export const CompanyInfoSection: React.FC<CompanyInfoSectionProps> = ({ dict, la
     const [isEditing, setIsEditing] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
     const [editData, setEditData] = useState<CompanyInfo>({});
+    const {users} = useUsersKYCData()
+    console.log(users);
 
     useEffect(() => {
         loadCompanyInfo();
@@ -35,7 +38,7 @@ export const CompanyInfoSection: React.FC<CompanyInfoSectionProps> = ({ dict, la
     const loadCompanyInfo = async () => {
         try {
             setLoading(true);
-            const data = await getCompanyInfo();
+            const data = users[5].company
             setCompanyInfo(data);
             setEditData(data || {});
         } catch (error) {
