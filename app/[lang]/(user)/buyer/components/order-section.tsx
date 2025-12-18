@@ -435,8 +435,7 @@ export function OrderSection({ dict, lang, activeTab, searchQuery, viewMode }) {
                                         >
                                             <Eye className="mr-2 h-4 w-4" />
                                             {
-                                                dict.marketplace.buyer
-                                                    .ordersPage.card.viewDetails
+                                                dict.marketplace.buyer.ordersPage.card.viewDetails
                                             }
                                         </Button>
                                     </TableCell>
