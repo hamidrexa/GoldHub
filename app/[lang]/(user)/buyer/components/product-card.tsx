@@ -15,9 +15,10 @@ import { unlikeProduct } from '@/app/[lang]/(user)/buyer/services/unlike-product
 interface ProductCardProps {
     product: any;
     dict: any;
+    onViewDetails?: () => void;
 }
 
-export default function ProductCard({ product, dict }: ProductCardProps) {
+export default function ProductCard({ product, dict, onViewDetails }: ProductCardProps) {
     const [isFavorite, setIsFavorite] = useState(!!product?.bookmarked_by_user);
     const [bookmarkId, setBookMarkId] = useState(product?.bookmarked_by_user?.id);
     const [isAddingToCart, setIsAddingToCart] = useState(false);
@@ -45,12 +46,13 @@ export default function ProductCard({ product, dict }: ProductCardProps) {
 
     const handleToggleFavorite = async (e: React.MouseEvent) => {
         e.preventDefault();
+        e.stopPropagation();
         try {
             if (!isFavorite) {
                 let res
                 res = await likeProduct({
                     object_id: product.id,
-                    title:'product',
+                    title: 'product',
                     content_type: 132,
                 });
                 setBookMarkId(res.id)
@@ -68,7 +70,10 @@ export default function ProductCard({ product, dict }: ProductCardProps) {
 
     return (
         <div>
-            <Card className="group hover:shadow-lg transition-all duration-200 cursor-pointer h-full flex flex-col">
+            <Card
+                className="group hover:shadow-lg transition-all duration-200 cursor-pointer h-full flex flex-col"
+                onClick={onViewDetails}
+            >
                 <CardContent className="p-4 flex-1">
                     {/* Image */}
                     <div className="aspect-square bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">

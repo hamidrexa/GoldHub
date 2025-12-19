@@ -15,6 +15,7 @@ import { Badge } from '@/components/ui/badge';
 import { useOrdersHistory } from '@/app/[lang]/(user)/supplier/services/orders-history';
 import { KycDialog } from '@/app/[lang]/(user)/admin/users-kyc/kyc-dialog';
 import { OrderDialog } from '@/app/[lang]/(user)/supplier/components/order-dialog';
+import { updateOrderStatus } from '@/app/[lang]/(user)/supplier/services/update-order-status';
 
 export function OrdersTable({ dict, lang, activeTab, searchQuery }) {
     const [selectedOrder, setSelectedOrder] = React.useState<any>(null);
@@ -219,6 +220,13 @@ export function OrdersTable({ dict, lang, activeTab, searchQuery }) {
                                                     order.status ===
                                                         'Paid') && (
                                                     <Button
+                                                        onClick={async ()=>{
+                                                            await updateOrderStatus({
+                                                                order_id: order.id,
+                                                                status: "Shipped",
+                                                            })
+                                                            mutate();
+                                                        }}
                                                         size="sm"
                                                         variant="outline"
                                                     >
@@ -249,7 +257,7 @@ export function OrdersTable({ dict, lang, activeTab, searchQuery }) {
                 )}
             </div>
 
-            {selectedOrder && (
+            {!!selectedOrder && (
                 <OrderDialog
                     mutate={mutate}
                     order={selectedOrder}

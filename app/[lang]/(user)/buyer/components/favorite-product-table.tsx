@@ -9,13 +9,14 @@ import React from 'react';
 import { unlikeProduct } from '@/app/[lang]/(user)/buyer/services/unlike-product';
 
 export function FavouriteProductTable({ dict, lang }) {
-    const { products: favouriteList = [], isLoading, error } =
+    const { products: favouriteList = [], isLoading, error ,mutate} =
         useProductList("", undefined, true);
 
     const wishlistItems = [...favouriteList];
 
     const handleUnfollow = async (item:any) => {
         await unlikeProduct(item.bookmarked_by_user.id);
+        mutate();
     }
 
     if (isLoading) return <p className="py-8 text-center">Loading...</p>;

@@ -45,6 +45,7 @@ import { Badge } from '@/components/ui/badge';
 import { CopyButton } from '@/components/copy-button';
 import { useCart } from '../services/getCart';
 import { Logout } from '@/app/[lang]/(user)/profile/services/logout';
+import { CompanyInfoSection } from '@/app/[lang]/(user)/profile/components/company-info-section';
 
 dayjs.extend(utc);
 
@@ -586,6 +587,9 @@ export function ProfilePage({ dict, lang }) {
                                     </div>
                                 </div>
                             )}
+
+                            {/* Company Information Section */}
+                            <CompanyInfoSection dict={dict} lang={lang} />
 
                             {/* <Box className='flex justify-center w-full'>
                                 <div

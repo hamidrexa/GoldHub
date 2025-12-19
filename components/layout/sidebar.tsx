@@ -186,7 +186,7 @@ export function Sidebar({ dict, lang }: SidebarProps) {
                 <nav className="flex flex-col gap-1">
                     {navItems.map((item, index) => {
                         if (item.show === false) return null;
-                        const isActive = pathname.includes(item.href) || (index === 0 && pathname.includes('/admin'));
+                        const isActive = pathname === item.href;
                         return (
                             <Link
                                 key={index}

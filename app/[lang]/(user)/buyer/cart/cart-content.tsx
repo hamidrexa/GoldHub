@@ -12,6 +12,7 @@ import { useCardDetails } from '@/app/[lang]/(user)/buyer/services/cart-details'
 import { addToCart } from '@/app/[lang]/(user)/buyer/services/add-to-cart';
 import { removeFromCart } from '@/app/[lang]/(user)/buyer/services/remove-from-cart';
 import { submitOrder } from '@/app/[lang]/(user)/buyer/services/submit-order';
+import { toast } from 'sonner';
 
 interface CartItem {
     productId: string;
@@ -81,8 +82,9 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
             // Redirect to orders page on success
             window.location.href = `/${lang}/buyer/orders`;
         } catch (err) {
+            toast.error(err.error?.detail);
             console.error('Failed to submit order:', err);
-            setError(dict.marketplace.buyer.cartPage.summary.checkoutFailed || 'Failed to submit order. Please try again.');
+            setError(err.error?.detail ?? 'Failed to submit order. Please try again.');
             setIsCheckingOut(false);
         }
     };
@@ -181,45 +183,48 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
 
             {/* Order Summary */}
             <div className="lg:col-span-1">
-                <Card className="sticky top-6">
-                    <CardHeader>
-                        <CardTitle>{dict.marketplace.buyer.cartPage.summary.title}</CardTitle>
+                <Card className="sticky top-6 overflow-hidden">
+                    <CardHeader className="pb-3">
+                        <CardTitle className="text-base sm:text-lg">{dict.marketplace.buyer.cartPage.summary.title}</CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-4">
-                        <div className="space-y-2">
-                            <div className="flex justify-between text-sm">
-                                <span className="text-muted-foreground">{dict.marketplace.buyer.cartPage.summary.subtotal}</span>
-                                <span>${subtotal.toLocaleString()}</span>
+                    <CardContent className="space-y-4 pt-0">
+                        <div className="space-y-3 bg-gray-50/50 rounded-lg p-3">
+                            <div className="flex justify-between text-xs sm:text-sm gap-2">
+                                <span className="text-muted-foreground truncate">{dict.marketplace.buyer.cartPage.summary.subtotal}</span>
+                                <span className="font-medium whitespace-nowrap">${subtotal?.toLocaleString() || '0'}</span>
                             </div>
-                            <div className="flex justify-between text-sm">
-                                <span className="text-muted-foreground">{dict.marketplace.buyer.cartPage.summary.tax}</span>
-                                <span>${tax.toFixed(2)}</span>
+                            <div className="flex justify-between text-xs sm:text-sm gap-2">
+                                <span className="text-muted-foreground truncate">{dict.marketplace.buyer.cartPage.summary.tax}</span>
+                                <span className="font-medium whitespace-nowrap">${tax?.toFixed(2) || '0.00'}</span>
                             </div>
-                            <div className="flex justify-between text-sm">
-                                <span className="text-muted-foreground">{dict.marketplace.buyer.cartPage.summary.shipping}</span>
-                                <span>{shipping === 0 ? dict.marketplace.buyer.cartPage.summary.free : `$${shipping}`}</span>
+                            <div className="flex justify-between text-xs sm:text-sm gap-2">
+                                <span className="text-muted-foreground truncate">{dict.marketplace.buyer.cartPage.summary.shipping}</span>
+                                <span className="font-medium whitespace-nowrap">
+                                    {shipping === 0 ? dict.marketplace.buyer.cartPage.summary.free : `$${shipping}`}
+                                </span>
                             </div>
                             {shipping === 0 && (
-                                <p className="text-xs text-green-600">
+                                <p className="text-xs text-green-600 mt-2">
                                     {dict.marketplace.buyer.cartPage.summary.freeShippingMsg}
                                 </p>
                             )}
                         </div>
 
-                        <Separator />
+                        <Separator className="my-2" />
 
-                        <div className="flex justify-between font-semibold text-lg">
-                            <span>{dict.marketplace.buyer.cartPage.summary.total}</span>
-                            <span>${total.toLocaleString()}</span>
+                        <div className="flex justify-between font-bold text-base sm:text-lg gap-2 bg-blue-50/50 -mx-6 px-6 py-3">
+                            <span className="truncate">{dict.marketplace.buyer.cartPage.summary.total}</span>
+                            <span className="whitespace-nowrap">${total?.toLocaleString() || '0'}</span>
                         </div>
 
                         {error && (
-                            <p className="text-sm text-red-600">{error}</p>
+                            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+                                <p className="text-xs sm:text-sm text-red-700">{error}</p>
+                            </div>
                         )}
 
                         <Button
-                            className="w-full"
-                            size="xl"
+                            className="w-full h-10 sm:h-12 text-sm sm:text-base"
                             onClick={handleCheckout}
                             disabled={isCheckingOut}
                         >
