@@ -226,7 +226,7 @@ export function Sidebar({ dict, lang }: SidebarProps) {
                                         key={index}
                                         variant={
                                             group.name === 'admin' ? 'destructive' :
-                                                group.name.includes('supplier') ? 'secondary' : 'default'
+                                                group.name.includes('supplier') ? 'error' : 'default'
                                         }
                                         size="sm"
                                         className="text-xs"

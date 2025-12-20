@@ -12,6 +12,7 @@ import { Heart, ShoppingCart, X } from 'lucide-react';
 import { useParams } from 'next/navigation';
 import { addToCart } from '@/app/[lang]/(user)/buyer/services/add-to-cart';
 import { cn } from '@/libs/utils';
+import { toast } from 'sonner';
 
 interface ProductDetailDialogProps {
     open: boolean;
@@ -45,6 +46,7 @@ export default function ProductDetailDialog({
                 count: 1, // Default to 1 as per redesigned UI
             });
             onOpenChange(false);
+            toast.success("Product has been added to card successfully!");
         } catch (error) {
             console.error("Add to cart failed:", error);
         } finally {

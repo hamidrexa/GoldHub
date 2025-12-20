@@ -1,7 +1,6 @@
 import Cookies from 'js-cookie';
 
 export interface CompanyInfo {
-    user_id?: number;
     name?: string;
     country?: string;
     registration_number?: string;
@@ -73,7 +72,6 @@ export async function updateCompanyInfo(data: CompanyInfo): Promise<CompanyInfo>
         if (data.iban) formData.append('iban', data.iban);
         if (data.swift) formData.append('swift', data.swift);
         if (data.currency) formData.append('currency', data.currency);
-        if (data.user_id) formData.append('user_id', data.user_id.toString());
 
         const response = await fetch(`${API_BASE_URL}/v1/gold_artifacts/user_company_update`, {
             method: 'PATCH',

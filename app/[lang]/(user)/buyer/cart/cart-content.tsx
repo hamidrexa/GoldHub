@@ -54,6 +54,7 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
                 count: quantity,
             });
             await mutate();
+            toast.success("Product has been added to card successfully!");
         } catch (err) {
             console.error('Failed to update cart on server:', err);
             // UI already updated, just log the error

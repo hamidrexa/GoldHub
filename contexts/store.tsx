@@ -59,7 +59,6 @@ interface ContextProps {
             iban: string;
             swift: string;
             currency: string;
-            user_id: number
         };
         }
     setUser: Dispatch<SetStateAction<object>>;
