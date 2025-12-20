@@ -7,11 +7,13 @@ import { Badge } from '@/components/ui/badge';
 import { Pagination, PaginationContent, PaginationItem, PaginationPrevious, PaginationNext } from '@/components/ui/pagination';
 import { useOrdersHistory } from '@/app/[lang]/(user)/supplier/services/orders-history';
 import React from 'react';
+import { OrderDialog } from '@/app/[lang]/(user)/supplier/components/order-dialog';
 
 export function AdminOrdersTable({dict,lang,activeTab,searchQuery}) {
 
     const [page, setPage] = React.useState(0);
     const {history,isLoading,error} = useOrdersHistory()
+    const [selectedOrder, setSelectedOrder] = React.useState<any>(null);
     const filteredOrders = React.useMemo(() => {
         let result = history;
         if (activeTab && activeTab !== 'all') {
@@ -101,13 +103,15 @@ export function AdminOrdersTable({dict,lang,activeTab,searchQuery}) {
                                     <TableCell><StatusBadge status={order.status} dict={dict} /></TableCell>
                                     <TableCell>{order.date}</TableCell>
                                     <TableCell>
-                                        <div className="flex items-center justify-end gap-2">
-                                            <Link
-                                                href={`/${lang}/admin/orders/${order.id}`}
-                                                className="inline-flex items-center justify-center h-8 w-8 rounded-md hover:bg-gray-100"
+                                        <div>
+                                            <button
+                                                onClick={() =>
+                                                    setSelectedOrder(order)
+                                                }
+                                                className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-gray-100"
                                             >
                                                 <Eye className="h-4 w-4 text-gray-600" />
-                                            </Link>
+                                            </button>
                                         </div>
                                     </TableCell>
                                 </TableRow>
@@ -115,6 +119,16 @@ export function AdminOrdersTable({dict,lang,activeTab,searchQuery}) {
                         )}
                     </TableBody>
                 </Table>
+                {selectedOrder && (
+                    <OrderDialog
+                        order={selectedOrder}
+                        dict={dict}
+                        lang={lang}
+                        activeTab={activeTab}
+                        searchQuery={searchQuery}
+                        onClose={() => setSelectedOrder(null)}
+                    />
+                )}
             </div>
             <Pagination className="mt-8">
                 <PaginationContent>

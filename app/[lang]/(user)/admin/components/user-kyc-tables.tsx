@@ -86,7 +86,7 @@ export function UsersKycTable({
         id: user.id,
         name: user.username,
         email: user.email ?? '-',
-        company: user.company?.name ?? '-',
+        company: user.company ?? '-',
         roles: user.groups ?? [],
         kycStatus: (() => {
             const groups = user.groups || [];
@@ -219,7 +219,7 @@ export function UsersKycTable({
                                         </TableCell>
 
                                         <TableCell>{user.email}</TableCell>
-                                        <TableCell>{user.company}</TableCell>
+                                        <TableCell>{user.company?.name}</TableCell>
 
                                         <TableCell className="flex gap-1">
                                             {user.roles.map(

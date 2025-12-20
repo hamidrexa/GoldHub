@@ -60,20 +60,20 @@ export function CatalogToolbar({
                 </p>
             </div>
 
-            <div className="flex items-center gap-2">
-                <Label className="text-sm">{dict.marketplace.buyer.catalogPage.toolbar.sortBy}</Label>
-                <Select value={currentSort} onValueChange={handleSortChange}>
-                    <SelectTrigger className="w-[180px]">
-                        <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="recommended">{dict.marketplace.buyer.catalogPage.toolbar.sortOptions.recommended}</SelectItem>
-                        <SelectItem value="price_low">{dict.marketplace.buyer.catalogPage.toolbar.sortOptions.priceLow}</SelectItem>
-                        <SelectItem value="price_high">{dict.marketplace.buyer.catalogPage.toolbar.sortOptions.priceHigh}</SelectItem>
-                        <SelectItem value="newest">{dict.marketplace.buyer.catalogPage.toolbar.sortOptions.newest}</SelectItem>
-                    </SelectContent>
-                </Select>
-            </div>
+            {/*<div className="flex items-center gap-2">*/}
+            {/*    <Label className="text-sm">{dict.marketplace.buyer.catalogPage.toolbar.sortBy}</Label>*/}
+            {/*    <Select value={currentSort} onValueChange={handleSortChange}>*/}
+            {/*        <SelectTrigger className="w-[180px]">*/}
+            {/*            <SelectValue />*/}
+            {/*        </SelectTrigger>*/}
+            {/*        <SelectContent>*/}
+            {/*            <SelectItem value="recommended">{dict.marketplace.buyer.catalogPage.toolbar.sortOptions.recommended}</SelectItem>*/}
+            {/*            <SelectItem value="price_low">{dict.marketplace.buyer.catalogPage.toolbar.sortOptions.priceLow}</SelectItem>*/}
+            {/*            <SelectItem value="price_high">{dict.marketplace.buyer.catalogPage.toolbar.sortOptions.priceHigh}</SelectItem>*/}
+            {/*            <SelectItem value="newest">{dict.marketplace.buyer.catalogPage.toolbar.sortOptions.newest}</SelectItem>*/}
+            {/*        </SelectContent>*/}
+            {/*    </Select>*/}
+            {/*</div>*/}
         </div>
     );
 }

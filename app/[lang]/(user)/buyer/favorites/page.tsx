@@ -28,6 +28,7 @@ import { Heart, ShoppingCart, ArrowLeft, Package as PackageIcon } from 'lucide-r
 import { mockWishlist } from '@/lib/buyer-mock-data';
 import Link from 'next/link';
 import { FavouriteProductTable } from '@/app/[lang]/(user)/buyer/components/favorite-product-table';
+import { FavoriteWrapper } from '@/app/[lang]/(user)/buyer/components/favorite-wrapper';
 
 interface PageProps {
     params: { lang: Locale };
@@ -35,24 +36,11 @@ interface PageProps {
 
 export default async function FavoritesPage({ params: { lang } }: PageProps) {
     const dict = await getDictionary(lang);
-    const wishlistItems = mockWishlist;
 
     return (
         <div className="space-y-6">
             {/* Header */}
-            <div className="flex items-center justify-between">
-                <div>
-                    <h1 className="text-3xl font-bold tracking-tight">{dict.marketplace.buyer.favoritesPage.title}</h1>
-                    <p className="text-muted-foreground">{wishlistItems.length} {dict.marketplace.buyer.favoritesPage.savedItems}</p>
-                </div>
-                <Link href={`/${lang}/buyer/catalog`}>
-                    <Button variant="outline">
-                        <ArrowLeft className="h-4 w-4 mr-2" />
-                        {dict.marketplace.buyer.favoritesPage.browseCatalog}
-                    </Button>
-                </Link>
-            </div>
-            <FavouriteProductTable dict={dict} lang={lang}/>
+            <FavoriteWrapper dict={dict} lang={lang}/>
         </div>
     );
 }

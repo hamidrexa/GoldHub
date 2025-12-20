@@ -113,10 +113,10 @@ export function KycDialog({ user, dict, lang, activeTab, searchQuery,onClose,mut
     return (
         <Dialog open onOpenChange={onClose}>
             <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
-                <DialogHeader>
+                <DialogHeader className="items-start">
                     <DialogTitle>{dict.marketplace.admin.usersKycPage.dialog.title} - {user.name}</DialogTitle>
                     <DialogDescription>
-                        {dict.marketplace.admin.usersKycPage.dialog.description} {user.companyName}
+                        {dict.marketplace.admin.usersKycPage.dialog.description} {user.company?.name}
                     </DialogDescription>
                 </DialogHeader>
 
@@ -125,10 +125,10 @@ export function KycDialog({ user, dict, lang, activeTab, searchQuery,onClose,mut
                         <CardHeader>
                             <CardTitle className="text-base">{dict.marketplace.admin.usersKycPage.dialog.companyInfo}</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-4">
+                        <CardContent className="space-y-4 p-6">
                             <div>
                                 <Label className="text-sm text-muted-foreground">{dict.marketplace.admin.usersKycPage.dialog.companyName}</Label>
-                                <p className="font-medium">{user.companyName || dict.marketplace.admin.usersKycPage.dialog.notProvided}</p>
+                                <p className="font-medium">{user.company?.name || dict.marketplace.admin.usersKycPage.dialog.notProvided}</p>
                             </div>
                             <div>
                                 <Label className="text-sm text-muted-foreground">{dict.marketplace.admin.usersKycPage.table.role}</Label>
@@ -141,14 +141,14 @@ export function KycDialog({ user, dict, lang, activeTab, searchQuery,onClose,mut
                         <CardHeader>
                             <CardTitle className="text-base">{dict.marketplace.admin.usersKycPage.dialog.bankingInfo}</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-4">
+                        <CardContent className="space-y-4 p-6">
                             <div>
                                 <Label className="text-sm text-muted-foreground">{dict.marketplace.admin.usersKycPage.dialog.iban}</Label>
-                                <p className="font-medium font-mono">{user.iban || dict.marketplace.admin.usersKycPage.dialog.notProvided}</p>
+                                <p className="font-medium font-mono">{user.company?.iban || dict.marketplace.admin.usersKycPage.dialog.notProvided}</p>
                             </div>
                             <div>
                                 <Label className="text-sm text-muted-foreground">{dict.marketplace.admin.usersKycPage.dialog.swift}</Label>
-                                <p className="font-medium font-mono">{user.swift || dict.marketplace.admin.usersKycPage.dialog.notProvided}</p>
+                                <p className="font-medium font-mono">{user.company?.swift || dict.marketplace.admin.usersKycPage.dialog.notProvided}</p>
                             </div>
                         </CardContent>
                     </Card>
@@ -157,7 +157,7 @@ export function KycDialog({ user, dict, lang, activeTab, searchQuery,onClose,mut
                         <CardHeader>
                             <CardTitle className="text-base">{dict.marketplace.admin.usersKycPage.dialog.documents}</CardTitle>
                         </CardHeader>
-                        <CardContent>
+                        <CardContent className="space-y-4 p-6">
                             {user.documentsUploaded ? (
                                 <div className="space-y-2">
                                     <div className="flex items-center justify-between p-3 border rounded-lg">
@@ -191,7 +191,7 @@ export function KycDialog({ user, dict, lang, activeTab, searchQuery,onClose,mut
                         <CardHeader>
                             <CardTitle className="text-base">{dict.marketplace.admin.usersKycPage.dialog.status}</CardTitle>
                         </CardHeader>
-                        <CardContent>
+                        <CardContent className="space-y-4 p-6">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <Label className="text-sm text-muted-foreground">{dict.marketplace.admin.usersKycPage.dialog.currentStatus}</Label>

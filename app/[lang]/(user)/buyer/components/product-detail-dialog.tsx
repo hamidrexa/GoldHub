@@ -48,7 +48,7 @@ export default function ProductDetailDialog({
             onOpenChange(false);
             toast.success("Product has been added to card successfully!");
         } catch (error) {
-            console.error("Add to cart failed:", error);
+            toast.error(error?.error.detail)
         } finally {
             setIsAddingToCart(false);
         }
