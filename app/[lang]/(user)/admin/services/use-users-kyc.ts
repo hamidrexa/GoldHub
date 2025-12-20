@@ -15,6 +15,7 @@ export function useUsersKYCData() {
 
     return {
         users: data?.results || [],
+        count:data?.count,
         isLoading,
         error,
         mutate,

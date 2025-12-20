@@ -7,6 +7,7 @@ import { mockSupplierStats, mockOrders, mockProducts } from '@/lib/mock-data';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { SupplierStartCards } from '@/app/[lang]/(user)/supplier/components/start-cards';
 
 interface PageProps {
     params: { lang: Locale };
@@ -95,27 +96,7 @@ export default async function SupplierDashboardPage({ params: { lang } }: PagePr
             </div>
 
             {/* Stats Grid */}
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                {statsCards.map((stat, index) => {
-                    const Icon = stat.icon;
-                    return (
-                        <Card key={index} className="hover:shadow-lg transition-shadow">
-                            <CardContent className="p-6">
-                                <div className="flex items-center justify-between">
-                                    <div>
-                                        <p className="text-sm font-medium text-muted-foreground">{stat.title}</p>
-                                        <p className="text-3xl font-bold mt-2">{stat.value}</p>
-                                        <p className="text-xs text-muted-foreground mt-1">{stat.description}</p>
-                                    </div>
-                                    <div className={`h-12 w-12 rounded-full flex items-center justify-center ${stat.bgColor}`}>
-                                        <Icon className={`h-6 w-6 ${stat.color}`} />
-                                    </div>
-                                </div>
-                            </CardContent>
-                        </Card>
-                    );
-                })}
-            </div>
+            <SupplierStartCards lang={lang} dict={dict}/>
 
             {/* Live Gold Price Card */}
             <Card className="border-gold-200 bg-gradient-to-br from-gold-50 to-gold-100">
