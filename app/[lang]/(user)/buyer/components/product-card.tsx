@@ -11,6 +11,7 @@ import { useParams } from 'next/navigation';
 import { addToCart } from '@/app/[lang]/(user)/buyer/services/add-to-cart';
 import { likeProduct } from '@/app/[lang]/(user)/buyer/services/like-product';
 import { unlikeProduct } from '@/app/[lang]/(user)/buyer/services/unlike-product';
+import { toast } from 'sonner';
 
 interface ProductCardProps {
     product: any;
@@ -37,6 +38,7 @@ export default function ProductCard({ product, dict, onViewDetails }: ProductCar
                 product_id: product.id,
                 count: 1,
             });
+            toast.success("Product has been added to card successfully!");
         } catch (error) {
             console.error("Add to cart failed:", error);
         } finally {
@@ -110,7 +112,7 @@ export default function ProductCard({ product, dict, onViewDetails }: ProductCar
                         </div>
 
                         <p className="text-xs text-muted-foreground">
-                            {product.details || `${product.karat} · ${product.weight}g`}
+                            {product.supplier.company?.name}
                         </p>
 
                         <div className="flex items-center justify-between pt-2">

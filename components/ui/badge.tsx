@@ -18,6 +18,7 @@ const badgeVariants = cva(
                 'outline-blue':
                     'border border-solid border-neutral-700/50 bg-slate-50/50 text-neutral-700',
                 'text-blue': 'text-neutral-700',
+                error: 'bg-red-500/75 text-white',
             },
             size: {
                 ssm: 'text-xs px-1 py-1',

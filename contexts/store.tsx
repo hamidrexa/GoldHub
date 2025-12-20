@@ -50,7 +50,17 @@ interface ContextProps {
         };
         telegram_bot_url: string;
         telegram_chat_id: number;
-    };
+        company:{
+            name: string;
+            country: string;
+            registration_number: string;
+            tax_id: string;
+            bank_name: string;
+            iban: string;
+            swift: string;
+            currency: string;
+        };
+        }
     setUser: Dispatch<SetStateAction<object>>;
     isUserLoading: boolean;
     setIsUserLoading: Dispatch<SetStateAction<boolean>>;

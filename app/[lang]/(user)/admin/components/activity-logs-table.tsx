@@ -53,7 +53,7 @@ function EventBadge({ event, dict }: { event: string; dict: any }) {
             className: 'bg-red-100 text-red-800 hover:bg-red-100',
         },
     };
-    const config = badges[event]
+    const config = badges[event] ?? 'kyc_submitted'
     return (
         <Badge variant="default" className={config.className}>
             {config.label }

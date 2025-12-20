@@ -16,6 +16,7 @@ import {
     DialogTrigger,
 } from '@/components/ui/dialog';
 import { useUsersKYCData } from '@/app/[lang]/(user)/admin/services/use-users-kyc';
+import { useGlobalContext } from '@/contexts/store';
 
 interface CompanyInfoSectionProps {
     dict: any;
@@ -24,30 +25,15 @@ interface CompanyInfoSectionProps {
 
 export const CompanyInfoSection: React.FC<CompanyInfoSectionProps> = ({ dict, lang }) => {
     const [companyInfo, setCompanyInfo] = useState<CompanyInfo | null>(null);
-    const [loading, setLoading] = useState(true);
     const [isEditing, setIsEditing] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
     const [editData, setEditData] = useState<CompanyInfo>({});
-    const {users} = useUsersKYCData()
-    console.log(users);
+    const {user,isUserLoading} = useGlobalContext()
 
     useEffect(() => {
-        loadCompanyInfo();
-    }, []);
+        setCompanyInfo(user.company)
+    }, [user]);
 
-    const loadCompanyInfo = async () => {
-        try {
-            setLoading(true);
-            const data = users[5].company
-            setCompanyInfo(data);
-            setEditData(data || {});
-        } catch (error) {
-            console.error('Error loading company info:', error);
-            toast.error('Failed to load company information');
-        } finally {
-            setLoading(false);
-        }
-    };
 
     const handleSave = async () => {
         try {
@@ -71,7 +57,7 @@ export const CompanyInfoSection: React.FC<CompanyInfoSectionProps> = ({ dict, la
         }));
     };
 
-    if (loading) {
+    if (isUserLoading) {
         return (
             <Box>
                 <BoxContent className="flex justify-center py-8">
