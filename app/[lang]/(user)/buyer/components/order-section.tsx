@@ -364,7 +364,7 @@ export function OrderSection({ dict, lang, activeTab, searchQuery, viewMode }) {
                     <Table className="min-w-[600px]">
                         <TableHeader>
                             <TableRow>
-                                <TableHead className="bg-card sticky left-0 z-20 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">
+                                <TableHead className="bg-card left-0 z-20 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">
                                     {
                                         dict.marketplace.buyer.ordersPage.table
                                             .orderId
@@ -405,7 +405,7 @@ export function OrderSection({ dict, lang, activeTab, searchQuery, viewMode }) {
                         <TableBody>
                             {filteredHistory.map((order) => (
                                 <TableRow key={order.id}>
-                                    <TableCell className="bg-card sticky left-0 z-10 font-medium shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">
+                                    <TableCell className="bg-card  left-0 z-10 font-medium shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">
                                         {order.id}
                                     </TableCell>
                                     <TableCell>{order.date}</TableCell>
@@ -445,6 +445,16 @@ export function OrderSection({ dict, lang, activeTab, searchQuery, viewMode }) {
                     </Table>
                 </div>
             </div>
+            {selectedOrder && (
+                <OrderDialog
+                    order={selectedOrder}
+                    dict={dict}
+                    lang={lang}
+                    activeTab={activeTab}
+                    searchQuery={searchQuery}
+                    onClose={() => setSelectedOrder(null)}
+                />
+            )}
         </div>
     );
 }

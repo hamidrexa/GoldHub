@@ -140,7 +140,7 @@ export function OrdersTable({ dict, lang, activeTab, searchQuery }) {
                         <Table className="min-w-[700px]">
                             <TableHeader>
                                 <TableRow>
-                                    <TableHead className="bg-card sticky left-0 z-20 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">
+                                    <TableHead className="bg-card left-0 z-20 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">
                                         {
                                             dict.marketplace.supplier.ordersPage
                                                 .table.orderId
@@ -187,7 +187,7 @@ export function OrdersTable({ dict, lang, activeTab, searchQuery }) {
                             <TableBody>
                                 {filteredHistory.map((order) => (
                                     <TableRow key={order.id}>
-                                        <TableCell className="bg-card sticky left-0 z-10 font-medium shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">
+                                        <TableCell className="bg-card left-0 z-10 font-medium shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">
                                             {order.id}
                                         </TableCell>
                                         <TableCell>
