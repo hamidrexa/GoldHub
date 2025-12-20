@@ -90,7 +90,7 @@ export function CatalogContent({
         return filterObj;
     }, [initialSearch, initialCategories, initialKarat, initialMinPrice, initialMaxPrice, initialMinWeight, initialMaxWeight]);
 
-    const { products: list = [], isLoading } = useProductList("", filters);
+    const { products: list = [], isLoading,mutate } = useProductList("", filters);
 
     if (isLoading) {
         return (
@@ -175,6 +175,7 @@ export function CatalogContent({
                 onOpenChange={setIsDetailDialogOpen}
                 product={selectedProduct}
                 dict={dict}
+                mutate={mutate}
             />
         </div>
 

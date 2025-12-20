@@ -153,6 +153,7 @@ export function FavouriteProductTable({ dict, lang ,wishlistItems,isLoading,erro
                 onOpenChange={setIsDetailDialogOpen}
                 product={selectedProduct}
                 dict={dict}
+                mutate={mutate}
             />
         </div>
     );
