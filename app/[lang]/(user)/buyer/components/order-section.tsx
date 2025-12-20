@@ -12,12 +12,14 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
+import { Pagination, PaginationContent, PaginationItem, PaginationPrevious, PaginationNext } from '@/components/ui/pagination';
 import { useOrdersHistory } from '@/app/[lang]/(user)/supplier/services/orders-history';
 import React from 'react';
 import { Badge } from '@/components/ui/badge';
 import { OrderDialog } from '@/app/[lang]/(user)/supplier/components/order-dialog';
 
 export function OrderSection({ dict, lang, activeTab, searchQuery, viewMode }) {
+    const [page, setPage] = React.useState(0);
     const { history = [], isLoading, error } = useOrdersHistory();
     const [selectedOrder, setSelectedOrder] = React.useState<any>(null);
     const filteredHistory = React.useMemo(() => {
@@ -445,6 +447,32 @@ export function OrderSection({ dict, lang, activeTab, searchQuery, viewMode }) {
                     </Table>
                 </div>
             </div>
+            <Pagination className="mt-8">
+                <PaginationContent>
+                    {history?.next && (
+                        <PaginationItem>
+                            <PaginationPrevious
+                                text="قدیمی‌تر"
+                                onClick={() => {
+                                    setPage(page + 1);
+                                }}
+                                isActive
+                            />
+                        </PaginationItem>
+                    )}
+                    {history?.previous && (
+                        <PaginationItem>
+                            <PaginationNext
+                                text="جدید‌تر"
+                                onClick={() => {
+                                    setPage(page - 1);
+                                }}
+                                isActive
+                            />
+                        </PaginationItem>
+                    )}
+                </PaginationContent>
+            </Pagination>
             {selectedOrder && (
                 <OrderDialog
                     order={selectedOrder}

@@ -4,11 +4,13 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import Link from 'next/link';
 import { CheckCircle, Eye, XCircle } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { Pagination, PaginationContent, PaginationItem, PaginationPrevious, PaginationNext } from '@/components/ui/pagination';
 import { useOrdersHistory } from '@/app/[lang]/(user)/supplier/services/orders-history';
 import React from 'react';
 
 export function AdminOrdersTable({dict,lang,activeTab,searchQuery}) {
 
+    const [page, setPage] = React.useState(0);
     const {history,isLoading,error} = useOrdersHistory()
     const filteredOrders = React.useMemo(() => {
         let result = history;
@@ -114,6 +116,32 @@ export function AdminOrdersTable({dict,lang,activeTab,searchQuery}) {
                     </TableBody>
                 </Table>
             </div>
+            <Pagination className="mt-8">
+                <PaginationContent>
+                    {history?.next && (
+                        <PaginationItem>
+                            <PaginationPrevious
+                                text="قدیمی‌تر"
+                                onClick={() => {
+                                    setPage(page + 1);
+                                }}
+                                isActive
+                            />
+                        </PaginationItem>
+                    )}
+                    {history?.previous && (
+                        <PaginationItem>
+                            <PaginationNext
+                                text="جدید‌تر"
+                                onClick={() => {
+                                    setPage(page - 1);
+                                }}
+                                isActive
+                            />
+                        </PaginationItem>
+                    )}
+                </PaginationContent>
+            </Pagination>
         </div>
     )
 }

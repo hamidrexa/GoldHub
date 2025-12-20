@@ -12,6 +12,7 @@ import {
 import { Button } from '@/components/ui/button';
 import React from 'react';
 import { Badge } from '@/components/ui/badge';
+import { Pagination, PaginationContent, PaginationItem, PaginationPrevious, PaginationNext } from '@/components/ui/pagination';
 import { useOrdersHistory } from '@/app/[lang]/(user)/supplier/services/orders-history';
 import { KycDialog } from '@/app/[lang]/(user)/admin/users-kyc/kyc-dialog';
 import { OrderDialog } from '@/app/[lang]/(user)/supplier/components/order-dialog';
@@ -19,6 +20,7 @@ import { updateOrderStatus } from '@/app/[lang]/(user)/supplier/services/update-
 
 export function OrdersTable({ dict, lang, activeTab, searchQuery }) {
     const [selectedOrder, setSelectedOrder] = React.useState<any>(null);
+    const [page, setPage] = React.useState(0);
     const { history = [], isLoading, error,mutate } = useOrdersHistory();
     const filteredHistory = React.useMemo(() => {
         let result = history;
@@ -256,6 +258,33 @@ export function OrdersTable({ dict, lang, activeTab, searchQuery }) {
                     </div>
                 )}
             </div>
+
+            <Pagination className="mt-8">
+                <PaginationContent>
+                    {history?.next && (
+                        <PaginationItem>
+                            <PaginationPrevious
+                                text="قدیمی‌تر"
+                                onClick={() => {
+                                    setPage(page + 1);
+                                }}
+                                isActive
+                            />
+                        </PaginationItem>
+                    )}
+                    {history?.previous && (
+                        <PaginationItem>
+                            <PaginationNext
+                                text="جدید‌تر"
+                                onClick={() => {
+                                    setPage(page - 1);
+                                }}
+                                isActive
+                            />
+                        </PaginationItem>
+                    )}
+                </PaginationContent>
+            </Pagination>
 
             {!!selectedOrder && (
                 <OrderDialog
