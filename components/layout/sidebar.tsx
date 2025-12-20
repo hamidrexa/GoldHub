@@ -105,15 +105,15 @@ export function Sidebar({ dict, lang }: SidebarProps) {
             show: true,
         },
         {
-            title: dict.marketplace?.navigation?.myOrders || 'My Orders',
-            href: `${getLinksLang(lang)}/buyer/orders`,
-            icon: <ShoppingBag className="h-5 w-5" />,
-            show: true,
-        },
-        {
             title: dict.marketplace?.navigation?.cart || 'Cart',
             href: `${getLinksLang(lang)}/buyer/cart`,
             icon: <ShoppingCart className="h-5 w-5" />,
+            show: true,
+        },
+        {
+            title: dict.marketplace?.navigation?.myOrders || 'My Orders',
+            href: `${getLinksLang(lang)}/buyer/orders`,
+            icon: <ShoppingBag className="h-5 w-5" />,
             show: true,
         },
         {

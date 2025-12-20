@@ -120,8 +120,8 @@ export default function ProductDetailDialog({
                             <div className="text-[40px] font-bold text-[#d4af37]">
                                 ${product.price.toLocaleString()}
                             </div>
-                            <div className="text-gray-500 text-sm">
-                                by {product.supplier_name || "Premium Gold Co."}
+                            <div className="text-gray-700 text-xl">
+                                by {product.supplier.company?.name || "Premium Gold Co."}
                             </div>
                         </div>
 
