@@ -379,7 +379,7 @@ export function ProfilePage({ dict, lang }) {
                     </div>
                     <div className="flex flex-col-reverse items-start justify-start gap-6 md:flex-row lg:mt-6 lg:w-full">
                         <div className="w-full space-y-7">
-                            {true && ( //lang === 'fa'
+                            {1 && ( //lang === 'fa'
                                 <div className="space-y-2">
                                     <div className="flex items-center justify-between">
                                         <div className="text-base">

@@ -16,6 +16,7 @@ import {
     DialogTrigger,
 } from '@/components/ui/dialog';
 import { useUsersKYCData } from '@/app/[lang]/(user)/admin/services/use-users-kyc';
+import { useGlobalContext } from '@/contexts/store';
 
 interface CompanyInfoSectionProps {
     dict: any;
@@ -27,15 +28,11 @@ export const CompanyInfoSection: React.FC<CompanyInfoSectionProps> = ({ dict, la
     const [isEditing, setIsEditing] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
     const [editData, setEditData] = useState<CompanyInfo>({});
-    const {users,isLoading,mutate} = useUsersKYCData()
+    const {user,isUserLoading} = useGlobalContext()
 
     useEffect(() => {
-        if (!isLoading && users?.length > 0) {
-            const company = users[0].company;
-            setCompanyInfo(company ?? null);
-            setEditData(company ?? {});
-        }
-    }, [users, isLoading]);
+        setCompanyInfo(user.company)
+    }, [user]);
 
 
     const handleSave = async () => {
@@ -60,7 +57,7 @@ export const CompanyInfoSection: React.FC<CompanyInfoSectionProps> = ({ dict, la
         }));
     };
 
-    if (isLoading) {
+    if (isUserLoading) {
         return (
             <Box>
                 <BoxContent className="flex justify-center py-8">
