@@ -20,7 +20,7 @@ import { OrderDialog } from '@/app/[lang]/(user)/supplier/components/order-dialo
 
 export function OrderSection({ dict, lang, activeTab, searchQuery, viewMode }) {
     const [page, setPage] = React.useState(0);
-    const { history = [], isLoading, error } = useOrdersHistory();
+    const { history = [], previous,next,isLoading, error } = useOrdersHistory(page);
     const [selectedOrder, setSelectedOrder] = React.useState<any>(null);
     const filteredHistory = React.useMemo(() => {
         let result = history;
@@ -348,6 +348,26 @@ export function OrderSection({ dict, lang, activeTab, searchQuery, viewMode }) {
                     </CardContent>
                 </Card>
             ))}
+            <Pagination className="z-50 mt-8">
+                <PaginationContent>
+                    {!!previous && (
+                        <PaginationItem>
+                            <PaginationPrevious
+                                text="previous"
+                                onClick={() => setPage(page - 1)}
+                            />
+                        </PaginationItem>
+                    )}
+                    {!!next && (
+                        <PaginationItem>
+                            <PaginationNext
+                                text="next"
+                                onClick={() => setPage(page + 1)}
+                            />
+                        </PaginationItem>
+                    )}
+                </PaginationContent>
+            </Pagination>
             {selectedOrder && (
                 <OrderDialog
                     order={selectedOrder}
@@ -447,32 +467,7 @@ export function OrderSection({ dict, lang, activeTab, searchQuery, viewMode }) {
                     </Table>
                 </div>
             </div>
-            <Pagination className="mt-8">
-                <PaginationContent>
-                    {history?.next && (
-                        <PaginationItem>
-                            <PaginationPrevious
-                                text="قدیمی‌تر"
-                                onClick={() => {
-                                    setPage(page + 1);
-                                }}
-                                isActive
-                            />
-                        </PaginationItem>
-                    )}
-                    {history?.previous && (
-                        <PaginationItem>
-                            <PaginationNext
-                                text="جدید‌تر"
-                                onClick={() => {
-                                    setPage(page - 1);
-                                }}
-                                isActive
-                            />
-                        </PaginationItem>
-                    )}
-                </PaginationContent>
-            </Pagination>
+
             {selectedOrder && (
                 <OrderDialog
                     order={selectedOrder}

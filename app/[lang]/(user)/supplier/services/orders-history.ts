@@ -2,13 +2,16 @@
 import useSWR from 'swr';
 import Cookies from 'js-cookie';
 
-export function useOrdersHistory(id?: string | number , status?:string) {
+export function useOrdersHistory(page?:number,id?: string | number , status?:string) {
     const params: Record<string, any> = {
-        page_size: 10,
+        page_size: 5,
     };
 
     if (!!id) {
         params.order_id = id;
+    }
+    if (!!page) {
+        params.page = page;
     }
     if (!!status) {
         params.status = status;
@@ -25,6 +28,8 @@ export function useOrdersHistory(id?: string | number , status?:string) {
     return {
         history: data?.results,
         count:data?.count,
+        next:data?.next,
+        previous:data?.previous,
         isLoading,
         error,
         mutate,
