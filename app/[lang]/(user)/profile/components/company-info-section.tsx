@@ -24,30 +24,19 @@ interface CompanyInfoSectionProps {
 
 export const CompanyInfoSection: React.FC<CompanyInfoSectionProps> = ({ dict, lang }) => {
     const [companyInfo, setCompanyInfo] = useState<CompanyInfo | null>(null);
-    const [loading, setLoading] = useState(true);
     const [isEditing, setIsEditing] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
     const [editData, setEditData] = useState<CompanyInfo>({});
-    const {users} = useUsersKYCData()
-    console.log(users);
+    const {users,isLoading,mutate} = useUsersKYCData()
 
     useEffect(() => {
-        loadCompanyInfo();
-    }, []);
-
-    const loadCompanyInfo = async () => {
-        try {
-            setLoading(true);
-            const data = users[5].company
-            setCompanyInfo(data);
-            setEditData(data || {});
-        } catch (error) {
-            console.error('Error loading company info:', error);
-            toast.error('Failed to load company information');
-        } finally {
-            setLoading(false);
+        if (!isLoading && users?.length > 0) {
+            const company = users[0].company;
+            setCompanyInfo(company ?? null);
+            setEditData(company ?? {});
         }
-    };
+    }, [users, isLoading]);
+
 
     const handleSave = async () => {
         try {
@@ -71,7 +60,7 @@ export const CompanyInfoSection: React.FC<CompanyInfoSectionProps> = ({ dict, la
         }));
     };
 
-    if (loading) {
+    if (isLoading) {
         return (
             <Box>
                 <BoxContent className="flex justify-center py-8">
