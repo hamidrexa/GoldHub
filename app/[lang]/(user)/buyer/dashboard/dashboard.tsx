@@ -10,6 +10,7 @@ import { mockProducts } from '@/lib/mock-data';
 import { mockWishlist } from '@/lib/buyer-mock-data';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { BuyerStartCards } from '@/app/[lang]/(user)/buyer/components/start-cards';
 
 interface BuyerDashboardProps {
     dict: any;
@@ -79,63 +80,7 @@ export default function BuyerDashboard({ dict }: BuyerDashboardProps) {
             </div>
 
             {/* Stats Cards */}
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                <Card>
-                    <CardContent className="p-6">
-                        <div className="flex items-center justify-between">
-                            <div>
-                                <p className="text-sm font-medium text-muted-foreground">{dict.marketplace.buyer.activeOrders}</p>
-                                <p className="text-3xl font-bold mt-2">{activeOrders}</p>
-                            </div>
-                            <div className="h-12 w-12 bg-gold-100 rounded-full flex items-center justify-center">
-                                <ShoppingBag className="h-6 w-6 text-gold-600" />
-                            </div>
-                        </div>
-                    </CardContent>
-                </Card>
-
-                <Card>
-                    <CardContent className="p-6">
-                        <div className="flex items-center justify-between">
-                            <div>
-                                <p className="text-sm font-medium text-muted-foreground">{dict.marketplace.buyer.totalSpent}</p>
-                                <p className="text-3xl font-bold mt-2">${totalSpent.toLocaleString()}</p>
-                            </div>
-                            <div className="h-12 w-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                                <DollarSign className="h-6 w-6 text-yellow-600" />
-                            </div>
-                        </div>
-                    </CardContent>
-                </Card>
-
-                <Card>
-                    <CardContent className="p-6">
-                        <div className="flex items-center justify-between">
-                            <div>
-                                <p className="text-sm font-medium text-muted-foreground">{dict.marketplace.buyer.pendingDeliveries}</p>
-                                <p className="text-3xl font-bold mt-2">{pendingDeliveries}</p>
-                            </div>
-                            <div className="h-12 w-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                                <Clock className="h-6 w-6 text-yellow-600" />
-                            </div>
-                        </div>
-                    </CardContent>
-                </Card>
-
-                <Card>
-                    <CardContent className="p-6">
-                        <div className="flex items-center justify-between">
-                            <div>
-                                <p className="text-sm font-medium text-muted-foreground">{dict.marketplace.buyer.savedItems}</p>
-                                <p className="text-3xl font-bold mt-2">{savedItems}</p>
-                            </div>
-                            <div className="h-12 w-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                                <Heart className="h-6 w-6 text-yellow-600" />
-                            </div>
-                        </div>
-                    </CardContent>
-                </Card>
-            </div>
+            <BuyerStartCards lang={lang} dict={dict}/>
 
             <div className="grid gap-6 grid-cols-1 lg:grid-cols-5">
                 {/* Market Prices */}

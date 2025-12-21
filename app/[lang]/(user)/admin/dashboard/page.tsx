@@ -6,6 +6,7 @@ import { ShoppingCart, Users, DollarSign, Clock, AlertCircle, ArrowRight } from 
 import { mockDashboardStats } from '@/lib/mock-data';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { AdminStartCards } from '@/app/[lang]/(user)/admin/components/start-cards';
 
 type Props = {
     params: { lang: Locale };
@@ -36,49 +37,6 @@ export default async function DashboardPage({ params: { lang } }: Props) {
     const dict = await getDictionary(lang);
     const stats = mockDashboardStats;
 
-    const statsCards = [
-        {
-            title: dict.marketplace.admin.totalOrders,
-            value: stats.totalOrders,
-            icon: ShoppingCart,
-            description: dict.marketplace.admin.allTimeOrders,
-            color: 'text-navy-600',
-            bgColor: 'bg-navy-50',
-        },
-        {
-            title: dict.marketplace.admin.pendingOrders,
-            value: stats.pendingOrders,
-            icon: Clock,
-            description: dict.marketplace.admin.awaitingAction,
-            color: 'text-gold-600',
-            bgColor: 'bg-gold-50',
-        },
-        {
-            title: dict.marketplace.admin.totalRevenue,
-            value: `$${stats.totalRevenue.toLocaleString()}`,
-            icon: DollarSign,
-            description: dict.marketplace.admin.thisMonth,
-            color: 'text-emerald-600',
-            bgColor: 'bg-emerald-50',
-        },
-        {
-            title: dict.marketplace.admin.activeUsers,
-            value: stats.activeUsers,
-            icon: Users,
-            description: dict.marketplace.admin.registeredUsers,
-            color: 'text-navy-500',
-            bgColor: 'bg-navy-50',
-        },
-        {
-            title: dict.marketplace.admin.pendingKyc,
-            value: stats.pendingKyc,
-            icon: AlertCircle,
-            description: dict.marketplace.admin.requiresReview,
-            color: 'text-amber-800',
-            bgColor: 'bg-amber-50',
-        },
-    ];
-
     return (
         <div className="space-y-6">
             {/* Header */}
@@ -96,27 +54,7 @@ export default async function DashboardPage({ params: { lang } }: Props) {
             </div>
 
             {/* Stats Grid */}
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
-                {statsCards.map((stat, index) => {
-                    const Icon = stat.icon;
-                    return (
-                        <Card key={index} className="hover:shadow-lg transition-shadow">
-                            <CardContent className="p-6">
-                                <div className="flex items-center justify-between">
-                                    <div>
-                                        <p className="text-sm font-medium text-muted-foreground">{stat.title}</p>
-                                        <p className="text-3xl font-bold mt-2">{stat.value}</p>
-                                        <p className="text-xs text-muted-foreground mt-1">{stat.description}</p>
-                                    </div>
-                                    <div className={`h-12 w-12 rounded-full flex items-center justify-center ${stat.bgColor}`}>
-                                        <Icon className={`h-6 w-6 ${stat.color}`} />
-                                    </div>
-                                </div>
-                            </CardContent>
-                        </Card>
-                    );
-                })}
-            </div>
+            <AdminStartCards dict={dict} lang={lang}/>
 
             <div className="grid gap-4 grid-cols-1 lg:grid-cols-7">
                 {/* Recent Activity */}

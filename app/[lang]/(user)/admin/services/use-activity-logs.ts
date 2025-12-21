@@ -14,6 +14,7 @@ export function useActivityLogs() {
 
     return {
         logs: data?.results || [],
+        count:data?.count,
         isLoading,
         error,
     };

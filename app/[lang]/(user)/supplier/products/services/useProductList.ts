@@ -42,6 +42,7 @@ export function useProductList(supplierId?: string, filters?: ProductListFilters
 
     return {
         products: data?.results,
+        count:data?.count,
         isLoading,
         error,
         mutate,

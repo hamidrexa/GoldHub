@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { ShoppingBag, Loader2 } from 'lucide-react';
+import { ShoppingBag, Loader2, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { CartItemControls } from './cart-item-controls';
 
@@ -56,7 +56,7 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
             await mutate();
             toast.success("Product has been added to card successfully!");
         } catch (err) {
-            console.error('Failed to update cart on server:', err);
+            toast.error(err?.error.detail)
             // UI already updated, just log the error
         }
     };
@@ -97,7 +97,7 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
 
     if (cardLoading) {
         return (
-            <div className="col-span-full text-center py-12">
+            <div className="col-span-full py-12 text-center">
                 <p className="text-muted-foreground">Loading...</p>
             </div>
         );
@@ -105,146 +105,249 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
 
     if (details.items.length === 0) {
         return (
-            <Card className="p-12">
-                <div className="text-center space-y-4">
-                    <ShoppingBag className="h-16 w-16 text-muted-foreground mx-auto" />
+            <>
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                        <h3 className="text-lg font-semibold">{dict.marketplace.buyer.cartPage.empty.title}</h3>
-                        <p className="text-sm text-muted-foreground mt-2">
-                            {dict.marketplace.buyer.cartPage.empty.description}
+                        <h1 className="text-3xl font-bold tracking-tight">
+                            {dict.marketplace.buyer.cartPage.title}
+                        </h1>
+                        <p className="text-muted-foreground">
+                            {details.items.length}{' '}
+                            {dict.marketplace.buyer.cartPage.itemsInCart}
                         </p>
                     </div>
                     <Link href={`/${lang}/buyer/catalog`}>
-                        <Button>{dict.marketplace.buyer.cartPage.empty.browseCatalog}</Button>
+                        <Button variant="outline" className="w-full sm:w-auto">
+                            <ArrowLeft className="mr-2 h-4 w-4" />
+                            {dict.marketplace.buyer.cartPage.continueShopping}
+                        </Button>
                     </Link>
                 </div>
-            </Card>
+                <Card className="p-12">
+                    <div className="space-y-4 text-center">
+                        <ShoppingBag className="text-muted-foreground mx-auto h-16 w-16" />
+                        <div>
+                            <h3 className="text-lg font-semibold">
+                                {dict.marketplace.buyer.cartPage.empty.title}
+                            </h3>
+                            <p className="text-muted-foreground mt-2 text-sm">
+                                {
+                                    dict.marketplace.buyer.cartPage.empty
+                                        .description
+                                }
+                            </p>
+                        </div>
+                        <Link href={`/${lang}/buyer/catalog`}>
+                            <Button>
+                                {
+                                    dict.marketplace.buyer.cartPage.empty
+                                        .browseCatalog
+                                }
+                            </Button>
+                        </Link>
+                    </div>
+                </Card>
+            </>
         );
     }
 
     return (
-        <div className="grid lg:grid-cols-3 gap-6">
+        <div className="flex flex-col gap-8">
             {/* Cart Items */}
-            <div className="lg:col-span-2 space-y-4">
-                {details.items.map((item) => (
-                    <Card key={item.product.id}>
-                        <CardContent className="p-4 sm:p-6">
-                            <div className="flex gap-4">
-                                {/* Product Image */}
-                                <div className="w-24 h-24 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                    {item.product.images ? (
-                                        <img
-                                            src={item.product.images[0]?.image}
-                                            alt={item.product.title}
-                                            className="w-full h-full object-cover rounded-lg"
-                                        />
-                                    ) : (
-                                        <ShoppingBag className="h-8 w-8 text-gray-400" />
-                                    )}
-                                </div>
-
-                                {/* Product Details */}
-                                <div className="flex-1 min-w-0">
-                                    <div className="flex flex-col sm:flex-row sm:justify-between gap-2 sm:gap-4">
-                                        <div className="flex-1">
-                                            <h3 className="font-semibold">{item.product.title}</h3>
-                                            <p className="text-sm text-muted-foreground mt-1">
-                                                {item.product.details}
-                                            </p>
-                                            <p className="text-sm text-muted-foreground mt-1">
-                                                ${item.product.price.toLocaleString()} {dict.marketplace.buyer.cartPage.item.each}
-                                            </p>
-                                        </div>
-
-                                        {/* Price */}
-                                        <div className="text-left sm:text-right mt-2 sm:mt-0">
-                                            <p className="text-lg font-bold">
-                                                ${(item.product.price * item.count).toLocaleString()}
-                                            </p>
-                                        </div>
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                    <h1 className="text-3xl font-bold tracking-tight">
+                        {dict.marketplace.buyer.cartPage.title}
+                    </h1>
+                    <p className="text-muted-foreground">
+                        {details.items.length}{' '}
+                        {dict.marketplace.buyer.cartPage.itemsInCart}
+                    </p>
+                </div>
+                <Link href={`/${lang}/buyer/catalog`}>
+                    <Button variant="outline" className="w-full sm:w-auto">
+                        <ArrowLeft className="mr-2 h-4 w-4" />
+                        {dict.marketplace.buyer.cartPage.continueShopping}
+                    </Button>
+                </Link>
+            </div>
+            <div className="grid gap-6 lg:grid-cols-3">
+                <div className="space-y-4 lg:col-span-2">
+                    {details.items.map((item) => (
+                        <Card key={item.product.id}>
+                            <CardContent className="p-4 sm:p-6">
+                                <div className="flex gap-4">
+                                    {/* Product Image */}
+                                    <div
+                                        className="flex h-24 w-24 flex-shrink-0 items-center justify-center rounded-lg bg-gray-100">
+                                        {item.product.images ? (
+                                            <img
+                                                src={
+                                                    item.product.images[0]
+                                                        ?.image
+                                                }
+                                                alt={item.product.title}
+                                                className="h-full w-full rounded-lg object-cover"
+                                            />
+                                        ) : (
+                                            <ShoppingBag className="h-8 w-8 text-gray-400" />
+                                        )}
                                     </div>
 
-                                    {/* Quantity Controls */}
-                                    <div className="mt-4">
-                                        <CartItemControls
-                                            productId={item.product.id}
-                                            initialQuantity={item.count}
-                                            maxStock={item.product.inventory}
-                                            dict={dict}
-                                            onQuantityChange={handleQuantityChange}
-                                            onRemove={handleRemove}
-                                        />
+                                    {/* Product Details */}
+                                    <div className="min-w-0 flex-1">
+                                        <div className="flex flex-col gap-2 sm:flex-row sm:justify-between sm:gap-4">
+                                            <div className="flex-1">
+                                                <h3 className="font-semibold">
+                                                    {item.product.title}
+                                                </h3>
+                                                <p className="text-muted-foreground mt-1 text-sm">
+                                                    {item.product.details}
+                                                </p>
+                                                <p className="text-muted-foreground mt-1 text-sm">
+                                                    $
+                                                    {item.product.price.toLocaleString()}{' '}
+                                                    {
+                                                        dict.marketplace.buyer
+                                                            .cartPage.item.each
+                                                    }
+                                                </p>
+                                            </div>
+
+                                            {/* Price */}
+                                            <div className="mt-2 text-left sm:mt-0 sm:text-right">
+                                                <p className="text-lg font-bold">
+                                                    $
+                                                    {(
+                                                        item.product.price *
+                                                        item.count
+                                                    ).toLocaleString()}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        {/* Quantity Controls */}
+                                        <div className="mt-4">
+                                            <CartItemControls
+                                                productId={item.product.id}
+                                                initialQuantity={item.count}
+                                                maxStock={
+                                                    item.product.inventory
+                                                }
+                                                dict={dict}
+                                                onQuantityChange={
+                                                    handleQuantityChange
+                                                }
+                                                onRemove={handleRemove}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </div>
+                <div className="lg:col-span-1">
+                    <Card className="sticky top-6 overflow-hidden">
+                        <CardHeader className="pb-3">
+                            <CardTitle className="text-base sm:text-lg">
+                                {dict.marketplace.buyer.cartPage.summary.title}
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="flex flex-col justify-center space-y-4 pt-0">
+                            <div className="space-y-3 rounded-lg bg-gray-50/50 p-3">
+                                <div className="flex justify-between gap-2 text-xs sm:text-sm">
+                                <span className="text-muted-foreground truncate">
+                                    {
+                                        dict.marketplace.buyer.cartPage.summary
+                                            .subtotal
+                                    }
+                                </span>
+                                    <span className="whitespace-nowrap font-medium">
+                                    ${subtotal?.toLocaleString() || '0'}
+                                </span>
+                                </div>
+                                <div className="flex justify-between gap-2 text-xs sm:text-sm">
+                                <span className="text-muted-foreground truncate">
+                                    {
+                                        dict.marketplace.buyer.cartPage.summary
+                                            .tax
+                                    }
+                                </span>
+                                    <span className="whitespace-nowrap font-medium">
+                                    ${tax?.toFixed(2) || '0.00'}
+                                </span>
+                                </div>
+                                <div className="flex justify-between gap-2 text-xs sm:text-sm">
+                                <span className="text-muted-foreground truncate">
+                                    {
+                                        dict.marketplace.buyer.cartPage.summary
+                                            .shipping
+                                    }
+                                </span>
+                                    <span className="whitespace-nowrap font-medium">
+                                    {shipping === 0
+                                        ? dict.marketplace.buyer.cartPage
+                                            .summary.free
+                                        : `$${shipping}`}
+                                </span>
+                                </div>
+                                {shipping === 0 && (
+                                    <p className="mt-2 text-xs text-green-600">
+                                        {
+                                            dict.marketplace.buyer.cartPage.summary
+                                                .freeShippingMsg
+                                        }
+                                    </p>
+                                )}
                             </div>
+
+                            <Separator className="my-2" />
+
+                            <div
+                                className="mx-3 flex justify-between gap-2 bg-blue-50/50 px-6 py-3 text-base font-bold sm:text-lg">
+                            <span className="truncate">
+                                {dict.marketplace.buyer.cartPage.summary.total}
+                            </span>
+                                <span className="whitespace-nowrap">
+                                ${total?.toLocaleString() || '0'}
+                            </span>
+                            </div>
+
+                            {error && (
+                                <div className="rounded-lg border border-red-200 bg-red-50 p-3">
+                                    <p className="text-xs text-red-700 sm:text-sm">
+                                        {error}
+                                    </p>
+                                </div>
+                            )}
+
+                            <Button
+                                className="mx-3 h-10 text-sm sm:h-12 sm:text-base"
+                                onClick={handleCheckout}
+                                disabled={isCheckingOut}
+                            >
+                                {isCheckingOut ? (
+                                    <>
+                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                        Processing...
+                                    </>
+                                ) : (
+                                    dict.marketplace.buyer.cartPage.summary.checkout
+                                )}
+                            </Button>
+
+                            <p className="text-muted-foreground text-center text-xs">
+                                {
+                                    dict.marketplace.buyer.cartPage.summary
+                                        .secureCheckout
+                                }
+                            </p>
                         </CardContent>
                     </Card>
-                ))}
+                </div>
             </div>
-
             {/* Order Summary */}
-            <div className="lg:col-span-1">
-                <Card className="sticky top-6 overflow-hidden">
-                    <CardHeader className="pb-3">
-                        <CardTitle className="text-base sm:text-lg">{dict.marketplace.buyer.cartPage.summary.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-4 pt-0">
-                        <div className="space-y-3 bg-gray-50/50 rounded-lg p-3">
-                            <div className="flex justify-between text-xs sm:text-sm gap-2">
-                                <span className="text-muted-foreground truncate">{dict.marketplace.buyer.cartPage.summary.subtotal}</span>
-                                <span className="font-medium whitespace-nowrap">${subtotal?.toLocaleString() || '0'}</span>
-                            </div>
-                            <div className="flex justify-between text-xs sm:text-sm gap-2">
-                                <span className="text-muted-foreground truncate">{dict.marketplace.buyer.cartPage.summary.tax}</span>
-                                <span className="font-medium whitespace-nowrap">${tax?.toFixed(2) || '0.00'}</span>
-                            </div>
-                            <div className="flex justify-between text-xs sm:text-sm gap-2">
-                                <span className="text-muted-foreground truncate">{dict.marketplace.buyer.cartPage.summary.shipping}</span>
-                                <span className="font-medium whitespace-nowrap">
-                                    {shipping === 0 ? dict.marketplace.buyer.cartPage.summary.free : `$${shipping}`}
-                                </span>
-                            </div>
-                            {shipping === 0 && (
-                                <p className="text-xs text-green-600 mt-2">
-                                    {dict.marketplace.buyer.cartPage.summary.freeShippingMsg}
-                                </p>
-                            )}
-                        </div>
-
-                        <Separator className="my-2" />
-
-                        <div className="flex justify-between font-bold text-base sm:text-lg gap-2 bg-blue-50/50 -mx-6 px-6 py-3">
-                            <span className="truncate">{dict.marketplace.buyer.cartPage.summary.total}</span>
-                            <span className="whitespace-nowrap">${total?.toLocaleString() || '0'}</span>
-                        </div>
-
-                        {error && (
-                            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                                <p className="text-xs sm:text-sm text-red-700">{error}</p>
-                            </div>
-                        )}
-
-                        <Button
-                            className="w-full h-10 sm:h-12 text-sm sm:text-base"
-                            onClick={handleCheckout}
-                            disabled={isCheckingOut}
-                        >
-                            {isCheckingOut ? (
-                                <>
-                                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                                    Processing...
-                                </>
-                            ) : (
-                                dict.marketplace.buyer.cartPage.summary.checkout
-                            )}
-                        </Button>
-
-                        <p className="text-xs text-center text-muted-foreground">
-                            {dict.marketplace.buyer.cartPage.summary.secureCheckout}
-                        </p>
-                    </CardContent>
-                </Card>
-            </div>
         </div>
     );
 }

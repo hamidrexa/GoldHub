@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Dialog,
     DialogContent,
@@ -13,12 +13,15 @@ import { useParams } from 'next/navigation';
 import { addToCart } from '@/app/[lang]/(user)/buyer/services/add-to-cart';
 import { cn } from '@/libs/utils';
 import { toast } from 'sonner';
+import { likeProduct } from '@/app/[lang]/(user)/buyer/services/like-product';
+import { unlikeProduct } from '@/app/[lang]/(user)/buyer/services/unlike-product';
 
 interface ProductDetailDialogProps {
     open: boolean;
     onOpenChange: (open: boolean) => void;
     product: any;
     dict: any;
+    mutate:any;
 }
 
 export default function ProductDetailDialog({
@@ -26,6 +29,7 @@ export default function ProductDetailDialog({
     onOpenChange,
     product,
     dict,
+    mutate,
 }: ProductDetailDialogProps) {
     const [activeImageIndex, setActiveImageIndex] = useState(0);
     const [isAddingToCart, setIsAddingToCart] = useState(false);
@@ -33,6 +37,12 @@ export default function ProductDetailDialog({
     const [bookmarkId, setBookMarkId] = useState(product?.bookmarked_by_user?.id);
     const params = useParams();
     const lang = params.lang || 'en';
+
+    useEffect(() => {
+        setIsFavorite(!!product?.bookmarked_by_user);
+        setBookMarkId(product?.bookmarked_by_user?.id);
+    }, [product]);
+
 
     if (!product) return null;
 
@@ -45,16 +55,43 @@ export default function ProductDetailDialog({
                 product_id: product.id,
                 count: 1, // Default to 1 as per redesigned UI
             });
+            mutate();
             onOpenChange(false);
             toast.success("Product has been added to card successfully!");
         } catch (error) {
-            console.error("Add to cart failed:", error);
+            toast.error(error?.error.detail)
         } finally {
             setIsAddingToCart(false);
         }
     };
 
+    const followHandler = async (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        try {
+            if (!isFavorite) {
+                let res
+                res = await likeProduct({
+                    object_id: product.id,
+                    title: 'product',
+                    content_type: 132,
+                });
+                setBookMarkId(res.id)
+            } else {
+                await unlikeProduct(bookmarkId);
+            }
+            setIsFavorite(!isFavorite); // optimistic update
+            mutate();
+        } catch (error) {
+            // rollback on failure
+            setIsFavorite(!isFavorite);
+            console.error("Bookmark toggle failed:", error);
+        }
+    };
+
     const productImages = product.images || [];
+
+
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
@@ -120,8 +157,8 @@ export default function ProductDetailDialog({
                             <div className="text-[40px] font-bold text-[#d4af37]">
                                 ${product.price.toLocaleString()}
                             </div>
-                            <div className="text-gray-500 text-sm">
-                                by {product.supplier_name || "Premium Gold Co."}
+                            <div className="text-gray-700 text-xl">
+                                by {product.supplier.company?.name || "Premium Gold Co."}
                             </div>
                         </div>
 
@@ -164,6 +201,7 @@ export default function ProductDetailDialog({
                                 Add to Cart
                             </Button>
                             <Button
+                                onClick={followHandler}
                                 variant="outline"
                                 className="w-[52px] h-[52px] p-0 border-gray-200 rounded-lg flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-gray-50"
                             >

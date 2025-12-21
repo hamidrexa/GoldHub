@@ -190,7 +190,7 @@ export default function ProductFormDialog({
         <>
             <Dialog open={open} onOpenChange={onOpenChange}>
                 <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto w-[95vw] sm:w-full">
-                    <DialogHeader>
+                    <DialogHeader className="items-start">
                         <DialogTitle>{product ? dict.marketplace.supplier.productFormDialog.title.edit : dict.marketplace.supplier.productFormDialog.title.add}</DialogTitle>
                         <DialogDescription>
                             {product ? dict.marketplace.supplier.productFormDialog.description.edit : dict.marketplace.supplier.productFormDialog.description.add}

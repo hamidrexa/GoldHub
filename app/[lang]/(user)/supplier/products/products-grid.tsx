@@ -131,7 +131,7 @@ export function ProductsGrid({ dict }: ProductsGridProps) {
                                 {product.title}
                             </h3>
                             <p className="text-muted-foreground text-xs">
-                                {product.details}
+                                {product.supplier.company?.name}
                             </p>
                         </div>
 

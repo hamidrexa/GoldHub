@@ -12,6 +12,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Eye } from 'lucide-react';
 import Link from 'next/link';
+import { Pagination, PaginationContent, PaginationItem, PaginationPrevious, PaginationNext } from '@/components/ui/pagination';
 import { useUsersKYCData } from '@/app/[lang]/(user)/admin/services/use-users-kyc';
 import { KycDialog } from '@/app/[lang]/(user)/admin/users-kyc/kyc-dialog';
 
@@ -72,6 +73,7 @@ export function UsersKycTable({
 }: UsersKycTableProps) {
     const { users, isLoading, error,mutate } = useUsersKYCData();
     const [selectedUser, setSelectedUser] = React.useState<any>(null);
+    const [page, setPage] = React.useState(0);
 
     if (isLoading) return <p className="py-8 text-center">Loading...</p>;
     if (error)
@@ -84,7 +86,7 @@ export function UsersKycTable({
         id: user.id,
         name: user.username,
         email: user.email ?? '-',
-        company: user.company?.name ?? '-',
+        company: user.company ?? '-',
         roles: user.groups ?? [],
         kycStatus: (() => {
             const groups = user.groups || [];
@@ -217,7 +219,7 @@ export function UsersKycTable({
                                         </TableCell>
 
                                         <TableCell>{user.email}</TableCell>
-                                        <TableCell>{user.company}</TableCell>
+                                        <TableCell>{user.company?.name}</TableCell>
 
                                         <TableCell className="flex gap-1">
                                             {user.roles.map(
@@ -267,6 +269,32 @@ export function UsersKycTable({
                     </Table>
                 </div>
             </div>
+            <Pagination className="mt-8">
+                <PaginationContent>
+                    {users?.next && (
+                        <PaginationItem>
+                            <PaginationPrevious
+                                text="قدیمی‌تر"
+                                onClick={() => {
+                                    setPage(page + 1);
+                                }}
+                                isActive
+                            />
+                        </PaginationItem>
+                    )}
+                    {users?.previous && (
+                        <PaginationItem>
+                            <PaginationNext
+                                text="جدید‌تر"
+                                onClick={() => {
+                                    setPage(page - 1);
+                                }}
+                                isActive
+                            />
+                        </PaginationItem>
+                    )}
+                </PaginationContent>
+            </Pagination>
 
             {/* KYC Dialog */}
             {!!selectedUser && (

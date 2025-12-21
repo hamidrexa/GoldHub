@@ -10,6 +10,7 @@ import {
     TableRow,
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
+import { Pagination, PaginationContent, PaginationItem, PaginationPrevious, PaginationNext } from '@/components/ui/pagination';
 import { useActivityLogs } from '@/app/[lang]/(user)/admin/services/use-activity-logs';
 import { AuditLog } from '@/lib/mock-data';
 
@@ -72,6 +73,7 @@ export function ActivityLogsTable({
     eventFilter = 'all',
     dict,
 }: ActivityLogsTableProps) {
+    const [page, setPage] = React.useState(0);
     const { logs, isLoading, error } = useActivityLogs();
 
     if (isLoading) return <p className="py-8 text-center">Loading...</p>;
@@ -194,6 +196,32 @@ export function ActivityLogsTable({
                     </TableBody>
                 </Table>
             </div>
+            <Pagination className="mt-8">
+                <PaginationContent>
+                    {logs?.next && (
+                        <PaginationItem>
+                            <PaginationPrevious
+                                text="قدیمی‌تر"
+                                onClick={() => {
+                                    setPage(page + 1);
+                                }}
+                                isActive
+                            />
+                        </PaginationItem>
+                    )}
+                    {logs?.previous && (
+                        <PaginationItem>
+                            <PaginationNext
+                                text="جدید‌تر"
+                                onClick={() => {
+                                    setPage(page - 1);
+                                }}
+                                isActive
+                            />
+                        </PaginationItem>
+                    )}
+                </PaginationContent>
+            </Pagination>
         </div>
     );
 }
