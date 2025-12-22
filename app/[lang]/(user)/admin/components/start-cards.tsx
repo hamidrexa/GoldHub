@@ -13,8 +13,8 @@ import { useActivityLogs } from '@/app/[lang]/(user)/admin/services/use-activity
 
 export function AdminStartCards({dict,lang}) {
     const {count:usersCount,isLoading,error} = useUsersKYCData()
-    const {count:submittedHistory,isLoading:isSubmittedLoading,error:submittedError} = useOrdersHistory(null,"Submitted");
-    const {count:paidHistory,isLoading:isPaidLoading,error:painError} = useOrdersHistory(null,"Paid");
+    const {count:submittedHistory,isLoading:isSubmittedLoading,error:submittedError} = useOrdersHistory(null,null,"Submitted");
+    const {count:paidHistory,isLoading:isPaidLoading,error:painError} = useOrdersHistory(null,null,"Paid");
     const { count:logsCount, isLoading:isActivityLoading, error:activityError } = useActivityLogs();
 
     const totalUsers = usersCount;

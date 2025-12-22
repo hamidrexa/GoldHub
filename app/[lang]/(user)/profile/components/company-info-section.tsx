@@ -15,7 +15,6 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '@/components/ui/dialog';
-import { useUsersKYCData } from '@/app/[lang]/(user)/admin/services/use-users-kyc';
 import { useGlobalContext } from '@/contexts/store';
 
 interface CompanyInfoSectionProps {

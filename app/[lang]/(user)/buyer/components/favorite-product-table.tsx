@@ -4,7 +4,6 @@ import { Card } from '@/components/ui/card';
 import { Heart, Package as PackageIcon, ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { useProductList } from '@/app/[lang]/(user)/supplier/products/services/useProductList';
 import React, { useState } from 'react';
 import { unlikeProduct } from '@/app/[lang]/(user)/buyer/services/unlike-product';
 import ProductDetailDialog from '@/app/[lang]/(user)/buyer/components/product-detail-dialog';

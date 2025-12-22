@@ -20,7 +20,7 @@ import { OrderDialog } from '@/app/[lang]/(user)/supplier/components/order-dialo
 
 export function OrderSection({ dict, lang, activeTab, searchQuery, viewMode }) {
     const [page, setPage] = React.useState(0);
-    const { history = [], previous,next,isLoading, error } = useOrdersHistory(page);
+    const { history = [], previous,next,isLoading, error } = useOrdersHistory(page,null,null,"buyer");
     const [selectedOrder, setSelectedOrder] = React.useState<any>(null);
     const filteredHistory = React.useMemo(() => {
         let result = history;

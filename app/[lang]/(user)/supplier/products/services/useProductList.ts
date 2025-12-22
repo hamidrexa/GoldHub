@@ -13,14 +13,17 @@ export interface ProductListFilters {
     is_bookmarked?: boolean;
 }
 
-export function useProductList(supplierId?: string, filters?: ProductListFilters,isBookMarked=false) {
+export function useProductList(page?:number,supplierId?: string, filters?: ProductListFilters,isBookMarked=false) {
     // Build params object, only including defined values
     const params: Record<string, any> = {
-        page_size: 30,
+        page_size: 4,
         supplier: supplierId,
         is_bookmarked: isBookMarked,
     };
 
+    if(!!page){
+        params.page = page + 1;
+    }
 
     // Add filter params if provided
     if (filters) {
@@ -43,6 +46,8 @@ export function useProductList(supplierId?: string, filters?: ProductListFilters
     return {
         products: data?.results,
         count:data?.count,
+        previous:data?.previous,
+        next:data?.next,
         isLoading,
         error,
         mutate,

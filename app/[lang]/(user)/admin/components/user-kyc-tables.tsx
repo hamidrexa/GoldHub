@@ -71,9 +71,9 @@ export function UsersKycTable({
     showSubmittedColumn = false,
     showApprovedColumn = false,
 }: UsersKycTableProps) {
-    const { users, isLoading, error,mutate } = useUsersKYCData();
-    const [selectedUser, setSelectedUser] = React.useState<any>(null);
     const [page, setPage] = React.useState(0);
+    const { users,previous,next, isLoading, error,mutate } = useUsersKYCData(page);
+    const [selectedUser, setSelectedUser] = React.useState<any>(null);
 
     if (isLoading) return <p className="py-8 text-center">Loading...</p>;
     if (error)
@@ -271,10 +271,10 @@ export function UsersKycTable({
             </div>
             <Pagination className="mt-8">
                 <PaginationContent>
-                    {users?.next && (
+                    {!!next && (
                         <PaginationItem>
                             <PaginationPrevious
-                                text="قدیمی‌تر"
+                                text="previous"
                                 onClick={() => {
                                     setPage(page + 1);
                                 }}
@@ -282,10 +282,10 @@ export function UsersKycTable({
                             />
                         </PaginationItem>
                     )}
-                    {users?.previous && (
+                    {!!previous && (
                         <PaginationItem>
                             <PaginationNext
-                                text="جدید‌تر"
+                                text="next"
                                 onClick={() => {
                                     setPage(page - 1);
                                 }}

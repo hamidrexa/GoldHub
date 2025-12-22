@@ -41,7 +41,7 @@ export function DashboardLayout({ children, dict, lang }: DashboardLayoutProps) 
         return (
             <>
                 <Header dict={dict} lang={lang} />
-                <main className="flex-1 overflow-y-auto p-4 md:p-6 bg-gradient-to-br from-gray-50 via-white to-gray-100 min-h-screen">
+                <main className="flex-1 mb-20 md:mb-0 overflow-y-auto p-4 md:p-6 bg-gradient-to-br from-gray-50 via-white to-gray-100 min-h-screen">
                     {children}
                 </main>
                 <MobileMenu dict={dict} lang={lang} />
@@ -51,7 +51,7 @@ export function DashboardLayout({ children, dict, lang }: DashboardLayoutProps) 
     }
 
     return (
-        <div className="flex flex-col min-h-screen w-full bg-gray-50">
+        <div className="flex flex-col mb-20 md:mb-0 min-h-screen w-full bg-gray-50">
             {/* Header - Mobile Only for dashboard pages */}
             <div className="md:hidden">
                 <Header dict={dict} lang={lang} />
