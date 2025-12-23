@@ -12,13 +12,14 @@ import {
 } from '@/app/[lang]/(user)/supplier/products/services/useProductList';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import ProductDetailDialog from '../components/product-detail-dialog';
+import { SmartPagination } from '@/components/ui/pagination';
 import {
-    Pagination,
-    PaginationContent,
-    PaginationItem,
-    PaginationNext,
-    PaginationPrevious,
-} from '@/components/ui/pagination';
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
 
 interface CatalogContentProps {
     dict: any;
@@ -46,6 +47,7 @@ export function CatalogContent({
     initialMaxWeight = 200,
 }: CatalogContentProps) {
     const [page, setPage] = React.useState(0);
+    const [pageSize, setPageSize] = React.useState(12);
     const [showFilters, setShowFilters] = useState(true);
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<any>(null);
@@ -109,11 +111,12 @@ export function CatalogContent({
 
     const {
         products: list = [],
-        previous,
-        next,
+        count,
         isLoading,
         mutate,
-    } = useProductList(page, '', filters);
+    } = useProductList(page, '', filters, false, pageSize);
+
+    const totalPages = Math.ceil((count || 0) / pageSize);
 
     if (isLoading) {
         return (
@@ -229,32 +232,47 @@ export function CatalogContent({
                     mutate={mutate}
                 />
             </div>
-            <Pagination className="mt-8">
-                <PaginationContent>
-                    {!!next && (
-                        <PaginationItem>
-                            <PaginationPrevious
-                                text="previous"
-                                onClick={() => {
-                                    setPage(page + 1);
-                                }}
-                                isActive
-                            />
-                        </PaginationItem>
-                    )}
-                    {!!previous && (
-                        <PaginationItem>
-                            <PaginationNext
-                                text="next"
-                                onClick={() => {
-                                    setPage(page - 1);
-                                }}
-                                isActive
-                            />
-                        </PaginationItem>
-                    )}
-                </PaginationContent>
-            </Pagination>
+            <div className="flex flex-col items-center justify-between gap-4 border-t px-4 py-8 sm:flex-row">
+                <div className="flex items-center gap-2">
+                    <p className="text-muted-foreground text-sm whitespace-nowrap">
+                        {dict?.common?.rowsPerPage || 'Rows per page'}
+                    </p>
+                    <Select
+                        value={`${pageSize}`}
+                        onValueChange={(value) => {
+                            setPageSize(Number(value));
+                            setPage(0);
+                        }}
+                    >
+                        <SelectTrigger className="h-8 w-[70px]">
+                            <SelectValue placeholder={pageSize} />
+                        </SelectTrigger>
+                        <SelectContent side="top">
+                            {[6, 12, 18, 36].map((size) => (
+                                <SelectItem key={size} value={`${size}`}>
+                                    {size}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
+
+                <div className="flex-1">
+                    <SmartPagination
+                        currentPage={page}
+                        totalPages={totalPages}
+                        onPageChange={setPage}
+                        dict={dict}
+                    />
+                </div>
+
+                <div className="hidden text-sm text-muted-foreground sm:block">
+                    {dict?.common?.pageOf
+                        ?.replace('{current}', String(page + 1))
+                        .replace('{total}', String(totalPages)) ||
+                        `Page ${page + 1} of ${totalPages}`}
+                </div>
+            </div>
         </>
     );
 }

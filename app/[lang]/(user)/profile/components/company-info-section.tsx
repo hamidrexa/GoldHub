@@ -15,6 +15,9 @@ import {
     Briefcase,
     MapPin,
     FileText,
+    Upload,
+    Trash2,
+    File,
 } from 'lucide-react';
 import {
     Dialog,
@@ -23,6 +26,16 @@ import {
     DialogTitle,
     DialogTrigger,
 } from '@/components/ui/dialog';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { useGlobalContext } from '@/contexts/store';
 import { IdCardIcon } from '@radix-ui/react-icons';
 
@@ -31,10 +44,23 @@ interface CompanyInfoSectionProps {
     lang: string;
 }
 
+interface DocumentPreview {
+    type: 'incorporation_certificate' | 'director_id' | 'address_proof' | 'business_licence';
+    file?: File;
+    url?: string;
+}
+
 export const CompanyInfoSection: React.FC<CompanyInfoSectionProps> = ({
     dict,
     lang,
 }) => {
+    const fileInputRefs = {
+        incorporation_certificate: React.useRef<HTMLInputElement>(null),
+        director_id: React.useRef<HTMLInputElement>(null),
+        address_proof: React.useRef<HTMLInputElement>(null),
+        business_licence: React.useRef<HTMLInputElement>(null),
+    };
+
     const [companyInfo, setCompanyInfo] = useState<CompanyInfo | null>(null);
     const [isEditing, setIsEditing] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
@@ -46,6 +72,7 @@ export const CompanyInfoSection: React.FC<CompanyInfoSectionProps> = ({
         address_proof?: File;
         business_licence?: File;
     }>({});
+    const [documentToDelete, setDocumentToDelete] = useState<DocumentPreview['type'] | null>(null);
 
     useEffect(() => {
         setCompanyInfo(user.company);
@@ -95,6 +122,36 @@ export const CompanyInfoSection: React.FC<CompanyInfoSectionProps> = ({
         setFiles((prev) => ({ ...prev, [field]: file }));
     };
 
+    const handleDeleteDocument = (docType: DocumentPreview['type']) => {
+        setFiles((prev) => ({ ...prev, [docType]: undefined }));
+        setEditData((prev) => ({ ...prev, [docType]: null }));
+        setDocumentToDelete(null);
+    };
+
+    const getDocumentLabel = (docType: DocumentPreview['type']): string => {
+        const labels: Record<DocumentPreview['type'], string> = {
+            incorporation_certificate: 'Incorporation Certificate',
+            director_id: 'Director ID',
+            address_proof: 'Address Proof',
+            business_licence: 'Business Licence',
+        };
+        return labels[docType];
+    };
+
+    const getDocumentIcon = (docType: DocumentPreview['type']) => {
+        const icons: Record<DocumentPreview['type'], React.ReactNode> = {
+            incorporation_certificate: <FileText className="h-4 w-4" />,
+            director_id: <IdCardIcon className="h-4 w-4" />,
+            address_proof: <MapPin className="h-4 w-4" />,
+            business_licence: <Briefcase className="h-4 w-4" />,
+        };
+        return icons[docType];
+    };
+
+    const hasDocument = (docType: DocumentPreview['type']): boolean => {
+        return !!(files[docType] || editData[docType as keyof CompanyInfo]);
+    };
+
     if (isUserLoading) {
         return (
             <Box>
@@ -106,12 +163,13 @@ export const CompanyInfoSection: React.FC<CompanyInfoSectionProps> = ({
     }
 
     return (
-        <Box>
-            <div className="flex items-center justify-between">
-                <BoxTitle className="flex items-center gap-2">
-                    <Building2 className="h-5 w-5" />
-                    Company Information
-                </BoxTitle>
+        <>
+            <Box>
+                <div className="flex items-center justify-between">
+                    <BoxTitle className="flex items-center gap-2">
+                        <Building2 className="h-5 w-5" />
+                        Company Information
+                    </BoxTitle>
                 <Dialog open={isEditing} onOpenChange={setIsEditing}>
                     <DialogTrigger asChild>
                         <Button
@@ -123,11 +181,11 @@ export const CompanyInfoSection: React.FC<CompanyInfoSectionProps> = ({
                             Edit
                         </Button>
                     </DialogTrigger>
-                    <DialogContent className="max-w-2xl">
+                    <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto w-[95vw] sm:w-full">
                         <DialogHeader className="items-start">
                             <DialogTitle>Edit Company Information</DialogTitle>
                         </DialogHeader>
-                        <div className="grid grid-cols-2 gap-4 py-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-4">
                             <div className="space-y-2">
                                 <Label htmlFor="name">Company Name</Label>
                                 <Input
@@ -242,11 +300,49 @@ export const CompanyInfoSection: React.FC<CompanyInfoSectionProps> = ({
                                     placeholder="Currency"
                                 />
                             </div>
-                            <div className="flex flex-col gap-2">
+                        </div>
+
+                        {/* Documents Upload Section */}
+                        <div className="space-y-4 border-t pt-6">
+                            <Label className="text-base font-semibold">Company Documents</Label>
+                            
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                {/* Incorporation Certificate */}
                                 <div className="space-y-2">
-                                    <Label>Incorporation Certificate</Label>
-                                    <Input
+                                    <Label>{getDocumentLabel('incorporation_certificate')}</Label>
+                                    <div className="relative aspect-square rounded-lg border-2 border-dashed overflow-hidden group cursor-pointer bg-muted/30 hover:bg-muted/50 transition-colors"
+                                        onClick={() => fileInputRefs.incorporation_certificate.current?.click()}
+                                    >
+                                        {hasDocument('incorporation_certificate') ? (
+                                            <div className="w-full h-full flex flex-col items-center justify-center">
+                                                <FileText className="h-8 w-8 text-blue-600 mb-2" />
+                                                <span className="text-xs text-gray-600 text-center px-2">
+                                                    {files.incorporation_certificate?.name || 'File selected'}
+                                                </span>
+                                                <button
+                                                    type="button"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        setDocumentToDelete('incorporation_certificate');
+                                                    }}
+                                                    className="absolute top-1 right-1 bg-black/60 text-white p-2 rounded-full transition-all hover:bg-red-600 shadow-sm"
+                                                >
+                                                    <Trash2 className="w-4 h-4" />
+                                                </button>
+                                            </div>
+                                        ) : (
+                                            <div className="w-full h-full flex flex-col items-center justify-center">
+                                                <Upload className="h-6 w-6 mb-2 text-muted-foreground" />
+                                                <span className="text-xs text-muted-foreground text-center px-2">
+                                                    Click to upload
+                                                </span>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <input
                                         type="file"
+                                        ref={fileInputRefs.incorporation_certificate}
+                                        className="hidden"
                                         onChange={(e) =>
                                             handleFileChange(
                                                 'incorporation_certificate',
@@ -256,10 +352,42 @@ export const CompanyInfoSection: React.FC<CompanyInfoSectionProps> = ({
                                     />
                                 </div>
 
+                                {/* Director ID */}
                                 <div className="space-y-2">
-                                    <Label>Director ID</Label>
-                                    <Input
+                                    <Label>{getDocumentLabel('director_id')}</Label>
+                                    <div className="relative aspect-square rounded-lg border-2 border-dashed overflow-hidden group cursor-pointer bg-muted/30 hover:bg-muted/50 transition-colors"
+                                        onClick={() => fileInputRefs.director_id.current?.click()}
+                                    >
+                                        {hasDocument('director_id') ? (
+                                            <div className="w-full h-full flex flex-col items-center justify-center">
+                                                <IdCardIcon className="h-8 w-8 text-green-600 mb-2" />
+                                                <span className="text-xs text-gray-600 text-center px-2">
+                                                    {files.director_id?.name || 'File selected'}
+                                                </span>
+                                                <button
+                                                    type="button"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        setDocumentToDelete('director_id');
+                                                    }}
+                                                    className="absolute top-1 right-1 bg-black/60 text-white p-2 rounded-full transition-all hover:bg-red-600 shadow-sm"
+                                                >
+                                                    <Trash2 className="w-4 h-4" />
+                                                </button>
+                                            </div>
+                                        ) : (
+                                            <div className="w-full h-full flex flex-col items-center justify-center">
+                                                <Upload className="h-6 w-6 mb-2 text-muted-foreground" />
+                                                <span className="text-xs text-muted-foreground text-center px-2">
+                                                    Click to upload
+                                                </span>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <input
                                         type="file"
+                                        ref={fileInputRefs.director_id}
+                                        className="hidden"
                                         onChange={(e) =>
                                             handleFileChange(
                                                 'director_id',
@@ -269,10 +397,42 @@ export const CompanyInfoSection: React.FC<CompanyInfoSectionProps> = ({
                                     />
                                 </div>
 
+                                {/* Address Proof */}
                                 <div className="space-y-2">
-                                    <Label>Address Proof</Label>
-                                    <Input
+                                    <Label>{getDocumentLabel('address_proof')}</Label>
+                                    <div className="relative aspect-square rounded-lg border-2 border-dashed overflow-hidden group cursor-pointer bg-muted/30 hover:bg-muted/50 transition-colors"
+                                        onClick={() => fileInputRefs.address_proof.current?.click()}
+                                    >
+                                        {hasDocument('address_proof') ? (
+                                            <div className="w-full h-full flex flex-col items-center justify-center">
+                                                <MapPin className="h-8 w-8 text-purple-600 mb-2" />
+                                                <span className="text-xs text-gray-600 text-center px-2">
+                                                    {files.address_proof?.name || 'File selected'}
+                                                </span>
+                                                <button
+                                                    type="button"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        setDocumentToDelete('address_proof');
+                                                    }}
+                                                    className="absolute top-1 right-1 bg-black/60 text-white p-2 rounded-full transition-all hover:bg-red-600 shadow-sm"
+                                                >
+                                                    <Trash2 className="w-4 h-4" />
+                                                </button>
+                                            </div>
+                                        ) : (
+                                            <div className="w-full h-full flex flex-col items-center justify-center">
+                                                <Upload className="h-6 w-6 mb-2 text-muted-foreground" />
+                                                <span className="text-xs text-muted-foreground text-center px-2">
+                                                    Click to upload
+                                                </span>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <input
                                         type="file"
+                                        ref={fileInputRefs.address_proof}
+                                        className="hidden"
                                         onChange={(e) =>
                                             handleFileChange(
                                                 'address_proof',
@@ -281,10 +441,43 @@ export const CompanyInfoSection: React.FC<CompanyInfoSectionProps> = ({
                                         }
                                     />
                                 </div>
+
+                                {/* Business Licence */}
                                 <div className="space-y-2">
-                                    <Label>Business Licence</Label>
-                                    <Input
+                                    <Label>{getDocumentLabel('business_licence')}</Label>
+                                    <div className="relative aspect-square rounded-lg border-2 border-dashed overflow-hidden group cursor-pointer bg-muted/30 hover:bg-muted/50 transition-colors"
+                                        onClick={() => fileInputRefs.business_licence.current?.click()}
+                                    >
+                                        {hasDocument('business_licence') ? (
+                                            <div className="w-full h-full flex flex-col items-center justify-center">
+                                                <Briefcase className="h-8 w-8 text-orange-600 mb-2" />
+                                                <span className="text-xs text-gray-600 text-center px-2">
+                                                    {files.business_licence?.name || 'File selected'}
+                                                </span>
+                                                <button
+                                                    type="button"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        setDocumentToDelete('business_licence');
+                                                    }}
+                                                    className="absolute top-1 right-1 bg-black/60 text-white p-2 rounded-full transition-all hover:bg-red-600 shadow-sm"
+                                                >
+                                                    <Trash2 className="w-4 h-4" />
+                                                </button>
+                                            </div>
+                                        ) : (
+                                            <div className="w-full h-full flex flex-col items-center justify-center">
+                                                <Upload className="h-6 w-6 mb-2 text-muted-foreground" />
+                                                <span className="text-xs text-muted-foreground text-center px-2">
+                                                    Click to upload
+                                                </span>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <input
                                         type="file"
+                                        ref={fileInputRefs.business_licence}
+                                        className="hidden"
                                         onChange={(e) =>
                                             handleFileChange(
                                                 'business_licence',
@@ -295,10 +488,12 @@ export const CompanyInfoSection: React.FC<CompanyInfoSectionProps> = ({
                                 </div>
                             </div>
                         </div>
-                        <div className="flex justify-end gap-2">
+
+                        <div className="flex justify-end gap-2 pt-4">
                             <Button
                                 variant="outline"
                                 onClick={() => setIsEditing(false)}
+                                disabled={isSaving}
                             >
                                 Cancel
                             </Button>
@@ -400,22 +595,22 @@ export const CompanyInfoSection: React.FC<CompanyInfoSectionProps> = ({
                                 Company Documents
                             </p>
 
-                            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                                 {companyInfo.incorporation_certificate && (
                                     <a
                                         href={
                                             companyInfo.incorporation_certificate
                                         }
                                         target="_blank"
-                                        className="flex items-center justify-between gap-3 rounded-lg border bg-gray-50 px-4 py-3 text-sm transition hover:border-blue-300 hover:bg-blue-50"
+                                        className="relative aspect-square rounded-lg border-2 overflow-hidden flex flex-col items-center justify-center group cursor-pointer bg-blue-50 hover:bg-blue-100 transition-colors"
                                     >
-                                        <div className="flex items-center gap-2">
-                                            <FileText className="h-4 w-4 text-blue-600" />
-                                            <span className="font-medium text-gray-800">
+                                        <div className="flex flex-col items-center justify-center gap-2">
+                                            <FileText className="h-8 w-8 text-blue-600" />
+                                            <span className="text-xs font-medium text-gray-800 text-center px-2">
                                                 Incorporation Certificate
                                             </span>
                                         </div>
-                                        <Download className="h-4 w-4 text-blue-600" />
+                                        <Download className="absolute top-2 right-2 h-4 w-4 text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                                     </a>
                                 )}
 
@@ -423,15 +618,15 @@ export const CompanyInfoSection: React.FC<CompanyInfoSectionProps> = ({
                                     <a
                                         href={companyInfo.director_id}
                                         target="_blank"
-                                        className="flex items-center justify-between gap-3 rounded-lg border bg-gray-50 px-4 py-3 text-sm transition hover:border-green-300 hover:bg-green-50"
+                                        className="relative aspect-square rounded-lg border-2 overflow-hidden flex flex-col items-center justify-center group cursor-pointer bg-green-50 hover:bg-green-100 transition-colors"
                                     >
-                                        <div className="flex items-center gap-2">
-                                            <IdCardIcon className="h-4 w-4 text-green-600" />
-                                            <span className="font-medium text-gray-800">
+                                        <div className="flex flex-col items-center justify-center gap-2">
+                                            <IdCardIcon className="h-8 w-8 text-green-600" />
+                                            <span className="text-xs font-medium text-gray-800 text-center px-2">
                                                 Director ID
                                             </span>
                                         </div>
-                                        <Download className="h-4 w-4 text-green-600" />
+                                        <Download className="absolute top-2 right-2 h-4 w-4 text-green-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                                     </a>
                                 )}
 
@@ -439,15 +634,15 @@ export const CompanyInfoSection: React.FC<CompanyInfoSectionProps> = ({
                                     <a
                                         href={companyInfo.address_proof}
                                         target="_blank"
-                                        className="flex items-center justify-between gap-3 rounded-lg border bg-gray-50 px-4 py-3 text-sm transition hover:border-purple-300 hover:bg-purple-50"
+                                        className="relative aspect-square rounded-lg border-2 overflow-hidden flex flex-col items-center justify-center group cursor-pointer bg-purple-50 hover:bg-purple-100 transition-colors"
                                     >
-                                        <div className="flex items-center gap-2">
-                                            <MapPin className="h-4 w-4 text-purple-600" />
-                                            <span className="font-medium text-gray-800">
+                                        <div className="flex flex-col items-center justify-center gap-2">
+                                            <MapPin className="h-8 w-8 text-purple-600" />
+                                            <span className="text-xs font-medium text-gray-800 text-center px-2">
                                                 Address Proof
                                             </span>
                                         </div>
-                                        <Download className="h-4 w-4 text-purple-600" />
+                                        <Download className="absolute top-2 right-2 h-4 w-4 text-purple-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                                     </a>
                                 )}
 
@@ -455,15 +650,15 @@ export const CompanyInfoSection: React.FC<CompanyInfoSectionProps> = ({
                                     <a
                                         href={companyInfo.business_licence}
                                         target="_blank"
-                                        className="hover:border-orange-300 flex items-center justify-between gap-3 rounded-lg border bg-gray-50 px-4 py-3 text-sm transition hover:bg-orange-50"
+                                        className="relative aspect-square rounded-lg border-2 overflow-hidden flex flex-col items-center justify-center group cursor-pointer bg-orange-50 hover:bg-orange-100 transition-colors"
                                     >
-                                        <div className="flex items-center gap-2">
-                                            <Briefcase className="text-orange-600 h-4 w-4" />
-                                            <span className="font-medium text-gray-800">
+                                        <div className="flex flex-col items-center justify-center gap-2">
+                                            <Briefcase className="text-orange-600 h-8 w-8" />
+                                            <span className="text-xs font-medium text-gray-800 text-center px-2">
                                                 Business Licence
                                             </span>
                                         </div>
-                                        <Download className="text-orange-600 h-4 w-4" />
+                                        <Download className="absolute top-2 right-2 h-4 w-4 text-orange-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                                     </a>
                                 )}
                             </div>
@@ -486,5 +681,26 @@ export const CompanyInfoSection: React.FC<CompanyInfoSectionProps> = ({
                 )}
             </BoxContent>
         </Box>
+
+        <AlertDialog open={documentToDelete !== null} onOpenChange={(open) => !open && setDocumentToDelete(null)}>
+            <AlertDialogContent>
+                <AlertDialogHeader>
+                    <AlertDialogTitle>Confirm Delete</AlertDialogTitle>
+                    <AlertDialogDescription>
+                        Are you sure you want to delete this document? This action cannot be undone.
+                    </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction 
+                        onClick={() => documentToDelete && handleDeleteDocument(documentToDelete)}
+                        className="bg-red-600 hover:bg-red-700"
+                    >
+                        Delete
+                    </AlertDialogAction>
+                </AlertDialogFooter>
+            </AlertDialogContent>
+        </AlertDialog>
+        </>
     );
 };

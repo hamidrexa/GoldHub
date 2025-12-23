@@ -1,12 +1,16 @@
 import { Table } from '@tanstack/react-table';
 
-import { Button } from '@/components/ui/button';
 import { getDirection } from '@/libs/utils';
 import { Locale } from '@/i18n-config';
-import React, { useState } from 'react';
-import { useGlobalContext } from '@/contexts/store';
-import { LoginModal } from '@/components/login-modal';
-import { usePathname } from 'next/navigation';
+import React from 'react';
+import { SmartPagination } from '@/components/ui/pagination';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
 
 interface DataTablePaginationProps<TData> {
     table: Table<TData>;
@@ -20,45 +24,46 @@ export function DataTablePagination<TData>({
     lang,
 }: DataTablePaginationProps<TData>) {
     const dir = getDirection(lang);
-    const { user } = useGlobalContext();
-    const [pageSize, setPageSize] = useState(10);
-    const [openLoginModal, setOpenLoginModal] = useState(false);
-    const path = usePathname();
 
     return (
-        <div className="flex w-full items-center justify-center gap-2.5">
-            {table.getCanNextPage() && (
-                <Button
-                    onClick={() => {
-                        if (!user) return setOpenLoginModal(true);
-                        table.setPageSize(pageSize + 10);
-                        setPageSize((prevVal) => prevVal + 10);
+        <div className="flex flex-col items-center justify-between gap-4 px-2 py-4 sm:flex-row">
+            <div className="flex items-center gap-2">
+                <p className="text-muted-foreground text-sm whitespace-nowrap">
+                    {dict?.common?.rowsPerPage || 'Rows per page'}
+                </p>
+                <Select
+                    value={`${table.getState().pagination.pageSize}`}
+                    onValueChange={(value) => {
+                        table.setPageSize(Number(value));
                     }}
                 >
-                    View More
-                </Button>
-            )}
-            <LoginModal
-                lang={lang}
-                dict={dict}
-                texts={{
-                    title: (
-                        <>
-                            Full access to rankings
-                            <br />
-                            requires subscription.
-                        </>
-                    ),
-                    description:
-                        'By registering on GoldTrade, use all features free for 7 days.',
-                    button: 'Activate 7 days free',
-                    inputLabel: 'Quick registration',
-                    buttonVariant: 'info',
-                }}
-                open={openLoginModal}
-                setOpen={setOpenLoginModal}
-                redirectUrl={path}
-            />
+                    <SelectTrigger className="h-8 w-[70px]">
+                        <SelectValue placeholder={table.getState().pagination.pageSize} />
+                    </SelectTrigger>
+                    <SelectContent side="top">
+                        {[5, 10, 20, 50].map((pageSize) => (
+                            <SelectItem key={pageSize} value={`${pageSize}`}>
+                                {pageSize}
+                            </SelectItem>
+                        ))}
+                    </SelectContent>
+                </Select>
+            </div>
+
+            <div className="flex-1">
+                <SmartPagination
+                    currentPage={table.getState().pagination.pageIndex}
+                    totalPages={table.getPageCount()}
+                    onPageChange={(page) => table.setPageIndex(page)}
+                    dict={dict}
+                />
+            </div>
+
+            <div className="hidden text-sm text-muted-foreground sm:block">
+                {dict?.common?.pageOf?.replace('{current}', table.getState().pagination.pageIndex + 1).replace('{total}', table.getPageCount()) ||
+                    `Page ${table.getState().pagination.pageIndex + 1} of ${table.getPageCount()}`}
+            </div>
         </div>
     );
 }
+

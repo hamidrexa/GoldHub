@@ -12,15 +12,25 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
-import { Pagination, PaginationContent, PaginationItem, PaginationPrevious, PaginationNext } from '@/components/ui/pagination';
+import { SmartPagination } from '@/components/ui/pagination';
 import { useOrdersHistory } from '@/app/[lang]/(user)/supplier/services/orders-history';
 import React from 'react';
 import { Badge } from '@/components/ui/badge';
 import { OrderDialog } from '@/app/[lang]/(user)/supplier/components/order-dialog';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
 
 export function OrderSection({ dict, lang, activeTab, searchQuery, viewMode }) {
     const [page, setPage] = React.useState(0);
-    const { history = [], previous,next,isLoading, error } = useOrdersHistory(page,null,null,"buyer");
+    const [pageSize, setPageSize] = React.useState(10);
+    const { history = [], count, isLoading, error } = useOrdersHistory(page, null, null, "buyer", pageSize);
+
+    const totalPages = Math.ceil((count || 0) / pageSize);
     const [selectedOrder, setSelectedOrder] = React.useState<any>(null);
     const filteredHistory = React.useMemo(() => {
         let result = history;
@@ -348,26 +358,47 @@ export function OrderSection({ dict, lang, activeTab, searchQuery, viewMode }) {
                     </CardContent>
                 </Card>
             ))}
-            <Pagination className="z-50 mt-8">
-                <PaginationContent>
-                    {!!previous && (
-                        <PaginationItem>
-                            <PaginationPrevious
-                                text="previous"
-                                onClick={() => setPage(page - 1)}
-                            />
-                        </PaginationItem>
-                    )}
-                    {!!next && (
-                        <PaginationItem>
-                            <PaginationNext
-                                text="next"
-                                onClick={() => setPage(page + 1)}
-                            />
-                        </PaginationItem>
-                    )}
-                </PaginationContent>
-            </Pagination>
+            <div className="flex flex-col items-center justify-between gap-4 border-t px-4 py-4 sm:flex-row">
+                <div className="flex items-center gap-2">
+                    <p className="text-muted-foreground text-sm whitespace-nowrap">
+                        {dict?.common?.rowsPerPage || 'Rows per page'}
+                    </p>
+                    <Select
+                        value={`${pageSize}`}
+                        onValueChange={(value) => {
+                            setPageSize(Number(value));
+                            setPage(0);
+                        }}
+                    >
+                        <SelectTrigger className="h-8 w-[70px]">
+                            <SelectValue placeholder={pageSize} />
+                        </SelectTrigger>
+                        <SelectContent side="top">
+                            {[5, 10, 20, 50].map((size) => (
+                                <SelectItem key={size} value={`${size}`}>
+                                    {size}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
+
+                <div className="flex-1">
+                    <SmartPagination
+                        currentPage={page}
+                        totalPages={totalPages}
+                        onPageChange={setPage}
+                        dict={dict}
+                    />
+                </div>
+
+                <div className="hidden text-sm text-muted-foreground sm:block">
+                    {dict?.common?.pageOf
+                        ?.replace('{current}', String(page + 1))
+                        .replace('{total}', String(totalPages)) ||
+                        `Page ${page + 1} of ${totalPages}`}
+                </div>
+            </div>
             {selectedOrder && (
                 <OrderDialog
                     order={selectedOrder}
@@ -466,6 +497,47 @@ export function OrderSection({ dict, lang, activeTab, searchQuery, viewMode }) {
                         </TableBody>
                     </Table>
                 </div>
+                <div className="flex flex-col items-center justify-between gap-4 border-t px-4 py-4 sm:flex-row">
+                    <div className="flex items-center gap-2">
+                        <p className="text-muted-foreground text-sm whitespace-nowrap">
+                            {dict?.common?.rowsPerPage || 'Rows per page'}
+                        </p>
+                        <Select
+                            value={`${pageSize}`}
+                            onValueChange={(value) => {
+                                setPageSize(Number(value));
+                                setPage(0);
+                            }}
+                        >
+                            <SelectTrigger className="h-8 w-[70px]">
+                                <SelectValue placeholder={pageSize} />
+                            </SelectTrigger>
+                            <SelectContent side="top">
+                                {[5, 10, 20, 50].map((size) => (
+                                    <SelectItem key={size} value={`${size}`}>
+                                        {size}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                    </div>
+
+                    <div className="flex-1">
+                        <SmartPagination
+                            currentPage={page}
+                            totalPages={totalPages}
+                            onPageChange={setPage}
+                            dict={dict}
+                        />
+                    </div>
+
+                    <div className="hidden text-sm text-muted-foreground sm:block">
+                        {dict?.common?.pageOf
+                            ?.replace('{current}', String(page + 1))
+                            .replace('{total}', String(totalPages)) ||
+                            `Page ${page + 1} of ${totalPages}`}
+                    </div>
+                </div>
             </div>
 
             {selectedOrder && (
@@ -481,3 +553,4 @@ export function OrderSection({ dict, lang, activeTab, searchQuery, viewMode }) {
         </div>
     );
 }
+

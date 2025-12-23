@@ -12,16 +12,30 @@ import {
 import { Button } from '@/components/ui/button';
 import React from 'react';
 import { Badge } from '@/components/ui/badge';
-import { Pagination, PaginationContent, PaginationItem, PaginationPrevious, PaginationNext } from '@/components/ui/pagination';
+import { SmartPagination } from '@/components/ui/pagination';
 import { useOrdersHistory } from '@/app/[lang]/(user)/supplier/services/orders-history';
-import { KycDialog } from '@/app/[lang]/(user)/admin/users-kyc/kyc-dialog';
 import { OrderDialog } from '@/app/[lang]/(user)/supplier/components/order-dialog';
 import { updateOrderStatus } from '@/app/[lang]/(user)/supplier/services/update-order-status';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
 
 export function OrdersTable({ dict, lang, activeTab, searchQuery }) {
     const [selectedOrder, setSelectedOrder] = React.useState<any>(null);
     const [page, setPage] = React.useState(0);
-    const { history = [],previous,next, isLoading, error,mutate } = useOrdersHistory(page,null,null,"supplier");
+    const [pageSize, setPageSize] = React.useState(10);
+    const { history = [], count, isLoading, error, mutate } = useOrdersHistory(
+        page,
+        null,
+        null,
+        "supplier",
+        pageSize
+    );
+    const totalPages = Math.ceil((count || 0) / pageSize);
     const filteredHistory = React.useMemo(() => {
         let result = history;
         if (activeTab && activeTab !== 'all') {
@@ -218,28 +232,28 @@ export function OrdersTable({ dict, lang, activeTab, searchQuery }) {
                                                 {(order.status ===
                                                     'confirmed' ||
                                                     order.status ===
-                                                        'Confirmed' ||
+                                                    'Confirmed' ||
                                                     order.status ===
-                                                        'Paid') && (
-                                                    <Button
-                                                        onClick={async ()=>{
-                                                            await updateOrderStatus({
-                                                                order_id: order.id,
-                                                                status: "Shipped",
-                                                            })
-                                                            mutate();
-                                                        }}
-                                                        size="sm"
-                                                        variant="outline"
-                                                    >
-                                                        {
-                                                            dict.marketplace
-                                                                .supplier
-                                                                .ordersPage
-                                                                .markShipped
-                                                        }
-                                                    </Button>
-                                                )}
+                                                    'Paid') && (
+                                                        <Button
+                                                            onClick={async () => {
+                                                                await updateOrderStatus({
+                                                                    order_id: order.id,
+                                                                    status: "Shipped",
+                                                                })
+                                                                mutate();
+                                                            }}
+                                                            size="sm"
+                                                            variant="outline"
+                                                        >
+                                                            {
+                                                                dict.marketplace
+                                                                    .supplier
+                                                                    .ordersPage
+                                                                    .markShipped
+                                                            }
+                                                        </Button>
+                                                    )}
                                                 <Button
                                                     onClick={() => {
                                                         setSelectedOrder(order);
@@ -259,32 +273,47 @@ export function OrdersTable({ dict, lang, activeTab, searchQuery }) {
                 )}
             </div>
 
-            <Pagination className="mt-8">
-                <PaginationContent>
-                    {!!next && (
-                        <PaginationItem>
-                            <PaginationPrevious
-                                text="previous"
-                                onClick={() => {
-                                    setPage(page + 1);
-                                }}
-                                isActive
-                            />
-                        </PaginationItem>
-                    )}
-                    {!!previous && (
-                        <PaginationItem>
-                            <PaginationNext
-                                text="next"
-                                onClick={() => {
-                                    setPage(page - 1);
-                                }}
-                                isActive
-                            />
-                        </PaginationItem>
-                    )}
-                </PaginationContent>
-            </Pagination>
+            <div className="flex flex-col items-center justify-between gap-4 border-t px-4 py-4 sm:flex-row">
+                <div className="flex items-center gap-2">
+                    <p className="text-muted-foreground text-sm whitespace-nowrap">
+                        {dict?.common?.rowsPerPage || 'Rows per page'}
+                    </p>
+                    <Select
+                        value={`${pageSize}`}
+                        onValueChange={(value) => {
+                            setPageSize(Number(value));
+                            setPage(0);
+                        }}
+                    >
+                        <SelectTrigger className="h-8 w-[70px]">
+                            <SelectValue placeholder={pageSize} />
+                        </SelectTrigger>
+                        <SelectContent side="top">
+                            {[5, 10, 20, 50].map((size) => (
+                                <SelectItem key={size} value={`${size}`}>
+                                    {size}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
+
+                <div className="flex-1">
+                    <SmartPagination
+                        currentPage={page}
+                        totalPages={totalPages}
+                        onPageChange={setPage}
+                        dict={dict}
+                    />
+                </div>
+
+                <div className="hidden text-sm text-muted-foreground sm:block">
+                    {dict?.common?.pageOf
+                        ?.replace('{current}', String(page + 1))
+                        .replace('{total}', String(totalPages)) ||
+                        `Page ${page + 1} of ${totalPages}`}
+                </div>
+            </div>
 
             {!!selectedOrder && (
                 <OrderDialog
