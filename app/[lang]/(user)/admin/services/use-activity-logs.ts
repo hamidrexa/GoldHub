@@ -1,13 +1,12 @@
 'use client';
 import useSWR from "swr";
 
-export function useActivityLogs(page?:number) {
-
+export function useActivityLogs(page?: number, pageSize: number = 10) {
     const params: Record<string, any> = {
-        page_size: 10,
+        page_size: pageSize,
     };
 
-    if (!!page) {
+    if (page !== undefined) {
         params.page = page + 1;
     }
 
@@ -16,14 +15,15 @@ export function useActivityLogs(page?:number) {
         params,
         headers: {
             Authorization: `Bearer ${process.env.NEXT_PUBLIC_MY_TOKEN}`,
-        }
+        },
     });
+
 
     return {
         logs: data?.results || [],
-        count:data?.count,
-        next:data?.next,
-        previous:data?.previous,
+        count: data?.count,
+        next: data?.next,
+        previous: data?.previous,
         isLoading,
         error,
     };

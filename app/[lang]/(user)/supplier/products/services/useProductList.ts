@@ -13,17 +13,24 @@ export interface ProductListFilters {
     is_bookmarked?: boolean;
 }
 
-export function useProductList(page?:number,supplierId?: string, filters?: ProductListFilters,isBookMarked=false) {
+export function useProductList(
+    page?: number,
+    supplierId?: string,
+    filters?: ProductListFilters,
+    isBookMarked = false,
+    pageSize: number = 8
+) {
     // Build params object, only including defined values
     const params: Record<string, any> = {
-        page_size: 4,
+        page_size: pageSize,
         supplier: supplierId,
         is_bookmarked: isBookMarked,
     };
 
-    if(!!page){
+    if (page !== undefined) {
         params.page = page + 1;
     }
+
 
     // Add filter params if provided
     if (filters) {
@@ -38,16 +45,16 @@ export function useProductList(page?:number,supplierId?: string, filters?: Produ
         if (filters.is_bookmarked !== undefined) params.is_bookmarked = filters.is_bookmarked;
     }
 
-    const { data, error, isLoading,mutate} = useSWR({
+    const { data, error, isLoading, mutate } = useSWR({
         url: `/v1/gold_artifacts/products_list`,
         params
     });
 
     return {
         products: data?.results,
-        count:data?.count,
-        previous:data?.previous,
-        next:data?.next,
+        count: data?.count,
+        previous: data?.previous,
+        next: data?.next,
         isLoading,
         error,
         mutate,

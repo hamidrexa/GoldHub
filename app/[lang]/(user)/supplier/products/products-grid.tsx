@@ -22,13 +22,14 @@ import { deleteProduct } from '@/app/[lang]/(user)/supplier/products/services/de
 import { roundNumber } from '@/libs/utils';
 import { useGlobalContext } from '@/contexts/store';
 import { deleteImage } from '@/app/[lang]/(user)/supplier/services/delete-image';
+import { SmartPagination } from '@/components/ui/pagination';
 import {
-    Pagination,
-    PaginationContent,
-    PaginationItem,
-    PaginationNext,
-    PaginationPrevious,
-} from '@/components/ui/pagination';
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
 
 interface ProductsGridProps {
     dict: any;
@@ -36,6 +37,7 @@ interface ProductsGridProps {
 
 export function ProductsGrid({ dict }: ProductsGridProps) {
     const [page, setPage] = React.useState(0);
+    const [pageSize, setPageSize] = React.useState(8);
     const [dialogOpen, setDialogOpen] = useState(false);
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
     const [productToDelete, setProductToDelete] = useState<any>(null);
@@ -45,11 +47,12 @@ export function ProductsGrid({ dict }: ProductsGridProps) {
 
     const {
         products: list = [],
-        previous,
-        next,
+        count,
         isLoading,
         mutate,
-    } = useProductList(page, user?.username);
+    } = useProductList(page, user?.username, undefined, false, pageSize);
+
+    const totalPages = Math.ceil((count || 0) / pageSize);
 
     const getStatusBadge = (status: Product['status']) => {
         const badges = {
@@ -252,32 +255,47 @@ export function ProductsGrid({ dict }: ProductsGridProps) {
                     </AlertDialogContent>
                 </AlertDialog>
             </div>
-            <Pagination className="mt-8">
-                <PaginationContent>
-                    {!!next && (
-                        <PaginationItem>
-                            <PaginationPrevious
-                                text="previous"
-                                onClick={() => {
-                                    setPage(page + 1);
-                                }}
-                                isActive
-                            />
-                        </PaginationItem>
-                    )}
-                    {!!previous && (
-                        <PaginationItem>
-                            <PaginationNext
-                                text="next"
-                                onClick={() => {
-                                    setPage(page - 1);
-                                }}
-                                isActive
-                            />
-                        </PaginationItem>
-                    )}
-                </PaginationContent>
-            </Pagination>
+            <div className="flex flex-col items-center justify-between gap-4 border-t px-4 py-8 sm:flex-row">
+                <div className="flex items-center gap-2">
+                    <p className="text-muted-foreground text-sm whitespace-nowrap">
+                        {dict?.common?.rowsPerPage || 'Rows per page'}
+                    </p>
+                    <Select
+                        value={`${pageSize}`}
+                        onValueChange={(value) => {
+                            setPageSize(Number(value));
+                            setPage(0);
+                        }}
+                    >
+                        <SelectTrigger className="h-8 w-[70px]">
+                            <SelectValue placeholder={pageSize} />
+                        </SelectTrigger>
+                        <SelectContent side="top">
+                            {[4, 8, 12, 24, 48].map((size) => (
+                                <SelectItem key={size} value={`${size}`}>
+                                    {size}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
+
+                <div className="flex-1">
+                    <SmartPagination
+                        currentPage={page}
+                        totalPages={totalPages}
+                        onPageChange={setPage}
+                        dict={dict}
+                    />
+                </div>
+
+                <div className="hidden text-sm text-muted-foreground sm:block">
+                    {dict?.common?.pageOf
+                        ?.replace('{current}', String(page + 1))
+                        .replace('{total}', String(totalPages)) ||
+                        `Page ${page + 1} of ${totalPages}`}
+                </div>
+            </div>
         </>
     );
 }

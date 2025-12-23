@@ -2,10 +2,17 @@
 import useSWR from 'swr';
 import Cookies from 'js-cookie';
 
-export function useOrdersHistory(page:number,id?: string | number , status?:string ,role?:string) {
+export function useOrdersHistory(
+    page: number,
+    id?: string | number,
+    status?: string,
+    role?: string,
+    pageSize: number = 10
+) {
     const params: Record<string, any> = {
-        page_size: 5,
+        page_size: pageSize,
     };
+
 
     if (!!id) {
         params.order_id = id;
@@ -19,7 +26,7 @@ export function useOrdersHistory(page:number,id?: string | number , status?:stri
 
     params.page = page + 1;
 
-    const { data, error, isLoading,mutate } = useSWR({
+    const { data, error, isLoading, mutate } = useSWR({
         url: `/v1/gold_artifacts/orders_history`,
         params,
         headers: {
@@ -29,9 +36,9 @@ export function useOrdersHistory(page:number,id?: string | number , status?:stri
 
     return {
         history: data?.results,
-        count:data?.count,
-        next:data?.next,
-        previous:data?.previous,
+        count: data?.count,
+        next: data?.next,
+        previous: data?.previous,
         isLoading,
         error,
         mutate,

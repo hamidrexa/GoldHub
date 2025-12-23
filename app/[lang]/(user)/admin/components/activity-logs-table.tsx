@@ -10,9 +10,15 @@ import {
     TableRow,
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Pagination, PaginationContent, PaginationItem, PaginationPrevious, PaginationNext } from '@/components/ui/pagination';
+import { SmartPagination } from '@/components/ui/pagination';
 import { useActivityLogs } from '@/app/[lang]/(user)/admin/services/use-activity-logs';
-import { AuditLog } from '@/lib/mock-data';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
 
 function RoleBadge({ role, status }: { role: string; status: string }) {
     const statusColors: Record<string, string> = {
@@ -61,7 +67,7 @@ function EventBadge({ event, dict }: { event: string; dict: any }) {
     const config = badges[event] ?? 'kyc_submitted'
     return (
         <Badge variant="default" className={config.className}>
-            {config.label }
+            {config.label}
         </Badge>
     );
 }
@@ -78,7 +84,10 @@ export function ActivityLogsTable({
     dict,
 }: ActivityLogsTableProps) {
     const [page, setPage] = React.useState(0);
-    const { logs, previous,next,isLoading, error } = useActivityLogs(page);
+    const [pageSize, setPageSize] = React.useState(10);
+    const { logs, count, isLoading, error } = useActivityLogs(page, pageSize);
+
+    const totalPages = Math.ceil((count || 0) / pageSize);
 
     if (isLoading) return <p className="py-8 text-center">Loading...</p>;
     if (error)
@@ -200,32 +209,47 @@ export function ActivityLogsTable({
                     </TableBody>
                 </Table>
             </div>
-            <Pagination className="mt-8">
-                <PaginationContent>
-                    {!!next && (
-                        <PaginationItem>
-                            <PaginationPrevious
-                                text="previous"
-                                onClick={() => {
-                                    setPage(page + 1);
-                                }}
-                                isActive
-                            />
-                        </PaginationItem>
-                    )}
-                    {!!previous && (
-                        <PaginationItem>
-                            <PaginationNext
-                                text="next"
-                                onClick={() => {
-                                    setPage(page - 1);
-                                }}
-                                isActive
-                            />
-                        </PaginationItem>
-                    )}
-                </PaginationContent>
-            </Pagination>
+            <div className="flex flex-col items-center justify-between gap-4 border-t px-4 py-4 sm:flex-row">
+                <div className="flex items-center gap-2">
+                    <p className="text-muted-foreground text-sm whitespace-nowrap">
+                        {dict?.common?.rowsPerPage || 'Rows per page'}
+                    </p>
+                    <Select
+                        value={`${pageSize}`}
+                        onValueChange={(value) => {
+                            setPageSize(Number(value));
+                            setPage(0);
+                        }}
+                    >
+                        <SelectTrigger className="h-8 w-[70px]">
+                            <SelectValue placeholder={pageSize} />
+                        </SelectTrigger>
+                        <SelectContent side="top">
+                            {[5, 10, 20, 50].map((size) => (
+                                <SelectItem key={size} value={`${size}`}>
+                                    {size}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
+
+                <div className="flex-1">
+                    <SmartPagination
+                        currentPage={page}
+                        totalPages={totalPages}
+                        onPageChange={setPage}
+                        dict={dict}
+                    />
+                </div>
+
+                <div className="hidden text-sm text-muted-foreground sm:block">
+                    {dict?.common?.pageOf
+                        ?.replace('{current}', String(page + 1))
+                        .replace('{total}', String(totalPages)) ||
+                        `Page ${page + 1} of ${totalPages}`}
+                </div>
+            </div>
         </div>
     );
 }
