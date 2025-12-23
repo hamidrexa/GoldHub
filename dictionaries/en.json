@@ -1012,7 +1012,10 @@
         "searchPlaceholder": "Search logs by user, IP, or device...",
         "tabs": {
           "all": "All Events",
-          "login": "Login/Logout",
+          "login": "Login",
+          "logout": "Logout",
+          "register": "Register",
+          "supplierRequested": "Supplier Requested",
           "kyc": "KYC Events",
           "orders": "Orders"
         },
@@ -1036,7 +1039,8 @@
           "orderCreated": "Order Created",
           "kycSubmitted": "KYC Submitted",
           "kycApproved": "KYC Approved",
-          "kycRejected": "KYC Rejected"
+          "kycRejected": "KYC Rejected",
+          "supplierRequested": "Supplier Requested"
         }
       }
     },

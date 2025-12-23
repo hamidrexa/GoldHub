@@ -964,7 +964,10 @@
           "all": "Tüm Olaylar",
           "login": "Giriş/Çıkış",
           "kyc": "KYC Olayları",
-          "orders": "Siparişler"
+          "orders": "Siparişler",
+          "register": "kayıt ol",
+          "logout": "çıkış yap",
+          "supplierRequested": "tedarikçiİstenen"
         },
         "table": {
           "timestamp": "Zaman Damgası",
