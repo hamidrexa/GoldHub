@@ -2,12 +2,19 @@
 import useSWR from "swr";
 import Cookies from 'js-cookie';
 
-export function useUsersKYCData() {
+export function useUsersKYCData(page?:number) {
+
+    const params: Record<string, any> = {
+        page_size: 10,
+    };
+
+    if (!!page) {
+        params.page = page + 1;
+    }
+
     const { data, error, isLoading,mutate } = useSWR({
         url: `/v1/gold_artifacts/users_data`,
-        params: {
-            page_size : 20,
-        },
+        params,
         headers: {
             Authorization: `Bearer ${Cookies.get('token')}`,
         }
@@ -16,6 +23,8 @@ export function useUsersKYCData() {
     return {
         users: data?.results || [],
         count:data?.count,
+        next:data?.next,
+        previous:data?.previous,
         isLoading,
         error,
         mutate,

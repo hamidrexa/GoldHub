@@ -8,15 +8,15 @@ import { useProductList } from '@/app/[lang]/(user)/supplier/products/services/u
 
 export function BuyerStartCards({ dict, lang }) {
     const { count: submittedHistory, isLoading: isSubmittedLoading } =
-        useOrdersHistory(null, 'Submitted');
+        useOrdersHistory(null, null, 'Submitted','buyer');
     const { count: shippedHistory, isLoading: isShippedLoading } =
-        useOrdersHistory(null, 'Shipped');
+        useOrdersHistory(null, null,'Shipped','buyer');
     const { details, isLoading: cardLoading} = useCardDetails();
     const {
         count: favoritesCount,
         isLoading: isFavoritesLoading,
         error,
-    } = useProductList('', undefined, true);
+    } = useProductList(null,'', undefined, true);
 
     const shippedOrders = shippedHistory;
     const submittedOrders = submittedHistory;

@@ -12,7 +12,7 @@ import { OrderDialog } from '@/app/[lang]/(user)/supplier/components/order-dialo
 export function AdminOrdersTable({dict,lang,activeTab,searchQuery}) {
 
     const [page, setPage] = React.useState(0);
-    const {history,isLoading,error} = useOrdersHistory()
+    const {history,previous,next,isLoading,error} = useOrdersHistory(page)
     const [selectedOrder, setSelectedOrder] = React.useState<any>(null);
     const filteredOrders = React.useMemo(() => {
         let result = history;
@@ -70,7 +70,7 @@ export function AdminOrdersTable({dict,lang,activeTab,searchQuery}) {
                     <TableHeader>
                         <TableRow className="hover:bg-transparent">
                             <TableHead
-                                className="font-semibold sticky left-0 z-20 bg-card shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">{dict.marketplace.admin.ordersPage.table.orderId}</TableHead>
+                                className="font-semibold left-0 z-20 bg-card shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">{dict.marketplace.admin.ordersPage.table.orderId}</TableHead>
                             <TableHead
                                 className="font-semibold">{dict.marketplace.admin.ordersPage.table.buyer}</TableHead>
                             <TableHead
@@ -96,7 +96,7 @@ export function AdminOrdersTable({dict,lang,activeTab,searchQuery}) {
                             filteredOrders.map((order) => (
                                 <TableRow key={order.id} className="hover:bg-gray-50">
                                     <TableCell
-                                        className="font-medium sticky left-0 z-10 bg-card shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">{order.id}</TableCell>
+                                        className="font-medium left-0 z-10 bg-card shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">{order.id}</TableCell>
                                     <TableCell>{order.buyer.username}</TableCell>
                                     <TableCell>{order.items.length} {dict.marketplace.admin.ordersPage.table.itemsSuffix}</TableCell>
                                     <TableCell>${order.total_price.toLocaleString()}</TableCell>
@@ -132,10 +132,10 @@ export function AdminOrdersTable({dict,lang,activeTab,searchQuery}) {
             </div>
             <Pagination className="mt-8">
                 <PaginationContent>
-                    {history?.next && (
+                    {!!next && (
                         <PaginationItem>
                             <PaginationPrevious
-                                text="قدیمی‌تر"
+                                text="previous"
                                 onClick={() => {
                                     setPage(page + 1);
                                 }}
@@ -143,10 +143,10 @@ export function AdminOrdersTable({dict,lang,activeTab,searchQuery}) {
                             />
                         </PaginationItem>
                     )}
-                    {history?.previous && (
+                    {!!previous && (
                         <PaginationItem>
                             <PaginationNext
-                                text="جدید‌تر"
+                                text="next"
                                 onClick={() => {
                                     setPage(page - 1);
                                 }}

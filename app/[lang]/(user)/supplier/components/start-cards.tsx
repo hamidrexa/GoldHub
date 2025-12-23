@@ -9,9 +9,9 @@ import {
 import { useOrdersHistory } from '@/app/[lang]/(user)/supplier/services/orders-history';
 
 export function SupplierStartCards({dict,lang}) {
-    const {count:submittedHistory,isLoading:isSubmittedLoading} = useOrdersHistory(null,"Submitted");
-    const {count:paidHistory,isLoading:isPaidLoading} = useOrdersHistory(null,"Paid");
-    const {count:deliveredHistory,isLoading:isDeliveredLoading} = useOrdersHistory(null,"Delivered");
+    const {count:submittedHistory,isLoading:isSubmittedLoading} = useOrdersHistory(null,null,"Submitted",'supplier');
+    const {count:paidHistory,isLoading:isPaidLoading} = useOrdersHistory(null,null,"Paid","supplier");
+    const {count:deliveredHistory,isLoading:isDeliveredLoading} = useOrdersHistory(null,null,"Delivered",'supplier');
 
 
     const deliveredOrders = deliveredHistory;

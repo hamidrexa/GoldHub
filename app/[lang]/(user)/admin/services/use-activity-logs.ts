@@ -1,12 +1,19 @@
 'use client';
 import useSWR from "swr";
 
-export function useActivityLogs() {
+export function useActivityLogs(page?:number) {
+
+    const params: Record<string, any> = {
+        page_size: 10,
+    };
+
+    if (!!page) {
+        params.page = page + 1;
+    }
+
     const { data, error, isLoading } = useSWR({
         url: `/v1/gold_artifacts/users_activity`,
-        params: {
-            page_size : 20,
-        },
+        params,
         headers: {
             Authorization: `Bearer ${process.env.NEXT_PUBLIC_MY_TOKEN}`,
         }
@@ -15,6 +22,8 @@ export function useActivityLogs() {
     return {
         logs: data?.results || [],
         count:data?.count,
+        next:data?.next,
+        previous:data?.previous,
         isLoading,
         error,
     };

@@ -2,7 +2,7 @@
 import useSWR from 'swr';
 import Cookies from 'js-cookie';
 
-export function useOrdersHistory(page?:number,id?: string | number , status?:string) {
+export function useOrdersHistory(page:number,id?: string | number , status?:string ,role?:string) {
     const params: Record<string, any> = {
         page_size: 5,
     };
@@ -10,12 +10,14 @@ export function useOrdersHistory(page?:number,id?: string | number , status?:str
     if (!!id) {
         params.order_id = id;
     }
-    if (!!page) {
-        params.page = page;
+    if (!!role) {
+        params.role = role;
     }
     if (!!status) {
         params.status = status;
     }
+
+    params.page = page + 1;
 
     const { data, error, isLoading,mutate } = useSWR({
         url: `/v1/gold_artifacts/orders_history`,

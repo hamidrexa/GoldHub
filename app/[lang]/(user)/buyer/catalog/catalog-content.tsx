@@ -1,15 +1,24 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Card } from '@/components/ui/card';
 import { Product } from '@/lib/mock-data';
 import ProductCard from '../components/product-card';
 import { CatalogFilters } from './catalog-filters';
 import { CatalogToolbar } from './catalog-toolbar';
-import { useProductList, ProductListFilters } from '@/app/[lang]/(user)/supplier/products/services/useProductList';
+import {
+    useProductList,
+    ProductListFilters,
+} from '@/app/[lang]/(user)/supplier/products/services/useProductList';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import ProductDetailDialog from '../components/product-detail-dialog';
-
+import {
+    Pagination,
+    PaginationContent,
+    PaginationItem,
+    PaginationNext,
+    PaginationPrevious,
+} from '@/components/ui/pagination';
 
 interface CatalogContentProps {
     dict: any;
@@ -36,6 +45,7 @@ export function CatalogContent({
     initialMinWeight = 0,
     initialMaxWeight = 200,
 }: CatalogContentProps) {
+    const [page, setPage] = React.useState(0);
     const [showFilters, setShowFilters] = useState(true);
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<any>(null);
@@ -45,7 +55,6 @@ export function CatalogContent({
         setSelectedProduct(product);
         setIsDetailDialogOpen(true);
     };
-
 
     // Build filters object from initial props
     const filters = useMemo<ProductListFilters>(() => {
@@ -88,96 +97,164 @@ export function CatalogContent({
         }
 
         return filterObj;
-    }, [initialSearch, initialCategories, initialKarat, initialMinPrice, initialMaxPrice, initialMinWeight, initialMaxWeight]);
+    }, [
+        initialSearch,
+        initialCategories,
+        initialKarat,
+        initialMinPrice,
+        initialMaxPrice,
+        initialMinWeight,
+        initialMaxWeight,
+    ]);
 
-    const { products: list = [], isLoading,mutate } = useProductList("", filters);
+    const {
+        products: list = [],
+        previous,
+        next,
+        isLoading,
+        mutate,
+    } = useProductList(page, '', filters);
 
     if (isLoading) {
         return (
-            <div className="col-span-full text-center py-12">
+            <div className="col-span-full py-12 text-center">
                 <p className="text-muted-foreground">Loading...</p>
             </div>
         );
     }
 
     return (
-        <div className="flex flex-col md:flex-row gap-6">
-            {/* Mobile Filter Sheet */}
-            <Sheet open={mobileFiltersOpen} onOpenChange={setMobileFiltersOpen}>
-                <SheetContent side="left" className="w-[85vw] sm:w-[350px] overflow-y-auto">
-                    <CatalogFilters
-                        dict={dict}
-                        lang={lang}
-                        initialCategories={initialCategories}
-                        initialKarat={initialKarat}
-                        initialPriceRange={[initialMinPrice, initialMaxPrice]}
-                        initialWeightRange={[initialMinWeight, initialMaxWeight]}
-                        initialSearch={initialSearch}
-                    />
-                </SheetContent>
-            </Sheet>
+        <>
+            <div className="flex flex-col gap-6 md:flex-row">
+                {/* Mobile Filter Sheet */}
+                <Sheet
+                    open={mobileFiltersOpen}
+                    onOpenChange={setMobileFiltersOpen}
+                >
+                    <SheetContent
+                        side="left"
+                        className="w-[85vw] overflow-y-auto sm:w-[350px]"
+                    >
+                        <CatalogFilters
+                            dict={dict}
+                            lang={lang}
+                            initialCategories={initialCategories}
+                            initialKarat={initialKarat}
+                            initialPriceRange={[
+                                initialMinPrice,
+                                initialMaxPrice,
+                            ]}
+                            initialWeightRange={[
+                                initialMinWeight,
+                                initialMaxWeight,
+                            ]}
+                            initialSearch={initialSearch}
+                        />
+                    </SheetContent>
+                </Sheet>
 
-            {/* Desktop Filter Sidebar */}
-            {showFilters && (
-                <div className="hidden md:block w-80 sticky top-6 self-start">
-                    <CatalogFilters
-                        dict={dict}
-                        lang={lang}
-                        initialCategories={initialCategories}
-                        initialKarat={initialKarat}
-                        initialPriceRange={[initialMinPrice, initialMaxPrice]}
-                        initialWeightRange={[initialMinWeight, initialMaxWeight]}
-                        initialSearch={initialSearch}
-                    />
-                </div>
-            )}
-
-            {/* Main Content */}
-            <div className="flex-1 space-y-4">
-                {/* Toolbar */}
-                <CatalogToolbar
-                    dict={dict}
-                    lang={lang}
-                    productCount={list.length}
-                    currentSort={currentSort}
-                    showFilters={showFilters}
-                    onToggleFilters={() => setShowFilters(!showFilters)}
-                    onOpenMobileFilters={() => setMobileFiltersOpen(true)}
-                />
-
-                {/* Product Grid */}
-                {list.length === 0 ? (
-                    <Card className="p-12">
-                        <div className="text-center">
-                            <p className="text-lg text-muted-foreground">{dict.marketplace.buyer.catalogPage.noResults.title}</p>
-                            <p className="text-sm text-muted-foreground mt-2">
-                                {dict.marketplace.buyer.catalogPage.noResults.description}
-                            </p>
-                        </div>
-                    </Card>
-                ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {list.map((product) => (
-                            <ProductCard
-                                key={product.id}
-                                product={product}
-                                dict={dict}
-                                onViewDetails={() => handleViewDetails(product)}
-                            />
-                        ))}
+                {/* Desktop Filter Sidebar */}
+                {showFilters && (
+                    <div className="sticky top-6 hidden w-80 self-start md:block">
+                        <CatalogFilters
+                            dict={dict}
+                            lang={lang}
+                            initialCategories={initialCategories}
+                            initialKarat={initialKarat}
+                            initialPriceRange={[
+                                initialMinPrice,
+                                initialMaxPrice,
+                            ]}
+                            initialWeightRange={[
+                                initialMinWeight,
+                                initialMaxWeight,
+                            ]}
+                            initialSearch={initialSearch}
+                        />
                     </div>
-
                 )}
+
+                {/* Main Content */}
+                <div className="flex-1 space-y-4">
+                    {/* Toolbar */}
+                    <CatalogToolbar
+                        dict={dict}
+                        lang={lang}
+                        productCount={list.length}
+                        currentSort={currentSort}
+                        showFilters={showFilters}
+                        onToggleFilters={() => setShowFilters(!showFilters)}
+                        onOpenMobileFilters={() => setMobileFiltersOpen(true)}
+                    />
+
+                    {/* Product Grid */}
+                    {list.length === 0 ? (
+                        <Card className="p-12">
+                            <div className="text-center">
+                                <p className="text-muted-foreground text-lg">
+                                    {
+                                        dict.marketplace.buyer.catalogPage
+                                            .noResults.title
+                                    }
+                                </p>
+                                <p className="text-muted-foreground mt-2 text-sm">
+                                    {
+                                        dict.marketplace.buyer.catalogPage
+                                            .noResults.description
+                                    }
+                                </p>
+                            </div>
+                        </Card>
+                    ) : (
+                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                            {list.map((product) => (
+                                <ProductCard
+                                    key={product.id}
+                                    product={product}
+                                    dict={dict}
+                                    onViewDetails={() =>
+                                        handleViewDetails(product)
+                                    }
+                                />
+                            ))}
+                        </div>
+                    )}
+                </div>
+
+                <ProductDetailDialog
+                    open={isDetailDialogOpen}
+                    onOpenChange={setIsDetailDialogOpen}
+                    product={selectedProduct}
+                    dict={dict}
+                    mutate={mutate}
+                />
             </div>
-
-            <ProductDetailDialog
-                open={isDetailDialogOpen}
-                onOpenChange={setIsDetailDialogOpen}
-                product={selectedProduct}
-                dict={dict}
-                mutate={mutate}
-            />
-        </div>
-
+            <Pagination className="mt-8">
+                <PaginationContent>
+                    {!!next && (
+                        <PaginationItem>
+                            <PaginationPrevious
+                                text="previous"
+                                onClick={() => {
+                                    setPage(page + 1);
+                                }}
+                                isActive
+                            />
+                        </PaginationItem>
+                    )}
+                    {!!previous && (
+                        <PaginationItem>
+                            <PaginationNext
+                                text="next"
+                                onClick={() => {
+                                    setPage(page - 1);
+                                }}
+                                isActive
+                            />
+                        </PaginationItem>
+                    )}
+                </PaginationContent>
+            </Pagination>
+        </>
     );
 }

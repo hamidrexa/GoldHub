@@ -249,10 +249,10 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
     return (
         <header
             className={cn(
-                'fixed w-full bottom-0 z-[60] md:hidden items-center h-[70px] items-center justify-between text-sm text-black transition-transform md:h-[95px]',
+                'fixed w-full bottom-0 z-[60] md:hidden h-[70px] items-center justify-between text-sm text-black transition-transform md:h-[95px]',
                 // path === '/'
                 //     ? 'bg-neutral-700 text-white'
-                // : 
+                // :
                 'bg-white text-black shadow-[10px_0px_12px_rgba(0,0,0,0.1)]',
                 isReadingMode
                     ? '-translate-y-full md:translate-y-0'

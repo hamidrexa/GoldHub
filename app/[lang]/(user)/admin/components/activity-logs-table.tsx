@@ -41,6 +41,10 @@ function EventBadge({ event, dict }: { event: string; dict: any }) {
             label: dict.marketplace.admin.auditLogsPage.events.orderCreated,
             className: 'bg-blue-100 text-blue-800 hover:bg-blue-100',
         },
+        register: {
+            label: dict.auth.register,
+            className: 'bg-blue-100 text-blue-800 hover:bg-blue-100',
+        },
         kyc_submitted: {
             label: dict.marketplace.admin.auditLogsPage.events.kycSubmitted,
             className: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100',
@@ -74,7 +78,7 @@ export function ActivityLogsTable({
     dict,
 }: ActivityLogsTableProps) {
     const [page, setPage] = React.useState(0);
-    const { logs, isLoading, error } = useActivityLogs();
+    const { logs, previous,next,isLoading, error } = useActivityLogs(page);
 
     if (isLoading) return <p className="py-8 text-center">Loading...</p>;
     if (error)
@@ -198,10 +202,10 @@ export function ActivityLogsTable({
             </div>
             <Pagination className="mt-8">
                 <PaginationContent>
-                    {logs?.next && (
+                    {!!next && (
                         <PaginationItem>
                             <PaginationPrevious
-                                text="قدیمی‌تر"
+                                text="previous"
                                 onClick={() => {
                                     setPage(page + 1);
                                 }}
@@ -209,10 +213,10 @@ export function ActivityLogsTable({
                             />
                         </PaginationItem>
                     )}
-                    {logs?.previous && (
+                    {!!previous && (
                         <PaginationItem>
                             <PaginationNext
-                                text="جدید‌تر"
+                                text="next"
                                 onClick={() => {
                                     setPage(page - 1);
                                 }}

@@ -21,7 +21,7 @@ import { updateOrderStatus } from '@/app/[lang]/(user)/supplier/services/update-
 export function OrdersTable({ dict, lang, activeTab, searchQuery }) {
     const [selectedOrder, setSelectedOrder] = React.useState<any>(null);
     const [page, setPage] = React.useState(0);
-    const { history = [], isLoading, error,mutate } = useOrdersHistory();
+    const { history = [],previous,next, isLoading, error,mutate } = useOrdersHistory(page,null,null,"supplier");
     const filteredHistory = React.useMemo(() => {
         let result = history;
         if (activeTab && activeTab !== 'all') {
@@ -261,10 +261,10 @@ export function OrdersTable({ dict, lang, activeTab, searchQuery }) {
 
             <Pagination className="mt-8">
                 <PaginationContent>
-                    {history?.next && (
+                    {!!next && (
                         <PaginationItem>
                             <PaginationPrevious
-                                text="قدیمی‌تر"
+                                text="previous"
                                 onClick={() => {
                                     setPage(page + 1);
                                 }}
@@ -272,10 +272,10 @@ export function OrdersTable({ dict, lang, activeTab, searchQuery }) {
                             />
                         </PaginationItem>
                     )}
-                    {history?.previous && (
+                    {!!previous && (
                         <PaginationItem>
                             <PaginationNext
-                                text="جدید‌تر"
+                                text="next"
                                 onClick={() => {
                                     setPage(page - 1);
                                 }}
