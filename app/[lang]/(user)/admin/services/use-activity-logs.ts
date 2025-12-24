@@ -1,13 +1,16 @@
 'use client';
 import useSWR from "swr";
 
-export function useActivityLogs(page?: number, pageSize: number = 10) {
+export function useActivityLogs(page?: number, activity_type?:string, pageSize: number = 10) {
     const params: Record<string, any> = {
         page_size: pageSize,
     };
 
     if (page !== undefined) {
         params.page = page + 1;
+    }
+    if (activity_type !== undefined) {
+        params.activity_type = activity_type;
     }
 
     const { data, error, isLoading } = useSWR({

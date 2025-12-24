@@ -102,11 +102,7 @@ export default async function AuditLogsPage({ params: { lang }, searchParams }: 
                     { value: 'all', label: dict.marketplace.admin.auditLogsPage.tabs.all },
                     { value: 'login', label: dict.marketplace.admin.auditLogsPage.tabs.login },
                     { value: 'logout', label: dict.marketplace.admin.auditLogsPage.tabs.logout },
-                    { value: 'register', label: dict.marketplace.admin.auditLogsPage.tabs.register },
-                    {
-                        value: 'supplier_requested',
-                        label: dict.marketplace.admin.auditLogsPage.tabs.supplierRequested,
-                    },
+                    { value: 'register', label: dict.marketplace.admin.auditLogsPage.tabs.register }
                 ]}
                 defaultValue={eventFilter}
             />
