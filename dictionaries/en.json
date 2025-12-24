@@ -168,8 +168,9 @@
         "searchPlaceholder": "Search users...",
         "tabs": {
           "all": "All Users",
-          "pending": "Pending KYC",
-          "approved": "Approved"
+          "pending": "Requested",
+          "approved": "Approved",
+          "rejected": "Rejected"
         },
         "table": {
           "name": "Name",

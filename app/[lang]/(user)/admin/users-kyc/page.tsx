@@ -220,8 +220,9 @@ export default async function UsersKycPage({
             {/* Client-side tabs wrapper */}
             <URLTabs tabs={[
                 { value: 'all', label: dict.marketplace.admin.usersKycPage.tabs.all },
-                { value: 'pending', label: dict.marketplace.admin.usersKycPage.tabs.pending },
+                { value: 'requested', label: dict.marketplace.admin.usersKycPage.tabs.pending },
                 { value: 'approved', label: dict.marketplace.admin.usersKycPage.tabs.approved },
+                { value: 'rejected', label: dict.marketplace.admin.usersKycPage.tabs.rejected },
             ]} defaultValue={activeTab} />
 
             <UsersKycTable
