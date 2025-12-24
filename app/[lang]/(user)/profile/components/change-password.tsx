@@ -118,7 +118,7 @@ export function ChangePassword({ userId, dict }) {
                         {isLoading && (
                             <Icons.spinner className="h-5 w-5 animate-spin" />
                         )}
-                        {dict.login}
+                        {dict.auth.login}
                     </Button>
                 </form>
             </Form>

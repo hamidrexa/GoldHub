@@ -161,12 +161,12 @@ export function ProfilePage({ dict, lang }) {
     const transactionStatus = {
         'Cancel by user': (
             <span className="text-red-500">
-                {dict.transactionStatus.cancel}
+                cancel
             </span>
         ),
         Complete: (
             <span className="text-green-500">
-                {dict.transactionStatus.success}
+                success
             </span>
         ),
     };
@@ -379,42 +379,41 @@ export function ProfilePage({ dict, lang }) {
                     </div>
                     <div className="flex flex-col-reverse items-start justify-start gap-6 md:flex-row lg:mt-6 lg:w-full">
                         <div className="w-full space-y-7">
-                            {1 && ( //lang === 'fa'
-                                <div className="space-y-2">
-                                    <div className="flex items-center justify-between">
-                                        <div className="text-base">
-                                            {dict.marketplace.profile.profilePage.phoneNumber}
-                                        </div>
-                                        {/*// @ts-ignore*/}
-                                        <StatusBadge
-                                            dict={dict}
-                                            status={
-                                                user &&
-                                                    user.phone_number_confirmed
-                                                    ? 'confirmed'
-                                                    : 'notConfirmed'
-                                            }
-                                        />
-                                    </div>
-                                    <div className="flex h-14 items-center justify-between rounded-md bg-gray-300/60 p-1.5 text-base font-black ltr:pl-5 rtl:pr-5">
-                                        <span>{user.phone_number}</span>
-                                        <Dialog
-                                            open={
-                                                !user?.phone_number_confirmed &&
-                                                PhoneModalOpen
-                                            }
-                                        >
-                                            <DialogContent className="h-48 max-w-xl">
-                                                <PhoneSubmitForm
-                                                    setOpen={setPhoneModalOpen}
-                                                    lang={lang}
-                                                    dict={dict}
-                                                />
-                                            </DialogContent>
-                                        </Dialog>
-                                    </div>
-                                </div>
-                            )}
+                            {/*{1 && ( //lang === 'fa'*/}
+                            {/*    <div className="space-y-2">*/}
+                            {/*        <div className="flex items-center justify-between">*/}
+                            {/*            <div className="text-base">*/}
+                            {/*                {dict.marketplace.profile.profilePage.phoneNumber}*/}
+                            {/*            </div>*/}
+                            {/*            <StatusBadge*/}
+                            {/*                dict={dict}*/}
+                            {/*                status={*/}
+                            {/*                    user &&*/}
+                            {/*                        user.phone_number_confirmed*/}
+                            {/*                        ? 'confirmed'*/}
+                            {/*                        : 'notConfirmed'*/}
+                            {/*                }*/}
+                            {/*            />*/}
+                            {/*        </div>*/}
+                            {/*        <div className="flex h-14 items-center justify-between rounded-md bg-gray-300/60 p-1.5 text-base font-black ltr:pl-5 rtl:pr-5">*/}
+                            {/*            <span>{user.phone_number}</span>*/}
+                            {/*            <Dialog*/}
+                            {/*                open={*/}
+                            {/*                    !user?.phone_number_confirmed &&*/}
+                            {/*                    PhoneModalOpen*/}
+                            {/*                }*/}
+                            {/*            >*/}
+                            {/*                <DialogContent className="h-48 max-w-xl">*/}
+                            {/*                    <PhoneSubmitForm*/}
+                            {/*                        setOpen={setPhoneModalOpen}*/}
+                            {/*                        lang={lang}*/}
+                            {/*                        dict={dict}*/}
+                            {/*                    />*/}
+                            {/*                </DialogContent>*/}
+                            {/*            </Dialog>*/}
+                            {/*        </div>*/}
+                            {/*    </div>*/}
+                            {/*)}*/}
                             <div className="space-y-2">
                                 <div className="flex items-center justify-between">
                                     <div className="text-base">

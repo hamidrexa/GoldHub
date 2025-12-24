@@ -24,8 +24,8 @@ export async function generateMetadata(
     parent?: ResolvingMetadata
 ): Promise<Metadata> {
     const dict = await getDictionary(lang);
-    const seoTitle = dict.homePageSeoTitle || 'GoldHub';
-    const seoDescription = dict.homePageDescription || 'GoldHub Platform';
+    const seoTitle = dict.homepage.SeoTitle || 'GoldHub';
+    const seoDescription = dict.homepage.SeoDescription || 'GoldHub Platform';
 
     return {
         title: seoTitle,
@@ -173,18 +173,6 @@ export default async function HomePage({ params: { lang } }: PageProps) {
                             </p>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            {/* Link Box Section */}
-            <section className="w-full px-4 py-8 bg-white">
-                <div className="mx-auto w-full max-w-3xl">
-                    <LinkBox
-                        target='_blank'
-                        title={dict.newestTradersAnalysis?.replace('{symbolName} | ', '') || 'تحلیل تکنیکال طلا'}
-                        icon={<TrendingUp stroke='currentColor' className="w-6 h-6 text-yellow-600" />}
-                        href='https://sahmeto.com/ticker/IRG0000/%D9%86%D8%AA%D8%A7%DB%8C%D8%AC-%DA%A9%D9%84%DB%8C-%D8%B3%DB%8C%DA%AF%D9%86%D8%A7%D9%84-%D9%87%D8%A7%DB%8C-%D8%AE%D8%B1%DB%8C%D8%AF-%D9%88-%D9%81%D8%B1%D9%88%D8%B4-%D8%B3%D9%87%D9%85-%D8%B7%D9%84%D8%A7-%DB%B1%DB%B8-%D8%B9%DB%8C%D8%A7%D8%B1'
-                    />
                 </div>
             </section>
 

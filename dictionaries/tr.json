@@ -14,52 +14,10 @@
   "neutral": "Orta",
   "callNumber": "Telefon numarası",
   "postalCode": "Posta Kodu",
-  "sahmetoProducts": "GoldHub ürünleri",
-  "socialNetworks": "Sosyal ağlar",
-  "selectedIcons": "Seçilen semboller",
-  "feed": "İzleme listem",
-  "dashboard": "İzleme listem",
-  "bestTraders": "En iyi yatırımcılar",
-  "search": "Ara",
-  "sahmetoUser": "GoldHub kullanıcısı",
-  "edit": "Düzenlemek",
-  "planFinished": "Planın bitti",
-  "loginToAccount": "Hesaba giriş yapın",
-  "buySubscription": "Abonelik satın alın",
-  "organizationalSolution": "Organizasyonel çözüm",
   "help": "Destek",
   "rules": "Tüzük",
   "aboutUs": "Hakkımızda",
   "contactUs": "bize Ulaşın",
-  "buyFromBroker": "Bir komisyoncudan satın alın",
-  "buyFromExchange": "Bir komisyoncudan satın alın",
-  "industry": "endüstri",
-  "lastWeekTraderSignals": "Tüccarlardan geçen hafta gelen mesajlarda {assetSymbol} hisseleriyle ilgili {component} sinyal var",
-  "lastWeekTraderSignals2": "Geçen hafta yatırımcılardan gelen mesajlarda, {assetSymbol} ile ilgili {component} sinyali var",
-  "whatIsAssetAnalysisDiagram": "{assetSymbol} sembol analiz tablosu nedir?",
-  "whatIsAssetAnalysisDiagramInfo": "Hisse senedi grafiği analizi ne gösterir?",
-  "whatIsAssetAnalysisDiagramDescription": "GoldHub, Telegram kanalı, Tradingview gibi sosyal ağlardaki analistlerin tüm mesajlarını toplar ve yapay zeka algoritmasını temel alarak, her bir kripto para biriminin alış ve satış sinyallerinin sayısını belirler ve son olarak sosyal ağ analistlerinin görüşlerinin özetini gösterir. bu grafiğin şekli.",
-  "whatIsAssetAnalysisDiagramTitle2": "Bu grafiğin eli, kripto para biriminin alınıp satılacağı zamanı nasıl belirliyor?",
-  "whatIsAssetAnalysisDiagramDescription2": "Bu grafiğin oku satın alma yönündeyse, analistlerin bakış açısına göre bu kripto para birimini satın alma zamanının geldiği, satış yönündeyse ise bu konuda düşünmeniz gerektiği anlamına gelir. kripto para biriminin karını satıp tasarruf etmek. Ok nötr aralıktaysa, kripto para birimi volatildir ve henüz satın almak veya satmak için iyi bir zaman değildir.",
-  "signalsTab": "{assetSymbol} sinyalleri",
-  "tradersTab": "{assetSymbol} tüccarları",
-  "traderAssetPriceAnalysis": "Yatırımcıların {assetSymbol} fiyatı hakkındaki görüşleri",
-  "traderAssetAnalysis": "Ticaretçilerin {assetSymbol} hakkındaki görüşleri",
-  "faqTitle": "Rehber | GoldHub",
-  "faqQuestion1": "Kripto para birimi grafik analizi ne gösteriyor?",
-  "faqAnswer1": "Shameto, Telegram kanalı, Trading View gibi sosyal ağlardaki analistlerin tüm mesajlarını topluyor ve yapay zeka algoritmasını temel alarak her bir kripto para birimi için alış ve satış sinyallerinin sayısını belirliyor ve son olarak sosyal medya kuruluşlarının görüşlerinin özetini gösteriyor. Ağ analistleri bu grafiği şeklinde veriyor.",
-  "faqQuestion2": "Bu grafiğin eli, kripto para biriminin alınıp satılacağı zamanı nasıl belirliyor?",
-  "faqAnswer2": "Bu grafiğin oku satın alma yönündeyse, analistlerin bakış açısına göre bu kripto para birimini satın alma zamanının geldiği, satış yönündeyse ise satmayı düşünmeniz gerektiği anlamına geliyor. ve kripto para biriminin kârının korunması. Ok nötr aralıktaysa, kripto para birimi volatildir ve hala satın almak veya satmak için iyi bir zaman değildir.",
-  "breadcrumbTitle": "Küresel Konumlama Sistemi| GoldHub",
-  "priceChartTitle": "{assetSymbol} Fiyat Grafiği ve {assetSymbol} Sinyalleri Trendi",
-  "profitTarget": "En yakın marj",
-  "stopLoss": "En yakın sınır",
-  "none": "bulunmamaktadır",
-  "buyRecommendation": "{component} yatırımcıdan {component}'si {assetSymbol} sembolünü satın almayı tavsiye ediyor.",
-  "price": "fiyat",
-  "products": "Ürünler",
-  "more": "daha fazla",
-  "loginRegister": "Giriş/Kayıt Ol",
   "navMenuItems": [
     {
       "title": "Alıcı",
@@ -92,676 +50,6 @@
       "description": ""
     }
   ],
-  "searchPlaceholder": "800'den fazla dijital para birimi arasında arama yapın",
-  "loginPrompt": "Bu bölüme erişebilmek için giriş/kayıt olmanız gerekmektedir.",
-  "subscriptionPrompt": "Bu bölüme erişebilmek için abonelik satın almanız gerekmektedir.",
-  "addedToDashboard": "Kontrol Paneline Eklendi",
-  "addToDashboard": "Kontrol paneline ekle",
-  "sortBasedOn": "Mesajı şuna göre sırala",
-  "related": "ilgili",
-  "latest": "En son",
-  "filter": "filtre",
-  "signalType": "sinyal türü",
-  "all": "Hepsi",
-  "buySuggestion": "Satın alma önerisi",
-  "sellSuggestion": "satış önerisi",
-  "signalCount": "Sinyal Sayısı",
-  "commentSuccessfullySubmit": "Yorumunuz başarıyla gönderildi.",
-  "showUsersComments": "Diğer kişilerin yorumlarının sonuçlarını görüntüleyin",
-  "backToSubmitComment": "Yorum Göndermeye Geri Dön",
-  "rank": "Sıralama",
-  "powerOfAnalytics": "Analiz Gücü",
-  "showFullText": "Tam Metni Göster",
-  "showOriginalMessage": "Orijinal mesajı göster",
-  "translatedFrom": "Çeviri",
-  "typeOfAnalytics": "analiz türü",
-  "source": "kaynak",
-  "bargainTypes": {
-    "B": {
-      "title": "Satın al"
-    },
-    "N": {
-      "title": "Nötr",
-      "variant": "light"
-    },
-    "S": {
-      "title": "İndirim",
-      "variant": "destructive"
-    },
-    "E": {
-      "title": "Belirtilmemiş",
-      "variant": "light"
-    }
-  },
-  "analysisTypes": {
-    "F": {
-      "title": "Temel",
-      "variant": "light"
-    },
-    "T": {
-      "title": "Teknik",
-      "variant": "light"
-    },
-    "B": {
-      "title": "Pano Okuma",
-      "variant": "light"
-    }
-  },
-  "messagesSourceType": {
-    "tradingview": {
-      "title": "Trading View",
-      "logo": "/img/messages-source/tradingview.svg"
-    },
-    "telegram": {
-      "title": "Telegram",
-      "logo": "/img/messages-source/telegram.svg"
-    },
-    "rahavard": {
-      "title": "Rahavard",
-      "logo": "/img/messages-source/rahavard.svg"
-    },
-    "sahamyab": {
-      "title": "Sahamyab",
-      "logo": "/img/messages-source/sahamyab.svg"
-    },
-    "arzdigital": {
-      "title": "Arzdigital",
-      "logo": "/img/messages-source/arzdigital.svg"
-    },
-    "institutional": {
-      "title": "Hissedar",
-      "logo": "/img/messages-source/tse.svg"
-    },
-    "sahmeto": {
-      "title": "GoldHub",
-      "logo": "/img/messages-source/sahmeto.svg"
-    }
-  },
-  "timeframe": "zaman aralığı",
-  "timeout": "geçerlilik süresi",
-  "day": "gün",
-  "entryPoint": "giriş noktası",
-  "profitPrice": "kar limiti",
-  "stopLossPrice": "LossPrice'ı Durdur",
-  "supportPrice": "İlk destek",
-  "resistancePrice": "ilk direnç",
-  "share": "Paylaş",
-  "purchaseSignalLastWeek": "geçen hafta satın alma sinyali",
-  "neutralSignalLastWeek": "Geçen Hafta Nötr Sinyali",
-  "sellSignalLastWeek": "Geçen haftanın satış sinyali",
-  "alertMessage": "{component} alım ve satımından haberdar olmak için saate #{assetSymbol} sembolünü ekleyin. Saate {component} sinyallerini ekleyerek, başkalarının {assetSymbol} {component} hakkında bilgi sahibi olmasını sağlayın.",
-  "sellRecommendation": "{component} tüccarları {component}'den {assetSymbol} satmayı önerdi.",
-  "topOneHundred": "En İyi 100 Yatırımcı",
-  "assetInfo": "{component} {assetSymbol} öğesinin {component} cinsinden fiyatı",
-  "profitLossTarget": "Kar ve zarar hedefi",
-  "trader": "tüccar",
-  "commentsOfUsersAboutSymbol": "{' '}{component}{' '}{symbol} hakkındaki yorumlar",
-  "usersCanCommentJustOnceInDay": "Her kullanıcının bir gün içinde yalnızca{' '}{component}{' '}yorum yapma şansı vardır.",
-  "once": "bir kez",
-  "users": "Kullanıcılar",
-  "yourCommentAboutSymbol": "{component} hakkındaki yorumunuz",
-  "whatSymbolBetterThanSymbol": "Hangi sembolü satın almak {symbol}'den daha iyidir?",
-  "cryptoMarket": "dijital para piyasası",
-  "investment": "Yatırım",
-  "buySahmetoStock": "GoldHub Hissesini Satın Al",
-  "soon": "yakında",
-  "sahmetoWorld": "GoldHub Dünyası",
-  "reportProblem": "Sorun raporu ve geri bildirim",
-  "joinUs": "İşbirliği yapmaya davet",
-  "developWithSahmeto": "GoldHub (API'ler) ile geliştirin",
-  "investOnSahmeto": "GoldHub'e yatırım yapın",
-  "copyright": "Tüm hakları Sahmteo Co. 1403'ye aittir",
-  "fundraising": "bağış toplama",
-  "bests": "en iyisi",
-  "assetRecommendation": "Algoritmaya göre, {assetSymbol} sembolü {component}'tir.",
-  "goodChange": "şunun için iyi bir fırsat",
-  "expertTraders": "Uzman Yatırımcılar {assetSymbol}",
-  "bestOrdersOnAsset": "{component}, son 3 ayda {assetSymbol}'dan iyi düzeyde {component} aldı.",
-  "profit": "kâr",
-  "alert": "Uyarı",
-  "faster": "hızlı",
-  "bestTrader": "En İyi Yatırımcılar",
-  "company": "Şirket",
-  "symbolAnalytics": "{assetSymbol} Analizi",
-  "traderRank": "Tüccar Sıralaması",
-  "seeOriginalMessageInSource": "Orijinal mesajı {source} içinde görüntüle",
-  "showMore": "Daha fazla göster",
-  "showLess": "Daha az göster",
-  "companySize": [
-    {
-      "value": {
-        "market_cap_from": 0,
-        "market_cap_to": 10000000000000
-      },
-      "title": "Çok küçük"
-    },
-    {
-      "value": {
-        "market_cap_from": 10000000000000,
-        "market_cap_to": 50000000000000
-      },
-      "title": "Biraz"
-    },
-    {
-      "value": {
-        "market_cap_from": 50000000000000,
-        "market_cap_to": 200000000000000
-      },
-      "title": "orta"
-    },
-    {
-      "value": {
-        "market_cap_from": 200000000000000,
-        "market_cap_to": 700000000000000
-      },
-      "title": "büyük"
-    },
-    {
-      "value": {
-        "market_cap_from": 700000000000000,
-        "market_cap_to": 10000000000000000
-      },
-      "title": "Çok büyük"
-    }
-  ],
-  "timeframes": {
-    "00:15:00": "15 dakika",
-    "00:30:00": "30 dakika",
-    "01:00:00": "1 saat",
-    "04:00:00": "4 saat",
-    "1 00:00:00": "1 gün",
-    "7 00:00:00": "1 hafta",
-    "30 00:00:00": "1 ay",
-    "360 00:00:00": "1 yıl"
-  },
-  "hourAgo": "saat önce",
-  "minuteAgo": "dakika önce",
-  "fundamentalAnalysis": "temel analiz",
-  "capitalIncreaseCalendar": "Sermaye Artış Takvimi",
-  "assetPageTitle1": "{symbolName} | Paylaşımınızdaki en son analiz",
-  "assetPageTitle2": "{symbolName} | Sahmeto'daki yatırımcıların en son analizi",
-  "assetPageDescription": "{symbolName} satın alma zamanı ne zaman?? Hangi analist dedi? Bir bakışta {symbolName} hissesinin tüm sinyalleri, {name} | sizin payınız",
-  "assetPageDescription2": "Alış ve satış sinyalleri ve tahminler {name} | Anlık fiyat tablosu {name} | Sosyal ağ ve haberlere dayalı analiz {name} | Teknik analiz {name} Temel analiz {name} | Fiyat {name} } | {symbolName}",
-  "lastUpdate": "Yeni Güncelleme",
-  "todaySignalCount": "SignalCount'un simgesi {symbol}",
-  "message": "mesaj",
-  "signalPageSlogan": "Kişiselleştirilmiş filtrelerle piyasadaki en iyi {component} bulun.",
-  "signalPageSloganComponent1": "Fırsatlar",
-  "tse": "borsa",
-  "crypto": "dijital para birimi",
-  "marketOpportunities": "En İyi Fırsatlar {marketName}",
-  "show": "Fırsatı",
-  "numberViewsUsers": "Kullanıcıların görüntüleme sayısı",
-  "publishTime": "Yayınlama Zamanı",
-  "traderInfo": "Analist Bilgileri",
-  "amongNTopTraders": "İlk {rank} trader arasında",
-  "traderPowerOfAnalytics": "tüccar başarı yüzdesi",
-  "investmentOpportunityProfile": "Yatırım Fırsatı Profili",
-  "messagePageSeoDescription": "Sahmeto'daki {publisherName} tüccarı tarafından {symbol} sembolüne ilişkin analiz ve güncel haberler, Sahmeto'daki tüccar sıralaması: {publisherRank}, dünyanın en iyi tüccarları tarafından hisse senedi ve dijital para simgelerinin analizi borsa ve dijital para birimi.",
-  "messagePageSeoDescription2": "Sahmeto'daki {publisherName} tüccarı tarafından {symbol} sembolünün analizi, Sahmeto'daki tüccar sıralaması: {publisherRank}, borsa sembollerinin ve dijital para biriminin en iyi piyasa tüccarları tarafından analizi.",
-  "todayNews": "Günün haberleri",
-  "emptyFeed": "Hiç takipçin yok",
-  "buySignals": "Satın Alma Sinyalleri",
-  "sellSignals": "Satış Sinyalleri",
-  "follow": "takip",
-  "addDashboard": "Kontrol Paneline Ekle",
-  "addedDashboard": "Kontrol Paneline Eklendi",
-  "followed": "takip edildi",
-  "analytics": "Analiz",
-  "about": "hakkında",
-  "messagePageH1": "{date} tarihinde {market} {symbol} hakkında {analysisType} {publisherName} analizi",
-  "messagePageSecondH1": "{market} {symbol} hakkında analiz {analysisType} {publisherName}: {bargainType} ({date}) önerilir",
-  "messagePageSeoTitle": "{bargainType} {symbol} için tavsiyeler | Analiz {analysisType} {publisher}: {messageText}",
-  "messagePageSeoTitle2": "Trendi başlat {bargainType} {symbol} | Analiz {analysisType} {publisher}: {messageText}",
-  "stock": "hisse senedi",
-  "symbol": "sembol",
-  "verifiedTraders": "Onaylı Tüccarlar",
-  "market": "Piyasa",
-  "traderType": "Tüccar Türü",
-  "telegram": "Telegram",
-  "tradingview": "TradingView",
-  "rahavard": "Rahavard",
-  "sahamyab": "Sahamyab",
-  "shareholders": "Hisse Sahipleri",
-  "personalFormula": "Kişisel Formül",
-  "name": "İsim",
-  "noTraderFound": "Bu özelliklere sahip bir tüccar bulunamadı",
-  "performances": {
-    "signal": [
-      {
-        "title": "Haftalık Performans",
-        "value": "7d"
-      },
-      {
-        "title": "Aylık Performans",
-        "value": "30d"
-      },
-      {
-        "title": "3 Aylık Performans",
-        "value": "90d"
-      },
-      {
-        "title": "6 Aylık Performans",
-        "value": "180d"
-      }
-    ],
-    "cryptocurrency": [
-      {
-        "title": "Haftalık Performans",
-        "value": "7d"
-      },
-      {
-        "title": "1 Aylık Performans",
-        "value": "30d"
-      },
-      {
-        "title": "3 Aylık Performans",
-        "value": "90d"
-      },
-      {
-        "title": "6 Aylık Performans",
-        "value": "180d"
-      }
-    ]
-  },
-  "noData": "Veri Yok",
-  "leaderboardPageTitleSeo": "En İyi Kripto ve Borsa Tüccarları | HisseTo",
-  "leaderboardPageDescriptionSeo": "En iyi borsa kanalları, en iyi dijital para birimi ve Bitcoin kanalları, dijital para birimi tüccarları ve borsa işlemcileri",
-  "feedPageH1": "En İyi Yatırımcılardan İlham Alın",
-  "groupPageH1": "altın",
-  "messages": "Mesajlar",
-  "myTraders": "Benim Yatırımcılarım",
-  "myAssets": "Varlıklarım",
-  "feedPageTitleSeo": "kişisel | GoldHub",
-  "attractivenessBuySell": "Alış/satım çekiciliği",
-  "risk": "Risk",
-  "hour": "saat",
-  "copy": "Kopyala",
-  "copied": "kopyalandı",
-  "asc": "artan",
-  "des": "azalan",
-  "weekPerformance": "Haftalık Performans",
-  "monthPerformance": "Aylık Performans",
-  "threeMonthPerformance": "Üç Aylık Performans",
-  "sixMonthPerformance": "Altı Aylık Performans",
-  "rowsPerPage": "sayfa başına satır",
-  "topPublishers": "Bütün Yayıncılar",
-  "opinion": "yeni",
-  "moreInfo": "daha fazla bilgi",
-  "opinionSummary": "Tüm yatırımcıların görüşlerinin özeti",
-  "prediction": "Tahmin",
-  "oneMonth": "Bir Ay",
-  "threeMonth": "Üç Ay",
-  "sixMonth": "altı ay",
-  "oneYear": "Bir Yıl",
-  "allTraders": "Tüm Tacirler",
-  "top100Traders": "En İyi 100 Tacir",
-  "observes": "Gözlemler",
-  "lastTransaction": "Son İşlem",
-  "followers": "Takipçiler",
-  "tradersProfitPrediction": "Yatırımcının {symbol}'den kar tahmini {component}",
-  "tradersLossPrediction": "Yatırımcının {symbol}'den zarar tahmini {component}",
-  "mostProfitFrom": "{symbol} üzerinden en çok karı hangi tacir elde etti?",
-  "last3Month": "Son üç ayda",
-  "profitSymbol": "{symbol} üzerinden kar elde ettiler.",
-  "traderSymbolLimit": "{symbol} için tacirlerin kar ve zarar sınırları",
-  "nearestProfitLimit": "En Yakın Kar Sınırı",
-  "nearestDamageLimit": "En Yakın Zarar Sınırı",
-  "summary": "Özet",
-  "assetMostProfit": "{symbol} üzerinden en çok karı kim elde etti?",
-  "monthProfit": " Bir aylık kar:",
-  "tradesPriceComment": "Tacirlerin fiyat üzerine yorumları",
-  "newestAnalysis": "{symbolName} | Hisse senedinizdeki en yeni analizler",
-  "newestTradersAnalysis": "{symbolName} | Hisse senedinizdeki en yeni tacir analizleri",
-  "commonQuestion": "| {symbolName} hissesini almak için doğru zaman ne zaman? Analist ne dedi? {symbolName} hisseleri için tüm sinyaller bir bakışta, {symbolName}",
-  "mainResults": "Sonuçlar-Genel-Al-Sat-Sinyalleri-Hisse-{symbolName}",
-  "timeSlice": "dönem ",
-  "possibleDamage": "Olası kayıp",
-  "possibleProfit": "Olası kar",
-  "nowPrice": "Mevcut fiyat",
-  "profitLimit": "kâr sınırı",
-  "damageLimit": "kayıp limiti",
-  "oneWeek": "Bir hafta",
-  "goToMassage": "Mesaja git",
-  "notAnnounce": "duyurulmadı",
-  "pageOwner": "Bu sayfanın sahibi benim",
-  "followersNumber": "Takipçi sayısı",
-  "registerDate": "kayıt tarihi",
-  "traderSocialMedia": "Tüccar sosyal ağı",
-  "rankAmong": "{number} tüccar arasında sıralama",
-  "traderMonthPerformance": "Yatırımcının geçen ayki performansı",
-  "top100traderMonthPerformance": "En iyi 100 yatırımcının son ayın ortalama getirisi",
-  "totalIndexMonthPerformance": "Toplam endeksin son ayın ortalama getirisi",
-  "totalBTCMonthPerformance": "Toplam endeksin son ayın ortalama getirisi",
-  "analysisPower": "analizin gücü",
-  "successPercentageAll": "Yatırımcının tüm sinyallerdeki başarı yüzdesi",
-  "messageNum": "Mesaj sayısı",
-  "traderMessage": "Yatırımcı mesajları",
-  "basket": "Tüccar sepeti",
-  "performance": "Yatırımcı performansı",
-  "buySuggest": "Ne tavsiye etmek istersiniz?",
-  "buyHistory": "önceki makale",
-  "monthToMonthPerformance": "Tahmin edin tüccar ne yapıyor",
-  "traderSignalChart": "Nomadar Sinyali Yüksek Tüccar",
-  "statusBarRightName": "Kârlı işlem",
-  "statusBarLeftName": "Ticareti kaybetmek",
-  "specialUserView": "Bu bölümü görüntüle {component}",
-  "specialView": "özel {component} özeldir",
-  "buyAccount": "Abonelik satın alın",
-  "totalIndexCompare": "Toplam endeksle karşılaştırma",
-  "top100TraderCompare": "En iyi 100 yatırımcıyla karşılaştırma",
-  "year": "Yıl",
-  "login": "giriş yapmak",
-  "Authentication": "Sahip olarak kimlik doğrulaması yaparak",
-  "blueTick": "Sahmeto mavi tikini alın",
-  "openPrice": "giriş ücreti",
-  "closePrice": "çıkış fiyatı",
-  "openTime": "varış zamanı",
-  "closeTime": "hareket saati",
-  "Continue": "Devamı",
-  "opportunities": "Fırsatlar",
-  "opportunity": "fırsat",
-  "marketsCompare": "Piyasaları karşılaştırın",
-  "functionHistory": "Performans geçmişi",
-  "fundDivisionSuggest": "Piyasalarda sermaye dağıtım önerisi",
-  "analyserRank": "Analist sıralaması",
-  "analyserPower": "Analist gücü",
-  "symbolScore": "Sembol puanı",
-  "inRange": "aralığında",
-  "longTime": "uzun zaman",
-  "shortTime": "kısa vadeli",
-  "traderExitSymbol": "Tüccar {symbol}{component}",
-  "exit": "Dışarı",
-  "highSell": "Yüksek satışlar",
-  "highBuy": "yüksekten satın al",
-  "inStatus": "Durum",
-  "assetRecommendationTitle": "Ticaretçilerin {symbol} hakkındaki görüşlerinin özeti:",
-  "previous": "Öncesi",
-  "next": "sıradaki",
-  "traderNumber": "Tüccar sayısı",
-  "efficiency": "yeterlik",
-  "efficiency100Traders": "100 yatırımcının verimliliği",
-  "totalIndexReturn": "Toplam endeks getirisi",
-  "valueTypes": {
-    "B": "Satın almak",
-    "S": "satış",
-    "B,S": "Tüm"
-  },
-  "signalsType": {
-    "N": "normal",
-    "F": "esas",
-    "T": "teknik"
-  },
-  "creditDuration": {
-    "1": "Bir gün",
-    "7": "bir hafta",
-    "30": "bir ay",
-    "90": "üç ay",
-    "180": "altı ay",
-    "360": " bir yıl"
-  },
-  "loginPageSeoTitle": "Giriş | GoldHub",
-  "loginStaticUser": "İhsan",
-  "loginStaticUserComment": "Katkınız sayesinde bu ay GoldHub'dan %20 kâr elde edebildim, teşekkürler.",
-  "loginWithGoogle": "Google ile Giriş Yapın",
-  "orContinueWith": "veya Devam Et",
-  "loginHelper": "Giriş yapmak/kaydolmak için lütfen cep telefonu numaranızı girin",
-  "pricingPageTitle": "Abonelik satın alın | GoldHub",
-  "issueReport": "Problemi şikayet et",
-  "portfolioIsEmpty": "Şu anda yatırımcının portföyü boş.",
-  "buyHistoryIsEmpty": "Tüccarın satın alma geçmişi yok",
-  "noSignalToShow": "Görüntülenecek sinyal yok",
-  "noMessageFound": "Bu spesifikasyona sahip mesaj bulunamadı",
-  "publishPrice": "Yayınlanma anındaki fiyat",
-  "ownerRequestSuccess": "Sahiplik isteğiniz {component} tamamlandı.",
-  "withSuccess": "başarıyla",
-  "doFollowing": "İşlemi tamamlamak için lütfen aşağıdakileri yapın",
-  "setTelegramDescription": "Telegram kanalınızın açıklama bölümüne (Description) aşağıdaki kelimeleri yazın",
-  "ownerShipWillCheck": "Sahmto robotu önümüzdeki 24 saat içerisinde kanal bilgilerinizi okuyacak ve sahiplik aktarımı otomatik olarak gerçekleştirilecektir.",
-  "presentProfit": "Şu anki ilgi",
-  "viewpointSubmitted": "Geri bildiriminiz kaydedildi",
-  "unboundedAccess": "Dijital para piyasası ve borsanın en iyilerine sınırsız erişim",
-  "unit": {
-    "Rial": "Rial",
-    "coin": "Dijital para birimi"
-  },
-  "discount": {
-    "sevenPer": "%7 daha fazla indirim",
-    "discount": "indirim"
-  },
-  "bestSell": "En çok satan kitap",
-  "professionalUse": "Profesyonel kullanıma uygundur",
-  "amountToPay": "Ödenecek tutar",
-  "monthly": "aylık",
-  "pay": "ödeme",
-  "insertDiscountCode": "Abonelik indirim kodunuzu girin.",
-  "discountMessages": {
-    "insert": "Kodunuzu girin",
-    "isEmpty": "İndirim kodu boş olamaz",
-    "isWrong": "Girilen indirim kodu hatalı"
-  },
-  "codeConfirm": "Kodu onayla",
-  "confirm": "Onaylanmış",
-  "payTransfer": "Ödeme ağ geçidine aktarma",
-  "privacyPageTitle": "Şartlar ve koşullar | GoldHub",
-  "accountChoose": "Tasarımınızı seçin",
-  "gift": "GoldHub Hediye",
-  "useAllFree": "GoldHub tüm özelliklerini ücretsiz kullanın",
-  "weekFree": "7 gün ücretsiz",
-  "startNow": "Şimdi başla",
-  "services": {
-    "first": "Borsa ve kripto para tüccarlarının performansını görüntüleme",
-    "second": "Tüccarları tanıma, takip etme ve özel bir besleme oluşturma",
-    "third": "Alım/satım için sembollerin puanlarını görüntüleme",
-    "fourth": "Her sembol için tüccarlar tarafından önerilen değer aralığını görüntüleme"
-  },
-  "accountServices": {
-    "first": "En iyi yatırımcılar tarafından seçilen sembolleri görüntüleyin",
-    "second": "Yatırımcının önerdiği sepeti görüntüleyin",
-    "third": "Siber uzaydaki en aktif tüccarları takip etmek",
-    "fourth": "Yatırımcıların en son analizlerinin hızlı bildirimi",
-    "fifth": "Her sembolde yayınlanan tüm analizleri görüntüleyin",
-    "sixth": "En iyi 100 yatırımcının her sembol hakkındaki görüşlerinin özeti"
-  },
-  "QA": {
-    "n1": {
-      "title": "Sahmeto nedir ve ne işe yarar?",
-      "text": "Sahemto, her gün 34.000 borsa ve dijital para ticaretinin sinyallerini analiz ediyor ve sizi en iyi finansal piyasa yatırımcılarıyla tanıştırıyor, böylece onları takip edebilir ve daha karlı anlaşmalar yapmak için bu kişilerin analizlerini kullanabilirsiniz!"
-    },
-    "n2": {
-      "title": "En yüksek puana sahip en iyi yatırımcıları nasıl bulabilirim?",
-      "text": "En iyi yatırımcılar ilgili sayfada listelenir ve\n                             Yanındaki her tüccarın rütbesini görün. Ayrıca eğer isim\n                             Yatırımcınızı paylaşımınızda arayabilir ve girebilirsiniz.\n                             O kişinin özel sayfası ve o tüccarın kaydı olun\n                             Tüm ayrıntıları görün."
-    },
-    "n3": {
-      "title": "Sahmeto seçilen ikonları nasıl üretiliyor?",
-      "text": "En iyi yatırımcılar ilgili sayfada listelendi ve semboller\n                             En iyi yatırımcılardan gelen sinyallerin toplamına göre seçilir\n                             Önerilir. Bunlar insanları sıralayan semboller\n                             Son günlerin en çok satın alma sinyalleri\n                             Davalarını yayınladılar."
-    },
-    "n4": {
-      "title": "Sahmeto kullanmak için ödeme gerekiyor mu?",
-      "text": "Hizmetlerimizden bazıları tüm kullanıcılar için ücretsizdir. Ancak\n                             Seçilen simgeler bölümünü kullanmak istiyorsanız veya\n                             En iyi yatırımcıların en son kararları hakkında güncel bilgi almak ister misiniz?\n                             Katkılarınızdan haberdar olmak için abone olmanız gerekmektedir.\n                             Olmak."
-    },
-    "n5": {
-      "title": "Satın almadan önce Sahmeto ürün aboneliğini nasıl test edebilirim?",
-      "text": "Sitemiz tüm kullanıcılar için ücretsiz bir hediye planı sunmaktadır\n                             böylece ürünü satın almadan önce test edebilirsiniz\n                             Ürünümüz sizin için değerliyse satın alın\n                             Yapmak."
-    },
-    "n6": {
-      "title": "Hediye planını nasıl alabilirim?",
-      "text": "Hediye aboneliğini kullanmak için herhangi bir çalışma yapmanıza gerek yoktur\n                             Ekstra değildir. Hediyeyi kullanmak için yeterli\n                             Siteye kayıt olun aynı anda size hediye edelim\n                             Sizin için etkinleştireceğiz."
-    },
-    "n7": {
-      "title": "Bronz, gümüş ve altın planlar arasında fark var mı?",
-      "text": "Tesisler açısından tüm planlarımız benzer\n                             aralarındaki tek fark kullanım süresidir.\n                             Tabii ki gümüş ve altın planı olanlardan yanayız\n                             Alışverişe özel indirimleri değerlendirdik!"
-    },
-    "n8": {
-      "title": "Üyeliğimi istediğim zaman iptal edebilir miyim?",
-      "text": "Planın ortasında aboneliği iptal etmek mümkün değildir.\n                             Ancak gelecekteki satın alımlarınız için kendi planınızı yapabilirsiniz.\n                             Daha düşük veya daha yüksek olarak değiştirin."
-    },
-    "n9": {
-      "title": "Paylaşımınıza katılmak için indirim kodunu kullanabilir misiniz?",
-      "text": "Ayrıca indirim kodumuz da var. İndirim kodunu beğendiyseniz\n                             Desteğimizle iletişime geçmek için bunu kullanın\n                             İndirim kodu verin. Tek ihtiyacınız olan bizden veya herhangi bir yerden alacağınız bir indirim kodu\n                             O ana kadar aldığınız diğerini ilgili bölüme girin.\n                             uygulanacak"
-    },
-    "n10": {
-      "title": "Bir hisse senedini satma veya satın alma zamanının geldiğini nasıl anlayabilirim?",
-      "text": "Bir hisse senedini alıp satmak için genellikle kesin bir zaman vardır\n                             HAYIR Ancak seçilen simgeler sayfasında deniyoruz\n                             En iyi yatırımcıların ilgisini çeken semboller önünüzde\n                             Onları tanıtalım ki seçebilesiniz. Ayrıca biz\n                             Hisse senetlerinin durumunun alıştan satışa değiştiğini lütfen unutmayın.\n                             En iyi sinyal tüccarlarını bilgilendiriyoruz. Kârlıysa dikkatli ol\n                             Bir hisseden iyi bir getiri (örneğin %20'nin üzerinde) aldınız\n                             Bir kısmını eleştirmek daha doğru."
-    },
-    "n11": {
-      "title": "Paylaşım sinyallerinize güvenebilir miyim?",
-      "text": "Sahmto kolektif zekaya dayalı algoritmalar kullanıyor\n                             Kendi sinyallerini üretiyor ve biz de bundan geliyoruz\n                             Alış ve satış için sinyalleri kullanırız. İle\n                             Paylaşımınızın sinyallerini bir süre takip ettiğinizden emin olabilirsiniz.\n                             Alış ve satış performansını sağladıktan sonra yapın ve yapın\n                             Onlara göre hareket edin. Bunu belirtmek gerekir\n                             Sinyaller sadece analizdir ve alım, satım ve kararların sonuçlarıdır.\n                             Sana bağlı."
-    },
-    "n12": {
-      "title": "Payınız al veya sat uyarısı veriyor mu?",
-      "text": "Her paylaşımın sayfasında uyarı sistemini aktif etme imkanı bulunmaktadır.\n                             sahip olmak Her paylaşım için uyarı sistemini aktif hale getirirseniz\n                             Hisse alım satımı için uyarı alabilirsiniz\n                             Yapmak."
-    }
-  },
-  "questionAsk": "soru ve cevap",
-  "addBest": {
-    "asset": {
-      "title": "Pazarın en iyilerini saate ekleyin:",
-      "text": "Sembol alım satım uyarılarından en kısa sürede haberdar olun."
-    },
-    "trader": {
-      "title": "En iyi yatırımcıları takip edin:",
-      "text": "Satın alma sinyallerinden\n                         ve tüccarların satışları hakkında gerçek zamanlı bilgi edinin."
-    }
-  },
-  "nextStep": "sonraki seviye",
-  "goToFeed": "Gözetleme kulesine git",
-  "analysisMessagesCount": "Bugün analiz edilen mesaj sayısı",
-  "homeBest": {
-    "first": "Piyasanın en iyisi",
-    "second": "Dijital para birimi ve borsa",
-    "third": "Bir bakış"
-  },
-  "seeTops": "Favorileri görüntüle",
-  "topTraderIn1000": "+1000 yatırımcı arasından en iyi yatırımcılar",
-  "seeAll": "hepsini gör",
-  "commonQuestions": "Sıkça Sorulan Sorular",
-  "cryptoTop": "En iyi dijital para birimleri",
-  "tickerTop": "Borsanın en iyisi",
-  "CQA": {
-    "n1": {
-      "title": "Sahmeto tam olarak ne yapıyor?",
-      "text": {
-        "name": "Sahmeto",
-        "first": "1. Tüm kanalın en iyi paylaşımları ve kripto para birimleri\n                                 Telegram al ya da sat diyecek bir yer gösteriyor\n                                 Bu ticari kararlar almanın bir yoludur.",
-        "second": "2. Yatırımcıları (Telegram kanallarını) da derecelendirin\n                                 yapmak"
-      }
-    },
-    "n2": {
-      "title": "Seçilen semboller sayfası nedir??",
-      "text": "Satın alınması en çekici borsa sembolleri veya dijital para birimleri\n                             Bugün (her iki saatte bir) sinyal sayfasında gösteriliyorlar.\n                             Bu semboller tüccarlar açısından alım veya satımı tavsiye ediyor\n                             Telgraflar var. Puanlama sembollerinde, rütbe ve performansta\n                             Yatırımcılar etkilendi 🙂"
-    },
-    "n3": {
-      "title": "Abone olursam benim için hangi özellikler etkinleştirilecek?",
-      "text": {
-        "first": "1. Sinyaller sayfasına sınırsız erişim",
-        "second": "2. Daha hızlı bilgi edinmek için bir saat oluşturun\n                                     Kişilik sembollerinizle ilgili önemli olaylar",
-        "third": "3. Hisse senedi alma veya satma zamanı gelmişse (toplam tutara göre)\n                                     (Tüm sinyallerde bantlama) paylaşımınızı hızlı bir şekilde bilgilendirir."
-      }
-    },
-    "n4": {
-      "title": "Sahmeto ne yapmaz?",
-      "text": "Yatırımcıların verdiği sinyallerden siz sorumlusunuz\n                             Hayır, yalnızca tüccarların ve kendisinin görüşlerini toplar\n                             Ek analiz sağlamaz."
-    }
-  },
-  "homePageSeoTitle": "GoldHub | Bir bakışta dijital para piyasası ve borsanın en iyileri",
-  "homePageDescription": "Yapay zeka kullanarak dijital para ve hisse alım ve satım sinyallerinin analizi, yatırım için en iyi borsa ve dijital para biriminin tanıtılması, Bitcoin ve diğer dijital para birimlerinin satın alma sinyallerinin gerçek zamanlı bildirimi",
-  "signalsPageTitle": "Günümüzün dijital para birimi ve borsa sinyalleri | GoldHub",
-  "signalsPageDescription": "Günümüzde yatırımcıların ilgisini çeken dijital para birimi ve hisse senetleri, alım satımı öneren sinyaller, Bitcoin sinyali, Bitcoin alımı, Bitcoin analizi, Telegram sinyali",
-  "publisherPageTitle": "Sahmto'daki tüccarın analizi",
-  "confirmedType": {
-    "confirmed": "Kabul edilmiş",
-    "pend": "Onay bekleniyor",
-    "rejected": "onaylanmadı"
-  },
-  "bankType": {
-    "1": "Rial",
-    "2": "Dijital para birimi",
-    "3": "Rial",
-    "4": "Rial"
-  },
-  "planType": {
-    "1": "altın",
-    "2": "gümüş",
-    "3": "bronz",
-    "4": "Hediye",
-    "5": "Hediye",
-    "6": "Hediye"
-  },
-  "exitAccount": "Kullanıcı hesabından çıkış yapın",
-  "setEmail": "E-postayı belirtin",
-  "changeEmail": "Değişim e-posta",
-  "confirmEmail": "E-posta Onayı",
-  "remain": "geriye kalan",
-  "plans": {
-    "activated": "Aktif tasarım",
-    "reserve": "Rezervasyon planı",
-    "noPlan": "Tasarım yok"
-  },
-  "authorizeFailed": "Kimlik doğrulama başarısız oldu",
-  "notifNotActive": "Uygulama uyarısı sizin için etkinleştirilmedi",
-  "activeBrowserNotif": "Lütfen tarayıcınızın bildirim erişimini etkinleştirin",
-  "transactionStatus": {
-    "cancel": "Kullanıcı tarafından iptal",
-    "success": "başarılı",
-    "inProgress": "İşleme"
-  },
-  "profileComplete": {
-    "title": "Profili tamamla",
-    "text": "Sahmto'nun {component} gibi özelliklerini tam olarak kullanmak için lütfen profilinizi doldurun",
-    "notif": "uyarı özelliği"
-  },
-  "status": "Durum",
-  "date": "Tarih",
-  "plan": "Plan",
-  "port": "liman",
-  "trackingCode": "İzleme kodu",
-  "setting": "Ayarlar",
-  "activateNotif": "Uygulama uyarısı aktivasyonu",
-  "activate": "Aktif",
-  "notActivate": "etkinleştirilmedi",
-  "notifButton": {
-    "enable": "Aktivasyon",
-    "disable": "devre dışı bırakmak",
-    "pend": "Erişim bekleniyor"
-  },
-  "notifMessage": "Bu uyarı tarayıcı aracılığıyla gönderilir. Yani aktivasyon butonuna bastıktan sonra tarayıcı mesajındaki Allow butonuna basın. Uygulama uyarısını etkinleştirdiğinizde paylaşım uyarılarınız anında mobil cihazınızda veya bilgisayarınızda görünecektir.",
-  "telegramDescription": "{component} almak için Telegram kanalınızın açıklama(Description) bölümüne aşağıdaki ifadeyi ekleyin ",
-  "ownerShip": "mülkiyet",
-  "transactionHistory": "İşlem geçmişi",
-  "descriptions": "Tanım",
-  "traderPage": "GoldHub tüccar sayfası",
-  "retrySub": "Planın uzatılması",
-  "retryText": "Plan yenilendiğinde mevcut aboneliğinize eklenecektir.",
-  "publish": "analiz",
-  "new": "Yeni",
-  "traderLoginModal": {
-    "title": "Bu trader'ı görmek için giriş yapmanız veya üye olmanız gerekiyor",
-    "description": "GoldHub'ya üye olarak 7 gün boyunca tüm imkanlardan ücretsiz yararlanın.",
-    "button": "7 Gün Ücretsiz Aktifleştir",
-    "inputLabel": "Hızlı Üye Ol"
-  },
-  "bestTickerPerformance": "BestTickerPerformance",
-  "bestCryptoPerformance": "En İyi Şifreleme İşlemi",
-  "profitSimulate": "Eğer 6 ay önce GoldHub'un en iyi 10 trader'ının al-sat sinyallerine göre işlem yapsaydınız, {component}% getiri elde ederdiniz. 6 ay önceki en iyi 10 trader listesi:",
-  "top10SixMonthPer": "6 ay önce(10 ay)",
-  "planNeed": {
-    "following": "{component} takibi abonelik gerektirir",
-    "noPlan": "Aktif bir planınız yok,",
-    "seeMore": "Daha fazla tasarım görüntüle"
-  },
-  "priceModal": {
-    "otherAdvantage": "Abonelik satın almanın diğer faydaları",
-    "portfolio": "Yatırımcıların portföylerini görüntüleyin",
-    "lastAnalysis": "Tüccarların en son analizlerinin bildirilmesi",
-    "topAsset": "Seçilen simgeleri görüntüle"
-  },
-  "productNav": {
-    "bestTraders": "En iyi yatırımcılar",
-    "signals": "Seçilen simgeler",
-    "notifications": "Uyarılar",
-    "feeds": "takip etti"
-  },
   "aboutUsTitle": "Hakkımızda | GoldHub",
   "increase": "Increase",
   "retry": "Please try again",
@@ -964,7 +252,10 @@
           "all": "Tüm Olaylar",
           "login": "Giriş/Çıkış",
           "kyc": "KYC Olayları",
-          "orders": "Siparişler"
+          "orders": "Siparişler",
+          "register": "kayıt ol",
+          "logout": "çıkış yap",
+          "supplierRequested": "tedarikçiİstenen"
         },
         "table": {
           "timestamp": "Zaman Damgası",
@@ -972,7 +263,8 @@
           "event": "Olay",
           "ipAddress": "IP Adresi",
           "device": "Cihaz / Tarayıcı",
-          "noLogs": "Kayıt bulunamadı"
+          "noLogs": "Kayıt bulunamadı",
+          "roles": "Roles"
         },
         "stats": {
           "totalEvents": "Toplam Olay (24s)",
@@ -985,7 +277,8 @@
           "orderCreated": "Sipariş Oluşturuldu",
           "kycSubmitted": "KYC Gönderildi",
           "kycApproved": "KYC Onaylandı",
-          "kycRejected": "KYC Reddedildi"
+          "kycRejected": "KYC Reddedildi",
+          "supplierRequested": "Supplier Requested"
         }
       }
     },
@@ -1342,6 +635,26 @@
           "delivered": "Teslim Edildi",
           "rejected": "Reddedildi",
           "cancelled": "İptal Edildi"
+        },
+        "dialog": {
+          "title": "Sipariş Detayları",
+          "description": "Sipariş detaylarını incele:",
+          "companyInfo": "Tedarikçi Bilgileri",
+          "companyName": "Tedarikçi Adı",
+          "notProvided": "Belirtilmedi",
+          "bankingInfo": "Banka Bilgileri",
+          "iban": "IBAN",
+          "swift": "SWIFT Kodu",
+          "documents": "Belgeler",
+          "businessRegistration": "Ticari Sicil",
+          "uploadedOn": "Yüklenme tarihi",
+          "idVerification": "Kimlik Doğrulama",
+          "view": "Görüntüle",
+          "noDocuments": "Belge yüklenmedi",
+          "status": "Durum",
+          "currentStatus": "Mevcut Durum",
+          "approve": "Onayla",
+          "reject": "Reddet"
         }
       },
       "pricingPage": {
@@ -1490,6 +803,95 @@
         "loading": "Yükleniyor...",
         "noMembers": "Kayıtlı üye yok.",
         "id": "Kimlik"
+      },
+      "productFormDialogEnhanced": {
+        "title": {
+          "add": "Yeni Ürün Ekle",
+          "edit": "Ürünü Düzenle"
+        },
+        "description": {
+          "add": "Kataloğunuza yeni bir ürün ekleyin.",
+          "edit": "Mevcut ürün detaylarını güncelleyin."
+        },
+        "tabs": {
+          "general": "Genel",
+          "specifications": "Özellikler",
+          "b2b": "B2B ve Fiyatlandırma"
+        },
+        "fields": {
+          "name": {
+            "label": "Ürün Adı",
+            "placeholder": "Ürün adını girin"
+          },
+          "sku": {
+            "label": "SKU",
+            "placeholder": "Stok Takip Birimi"
+          },
+          "category": "Kategori",
+          "description": {
+            "label": "Açıklama",
+            "placeholder": "Detaylı ürün açıklaması..."
+          },
+          "metalDetails": {
+            "title": "Metal Detayları",
+            "type": "Metal Türü",
+            "color": "Metal Rengi",
+            "purity": "Saflık"
+          },
+          "dimensions": {
+            "netWeight": "Net Ağırlık (g)",
+            "grossWeight": "Brüt Ağırlık (g)"
+          },
+          "stones": {
+            "title": "Taşlar",
+            "add": "Taş Ekle",
+            "type": "Taş Türü",
+            "count": "Adet",
+            "weight": "Ağırlık",
+            "clarity": "Berraklık",
+            "color": "Renk"
+          },
+          "pricing": {
+            "title": "Fiyatlandırma Stratejisi",
+            "basePrice": "Taban Fiyat / Birim Fiyat"
+          },
+          "inventory": {
+            "title": "Envanter ve Lojistik",
+            "stock": "Stok Miktarı",
+            "moq": "Minimum Sipariş Miktarı (MOQ)",
+            "countryOfOrigin": "Menşe Ülke",
+            "cert": {
+              "title": "Sertifikasyon",
+              "type": "Sertifika Türü",
+              "file": "Sertifika Yükle"
+            }
+          },
+          "karat": {
+            "label": "Ayar",
+            "options": {
+              "18k": "18K",
+              "22k": "22K",
+              "24k": "24K"
+            }
+          },
+          "weight": "Ağırlık (g)",
+          "price": "Fiyat ($)",
+          "stock": "Stok",
+          "specifications": {
+            "label": "Özellikler",
+            "placeholder": "örn., Boyut, ölçüler..."
+          },
+          "status": "Durum",
+          "image": {
+            "label": "Ürün Görselleri",
+            "clickToUpload": "Yüklemek için tıklayın"
+          }
+        },
+        "actions": {
+          "cancel": "İptal",
+          "add": "Ürün Ekle",
+          "update": "Ürünü Güncelle"
+        }
       }
     },
     "profile": {
@@ -1526,8 +928,6 @@
         "editInfo": "Bilgileri Düzenle",
         "roles": {
           "admin": "Yönetici",
-          "broker": "Komisyoncu",
-          "member": "Üye",
           "buyer_requested": "Alıcı (Onay Bekliyor)",
           "buyer_approved": "Onaylı Alıcı",
           "supplier_requested": "Tedarikçi (Onay Bekliyor)",
@@ -1643,7 +1043,12 @@
     "emailPlaceholder": "E-posta (isteğe bağlı)",
     "emailInvalid": "Girilen e-posta hatalıdır",
     "passwordMandatory": "Şifre (zorunlu)",
-    "register": "Kayıt Ol"
+    "register": "Kayıt Ol",
+    "loginPageSeoTitle": "Giriş | GoldHub",
+    "loginRegister": "Giriş/Kayıt",
+    "loginHelper": "Giriş yapmak/kaydolmak için lütfen mobil numaranızı girin.",
+    "login": "Giriş",
+    "loginToAccount": "Hesaba Giriş Yap"
   },
   "aboutPage": {
     "title": "Mirası Modern Ticaretle Buluşturuyoruz",
@@ -1704,6 +1109,8 @@
     }
   },
   "homepage": {
+    "SeoTitle": "GoldHub",
+    "SeoDescription": "Çevrimiçi altın alım satımı için güvenli platform.",
     "hero": {
       "tagline": "Güvenilir Toptan Altın Ticareti",
       "title": "Altın ve Altın Ürünleri Sipariş Etmenin Akıllı Yolu",
@@ -1777,5 +1184,20 @@
     "aboutUs": "Hakkımızda",
     "rules": "Tüzük",
     "description": "GoldHub, kullanıcılara saf 18 ayar altın satın alma ve satma olanağı sağlar. GoldHub ile minimum 100,000 Toman yatırımla altın birikimi oluşturabilirsiniz. GoldHub, altın alımını komisyon olmadan ve minimum ücretlerle yapmanıza olanak sağlar. GoldHub'de işlem birimi 18 ayar altının bir gramıdır."
+  },
+  "admin": {
+    "create_contract": "Sözleşme Oluştur",
+    "edit_contract": "Sözleşmeyi Düzenle",
+    "contract_types": "Sözleşme Türleri",
+    "last_month_profit": "Geçen Ay Karı",
+    "show_contracts": "Sözleşmeleri Göster",
+    "hide_contracts": "Sözleşmeleri Gizle",
+    "edit": "Düzenle",
+    "activate": "Etkinleştir",
+    "deactivate": "Devre Dışı Bırak",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "assign_broker": "Aracıya Ata",
+    "add": "Ekle"
   }
 }

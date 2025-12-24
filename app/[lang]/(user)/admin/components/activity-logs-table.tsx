@@ -51,8 +51,8 @@ function EventBadge({ event, dict }: { event: string; dict: any }) {
             label: dict.auth.register,
             className: 'bg-blue-100 text-blue-800 hover:bg-blue-100',
         },
-        kyc_submitted: {
-            label: dict.marketplace.admin.auditLogsPage.events.kycSubmitted,
+        supplier_requested: {
+            label: dict.marketplace.admin.auditLogsPage.events.supplierRequested,
             className: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100',
         },
         kyc_approved: {
@@ -85,9 +85,9 @@ export function ActivityLogsTable({
 }: ActivityLogsTableProps) {
     const [page, setPage] = React.useState(0);
     const [pageSize, setPageSize] = React.useState(10);
-    const { logs, count, isLoading, error } = useActivityLogs(page, pageSize);
+    const { logs, count, isLoading, error } = useActivityLogs(page, eventFilter,pageSize);
 
-    const totalPages = Math.ceil((count || 0) / pageSize);
+
 
     if (isLoading) return <p className="py-8 text-center">Loading...</p>;
     if (error)
@@ -121,10 +121,13 @@ export function ActivityLogsTable({
         );
     }
     if (eventFilter !== 'all') {
-        filteredLogs = filteredLogs.filter((log) =>
-            log.roles.some((r) => r.role === eventFilter)
+        filteredLogs = filteredLogs.filter(
+            (log) => log.activity_type === eventFilter
         );
     }
+    console.log(filteredLogs.length);
+    const totalPages = Math.ceil(count / pageSize);
+
 
     return (
         <div className="bg-card rounded-lg border shadow-sm">

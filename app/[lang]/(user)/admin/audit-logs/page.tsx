@@ -97,12 +97,15 @@ export default async function AuditLogsPage({ params: { lang }, searchParams }: 
             />
 
             {/* Client-side tabs wrapper */}
-            <URLTabs tabs={[
-                { value: 'all', label: dict.marketplace.admin.auditLogsPage.tabs.all },
-                { value: 'login', label: dict.marketplace.admin.auditLogsPage.tabs.login },
-                { value: 'order_created', label: dict.marketplace.admin.auditLogsPage.tabs.orders },
-                { value: 'kyc', label: dict.marketplace.admin.auditLogsPage.tabs.kyc },
-            ]} defaultValue={eventFilter} />
+            <URLTabs
+                tabs={[
+                    { value: 'all', label: dict.marketplace.admin.auditLogsPage.tabs.all },
+                    { value: 'login', label: dict.marketplace.admin.auditLogsPage.tabs.login },
+                    { value: 'logout', label: dict.marketplace.admin.auditLogsPage.tabs.logout },
+                    { value: 'register', label: dict.marketplace.admin.auditLogsPage.tabs.register }
+                ]}
+                defaultValue={eventFilter}
+            />
 
             {/* Server-rendered table */}
             <ActivityLogsTable searchQuery={searchQuery} eventFilter={eventFilter} dict={dict} />

@@ -115,11 +115,12 @@ export function UsersKycTable({
 
     // Search filter
     let filteredUsers = mappedUsers;
+    console.log(filteredUsers);
     if (searchQuery) {
         filteredUsers = filteredUsers.filter(
             (u) =>
                 u.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                u.company.toLowerCase().includes(searchQuery.toLowerCase())
+                u.company?.name?.toLowerCase().includes(searchQuery.toLowerCase())
         );
     }
 
