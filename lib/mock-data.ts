@@ -397,8 +397,6 @@ export interface Product {
 
     // Pricing & B2B
     price: number; // Total price or Base price
-    makingCharges?: number;
-    makingChargesType?: 'per_gram' | 'fixed';
 
     stock: number;
     moq?: number;
@@ -443,8 +441,6 @@ export const mockProducts: Product[] = [
         weight: 100,
         grossWeight: 100,
         price: 7450,
-        makingCharges: 50,
-        makingChargesType: 'fixed',
         stock: 22,
         moq: 1,
         countryOfOrigin: 'Switzerland',
@@ -484,8 +480,6 @@ export const mockProducts: Product[] = [
             { id: 'st-1', type: 'Diamond', count: 12, weight: 1.2, unit: 'ct', clarity: 'VS1', color: 'G' }
         ],
         price: 8900,
-        makingCharges: 15,
-        makingChargesType: 'per_gram',
         stock: 10,
         moq: 1,
         countryOfOrigin: 'Italy',

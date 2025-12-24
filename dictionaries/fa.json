@@ -14,54 +14,10 @@
   "postalCode": "کد پستی",
   "sell": "فروش",
   "neutral": "خنثی",
-  "socialNetworks": "شبکه های اجتماعی",
-  "sahmetoProducts": "محصولات گلدهاب",
-  "selectedIcons": "نماد برگزیده",
-  "notification": "هشدار",
-  "feed": "دنبال شده",
-  "dashboard": "دیده‌بان",
-  "bestTraders": "برترین تریدر",
-  "search": "جستجو",
-  "sahmetoUser": "کاربر گلدهاب",
-  "edit": "ویرایش",
-  "planFinished": "طرح شما به پایان رسیده",
-  "loginToAccount": "ورود به حساب کاربری",
-  "buySubscription": "خرید اشتراک",
-  "organizationalSolution": "راهکار سازمانی",
   "help": "راهنما",
   "rules": "قوانین",
   "aboutUs": "درباره‌ما",
   "contactUs": "تماس باما",
-  "buyFromBroker": "خرید از کارگزاری",
-  "buyFromExchange": "خرید از صرافی",
-  "industry": "صنعت",
-  "lastWeekTraderSignals": "در پیام های هفته اخیر تریدرها، {component} سیگنال راجع به سهام {assetSymbol} وجود دارد،",
-  "lastWeekTraderSignals2": "در پیام های هفته اخیر تریدرها، {component} سیگنال راجع به {assetSymbol} وجود دارد،",
-  "whatIsAssetAnalysisDiagram": "نمودار تحلیل نماد {assetSymbol} چیست؟",
-  "whatIsAssetAnalysisDiagramInfo": "تحلیل نمودار سهام چه چیزی را نشان می\u200Cدهد؟",
-  "whatIsAssetAnalysisDiagramDescription": "گلدهاب تمام پیام\u200Cهای تحلیلگران در شبکه\u200Cهای اجتماعی از قبیل کانال تلگرام، سایت رهاورد و سهامیاب را جمع\u200Cاوری می\u200Cکند و بر اساس الگوریتم هوش مصنوعی تعداد سیگنال خرید و فروش هر سهم را شناسایی کرده و در آخر جمع\u200Cبندی نظرات تحلیلگران شبکه\u200Cاجتماعی را در قالب این نمودار نشان می\u200Cدهد.",
-  "whatIsAssetAnalysisDiagramTitle2": "عقربه این نمودار چگونه زمان خرید و فروش سهام را مشخص می\u200Cکند؟",
-  "whatIsAssetAnalysisDiagramDescription2": "اگر عقربه این نمودار به سمت خرید باشد یعنی از دید تحلیلگران وقت خرید این سهام است و اگر به سمت فروش باشد یعنی بهتر است به فکر فروش و سیو سود سهم باشید. اگر عقربه در محدوه\u200Cی خنثی قرار گرفته باشد، سهم نوسانی است و هنوز وقت مناسبی برای خرید یا فروش سهم نیست.",
-  "signalsTab": "سیگنال\u200Cهای {assetSymbol}",
-  "tradersTab": "تریدرهای {assetSymbol}",
-  "traderAssetPriceAnalysis": "نظر تریدرها در مورد قیمت  {assetSymbol}",
-  "traderAssetAnalysis": "نظر تریدرها در مورد {assetSymbol}",
-  "faqTitle": "راهنما | گلدهاب",
-  "faqQuestion1": "تحلیل نمودار سهام چه چیزی را نشان می\u200Cدهد؟",
-  "faqAnswer1": "گلدهاب تمام پیام\u200Cهای تحلیلگران در شبکه\u200Cهای اجتماعی از قبیل کانال تلگرام، سایت رهاورد و سهامیاب را جمع\u200Cاوری می\u200Cکند و بر اساس الگوریتم هوش مصنوعی تعداد سیگنال خرید و فروش هر سهم را شناسایی کرده و در آخر جمع\u200Cبندی نظرات تحلیلگران شبکه\u200Cاجتماعی را در قالب این نمودار نشان می\u200Cدهد.",
-  "faqQuestion2": "عقربه این نمودار چگونه زمان خرید و فروش سهام را مشخص می\u200Cکند؟",
-  "faqAnswer2": "اگر عقربه این نمودار به سمت خرید باشد یعنی از دید تحلیلگران وقت خرید این سهام است و اگر به سمت فروش باشد یعنی بهتر است به فکر فروش و سیو سود سهم باشید. اگر عقربه در محدوه\u200Cی خنثی قرار گرفته باشد، سهم نوسانی است و هنوز وقت مناسبی برای خرید یا فروش سهم نیست.",
-  "breadcrumbTitle": "مسیریاب | گلدهاب",
-  "priceChartTitle": "نمودار قیمت {assetSymbol} و روند سیگنال های {assetSymbol}",
-  "priceAdjustedChartTitle": "نمودار قیمت {assetSymbol} و روند سیگنال های {assetSymbol}",
-  "profitTarget": "نزدیکترین حدسود",
-  "stopLoss": "نزدیکترین حدضرر",
-  "none": "ندارد",
-  "buyRecommendation": "{component} تریدر از {component}، نماد {assetSymbol} را توصیه به خرید کرده اند.",
-  "price": "قیمت",
-  "products": "محصولات",
-  "more": "بیشتر",
-  "loginRegister": "ورود/ثبت\u200Cنام",
   "navMenuItems": [
     {
       "title": "خریدار",
@@ -94,720 +50,7 @@
       "description": ""
     }
   ],
-  "searchPlaceholder": "جستجو بین +10000 تریدر، نمادهای بورسی و ارزهای دیجیتال",
-  "loginPrompt": "برای دسترسی به این بخش نیاز به ورود/ثبت\u200Cنام دارید",
-  "subscriptionPrompt": "برای دسترسی به این بخش نیاز به خرید اشتراک دارید",
-  "addedToDashboard": "اضافه شده به دیده\u200Cبان",
-  "addToDashboard": "افزودن به دیده بان",
-  "sortBasedOn": "مرتب سازی پیام براساس",
-  "related": "مرتبط",
-  "latest": "آخرین",
-  "filter": "فیلتر",
-  "signalType": "نوع سیگنال",
-  "all": "همه",
-  "buySuggestion": "توصیه به خرید",
-  "sellSuggestion": "توصیه به فروش",
-  "signalCount": "تعداد سیگنال",
-  "commentSuccessfullySubmit": "نظر شما ثبت شد.",
-  "showUsersComments": "مشاهده نتایج نظرات دیگران",
-  "backToSubmitComment": "بازگشت به ثبت نظر",
-  "rank": "رتبه",
-  "powerOfAnalytics": "قدرت تحلیل",
-  "showFullText": "نمایش کامل",
-  "showOriginalMessage": "نمایش اصل پیام",
-  "translatedFrom": "ترجمه شده از",
-  "typeOfAnalysis": "نوع تحلیل",
-  "source": "منبع",
-  "bargainTypes": {
-    "B": {
-      "title": "خرید",
-      "alternativeTitle": "صعودی"
-    },
-    "N": {
-      "title": "خنثی",
-      "variant": "light"
-    },
-    "S": {
-      "title": "فروش",
-      "alternativeTitle": "نزولی",
-      "variant": "destructive"
-    },
-    "E": {
-      "title": "نامشخص",
-      "variant": "light"
-    }
-  },
-  "analysisTypes": {
-    "F": {
-      "title": "بنیادی",
-      "variant": "light"
-    },
-    "T": {
-      "title": "تکنیکال",
-      "variant": "light"
-    },
-    "B": {
-      "title": "تابلو‌خوانی",
-      "variant": "light"
-    }
-  },
-  "messagesSourceType": {
-    "tradingview": {
-      "title": "تریدینگ ویو",
-      "logo": "/img/messages-source/tradingview.svg"
-    },
-    "telegram": {
-      "title": "تلگرام",
-      "logo": "/img/messages-source/telegram.svg"
-    },
-    "rahavard": {
-      "title": "رهاورد",
-      "logo": "/img/messages-source/rahavard.svg"
-    },
-    "sahamyab": {
-      "title": "سهام‌یاب",
-      "logo": "/img/messages-source/sahamyab.svg"
-    },
-    "arzdigital": {
-      "title": "ارزدیجیتال",
-      "logo": "/img/messages-source/arzdigital.svg"
-    },
-    "institutional": {
-      "title": "سهامدار",
-      "logo": "/img/messages-source/tse.svg"
-    },
-    "bot": {
-      "title": "ربات گلدهاب",
-      "logo": "/img/messages-source/bot.svg"
-    },
-    "sahmeto": {
-      "title": "گلدهاب",
-      "logo": "/img/messages-source/sahmeto.svg"
-    },
-    "wallet": {
-      "title": "ولت",
-      "logo": "/img/messages-source/wallet.svg"
-    }
-  },
-  "timeframe": "تایم فریم",
-  "timeout": "مدت اعتبار",
-  "day": "روز",
-  "entryPoint": "نقطه ورود",
-  "profitPrice": "حد سود",
-  "stopLossPrice": "حد ضرر",
-  "supportPrice": "اولین حمایت",
-  "resistancePrice": "اولین مقاومت",
-  "share": "اشتراک گذاری",
-  "purchaseSignalLastWeek": "سیگنال خرید هفته اخیر",
-  "neutralSignalLastWeek": "سیگنال خنثی هفته اخیر",
-  "sellSignalLastWeek": "سیگنال فروش هفته اخیر",
-  "alertMessage": "جهت اطلاع از {component} خرید و فروش، نماد #{assetSymbol} را به دیده بان اضافه نمایید. با اضافه کردن به دیده بان از سیگنال های {component} درمورد {assetSymbol} {component} از دیگران با خبر شوید.",
-  "sellRecommendation": "{component} تریدر از {component}، نماد {assetSymbol} را توصیه به فروش کرده اند.",
-  "topOneHundred": "100 تریدر برتر",
-  "assetInfo": "قیمت {component} {assetSymbol} از نظر {component}",
-  "profitLossTarget": "حد سود و ضرر",
-  "trader": "تریدر",
-  "commentsOfUsersAboutSymbol": "نظرات {component} گلدهاب در مورد نماد {symbol}",
-  "usersCanCommentJustOnceInDay": "هر کاربر در روز فقط {component} فرصت ثبت نظر دارد.",
-  "once": "یک بار",
-  "users": "کاربران",
-  "yourCommentAboutSymbol": "نظر شما درباره {component}",
-  "whatSymbolBetterThanSymbol": "چه نمادی برای خرید از {symbol} بهتر است؟",
-  "cryptoMarket": "بازار ارزدیجیتال",
-  "investment": "سرمایه گذاری",
-  "buySahmetoStock": "خرید سهام گلدهاب",
-  "soon": "بزودی",
-  "sahmetoWorld": "دنیای گلدهاب",
-  "reportProblem": "گزارش مشکل و بازخورد",
-  "joinUs": "دعوت به همکاری",
-  "developWithSahmeto": "توسعه با گلدهاب (APIs)",
-  "investOnSahmeto": "سرمایه گذاری روی گلدهاب",
-  "copyright": "تمام حقوق برای شرکت گلدهاب محفوظ میباشد 1403",
-  "fundraising": "جذب سرمایه",
-  "bests": "برترین تریدر‌",
-  "assetRecommendation": "نماد {assetSymbol} {component} است.",
-  "goodChange": "فرصت خوبی برای",
-  "expertTraders": "تریدرهای متخصص {assetSymbol}",
-  "bestOrdersOnAsset": "{component} در 3 ماه اخیر {component} خوبی از {assetSymbol} گرفته اند.",
-  "profit": "سود",
-  "alert": "هشدار",
-  "faster": "سریع تر",
-  "bestTrader": "تریدرهای برتر",
-  "company": "شرکت",
-  "symbolAnalytics": "تحلیل {assetSymbol}",
-  "traderRank": "رتبه تریدر",
-  "seeOriginalMessageInSource": "مشاهده در {source}",
-  "showMore": "نمایش بیشتر",
-  "showLess": "نمایش کمتر",
-  "companySize": [
-    {
-      "value": {
-        "market_cap_from": 0,
-        "market_cap_to": 10000000000000
-      },
-      "title": "خیلی کوچک"
-    },
-    {
-      "value": {
-        "market_cap_from": 10000000000000,
-        "market_cap_to": 50000000000000
-      },
-      "title": "کوچک"
-    },
-    {
-      "value": {
-        "market_cap_from": 50000000000000,
-        "market_cap_to": 200000000000000
-      },
-      "title": "متوسط"
-    },
-    {
-      "value": {
-        "market_cap_from": 200000000000000,
-        "market_cap_to": 700000000000000
-      },
-      "title": "بزرگ"
-    },
-    {
-      "value": {
-        "market_cap_from": 700000000000000,
-        "market_cap_to": 10000000000000000
-      },
-      "title": "خیلی بزرگ"
-    }
-  ],
-  "timeframes": {
-    "00:15:00": "15 دقیقه",
-    "00:30:00": "30 دقیقه",
-    "01:00:00": "1 ساعت",
-    "04:00:00": "4 ساعت",
-    "1 00:00:00": "1 روز",
-    "7 00:00:00": "1 هفته",
-    "30 00:00:00": "1 ماه",
-    "60 00:00:00": "2 ماه",
-    "90 00:00:00": "3 ماه",
-    "180 00:00:00": "6 ماه",
-    "360 00:00:00": "1 سال",
-    "365 00:00:00": "1 سال"
-  },
-  "hourAgo": "ساعت پیش",
-  "minuteAgo": "دقیقه پیش",
-  "fundamentalAnalysis": "تحلیل بنیادی",
-  "capitalIncreaseCalendar": "تقویم افزایش سرمایه",
-  "assetPageTitle1": "{symbolName} | جدیدترین تحلیل‌ها در گلدهاب",
-  "assetPageTitle2": "{symbolName} | جدیدترین تحلیل تریدرها در گلدهاب",
-  "assetPageDescription": "کی وقت خرید {symbolName} است؟؟ چه تحلیلگری چی گفته؟ همه ی سیگنال های سهام {symbolName} در یک نگاه، {name} | گلدهاب",
-  "assetPageDescription2": "سیگنال های خرید و فروش و پیش بینی {name} | نمودار قیمت لحظه ای {name} | تحلیل {name} بر اساس شبکه اجتماعی و اخبار | تحلیل تکنیکال {name} تحلیل فاندامنتال {name} | قیمت {name} | {symbolName}",
-  "lastUpdate": "آخرین بروزرسانی",
-  "todaySignalCount": "تعداد پیام‌های امروز {symbol}",
-  "message": "پیام",
-  "signalPageSlogan": "{component} برگزیده توسط تریدرهای برتر",
-  "signalPageSloganComponent1": "فرصت‌های",
-  "tse": "بورس",
-  "crypto": "ارزدیجیتال",
-  "marketOpportunities": "فرصت های برتر {marketName}",
-  "show": "مشاهده",
-  "numberViewsUsers": "مشاهده  کاربران",
-  "publishTime": "زمان انتشار",
-  "traderInfo": "مشخصات تحلیلگر",
-  "amongNTopTraders": "جزو {rank} تریدر برتر",
-  "traderPowerOfAnalytics": "درصدموفقیت تریدر",
-  "investmentOpportunityProfile": "مشخصات فرصت سرمایه گذاری",
-  "messagePageSeoDescription": "تحلیل و اخبار به روز نماد {symbol} توسط تریدر {publisherName} در طلانو، رتبه تریدر در گلدهاب: {publisherRank} ، تحلیل نمادهای بورسی و ارز دیجیتال توسط برترین تریدرهای بازار بورس و ارز دیجیتال.",
-  "messagePageSeoDescription2": "تحلیل نماد {symbol} توسط تریدر {publisherName} در طلانو، رتبه تریدر در گلدهاب: {publisherRank} ، تحلیل نمادهای بورسی و ارز دیجیتال توسط برترین تریدرهای بازار.",
-  "todayNews": "خبر روز",
-  "emptyFeed": "دنبال شده ای ندارید",
-  "buySignals": "سیگنال\u200Cهای خرید تریدرها",
-  "sellSignals": "سیگنال\u200Cهای فروش تریدرها",
-  "follow": "دنبال کردن",
-  "addDashboard": "اضافه کردن به دیده‌بان",
-  "addedDashboard": "اضافه شده به دیده‌بان",
-  "followed": "دنبال شده",
-  "analytics": "تحلیل",
-  "about": "درباره",
-  "messagePageH1": "تحلیل {analysisType} {publisherName} درباره {market} {symbol} در تاریخ {date}",
-  "messagePageSecondH1": "تحلیل {analysisType} {publisherName} درباره {market} {symbol} : توصیه به {bargainType} ({date})",
-  "messagePageSeoTitle": "توصیه به {bargainType} {symbol} | تحلیل {analysisType} {publisher}: {messageText}",
-  "messagePageSeoTitle2": "آغاز روند {bargainType} {symbol} | تحلیل {analysisType} {publisher}: {messageText}",
-  "stock": "سهام",
-  "symbol": "نماد",
-  "verifiedTraders": "تریدر های تایید شده",
-  "market": "بازار",
-  "traderType": "نوع تریدر",
-  "telegram": "تلگرام",
-  "tradingview": "تریدینگ ویو",
-  "rahavard": "رهاورد",
-  "sahamyab": "سهام یاب",
-  "shareholders": "شرکت های حقوقی",
-  "personalFormula": "فرمول شخصی",
-  "name": "نام",
-  "noTraderFound": "تریدری پیدا نشد",
-  "performances": {
-    "signal": [
-      {
-        "title": "بازدهی هفتگی",
-        "value": "7d"
-      },
-      {
-        "title": "بازدهی ماهانه",
-        "value": "30d"
-      },
-      {
-        "title": "بازدهی 3 ماهه",
-        "value": "90d"
-      },
-      {
-        "title": "بازدهی 6 ماهه",
-        "value": "180d"
-      }
-    ],
-    "cryptocurrency": [
-      {
-        "title": "بازدهی هفتگی",
-        "value": "7d"
-      },
-      {
-        "title": "بازدهی 1 ماهه",
-        "value": "30d"
-      },
-      {
-        "title": "بازدهی 3 ماهه",
-        "value": "90d"
-      },
-      {
-        "title": "بازدهی 6 ماهه",
-        "value": "180d"
-      }
-    ]
-  },
-  "noData": "بدون داده",
-  "leaderboardPageTitleSeo": "برترین تریدر های ارز دیجیتال و بورس | گلدهاب",
-  "leaderboardPageDescriptionSeo": "بهترین کانال های بورسی، بهترین کانال ارز دیجیتال و بیت کوین، تریدر های ارز دیجیتال و معامله گران بورس",
-  "feedPageH1": "از برترین تریدرها الهام بگیرید",
-  "groupPageH1": "طلا",
-  "messages": "پیام ها",
-  "myTraders": "تریدرهای من",
-  "myAssets": "دیده‌بان",
-  "feedPageTitleSeo": "دنبال شده ها | گلدهاب",
-  "attractivenessBuySell": "جذابیت خرید/فروش",
-  "risk": "ریسک",
-  "hour": "ساعت",
-  "copy": "کپی کن",
-  "copied": "کپی شد",
-  "asc": "صعودی",
-  "des": "نزولی",
-  "weekPerformance": "بازدهی هفتگی",
-  "monthPerformance": "بازدهی ماهانه",
-  "threeMonthPerformance": "بازدهی ۳ ماهه",
-  "sixMonthPerformance": "بازدهی ۶ ماهه",
-  "rowsPerPage": "ردیف در هر صفحه",
-  "topPublishers": "برترین تریدرها",
-  "opinion": "نظر",
-  "moreInfo": "اطلاعات بیشتر",
-  "opinionSummary": "جمع بندی نظر تریدرها در ماه اخیر",
-  "prediction": "پیش بینی",
-  "oneMonth": "۱ ماهه",
-  "threeMonth": "۳ ماهه",
-  "sixMonth": "۶ ماهه",
-  "oneYear": "یکساله",
-  "allTraders": "همه تریدرها",
-  "top100Traders": "۱۰۰ تریدر برتر",
-  "observes": "بازدیدها",
-  "lastTransaction": "آخرین معامله",
-  "followers": "دنبال کننده ها",
-  "tradersProfitPrediction": "پیش بینی سود تریدرها از {symbol} حدود {component} است ",
-  "tradersLossPrediction": "پیش بینی ضرر تریدرها از {symbol} حدود {component} است ",
-  "mostProfitFrom": "چه تریدری بیشترین سود را از {symbol} گرفته است؟",
-  "last3Month": "در سه ماه اخیر",
-  "profitSymbol": "خوبی از {symbol} گرفته اند.",
-  "traderSymbolLimit": "قیمت حد سود و ضرر {symbol} از نظر تریدر",
-  "nearestProfitLimit": "نزدیک ترین حد سود",
-  "nearestDamageLimit": "نزدیک ترین حد ضرر",
-  "summary": "خلاصه",
-  "assetMostProfit": "چه کسی بیشترین سود را از {symbol} گرفته؟",
-  "monthProfit": " سود یک ماهه:",
-  "tradesPriceComment": "نظر تریدر ها در مورد قیمت",
-  "newestAnalysis": "{symbolName} | جدیدترین تحلیل ها در گلدهاب",
-  "newestTradersAnalysis": "{symbolName} | جدیدترین تحلیل تریدرها در گلدهاب",
-  "commonQuestion": "| گلدهاب کی وقت خرید {symbolName} است؟؟ چه تحلیلگری چی گفته؟ همه ی سیگنال های سهام {symbolName} در یک نگاه، {symbolName} ",
-  "mainResults": "نتایج-کلی-سیگنال-های-خرید-و-فروش-سهم-{symbolName}",
-  "timeSlice": "بازه زمانی",
-  "possibleDamage": "ضرر احتمالی",
-  "possibleProfit": "سود احتمالی",
-  "nowPrice": "قیمت فعلی",
-  "profitLimit": "حد سود",
-  "damageLimit": "حد ضرر",
-  "oneWeek": "یک هفته",
-  "goToMassage": "برو به پیام",
-  "notAnnounce": "اعلام نشده",
-  "pageOwner": "من مالک این صفحه هستم",
-  "followersNumber": "تعداد دنبال کننده",
-  "registerDate": "تاریخ عضویت",
-  "traderSocialMedia": "شبکه اجتماعی تریدر",
-  "rankAmong": "رتبه بین {number} تریدر",
-  "traderMonthPerformance": "بازدهی ماه اخیر تریدر",
-  "top100traderMonthPerformance": "میانگین بازدهی ماه اخیر 100 تریدر برتر",
-  "totalIndexMonthPerformance": "میانگین بازدهی ماه اخیر شاخص کل",
-  "totalBTCMonthPerformance": "بازدهی ماه اخیر BTC",
-  "analysisPower": "قدرت تحلیل",
-  "successPercentageAll": "میزان موفقیت تریدر در کل سیگنال ها",
-  "messageNum": "تعداد پیام",
-  "traderMessage": "پیام های تریدر",
-  "basket": "سبد تریدر",
-  "performance": "عملکرد تریدر",
-  "buySuggest": "تریدر چه نمادی را توصیه به خرید کرده؟",
-  "buyHistory": "سابقه خرید",
-  "monthToMonthPerformance": "تخمین بازدهی ماه به ماه تریدر",
-  "traderSignalChart": "نمودار سیگنال های تریدر",
-  "login": "ورود",
-  "statusBarRightName": "معامله سودآور",
-  "statusBarLeftName": "معامله ضررده",
-  "specialUserView": "مشاهده این  بخش {component}",
-  "specialView": "مخصوص {component} ویژه است",
-  "buyAccount": "خرید اشتراک",
-  "totalIndexCompare": "مقایسه با شاخص کل",
-  "top100TraderCompare": "مقایسه با 100 تریدر برتر",
-  "year": "سال",
-  "Authentication": "                                        با احراز هویت به عنوان مالک ",
-  "blueTick": "تیک آبی گلدهاب دریافت کنید",
-  "openPrice": "قیمت ورود",
-  "closePrice": "قیمت خروج",
-  "openTime": "زمان ورود",
-  "closeTime": "زمان خروج",
-  "Continue": "ادامه",
-  "nonAnnounce": "اعلام نشده",
-  "opportunities": "فرصت ها",
-  "opportunity": "فرصت",
-  "marketsCompare": "مقایسه بازارها",
-  "functionHistory": "سابقه عملکرد",
-  "fundDivisionSuggest": "پیشنهاد تقسیم سرمایه در بازار ها",
-  "analyserRank": "رتبه تحلیلگر",
-  "analyserPower": "قدرت تحلیلگر",
-  "symbolScore": "امتیاز نماد",
-  "inRange": "در بازه‌ی",
-  "longTime": "بلند مدت",
-  "shortTime": "کوتاه مدت",
-  "traderExitSymbol": "تریدر  از {symbol}{component}شده است",
-  "exit": "خارج",
-  "highSell": "فروش بالا",
-  "highBuy": "خرید بالا",
-  "inStatus": "در وضعیت",
-  "assetRecommendationTitle": "جمع بندی نظر تریدرها درباره {symbol}:",
-  "previous": "قبلی",
-  "next": "بعدی",
-  "traderNumber": "تعداد تریدر",
-  "efficiency": "بازدهی",
-  "efficiency100Traders": "بازدهی 100 تریدر برتر",
-  "totalIndexReturn": "بازدهی شاخص کل",
-  "valueTypes": {
-    "B": "خرید",
-    "S": "فروش",
-    "B,S": "همه"
-  },
-  "signalsType": {
-    "N": "عادی",
-    "F": "بنیادی",
-    "T": "تکنیکال"
-  },
-  "creditDuration": {
-    "1": "یک روز",
-    "7": "یک هفته",
-    "30": "یک ماه",
-    "90": "سه ماه",
-    "180": "شش ماه",
-    "360": "یکسال"
-  },
-  "loginPageSeoTitle": "ورود | گلدهاب",
-  "loginStaticUser": "احسان",
-  "loginStaticUserComment": "این ماه با گلدهاب تونستم ۲۰٪ سود بگیرم از گلدهاب ممنون.",
-  "loginWithGoogle": "ورود با گوگل",
-  "orContinueWith": "یا ادامه با",
-  "loginHelper": "برای ورود/ثبت‌نام لطفا شماره تلفن همراه خود را وارد کنید.",
-  "pricingPageTitle": "خرید اشتراک | گلدهاب",
-  "issueReport": "گزارش مشکل",
-  "portfolioIsEmpty": "در حال حاضر پرتفوی تریدر خالی است.",
-  "buyHistoryIsEmpty": "تریدر سابقه خرید ندارد",
-  "noSignalToShow": "سیگنالی برای نمایش وجود ندارد",
-  "noMessageFound": "پیامی پیدا نشد",
-  "publishPrice": "قیمت لحظه انتشار",
-  "ownerRequestSuccess": "درخواست مالکیت شما {component} انجام شد.",
-  "withSuccess": "با موفقیت",
-  "doFollowing": "برای اتمام فرایند لطفا اقدامات زیر را انجام دهید",
-  "setTelegramDescription": "در قسمت توضیحات (Description) کانال تلگرام خود عبارت زیر را قرار دهید:",
-  "ownerShipWillCheck": "ربات گلدهاب طی 24 ساعت آینده اطلاعات کانال شما را می خواند و انتقال مالکیت به صورت خودکار انجام می شود.",
-  "presentProfit": "سود فعلی",
-  "viewpointSubmitted": "بازخورد شما ثبت شد.",
-  "unboundedAccess": "دسترسی نامحدود به بهترین های بازار ارز دیجیتال و بورس",
-  "unit": {
-    "Rial": "ریالی",
-    "coin": "ارزدیجیتال"
-  },
-  "discount": {
-    "sevenPer": "7% تخفیف بیشتر",
-    "discount": "تخفیف"
-  },
-  "bestSell": "پر فروش",
-  "professionalUse": "مناسب استفاده حرفه ای",
-  "amountToPay": "مبلغ قابل پرداخت",
-  "monthly": "ماهانه",
-  "pay": "پرداخت",
-  "insertDiscountCode": "کد تخفیف خرید اشتراک خود را وارد کنید.",
-  "discountMessages": {
-    "insert": "کد خود را وارد کنید",
-    "isEmpty": "کد تخفیف نمی تواند خالی باشد",
-    "isWrong": "کد تخفیف وارد شده اشتباه است"
-  },
-  "codeConfirm": "تایید کد",
-  "confirm": "تایید شد",
-  "payTransfer": "درحال انتقال به درگاه پرداخت",
-  "privacyPageTitle": "قوانین و مقررات | گلدهاب",
-  "accountChoose": "طرحت رو انتخاب کن",
-  "gift": "هدیه گلدهاب",
-  "useAllFree": "از تمام امکانات گلدهاب به صورت رایگان استفاده کن",
-  "weekFree": "7 روز رایگان",
-  "startNow": "همین الان شروع کن",
-  "services": {
-    "first": "مشاهده کارنامه تریدرهای بورسی و رمزارز",
-    "second": "شناخت و دنبال کردن تریدرها و ساخت فید اختصاصی",
-    "third": "مشاهده امتیاز نمادها برای خرید/ فروش",
-    "fourth": "مشاهده بازه ارزندگی پیشنهاد شده هر نماد توسط تریدرها"
-  },
-  "accountServices": {
-    "first": "مشاهده نمادهای برگزیده توسط برترین تریدرها",
-    "second": "مشاهده سبد پیشنهادی تریدر",
-    "third": "دنبال کردن برترین تریدرهای فعال در فضای مجازی",
-    "fourth": "اطلاع رسانی سریع آخرین تحلیلهای تریدرها",
-    "fifth": "مشاهده کلیه تحلیلهای منتشر شده در مورد هر نماد",
-    "sixth": "جمع بندی نظرات 100 تریدر برتر در مورد هر نماد"
-  },
-  "QA": {
-    "n1": {
-      "title": "گلدهاب چیه و چیکار میکنه؟",
-      "text": "گلدهاب هر روز سیگنال\u200Cهای ۳۴ هزار ترید بورس و ارز دیجیتال رو تحلیل می\u200Cکنه و برترین تریدرهای بازار مالی رو به شما معرفی میکنه تا بتونید دنبالشون کنید و با استفاده از تحلیل\u200Cهای این افراد معاملات سودآورتری داشته باشید!"
-    },
-    "n2": {
-      "title": "چطور میتونم برترین تریدرها با بالاترین رتبه رو پیدا کنم؟",
-      "text": "برترین تریدرها در صفحه مربوطه لیست شدند و میتونید\n                            رتبه هر تریدر رو در کنارش ببینید. همچنین اگر اسم\n                            تریدر خودتون رو در گلدهاب جستجو کنید میتونید وارد\n                            صفحه اختصاصی اون شخص بشید و کارنامه اون تریدر رو با\n                            تمام جزییات ببینید."
-    },
-    "n3": {
-      "title": " نمادهای برگزیده گلدهاب چطوری تولید میشه؟",
-      "text": "برترین تریدرها در صفحه مربوطه لیست شدند ونمادهای\n                            برگزیده بر اساس جمع\u200Cبندی سیگنال\u200Cهای برترین تریدرها\n                            پیشنهاد میشه. این\u200Cها نمادهایی هستند که افراد با رتبه\n                            برتر در روزهای اخیر بیشترین سیگنال خرید رو در\n                            موردشون منتشر کردند."
-    },
-    "n4": {
-      "title": "آیا برای استفاده از گلدهاب نیاز به پرداخت هزینه دارد؟",
-      "text": "بخشی از خدمات گلدهاب برای همه کاربرها رایگان است. اما\n                            اگر میخواید از بخش نمادهای برگزیده استفاده کنید یا\n                            دوست دارید به موقع از آخرین تصمیمات تریدرهای برتر در\n                            مورد سهمهاتون مطلع بشید باید اشتراک گلدهاب رو داشته\n                            باشید."
-    },
-    "n5": {
-      "title": " چطوری میتونم قبل از خرید اشتراک محصول گلدهاب رو تست کنم؟",
-      "text": "گلدهاب برای همه کاربران یک پلن هدیه رایگان در نظر\n                            گرفته تا بتونید قبل از خرید ابتدا محصول رو تست کنید\n                            و اگر محصول ما براتون ارزشمند بود برای خرید اقدام\n                            کنید."
-    },
-    "n6": {
-      "title": " پلن هدیه را چطوری دریافت کنم؟",
-      "text": "\n                            برای استفاده از اشتراک هدیه گلدهاب نیاز به هیچ کار\n                            اضافه ای نیست. برای استفاده از هدیه گلدهاب کافیه در\n                            سایت گلدهاب ثبت نام کنید و ما در همون لحظه هدیه گلدهاب\n                            رو براتون فعال میکنیم."
-    },
-    "n7": {
-      "title": "آیا تفاوتی بین پلن برنزی، نقره ای و طلایی وجود دارد؟",
-      "text": "\n                            تمام پلن\u200Cهای گلدهاب به لحاظ نوع امکانات مشابه هم\n                            هستند و تنها تفاوت اونها در مدت زمان استفاده است.\n                            البته ما برای کسانی که پلن\u200Cهای نقره ای و طلایی رو\n                            خریداری کنن تخفیفات ویژه\u200Cای رو در نظر گرفتیم!"
-    },
-    "n8": {
-      "title": " آیا هر زمان که بخواهم می\u200Cتوانم عضویت خودم را کنسل کنم؟",
-      "text": "امکان لغو عضویت در گلدهاب در میانه پلن وجود ندارد.\n                            اما شما میتونید برای خریدهای آینده خودتون طرح خودتون\n                            رو به پایین تر یا بالاتر تغییر بدید."
-    },
-    "n9": {
-      "title": "میشه برای عضویت در گلدهاب از کد تخفیف استفاده کرد؟",
-      "text": "\n                            ما کد تخفیف هم داریم. اگر دوست دارید از کد تخفیف\n                            استفاده کنید با پشتیبانی ما ارتباط بگیرید تا بهتون\n                            یه کد تخفیف بده. کافیه کد تخفیفی که از ما یا هر جای\n                            دیگری گرفتید رو در بخش مربوطه وارد کنید تا همون لحظه\n                            اعمال بشه."
-    },
-    "n10": {
-      "title": "چطور بفهمیم کی زمان فروش یا خرید یه سهام هست؟",
-      "text": "معمولا زمان دقیقی برای خرید و فروش یک سهام وجود\n                            نداره. اما ما در صفحه نمادهای برگزیده سعی میکنیم\n                            نمادهایی که مورد توجه برترین تریدرها هستند رو بهتون\n                            معرفی کنیم تا بتونید اونها رو انتخاب کنید. همچنین ما\n                            به شما تغییر وضعیت سهام از خرید به فروش رو با توجه\n                            به سیگنال تریدرهای برتر اطلاع میدیم. دقت کنیداگر سود\n                            مناسبی (مثلا بالای 20 درصد) از یک سهم دریافت کردید\n                            بهتر است بخشی از آن را نقد کنید."
-    },
-    "n11": {
-      "title": "آیا میتونم به سیگنالهای گلدهاب اعتماد کنم؟",
-      "text": "\n                            گلدهاب با استفاده از الگوریتمهای مبتنی بر هوش جمعی\n                            سیگنالهای خود را تولید میکند و خود ما هم از همین\n                            سیگنالها برای خرید و فروش استفاده میکنیم. برای\n                            اطمینان بیشتر میتونید مدتی سیگنالهای گلدهاب را دنبال\n                            کنید و پس از اطمینان از عملکرد نسبت به خرید و فروش\n                            بر مبنای آنها اقدام کنید. لازم به ذکر است این\n                            سیگنالها فقط تحلیل است و تبعات خرید و فروش و تصمیمات\n                            بر عهده خود شما است."
-    },
-    "n12": {
-      "title": "گلدهاب هشدار خرید یا فروش هم میده؟",
-      "text": "در صفحه هر سهم امکان فعال کردن سیستم اخطار وجود\n                            داره. در صورتی که سیستم اخطار هر سهم رو فعال کنید\n                            میتونید هشدارهای گلدهاب برای خرید و فروش رو دریافت\n                            کنید."
-    }
-  },
-  "questionAsk": "پرسش و پاسخ",
-  "addBest": {
-    "asset": {
-      "title": "بهترین های بازار رو به دیده بان اضافه کن:",
-      "text": "از بهترین تحلیل نمادها مطلع شوید."
-    },
-    "trader": {
-      "title": "بهترین تریدرها را دنبال کن:",
-      "text": "از سیگنال های خرید و فروش تریدر ها در لحظه آگاه شوید."
-    }
-  },
-  "nextStep": "مرحله بعدی",
-  "goToFeed": "برو به دیده بان",
-  "analysisMessagesCount": "تعداد پیام های تحلیل شده امروز",
-  "homeBest": {
-    "first": "بهترین های بازار",
-    "second": "ارزدیجیتال و بورس در",
-    "third": "یک نگاه"
-  },
-  "seeTops": "مشاهده برگزیده ها",
-  "topTraderIn1000": "تریدر های برتر از بین +1000 تریدر",
-  "seeAll": "مشاهده همه",
-  "commonQuestions": "سوالات متداول",
-  "cryptoTop": "برترین های ارزدیجیتال",
-  "tickerTop": "برترین های بورس",
-  "CQA": {
-    "n1": {
-      "title": "گلدهاب دقیقا چیکار میکنه؟",
-      "text": {
-        "name": "گلدهاب",
-        "first": "۱- تریدرهای فضای مجازی مثل تلگرام، رهاورد،تریدینگ ویو و... را رتبه\u200Cبندی میکنه و بهترین تریدرهای بازار بورس و ارز دیجیتال رو به شما معرفی میکنه.",
-        "second": "۲- بهترین سهم\u200Cها و ارزهای دیجیتالی که تریدرهای برتر معرفی میکنند را به شما در لحظه اطلاع رسانی میکنه."
-      }
-    },
-    "n2": {
-      "title": "صفحه نماد های برگزیده چیه؟",
-      "text": "در صفحه\u200Cی نمادهای برگزیده، بهترین نماد بورسی و ارز دیجیتالی که برترین تریدرهای بازارهای مالی معرفی می\u200Cکنند را میتونید مشاهده کنید."
-    },
-    "n3": {
-      "title": "من اگر اشتراک بگیرم چه قابلیت هایی برام فعال میشه؟",
-      "text": {
-        "first": "۱- دسترسی نامحدود به صفحه\u200Cی نمادهای برگزیده",
-        "second": "۲- دسترسی به صفحه\u200Cی برترین تریدرها و مشاهده کامل سیگنال\u200Cهای تریدرها",
-        "third": "۳- ایجاد دیده\u200Cبان اختصاصی و دریافت هشدار لحظه\u200Eای از نمادها و تریدرهای دنبال شده"
-      },
-      "n4": {
-        "title": "گلدهاب چه کاری انجام نمیده؟",
-        "text": "گلدهاب در قبال سیگنال هایی که تریدرها میدن مسئولیتی\n                            نداره وفقط نظر تریدرها رو جمع آوری میکنه و خودش\n                            تحلیل اضافه ای نمیده."
-      }
-    }
-  },
-  "homePageSeoTitle": "گلدهاب | بهترین های بازار ارز دیجیتال و بورس در یک نگاه",
-  "homePageDescription": "تحلیل سیگنال های خرید و فروش ارز دیجیتال و سهام با استفاده از هوش مصنوعی، معرفی بهترین های بازار بورس و ارز دیجیتال برای سرمایه گذاری، اطلاع رسانی لحظه ای سیگنال های خرید بیت کوین و سایر ارزهای دیجیتال",
-  "signalsPageTitle": "سیگنال های امروز ارز دیجیتال و بورس | گلدهاب",
-  "signalsPageDescription": "ارز دیجیتال و سهام های مورد توجه تریدرها در امروز، سیگنال های توصیه به خرید و فروش، سیگنال بیت کوین، خرید بیت کوین، تحلیل بیت کوین، سیگنال تلگرام",
-  "publisherPageTitle": "تحلیل تریدر در گلدهاب",
-  "confirmedType": {
-    "confirmed": "تایید شده",
-    "pend": "در انتظار تایید",
-    "rejected": "تایید نشده"
-  },
-  "bankType": {
-    "1": "ریالی",
-    "2": "ارزدیجیتال",
-    "3": "ریالی",
-    "4": "ریالی"
-  },
-  "planType": {
-    "1": "طلایی",
-    "2": "نقره",
-    "3": "برنزی",
-    "4": "هدیه",
-    "5": "هدیه",
-    "6": "هدیه",
-    "43": "سفارش بیت کوین",
-    "44": "سفارش بیت کوین",
-    "76": "سفارش بیت کوین"
-  },
-  "exitAccount": "خروج از حساب کاربری",
-  "setEmail": "تعیین ایمیل",
-  "confirmEmail": "تایید ایمیل",
-  "changeEmail": "تغییر ایمیل",
-  "remain": "مانده",
-  "plans": {
-    "activated": "طرح فعال",
-    "reserve": "طرح رزرو",
-    "noPlan": "بدون طرح"
-  },
-  "authorizeFailed": "احراز هویت ناموفق",
-  "notifNotActive": "هشدار اپلیکیشن برای شما فعال نشد",
-  "activeBrowserNotif": "لطفا دسترسی اطلاع رسانی مرورگر خود را فعال کنید",
-  "transactionStatus": {
-    "cancel": "لغو توسط کاربر",
-    "success": "موفق",
-    "inProgress": "در حال پردازش"
-  },
-  "profileComplete": {
-    "title": "تکمیل پروفایل",
-    "text": "برای استفاده کامل از امکانات گلدهاب مانند {component} لطفا پروفایل خود را تکمیل نمایید",
-    "notif": "قابلیت هشدار"
-  },
-  "status": "وضعیت",
-  "date": "تاریخ",
-  "plan": "طرح",
-  "port": "درگاه",
-  "trackingCode": "کد پیگیری",
-  "setting": "تنظیمات",
-  "activateNotif": "فعال سازی هشدار اپ :",
-  "activate": "فعال شده",
-  "notActivate": "فعال نشده",
-  "notifButton": {
-    "enable": "فعال سازی",
-    "disable": "غیرفعال کردن",
-    "pend": "در انتظار دریافت دسترسی"
-  },
-  "notifMessage": "این هشدار از طریق مرورگر ارسال می شود. پس بعد از\n                            فشردن دکمه فعال سازی، دکمه Allow را در پیام مرورگر\n                            فشار دهید. با فعالسازی هشدار اپ، هشدارهای گلدهاب به\n                            صورت لحظه ای روی دستگاه موبایل یا کامپیوتر شما ظاهر\n                            می شود.",
-  "telegramDescription": "جهت دریافت {component} عبارت زیر را در قسمت توضیحات(Description)کانال تلگرام خود قرار دهید",
-  "ownerShip": "مالکیت",
-  "transactionHistory": "سابقه تراکنش ها",
-  "descriptions": "توضیحات",
-  "traderPage": "صفحه تریدر در گلدهاب",
-  "retrySub": "تمدید طرح",
-  "retryText": "با تمدید طرح، به اشتراک فعلی شما اضافه خواهد شد.",
-  "publish": "ثبت تحلیل",
-  "new": "جدید",
-  "traderLoginModal": {
-    "title": "برای مشاهده این تریدر نیاز به ورود/ثبت\u200Cنام دارد",
-    "description": "با ثبت نام در طلانو، 7 روز رایگان از تمامی امکانات استفاده کنید.",
-    "button": "فعال سازی 7 روز رایگان",
-    "inputLabel": "ثبت نام سریع"
-  },
-  "bestTickerPerformance": "عملکرد برترین تریدر های بورس",
-  "bestCryptoPerformance": "عملکرد برترین تریدر های ارزدیجیتال",
-  "profitSimulate": "اگر 6 ماه پیش بر اساس سیگنال های خرید و فروش تریدرهای برتر گلدهاب معامله می کردید به بازدهی {component} درصدی می رسیدید.لیست تریدرهای برتر 6 ماه پیش:",
-  "top10SixMonthPer": "بازدهی 6 ماه اخیر(تریدرهای برتر)",
-  "planNeed": {
-    "following": "دنبال کردن {component} نیاز به اشتراک دارد",
-    "noPlan": "شما طرح فعال ندارید",
-    "seeMore": "مشاهده بیشتر طرح ها"
-  },
-  "priceModal": {
-    "otherAdvantage": "دیگر مزایای خرید اشتراک",
-    "portfolio": "مشاهده پرتفوی تریدر ها",
-    "lastAnalysis": "اطلاع رسانی از آخرین تحلیل تریدرها",
-    "topAsset": "مشاهده نماد های برگزیده"
-  },
-  "markets": {
-    "crypto": {
-      "name": "ارزدیجیتال",
-      "symbol": "$",
-      "color": "#CA8A04"
-    },
-    "ticker": {
-      "name": "بورس",
-      "symbol": "#",
-      "color": "#10EDC5"
-    },
-    "tse": {
-      "name": "بورس",
-      "symbol": "#",
-      "color": "#10EDC5"
-    }
-  },
-  "productNav": {
-    "bestTraders": "برترین تریدر‌ها",
-    "signals": "نماد‌های برگزیده",
-    "notifications": "هشدار‌ها",
-    "feeds": "دنبال شده‌ها"
-  },
   "aboutUsTitle": "درباره ما | گلدهاب",
-  "totalInventory": "کل موجودی",
-  "toman": "تومان",
-  "countingUnit": {
-    "thousand": "هزار",
-    "hundred": "صد",
-    "million": "میلیون"
-  },
-  "yourInventory": "موجودی شما",
   "increase": "افزایش",
   "retry": "لطفا مجدد تلاش کنید",
   "admin": {
@@ -1035,7 +278,8 @@
           "event": "رویداد",
           "ipAddress": "آدرس IP",
           "device": "دستگاه / مرورگر",
-          "noLogs": "لاگی یافت نشد"
+          "noLogs": "لاگی یافت نشد",
+          "roles": "نقش‌ها"
         },
         "stats": {
           "totalEvents": "کل رویدادها (۲۴ ساعت)",
@@ -1048,7 +292,8 @@
           "orderCreated": "سفارش ایجاد شد",
           "kycSubmitted": "احراز هویت ثبت شد",
           "kycApproved": "احراز هویت تایید شد",
-          "kycRejected": "احراز هویت رد شد"
+          "kycRejected": "احراز هویت رد شد",
+          "supplierRequested": "درخواست تامین‌کننده"
         }
       }
     },
@@ -1329,14 +574,6 @@
             "label": "نام محصول",
             "placeholder": "مثلا: شمش طلا ۱۰۰ گرمی"
           },
-          "sku": {
-            "label": "SKU",
-            "placeholder": "کد انبارداری"
-          },
-          "description": {
-            "label": "توضیحات",
-            "placeholder": "توضیحات محصول..."
-          },
           "category": "دسته بندی",
           "karat": {
             "label": "عیار",
@@ -1356,53 +593,9 @@
           },
           "image": {
             "label": "تصاویر محصول",
-            "clickToUpload": "برای آپلود کلیک کنید"
-          },
-          "metalDetails": {
-            "title": "جزئیات فلز",
-            "type": "نوع فلز",
-            "color": "رنگ",
-            "purity": "عیار/خلوص"
-          },
-          "dimensions": {
-            "netWeight": "وزن خالص",
-            "grossWeight": "وزن ناخالص"
-          },
-          "stones": {
-            "title": "سنگ‌ها",
-            "add": "افزودن سنگ",
-            "type": "نوع",
-            "count": "تعداد",
-            "weight": "وزن",
-            "clarity": "شفافیت",
-            "color": "رنگ"
-          },
-          "pricing": {
-            "title": "قیمت‌گذاری",
-            "basePrice": "قیمت پایه",
-            "makingCharges": "اجرت ساخت",
-            "makingChargesType": {
-              "label": "نوع اجرت",
-              "perGram": "هر گرم",
-              "fixed": "ثابت"
-            }
-          },
-          "inventory": {
-            "title": "موجودی و لجستیک",
-            "stock": "تعداد موجودی",
-            "moq": "حداقل سفارش",
-            "countryOfOrigin": "کشور سازنده",
-            "cert": {
-              "title": "گواهینامه",
-              "type": "نوع گواهی",
-              "file": "آپلود گواهی"
-            }
+            "clickToUpload": "برای آپلود کلیک کنید",
+            "s3Required": "(نیاز به یکپارچه‌سازی S3)"
           }
-        },
-        "tabs": {
-          "general": "عمومی",
-          "specifications": "مشخصات",
-          "b2b": "اطلاعات B2B"
         },
         "actions": {
           "cancel": "انصراف",
@@ -1457,6 +650,26 @@
           "delivered": "تحویل شده",
           "rejected": "رد شده",
           "cancelled": "لغو شده"
+        },
+        "dialog": {
+          "title": "جزئیات سفارش",
+          "description": "بررسی جزئیات سفارش برای",
+          "companyInfo": "اطلاعات تامین‌کننده",
+          "companyName": "نام تامین‌کننده",
+          "notProvided": "ارائه نشده",
+          "bankingInfo": "اطلاعات بانکی",
+          "iban": "شماره شبا",
+          "swift": "کد سوییفت",
+          "documents": "مدارک",
+          "businessRegistration": "ثبت شرکت",
+          "uploadedOn": "بارگذاری شده در",
+          "idVerification": "تایید هویت",
+          "view": "مشاهده",
+          "noDocuments": "مدرکی بارگذاری نشده",
+          "status": "وضعیت",
+          "currentStatus": "وضعیت فعلی",
+          "approve": "تایید",
+          "reject": "رد کردن"
         }
       },
       "pricingPage": {
@@ -1605,6 +818,95 @@
         "loading": "در حال بارگذاری...",
         "noMembers": "هیچ عضوی ثبت نام نکرده است.",
         "id": "شناسه"
+      },
+      "productFormDialogEnhanced": {
+        "title": {
+          "add": "افزودن محصول جدید",
+          "edit": "ویرایش محصول"
+        },
+        "description": {
+          "add": "افزودن محصول جدید به کاتالوگ شما.",
+          "edit": "بروزرسانی جزئیات محصول موجود."
+        },
+        "tabs": {
+          "general": "عمومی",
+          "specifications": "مشخصات",
+          "b2b": "B2B و قیمت‌گذاری"
+        },
+        "fields": {
+          "name": {
+            "label": "نام محصول",
+            "placeholder": "نام محصول را وارد کنید"
+          },
+          "sku": {
+            "label": "کد محصول",
+            "placeholder": "واحد نگهداری موجودی"
+          },
+          "category": "دسته‌بندی",
+          "description": {
+            "label": "توضیحات",
+            "placeholder": "توضیحات تفصیلی محصول..."
+          },
+          "metalDetails": {
+            "title": "جزئیات فلز",
+            "type": "نوع فلز",
+            "color": "رنگ فلز",
+            "purity": "خلوص"
+          },
+          "dimensions": {
+            "netWeight": "وزن خالص (گرم)",
+            "grossWeight": "وزن ناخالص (گرم)"
+          },
+          "stones": {
+            "title": "سنگ‌ها",
+            "add": "افزودن سنگ",
+            "type": "نوع سنگ",
+            "count": "تعداد",
+            "weight": "وزن",
+            "clarity": "شفافیت",
+            "color": "رنگ"
+          },
+          "pricing": {
+            "title": "استراتژی قیمت‌گذاری",
+            "basePrice": "قیمت پایه / قیمت واحد"
+          },
+          "inventory": {
+            "title": "موجودی و لجستیک",
+            "stock": "مقدار موجودی",
+            "moq": "حداقل مقدار سفارش (MOQ)",
+            "countryOfOrigin": "کشور مبدا",
+            "cert": {
+              "title": "گواهینامه",
+              "type": "نوع گواهینامه",
+              "file": "بارگذاری گواهینامه"
+            }
+          },
+          "karat": {
+            "label": "عیار",
+            "options": {
+              "18k": "۱۸ عیار",
+              "22k": "۲۲ عیار",
+              "24k": "۲۴ عیار"
+            }
+          },
+          "weight": "وزن (گرم)",
+          "price": "قیمت ($)",
+          "stock": "موجودی",
+          "specifications": {
+            "label": "مشخصات",
+            "placeholder": "مثلا: اندازه، ابعاد..."
+          },
+          "status": "وضعیت",
+          "image": {
+            "label": "تصاویر محصول",
+            "clickToUpload": "برای بارگذاری کلیک کنید"
+          }
+        },
+        "actions": {
+          "cancel": "لغو",
+          "add": "افزودن محصول",
+          "update": "بروزرسانی محصول"
+        }
       }
     },
     "profile": {

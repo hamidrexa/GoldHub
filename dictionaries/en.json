@@ -8,14 +8,7 @@
   "location": "Address",
   "title": "GoldHub",
   "buy": "Buy",
-  "address": "Tehran, Amirabrad, North Kargar, University of Tehran Technical Faculty Building, Nextra Coworking Space, No. 1450",
-  "email": "Email",
-  "callNumber": "Phone Number",
-  "postalCode": "Postal Code",
-  "sell": "Sell",
-  "title": "GoldHub",
-  "buy": "Buy",
-  "address": "Tehran, Amirabrad, North Kargar, University of Tehran Technical Faculty Building, Nextra Coworking Space, No. 1450",
+  "address": "Tehran",
   "email": "Email",
   "callNumber": "Phone Number",
   "postalCode": "Postal Code",
@@ -649,13 +642,7 @@
           },
           "pricing": {
             "title": "Pricing Strategy",
-            "basePrice": "Base Price / Unit Price",
-            "makingCharges": "Making Charges",
-            "makingChargesType": {
-              "label": "Charge Type",
-              "perGram": "Per Gram",
-              "fixed": "Fixed"
-            }
+            "basePrice": "Base Price / Unit Price"
           },
           "inventory": {
             "title": "Inventory & Logistics",

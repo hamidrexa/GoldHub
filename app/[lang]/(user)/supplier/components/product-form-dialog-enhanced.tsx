@@ -67,8 +67,6 @@ interface ProductFormData {
 
     // B2B & Pricing
     price: string;
-    makingCharges: string;
-    makingChargesType: 'per_gram' | 'fixed';
     stock: number;
     moq: number;
     countryOfOrigin: string;
@@ -110,8 +108,6 @@ export default function ProductFormDialogEnhanced({
         stones: [],
 
         price: "",
-        makingCharges: "",
-        makingChargesType: "per_gram",
         stock: 0,
         moq: 1,
         countryOfOrigin: "",
@@ -142,8 +138,6 @@ export default function ProductFormDialogEnhanced({
                 stones: product.stones || [],
 
                 price: product.price?.toString() || "",
-                makingCharges: product.makingCharges?.toString() || "",
-                makingChargesType: product.makingChargesType || "per_gram",
                 stock: product.inventory || product.stock || 0,
                 moq: product.moq || 1,
                 countryOfOrigin: product.countryOfOrigin || "",
@@ -258,8 +252,6 @@ export default function ProductFormDialogEnhanced({
         fd.append("stones", JSON.stringify(formData.stones));
 
         fd.append("price", formData.price);
-        fd.append("makingCharges", formData.makingCharges);
-        fd.append("makingChargesType", formData.makingChargesType);
 
         fd.append("stock", formData.stock.toString());
         fd.append("moq", formData.moq.toString());
@@ -584,40 +576,14 @@ export default function ProductFormDialogEnhanced({
                             {/* ... (Pricing, Inventory, Certifications) ... */}
                             <div className="grid gap-4">
                                 <h3 className="font-semibold text-sm text-foreground">{t.fields.pricing.title}</h3>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <div className="grid gap-2">
-                                        <Label htmlFor="price">{t.fields.pricing.basePrice}</Label>
-                                        <Input
-                                            id="price"
-                                            value={formData.price}
-                                            onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                                            inputMode="decimal"
-                                        />
-                                    </div>
-                                    <div className="grid gap-2">
-                                        <Label htmlFor="makingChargesType">{t.fields.pricing.makingChargesType.label}</Label>
-                                        <Select
-                                            value={formData.makingChargesType}
-                                            onValueChange={(value: any) => setFormData({ ...formData, makingChargesType: value })}
-                                        >
-                                            <SelectTrigger id="makingChargesType">
-                                                <SelectValue />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="per_gram">{t.fields.pricing.makingChargesType.perGram}</SelectItem>
-                                                <SelectItem value="fixed">{t.fields.pricing.makingChargesType.fixed}</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-                                    <div className="grid gap-2">
-                                        <Label htmlFor="makingCharges">{t.fields.pricing.makingCharges}</Label>
-                                        <Input
-                                            id="makingCharges"
-                                            value={formData.makingCharges}
-                                            onChange={(e) => setFormData({ ...formData, makingCharges: e.target.value })}
-                                            inputMode="decimal"
-                                        />
-                                    </div>
+                                <div className="grid gap-2">
+                                    <Label htmlFor="price">{t.fields.pricing.basePrice}</Label>
+                                    <Input
+                                        id="price"
+                                        value={formData.price}
+                                        onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                                        inputMode="decimal"
+                                    />
                                 </div>
 
                                 <h3 className="font-semibold text-sm text-foreground pt-2">{t.fields.inventory.title}</h3>
