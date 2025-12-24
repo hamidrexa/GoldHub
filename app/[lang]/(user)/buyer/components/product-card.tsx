@@ -117,7 +117,7 @@ export default function ProductCard({ product, dict, onViewDetails }: ProductCar
 
                         <div className="flex items-center justify-between pt-2">
                             <div>
-                                <p className="text-xl font-bold">${product.price.toLocaleString()}</p>
+                                <p className="text-xl font-bold">${product.unit_price.toLocaleString()}</p>
                                 <p className="text-xs text-muted-foreground">
                                     {product.inventory > 0 ? `${product.inventory} ${dict.marketplace.buyer.productCard.inStock}` : dict.marketplace.buyer.productCard.outOfStock}
                                 </p>

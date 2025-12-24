@@ -173,7 +173,7 @@ export function ProductsGrid({ dict }: ProductsGridProps) {
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-xl font-bold text-green-600">
-                                        ${product.price?.toLocaleString()}
+                                        ${product.unit_price?.toLocaleString()}
                                     </p>
                                     <p className="text-muted-foreground text-xs">
                                         {roundNumber(product.weight, 2)} grams
