@@ -114,16 +114,16 @@ export function ProfilePage({ dict, lang }) {
         if (user.trader_page_status === 'authorization_failed')
             return {
                 status: 'failed',
-                text: dict.authorizeFailed,
+                text: dict.auth.authorizeFailed,
             };
         if (user.trader_page_status === 'pending_for_authorization')
             return {
                 status: 'pending',
-                text: dict.confirmedType.pend,
+                text: dict.auth.confirmedType.pending,
             };
         return {
             status: 'confirmed',
-            text: dict.confirmedType.confirmed,
+            text: dict.auth.confirmedType.confirmed,
         };
     }, [user?.trader_page_status]);
 
@@ -447,7 +447,7 @@ export function ProfilePage({ dict, lang }) {
                                                     }}
                                                     variant="info"
                                                 >
-                                                    {dict.changeEmail}
+                                                    {dict.auth.changeEmail}
                                                 </Button>
                                             )}
                                         </DialogTrigger>
@@ -474,7 +474,7 @@ export function ProfilePage({ dict, lang }) {
                                                 className="w-full"
                                                 size="xl"
                                             >
-                                                {dict.confirmEmail}
+                                                {dict.auth.confirmEmail}
                                             </Button>
                                         </DialogTrigger>
                                         <DialogContent className="max-w-xl">
@@ -795,7 +795,7 @@ export function ProfilePage({ dict, lang }) {
                                 size="xl"
                                 onClick={logout}
                             >
-                                {dict.exitAccount}
+                                {dict.auth.exitAccount}
                             </Button>
                         </div>
                     </div>

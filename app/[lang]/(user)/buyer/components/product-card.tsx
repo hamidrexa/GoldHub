@@ -9,9 +9,12 @@ import { Product } from '@/lib/mock-data';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { addToCart } from '@/app/[lang]/(user)/buyer/services/add-to-cart';
+import { removeFromCart } from '@/app/[lang]/(user)/buyer/services/remove-from-cart';
+import { useCardDetails } from '@/app/[lang]/(user)/buyer/services/cart-details';
 import { likeProduct } from '@/app/[lang]/(user)/buyer/services/like-product';
 import { unlikeProduct } from '@/app/[lang]/(user)/buyer/services/unlike-product';
 import { toast } from 'sonner';
+import { QuantitySelector } from './quantity-selector';
 
 interface ProductCardProps {
     product: any;
@@ -23,6 +26,19 @@ export default function ProductCard({ product, dict, onViewDetails }: ProductCar
     const [isFavorite, setIsFavorite] = useState(!!product?.bookmarked_by_user);
     const [bookmarkId, setBookMarkId] = useState(product?.bookmarked_by_user?.id);
     const [isAddingToCart, setIsAddingToCart] = useState(false);
+    const { details, mutate } = useCardDetails();
+
+    // Find matching item in cart
+    const cartItem = details?.items?.find((item: any) => item.product.id === product.id);
+    const [quantity, setQuantity] = useState(cartItem?.count || 0);
+
+    // Sync quantity when cart details change
+    React.useEffect(() => {
+        if (details?.items) {
+            const item = details.items.find((item: any) => item.product.id === product.id);
+            setQuantity(item?.count || 0);
+        }
+    }, [details, product.id]);
     const params = useParams();
     const lang = params.lang || 'en';
 
@@ -34,13 +50,21 @@ export default function ProductCard({ product, dict, onViewDetails }: ProductCar
         setIsAddingToCart(true);
 
         try {
-            await addToCart({
-                product_id: product.id,
-                count: 1,
-            });
-            toast.success("Product has been added to card successfully!");
+            if (quantity === 0) {
+                await removeFromCart({
+                    product_id: parseInt(product.id),
+                });
+                toast.success("Product has been removed from cart");
+            } else {
+                await addToCart({
+                    product_id: product.id,
+                    count: quantity,
+                });
+                toast.success("Product has been added to cart successfully!");
+            }
+            mutate?.();
         } catch (error) {
-            toast.error(error?.error.detail)
+            toast.error(error?.error?.detail || "An error occurred");
         } finally {
             setIsAddingToCart(false);
         }
@@ -126,9 +150,16 @@ export default function ProductCard({ product, dict, onViewDetails }: ProductCar
                     </div>
                 </CardContent>
 
-                <CardFooter className="p-4 pt-0">
+                <CardFooter className="p-4 pt-0 gap-2">
+                    <QuantitySelector
+                        quantity={quantity}
+                        setQuantity={setQuantity}
+                        maxStock={product.inventory}
+                        minQuantity={0}
+                        className="w-auto"
+                    />
                     <Button
-                        className="w-full"
+                        className="flex-1"
                         onClick={handleAddToCart}
                         disabled={product.inventory === 0 || isAddingToCart}
                     >

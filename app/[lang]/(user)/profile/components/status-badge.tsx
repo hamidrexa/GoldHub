@@ -33,10 +33,10 @@ export function StatusBadge({
             )}
             <span>
                 {isConfirmed
-                    ? confirmedText || dict.confirmedType.confirmed
+                    ? confirmedText || dict.auth.confirmedType.confirmed
                     : isPending
-                      ? pendingText || dict.confirmedType.pend
-                      : notConfirmedText || dict.confirmedType.rejected}
+                      ? pendingText || dict.auth.confirmedType.pending
+                      : notConfirmedText || dict.auth.confirmedType.rejected}
             </span>
         </div>
     );

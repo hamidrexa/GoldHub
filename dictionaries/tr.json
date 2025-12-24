@@ -18,11 +18,6 @@
   "rules": "Tüzük",
   "aboutUs": "Hakkımızda",
   "contactUs": "bize Ulaşın",
-  "confirmedType": {
-    "confirmed": "Kabul edilmiş",
-    "pend": "Onay bekleniyor",
-    "rejected": "onaylanmadı"
-  },
   "navMenuItems": [
     {
       "title": "Alıcı",
@@ -1054,7 +1049,16 @@
     "loginRegister": "Giriş/Kayıt",
     "loginHelper": "Giriş yapmak/kaydolmak için lütfen mobil numaranızı girin.",
     "login": "Giriş",
-    "loginToAccount": "Hesaba Giriş Yap"
+    "loginToAccount": "Hesaba Giriş Yap",
+    "confirmedType": {
+      "confirmed": "Kabul edilmiş",
+      "pending": "Onay bekleniyor",
+      "rejected": "onaylanmadı"
+    },
+    "exitAccount": "Çıkış Yap",
+    "changeEmail": "E-posta Değiştir",
+    "confirmEmail": "E-postayı Onayla",
+    "authorizeFailed": "Kimlik Doğrulama Başarısız"
   },
   "aboutPage": {
     "title": "Mirası Modern Ticaretle Buluşturuyoruz",
