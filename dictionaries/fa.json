@@ -1022,9 +1022,12 @@
         "searchPlaceholder": "جستجو بر اساس کاربر، IP یا دستگاه...",
         "tabs": {
           "all": "همه رویدادها",
-          "login": "ورود/خروج",
+          "login": "ورود",
           "kyc": "رویدادهای احراز هویت",
-          "orders": "سفارشات"
+          "orders": "سفارشات",
+          "register": "ثبت نام",
+          "logout": "خروج",
+          "supplierRequested": "درخواست تامین"
         },
         "table": {
           "timestamp": "زمان",
