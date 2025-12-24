@@ -192,7 +192,7 @@ export default function ProductDetailDialog({
                                 <div className="flex justify-between items-center text-sm">
                                     <span className="text-gray-500">{t.fields?.stock || "Stock"}:</span>
                                     <Badge variant={product.inventory > 0 ? "default" : "destructive"}>
-                                        {product.inventory} {dict.marketplace.common.quantity || "units"}
+                                        {product.inventory ?? 'Unlimited'} {dict.marketplace.common.quantity || "units"}
                                     </Badge>
                                 </div>
                             </div>
@@ -329,9 +329,9 @@ export default function ProductDetailDialog({
                 {/* Action Buttons */}
                 <div className="flex gap-4 mt-4 pt-4 border-t sticky bottom-0 bg-white/95 backdrop-blur-sm items-center">
                     <QuantitySelector
-                        quantity={quantity}
+                        quantity={quantity ?? 'Unlimited'}
                         setQuantity={setQuantity}
-                        maxStock={product.inventory}
+                        maxStock={product.inventory ?? 10000}
                         minQuantity={0}
                         className="h-12 w-32"
                     />
