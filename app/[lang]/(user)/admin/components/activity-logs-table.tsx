@@ -85,7 +85,7 @@ export function ActivityLogsTable({
 }: ActivityLogsTableProps) {
     const [page, setPage] = React.useState(0);
     const [pageSize, setPageSize] = React.useState(10);
-    const { logs, count, isLoading, error } = useActivityLogs(page, pageSize);
+    const { logs, count, isLoading, error } = useActivityLogs(page, eventFilter,pageSize);
 
 
 
@@ -126,12 +126,8 @@ export function ActivityLogsTable({
         );
     }
     console.log(filteredLogs.length);
-    const totalPages = Math.ceil(filteredLogs.length / pageSize);
+    const totalPages = Math.ceil(count / pageSize);
 
-    const paginatedLogs = filteredLogs.slice(
-        page * pageSize,
-        (page + 1) * pageSize
-    );
 
     return (
         <div className="bg-card rounded-lg border shadow-sm">
@@ -167,7 +163,7 @@ export function ActivityLogsTable({
                     </TableHeader>
 
                     <TableBody>
-                        {paginatedLogs.length === 0 ? (
+                        {filteredLogs.length === 0 ? (
                             <TableRow>
                                 <TableCell
                                     colSpan={3}
@@ -180,7 +176,7 @@ export function ActivityLogsTable({
                                 </TableCell>
                             </TableRow>
                         ) : (
-                            paginatedLogs.map((log: any, index: number) => (
+                            filteredLogs.map((log: any, index: number) => (
                                 <TableRow
                                     key={index}
                                     className="hover:bg-gray-50"
