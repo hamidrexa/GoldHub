@@ -18,8 +18,8 @@ export async function generateMetadata(
     const isSuccess = parseInt(planId) !== 0;
 
     const seoTitle = isSuccess
-        ? dict.transactionStatus.success
-        : dict.transactionStatus.cancel;
+        ? 'success'
+        : 'cancel';
     const seoDescription = `View the receipt for your transaction on GoldHub. Status: ${isSuccess ? 'Successful' : 'Failed'
         }.`;
 

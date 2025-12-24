@@ -161,12 +161,12 @@ export function ProfilePage({ dict, lang }) {
     const transactionStatus = {
         'Cancel by user': (
             <span className="text-red-500">
-                {dict.transactionStatus.cancel}
+                cancel
             </span>
         ),
         Complete: (
             <span className="text-green-500">
-                {dict.transactionStatus.success}
+                success
             </span>
         ),
     };

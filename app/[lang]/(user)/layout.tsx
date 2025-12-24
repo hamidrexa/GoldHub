@@ -11,7 +11,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
     const dict = await getDictionary(lang);
     const seoTitle = dict.title || 'GoldHub';
-    const seoDescription = dict.homePageDescription || 'The secure platform for buying and selling gold online.';
+    const seoDescription = dict.homepage.SeoDescription || 'The secure platform for buying and selling gold online.';
 
     return {
         title: {
