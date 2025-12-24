@@ -65,7 +65,7 @@ export default function ProductDetailDialog({
             });
             mutate();
             onOpenChange(false);
-            toast.success("Product has been added to cart successfully!");
+            toast.success(dict.marketplace.buyer.productCard.addToCart);
         } catch (error) {
             toast.error(error?.error.detail)
         } finally {
@@ -97,6 +97,7 @@ export default function ProductDetailDialog({
 
     const productImages = product.images || [];
     const t = dict.marketplace.supplier.productFormDialogEnhanced || {};
+    const buyerDict = dict.marketplace.buyer.productCard || {};
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
@@ -126,7 +127,7 @@ export default function ProductDetailDialog({
                                 ) : (
                                     <div className="text-gray-400 flex flex-col items-center">
                                         <ShoppingCart className="h-16 w-16 mb-2 opacity-20" />
-                                        <span className="text-sm italic">No image</span>
+                                        <span className="text-sm italic">{t.fields?.image?.label || "No image"}</span>
                                     </div>
                                 )}
                             </div>
@@ -158,28 +159,28 @@ export default function ProductDetailDialog({
                         <div className="space-y-3">
                             <div className="bg-[#fdfaf3] rounded-xl p-4 space-y-3">
                                 <div className="flex justify-between items-center text-sm border-b border-[#f0e6d2]/50 pb-2">
-                                    <span className="text-gray-500">Price:</span>
+                                    <span className="text-gray-500">{dict.marketplace.common.price}:</span>
                                     <span className="text-2xl font-bold text-[#d4af37]">${product.price?.toLocaleString()}</span>
                                 </div>
                                 <div className="flex justify-between items-center text-sm border-b border-[#f0e6d2]/50 pb-2">
-                                    <span className="text-gray-500">Supplier:</span>
+                                    <span className="text-gray-500">{dict.marketplace.buyer.orderDetailModal.supplier}:</span>
                                     <span className="font-semibold text-gray-900">{product.supplier?.company?.name || "N/A"}</span>
                                 </div>
                                 <div className="flex justify-between items-center text-sm border-b border-[#f0e6d2]/50 pb-2">
-                                    <span className="text-gray-500">Category:</span>
+                                    <span className="text-gray-500">{t.fields?.category || "Category"}:</span>
                                     <span className="font-semibold text-gray-900 capitalize">{product.category?.replace('_', ' ')}</span>
                                 </div>
                                 <div className="flex justify-between items-center text-sm">
-                                    <span className="text-gray-500">Stock:</span>
+                                    <span className="text-gray-500">{t.fields?.stock || "Stock"}:</span>
                                     <Badge variant={product.inventory > 0 ? "default" : "destructive"}>
-                                        {product.inventory} units
+                                        {product.inventory} {dict.marketplace.common.quantity || "units"}
                                     </Badge>
                                 </div>
                             </div>
 
                             {product.details && (
                                 <div className="space-y-2">
-                                    <h4 className="font-semibold text-sm">Description</h4>
+                                    <h4 className="font-semibold text-sm">{t.fields?.description?.label || "Description"}</h4>
                                     <p className="text-sm text-muted-foreground">{product.details}</p>
                                 </div>
                             )}
@@ -192,15 +193,15 @@ export default function ProductDetailDialog({
                             <h3 className="font-semibold text-sm">{t.fields?.metalDetails?.title || "Metal Details"}</h3>
                             <div className="grid grid-cols-2 gap-3 text-sm">
                                 <div>
-                                    <span className="text-muted-foreground">Karat:</span>
+                                    <span className="text-muted-foreground">{t.fields?.karat?.label || "Karat"}:</span>
                                     <p className="font-medium">{product.karat || "N/A"}</p>
                                 </div>
                                 <div>
-                                    <span className="text-muted-foreground">Metal Type:</span>
+                                    <span className="text-muted-foreground">{t.fields?.metalDetails?.type || "Metal Type"}:</span>
                                     <p className="font-medium capitalize">{product.metalType || "Gold"}</p>
                                 </div>
                                 <div>
-                                    <span className="text-muted-foreground">Metal Color:</span>
+                                    <span className="text-muted-foreground">{t.fields?.metalDetails?.color || "Metal Color"}:</span>
                                     <p className="font-medium capitalize">{product.metalColor || "Yellow"}</p>
                                 </div>
                             </div>
@@ -210,11 +211,11 @@ export default function ProductDetailDialog({
                             <h3 className="font-semibold text-sm">{t.fields?.dimensions?.title || "Dimensions"}</h3>
                             <div className="grid grid-cols-2 gap-3 text-sm">
                                 <div>
-                                    <span className="text-muted-foreground">Net Weight:</span>
+                                    <span className="text-muted-foreground">{t.fields?.dimensions?.netWeight || "Net Weight"}:</span>
                                     <p className="font-medium">{product.weight || 0} g</p>
                                 </div>
                                 <div>
-                                    <span className="text-muted-foreground">Gross Weight:</span>
+                                    <span className="text-muted-foreground">{t.fields?.dimensions?.grossWeight || "Gross Weight"}:</span>
                                     <p className="font-medium">{product.grossWeight || product.weight || 0} g</p>
                                 </div>
                             </div>
@@ -228,19 +229,19 @@ export default function ProductDetailDialog({
                                     {product.stones.map((stone: any, index: number) => (
                                         <div key={index} className="bg-background p-3 rounded-md grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
                                             <div>
-                                                <span className="text-muted-foreground">Type:</span>
+                                                <span className="text-muted-foreground">{t.fields?.stones?.type || "Type"}:</span>
                                                 <p className="font-medium">{stone.type}</p>
                                             </div>
                                             <div>
-                                                <span className="text-muted-foreground">Count:</span>
+                                                <span className="text-muted-foreground">{t.fields?.stones?.count || "Count"}:</span>
                                                 <p className="font-medium">{stone.count}</p>
                                             </div>
                                             <div>
-                                                <span className="text-muted-foreground">Weight:</span>
+                                                <span className="text-muted-foreground">{t.fields?.stones?.weight || "Weight"}:</span>
                                                 <p className="font-medium">{stone.weight} ct</p>
                                             </div>
                                             <div>
-                                                <span className="text-muted-foreground">Clarity:</span>
+                                                <span className="text-muted-foreground">{t.fields?.stones?.clarity || "Clarity"}:</span>
                                                 <p className="font-medium">{stone.clarity || "N/A"}</p>
                                             </div>
                                         </div>
@@ -256,12 +257,12 @@ export default function ProductDetailDialog({
                             <h3 className="font-semibold text-sm">{t.fields?.pricing?.title || "Pricing"}</h3>
                             <div className="grid grid-cols-2 gap-3 text-sm">
                                 <div>
-                                    <span className="text-muted-foreground">Base Price:</span>
+                                    <span className="text-muted-foreground">{t.fields?.pricing?.basePrice || "Base Price"}:</span>
                                     <p className="font-medium">${product.price?.toLocaleString()}</p>
                                 </div>
                                 {product.makingCharges && (
                                     <div>
-                                        <span className="text-muted-foreground">Making Charges:</span>
+                                        <span className="text-muted-foreground">{dict.marketplace.common.amount || "Making Charges"}:</span>
                                         <p className="font-medium">
                                             ${product.makingCharges}
                                             {product.makingChargesType === 'per_gram' ? ' /g' : ''}
@@ -275,12 +276,12 @@ export default function ProductDetailDialog({
                             <h3 className="font-semibold text-sm">{t.fields?.inventory?.title || "Inventory & Logistics"}</h3>
                             <div className="grid grid-cols-2 gap-3 text-sm">
                                 <div>
-                                    <span className="text-muted-foreground">MOQ:</span>
+                                    <span className="text-muted-foreground">{t.fields?.inventory?.moq?.substring(0, 3) || "MOQ"}:</span>
                                     <p className="font-medium">{product.moq || 1} units</p>
                                 </div>
                                 {product.countryOfOrigin && (
                                     <div>
-                                        <span className="text-muted-foreground">Origin:</span>
+                                        <span className="text-muted-foreground">{t.fields?.inventory?.countryOfOrigin || "Origin"}:</span>
                                         <p className="font-medium">{product.countryOfOrigin}</p>
                                     </div>
                                 )}
@@ -295,10 +296,10 @@ export default function ProductDetailDialog({
                                     {t.fields?.inventory?.cert?.title || "Certification"}
                                 </h3>
                                 <div className="text-sm">
-                                    <span className="text-muted-foreground">Type:</span>
+                                    <span className="text-muted-foreground">{t.fields?.inventory?.cert?.type || "Type"}:</span>
                                     <p className="font-medium">{product.certificationType}</p>
                                     {product.certificateFile && (
-                                        <Badge variant="default" className="mt-2">Certificate Available</Badge>
+                                        <Badge variant="default" className="mt-2">{t.fields?.inventory?.cert?.file || "Certificate Available"}</Badge>
                                     )}
                                 </div>
                             </div>
@@ -307,14 +308,14 @@ export default function ProductDetailDialog({
                 </Tabs>
 
                 {/* Action Buttons */}
-                <div className="flex gap-4 mt-4 pt-4 border-t sticky bottom-0 bg-background">
+                <div className="flex gap-4 mt-4 pt-4 border-t sticky bottom-0 bg-white/95 backdrop-blur-sm">
                     <Button
                         className="flex-1 h-12 bg-[#d4af37] hover:bg-[#c4a030] text-black font-bold"
                         onClick={handleAddToCart}
                         disabled={isAddingToCart || product.inventory === 0}
                     >
                         <ShoppingCart className="h-5 w-5 mr-2" />
-                        Add to Cart
+                        {buyerDict.addToCart || "Add to Cart"}
                     </Button>
                     <Button
                         onClick={followHandler}
