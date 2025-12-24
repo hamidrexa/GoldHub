@@ -219,7 +219,7 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
                                                 <p className="text-lg font-bold">
                                                     $
                                                     {(
-                                                        item.product.price *
+                                                        item.product.unit_price *
                                                         item.count
                                                     ).toLocaleString()}
                                                 </p>

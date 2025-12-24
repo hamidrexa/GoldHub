@@ -46,7 +46,7 @@ export default function ProductDetailDialog({
     const [isAddingToCart, setIsAddingToCart] = useState(false);
 
     const { details } = useCardDetails();
-    const cartItem = details?.items?.find((item: any) => item.product.id === product.id);
+    const cartItem = details?.items?.find((item: any) => item.product.id === product?.id);
     const [quantity, setQuantity] = useState(cartItem?.count || 0);
 
     const [isFavorite, setIsFavorite] = useState(!!product?.bookmarked_by_user);
@@ -60,7 +60,7 @@ export default function ProductDetailDialog({
         setActiveTab("general");
 
         // Sync quantity
-        const item = details?.items?.find((item: any) => item.product.id === product.id);
+        const item = details?.items?.find((item: any) => item.product.id === product?.id);
         setQuantity(item?.count || 0);
     }, [product, details]);
 
