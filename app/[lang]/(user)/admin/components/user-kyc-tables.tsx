@@ -81,6 +81,7 @@ export function UsersKycTable({
     const [pageSize, setPageSize] = React.useState(10);
     const { users, count, isLoading, error, mutate } = useUsersKYCData(
         page,
+        activeTab,
         pageSize
     );
     const totalPages = Math.ceil((count || 0) / pageSize);

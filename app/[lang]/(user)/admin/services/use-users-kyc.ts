@@ -2,13 +2,17 @@
 import useSWR from "swr";
 import Cookies from 'js-cookie';
 
-export function useUsersKYCData(page?: number, pageSize: number = 10) {
+export function useUsersKYCData(page?: number, status?:string, pageSize: number = 10) {
     const params: Record<string, any> = {
         page_size: pageSize,
     };
 
     if (page !== undefined) {
         params.page = page + 1;
+    }
+
+    if (status !== undefined) {
+        params.status = status;
     }
 
     const { data, error, isLoading, mutate } = useSWR({

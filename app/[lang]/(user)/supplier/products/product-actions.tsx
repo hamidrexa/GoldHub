@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Plus, Pencil, Trash2 } from 'lucide-react';
 import { Product } from '@/lib/mock-data';
-import ProductFormDialog from '@/app/[lang]/(user)/supplier/components/product-form-dialog';
 import ProductFormDialogEnhanced from '@/app/[lang]/(user)/supplier/components/product-form-dialog-enhanced';
 import { updateProduct } from '@/app/[lang]/(user)/supplier/products/services/updateProduct';
 import { addProduct } from '@/app/[lang]/(user)/supplier/products/services/addProduct';
@@ -16,17 +15,11 @@ interface ProductActionsProps {
 
 export function ProductActions({ dict, products }: ProductActionsProps) {
     const [dialogOpen, setDialogOpen] = useState(false);
-    const [enhancedDialogOpen, setEnhancedDialogOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
     const handleAddProduct = () => {
         setSelectedProduct(null);
         setDialogOpen(true);
-    };
-
-    const handleAddEnhancedProduct = () => {
-        setSelectedProduct(null);
-        setEnhancedDialogOpen(true);
     };
 
     const handleEditProduct = (product: Product) => {
@@ -41,31 +34,12 @@ export function ProductActions({ dict, products }: ProductActionsProps) {
                 className="bg-yellow-500 hover:bg-yellow-600 text-black font-medium"
             >
                 <Plus className="h-4 w-4 mr-2" />
-                {dict.marketplace.supplier.productsPage.addProduct} (Basic)
+                {dict.marketplace.supplier.productsPage.addProduct}
             </Button>
-
-            <Button
-                onClick={handleAddEnhancedProduct}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium ml-2"
-            >
-                <Plus className="h-4 w-4 mr-2" />
-                {dict.marketplace.supplier.productsPage.addProduct} (Enhanced)
-            </Button>
-
-            <ProductFormDialog
-                open={dialogOpen}
-                onOpenChange={setDialogOpen}
-                product={selectedProduct}
-                dict={dict}
-                onSave={async (apiBody) => {
-                    const res = await addProduct({ body: apiBody });
-                    return res;
-                }}
-            />
 
             <ProductFormDialogEnhanced
-                open={enhancedDialogOpen}
-                onOpenChange={setEnhancedDialogOpen}
+                open={dialogOpen}
+                onOpenChange={setDialogOpen}
                 product={selectedProduct}
                 dict={dict}
                 onSave={async (apiBody) => {

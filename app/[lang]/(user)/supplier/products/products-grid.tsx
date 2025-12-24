@@ -15,7 +15,7 @@ import {
     AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 import { Product } from '@/lib/mock-data';
-import ProductFormDialog from '@/app/[lang]/(user)/supplier/components/product-form-dialog';
+import ProductFormDialogEnhanced from '@/app/[lang]/(user)/supplier/components/product-form-dialog-enhanced';
 import { useProductList } from '@/app/[lang]/(user)/supplier/products/services/useProductList';
 import { updateProduct } from '@/app/[lang]/(user)/supplier/products/services/updateProduct';
 import { deleteProduct } from '@/app/[lang]/(user)/supplier/products/services/deleteProduct';
@@ -173,7 +173,7 @@ export function ProductsGrid({ dict }: ProductsGridProps) {
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-xl font-bold text-green-600">
-                                        ${product.price?.toLocaleString()}
+                                        ${product.unit_price?.toLocaleString()}
                                     </p>
                                     <p className="text-muted-foreground text-xs">
                                         {roundNumber(product.weight, 2)} grams
@@ -215,7 +215,7 @@ export function ProductsGrid({ dict }: ProductsGridProps) {
                         </div>
                     </div>
                 ))}
-                <ProductFormDialog
+                <ProductFormDialogEnhanced
                     open={dialogOpen}
                     onOpenChange={setDialogOpen}
                     product={selectedProduct}
