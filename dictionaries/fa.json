@@ -18,6 +18,11 @@
   "rules": "قوانین",
   "aboutUs": "درباره‌ما",
   "contactUs": "تماس باما",
+  "confirmedType": {
+    "confirmed": "تایید شده",
+    "pend": "در انتظار تایید",
+    "rejected": "تایید نشده"
+  },
   "navMenuItems": [
     {
       "title": "خریدار",

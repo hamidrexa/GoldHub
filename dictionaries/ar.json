@@ -18,6 +18,11 @@
   "rules": "الشروط و الأحكام",
   "aboutUs": "نبذة عنا",
   "contactUs": "اتصل بنا",
+  "confirmedType": {
+    "confirmed": "قبلت",
+    "pend": "بانتظار التأكيد",
+    "rejected": "غير مؤكد"
+  },
   "navMenuItems": [
     {
       "title": "المشتري",

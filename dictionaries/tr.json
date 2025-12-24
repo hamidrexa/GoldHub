@@ -18,6 +18,11 @@
   "rules": "Tüzük",
   "aboutUs": "Hakkımızda",
   "contactUs": "bize Ulaşın",
+  "confirmedType": {
+    "confirmed": "Kabul edilmiş",
+    "pend": "Onay bekleniyor",
+    "rejected": "onaylanmadı"
+  },
   "navMenuItems": [
     {
       "title": "Alıcı",

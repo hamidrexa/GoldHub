@@ -18,6 +18,11 @@
   "rules": "Terms",
   "aboutUs": "About Us",
   "contactUs": "Contact Us",
+  "confirmedType": {
+    "confirmed": "Confirmed",
+    "pend": "Pending Confirmation",
+    "rejected": "Not Confirmed"
+  },
   "navMenuItems": [
     {
       "title": "Products",
