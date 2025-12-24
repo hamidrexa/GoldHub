@@ -54,7 +54,7 @@ export function ProductsGrid({ dict }: ProductsGridProps) {
 
     const totalPages = Math.ceil((count || 0) / pageSize);
 
-    const getStatusBadge = (status: Product['status']) => {
+    const getStatusBadge = (status: string) => {
         const badges = {
             active: {
                 label: dict.marketplace.supplier.productsPage.status.active,
@@ -66,7 +66,7 @@ export function ProductsGrid({ dict }: ProductsGridProps) {
             },
             draft: {
                 label: dict.marketplace.supplier.productsPage.status.draft,
-                className: 'bg-orange-100 text-orange-800 hover:bg-orange-100',
+                className: 'bg-amber-100 text-amber-800 hover:bg-amber-100',
             },
         };
         const config = badges[status];
@@ -176,7 +176,7 @@ export function ProductsGrid({ dict }: ProductsGridProps) {
                                         ${product.unit_price?.toLocaleString()}
                                     </p>
                                     <p className="text-muted-foreground text-xs">
-                                        {roundNumber(product.weight, 2)} grams
+                                        {roundNumber(product.net_weight, 2)} grams
                                     </p>
                                     <p className="text-muted-foreground text-xs">
                                         {product.inventory ?? 0}{' '}
@@ -186,7 +186,7 @@ export function ProductsGrid({ dict }: ProductsGridProps) {
                                         }
                                     </p>
                                 </div>
-                                {getStatusBadge('active')}
+                                {getStatusBadge(product.status)}
                             </div>
 
                             {/* Actions */}

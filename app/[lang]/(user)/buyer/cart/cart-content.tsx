@@ -206,7 +206,7 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
                                                 </p>
                                                 <p className="text-muted-foreground mt-1 text-sm">
                                                     $
-                                                    {item.product.price.toLocaleString()}{' '}
+                                                    {item.product.unit_price.toLocaleString()}{' '}
                                                     {
                                                         dict.marketplace.buyer
                                                             .cartPage.item.each
