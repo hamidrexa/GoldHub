@@ -368,18 +368,50 @@ export const mockDashboardStats: DashboardStats = {
 
 // Supplier-specific data
 
+export interface Stone {
+    id: string;
+    type: string;
+    count: number;
+    weight: number; // carats or grams depending on type, simplified for now
+    unit: 'ct' | 'g';
+    clarity?: string;
+    color?: string;
+}
+
 export interface Product {
     id: string;
+    sku?: string;
     name: string;
+    description?: string;
     category: 'gold_bar' | 'gold_coin' | 'jewelry' | 'necklace' | 'bracelet' | 'earring' | 'ring';
-    karat: '18K' | '22K' | '24K';
-    weight: number; // grams
-    price: number; // USD
+
+    // Material Details
+    metalType?: 'gold' | 'silver' | 'platinum';
+    metalColor?: 'yellow' | 'white' | 'rose' | 'two_tone' | 'tri_tone';
+    karat: '18K' | '22K' | '24K'; // Keeping this as primary purity indicator for now, can be mapped to 750/916/999
+    weight: number; // Net weight in grams
+    grossWeight?: number; // Gross weight including stones
+
+    // Stones
+    stones?: Stone[];
+
+    // Pricing & B2B
+    price: number; // Total price or Base price
+    makingCharges?: number;
+    makingChargesType?: 'per_gram' | 'fixed';
+
     stock: number;
+    moq?: number;
+    countryOfOrigin?: string;
+
+    // Certification
+    certificationType?: 'BIS' | 'GIA' | 'IGI' | 'Other';
+    certificateFile?: string; // URL or File path
+
     image?: string; // S3 URL placeholder
     status: 'active' | 'inactive' | 'draft';
     createdDate: string;
-    specifications?: string;
+    specifications?: string; // Legacy field, can be kept for backward compatibility or migrated
 }
 
 export interface SupplierStats {
@@ -401,36 +433,62 @@ export interface PricingConfig {
 export const mockProducts: Product[] = [
     {
         id: 'PROD-001',
+        sku: 'GB-24K-100',
         name: '24K Gold Bar 100g',
+        description: 'Premium Swiss craftsmanship 100g Gold Bar.',
         category: 'gold_bar',
+        metalType: 'gold',
+        metalColor: 'yellow',
         karat: '24K',
         weight: 100,
+        grossWeight: 100,
         price: 7450,
+        makingCharges: 50,
+        makingChargesType: 'fixed',
         stock: 22,
+        moq: 1,
+        countryOfOrigin: 'Switzerland',
         status: 'active',
         createdDate: '2024-01-05',
         specifications: 'Gold Bar · 24K · 100gram'
     },
     {
         id: 'PROD-002',
+        sku: 'GC-22K-1OZ',
         name: 'Gold Krugerrand 1oz',
         category: 'gold_coin',
+        metalType: 'gold',
+        metalColor: 'yellow',
         karat: '22K',
         weight: 31.1,
+        grossWeight: 31.1,
         price: 2150,
         stock: 50,
+        moq: 5,
         status: 'active',
         createdDate: '2024-01-10',
         specifications: 'Gold Coin · 22K · 1ounce'
     },
     {
         id: 'PROD-003',
+        sku: 'NK-18K-DIA-001',
         name: '18K Diamond Necklace',
+        description: 'Elegant purity with VS1 diamonds.',
         category: 'necklace',
+        metalType: 'gold',
+        metalColor: 'white',
         karat: '18K',
         weight: 45,
+        grossWeight: 46.2,
+        stones: [
+            { id: 'st-1', type: 'Diamond', count: 12, weight: 1.2, unit: 'ct', clarity: 'VS1', color: 'G' }
+        ],
         price: 8900,
+        makingCharges: 15,
+        makingChargesType: 'per_gram',
         stock: 10,
+        moq: 1,
+        countryOfOrigin: 'Italy',
         status: 'active',
         createdDate: '2024-01-12',
         specifications: 'Jewelry · 18K · 45gram'

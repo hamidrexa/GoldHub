@@ -1346,6 +1346,101 @@
           "add": "Add Product"
         }
       },
+      "productFormDialogEnhanced": {
+        "title": {
+          "add": "Add New Product",
+          "edit": "Edit Product"
+        },
+        "description": {
+          "add": "Add a new product to your catalog.",
+          "edit": "Update existing product details."
+        },
+        "tabs": {
+          "general": "General",
+          "specifications": "Specifications",
+          "b2b": "B2B & Pricing"
+        },
+        "fields": {
+          "name": {
+            "label": "Product Name",
+            "placeholder": "Enter product name"
+          },
+          "sku": {
+            "label": "SKU",
+            "placeholder": "Stock Keeping Unit"
+          },
+          "category": "Category",
+          "description": {
+            "label": "Description",
+            "placeholder": "Detailed product description..."
+          },
+          "metalDetails": {
+            "title": "Metal Details",
+            "type": "Metal Type",
+            "color": "Metal Color",
+            "purity": "Purity"
+          },
+          "dimensions": {
+            "netWeight": "Net Weight (g)",
+            "grossWeight": "Gross Weight (g)"
+          },
+          "stones": {
+            "title": "Stones",
+            "add": "Add Stone",
+            "type": "Stone Type",
+            "count": "Count",
+            "weight": "Weight",
+            "clarity": "Clarity",
+            "color": "Color"
+          },
+          "pricing": {
+            "title": "Pricing Strategy",
+            "basePrice": "Base Price / Unit Price",
+            "makingCharges": "Making Charges",
+            "makingChargesType": {
+              "label": "Charge Type",
+              "perGram": "Per Gram",
+              "fixed": "Fixed"
+            }
+          },
+          "inventory": {
+            "title": "Inventory & Logistics",
+            "stock": "Stock Quantity",
+            "moq": "Minimum Order Quantity (MOQ)",
+            "countryOfOrigin": "Country of Origin",
+            "cert": {
+              "title": "Certification",
+              "type": "Certificate Type",
+              "file": "Upload Certificate"
+            }
+          },
+          "karat": {
+            "label": "Karat",
+            "options": {
+              "18k": "18K",
+              "22k": "22K",
+              "24k": "24K"
+            }
+          },
+          "weight": "Weight (g)",
+          "price": "Price ($)",
+          "stock": "Stock",
+          "specifications": {
+            "label": "Specifications",
+            "placeholder": "e.g., Size, dimensions..."
+          },
+          "status": "Status",
+          "image": {
+            "label": "Product Images",
+            "clickToUpload": "Click to upload"
+          }
+        },
+        "actions": {
+          "cancel": "Cancel",
+          "add": "Add Product",
+          "update": "Update Product"
+        }
+      },
       "ordersPage": {
         "title": "Orders",
         "description": "Manage and track your supplier orders",

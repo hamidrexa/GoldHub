@@ -1314,45 +1314,97 @@
       },
       "productFormDialog": {
         "title": {
-          "edit": "ویرایش محصول",
-          "add": "افزودن محصول جدید"
+          "add": "افزودن محصول جدید",
+          "edit": "ویرایش محصول"
         },
         "description": {
-          "edit": "بروزرسانی جزئیات محصول در زیر",
-          "add": "جزئیات محصول جدید خود را وارد کنید"
+          "add": "افزودن محصول جدید به کاتالوگ شما.",
+          "edit": "تغییر جزئیات محصول."
         },
         "fields": {
           "name": {
             "label": "نام محصول",
-            "placeholder": "مثلا: شمش طلا 24 عیار 100 گرم"
+            "placeholder": "مثلا: شمش طلا ۱۰۰ گرمی"
           },
-          "category": "دسته‌بندی",
+          "sku": {
+            "label": "SKU",
+            "placeholder": "کد انبارداری"
+          },
+          "description": {
+            "label": "توضیحات",
+            "placeholder": "توضیحات محصول..."
+          },
+          "category": "دسته بندی",
           "karat": {
             "label": "عیار",
             "options": {
-              "18k": "18 عیار (75%)",
-              "22k": "22 عیار (91.6%)",
-              "24k": "24 عیار (100%)"
+              "18k": "۱۸ عیار",
+              "22k": "۲۲ عیار",
+              "24k": "۲۴ عیار"
             }
           },
           "weight": "وزن (گرم)",
-          "price": "قیمت (دلار)",
+          "price": "قیمت (تومان)",
           "stock": "موجودی",
-          "specifications": {
-            "label": "مشخصات",
-            "placeholder": "مثلا: شمش طلا 24 عیار 100 گرم"
-          },
           "status": "وضعیت",
+          "specifications": {
+            "label": "مشخصات فنی",
+            "placeholder": "جزئیات بیشتر..."
+          },
           "image": {
-            "label": "تصویر محصول",
-            "clickToUpload": "برای آپلود تصویر کلیک کنید",
-            "s3Required": "(نیاز به اس ۳)"
+            "label": "تصاویر محصول",
+            "clickToUpload": "برای آپلود کلیک کنید"
+          },
+          "metalDetails": {
+            "title": "جزئیات فلز",
+            "type": "نوع فلز",
+            "color": "رنگ",
+            "purity": "عیار/خلوص"
+          },
+          "dimensions": {
+            "netWeight": "وزن خالص",
+            "grossWeight": "وزن ناخالص"
+          },
+          "stones": {
+            "title": "سنگ‌ها",
+            "add": "افزودن سنگ",
+            "type": "نوع",
+            "count": "تعداد",
+            "weight": "وزن",
+            "clarity": "شفافیت",
+            "color": "رنگ"
+          },
+          "pricing": {
+            "title": "قیمت‌گذاری",
+            "basePrice": "قیمت پایه",
+            "makingCharges": "اجرت ساخت",
+            "makingChargesType": {
+              "label": "نوع اجرت",
+              "perGram": "هر گرم",
+              "fixed": "ثابت"
+            }
+          },
+          "inventory": {
+            "title": "موجودی و لجستیک",
+            "stock": "تعداد موجودی",
+            "moq": "حداقل سفارش",
+            "countryOfOrigin": "کشور سازنده",
+            "cert": {
+              "title": "گواهینامه",
+              "type": "نوع گواهی",
+              "file": "آپلود گواهی"
+            }
           }
         },
+        "tabs": {
+          "general": "عمومی",
+          "specifications": "مشخصات",
+          "b2b": "اطلاعات B2B"
+        },
         "actions": {
-          "cancel": "لغو",
-          "update": "بروزرسانی محصول",
-          "add": "افزودن محصول"
+          "cancel": "انصراف",
+          "add": "افزودن محصول",
+          "update": "بروزرسانی تغییرات"
         }
       },
       "ordersPage": {
