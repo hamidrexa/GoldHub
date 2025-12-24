@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const DICT_DIR = path.join(process.cwd(), 'dictionaries');
+const DICT_DIR = path.join(__dirname, '..');
 const SOURCE_FILE = path.join(DICT_DIR, 'en.json');
 const TARGET_FILES = ['fa.json', 'tr.json', 'ar.json'].map(f => path.join(DICT_DIR, f));
 

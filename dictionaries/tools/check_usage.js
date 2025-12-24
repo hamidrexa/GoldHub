@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Configuration
-const ROOT_DIR = process.cwd();
+const ROOT_DIR = path.join(__dirname, '..', '..');
 const DICT_PATH = path.join(ROOT_DIR, 'dictionaries', 'en.json');
 const SOURCE_DIRS = [path.join(ROOT_DIR, 'app'), path.join(ROOT_DIR, 'components'), path.join(ROOT_DIR, 'lib')];
 const IGNORE_EXTENSIONS = ['.json', '.css', '.md'];
