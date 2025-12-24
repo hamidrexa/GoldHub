@@ -113,10 +113,10 @@ export function Phone({
         <>
             <div className="flex flex-col space-y-2 text-center">
                 <h1 className="text-2xl font-semibold tracking-tight">
-                    {texts.title ?? dict.loginRegister}
+                    {texts.title ?? dict.auth.loginRegister}
                 </h1>
                 <p className="black text-lg">
-                    {texts.description ?? dict.loginHelper}
+                    {texts.description ?? dict.auth.loginHelper}
                 </p>
             </div>
             <div className="grid gap-6">
@@ -165,7 +165,7 @@ export function Phone({
                             {isLoading && (
                                 <Icons.spinner className="h-5 w-5 animate-spin" />
                             )}
-                            {texts.button ?? dict.login}
+                            {texts.button ?? dict.auth.login}
                         </Button>
                     </form>
                 </Form>

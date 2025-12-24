@@ -391,7 +391,7 @@ export function Header({ dict, lang, googleLogin = true }) {
                         passHref
                     >
                         <a className="flex items-center rounded-md bg-gold-600 px-3 py-2 font-medium text-black">
-                            {dict.loginRegister}
+                            {dict.auth.loginRegister}
                         </a>
                     </Link>
                 )}
@@ -452,7 +452,7 @@ export function Header({ dict, lang, googleLogin = true }) {
                         href={`${getLinksLang(lang)}/login?url=${path}`}
                         className="flex h-12 items-center justify-center rounded-md border border-transparent bg-gold-600 px-10 font-medium text-black"
                     >
-                        {dict.loginRegister}
+                        {dict.auth.loginRegister}
                     </Link>
                 )}
             </div>

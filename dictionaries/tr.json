@@ -1043,7 +1043,12 @@
     "emailPlaceholder": "E-posta (isteğe bağlı)",
     "emailInvalid": "Girilen e-posta hatalıdır",
     "passwordMandatory": "Şifre (zorunlu)",
-    "register": "Kayıt Ol"
+    "register": "Kayıt Ol",
+    "loginPageSeoTitle": "Giriş | GoldHub",
+    "loginRegister": "Giriş/Kayıt",
+    "loginHelper": "Giriş yapmak/kaydolmak için lütfen mobil numaranızı girin.",
+    "login": "Giriş",
+    "loginToAccount": "Hesaba Giriş Yap"
   },
   "aboutPage": {
     "title": "Mirası Modern Ticaretle Buluşturuyoruz",

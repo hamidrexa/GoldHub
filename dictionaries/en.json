@@ -1048,7 +1048,12 @@
     "emailPlaceholder": "Email (optional)",
     "emailInvalid": "The email entered is incorrect",
     "passwordMandatory": "Password (required)",
-    "register": "Register"
+    "register": "Register",
+    "loginPageSeoTitle": "Login | GoldHub",
+    "loginRegister": "Login/Register",
+    "loginHelper": "To login/register, please enter your mobile number.",
+    "login": "Login",
+    "loginToAccount": "Login to Account"
   },
   "aboutPage": {
     "title": "Connecting Heritage with Modern Commerce",

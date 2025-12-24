@@ -249,7 +249,7 @@ export function Sidebar({ dict, lang }: SidebarProps) {
                         href={`${getLinksLang(lang)}/login?url=${pathname}`}
                         className="flex h-12 items-center justify-center rounded-md border border-transparent bg-gold-600 px-10 font-medium text-white hover:bg-neutral-700"
                     >
-                        {dict.loginRegister}
+                        {dict.auth.loginRegister}
                     </Link>
                 )}
             </div>

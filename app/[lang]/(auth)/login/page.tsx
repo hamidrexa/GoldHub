@@ -23,7 +23,7 @@ export async function generateMetadata(
     parent?: ResolvingMetadata
 ): Promise<Metadata> {
     const dict = await getDictionary(lang);
-    const seoTitle = dict.loginPageSeoTitle;
+    const seoTitle = dict.auth.loginPageSeoTitle;
 
     return {
         title: `${seoTitle}`,
@@ -81,10 +81,10 @@ export default async function AuthenticationPage({ params: { lang }, searchParam
                             <>
                                 <div className="flex flex-col space-y-2 text-center">
                                     <h1 className="text-2xl font-semibold tracking-tight">
-                                        {dict.loginRegister}
+                                        {dict.auth.loginRegister}
                                     </h1>
                                     <p className="text-sm">
-                                        {dict.loginHelper}
+                                        {dict.auth.loginHelper}
                                     </p>
                                 </div>
                                 <Google lang={lang} dict={dict} redirectUrl={redirectUrl} />

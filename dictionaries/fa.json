@@ -1058,7 +1058,12 @@
     "emailPlaceholder": "ایمیل (اختیاری)",
     "emailInvalid": "ایمیل وارد شده نادرست است",
     "passwordMandatory": "رمز عبور (الزامی)",
-    "register": "ثبت‌نام"
+    "register": "ثبت‌نام",
+    "loginPageSeoTitle": "ورود | گلدهاب",
+    "loginRegister": "ورود/ثبت‌نام",
+    "loginHelper": "برای ورود/ثبت‌نام لطفا شماره موبایل خود را وارد کنید.",
+    "login": "ورود",
+    "loginToAccount": "ورود به حساب"
   },
   "aboutPage": {
     "title": "پیوند میراث با تجارت مدرن",

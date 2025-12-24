@@ -1043,7 +1043,12 @@
     "emailPlaceholder": "البريد الإلكتروني (اختياري)",
     "emailInvalid": "البريد الإلكتروني المُدخل غير صحيح",
     "passwordMandatory": "كلمة المرور (إلزامية)",
-    "register": "إنشاء حساب"
+    "register": "إنشاء حساب",
+    "loginPageSeoTitle": "تسجيل الدخول | GoldHub",
+    "loginRegister": "تسجيل الدخول / إنشاء حساب",
+    "loginHelper": "لتسجيل الدخول / الاشتراك، يرجى إدخال رقم هاتفك المحمول.",
+    "login": "تسجيل الدخول",
+    "loginToAccount": "تسجيل الدخول إلى الحساب"
   },
   "aboutPage": {
     "title": "ربط التراث بالتجارة الحديثة",
