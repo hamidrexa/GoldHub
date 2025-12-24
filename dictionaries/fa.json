@@ -1064,7 +1064,16 @@
     "loginRegister": "ورود/ثبت‌نام",
     "loginHelper": "برای ورود/ثبت‌نام لطفا شماره موبایل خود را وارد کنید.",
     "login": "ورود",
-    "loginToAccount": "ورود به حساب"
+    "loginToAccount": "ورود به حساب",
+    "confirmedType": {
+      "confirmed": "تایید شده",
+      "pending": "در انتظار تایید",
+      "rejected": "تایید نشده"
+    },
+    "exitAccount": "خروج از حساب",
+    "changeEmail": "تغییر ایمیل",
+    "confirmEmail": "تأیید ایمیل",
+    "authorizeFailed": "احراز هویت ناموفق بود"
   },
   "aboutPage": {
     "title": "پیوند میراث با تجارت مدرن",

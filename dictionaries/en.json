@@ -1054,7 +1054,16 @@
     "loginRegister": "Login/Register",
     "loginHelper": "To login/register, please enter your mobile number.",
     "login": "Login",
-    "loginToAccount": "Login to Account"
+    "loginToAccount": "Login to Account",
+    "confirmedType": {
+      "confirmed": "Confirmed",
+      "pending": "Pending confirmation",
+      "rejected": "Not confirmed"
+    },
+    "exitAccount": "Logout",
+    "changeEmail": "Change Email",
+    "confirmEmail": "Confirm Email",
+    "authorizeFailed": "Authentication Failed"
   },
   "aboutPage": {
     "title": "Connecting Heritage with Modern Commerce",

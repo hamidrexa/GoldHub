@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Trash2, Plus, Minus } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
+import { QuantitySelector } from '../components/quantity-selector';
 
 interface CartItemControlsProps {
     productId: string;
@@ -24,10 +24,9 @@ export function CartItemControls({
 }: CartItemControlsProps) {
     const [quantity, setQuantity] = useState(initialQuantity);
 
-    const updateQuantity = (delta: number) => {
-        const newQuantity = Math.max(1, Math.min(maxStock, quantity + delta));
-        setQuantity(newQuantity);
-        onQuantityChange?.(productId, newQuantity);
+    const handleQuantityChange = (newQty: number) => {
+        setQuantity(newQty);
+        onQuantityChange?.(productId, newQty);
     };
 
     const handleRemove = () => {
@@ -36,30 +35,12 @@ export function CartItemControls({
 
     return (
         <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-            <div className="flex items-center border rounded-lg">
-                <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => updateQuantity(-1)}
-                    disabled={quantity <= 1}
-                >
-                    <Minus className="h-4 w-4" />
-                </Button>
-                <Input
-                    type="number"
-                    value={quantity}
-                    readOnly
-                    className="w-16 text-center border-0 focus-visible:ring-0"
-                />
-                <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => updateQuantity(1)}
-                    disabled={quantity >= maxStock}
-                >
-                    <Plus className="h-4 w-4" />
-                </Button>
-            </div>
+            <QuantitySelector
+                quantity={quantity}
+                setQuantity={handleQuantityChange}
+                maxStock={maxStock}
+                className="w-auto"
+            />
 
             <Button
                 variant="ghost"

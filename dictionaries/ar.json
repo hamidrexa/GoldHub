@@ -1049,7 +1049,16 @@
     "loginRegister": "تسجيل الدخول / إنشاء حساب",
     "loginHelper": "لتسجيل الدخول / الاشتراك، يرجى إدخال رقم هاتفك المحمول.",
     "login": "تسجيل الدخول",
-    "loginToAccount": "تسجيل الدخول إلى الحساب"
+    "loginToAccount": "تسجيل الدخول إلى الحساب",
+    "confirmedType": {
+      "confirmed": "قبلت",
+      "pending": "بانتظار التأكيد",
+      "rejected": "غير مؤكد"
+    },
+    "exitAccount": "تسجيل الخروج",
+    "changeEmail": "تغيير البريد الإلكتروني",
+    "confirmEmail": "تأكيد البريد الإلكتروني",
+    "authorizeFailed": "فشل التحقق من الهوية"
   },
   "aboutPage": {
     "title": "ربط التراث بالتجارة الحديثة",

@@ -16,12 +16,15 @@ import { cn } from '@/libs/utils';
 import { toast } from 'sonner';
 import { likeProduct } from '@/app/[lang]/(user)/buyer/services/like-product';
 import { unlikeProduct } from '@/app/[lang]/(user)/buyer/services/unlike-product';
+import { removeFromCart } from '@/app/[lang]/(user)/buyer/services/remove-from-cart';
+import { useCardDetails } from '@/app/[lang]/(user)/buyer/services/cart-details';
 import {
     Tabs,
     TabsContent,
     TabsList,
     TabsTrigger,
 } from "@/components/ui/tabs";
+import { QuantitySelector } from './quantity-selector';
 
 interface ProductDetailDialogProps {
     open: boolean;
@@ -41,6 +44,11 @@ export default function ProductDetailDialog({
     const [activeImageIndex, setActiveImageIndex] = useState(0);
     const [activeTab, setActiveTab] = useState("general");
     const [isAddingToCart, setIsAddingToCart] = useState(false);
+
+    const { details } = useCardDetails();
+    const cartItem = details?.items?.find((item: any) => item.product.id === product.id);
+    const [quantity, setQuantity] = useState(cartItem?.count || 0);
+
     const [isFavorite, setIsFavorite] = useState(!!product?.bookmarked_by_user);
     const [bookmarkId, setBookMarkId] = useState(product?.bookmarked_by_user?.id);
     const params = useParams();
@@ -49,8 +57,12 @@ export default function ProductDetailDialog({
     useEffect(() => {
         setIsFavorite(!!product?.bookmarked_by_user);
         setBookMarkId(product?.bookmarked_by_user?.id);
-        setActiveTab("general"); // Reset to general tab when product changes
-    }, [product]);
+        setActiveTab("general");
+
+        // Sync quantity
+        const item = details?.items?.find((item: any) => item.product.id === product.id);
+        setQuantity(item?.count || 0);
+    }, [product, details]);
 
     if (!product) return null;
 
@@ -59,15 +71,22 @@ export default function ProductDetailDialog({
         setIsAddingToCart(true);
 
         try {
-            await addToCart({
-                product_id: product.id,
-                count: 1,
-            });
+            if (quantity === 0) {
+                await removeFromCart({
+                    product_id: parseInt(product.id),
+                });
+                toast.success("Product has been removed from cart");
+            } else {
+                await addToCart({
+                    product_id: product.id,
+                    count: quantity,
+                });
+                toast.success(dict.marketplace.buyer.productCard.addToCart);
+            }
             mutate();
             onOpenChange(false);
-            toast.success(dict.marketplace.buyer.productCard.addToCart);
         } catch (error) {
-            toast.error(error?.error.detail)
+            toast.error(error?.error?.detail || "An error occurred");
         } finally {
             setIsAddingToCart(false);
         }
@@ -308,7 +327,14 @@ export default function ProductDetailDialog({
                 </Tabs>
 
                 {/* Action Buttons */}
-                <div className="flex gap-4 mt-4 pt-4 border-t sticky bottom-0 bg-white/95 backdrop-blur-sm">
+                <div className="flex gap-4 mt-4 pt-4 border-t sticky bottom-0 bg-white/95 backdrop-blur-sm items-center">
+                    <QuantitySelector
+                        quantity={quantity}
+                        setQuantity={setQuantity}
+                        maxStock={product.inventory}
+                        minQuantity={0}
+                        className="h-12 w-32"
+                    />
                     <Button
                         className="flex-1 h-12 bg-[#d4af37] hover:bg-[#c4a030] text-black font-bold"
                         onClick={handleAddToCart}

@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     Table,
     TableBody,
@@ -87,6 +87,10 @@ export function UsersKycTable({
     const totalPages = Math.ceil((count || 0) / pageSize);
     const [selectedUser, setSelectedUser] = React.useState<any>(null);
 
+    useEffect(() => {
+        setPage(0);
+    }, [activeTab]);
+
     if (isLoading) return <p className="py-8 text-center">Loading...</p>;
     if (error)
         return (
@@ -121,15 +125,10 @@ export function UsersKycTable({
         filteredUsers = filteredUsers.filter(
             (u) =>
                 u.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                u.company?.name?.toLowerCase().includes(searchQuery.toLowerCase())
+                u.company?.name
+                    ?.toLowerCase()
+                    .includes(searchQuery.toLowerCase())
         );
-    }
-
-    // Tab filtering
-    if (activeTab === 'pending') {
-        filteredUsers = filteredUsers.filter((u) => u.kycStatus === 'pending');
-    } else if (activeTab === 'approved') {
-        filteredUsers = filteredUsers.filter((u) => u.kycStatus === 'approved');
     }
 
     return (
@@ -232,7 +231,9 @@ export function UsersKycTable({
                                         </TableCell>
 
                                         <TableCell>{user.email}</TableCell>
-                                        <TableCell>{user.company?.name}</TableCell>
+                                        <TableCell>
+                                            {user.company?.name}
+                                        </TableCell>
 
                                         <TableCell className="flex gap-1">
                                             {user.roles.map(
@@ -284,7 +285,7 @@ export function UsersKycTable({
             </div>
             <div className="flex flex-col items-center justify-between gap-4 border-t px-4 py-4 sm:flex-row">
                 <div className="flex items-center gap-2">
-                    <p className="text-muted-foreground text-sm whitespace-nowrap">
+                    <p className="text-muted-foreground whitespace-nowrap text-sm">
                         {dict?.common?.rowsPerPage || 'Rows per page'}
                     </p>
                     <Select
@@ -316,7 +317,7 @@ export function UsersKycTable({
                     />
                 </div>
 
-                <div className="hidden text-sm text-muted-foreground sm:block">
+                <div className="text-muted-foreground hidden text-sm sm:block">
                     {dict?.common?.pageOf
                         ?.replace('{current}', String(page + 1))
                         .replace('{total}', String(totalPages)) ||
