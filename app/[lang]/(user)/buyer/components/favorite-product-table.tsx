@@ -109,7 +109,7 @@ export function FavouriteProductTable({ dict, lang ,wishlistItems,isLoading,erro
                                 {item.supplier.company?.name}
                             </p>
                             <p className="text-lg font-bold">
-                                ${item.price.toLocaleString()}
+                                ${item.unit_price.toLocaleString()}
                             </p>
                             <p className="text-muted-foreground text-xs">
                                 {

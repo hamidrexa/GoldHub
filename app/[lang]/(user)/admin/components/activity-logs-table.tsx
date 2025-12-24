@@ -125,7 +125,6 @@ export function ActivityLogsTable({
             (log) => log.activity_type === eventFilter
         );
     }
-    console.log(filteredLogs.length);
     const totalPages = Math.ceil(count / pageSize);
 
 
