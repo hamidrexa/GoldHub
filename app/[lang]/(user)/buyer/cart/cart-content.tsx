@@ -13,6 +13,9 @@ import { addToCart } from '@/app/[lang]/(user)/buyer/services/add-to-cart';
 import { removeFromCart } from '@/app/[lang]/(user)/buyer/services/remove-from-cart';
 import { submitOrder } from '@/app/[lang]/(user)/buyer/services/submit-order';
 import { toast } from 'sonner';
+import { randomInt } from 'node:crypto';
+import { random } from 'lodash';
+import { roundNumber } from '@/libs/utils';
 
 interface CartItem {
     productId: string;
@@ -90,9 +93,9 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
         }
     };
 
-    const subtotal = details?.items?.reduce((sum, item) => sum + (item.product.price * item.count), 0);
+    const subtotal = details?.items?.reduce((sum, item) => sum + (item.product.unit_price * item.count), 0);
     const tax = subtotal * 0.08;
-    const shipping = subtotal > 5000 ? 0 : 50;
+    const shipping = subtotal > 5000 ? 0 : roundNumber(subtotal * random(0,10)/10,2);
     const total = subtotal + tax + shipping;
 
     if (cardLoading) {
@@ -206,7 +209,7 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
                                                 </p>
                                                 <p className="text-muted-foreground mt-1 text-sm">
                                                     $
-                                                    {item.product.price.toLocaleString()}{' '}
+                                                    {item.product.unit_price.toLocaleString()}{' '}
                                                     {
                                                         dict.marketplace.buyer
                                                             .cartPage.item.each
@@ -219,7 +222,7 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
                                                 <p className="text-lg font-bold">
                                                     $
                                                     {(
-                                                        item.product.price *
+                                                        item.product.unit_price *
                                                         item.count
                                                     ).toLocaleString()}
                                                 </p>

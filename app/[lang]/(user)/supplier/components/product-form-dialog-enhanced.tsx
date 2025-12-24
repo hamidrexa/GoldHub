@@ -60,7 +60,7 @@ interface ProductFormData {
     // Specs
     metalType: string;
     metalColor: string;
-    karat: string;
+    purity: number;
     weight: string; // Net weight
     grossWeight: string;
     stones: Stone[];
@@ -102,7 +102,7 @@ export default function ProductFormDialogEnhanced({
 
         metalType: "gold",
         metalColor: "yellow",
-        karat: "24K",
+        purity: 0,
         weight: "",
         grossWeight: "",
         stones: [],
@@ -132,7 +132,7 @@ export default function ProductFormDialogEnhanced({
 
                 metalType: product.metalType || "gold",
                 metalColor: product.metalColor || "yellow",
-                karat: product.karat || "24K",
+                purity: product.purity || 0,
                 weight: product.weight?.toString() || "",
                 grossWeight: product.grossWeight?.toString() || product.weight?.toString() || "",
                 stones: product.stones || [],
@@ -238,29 +238,28 @@ export default function ProductFormDialogEnhanced({
         const fd = new FormData();
         // ... (Similar mapping logic to previous, ensuring all fields are added)
         if (id) fd.append("id", id.toString());
-        fd.append("name", formData.name);
-        fd.append("sku", formData.sku);
-        fd.append("description", formData.description);
+        fd.append("title", formData.name);
+        fd.append("SKU", formData.sku);
+        fd.append("details", formData.description);
         fd.append("category", formData.category);
 
-        fd.append("metalType", formData.metalType);
-        fd.append("metalColor", formData.metalColor);
-        fd.append("karat", formData.karat);
-        fd.append("weight", formData.weight);
-        fd.append("grossWeight", formData.grossWeight);
+        fd.append("metal_type", formData.metalType);
+        fd.append("metal_color", formData.metalColor);
+        fd.append("purity", formData.purity.toString());
+        fd.append("net_weight", formData.weight);
+        fd.append("gross_weight", formData.grossWeight);
 
-        fd.append("stones", JSON.stringify(formData.stones));
+        //fd.append("stones", JSON.stringify(formData.stones));
 
-        fd.append("price", formData.price);
+        fd.append("unit_price", formData.price);
 
-        fd.append("stock", formData.stock.toString());
-        fd.append("moq", formData.moq.toString());
-        fd.append("countryOfOrigin", formData.countryOfOrigin);
+        fd.append("inventory", formData.stock.toString());
+        fd.append("minimum_order_quantity", formData.moq.toString());
+        fd.append("country_of_region", formData.countryOfOrigin);
 
-        fd.append("certificationType", formData.certificationType);
+        fd.append("certificate_type", formData.certificationType);
         // Certificate file handling would be here (if real API)
 
-        fd.append("specifications", formData.specifications);
         fd.append("status", formData.status);
 
         return fd;
@@ -464,16 +463,16 @@ export default function ProductFormDialogEnhanced({
                                     <div className="grid gap-2">
                                         <Label htmlFor="karat">{t.fields.metalDetails.purity}</Label>
                                         <Select
-                                            value={formData.karat}
-                                            onValueChange={(value) => setFormData({ ...formData, karat: value })}
+                                            value={formData.purity.toString()+'K'}
+                                            onValueChange={(value) => setFormData({ ...formData, purity: parseInt(value) })}
                                         >
                                             <SelectTrigger id="karat">
                                                 <SelectValue />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                <SelectItem value="18K">{t.fields.karat.options['18k']}</SelectItem>
-                                                <SelectItem value="22K">{t.fields.karat.options['22k']}</SelectItem>
-                                                <SelectItem value="24K">{t.fields.karat.options['24k']}</SelectItem>
+                                                <SelectItem value="18">{t.fields.karat.options['18k']}</SelectItem>
+                                                <SelectItem value="22">{t.fields.karat.options['22k']}</SelectItem>
+                                                <SelectItem value="24">{t.fields.karat.options['24k']}</SelectItem>
                                             </SelectContent>
                                         </Select>
                                     </div>
