@@ -178,7 +178,6 @@ export default function ProductFormDialogEnhanced({
         }
     };
 
-    console.log(product);
 
     const handleDeleteImage = async () => {
         if (indexToDelete === null) return;
@@ -286,7 +285,6 @@ export default function ProductFormDialogEnhanced({
                     clarity,
                     color,
                 };
-
                 fd.append('stones', JSON.stringify(stonePayload));
             });
         }

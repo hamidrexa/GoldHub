@@ -139,6 +139,7 @@ export function CatalogContent({
                         className="w-[85vw] overflow-y-auto sm:w-[350px]"
                     >
                         <CatalogFilters
+                            setOpen={setMobileFiltersOpen}
                             dict={dict}
                             lang={lang}
                             initialCategories={initialCategories}

@@ -29,7 +29,6 @@ function removeExtraKeys(source, target, path = '') {
 
         // If key doesn't exist in source, delete it
         if (!(key in source)) {
-            console.log(`[DELETE] ${fullPath}`);
             delete target[key];
             return;
         }
@@ -48,22 +47,18 @@ function removeExtraKeys(source, target, path = '') {
 }
 
 function main() {
-    console.log(`Loading reference: ${SOURCE_FILE}`);
     const sourceDict = loadJson(SOURCE_FILE);
 
     TARGET_FILES.forEach(targetPath => {
-        console.log(`\nProcessing ${path.basename(targetPath)}...`);
         const targetDict = loadJson(targetPath);
 
         // Simple sanity check to ensure we loaded something
         if (Object.keys(targetDict).length === 0) {
-            console.log('Skipping empty or non-existent file.');
             return;
         }
 
         removeExtraKeys(sourceDict, targetDict);
         saveJson(targetPath, targetDict);
-        console.log(`Saved ${path.basename(targetPath)}`);
     });
 }
 

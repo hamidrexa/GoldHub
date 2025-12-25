@@ -74,7 +74,7 @@ export default function ProductCard({
             }
             mutate?.();
         } catch (error) {
-            toast.error(error?.error?.detail || 'An error occurred');
+            toast.error(error?.error?.detail || error?.error.params?.detail);
         } finally {
             setIsAddingToCart(false);
         }
@@ -97,9 +97,7 @@ export default function ProductCard({
             }
             setIsFavorite(!isFavorite); // optimistic update
         } catch (error) {
-            // rollback on failure
-            setIsFavorite(!isFavorite);
-            console.error('Bookmark toggle failed:', error);
+            toast.error(error?.error.params.detail)
         }
     };
 

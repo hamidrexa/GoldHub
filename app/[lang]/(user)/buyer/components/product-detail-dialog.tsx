@@ -86,7 +86,7 @@ export default function ProductDetailDialog({
             mutate();
             onOpenChange(false);
         } catch (error) {
-            toast.error(error?.error?.detail || "An error occurred");
+            toast.error(error?.error?.detail || error?.params?.detail || error?.error.params.detail);
         } finally {
             setIsAddingToCart(false);
         }
@@ -110,8 +110,7 @@ export default function ProductDetailDialog({
             setIsFavorite(!isFavorite);
             mutate();
         } catch (error) {
-            setIsFavorite(!isFavorite);
-            console.error("Bookmark toggle failed:", error);
+            toast.error(error?.error.params.detail)
         }
     };
 

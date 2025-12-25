@@ -30,6 +30,7 @@ import { toast } from 'sonner';
 import { loginWithGoogle } from '@/app/[lang]/(auth)/login/services/loginWithGoogle';
 import { Icons } from '@/components/ui/icons';
 import { Button } from '@/components/ui/button';
+import { LanguageSwitcher } from '@/components/language-selector';
 
 const ListItem = React.forwardRef<
     React.ElementRef<'a'>,
@@ -137,7 +138,7 @@ export function Header({ dict, lang, googleLogin = true }) {
     return (
         <header
             className={cn(
-                'sticky top-0 z-[60] grid h-16 grid-cols-3 items-center justify-between px-6 text-sm transition-transform md:flex md:h-[90px] md:px-14',
+                'sticky top-0 z-[60] grid h-16 grid-cols-[auto_1fr_auto] items-center justify-between px-6 text-sm transition-transform md:flex md:h-[90px] md:px-14',
                 'bg-navy-900 text-white',
                 isReadingMode
                     ? '-translate-y-full md:translate-y-0'
@@ -184,54 +185,128 @@ export function Header({ dict, lang, googleLogin = true }) {
                                     </div>
                                 )}
                                 <div className="mt-4 flex flex-col gap-2">
-                                    {user?.groups?.some((g: any) => g.name === 'admin') && !path.includes('/admin') && (
-                                        <Link href={`${getLinksLang(lang)}/admin`}>
-                                            <Button variant="outline" className="w-full justify-start gap-2 border-gold-600 bg-transparent text-black hover:bg-gold-600 hover:text-white">
-                                                <Shield className="h-4 w-4" />
-                                                {dict.switchToAdmin || 'Switch to Admin'}
-                                            </Button>
-                                        </Link>
-                                    )}
-                                    {user?.groups?.some((g: any) => g.name === 'supplier_approved') && !path.includes('/supplier') && (
-                                        <Link href={`${getLinksLang(lang)}/supplier/dashboard`}>
-                                            <Button variant="outline" className="w-full justify-start gap-2 border-gold-600 bg-transparent text-black hover:bg-gold-600 hover:text-white">
-                                                <Store className="h-4 w-4" />
-                                                {dict.switchToSupplier || 'Switch to Supplier'}
-                                            </Button>
-                                        </Link>
-                                    )}
-                                    {user?.groups?.some((g: any) => g.name === 'buyer_approved') && !path.includes('/buyer') && (
-                                        <Link href={`${getLinksLang(lang)}/buyer/dashboard`}>
-                                            <Button variant="outline" className="w-full justify-start gap-2 border-gold-600 bg-transparent text-black hover:bg-gold-600 hover:text-white">
-                                                <Store className="h-4 w-4" />
-                                                {dict.switchToBuyer || 'Switch to Buyer'}
-                                            </Button>
-                                        </Link>
-                                    )}
+                                    {user?.groups?.some(
+                                        (g: any) => g.name === 'admin'
+                                    ) &&
+                                        !path.includes('/admin') && (
+                                            <Link
+                                                href={`${getLinksLang(lang)}/admin`}
+                                            >
+                                                <Button
+                                                    variant="outline"
+                                                    className="w-full justify-start gap-2 border-gold-600 bg-transparent text-black hover:bg-gold-600 hover:text-white"
+                                                >
+                                                    <Shield className="h-4 w-4" />
+                                                    {dict.switchToAdmin ||
+                                                        'Switch to Admin'}
+                                                </Button>
+                                            </Link>
+                                        )}
+                                    {user?.groups?.some(
+                                        (g: any) =>
+                                            g.name === 'supplier_approved'
+                                    ) &&
+                                        !path.includes('/supplier') && (
+                                            <Link
+                                                href={`${getLinksLang(lang)}/supplier/dashboard`}
+                                            >
+                                                <Button
+                                                    variant="outline"
+                                                    className="w-full justify-start gap-2 border-gold-600 bg-transparent text-black hover:bg-gold-600 hover:text-white"
+                                                >
+                                                    <Store className="h-4 w-4" />
+                                                    {dict.switchToSupplier ||
+                                                        'Switch to Supplier'}
+                                                </Button>
+                                            </Link>
+                                        )}
+                                    {user?.groups?.some(
+                                        (g: any) => g.name === 'buyer_approved'
+                                    ) &&
+                                        !path.includes('/buyer') && (
+                                            <Link
+                                                href={`${getLinksLang(lang)}/buyer/dashboard`}
+                                            >
+                                                <Button
+                                                    variant="outline"
+                                                    className="w-full justify-start gap-2 border-gold-600 bg-transparent text-black hover:bg-gold-600 hover:text-white"
+                                                >
+                                                    <Store className="h-4 w-4" />
+                                                    {dict.switchToBuyer ||
+                                                        'Switch to Buyer'}
+                                                </Button>
+                                            </Link>
+                                        )}
                                 </div>
                                 <div className="mt-8 flex flex-col items-start gap-4 text-lg font-medium">
                                     {/* Dynamic Role-Based Menu Items */}
-                                    {(path.includes('/buyer') ? [
-                                        { title: 'Dashboard', href: `${getLinksLang(lang)}/buyer` },
-                                        { title: 'Catalog', href: `${getLinksLang(lang)}/buyer/catalog` },
-                                        { title: 'My Orders', href: `${getLinksLang(lang)}/buyer/orders` },
-                                        { title: 'Cart', href: `${getLinksLang(lang)}/buyer/cart` },
-                                        { title: 'Favorites', href: `${getLinksLang(lang)}/buyer/favorites` },
-                                    ] : path.includes('/supplier') ? [
-                                        { title: 'Dashboard', href: `${getLinksLang(lang)}/supplier/dashboard` },
-                                        { title: 'My Products', href: `${getLinksLang(lang)}/supplier/products` },
-                                        { title: 'Pricing', href: `${getLinksLang(lang)}/supplier/pricing` },
-                                        { title: 'Orders', href: `${getLinksLang(lang)}/supplier/orders` },
-                                    ] : path.includes('/admin') ? [
-                                        { title: 'Dashboard', href: `${getLinksLang(lang)}/admin` },
-                                        { title: 'Users & KYC', href: `${getLinksLang(lang)}/admin/users-kyc` },
-                                        { title: 'Audit Logs', href: `${getLinksLang(lang)}/admin/audit-logs` },
-                                        { title: 'All Orders', href: `${getLinksLang(lang)}/admin/orders` },
-                                    ] : dict.navMenuItems).map((item: any, idx: number) => (
+                                    {(path.includes('/buyer')
+                                        ? [
+                                              {
+                                                  title: 'Dashboard',
+                                                  href: `${getLinksLang(lang)}/buyer`,
+                                              },
+                                              {
+                                                  title: 'Catalog',
+                                                  href: `${getLinksLang(lang)}/buyer/catalog`,
+                                              },
+                                              {
+                                                  title: 'My Orders',
+                                                  href: `${getLinksLang(lang)}/buyer/orders`,
+                                              },
+                                              {
+                                                  title: 'Cart',
+                                                  href: `${getLinksLang(lang)}/buyer/cart`,
+                                              },
+                                              {
+                                                  title: 'Favorites',
+                                                  href: `${getLinksLang(lang)}/buyer/favorites`,
+                                              },
+                                          ]
+                                        : path.includes('/supplier')
+                                          ? [
+                                                {
+                                                    title: 'Dashboard',
+                                                    href: `${getLinksLang(lang)}/supplier/dashboard`,
+                                                },
+                                                {
+                                                    title: 'My Products',
+                                                    href: `${getLinksLang(lang)}/supplier/products`,
+                                                },
+                                                {
+                                                    title: 'Pricing',
+                                                    href: `${getLinksLang(lang)}/supplier/pricing`,
+                                                },
+                                                {
+                                                    title: 'Orders',
+                                                    href: `${getLinksLang(lang)}/supplier/orders`,
+                                                },
+                                            ]
+                                          : path.includes('/admin')
+                                            ? [
+                                                  {
+                                                      title: 'Dashboard',
+                                                      href: `${getLinksLang(lang)}/admin`,
+                                                  },
+                                                  {
+                                                      title: 'Users & KYC',
+                                                      href: `${getLinksLang(lang)}/admin/users-kyc`,
+                                                  },
+                                                  {
+                                                      title: 'Audit Logs',
+                                                      href: `${getLinksLang(lang)}/admin/audit-logs`,
+                                                  },
+                                                  {
+                                                      title: 'All Orders',
+                                                      href: `${getLinksLang(lang)}/admin/orders`,
+                                                  },
+                                              ]
+                                            : dict.navMenuItems
+                                    ).map((item: any, idx: number) => (
                                         <Link
                                             key={idx}
                                             href={item.href}
-                                            className="flex items-center gap-3 hover:text-violet-900 transition-colors"
+                                            className="flex items-center gap-3 transition-colors hover:text-violet-900"
                                             onClick={() => setOpen(false)}
                                         >
                                             {item.title}
@@ -299,15 +374,27 @@ export function Header({ dict, lang, googleLogin = true }) {
                         </div>
                     </SheetContent>
                 </Sheet>
+                <LanguageSwitcher currentLang={lang} />
             </div>
             <div className="flex items-center justify-center gap-1">
-                <Link
-                    className="flex items-center  text-lg font-black text-white"
-                    href={`${getLinksLang(lang)}/`}
-                >
-                    <Icons.logoDark className="h-7 w-24 cursor-pointer md:h-9 md:w-32" />
-                    GoldHub
-                </Link>
+                <div className="flex justify-between">
+                    <div className="flex shrink-0 items-center gap-2">
+                        <Link
+                            href={`${getLinksLang(lang)}/`}
+                            className="flex items-center gap-2 text-lg font-black text-white"
+                        >
+                            <Icons.logoDark className="h-7 w-24 md:h-9 md:w-32" />
+                            <span className="hidden whitespace-nowrap sm:inline">
+                                GoldHub
+                            </span>
+                        </Link>
+                    </div>
+                    {/* RIGHT: Language Selector */}
+                    {/*<div className="flex items-center">*/}
+                    {/*    <LanguageSwitcher currentLang={lang} />*/}
+                    {/*</div>*/}
+                </div>
+
                 <hr className="hidden h-7 w-px bg-navy-700 md:flex ltr:ml-3 rtl:mr-3" />
                 <NavigationMenu
                     className="hidden md:block"
@@ -331,7 +418,7 @@ export function Header({ dict, lang, googleLogin = true }) {
                     </NavigationMenuList>
                 </NavigationMenu>
             </div>
-            <div className="flex justify-end md:hidden">
+            <div className="flex justify-end md:hidden shrink-0">
                 {user ? (
                     <Link
                         href={`${getLinksLang(lang)}/profile`}

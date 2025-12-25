@@ -60,9 +60,9 @@ export default async function ContactPage({ params: { lang } }: PageProps) {
                         <p className="mt-2">
                             {' '}
                             {dict.callNumber}:{' '}
-                            <span dir="ltr">021-91304925</span>
+                            <span dir="ltr">91304925</span>
                         </p>
-                        <p className="mt-1.5">{dict.email} : info@talanow.ir</p>
+                        <p className="mt-1.5">{dict.email} : info@goldhub.com</p>
                         <p className="mt-1.5">{dict.postalCode}: 1439956172</p>
                     </div>
                 </div>

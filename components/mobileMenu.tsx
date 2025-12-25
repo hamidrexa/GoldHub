@@ -27,6 +27,7 @@ import { googleLogout, useGoogleOneTapLogin } from '@react-oauth/google';
 import { toast } from 'sonner';
 import { loginWithGoogle } from '@/app/[lang]/(auth)/login/services/loginWithGoogle';
 import { Icons } from '@/components/ui/icons';
+import { useCardDetails } from '@/app/[lang]/(user)/buyer/services/cart-details';
 
 const ListItem = React.forwardRef<
     React.ElementRef<'a'>,
@@ -58,9 +59,14 @@ ListItem.displayName = 'ListItem';
 
 export function MobileMenu({ dict, lang, googleLogin = true }) {
     const [open, setOpen] = useState(false);
-    const [isSelected, setIsSelected] = useState(false);
-    const [openSuggestion, setOpenSuggestion] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
+    const { details, isLoading } = useCardDetails();
+
+    const totalCartCount =
+        details?.items?.reduce(
+            (sum: number, item: { count: number }) => sum + item.count,
+            0
+        ) || 0;
+
     const { user, isUserLoading, setIsUserLoading, isReadingMode, setUser } =
         useGlobalContext();
     const path = usePathname();
@@ -76,26 +82,26 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
             key: 'dashboard',
             title: dict.marketplace?.navigation?.dashboard || 'Dashboard',
             icon: <Icons.home />,
-            href: `/${lang}/admin/dashboard`
+            href: `/${lang}/admin/dashboard`,
         },
         {
             key: 'users',
             title: dict.marketplace?.navigation?.usersKyc || 'Users & KYC',
             icon: <Icons.category />,
-            href: `/${lang}/admin/users-kyc`
+            href: `/${lang}/admin/users-kyc`,
         },
         {
             key: 'orders',
             title: dict.marketplace?.navigation?.allOrders || 'Orders',
             icon: <Icons.fire />,
-            href: `/${lang}/admin/orders`
+            href: `/${lang}/admin/orders`,
         },
         {
             key: 'logs',
             title: dict.marketplace?.navigation?.auditLogs || 'Audit Logs',
             icon: <Icons.graph />,
-            href: `/${lang}/admin/audit-logs`
-        }
+            href: `/${lang}/admin/audit-logs`,
+        },
     ];
 
     // Supplier navigation items
@@ -104,26 +110,26 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
             key: 'dashboard',
             title: dict.marketplace?.navigation?.dashboard || 'Dashboard',
             icon: <Icons.home />,
-            href: `/${lang}/supplier/dashboard`
+            href: `/${lang}/supplier/dashboard`,
         },
         {
             key: 'products',
             title: dict.marketplace?.navigation?.myProducts || 'Products',
             icon: <Icons.category />,
-            href: `/${lang}/supplier/products`
+            href: `/${lang}/supplier/products`,
         },
         {
             key: 'pricing',
             title: dict.marketplace?.navigation?.pricing || 'Pricing',
             icon: <Icons.graph />,
-            href: `/${lang}/supplier/pricing`
+            href: `/${lang}/supplier/pricing`,
         },
         {
             key: 'orders',
             title: dict.marketplace?.navigation?.orders || 'Orders',
             icon: <Icons.fire />,
-            href: `/${lang}/supplier/orders`
-        }
+            href: `/${lang}/supplier/orders`,
+        },
     ];
 
     // Buyer navigation items
@@ -132,26 +138,26 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
             key: 'dashboard',
             title: dict.marketplace?.navigation?.dashboard || 'Dashboard',
             icon: <Icons.home />,
-            href: `/${lang}/buyer`
+            href: `/${lang}/buyer`,
         },
         {
             key: 'catalog',
             title: dict.marketplace?.navigation?.catalog || 'Catalog',
             icon: <Icons.category />,
-            href: `/${lang}/buyer/catalog`
+            href: `/${lang}/buyer/catalog`,
         },
         {
             key: 'orders',
             title: dict.marketplace?.navigation?.myOrders || 'Orders',
             icon: <Icons.fire />,
-            href: `/${lang}/buyer/orders`
+            href: `/${lang}/buyer/orders`,
         },
         {
             key: 'cart',
             title: dict.marketplace?.navigation?.cart || 'Cart',
             icon: <Icons.graph />,
-            href: `/${lang}/buyer/cart`
-        }
+            href: `/${lang}/buyer/cart`,
+        },
     ];
 
     // Default/legacy items for non-dashboard pages
@@ -160,20 +166,20 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
             key: 'products',
             title: dict.marketplace?.navigation?.products || 'Products',
             icon: <Icons.fire />,
-            href: `/${lang}/buyer/catalog`
+            href: `/${lang}/buyer/catalog`,
         },
         {
             key: 'cart',
             title: dict.marketplace?.navigation?.cart || 'Cart',
             icon: <Icons.buyer />,
-            href: `/${lang}/buyer/cart`
+            href: `/${lang}/buyer/cart`,
         },
         {
             key: 'favorites',
             title: dict.marketplace?.navigation?.favorites || 'Favorites',
             icon: <Icons.popular />,
-            href: `/${lang}/buyer/favorites`
-        }
+            href: `/${lang}/buyer/favorites`,
+        },
     ];
 
     // Select items based on current route
@@ -202,8 +208,8 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
             } catch (e) {
                 toast.error(
                     e?.error?.params?.detail ||
-                    e?.error?.messages?.error?.[0] ||
-                    e?.error?.params?.non_field_errors?.[0]
+                        e?.error?.messages?.error?.[0] ||
+                        e?.error?.params?.non_field_errors?.[0]
                 );
             }
         },
@@ -249,7 +255,7 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
     return (
         <header
             className={cn(
-                'fixed w-full bottom-0 z-[60] md:hidden h-[70px] items-center justify-between text-sm text-black transition-transform md:h-[95px]',
+                'fixed bottom-0 z-[60] h-[70px] w-full items-center justify-between text-sm text-black transition-transform md:hidden md:h-[95px]',
                 // path === '/'
                 //     ? 'bg-neutral-700 text-white'
                 // :
@@ -259,30 +265,48 @@ export function MobileMenu({ dict, lang, googleLogin = true }) {
                     : 'translate-y-0'
             )}
         >
-            <div className="flex w-full items-center h-full justify-evenly flex-row">
+            <div className="flex h-full w-full flex-row items-center justify-evenly">
                 {items.map((item) => {
                     const isActive = path === item.href;
+                    const isCart = item.key === 'cart';
                     return (
-                        <Link key={item.key} href={item.href} className='flex justify-center flex-col items-center gap-1 h-[30px]'>
+                        <Link
+                            key={item.key}
+                            href={
+                                !!user
+                                    ? item.href
+                                    : item.key === 'products'
+                                      ? item.href
+                                      : '/login'
+                            }
+                            className="flex h-[30px] flex-col items-center justify-center gap-1"
+                        >
                             <div
                                 className={cn(
-                                    'flex items-center justify-center p-2 rounded-lg', // Add padding and border radius if needed
+                                    'relative flex items-center justify-center rounded-lg p-2',
                                     {
-                                        'bg-[#0C0E3C]': isActive, // Set your active background color here
-                                        'bg-[white]': !isActive, // Default background color
+                                        'bg-[#0C0E3C]': isActive,
+                                        'bg-white': !isActive,
                                     }
                                 )}
                             >
                                 <div
-                                    className={cn(
-                                        {
-                                            'stroke-white fill-white text-white': isActive, // Set active icon colors
-                                            'stroke-[#0C0E3C] fill-[#0C0E3C]': !isActive, // Set inactive icon colors
-                                        }
-                                    )}
+                                    className={cn({
+                                        'fill-white stroke-white text-white':
+                                            isActive, // Set active icon colors
+                                        'fill-[#0C0E3C] stroke-[#0C0E3C]':
+                                            !isActive, // Set inactive icon colors
+                                    })}
                                 >
                                     {item.icon}
                                 </div>
+                                {isCart && totalCartCount > 0 && (
+                                    <span
+                                        className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 font-bold text-white text-sm"
+                                    >
+                                        {totalCartCount}
+                                    </span>
+                                )}
                             </div>
                             {item.title}
                         </Link>

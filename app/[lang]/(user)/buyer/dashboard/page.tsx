@@ -102,103 +102,103 @@ export default async function BuyerDashboardPage({ params: { lang } }: PageProps
             {/* Stats Cards */}
             <BuyerStartCards dict={dict} lang={lang} />
 
-            <div className="grid gap-6 lg:grid-cols-5">
-                {/* Market Prices */}
-                <Card className="lg:col-span-2">
-                    <CardHeader>
-                        <CardTitle className="text-lg">{dict.marketplace.buyer.marketPrices}</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                        {marketPrices.map((item, index) => (
-                            <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                                <div>
-                                    <p className="font-medium text-sm">{item.metal}</p>
-                                    <div className="flex items-center gap-2 mt-1">
-                                        <TrendingUp className={`h-3 w-3 ${item.change >= 0 ? 'text-green-600' : 'text-red-600'}`} />
-                                        <span className={`text-xs ${item.change >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                                            {item.change >= 0 ? '+' : ''}{item.change}%
-                                        </span>
-                                    </div>
-                                </div>
-                                <p className="text-lg font-bold text-yellow-600">
-                                    ${item.price.toFixed(2)}/{item.unit}
-                                </p>
-                            </div>
-                        ))}
-                    </CardContent>
-                </Card>
+            {/*<div className="grid gap-6 lg:grid-cols-5">*/}
+            {/*    /!* Market Prices *!/*/}
+            {/*    <Card className="lg:col-span-2">*/}
+            {/*        <CardHeader>*/}
+            {/*            <CardTitle className="text-lg">{dict.marketplace.buyer.marketPrices}</CardTitle>*/}
+            {/*        </CardHeader>*/}
+            {/*        <CardContent className="space-y-4">*/}
+            {/*            {marketPrices.map((item, index) => (*/}
+            {/*                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">*/}
+            {/*                    <div>*/}
+            {/*                        <p className="font-medium text-sm">{item.metal}</p>*/}
+            {/*                        <div className="flex items-center gap-2 mt-1">*/}
+            {/*                            <TrendingUp className={`h-3 w-3 ${item.change >= 0 ? 'text-green-600' : 'text-red-600'}`} />*/}
+            {/*                            <span className={`text-xs ${item.change >= 0 ? 'text-green-600' : 'text-red-600'}`}>*/}
+            {/*                                {item.change >= 0 ? '+' : ''}{item.change}%*/}
+            {/*                            </span>*/}
+            {/*                        </div>*/}
+            {/*                    </div>*/}
+            {/*                    <p className="text-lg font-bold text-yellow-600">*/}
+            {/*                        ${item.price.toFixed(2)}/{item.unit}*/}
+            {/*                    </p>*/}
+            {/*                </div>*/}
+            {/*            ))}*/}
+            {/*        </CardContent>*/}
+            {/*    </Card>*/}
 
-                {/* Recent Orders */}
-                <Card className="lg:col-span-3">
-                    <CardHeader className="flex flex-row items-center justify-between">
-                        <CardTitle className="text-lg">{dict.marketplace.buyer.recentOrders}</CardTitle>
-                        <Link href={`/${lang}/buyer/orders`}>
-                            <Button variant="ghost" size="sm">
-                                {dict.marketplace.common.viewAll}
-                                <ArrowRight className="h-4 w-4 ml-1" />
-                            </Button>
-                        </Link>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                        {recentOrders.map((order) => (
-                            <div key={order.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50 transition-colors">
-                                <div className="flex-1">
-                                    <div className="flex items-center gap-2 mb-1">
-                                        <p className="font-semibold">{order.id}</p>
-                                        <StatusBadge status={order.status} dict={dict} />
-                                    </div>
-                                    <p className="text-sm text-muted-foreground">
-                                        {order.orderItems[0]?.product.name.includes('Premium') ? 'Premium Gold Co.' : 'Luxury Jewelers Inc.'}
-                                    </p>
-                                </div>
-                                <div className="text-right">
-                                    <p className="font-bold text-lg">${order.total.toLocaleString()}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </CardContent>
-                </Card>
-            </div>
+            {/*    /!* Recent Orders *!/*/}
+            {/*    <Card className="lg:col-span-3">*/}
+            {/*        <CardHeader className="flex flex-row items-center justify-between">*/}
+            {/*            <CardTitle className="text-lg">{dict.marketplace.buyer.recentOrders}</CardTitle>*/}
+            {/*            <Link href={`/${lang}/buyer/orders`}>*/}
+            {/*                <Button variant="ghost" size="sm">*/}
+            {/*                    {dict.marketplace.common.viewAll}*/}
+            {/*                    <ArrowRight className="h-4 w-4 ml-1" />*/}
+            {/*                </Button>*/}
+            {/*            </Link>*/}
+            {/*        </CardHeader>*/}
+            {/*        <CardContent className="space-y-3">*/}
+            {/*            {recentOrders.map((order) => (*/}
+            {/*                <div key={order.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50 transition-colors">*/}
+            {/*                    <div className="flex-1">*/}
+            {/*                        <div className="flex items-center gap-2 mb-1">*/}
+            {/*                            <p className="font-semibold">{order.id}</p>*/}
+            {/*                            <StatusBadge status={order.status} dict={dict} />*/}
+            {/*                        </div>*/}
+            {/*                        <p className="text-sm text-muted-foreground">*/}
+            {/*                            {order.orderItems[0]?.product.name.includes('Premium') ? 'Premium Gold Co.' : 'Luxury Jewelers Inc.'}*/}
+            {/*                        </p>*/}
+            {/*                    </div>*/}
+            {/*                    <div className="text-right">*/}
+            {/*                        <p className="font-bold text-lg">${order.total.toLocaleString()}</p>*/}
+            {/*                    </div>*/}
+            {/*                </div>*/}
+            {/*            ))}*/}
+            {/*        </CardContent>*/}
+            {/*    </Card>*/}
+            {/*</div>*/}
 
             {/* Featured Products */}
-            <Card>
-                <CardHeader className="flex flex-row items-center justify-between">
-                    <CardTitle className="text-lg">{dict.marketplace.buyer.featuredProducts}</CardTitle>
-                    <Link href={`/${lang}/buyer/catalog`}>
-                        <Button variant="ghost" size="sm">
-                            {dict.marketplace.buyer.viewCatalog}
-                            <ArrowRight className="h-4 w-4 ml-1" />
-                        </Button>
-                    </Link>
-                </CardHeader>
-                <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        {featuredProducts.map((product) => (
-                            <Link key={product.id} href={`/${lang}/buyer/catalog/${product.id}`}>
-                                <Card className="hover:shadow-md transition-shadow cursor-pointer">
-                                    <CardContent className="p-4">
-                                        {/* Product Image */}
-                                        <div className="aspect-square bg-gray-100 rounded-lg mb-3 flex items-center justify-center">
-                                            <ShoppingBag className="h-12 w-12 text-gray-400" />
-                                        </div>
+            {/*<Card>*/}
+            {/*    <CardHeader className="flex flex-row items-center justify-between">*/}
+            {/*        <CardTitle className="text-lg">{dict.marketplace.buyer.featuredProducts}</CardTitle>*/}
+            {/*        <Link href={`/${lang}/buyer/catalog`}>*/}
+            {/*            <Button variant="ghost" size="sm">*/}
+            {/*                {dict.marketplace.buyer.viewCatalog}*/}
+            {/*                <ArrowRight className="h-4 w-4 ml-1" />*/}
+            {/*            </Button>*/}
+            {/*        </Link>*/}
+            {/*    </CardHeader>*/}
+            {/*    <CardContent>*/}
+            {/*        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">*/}
+            {/*            {featuredProducts.map((product) => (*/}
+            {/*                <Link key={product.id} href={`/${lang}/buyer/catalog/${product.id}`}>*/}
+            {/*                    <Card className="hover:shadow-md transition-shadow cursor-pointer">*/}
+            {/*                        <CardContent className="p-4">*/}
+            {/*                            /!* Product Image *!/*/}
+            {/*                            <div className="aspect-square bg-gray-100 rounded-lg mb-3 flex items-center justify-center">*/}
+            {/*                                <ShoppingBag className="h-12 w-12 text-gray-400" />*/}
+            {/*                            </div>*/}
 
-                                        {/* Product Info */}
-                                        <div className="space-y-1">
-                                            <h4 className="font-semibold text-sm line-clamp-2">{product.name}</h4>
-                                            <p className="text-xs text-muted-foreground line-clamp-1">
-                                                Premium Gold Co.
-                                            </p>
-                                            <p className="text-lg font-bold text-yellow-600">
-                                                ${product.price.toLocaleString()}
-                                            </p>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            </Link>
-                        ))}
-                    </div>
-                </CardContent>
-            </Card>
+            {/*                            /!* Product Info *!/*/}
+            {/*                            <div className="space-y-1">*/}
+            {/*                                <h4 className="font-semibold text-sm line-clamp-2">{product.name}</h4>*/}
+            {/*                                <p className="text-xs text-muted-foreground line-clamp-1">*/}
+            {/*                                    Premium Gold Co.*/}
+            {/*                                </p>*/}
+            {/*                                <p className="text-lg font-bold text-yellow-600">*/}
+            {/*                                    ${product.price.toLocaleString()}*/}
+            {/*                                </p>*/}
+            {/*                            </div>*/}
+            {/*                        </CardContent>*/}
+            {/*                    </Card>*/}
+            {/*                </Link>*/}
+            {/*            ))}*/}
+            {/*        </div>*/}
+            {/*    </CardContent>*/}
+            {/*</Card>*/}
         </div>
     );
 }

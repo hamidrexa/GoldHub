@@ -59,7 +59,7 @@ export default async function AuthenticationPage({ params: { lang }, searchParam
                         href={`${getLinksLang(lang)}/`}
                         className="relative z-20 flex items-center justify-center text-lg font-medium md:justify-start"
                     >
-                        <Icons.logo className="h-9 fill-neutral-800 md:fill-white" />
+                        <Icons.logoLightWBF className="h-9 bg-transparent fill-white md:fill-white" />
                     </Link>
                     <div className="relative z-20 mt-auto hidden md:block">
                         {/*<blockquote className="space-y-2 text-white">*/}
