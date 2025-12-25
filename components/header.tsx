@@ -18,7 +18,12 @@ import {
     Shield,
     Store,
 } from 'lucide-react';
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import {
+    Sheet,
+    SheetContent,
+    SheetTitle,
+    SheetTrigger,
+} from '@/components/ui/sheet';
 import Cookies from 'js-cookie';
 import { useGlobalContext } from '@/contexts/store';
 import { getProfile } from '@/services/getProfile';
@@ -91,8 +96,8 @@ export function Header({ dict, lang, googleLogin = true }) {
             } catch (e) {
                 toast.error(
                     e?.error?.params?.detail ||
-                    e?.error?.messages?.error?.[0] ||
-                    e?.error?.params?.non_field_errors?.[0]
+                        e?.error?.messages?.error?.[0] ||
+                        e?.error?.params?.non_field_errors?.[0]
                 );
             }
         },
@@ -165,12 +170,6 @@ export function Header({ dict, lang, googleLogin = true }) {
                                             {user.first_name
                                                 ? `${user.first_name} ${user.last_name}`
                                                 : dict.sahmetoUser}{' '}
-                                            <Link
-                                                href={`${getLinksLang(lang)}/profile`}
-                                                className="text-violet-900 underline underline-offset-2"
-                                            >
-                                                ({dict.edit})
-                                            </Link>
                                         </div>
                                     </div>
                                 ) : (
@@ -313,6 +312,13 @@ export function Header({ dict, lang, googleLogin = true }) {
                                         </Link>
                                     ))}
                                 </div>
+                                <div className="my-6 flex items-center justify-between">
+                                    <LanguageSwitcher
+                                        currentLang={lang}
+                                        lang={lang}
+                                        isMobile={true}
+                                    />
+                                </div>
                             </div>
                             <div>
                                 <div className="flex items-start justify-center gap-8">
@@ -374,7 +380,6 @@ export function Header({ dict, lang, googleLogin = true }) {
                         </div>
                     </SheetContent>
                 </Sheet>
-                <LanguageSwitcher currentLang={lang} />
             </div>
             <div className="flex items-center justify-center gap-1">
                 <div className="flex justify-between">
@@ -418,7 +423,7 @@ export function Header({ dict, lang, googleLogin = true }) {
                     </NavigationMenuList>
                 </NavigationMenu>
             </div>
-            <div className="flex justify-end md:hidden shrink-0">
+            <div className="flex shrink-0 justify-end md:hidden">
                 {user ? (
                     <Link
                         href={`${getLinksLang(lang)}/profile`}

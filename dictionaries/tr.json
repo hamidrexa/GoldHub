@@ -279,7 +279,8 @@
           "kycSubmitted": "KYC Gönderildi",
           "kycApproved": "KYC Onaylandı",
           "kycRejected": "KYC Reddedildi",
-          "supplierRequested": "Supplier Requested"
+          "supplierRequested": "Supplier Requested",
+          "buyerRequested": "Buyer Requested"
         }
       }
     },

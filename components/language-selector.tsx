@@ -12,6 +12,12 @@ import { usePathname, useRouter } from 'next/navigation';
 import { LANGS, DEFAULT_LANG, stripLangFromPath } from '@/libs/lang';
 import { ArabicFlag, TurkeyFlag, USAFlag } from '@/components/ui/flags';
 import { cn } from '@/libs/utils';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger, SelectValue,
+} from '@/components/ui/select';
 
 const FLAG_MAP: Record<string, React.FC<{ className?: string }>> = {
     en: USAFlag,
@@ -19,24 +25,34 @@ const FLAG_MAP: Record<string, React.FC<{ className?: string }>> = {
     tr: TurkeyFlag,
 };
 
-export function LanguageSwitcher({ currentLang }: { currentLang: string }) {
+type Props = {
+    currentLang: string;
+    isMobile: boolean;
+    lang:any;
+};
+
+export function LanguageSwitcher({ currentLang, isMobile,lang }: Props) {
     const router = useRouter();
     const pathname = usePathname();
     const basePath = stripLangFromPath(pathname);
 
     const activeLang =
-        LANGS.find(l => l.code === currentLang) ??
-        LANGS.find(l => l.code === DEFAULT_LANG)!;
+        LANGS.find((l) => l.code === currentLang) ??
+        LANGS.find((l) => l.code === DEFAULT_LANG)!;
 
     const ActiveFlag = FLAG_MAP[activeLang.code];
 
     const changeLang = (lang: string) => {
-        router.push(
-            lang === DEFAULT_LANG ? basePath || '/' : `/${lang}${basePath}`
-        );
+        const cleanPath = stripLangFromPath(pathname);
+
+        if (lang !== DEFAULT_LANG) {
+            router.push(`/${lang}${cleanPath || '/'}`);
+            return;
+        }
+        router.push(cleanPath || '/');
     };
 
-    return (
+    return !isMobile ? (
         <DropdownMenu>
             {/* ===== Trigger ===== */}
             <DropdownMenuTrigger asChild>
@@ -56,7 +72,7 @@ export function LanguageSwitcher({ currentLang }: { currentLang: string }) {
                         <ActiveFlag className="h-4 w-4 rounded-sm" />
                     )}
 
-                    <span className="text-sm font-medium hidden md:inline">
+                    <span className="hidden text-sm font-medium md:inline">
                         {activeLang.label}
                     </span>
                 </Button>
@@ -66,8 +82,9 @@ export function LanguageSwitcher({ currentLang }: { currentLang: string }) {
             <DropdownMenuContent
                 align="end"
                 className="w-48 rounded-xl bg-sidebar-bg text-white"
+                sideOffset={8}
             >
-                {LANGS.map(lang => {
+                {LANGS.map((lang) => {
                     const Flag = FLAG_MAP[lang.code];
                     const isActive = lang.code === activeLang.code;
 
@@ -77,9 +94,9 @@ export function LanguageSwitcher({ currentLang }: { currentLang: string }) {
                             onClick={() => changeLang(lang.code)}
                             className={cn(
                                 `
-                                flex items-center gap-3
-                                rounded-md px-3 py-2
-                                text-sm cursor-pointer
+                                flex cursor-pointer items-center
+                                gap-3 rounded-md px-3
+                                py-2 text-sm
                                 transition-colors
                                 `,
                                 isActive
@@ -87,16 +104,37 @@ export function LanguageSwitcher({ currentLang }: { currentLang: string }) {
                                     : 'hover:bg-gray-700/40'
                             )}
                         >
-                            {Flag && (
-                                <Flag className="h-5 w-5 rounded-sm" />
-                            )}
-                            <span className="font-medium">
-                                {lang.label}
-                            </span>
+                            {Flag && <Flag className="h-5 w-5 rounded-sm" />}
+                            <span className="font-medium">{lang.label}</span>
                         </DropdownMenuItem>
                     );
                 })}
             </DropdownMenuContent>
         </DropdownMenu>
+    ) : (
+        <Select
+            value={lang}
+            onValueChange={(value) => {
+                changeLang(value);
+            }}
+        >
+            <SelectTrigger className="w-full bg-transparent text-neutral-800">
+                <SelectValue placeholder="Select language" />
+            </SelectTrigger>
+
+            <SelectContent>
+                {LANGS.map((langItem) => {
+                    const Flag = FLAG_MAP[langItem.code];
+                    return (
+                        <SelectItem key={langItem.code} value={langItem.code}>
+                            <div className="flex items-center gap-3">
+                                {Flag && <Flag className="h-4 w-4" />}
+                                <span>{langItem.label}</span>
+                            </div>
+                        </SelectItem>
+                    );
+                })}
+            </SelectContent>
+        </Select>
     );
 }

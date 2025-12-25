@@ -294,7 +294,8 @@
           "kycSubmitted": "احراز هویت ثبت شد",
           "kycApproved": "احراز هویت تایید شد",
           "kycRejected": "احراز هویت رد شد",
-          "supplierRequested": "درخواست تامین‌کننده"
+          "supplierRequested": "درخواست تامین‌کننده",
+          "buyerRequested": "درخواست خریدار"
         }
       }
     },
