@@ -178,7 +178,6 @@ export default function ProductFormDialogEnhanced({
         }
     };
 
-    console.log(product);
 
     const handleDeleteImage = async () => {
         if (indexToDelete === null) return;

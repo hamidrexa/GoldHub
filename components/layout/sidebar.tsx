@@ -34,6 +34,7 @@ import Cookies from 'js-cookie';
 import { googleLogout } from '@react-oauth/google';
 import { Separator } from '@/components/ui/separator';
 import { useCardDetails } from '@/app/[lang]/(user)/buyer/services/cart-details';
+import { LanguageSwitcher } from '@/components/language-selector';
 
 interface SidebarProps {
     dict: any;
@@ -202,6 +203,7 @@ export function Sidebar({ dict, lang }: SidebarProps) {
                     <Icons.logoDark className="h-5 w-5 fill-black" />
                     <span>{dict.appName}</span>
                 </Link>
+                <LanguageSwitcher currentLang={lang} />
                 {/* Switch Role Buttons */}
                 <div className="flex flex-col gap-2">
                     {user?.groups?.some((g: any) => g.name === 'admin') &&

@@ -374,6 +374,7 @@ export function Header({ dict, lang, googleLogin = true }) {
                         </div>
                     </SheetContent>
                 </Sheet>
+                <LanguageSwitcher currentLang={lang} />
             </div>
             <div className="flex items-center justify-center gap-1">
                 <div className="flex justify-between">
