@@ -28,6 +28,18 @@ export const Icons = {
         <img
             src="/img/logo-light.png"
             alt="GoldHub Logo"
+            className="bg-transparent"
+            width={45}
+            height={45}
+            // className={props.className}
+            style={{ width: props.width, height: props.height }}
+        />
+    ),
+    logoLightWBF: (props: IconProps) => (
+        <img
+            src="/img/logo-light-wbg.png"
+            alt="GoldHub Logo"
+            className="bg-transparent"
             width={45}
             height={45}
             // className={props.className}

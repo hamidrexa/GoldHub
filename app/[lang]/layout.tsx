@@ -165,7 +165,7 @@ export default async function RootLayout({
                             '@type': 'Organization',
                             '@id': `${websiteUrl}#identity`,
                             alternateName: 'GoldHub',
-                            email: 'info@talanow.ir',
+                            email: 'info@goldhub.com',
                             image: `${websiteUrl}/img/logo.png`,
                             description:
                                 'سرمایه گذاری آسان طلا',

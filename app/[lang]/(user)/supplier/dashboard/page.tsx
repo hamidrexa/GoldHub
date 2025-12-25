@@ -116,12 +116,12 @@ export default async function SupplierDashboardPage({ params: { lang } }: PagePr
                         )}
                     </CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="px-6">
                     <div className="text-4xl font-bold text-gold-700">
                         ${stats.liveGoldPrice.toFixed(2)}
                         <span className="text-base font-normal text-muted-foreground ml-2">{dict.marketplace.common.perGram}</span>
                     </div>
-                    <p className="text-xs text-muted-foreground mt-2">
+                    <p className="text-xs text-muted-foreground my-2">
                         {dict.marketplace.supplier.lastUpdated}: {new Date().toLocaleTimeString()}
                     </p>
                 </CardContent>

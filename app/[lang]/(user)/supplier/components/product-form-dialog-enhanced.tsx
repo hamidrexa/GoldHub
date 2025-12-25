@@ -286,7 +286,6 @@ export default function ProductFormDialogEnhanced({
                     clarity,
                     color,
                 };
-
                 fd.append('stones', JSON.stringify(stonePayload));
             });
         }

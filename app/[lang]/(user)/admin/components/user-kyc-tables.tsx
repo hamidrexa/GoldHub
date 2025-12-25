@@ -138,7 +138,7 @@ export function UsersKycTable({
                     <Table className="min-w-[700px]">
                         <TableHeader>
                             <TableRow className="hover:bg-transparent">
-                                <TableHead className="bg-card sticky left-0 z-20 font-semibold shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">
+                                <TableHead className="bg-card left-0 z-20 font-semibold shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">
                                     {
                                         dict.marketplace.admin.usersKycPage
                                             .table.name
@@ -226,7 +226,7 @@ export function UsersKycTable({
                                         className="hover:bg-gray-50"
                                     >
                                         {/* Sticky first column */}
-                                        <TableCell className="bg-card sticky left-0 z-10 font-medium shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">
+                                        <TableCell className="bg-card left-0 z-10 font-medium shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">
                                             {user.name}
                                         </TableCell>
 

@@ -35,8 +35,8 @@ export function FavouriteProductTable({ dict, lang ,wishlistItems,isLoading,erro
                 count: 1,
             });
             toast.success("Product has been added to card successfully!");
-        } catch (error) {
-            toast.error(error?.error.detail)
+        } catch (err) {
+            toast.error(err?.error.detail || err?.error.params?.detail)
         } finally {
             setIsAddingToCart(false);
         }

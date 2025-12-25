@@ -19,6 +19,7 @@ interface CatalogFiltersProps {
     initialPriceRange?: [number, number];
     initialWeightRange?: [number, number];
     initialSearch?: string;
+    setOpen?:any;
 }
 
 export function CatalogFilters({
@@ -28,7 +29,8 @@ export function CatalogFilters({
     initialKarat = 'all',
     initialPriceRange = [0, 10000],
     initialWeightRange = [0, 200],
-    initialSearch = ''
+    initialSearch = '',
+    setOpen = null,
 }: CatalogFiltersProps) {
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -90,6 +92,7 @@ export function CatalogFilters({
         else params.delete('maxWeight');
 
         router.push(`/${lang}/buyer/catalog?${params.toString()}`);
+        setOpen(false)
     };
 
     const clearFilters = () => {

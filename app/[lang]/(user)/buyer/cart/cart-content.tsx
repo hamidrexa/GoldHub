@@ -59,7 +59,7 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
             await mutate();
             toast.success("Product has been added to card successfully!");
         } catch (err) {
-            toast.error(err?.error.detail)
+            toast.error(err?.error.detail || err?.error.params?.detail)
             // UI already updated, just log the error
         }
     };
@@ -86,8 +86,7 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
             // Redirect to orders page on success
             window.location.href = `/${lang}/buyer/orders`;
         } catch (err) {
-            toast.error(err.error?.detail);
-            console.error('Failed to submit order:', err);
+            toast.error(err.error?.params?.detail);
             setError(err.error?.detail ?? 'Failed to submit order. Please try again.');
             setIsCheckingOut(false);
         }
@@ -106,7 +105,7 @@ export function CartContent({ initialItems, lang, dict }: CartContentProps) {
         );
     }
 
-    if (details.items.length === 0) {
+    if (details?.items?.length === 0) {
         return (
             <>
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

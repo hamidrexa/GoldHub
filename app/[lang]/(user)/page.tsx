@@ -75,11 +75,11 @@ export default async function HomePage({ params: { lang } }: PageProps) {
                         {home.hero.description}
                     </p>
 
-                    <div className="flex flex-col w-full max-w-sm gap-4 sm:flex-row sm:justify-center">
+                    <div className="flex flex-col w-full max-w-xl gap-4 sm:flex-row sm:justify-center">
                         <Button asChild size="xl" className="w-full sm:w-auto bg-yellow-500 hover:bg-yellow-600 text-navy-900 font-bold text-lg h-12">
                             <Link href={`${links}/login`}>
-                                {home.hero.ctaPrimary}
                                 <ArrowLeft className="mr-2 h-5 w-5" />
+                                {home.hero.ctaPrimary}
                             </Link>
                         </Button>
                         <Button asChild variant="outline" size="xl" className="w-full sm:w-auto border-gray-600 text-gray-200 hover:bg-gray-800 hover:text-white h-12 bg-transparent">

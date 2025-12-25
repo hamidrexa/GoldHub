@@ -4,13 +4,14 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ShoppingBag, DollarSign, Clock, Heart, TrendingUp, ArrowRight, Eye } from 'lucide-react';
+import { ShoppingBag, DollarSign, Clock, Heart, TrendingUp, ArrowRight, Eye, Image as ImageIcon } from 'lucide-react';
 import { mockBuyerOrders } from '@/lib/buyer-mock-data';
 import { mockProducts } from '@/lib/mock-data';
 import { mockWishlist } from '@/lib/buyer-mock-data';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { BuyerStartCards } from '@/app/[lang]/(user)/buyer/components/start-cards';
+import { useProductList } from '@/app/[lang]/(user)/supplier/products/services/useProductList';
 
 interface BuyerDashboardProps {
     dict: any;
@@ -19,6 +20,7 @@ interface BuyerDashboardProps {
 export default function BuyerDashboard({ dict }: BuyerDashboardProps) {
     const params = useParams();
     const lang = params.lang || 'en';
+    const {products = [],isLoading}=  useProductList(null,"",null,false,4);
 
     // Calculate stats
     const activeOrders = mockBuyerOrders.filter(o =>
@@ -46,7 +48,7 @@ export default function BuyerDashboard({ dict }: BuyerDashboardProps) {
     const recentOrders = mockBuyerOrders.slice(0, 3);
 
     // Featured products (first 4)
-    const featuredProducts = mockProducts.filter(p => p.status === 'active').slice(0, 4);
+    const featuredProducts = products.filter(p => p.status === 'active').slice(0, 4);
 
     const getStatusBadge = (status: string) => {
         const badges: Record<string, { label: string; className: string }> = {
@@ -153,28 +155,37 @@ export default function BuyerDashboard({ dict }: BuyerDashboardProps) {
                 </CardHeader>
                 <CardContent>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        {featuredProducts.map((product) => (
-                            <Link key={product.id} href={`/${lang}/buyer/catalog/${product.id}`}>
-                                <Card className="hover:shadow-md transition-shadow cursor-pointer">
+                        {!isLoading && featuredProducts.map((product) => (
+                            <div key={product.id}>
+                                <Card className="hover:shadow-md transition-shadow">
                                     <CardContent className="p-4">
                                         {/* Product Image */}
                                         <div className="aspect-square bg-gray-100 rounded-lg mb-3 flex items-center justify-center">
-                                            <ShoppingBag className="h-12 w-12 text-gray-400" />
+                                            {product.images ? (
+                                                <img
+                                                    src={product.images[0]?.image}
+                                                    alt={product.title}
+                                                    className="h-full w-full object-cover"
+                                                />
+                                            ) : (
+                                                <ShoppingBag className="h-16 w-16 text-gray-400" />
+                                            )}
+
                                         </div>
 
                                         {/* Product Info */}
                                         <div className="space-y-1">
-                                            <h4 className="font-semibold text-sm line-clamp-2">{product.name}</h4>
+                                            <h4 className="font-semibold text-sm line-clamp-2">{product.title}</h4>
                                             <p className="text-xs text-muted-foreground line-clamp-1">
-                                                Premium Gold Co.
+                                                {product.supplier?.company?.name ?? 'Anonymous Supplier'}
                                             </p>
                                             <p className="text-lg font-bold text-yellow-600">
-                                                ${product.price.toLocaleString()}
+                                                ${product.unit_price.toLocaleString()}
                                             </p>
                                         </div>
                                     </CardContent>
                                 </Card>
-                            </Link>
+                            </div>
                         ))}
                     </div>
                 </CardContent>
