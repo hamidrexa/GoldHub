@@ -120,7 +120,7 @@ export function UsersKycTable({
 
     // Search filter
     let filteredUsers = mappedUsers;
-    console.log(filteredUsers);
+
     if (searchQuery) {
         filteredUsers = filteredUsers.filter(
             (u) =>

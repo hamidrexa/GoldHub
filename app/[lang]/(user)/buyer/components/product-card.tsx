@@ -173,25 +173,33 @@ export default function ProductCard({
                     </div>
                 </CardContent>
 
-                <CardFooter className="flex w-full flex-col gap-2 p-4 pt-0">
+                <CardFooter className="flex w-full flex-row items-center gap-2 p-4 pt-0">
                     <QuantitySelector
                         quantity={quantity}
                         setQuantity={setQuantity}
                         maxStock={product.inventory ?? 10000}
                         minQuantity={0}
-                        className="w-auto"
+                        className="shrink-0"
                     />
+
                     <Button
-                        className="w-full flex-1 p-2"
+                        className="flex min-w-0 flex-1 items-center justify-center gap-2 p-2"
                         onClick={handleAddToCart}
                         disabled={product.inventory === 0 || isAddingToCart}
                     >
                         {isAddingToCart ? (
-                            <>{dict.marketplace.buyer.productCard.adding}</>
+                            <span className="truncate">
+                                {dict.marketplace.buyer.productCard.adding}
+                            </span>
                         ) : (
                             <>
-                                <ShoppingCart className="mr-2 h-4 w-4" />
-                                {dict.marketplace.buyer.productCard.addToCart}
+                                <ShoppingCart className="h-4 w-4 shrink-0" />
+                                <span className="truncate">
+                                    {
+                                        dict.marketplace.buyer.productCard
+                                            .addToCart
+                                    }
+                                </span>
                             </>
                         )}
                     </Button>

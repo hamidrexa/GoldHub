@@ -278,7 +278,7 @@ export function OrderDialog({
                                                             ? `${item.product.purity}K`
                                                             : '22K'}{' '}
                                                         ·{' '}
-                                                        {item.product?.weight ||
+                                                        {item.product?.net_weight ||
                                                             '1ounce'}
                                                     </p>
                                                 </div>
@@ -288,7 +288,7 @@ export function OrderDialog({
                                                         {(
                                                             parseFloat(
                                                                 item.product
-                                                                    .price
+                                                                    .unit_price
                                                             ) * item.count
                                                         ).toLocaleString()}
                                                     </p>

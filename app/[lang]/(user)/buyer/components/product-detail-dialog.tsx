@@ -92,6 +92,7 @@ export default function ProductDetailDialog({
         }
     };
 
+
     const followHandler = async (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
@@ -179,7 +180,7 @@ export default function ProductDetailDialog({
                             <div className="bg-[#fdfaf3] rounded-xl p-4 space-y-3">
                                 <div className="flex justify-between items-center text-sm border-b border-[#f0e6d2]/50 pb-2">
                                     <span className="text-gray-500">{dict.marketplace.common.price}:</span>
-                                    <span className="text-2xl font-bold text-[#d4af37]">${product.price?.toLocaleString()}</span>
+                                    <span className="text-2xl font-bold text-[#d4af37]">${product.unit_price?.toLocaleString()}</span>
                                 </div>
                                 <div className="flex justify-between items-center text-sm border-b border-[#f0e6d2]/50 pb-2">
                                     <span className="text-gray-500">{dict.marketplace.buyer.orderDetailModal.supplier}:</span>
@@ -213,7 +214,7 @@ export default function ProductDetailDialog({
                             <div className="grid grid-cols-2 gap-3 text-sm">
                                 <div>
                                     <span className="text-muted-foreground">{t.fields?.karat?.label || "Karat"}:</span>
-                                    <p className="font-medium">{product.karat || "N/A"}</p>
+                                    <p className="font-medium">{product.purity || "N/A"}</p>
                                 </div>
                                 <div>
                                     <span className="text-muted-foreground">{t.fields?.metalDetails?.type || "Metal Type"}:</span>
@@ -231,11 +232,11 @@ export default function ProductDetailDialog({
                             <div className="grid grid-cols-2 gap-3 text-sm">
                                 <div>
                                     <span className="text-muted-foreground">{t.fields?.dimensions?.netWeight || "Net Weight"}:</span>
-                                    <p className="font-medium">{product.weight || 0} g</p>
+                                    <p className="font-medium">{product.net_weight || 0} g</p>
                                 </div>
                                 <div>
                                     <span className="text-muted-foreground">{t.fields?.dimensions?.grossWeight || "Gross Weight"}:</span>
-                                    <p className="font-medium">{product.grossWeight || product.weight || 0} g</p>
+                                    <p className="font-medium">{product.gross_weight || 0} g</p>
                                 </div>
                             </div>
                         </div>
@@ -277,7 +278,7 @@ export default function ProductDetailDialog({
                             <div className="grid grid-cols-2 gap-3 text-sm">
                                 <div>
                                     <span className="text-muted-foreground">{t.fields?.pricing?.basePrice || "Base Price"}:</span>
-                                    <p className="font-medium">${product.price?.toLocaleString()}</p>
+                                    <p className="font-medium">${product.unit_price?.toLocaleString()}</p>
                                 </div>
                                 {product.makingCharges && (
                                     <div>
