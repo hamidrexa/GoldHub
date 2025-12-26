@@ -203,7 +203,7 @@ export function Sidebar({ dict, lang }: SidebarProps) {
                     <Icons.logoDark className="h-5 w-5 fill-black" />
                     <span>{dict.appName}</span>
                 </Link>
-                <LanguageSwitcher currentLang={lang} />
+                <LanguageSwitcher currentLang={lang} lang={lang} isMobile={false}/>
                 {/* Switch Role Buttons */}
                 <div className="flex flex-col gap-2">
                     {user?.groups?.some((g: any) => g.name === 'admin') &&

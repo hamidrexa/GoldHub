@@ -12,5 +12,6 @@ export function withLangPrefix(lang: string, path: string) {
 }
 
 export function stripLangFromPath(path: string) {
-    return path.replace(/^\/(ar|tr)(?=\/|$)/, '');
+    return path.replace(/^\/(en|ar|tr)(?=\/|$)/, '');
 }
+

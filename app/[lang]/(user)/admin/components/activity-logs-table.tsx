@@ -55,7 +55,15 @@ function EventBadge({ event, dict }: { event: string; dict: any }) {
             label: dict.marketplace.admin.auditLogsPage.events.supplierRequested,
             className: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100',
         },
-        kyc_approved: {
+        buyer_requested: {
+            label: dict.marketplace.admin.auditLogsPage.events.buyerRequested,
+            className: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100',
+        },
+        buyer_approved: {
+            label: dict.marketplace.admin.auditLogsPage.events.kycApproved,
+            className: 'bg-green-100 text-green-800 hover:bg-green-100',
+        },
+        supplier_approved: {
             label: dict.marketplace.admin.auditLogsPage.events.kycApproved,
             className: 'bg-green-100 text-green-800 hover:bg-green-100',
         },

@@ -279,7 +279,8 @@
           "kycSubmitted": "تم تقديم التحقق",
           "kycApproved": "تمت الموافقة على التحقق",
           "kycRejected": "تم رفض التحقق",
-          "supplierRequested": "Supplier Requested"
+          "supplierRequested": "سئل التامین",
+          "buyerRequested": "سئل البابع"
         }
       }
     },

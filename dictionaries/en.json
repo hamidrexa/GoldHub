@@ -284,7 +284,8 @@
           "kycSubmitted": "KYC Submitted",
           "kycApproved": "KYC Approved",
           "kycRejected": "KYC Rejected",
-          "supplierRequested": "Supplier Requested"
+          "supplierRequested": "Supplier Requested",
+          "buyerRequested": "Buyer Requested"
         }
       }
     },
